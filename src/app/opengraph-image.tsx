@@ -1,12 +1,9 @@
 import { ImageResponse } from 'next/og';
 
 import {
-  MARK_B_PATH,
-  MARK_B_TRANSFORM,
-  MARK_DOT_SIZE,
-  MARK_DOT_X,
-  MARK_DOT_Y,
-  MARK_RADIUS,
+  MARK_ALIF_PATH,
+  MARK_ARCH_PATH,
+  MARK_NUQTA_PATH,
 } from '@/components/brand/mark';
 
 import { siteConfig } from '@/config/site';
@@ -48,19 +45,9 @@ export default function OpenGraphImage() {
         />
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <svg width='64' height='64' viewBox='0 0 64 64'>
-            <rect width='64' height='64' rx={MARK_RADIUS} fill='#f5f5f3' />
-            <path
-              transform={MARK_B_TRANSFORM}
-              d={MARK_B_PATH}
-              fill='#0d0d0d'
-            />
-            <rect
-              x={MARK_DOT_X}
-              y={MARK_DOT_Y}
-              width={MARK_DOT_SIZE}
-              height={MARK_DOT_SIZE}
-              fill='#10b981'
-            />
+            <path d={MARK_ARCH_PATH} fill='#f5f5f3' />
+            <path d={MARK_ALIF_PATH} fill='#0d0d0d' />
+            <path d={MARK_NUQTA_PATH} fill='#10b981' />
           </svg>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: 30, fontWeight: 700, letterSpacing: -1 }}>
@@ -92,8 +79,8 @@ export default function OpenGraphImage() {
             Work smarter with AI. Use it on purpose.
           </div>
           <div style={{ fontSize: 30, color: '#b3b3b3', maxWidth: 900 }}>
-            AI enablement for knowledge workers, and lean systems built to the
-            same principles.
+            Conscious AI: a practical program for non-technical knowledge
+            workers and their teams.
           </div>
         </div>
 

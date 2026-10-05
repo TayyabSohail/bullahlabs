@@ -7,7 +7,7 @@ import { projectsDe } from './projects.de';
  *
  * To add one: append a `Project` to `projects` and drop its cover into
  * `/public/work/`. The /work grid, each /work/[slug] page, the homepage
- * showcase, the sitemap and the service "proof" links all read from here.
+ * showcase, and the sitemap all read from here.
  */
 
 /** What the product is. Shown as context; also drives the /work filter. */
@@ -26,7 +26,7 @@ export const CATEGORY_ORDER: ProjectCategory[] = [
   'Website',
 ];
 
-/** What the work was. Mirrors the services offered. */
+/** What kind of engineering the work was. */
 export type ProjectCapability =
   | 'Full-Stack'
   | 'AI'
@@ -118,9 +118,9 @@ export interface Project {
   title: string;
   /** Client or product owner, shown on cards. */
   client: string;
-  /** Short label under the title on cards. */
+  /** Under the title on cards: what the product is, and how it is optimized. */
   tagline: string;
-  /** One line for the hero and SEO description. */
+  /** For the case-study hero and SEO: what it is, then the optimization. */
   summary: string;
   /** Paragraph of context for the case-study lede. */
   description: string;
@@ -139,9 +139,7 @@ export interface Project {
   /** Grouped stack, rendered on the case study. */
   techStack: TechGroup[];
   category: ProjectCategory;
-  capabilities: ProjectCapability[];
-  /** Service slugs from data/services.ts this project demonstrates. */
-  services: string[];
+  capabilities: ProjectCapability[];
   industry: string;
   year: string;
   /**
@@ -189,9 +187,10 @@ export const projects: Project[] = [
     },
     title: 'Brickfold',
     client: 'Confidential (property members club)',
-    tagline: 'Fractional property ownership for East Africa',
+    tagline:
+      'Fractional property ownership for East Africa, on a ledger that never estimates',
     summary:
-      'A members club where Ugandans co-own income-producing apartments from 1,000,000 UGX.',
+      'A members club where Ugandans co-own income-producing apartments from 1,000,000 UGX. Every shilling moves by exact rules, and a person approves each movement.',
     description:
       'Property is sold in one indivisible lump, and that lump costs more than most people will ever have in the bank at once. Brickfold breaks the lump. Vetted members pool capital to co-own real, income-producing apartments in Uganda, earn their proportional share of monthly rent, and sell their stake to other members when they want out.',
     coverImage: '/work/screens/brickfold-desktop.webp',
@@ -251,8 +250,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Marketplace',
-    capabilities: ['Full-Stack', 'Cloud & Automation'],
-    services: ['product-engineering', 'team-extension'],
+    capabilities: ['Full-Stack', 'Cloud & Automation'],
     industry: 'Fintech / Real estate',
     year: '2025-2026',
     anonymised: true,
@@ -332,8 +330,9 @@ export const projects: Project[] = [
     },
     title: 'Rankloom',
     client: 'Confidential (SEO platform)',
-    tagline: 'AI-driven platform for smarter SEO growth',
-    summary: 'AI-powered SEO and content platform.',
+    tagline: 'AI SEO and content platform that never buys the same data twice',
+    summary:
+      'An AI-powered SEO and content platform. Batching and caching cut keyword tracking spend in half.',
     description:
       'One platform for keyword research, AI content generation and rank tracking, replacing the tool-hopping that ate up SEO teams’ days.',
     coverImage: '/work/screens/rankloom-desktop.webp',
@@ -397,8 +396,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'SaaS',
-    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
-    services: ['ai-automation', 'cloud-devops', 'product-engineering'],
+    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
     industry: 'Marketing technology',
     year: '2024-2025',
     anonymised: true,
@@ -470,8 +468,10 @@ export const projects: Project[] = [
     },
     title: 'Bidnest',
     client: 'Confidential (student housing marketplace)',
-    tagline: 'Off-campus home rentals, on your terms',
-    summary: 'Bidding-based off-campus rental marketplace.',
+    tagline:
+      'Off-campus rental bidding marketplace that sends each screen only its own bids',
+    summary:
+      'A bidding-based marketplace for off-campus rentals. Live updates are scoped per listing, so 1,000+ people can bid at once.',
     description:
       'Students bid on off-campus housing in real time, with role-scoped dashboards for students, parents and landlords.',
     coverImage: '/work/screens/bidnest-desktop.webp',
@@ -529,8 +529,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Marketplace',
-    capabilities: ['Full-Stack', 'Cloud & Automation'],
-    services: ['product-engineering', 'mvp-sprint'],
+    capabilities: ['Full-Stack', 'Cloud & Automation'],
     industry: 'Property technology',
     year: '2024',
     anonymised: true,
@@ -604,8 +603,10 @@ export const projects: Project[] = [
     },
     title: 'Curio Market',
     client: 'Confidential (ecommerce marketplace)',
-    tagline: 'A personalised multi-seller marketplace',
-    summary: 'Personalised multi-seller ecommerce marketplace.',
+    tagline:
+      'Personalised multi-seller marketplace with payouts and tracking on autopilot',
+    summary:
+      'A personalised multi-seller ecommerce marketplace. Automated payouts and delivery tracking cut support requests by 70%.',
     description:
       'A multi-seller marketplace with personalised recommendations, Stripe Connect payouts and automated DHL tracking.',
     coverImage: '/work/screens/curio-market-desktop.webp',
@@ -657,8 +658,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Marketplace',
-    capabilities: ['Full-Stack', 'Cloud & Automation', 'AI'],
-    services: ['product-engineering', 'team-extension'],
+    capabilities: ['Full-Stack', 'Cloud & Automation', 'AI'],
     industry: 'Ecommerce',
     year: '2024-2025',
     anonymised: true,
@@ -731,9 +731,10 @@ export const projects: Project[] = [
     },
     title: 'Bitsmiths HRM',
     client: 'Bitsmiths Studio',
-    tagline: 'HR and payroll system, fully auditable',
+    tagline:
+      'HR and payroll system that runs on rules, with zero manual calculations',
     summary:
-      'Onboarding, leave, medical claims, overtime and payroll for Bitsmiths Studio.',
+      'Onboarding, leave, medical claims, overtime and payroll for Bitsmiths Studio, calculated by database rules instead of by hand.',
     description:
       'An internal HR platform where employees are invited, onboarded and activated; they file leave, medical claims and overtime; admins approve each one, and approved items sweep into a monthly payroll run that calculates payslips, locks them, and exports to Payoneer.',
     coverImage: '/work/screens/bitsmiths-hrm-desktop.webp',
@@ -789,8 +790,7 @@ export const projects: Project[] = [
       { category: 'Scheduling', tools: ['pg_cron'] },
     ],
     category: 'SaaS',
-    capabilities: ['Cloud & Automation', 'Full-Stack'],
-    services: ['product-engineering', 'cloud-devops'],
+    capabilities: ['Cloud & Automation', 'Full-Stack'],
     industry: 'HR technology',
     year: '2026',
     headline: { value: '0', label: 'manual payroll calculations' },
@@ -868,8 +868,9 @@ export const projects: Project[] = [
     },
     title: 'Bitsmiths Studio',
     client: 'Bitsmiths Studio',
-    tagline: 'Agency marketing site and CMS',
-    summary: 'Marketing site for a studio that ships MVPs in 30 days.',
+    tagline: 'Agency website and CMS where publishing needs no deploy',
+    summary:
+      'Marketing site for a studio that ships MVPs in 30 days. Every content type publishes from the CMS, without engineering time.',
     description:
       'The studio marketing site, built on a CMS so case studies, articles and testimonials publish without a deploy.',
     coverImage: '/work/screens/bitsmiths-studio-desktop.webp',
@@ -909,8 +910,7 @@ export const projects: Project[] = [
       { category: 'CMS', tools: ['Directus'] },
     ],
     category: 'Website',
-    capabilities: ['Web'],
-    services: ['web-design-development', 'mvp-sprint'],
+    capabilities: ['Web'],
     industry: 'Software agency',
     year: '2025',
     headline: { value: '30 days', label: 'from idea to shipped MVP' },
@@ -981,9 +981,10 @@ export const projects: Project[] = [
     },
     title: 'Real Estate Operating System',
     client: 'Confidential (real estate group)',
-    tagline: 'Multi-tenant AI platform automating agency operations',
+    tagline:
+      'Multi-tenant AI platform for estate agencies, with one agent per job',
     summary:
-      'Multi-tenant AI platform automating real estate agency operations.',
+      'A multi-tenant AI platform automating real estate agency operations. Three specialised agents share one workflow across 30+ agencies.',
     description:
       'A unified operating system for real estate agencies, bringing CRM, compliance, marketing, document generation and e-signing into one multi-tenant platform.',
     coverImage: '/work/screens/real-estate-management-system-desktop.webp',
@@ -1037,8 +1038,7 @@ export const projects: Project[] = [
       { category: 'Architecture', tools: ['Multi-tenant Architecture'] },
     ],
     category: 'SaaS',
-    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
-    services: ['ai-automation', 'product-engineering'],
+    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
     industry: 'Real estate',
     year: '2025',
     headline: { value: '70%', label: 'less paperwork' },
@@ -1110,9 +1110,9 @@ export const projects: Project[] = [
     },
     title: 'Compliance Review Agent',
     client: 'Confidential (audit firm)',
-    tagline: 'Clause-level tracked-change findings, generated by AI',
+    tagline: 'AI compliance reviewer whose every finding cites its clause',
     summary:
-      'AI compliance agent generating clause-level tracked-change findings.',
+      'An AI agent that reviews reports against a standards dataset and returns clause-level tracked changes a person can verify.',
     description:
       'An AI review workflow that checks uploaded reports against established standards and returns clause-level tracked changes with a clear explanation for every finding.',
     coverImage: '/work/screens/qa-compliance-agent-desktop.webp',
@@ -1154,8 +1154,7 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['Claude (Anthropic)'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Cloud & Automation'],
-    services: ['ai-automation', 'cloud-devops'],
+    capabilities: ['AI', 'Cloud & Automation'],
     industry: 'Audit and compliance',
     year: '2025',
     headline: { value: '2x', label: 'faster document review' },
@@ -1225,9 +1224,10 @@ export const projects: Project[] = [
     },
     title: 'Realtime Voice Interview Assistant',
     client: 'Confidential (recruitment)',
-    tagline: 'Live AI voice interviews with automatic transcripts',
+    tagline:
+      'Live AI voice interviews, with the transcript in the same session',
     summary:
-      'End-to-end AI interview platform with live voice and transcription.',
+      'An end-to-end AI interview platform. Voice and transcription run in one real-time session, with no manual steps afterwards.',
     description:
       'An end-to-end interview platform that plans, schedules and conducts live AI voice interviews, then delivers the transcript automatically when the session ends.',
     coverImage: '/work/screens/ai-interview-assistant-desktop.webp',
@@ -1268,8 +1268,7 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['OpenAI Realtime API'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Full-Stack'],
-    services: ['ai-automation', 'mvp-sprint'],
+    capabilities: ['AI', 'Full-Stack'],
     industry: 'Recruitment',
     year: '2025',
     headline: { value: '30+', label: 'interviews completed' },
@@ -1342,8 +1341,10 @@ export const projects: Project[] = [
     },
     title: 'SnobBots',
     client: 'SnobBots',
-    tagline: 'Multi-tenant AI support agents for online shops',
-    summary: 'Multi-tenant AI chatbot platform.',
+    tagline:
+      'AI support agents for online shops, each answering only from its own shop',
+    summary:
+      'A multi-tenant AI chatbot platform. Retrieval is scoped to one shop’s content, and new shops are provisioned in bulk.',
     description:
       'Resellers provision AI support agents for their shops in bulk, with each tenant isolated and each answer grounded in that shop’s own content.',
     coverImage: '/work/screens/snobbots-desktop.webp',
@@ -1386,8 +1387,7 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['RAG', 'LLM'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Cloud & Automation'],
-    services: ['ai-automation'],
+    capabilities: ['AI', 'Cloud & Automation'],
     industry: 'Ecommerce / Customer support',
     year: '2023-2024',
     headline: { value: '60%', label: 'faster shop setup' },
@@ -1459,8 +1459,9 @@ export const projects: Project[] = [
     },
     title: 'AI Physiotherapy Assistant',
     client: 'Confidential (healthcare)',
-    tagline: 'Adaptive rehabilitation guided by AI',
-    summary: 'Full-stack AI platform for adaptive rehabilitation.',
+    tagline: 'AI rehabilitation assistant whose plans adapt daily by rule',
+    summary:
+      'A full-stack AI platform for adaptive rehabilitation. Daily logs adjust the plan automatically, and AI handles intake, plans and video feedback.',
     description:
       'A connected rehabilitation journey spanning intake, movement assessment, adaptive exercise planning, daily progress and AI-assisted video feedback.',
     coverImage: '/work/screens/ai-physiotherapy-desktop.webp',
@@ -1502,8 +1503,7 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['LangChain', 'OpenAI'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Full-Stack'],
-    services: ['ai-automation'],
+    capabilities: ['AI', 'Full-Stack'],
     industry: 'Healthcare',
     year: '2024',
     headline: { value: '90%+', label: 'accurate movement checks' },
@@ -1575,8 +1575,9 @@ export const projects: Project[] = [
     },
     title: 'New Web Order',
     client: 'New Web Order',
-    tagline: 'Company website rebuilt for speed and SEO',
-    summary: 'Company website built for performance and SEO.',
+    tagline: 'Company website rebuilt to ship only what each page needs',
+    summary:
+      'A company website built for performance and SEO. Pre-rendered routes and per-route code make pages load 40% faster.',
     description:
       'A company site rebuilt on Next.js for speed and search. 40% faster, and finally ranking.',
     coverImage: '/work/screens/new-web-order-desktop.webp',
@@ -1614,8 +1615,7 @@ export const projects: Project[] = [
       { category: 'Styling', tools: ['TailwindCSS'] },
     ],
     category: 'Website',
-    capabilities: ['Web'],
-    services: ['web-design-development'],
+    capabilities: ['Web'],
     industry: 'Professional services',
     year: '2024',
     headline: { value: '40%', label: 'faster-loading pages' },
@@ -1680,9 +1680,10 @@ export const projects: Project[] = [
     },
     title: 'BankIslami PEP Screening',
     client: 'BankIslami, delivered with Aawaz AI',
-    tagline: 'Daily adverse-media screening for politically exposed persons',
+    tagline:
+      'Daily PEP adverse-media screening that shows analysts only credible matches',
     summary:
-      'An internal web and mobile platform that reads the news every morning and turns it into a risk report for the bank’s compliance team.',
+      'An internal web and mobile platform that reads the news every morning, scores it against the bank’s PEP list and turns it into a risk report.',
     description:
       'Banks must monitor politically exposed persons and their associates continuously, not just at onboarding. At BankIslami that meant analysts opening dozens of news sites every morning and searching for hundreds of names by hand. We built an end-to-end screening platform: a crawler that fetches the day’s financial and political news, a matching engine that ties articles to the bank’s PEP records, and a review workflow that ends in a signed daily risk report. It ships as a MERN web application for analysts at their desks and a native mobile app for compliance officers on the move.',
     coverImage: '/work/screens/bank-islami-pep-desktop.webp',
@@ -1739,12 +1740,7 @@ export const projects: Project[] = [
       { category: 'Auth & reports', tools: ['JWT', 'PDFKit'] },
     ],
     category: 'Mobile',
-    capabilities: ['Mobile', 'Full-Stack', 'AI', 'Cloud & Automation'],
-    services: [
-      'mobile-app-development',
-      'product-engineering',
-      'ai-automation',
-    ],
+    capabilities: ['Mobile', 'Full-Stack', 'AI', 'Cloud & Automation'],
     industry: 'Banking / Compliance',
     year: '2025',
     headline: { value: '38', label: 'news sources screened daily' },
@@ -1829,9 +1825,9 @@ export const projects: Project[] = [
     },
     title: 'Bidnest Mobile App',
     client: 'Confidential (student housing marketplace)',
-    tagline: 'The bidding marketplace, packaged for iOS and Android',
+    tagline: 'The bidding marketplace on iOS and Android, from one codebase',
     summary:
-      'The Bidnest marketplace wrapped with Capacitor so students and parents can bid from their phones.',
+      'The Bidnest marketplace wrapped with Capacitor, so three platforms ship from one build with nothing rebuilt.',
     description:
       'The same codebase that runs the Bidnest web platform, wrapped with Capacitor into native iOS and Android apps. One team ships the web platform and both app stores from a single repository, and every marketplace flow works inside the native shell without being rebuilt.',
     coverImage: '/work/screens/bidnest-mobile-mobile.webp',
@@ -1887,8 +1883,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Mobile',
-    capabilities: ['Mobile', 'Full-Stack', 'Cloud & Automation'],
-    services: ['mobile-app-development', 'product-engineering', 'mvp-sprint'],
+    capabilities: ['Mobile', 'Full-Stack', 'Cloud & Automation'],
     industry: 'Property technology',
     year: '2024',
     anonymised: true,
@@ -1959,7 +1954,7 @@ export const projects: Project[] = [
     },
     title: 'Tayyab Sohail Portfolio',
     client: 'Tayyab Sohail',
-    tagline: 'Case-study portfolio for a senior engineer',
+    tagline: 'Case-study portfolio generated from one typed data file',
     summary:
       'A personal site where every project is a full case study, generated from one typed data file.',
     description:
@@ -2004,8 +1999,7 @@ export const projects: Project[] = [
       { category: 'Hosting', tools: ['Vercel'] },
     ],
     category: 'Website',
-    capabilities: ['Web'],
-    services: ['web-design-development', 'mvp-sprint'],
+    capabilities: ['Web'],
     industry: 'Software engineering',
     year: '2025',
     notable: true,

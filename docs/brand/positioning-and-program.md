@@ -12,15 +12,18 @@ brief and the "AI Optimization Program" course structure.
 
 Bullah Labs is no longer positioned as a client-services studio that builds
 MVPs. It is an **AI enablement company for non-technical knowledge workers**,
-with one product, the Conscious AI program, and a body of shipped work that
-proves the same principles in production.
+with one product, the Conscious AI program. It no longer sells builds: there
+is no services page and no careers page. The site is deliberately short:
+home, the program, about and contact. The earlier case studies under `/work`
+are still routable but are not linked from the nav, homepage, footer or
+sitemap.
 
 | Before | Now |
 | --- | --- |
 | "Products engineered from MVP to scale" | "Work smarter with AI. Stay relevant. Use it responsibly." |
 | Pricing plans for builds | No pricing on the site; the program has a free tier and paid tiers without public prices |
 | Projects described by features and delivery | Projects described by how little computation, rework and manual effort they need |
-| Services lead the site | The program leads; lean builds are the second offer |
+| Services lead the site | The program is the only offer; `/services` and `/careers` redirect |
 
 ## Where it lives in the code
 
@@ -28,12 +31,15 @@ proves the same principles in production.
 | --- | --- |
 | Program content (tiers, modules, role tracks, pillars, themes) | `src/data/program.ts`, German in `src/data/program.de.ts` |
 | Program page | `src/app/conscious-ai/page.tsx` |
-| Home sections for the program | `src/components/sections/conscious-ai.tsx` |
+| Program sections (pillars, tiers, themes, role tracks, audience) | `src/components/sections/conscious-ai.tsx` |
+| Home: the problem and the side-by-side task | `src/components/sections/gap.tsx`, `compare.tsx` |
+| Contact form interests (the four tiers) | `src/schema/contact.ts` |
 | Efficiency lens per case study | `efficiency` on each project in `src/data/projects.ts` and `projects.de.ts` |
 | Page copy | `src/i18n/dictionaries/en.ts`, `de.ts` |
 | Logo | `src/components/brand/mark.ts`, `logo.tsx`; static files via `scripts/build-brand-assets.mjs` |
 
-`/pricing` redirects to `/conscious-ai` (see `next.config.ts`).
+`/pricing`, `/services` and `/services/*` redirect to `/conscious-ai`, and
+`/careers` to `/about` (see `next.config.ts`).
 
 ---
 
@@ -291,9 +297,19 @@ measurable way of using AI across the team.
 
 ## 10. How projects are described
 
-Case studies stay, but each one now leads with an **efficiency lens**: the one
-program principle the build demonstrates most clearly. Four lenses, each tied
-to a program theme:
+Case studies stay. Each one first **says what the product is**, with the
+optimization built into the same sentence, and then names its **optimization
+lens**: the one program principle the build demonstrates most clearly.
+
+- `tagline` (cards, homepage showcase): what it is plus the optimization, in
+  one line. "AI SEO and content platform that never buys the same data twice."
+- `summary` (case-study hero, SEO): one sentence on what it is, one on the
+  optimization and its result.
+- `efficiency` (panel at the top of the case study): the lens, the claim, the
+  mechanism and three techniques.
+
+
+Four lenses, each tied to a program theme:
 
 | Lens | Principle | Program theme |
 | --- | --- | --- |
@@ -302,7 +318,7 @@ to a program theme:
 | Nothing done twice | Caching, batching, reuse and one source of truth instead of regenerating | Lean workflows |
 | Checked before trusted | Output is grounded, traceable or approved by a person where the risk requires it | Measurement and reliability |
 
-Rules for writing an `efficiency` entry:
+Rules for writing a tagline, summary or `efficiency` entry:
 
 1. Use only facts already in the case study. Do not invent savings.
 2. Do not imply a project used AI when it did not. A payroll system that is

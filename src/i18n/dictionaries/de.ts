@@ -5,44 +5,89 @@ export const de: Dictionary = {
   locale: 'de',
   nav: {
     program: 'Conscious AI',
-    services: 'Leistungen',
     work: 'Projekte',
     about: 'Über uns',
     contact: 'Kontakt',
     home: 'Start',
-    careers: 'Karriere',
     cta: 'Kontakt aufnehmen',
     bookCall: 'Gespräch buchen',
     menuOpen: 'Menü öffnen',
     menuClose: 'Menü schließen',
     language: 'Sprache',
-    next: 'Weiter',
-    top: 'Nach oben',
   },
   hero: {
-    badge: 'KI-Befähigung für Wissensarbeit',
+    badge: 'KI-Befähigung & Optimierung',
     title: 'Klüger arbeiten mit KI.\nUnd sie bewusst nutzen.',
-    accent: [4, 5, 6, 7],
-    body: 'Bullah Labs hilft nicht-technischen Teams, KI wirksam einzusetzen, Fähigkeiten aufzubauen, die relevant bleiben, und die Nutzung zu streichen, die niemand gebraucht hat. Wir lehren es in Conscious AI und bauen es in jedes System ein, das wir ausliefern.',
-    primary: 'Conscious AI entdecken',
-    secondary: 'In unseren Projekten ansehen',
-    map: {
-      kicker: 'Das kleinste zuverlässige System für jede Aufgabe',
-      nodes: {
-        web: 'Aufgabe',
-        mobile: 'Kontext',
-        api: 'Routing',
-        db: 'Regeln',
-        ai: 'Starke KI',
-        cloud: 'Leichte KI',
+    body: 'Conscious AI ist ein praktisches Programm, das nicht-technischen Teams beibringt, KI wirksam, verantwortungsvoll und ohne Verschwendung zu nutzen.',
+    primary: 'Zum Programm',
+    secondary: 'Frühen Zugang anfragen',
+    facts: {
+      free: {
+        value: 'Kostenlos',
+        label: 'Grundlagenkurs, für jedes KI-Werkzeug',
       },
+      tiers: 'Stufen, von der Einzelperson bis zum ganzen Team',
+      tracks: 'Role Tracks, rund um echte Aufgaben',
     },
+  },
+  compare: {
+    kicker: 'In der Praxis',
+    title: 'Dieselbe Aufgabe, zwei Wege',
+    accent: [2, 3],
+    description:
+      'Aus einem langen Bericht wird ein kurzes Update für einen Kunden. Nichts davon erfordert technisches Vorwissen.',
+    defaultLabel: 'Aus Gewohnheit',
+    consciousLabel: 'Bewusst',
+    rows: [
+      {
+        step: 'Werkzeug',
+        default: 'Das stärkste Modell, weil es gerade offen ist.',
+        conscious:
+          'Ein leichteres Modell. Eine Zusammenfassung lässt sich leicht mit der Quelle abgleichen.',
+      },
+      {
+        step: 'Kontext',
+        default: 'Der ganze 40-seitige Bericht, eingefügt.',
+        conscious: 'Nur die zwei Abschnitte, nach denen der Kunde gefragt hat.',
+      },
+      {
+        step: 'Prompt',
+        default:
+          '„Fass das zusammen.“ Danach vier Nachfragen, um Ton und Länge zu korrigieren.',
+        conscious:
+          'Aufgabe, Zielgruppe, Länge und Format, alles im ersten Prompt.',
+      },
+      {
+        step: 'Abschluss',
+        default: 'Neu erzeugen, bis sich eine Version richtig anfühlt.',
+        conscious:
+          'Den ersten brauchbaren Entwurf überarbeiten, die Zahlen prüfen, senden.',
+      },
+    ],
+    defaultResult: 'Mehr Runden und mehr Rechenleistung, für dasselbe Update.',
+    consciousResult:
+      'Weniger Runden, weniger Rechenleistung und ein geprüftes Ergebnis.',
+    note: 'Eine Veranschaulichung der Gewohnheiten aus dem kostenlosen Kurs, kein gemessenes Ergebnis.',
+    cta: 'Was der kostenlose Kurs behandelt',
+  },
+  origin: {
+    kicker: 'Der Name',
+    title: 'Bullah, nach Bulleh Shah',
+    accent: [2, 3],
+    verse: 'Ilmon bas kareen o yaar, ikko alif tere darkaar.',
+    translation:
+      'Genug des Lernens, mein Freund. Ein einziges Alif ist alles, was du brauchst.',
+    attribution: 'Bulleh Shah, Sufi-Dichter aus dem Punjab, ca. 1680 bis 1757',
+    body: [
+      'Für Bulleh Shah zählte Wissen wenig ohne das Bewusstsein dafür, was man tut und warum. In einem anderen Gedicht sagt er, dass alles auf einen einzigen Punkt hinausläuft.',
+      'Das bedeutet „conscious“ bei uns: nicht mehr Werkzeuge und mehr Prompts, sondern zu wissen, was die Aufgabe braucht, und dort aufzuhören. Unser Zeichen zeigt dieses Alif und diesen Punkt.',
+    ],
   },
   work: {
     kicker: 'Belege im Betrieb',
-    title: 'Effizienz, die sich prüfen lässt',
+    title: 'Was wir gebaut haben, und wie es optimiert ist',
     description:
-      'Vierzehn Produkte im Einsatz. Jedes wird durch ein Prinzip gelesen, das wir lehren: das richtige Werkzeug für die Aufgabe, nur der nötige Kontext, nichts doppelt, erst geprüft, dann vertraut.',
+      'Vierzehn Produkte im Einsatz. Jede Fallstudie sagt, was das Produkt ist, und zeigt dann die Optimierung dahinter: das richtige Werkzeug für die Aufgabe, nur der nötige Kontext, nichts doppelt, erst geprüft, dann vertraut.',
     all: 'Alle Projekte',
     view: 'Fallstudie lesen',
     filterLabel: 'Projekte filtern',
@@ -83,35 +128,17 @@ export const de: Dictionary = {
     count: '{n} Projekte',
     teaser: {
       kicker: 'Projekte',
-      title: 'Jedes Projekt, und was es einspart',
-      accent: [3, 4, 5],
-      body: 'Wir bauen so, wie wir lehren. Jedes Produkt hier ist im Einsatz, und jede Fallstudie beginnt mit dem Prinzip, das es schlank hält.',
+      title: 'Echte Produkte, gebaut ohne Verschwendung',
+      accent: [3, 4],
+      body: 'Marktplätze, SaaS-Plattformen, KI-Systeme und Websites im Einsatz. Jedes sagt, was es ist und wie es optimiert wurde.',
       cta: 'Alle Projekte ansehen',
       listLabel: 'Ausgewählte Projekte',
       more: '{n} weitere auf der Projektseite',
     },
   },
-  services: {
-    kicker: 'Mit uns bauen',
-    title: 'Wir bauen so, wie wir lehren',
-    explore: 'Leistung ansehen',
-    groups: {
-      capability: {
-        label: 'Schlanke Systeme, von Anfang bis Ende',
-      },
-    },
-    meta: {
-      timeline: 'Zeitrahmen',
-      team: 'Team',
-      pricing: 'Angebot',
-      support: 'Nach dem Launch',
-    },
-  },
   pillars: {
     kicker: 'Wofür wir stehen',
     title: 'Drei Säulen guter KI-Nutzung',
-    description:
-      'Produktivität zuerst, berufliche Widerstandskraft dazu, und verantwortungsvolle, effiziente Nutzung als Standard.',
   },
   program: {
     kicker: 'Conscious AI',
@@ -120,6 +147,7 @@ export const de: Dictionary = {
     description:
       'Beginnen Sie mit dem kostenlosen Kurs. Vertiefen Sie in Ihren eigenen Werkzeugen, Ihrer eigenen Rolle und dann im ganzen Team. Sie können auf jeder Stufe mit einem vollständigen, nutzbaren Ergebnis aufhören.',
     cta: 'Das ganze Programm ansehen',
+    tracksCta: 'Was jeder Track aufbaut',
     tier: 'Stufe',
     audience: 'Für',
     outcome: 'Das nehmen Sie mit',
@@ -131,13 +159,11 @@ export const de: Dictionary = {
     title: 'KI gut nutzen. Nicht nur mehr.',
     accent: [3, 4, 5],
     description:
-      'Ein praktisches Programm für nicht-technische Wissensarbeit. Lernen Sie, wann KI hilft, wie Sie in weniger Runden zu einem verlässlichen Ergebnis kommen und wie Sie aufhören, in Geld und Rechenleistung für Nutzung zu zahlen, die niemand gebraucht hat.',
+      'Ein praktisches Programm für nicht-technische Wissensarbeit: wann KI hilft, wie Sie in weniger Runden zu einem verlässlichen Ergebnis kommen und wie Sie aufhören, für Nutzung zu zahlen, die niemand gebraucht hat.',
     primary: 'Frühen Zugang anfragen',
     secondary: 'Die vier Stufen ansehen',
     principle:
       'KI-Kompetenz heißt zu wissen, wann, warum und wie man KI gut einsetzt, nicht nur, wie man die Werkzeuge bedient.',
-    themesKicker: 'Fünf Themen',
-    themesTitle: 'Dieselben fünf Themen, auf jeder Stufe tiefer',
     tiersKicker: 'Die Stufen',
     tiersTitle: 'Auf jeder Stufe mit etwas aufhören, das funktioniert',
     tiersDescription:
@@ -162,182 +188,10 @@ export const de: Dictionary = {
       title: 'Eine KI-fähige Belegschaft, mit Nutzung, die sich belegen lässt',
       body: 'Einheitliche, messbare KI-Nutzung in nicht-technischen Teams: gemeinsame Standards, eine einseitige Richtlinie, menschliche Prüfung, wo es darauf ankommt, und weniger Ausgaben für Rechenleistung, die nichts verändert hat.',
     },
-    sustainabilityKicker: 'Zur Nachhaltigkeit',
-    sustainabilityTitle: 'Weniger Verschwendung, aufsummiert',
-    sustainabilityBody:
-      'Wir beziffern keinen einzelnen Prompt, weil das niemand seriös kann. Ins Gewicht fällt unnötige Nutzung, die sich über Teams, Abläufe und ganze Organisationen wiederholt. Das Programm reduziert sie an der Quelle, und die Team-Stufe weist den geschätzten Energieverbrauch neben Kosten und Zeit aus.',
     ctaTitle: 'Beginnen Sie mit dem kostenlosen Kurs.',
     ctaAccent: [4, 5],
     ctaBody:
       'Sagen Sie uns, wer Sie sind und wie Sie KI heute nutzen. Wir antworten innerhalb eines Werktags, mit Zugangsdetails für Sie oder einem Plan für Ihr Team.',
-  },
-  technologies: {
-    kicker: 'Bewährte Technologie',
-    statement: 'Gebaut auf den Werkzeugen, die zählen.',
-    statementMuted: 'Bewährte Werkzeuge. Keine Experimente auf Ihre Kosten.',
-    stackLabel: 'Der Stack, nach Ebene',
-    layers: [
-      { label: 'Oberfläche', note: 'Was Ihre Nutzer sehen und bedienen.' },
-      {
-        label: 'Mobile',
-        note: 'iOS und Android, nativ oder plattformübergreifend.',
-      },
-      { label: 'Backend & Daten', note: 'Wo die Wahrheit liegt.' },
-      {
-        label: 'KI-Systeme',
-        note: 'Modelle, Retrieval und Agenten auf Ihren Daten.',
-      },
-      {
-        label: 'Automatisierung',
-        note: 'Abläufe, die ohne Menschen im Loop laufen.',
-      },
-      { label: 'Cloud & Betrieb', note: 'Wo es läuft und weiterläuft.' },
-    ],
-  },
-  industries: {
-    kicker: 'Branchen',
-    title: 'Für wen wir bauen',
-    description:
-      'Produkte, bei denen eine falsche Zahl Geld kostet. Hinter jeder Branche steht ein ausgeliefertes Projekt.',
-    shipped: 'Geliefert',
-    items: {
-      fintech: {
-        name: 'Fintech',
-        blurb:
-          'Wallets, Ledger und Auszahlungen, die bis auf die letzte Einheit stimmen.',
-      },
-      realEstate: {
-        name: 'Immobilien',
-        blurb: 'Marktplätze, Mietplattformen und Agentur-Abläufe.',
-      },
-      ecommerce: {
-        name: 'E-Commerce',
-        blurb:
-          'Multi-Seller-Shops, Checkout, Versand und automatisierter Support.',
-      },
-      hr: {
-        name: 'HR & Lohn',
-        blurb:
-          'Zeiterfassung, Urlaub und Lohnabrechnung, die jede Prüfung bestehen.',
-      },
-      healthcare: {
-        name: 'Gesundheit',
-        blurb: 'Reha- und Patientenassistenten mit klinischen Leitplanken.',
-      },
-      recruiting: {
-        name: 'Recruiting',
-        blurb:
-          'Strukturierte Sprachinterviews, Bewertung und Transkripte in großer Zahl.',
-      },
-      martech: {
-        name: 'Marketing-Technologie',
-        blurb:
-          'SEO- und Content-Plattformen, die erzeugen, veröffentlichen und messen.',
-      },
-      compliance: {
-        name: 'Compliance',
-        blurb: 'Dokumentenprüfung auf Klauselebene mit Prüfpfad.',
-      },
-    },
-  },
-  globalReach: {
-    kicker: 'Standorte',
-    title: 'Weltweit im Einsatz, aus Deutschland und Pakistan.',
-    description:
-      'Kunden in Europa, Nordamerika, dem Nahen Osten, Afrika und Asien, betreut aus Fellbach bei Stuttgart und Islamabad. Wann immer Sie arbeiten, ist jemand aus dem Team online.',
-    legend: 'Standorte und Kundenorte',
-  },
-  numbers: {
-    kicker: 'In Zahlen',
-    title: 'Belege statt Versprechen',
-    description: 'Zahlen aus gelieferten Projekten.',
-    items: [
-      { value: '150+', label: 'Abgeschlossene Projekte' },
-      { value: '40+', label: 'Kunden auf vier Kontinenten' },
-      { value: '6 Wo.', label: 'Typische Zeit bis zum ersten Release' },
-    ],
-  },
-  howItWorks: {
-    kicker: 'Zusammenarbeit',
-    title: 'So läuft eine Umsetzung ab',
-    stepLabel: 'Schritt',
-    cta: 'Mit einem Gespräch starten',
-    steps: [
-      {
-        title: 'Kosten kennen, bevor Code entsteht',
-        when: 'Kick-off',
-        summary:
-          'Ein kurzes Gespräch über das Produkt und den Termin. Innerhalb einer Woche haben Sie Umfang, Preis und Launch-Datum schriftlich.',
-      },
-      {
-        title: 'Den ersten Release schärfen',
-        when: 'Umfang',
-        summary:
-          'Wir reduzieren das Briefing auf das kleinste Produkt, das ab dem ersten Tag nützlich ist.',
-      },
-      {
-        title: 'Sehen, bevor gebaut wird',
-        when: 'Design',
-        summary:
-          'Klickbare Screens der wichtigsten Abläufe, gemeinsam geprüft, bevor Produktionscode entsteht.',
-      },
-      {
-        title: 'Nutzen, während es entsteht',
-        when: 'Umsetzung',
-        summary:
-          'Jeder Sprint endet mit einem Staging-Link und einer kurzen Notiz, was als Nächstes kommt.',
-      },
-      {
-        title: 'Sicher live gehen',
-        when: 'Launch',
-        summary:
-          'Wir testen die Abläufe, auf die es ankommt, richten Monitoring ein und proben die Übergabe.',
-      },
-      {
-        title: 'Das Eigentum bleibt bei Ihnen',
-        when: 'Betrieb',
-        summary:
-          'Wir behalten den Betrieb im Blick und reparieren, was bricht. Bleiben Sie im Retainer, oder übernehmen Sie Code und Zugänge vollständig.',
-      },
-    ],
-  },
-  testimonials: {
-    kicker: 'Kundenstimmen',
-    title: 'So ist die Zusammenarbeit mit uns',
-    accent: [3],
-    caseStudy: 'Projekt ansehen',
-    prev: 'Vorherige Stimme',
-    next: 'Nächste Stimme',
-  },
-  servicesPage: {
-    kicker: 'Mit uns bauen',
-    title: 'Systeme, passend zur Aufgabe.',
-    accent: [1, 2, 3],
-    description:
-      'Unser Engineering-Team baut, was das Programm lehrt: das kleinste System, das die Arbeit zuverlässig erledigt. Fünf Kompetenzen und zwei Formen der Zusammenarbeit, jeweils schriftlich abgegrenzt und von uns nach dem Launch gewartet.',
-    deliverables: 'Was Sie bekommen',
-    useCases: 'Typische Projekte',
-    stack: 'Werkzeuge, die wir nutzen',
-    proof: 'Referenzen',
-    faqTitle: 'Fragen zu dieser Leistung',
-  },
-  servicePage: {
-    back: 'Alle Leistungen',
-    kindEngagement: 'Zusammenarbeitsmodell',
-    kindCapability: 'Kompetenz',
-    discuss: 'Über diese Leistung sprechen',
-    engagement: 'Zusammenarbeit',
-    coreStack: 'Kern-Stack',
-    included: 'Was enthalten ist',
-    useCases: 'Typische Anwendungsfälle',
-    proof: 'Referenzen',
-    proofTitle: 'Wo wir das schon gemacht haben.',
-    allCaseStudies: 'Alle Projekte',
-    faqKicker: 'Fragen',
-    faqTitle: 'Zu dieser Leistung.',
-    faqAccent: [1, 2],
-    others: 'Weitere Leistungen',
-    notFound: 'Leistung nicht gefunden',
   },
   contactForm: {
     name: 'Vollständiger Name',
@@ -346,20 +200,14 @@ export const de: Dictionary = {
     emailPlaceholder: 'erika@unternehmen.de',
     company: 'Unternehmen',
     optional: 'optional',
-    companyPlaceholder: 'Unternehmens- oder Produktname',
-    service: 'Was brauchen Sie?',
-    serviceProgram: 'Programm Conscious AI',
-    serviceProgramTagline: 'Schulung für Sie oder Ihr ganzes Team.',
-    servicePlaceholder: 'Leistung auswählen',
+    companyPlaceholder: 'Unternehmens- oder Teamname',
+    service: 'Wofür interessieren Sie sich?',
     serviceOther: 'Etwas anderes',
-    budget: 'Budgetrahmen',
-    budgetPlaceholder: 'Rahmen auswählen',
-    budgetHeading: 'Ungefähres Budget',
-    budgetHint:
-      'Ein Rahmen genügt. Er zeigt uns, welches Team passt - es ist kein Angebot.',
+    serviceOtherTagline:
+      'Eine Frage, eine Partnerschaft oder etwas, das hier nicht steht.',
     message: 'Ihre Nachricht',
     messagePlaceholder:
-      'Wie nutzt Ihr Team KI heute, oder was brauchen Sie gebaut, und bis wann?',
+      'Wie nutzen Sie oder Ihr Team KI heute, und worin möchten Sie besser werden?',
     consentBefore:
       'Ich bin damit einverstanden, dass Bullah Labs diese Anfrage speichert und verarbeitet, um mir zu antworten, wie in der',
     consentLink: 'Datenschutzerklärung',
@@ -369,7 +217,6 @@ export const de: Dictionary = {
     errorGeneric:
       'Etwas ist schiefgelaufen. Bitte versuchen Sie es gleich noch einmal.',
     sentTitle: 'Nachricht erhalten.',
-    sentToast: 'Ihre Anfrage wurde gesendet. Wir antworten {time}.',
     sentBody:
       'Vielen Dank. Wir lesen jede Anfrage persönlich und antworten {time}, direkt an die von Ihnen angegebene Adresse.',
     sentAgain: 'Weitere senden',
@@ -379,37 +226,23 @@ export const de: Dictionary = {
     back: 'Zurück',
     steps: {
       service: {
-        title: 'Wobei können wir helfen?',
+        title: 'Wo möchten Sie anfangen?',
         subtitle:
-          'Wählen Sie das Passendste. Die Details klären wir gemeinsam.',
-        kicker: 'Das Anliegen',
+          'Wählen Sie das Passendste. Sie können später zwischen den Stufen wechseln.',
       },
       message: {
         title: 'Erzählen Sie uns etwas mehr.',
         subtitle:
-          'Wie nutzt Ihr Team KI heute, oder was brauchen Sie gebaut, und bis wann?',
-        kicker: 'Das Briefing',
+          'Ihre Rolle, die KI-Werkzeuge, die Sie nutzen, und was Sie verbessern möchten.',
       },
       details: {
         title: 'Wohin dürfen wir antworten?',
         subtitle:
           'Letzter Schritt. Wir nutzen das nur für die Antwort auf Ihre Anfrage.',
-        kicker: 'Ihre Daten',
       },
     },
-    reviewTitle: 'Ihre Anfrage',
-    notProvided: 'Nicht angegeben',
     charactersLeft: 'Noch {count} Zeichen',
     minChars: 'Mindestens 20 Zeichen',
-    budgets: {
-      'under-10k': 'Unter 10.000 €',
-      '10k-25k': '10.000 € - 25.000 €',
-      '25k-50k': '25.000 € - 50.000 €',
-      '50k-100k': '50.000 € - 100.000 €',
-      'over-100k': 'Über 100.000 €',
-      retainer: 'Monatliche Pauschale',
-      unsure: 'Noch unklar',
-    },
   },
   workPage: {
     back: 'Alle Projekte',
@@ -418,8 +251,8 @@ export const de: Dictionary = {
     category: 'Kategorie',
     year: 'Jahr',
     capabilities: 'Kompetenzen',
-    lens: 'Effizienz-Prinzip',
-    efficiencyKicker: 'Warum es effizient ist',
+    lens: 'Optimierung',
+    efficiencyKicker: 'So ist es optimiert',
     techniques: 'Was es schlank hält',
     industry: 'Branche',
     problem: 'Das Problem',
@@ -439,32 +272,30 @@ export const de: Dictionary = {
     galleryMore: '{n} weitere Screens aus {title}, in Gerätegröße aufgenommen.',
     homeScreen: 'Start',
     stack: 'Stack',
-    servicesInvolved: 'Beteiligte Leistungen',
     more: 'Weitere Projekte',
     previous: 'zurück',
     next: 'weiter',
     notFound: 'Projekt nicht gefunden',
-    ctaTitle: 'Bauen Sie etwas Ähnliches?',
-    ctaAccent: [1, 2],
+    ctaTitle: 'Soll Ihr Team so arbeiten?',
+    ctaAccent: [3, 4],
     ctaBody:
-      'Meist lässt sich in einem Gespräch sagen, ob sich das obige Vorgehen auf Ihr Problem übertragen lässt und was sich dafür ändern müsste.',
+      'Die Prinzipien hinter diesem Projekt sind die, die Conscious AI vermittelt. Sagen Sie uns, wie Ihr Team KI heute nutzt, und wir antworten innerhalb eines Werktags.',
   },
   aboutPage: {
     kicker: 'Über Bullah Labs',
     title: 'Ein Unternehmen rund um gute KI-Nutzung.',
     accent: [3, 4, 5],
     description:
-      'Wir bringen nicht-technischen Teams bei, KI wirksam und verantwortungsvoll einzusetzen, und wir bauen schlanke Systeme für Unternehmen, die sie brauchen.',
+      'Wir bringen nicht-technischen Teams bei, KI wirksam und verantwortungsvoll einzusetzen.',
     story: [
-      'Bullah Labs hat als Softwarestudio begonnen. Jahre des Produktbaus haben uns gelehrt, wonach Kunden selten fragen und was sie immer brauchen: das kleinste System, das die Aufgabe zuverlässig erledigt.',
-      'Als KI in jedes Werkzeug einzog, sahen wir dieselbe Verschwendung in größerem Maßstab. Das stärkste Modell für jede Aufgabe. Ganze Dokumente eingefügt, wo ein Absatz genügt hätte. Antworten neu erzeugt statt wiederverwendet. Das meiste davon entsteht bei Menschen, die ein Werkzeug bekommen haben und keine Schulung.',
-      'Also haben wir aus unserer Praxis ein Programm gemacht. Conscious AI vermittelt Wissensarbeitenden, wann, warum und wie man KI gut einsetzt, und unser Engineering-Team baut weiterhin für Unternehmen, die ein System brauchen und keinen Kurs. Unsere Büros sind in Islamabad und Fellbach.',
+      'Bullah Labs hat als Softwarestudio begonnen. Jahre des Produktbaus haben uns eine Regel gelehrt: das kleinste System einsetzen, das die Aufgabe zuverlässig erledigt.',
+      'Als KI in jedes Werkzeug einzog, sahen wir überall das Gegenteil: das stärkste Modell für jede Aufgabe, ganze Dokumente eingefügt, wo ein Absatz genügt hätte, Antworten neu erzeugt statt wiederverwendet. Also haben wir aus der Regel ein Programm gemacht. Conscious AI ist heute das ganze Unternehmen.',
     ],
     facts: [
       {
         label: 'Was wir tun',
         value:
-          'Das Programm Conscious AI sowie schlanke Web-, KI- und Automatisierungsprojekte',
+          'Das Programm Conscious AI: ein kostenloser Kurs und drei kostenpflichtige Stufen',
       },
       {
         label: 'Für wen',
@@ -482,42 +313,17 @@ export const de: Dictionary = {
       },
     ],
     principlesKicker: 'Grundsätze',
-    principlesTitle: 'Vier Regeln, an denen sich jedes Projekt messen lässt.',
+    principlesTitle: 'Vier Regeln, die wir lehren und nach denen wir arbeiten.',
     principlesAccent: [0, 1],
     whereKicker: 'Wo wir sind',
     whereTitle: 'Zwei Büros, ein Arbeitstag.',
     whereAccent: [3, 4],
     whereDescription:
-      'Ein asiatisches Büro in Islamabad und ein europäisches in Fellbach. Rufen Sie an, wo es näher ist; es antwortet dasselbe Team.',
-    careersKicker: 'Karriere',
-    careersTitle: 'Derzeit keine offenen Stellen.',
-    careersBody:
-      'Wir stellen momentan nicht ein. Sobald sich das ändert, werden Stellen auf der Karriereseite ausgeschrieben.',
-    careersLink: 'Karriere',
+      'Ein asiatisches Büro in Islamabad und ein europäisches in Fellbach. Schreiben Sie dem, das näher ist; es antwortet dasselbe Team.',
     ctaTitle: 'Möchten Sie sehen, wo Ihr Team KI verschwendet?',
     ctaAccent: [6, 7],
     ctaBody:
-      'Sagen Sie uns, wie Ihr Team KI heute nutzt. Wir antworten innerhalb eines Werktags, mit dem passenden Einstieg ins Programm oder mit einem schriftlichen Umfang, falls Sie etwas gebaut brauchen.',
-  },
-  careersPage: {
-    kicker: 'Karriere',
-    title: 'Derzeit keine offenen Stellen.',
-    accent: [1, 2],
-    description:
-      'Bullah Labs ist ein kleines Studio, das langsam einstellt. Wir rekrutieren momentan nicht, und es gibt keine Stellen, auf die Sie sich bewerben könnten. Sobald sich das ändert, werden die Stellen auf dieser Seite ausgeschrieben.',
-    badge: '0 offene Stellen',
-    statusKicker: 'Aktueller Stand',
-    statusTitle: 'Wir nehmen keine Bewerbungen an.',
-    statusBody:
-      'Es gibt keine offenen Stellen für Entwicklung, Design oder andere Rollen, weder in Islamabad noch in Fellbach noch remote.',
-    notifyBefore:
-      'Möchten Sie erfahren, wenn sich das ändert? Schreiben Sie uns über',
-    notifyAfter:
-      'mit dem Hinweis „Künftige Stellen“ und wir melden uns, sobald eine Position frei wird.',
-    ctaTitle: 'Lieber uns beauftragen als bei uns anfangen?',
-    ctaAccent: [1, 2],
-    ctaBody:
-      'Unser dediziertes Team bringt erfahrene Entwicklerinnen und Entwickler in Ihre Roadmap, Ihre Werkzeuge und Ihren Zeitplan.',
+      'Sagen Sie uns, wie Ihr Team KI heute nutzt. Wir antworten innerhalb eines Werktags mit dem passenden Einstieg ins Programm.',
   },
   legal: {
     kicker: 'Rechtliches',
@@ -596,9 +402,9 @@ export const de: Dictionary = {
     kicker: 'Fehler 404',
     title: 'Diese Seite wurde nie gebaut.',
     accent: [4],
-    body: 'Die Adresse hat sich vielleicht geändert, oder der Link war falsch. Das Programm und unsere Projekte sind einen Klick entfernt.',
+    body: 'Die Adresse hat sich vielleicht geändert, oder der Link war falsch. Das Programm ist einen Klick entfernt.',
     home: 'Zurück zur Startseite',
-    work: 'Arbeiten ansehen',
+    program: 'Zum Programm',
   },
   cookies: {
     label: 'Cookie-Einwilligung',
@@ -615,7 +421,7 @@ export const de: Dictionary = {
     title: 'Sagen Sie uns, wo KI helfen soll.',
     accent: [3, 4, 5, 6],
     description:
-      'Ein paar Sätze genügen. Sagen Sie uns, wie Ihr Team KI heute nutzt oder was Sie gebaut brauchen. Wir antworten innerhalb eines Werktags.',
+      'Ein paar Sätze genügen. Sagen Sie uns, wie Sie oder Ihr Team KI heute nutzen. Wir antworten innerhalb eines Werktags.',
     direct: 'So erreichen Sie uns',
     formNote:
       'Das Formular ist der schnellste Weg zu uns. Es kommt direkt bei uns an und wir beantworten jede Anfrage persönlich.',
@@ -635,32 +441,29 @@ export const de: Dictionary = {
       title: 'Sagen Sie uns, wo KI helfen soll.',
       accent: [3, 4, 5, 6],
       description:
-        'Ein paar Sätze genügen. Sagen Sie uns, wie Ihr Team KI heute nutzt oder was Sie gebaut brauchen. Wir antworten innerhalb eines Werktags.',
+        'Ein paar Sätze genügen. Sagen Sie uns, wie Sie oder Ihr Team KI heute nutzen. Wir antworten innerhalb eines Werktags.',
     },
   },
   faq: {
     kicker: 'FAQ',
     title: 'Klare Antworten, bevor Sie sich festlegen.',
-    description: 'Zum Programm, zu unseren Projekten und zur Zusammenarbeit.',
+    description: 'Zum Programm, für wen es gedacht ist und wie es abläuft.',
     accent: [0, 1],
   },
   cta: {
     kicker: 'Sprechen wir',
     title: 'Bereit, KI bewusst einzusetzen?',
     accent: [2, 3, 4],
-    body: 'Erzählen Sie uns von Ihrem Team und wie es KI heute nutzt. Wir antworten innerhalb eines Werktags, mit dem passenden Einstieg in Conscious AI oder mit einem schriftlichen Umfang, falls Sie etwas gebaut brauchen.',
+    body: 'Erzählen Sie uns von Ihrem Team und wie es KI heute nutzt. Wir antworten innerhalb eines Werktags mit dem passenden Einstieg in Conscious AI.',
     button: 'Kontakt aufnehmen',
   },
   footer: {
-    pitch:
-      'KI-Befähigung für Wissensarbeit, und schlanke Systeme für Teams, die sie gebaut brauchen.',
+    pitch: 'KI-Befähigung für nicht-technische Wissensarbeit.',
     quote: 'Kontakt aufnehmen',
-    services: 'Mit uns bauen',
+    program: 'Das Programm',
     company: 'Unternehmen',
     offices: 'Standorte',
     legal: 'Rechtliches',
-    connect: 'Kontakt',
-    caseStudies: 'Projekte',
     rights: 'Alle Rechte vorbehalten.',
     backToTop: 'Nach oben',
   },

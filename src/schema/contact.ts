@@ -1,34 +1,32 @@
 import { z } from 'zod';
 
-import { services } from '@/data/services';
-
-export const BUDGET_OPTIONS = [
-  { value: 'under-10k', label: 'Under €10k' },
-  { value: '10k-25k', label: '€10k - €25k' },
-  { value: '25k-50k', label: '€25k - €50k' },
-  { value: '50k-100k', label: '€50k - €100k' },
-  { value: 'over-100k', label: '€100k+' },
-  { value: 'retainer', label: 'Monthly retainer' },
-  { value: 'unsure', label: 'Not sure yet' },
-] as const;
-
-/** The program comes first; it is not a service in data/services.ts. */
-export const PROGRAM_OPTION = 'conscious-ai';
-
-export const SERVICE_OPTIONS = [
-  { value: PROGRAM_OPTION, label: 'Conscious AI program' },
-  ...services.map((service) => ({ value: service.slug, label: service.title })),
+/**
+ * What the enquiry is about: one of the four program tiers, or something
+ * else. The values match the tier ids in data/program.ts, so a link such as
+ * /contact?service=team opens the form with that tier already chosen. The
+ * field is still called `service` because that is the column it is stored in.
+ */
+export const INTEREST_OPTIONS = [
+  { value: 'fundamentals', label: 'AI Fundamentals (free course)' },
+  { value: 'practitioner', label: 'Practitioner' },
+  { value: 'role-tracks', label: 'Role Tracks' },
+  { value: 'team', label: 'Team' },
   { value: 'other', label: 'Something else' },
 ] as const;
 
-const budgetValues = BUDGET_OPTIONS.map((option) => option.value) as [
-  string,
-  ...string[],
+export type InterestValue = (typeof INTEREST_OPTIONS)[number]['value'];
+
+/** The free course: where "request early access" links point. */
+export const DEFAULT_INTEREST: InterestValue = 'fundamentals';
+
+const interestValues = INTEREST_OPTIONS.map((option) => option.value) as [
+  InterestValue,
+  ...InterestValue[],
 ];
-const serviceValues = SERVICE_OPTIONS.map((option) => option.value) as [
-  string,
-  ...string[],
-];
+
+export function isInterestValue(value: unknown): value is InterestValue {
+  return interestValues.includes(value as InterestValue);
+}
 
 export const contactSchema = z.object({
   name: z
@@ -42,10 +40,9 @@ export const contactSchema = z.object({
     .email('Please enter a valid email address')
     .max(200),
   company: z.string().trim().max(120).optional().or(z.literal('')),
-  service: z.enum(serviceValues, { message: 'Pick the closest match' }),
-  budget: z.enum(budgetValues).optional(),
+  service: z.enum(interestValues, { message: 'Pick the closest match' }),
   message: z
-    .string({ message: 'Tell us a little about the project' })
+    .string({ message: 'Tell us a little about how you use AI' })
     .trim()
     .min(20, 'A couple of sentences help us reply usefully')
     .max(4000, 'Please keep it under 4,000 characters'),

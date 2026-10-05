@@ -5,14 +5,7 @@ import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
 
-import {
-  MARK_B_PATH,
-  MARK_B_TRANSFORM,
-  MARK_DOT_SIZE,
-  MARK_DOT_X,
-  MARK_DOT_Y,
-  MARK_RADIUS,
-} from './mark';
+import { MARK_ALIF_PATH, MARK_ARCH_PATH, MARK_NUQTA_PATH } from './mark';
 
 interface LogoMarkProps {
   className?: string;
@@ -21,33 +14,28 @@ interface LogoMarkProps {
 }
 
 /**
- * The Bullah Labs mark: the wordmark's own "B" on a square plate, closed by
- * a square full stop in the brand colour. Theme-aware by default: the plate
- * takes the foreground colour, the glyph the background.
+ * The Bullah Labs mark: an alif and a nuqta inside a shrine arch, after
+ * Bulleh Shah's "a single alif is all you need". Theme-aware by default: the
+ * arch takes the foreground colour, the alif the background, and the nuqta
+ * the brand colour.
  */
 export function LogoMark({ className, inverted }: LogoMarkProps) {
   return (
     <svg
       viewBox='0 0 64 64'
       aria-hidden='true'
-      className={cn('h-8 w-8', className)}
+      className={cn('h-9 w-9', className)}
     >
-      <rect
-        width='64'
-        height='64'
-        rx={MARK_RADIUS}
+      <path
+        d={MARK_ARCH_PATH}
         className={inverted ? 'fill-brand' : 'fill-foreground'}
       />
       <path
-        transform={MARK_B_TRANSFORM}
-        d={MARK_B_PATH}
+        d={MARK_ALIF_PATH}
         className={inverted ? 'fill-white' : 'fill-background'}
       />
-      <rect
-        x={MARK_DOT_X}
-        y={MARK_DOT_Y}
-        width={MARK_DOT_SIZE}
-        height={MARK_DOT_SIZE}
+      <path
+        d={MARK_NUQTA_PATH}
         className={inverted ? 'fill-white' : 'fill-brand'}
       />
     </svg>

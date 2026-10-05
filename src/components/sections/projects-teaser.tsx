@@ -25,8 +25,8 @@ const AUTO_MS = 5000;
 
 /**
  * A compact featured-project showcase with the real product screens on
- * devices. Each slide leads with the project's efficiency lens and links to
- * the full case study on /work.
+ * devices. Each slide names the product, says what it is and how it is
+ * optimized, and links to the full case study on /work.
  */
 export function ProjectsTeaser({
   dict,
@@ -136,14 +136,20 @@ export function ProjectsTeaser({
                         className='group min-w-0'
                       >
                         <p className='inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
-                          <span aria-hidden='true' className='h-1.5 w-1.5 bg-brand' />
-                          {dict.work.lenses[activeProject.efficiency.lens].label}
+                          <span
+                            aria-hidden='true'
+                            className='h-1.5 w-1.5 bg-brand'
+                          />
+                          {
+                            dict.work.lenses[activeProject.efficiency.lens]
+                              .label
+                          }
                         </p>
                         <h3 className='bl-display mt-2 min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
                           {activeProject.title}
                         </h3>
                         <p className='mt-1.5 line-clamp-2 min-h-[2.75em] max-w-[52ch] text-sm leading-snug text-muted-foreground'>
-                          {activeProject.efficiency.title}
+                          {activeProject.tagline}
                         </p>
                       </Link>
                       <div className='flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between'>

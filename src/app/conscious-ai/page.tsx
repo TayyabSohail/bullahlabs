@@ -4,17 +4,19 @@ import Link from 'next/link';
 
 import { PageHero } from '@/components/common/page-hero';
 import { SectionHeading } from '@/components/common/section-heading';
-import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
-import { Pillars } from '@/components/sections/conscious-ai';
+import { Reveal } from '@/components/motion/reveal';
+import { RoleTracks } from '@/components/sections/conscious-ai';
 import { CtaBanner } from '@/components/sections/cta-banner';
+import { FaqSection } from '@/components/sections/faq';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 
 import { cn } from '@/lib/utils';
 
 import { paths } from '@/constants/paths';
+import { getFaqs } from '@/data/faqs';
 import { getProgram } from '@/data/program';
 import { getDictionary } from '@/i18n/server';
-import { PROGRAM_OPTION } from '@/schema/contact';
+import { DEFAULT_INTEREST } from '@/schema/contact';
 
 export const metadata: Metadata = {
   title: 'Conscious AI',
@@ -23,8 +25,8 @@ export const metadata: Metadata = {
   alternates: { canonical: paths.program },
 };
 
-/** Contact form, with the program already chosen. */
-const enquiryHref = `${paths.contact}?service=${PROGRAM_OPTION}`;
+/** Contact form, with the free course already chosen. */
+const enquiryHref = `${paths.contact}?service=${DEFAULT_INTEREST}`;
 
 export default async function ConsciousAiPage() {
   const dict = await getDictionary();
@@ -67,39 +69,6 @@ export default async function ConsciousAiPage() {
         </p>
       </PageHero>
 
-      <Pillars dict={dict} />
-
-      {/* Five themes */}
-      <section
-        className='bl-section bl-rule bl-band-white'
-        data-rail={t.themesKicker}
-      >
-        <div className='bl-container'>
-          <SectionHeading kicker={t.themesKicker} title={t.themesTitle} />
-          <Stagger
-            stagger={0.08}
-            className='mt-8 grid gap-px overflow-hidden border bg-line sm:mt-14 sm:grid-cols-2 lg:grid-cols-5'
-          >
-            {program.themes.map((theme, index) => (
-              <StaggerItem
-                key={theme.title}
-                className='flex flex-col bg-surface p-6 lg:p-7'
-              >
-                <span className='bl-display text-4xl text-brand/30'>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <h3 className='bl-display mt-6 text-xl text-ink'>
-                  {theme.title}
-                </h3>
-                <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
-                  {theme.body}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
-
       {/* Tiers, with their modules */}
       <section
         id='tiers'
@@ -117,7 +86,8 @@ export default async function ConsciousAiPage() {
             {program.tiers.map((tier, index) => (
               <Reveal
                 key={tier.id}
-                className='bl-card grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]'
+                id={tier.id}
+                className='bl-card grid scroll-mt-24 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]'
               >
                 <div
                   className={cn(
@@ -196,7 +166,7 @@ export default async function ConsciousAiPage() {
                     {tier.modules.map((module) => (
                       <li
                         key={module.code}
-                        className='grid gap-x-6 gap-y-2 border-b px-6 py-5 last:border-b-0 sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:px-8'
+                        className='grid gap-x-6 gap-y-2 border-b px-6 py-4 last:border-b-0 sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:px-8'
                       >
                         <span className='font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-text'>
                           {module.code}
@@ -205,13 +175,7 @@ export default async function ConsciousAiPage() {
                           <h4 className='text-base font-semibold text-ink'>
                             {module.title}
                           </h4>
-                          <p className='mt-1.5 text-sm leading-relaxed text-muted-foreground'>
-                            {module.focus}
-                          </p>
-                          <p className='mt-2.5 flex items-start gap-2 text-[13px] leading-snug text-ink/80'>
-                            <span className='shrink-0 font-mono text-[9px] uppercase leading-[1.6] tracking-[0.16em] text-muted-foreground'>
-                              {labels.output}
-                            </span>
+                          <p className='mt-1 text-sm leading-snug text-muted-foreground'>
                             {module.output}
                           </p>
                         </div>
@@ -225,114 +189,16 @@ export default async function ConsciousAiPage() {
         </div>
       </section>
 
-      {/* Role tracks */}
-      <section
-        className='bl-section bl-rule bl-band-white'
-        data-rail={t.tracksKicker}
-      >
-        <div className='bl-container'>
-          <SectionHeading
-            kicker={t.tracksKicker}
-            title={t.tracksTitle}
-            description={t.tracksDescription}
-          />
-          <Stagger
-            stagger={0.06}
-            className='mt-8 grid gap-px overflow-hidden border bg-line sm:mt-14 sm:grid-cols-2 lg:grid-cols-3'
-          >
-            {program.roleTracks.map((track) => (
-              <StaggerItem
-                key={track.id}
-                className='flex flex-col bg-surface p-6 lg:p-7'
-              >
-                <div className='flex min-h-6 items-start justify-between gap-3'>
-                  <h3 className='bl-display text-xl text-ink sm:text-2xl'>
-                    {track.name}
-                  </h3>
-                  {(track.flagship || track.technical) && (
-                    <span
-                      className={cn(
-                        'shrink-0 border px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em]',
-                        track.flagship
-                          ? 'border-brand bg-brand text-brand-foreground'
-                          : 'border-ink/15 text-ink/70',
-                      )}
-                    >
-                      {track.flagship ? t.flagship : t.technical}
-                    </span>
-                  )}
-                </div>
-                <p className='mt-2 text-sm text-muted-foreground'>
-                  {track.audience}
-                </p>
-                <ul className='mt-5 space-y-2.5 border-t pt-4 text-[13px] leading-snug text-ink/80'>
-                  {track.workflows.map((workflow) => (
-                    <li key={workflow} className='flex items-start gap-2.5'>
-                      <span
-                        aria-hidden='true'
-                        className='mt-[7px] h-1 w-1 shrink-0 bg-brand'
-                      />
-                      {workflow}
-                    </li>
-                  ))}
-                </ul>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
+      <RoleTracks dict={dict} detailed />
 
-      {/* Who it is for */}
-      <section
-        className='bl-section bl-rule bl-band-stone'
-        data-rail={t.audienceKicker}
-      >
-        <div className='bl-container'>
-          <SectionHeading
-            kicker={t.audienceKicker}
-            title={t.audienceTitle}
-            description={t.audienceDescription}
-          />
-          <Reveal>
-            <ul className='mt-8 flex flex-wrap gap-1.5 sm:mt-12'>
-              {program.roles.map((role) => (
-                <li
-                  key={role}
-                  className='inline-flex items-center gap-2 border border-ink/10 bg-white px-3 py-2 text-xs font-medium uppercase tracking-[0.08em] text-ink/75'
-                >
-                  <span aria-hidden='true' className='h-1 w-1 bg-brand' />
-                  {role}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Stagger className='mt-6 grid gap-4 md:grid-cols-2'>
-            {[t.employee, t.employer].map((audience) => (
-              <StaggerItem key={audience.label} className='bl-card p-7 sm:p-9'>
-                <p className='bl-kicker'>{audience.label}</p>
-                <h3 className='bl-display mt-5 max-w-[20ch] text-2xl text-ink sm:text-3xl'>
-                  {audience.title}
-                </h3>
-                <p className='mt-4 text-base leading-relaxed text-muted-foreground'>
-                  {audience.body}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-
-          <Reveal className='bl-card bl-card-tint mt-4 grid gap-6 p-7 sm:p-9 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12'>
-            <div>
-              <p className='bl-kicker'>{t.sustainabilityKicker}</p>
-              <h3 className='bl-display mt-5 text-2xl text-ink sm:text-3xl'>
-                {t.sustainabilityTitle}
-              </h3>
-            </div>
-            <p className='text-base leading-relaxed text-foreground/80 sm:text-lg'>
-              {t.sustainabilityBody}
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <FaqSection
+        items={getFaqs(dict.locale)}
+        kicker={dict.faq.kicker}
+        title={dict.faq.title}
+        accentWords={[...dict.faq.accent]}
+        description={dict.faq.description}
+        className='bl-band-stone bl-rule'
+      />
 
       <CtaBanner
         dict={dict}

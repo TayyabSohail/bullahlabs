@@ -23,8 +23,8 @@ const VISIBLE_TECH = 4;
 
 /**
  * Portfolio-style project tile: the product on devices, category chip,
- * efficiency lens, title, the efficiency claim, tech chips, full-bleed
- * action footer.
+ * title, a tagline that says what the product is and how it is optimized,
+ * the optimization lens, tech chips, full-bleed action footer.
  * The whole card is the link, so it is the one card type that lifts.
  */
 export function ProjectCard({
@@ -62,19 +62,18 @@ export function ProjectCard({
       </div>
 
       <div className='relative p-5 sm:p-6'>
+        <h3 className='bl-display text-2xl text-ink transition-colors duration-300 group-hover:text-brand-text'>
+          {project.title}
+        </h3>
+        <p className='mt-2 text-[15px] leading-snug text-ink/80 sm:text-base sm:leading-snug'>
+          {project.tagline}
+        </p>
         {lensLabel && (
-          <p className='mb-3 inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+          <p className='mt-4 inline-flex items-center gap-2 border border-brand/30 bg-brand/[0.06] px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-text'>
             <span aria-hidden='true' className='h-1.5 w-1.5 bg-brand' />
             {lensLabel}
           </p>
         )}
-        <h3 className='bl-display text-2xl text-ink transition-colors duration-300 group-hover:text-brand-text'>
-          {project.title}
-        </h3>
-        <p className='mt-1 text-sm text-muted-foreground'>{project.tagline}</p>
-        <p className='mt-4 border-l-2 border-brand pl-3.5 text-[15px] font-medium leading-snug text-ink/85'>
-          {project.efficiency.title}
-        </p>
 
 
         <ul className='mt-5 flex flex-wrap items-center gap-1.5 border-t pt-5'>

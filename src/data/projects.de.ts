@@ -46,9 +46,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
       ],
     },
     client: 'Vertraulich (Immobilien-Mitgliederclub)',
-    tagline: 'Anteiliges Immobilieneigentum für Ostafrika',
+    tagline:
+      'Anteiliges Immobilieneigentum für Ostafrika, auf einem Hauptbuch, das nie schätzt',
     summary:
-      'Ein Mitgliederclub, in dem Uganderinnen und Ugander ertragsstarke Wohnungen ab 1.000.000 UGX gemeinsam besitzen.',
+      'Ein Mitgliederclub, in dem Uganderinnen und Ugander ertragsstarke Wohnungen ab 1.000.000 UGX gemeinsam besitzen. Jeder Schilling bewegt sich nach exakten Regeln, und ein Mensch gibt jede Bewegung frei.',
     description:
       'Immobilien werden als ein unteilbares Ganzes verkauft, und dieses Ganze kostet mehr, als die meisten Menschen je auf einmal auf dem Konto haben. Brickfold teilt es auf. Geprüfte Mitglieder bündeln Kapital, besitzen gemeinsam echte, ertragsstarke Wohnungen in Uganda, erhalten ihren anteiligen Anteil an der Monatsmiete und verkaufen ihren Anteil an andere Mitglieder, wenn sie aussteigen möchten.',
     industry: 'Fintech / Immobilien',
@@ -148,8 +149,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
       ],
     },
     client: 'Vertraulich (SEO-Plattform)',
-    tagline: 'KI-gestützte Plattform für intelligenteres SEO-Wachstum',
-    summary: 'KI-gestützte SEO- und Content-Plattform.',
+    tagline:
+      'KI-Plattform für SEO und Content, die dieselben Daten nie zweimal einkauft',
+    summary:
+      'Eine KI-gestützte Plattform für SEO und Content. Bündelung und Caching halbieren die Kosten des Keyword-Trackings.',
     description:
       'Eine Plattform für Keyword-Recherche, KI-Content-Erstellung und Rank-Tracking, die dem Hin und Her zwischen Werkzeugen ein Ende macht, das SEO-Teams ganze Tage gekostet hat.',
     industry: 'Marketingtechnologie',
@@ -243,9 +246,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
       ],
     },
     client: 'Vertraulich (Marktplatz für Studierendenwohnungen)',
-    tagline: 'Wohnungen außerhalb des Campus, zu Ihren Bedingungen',
+    tagline:
+      'Bieter-Marktplatz für Studentenwohnungen, der jedem Bildschirm nur seine Gebote sendet',
     summary:
-      'Auktionsbasierter Mietmarktplatz für Wohnungen außerhalb des Campus.',
+      'Ein gebotsbasierter Marktplatz für Mietwohnungen außerhalb des Campus. Live-Aktualisierungen sind pro Inserat begrenzt, sodass über 1.000 Menschen gleichzeitig bieten können.',
     description:
       'Studierende bieten in Echtzeit auf Wohnungen außerhalb des Campus, mit rollenspezifischen Dashboards für Studierende, Eltern und Vermietende.',
     industry: 'Immobilientechnologie',
@@ -340,8 +344,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
       ],
     },
     client: 'Vertraulich (E-Commerce-Marktplatz)',
-    tagline: 'Ein personalisierter Marktplatz mit vielen Anbietern',
-    summary: 'Personalisierter E-Commerce-Marktplatz mit vielen Anbietern.',
+    tagline:
+      'Personalisierter Multi-Seller-Marktplatz mit automatischen Auszahlungen und Tracking',
+    summary:
+      'Ein personalisierter E-Commerce-Marktplatz für viele Händler. Automatisierte Auszahlungen und Sendungsverfolgung senken die Supportanfragen um 70 %.',
     description:
       'Ein Marktplatz mit vielen Anbietern, personalisierten Empfehlungen, Auszahlungen über Stripe Connect und automatisierter Sendungsverfolgung von DHL.',
     industry: 'E-Commerce',
@@ -433,9 +439,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
         'Jeder Posten genau einmal gezählt',
       ],
     },
-    tagline: 'HR- und Lohnsystem, vollständig prüfbar',
+    tagline:
+      'HR- und Lohnsystem, das auf Regeln läuft, ohne manuelle Berechnungen',
     summary:
-      'Onboarding, Urlaub, Krankheitskosten, Überstunden und Lohnabrechnung für Bitsmiths Studio.',
+      'Onboarding, Urlaub, Krankheitskosten, Überstunden und Lohnabrechnung für Bitsmiths Studio, berechnet durch Datenbankregeln statt von Hand.',
     description:
       'Eine interne HR-Plattform, auf der Mitarbeitende eingeladen, eingearbeitet und aktiviert werden; sie reichen Urlaub, Krankheitskosten und Überstunden ein, die Administration gibt jeden Vorgang frei, und die freigegebenen Posten fließen in einen monatlichen Abrechnungslauf, der Lohnabrechnungen berechnet, sperrt und nach Payoneer exportiert.',
     industry: 'HR-Technologie',
@@ -533,8 +540,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
         'Bilder auf Anfrage umgewandelt, nicht von Hand',
       ],
     },
-    tagline: 'Agenturwebsite und CMS',
-    summary: 'Marketing-Website für ein Studio, das MVPs in 30 Tagen liefert.',
+    tagline:
+      'Agentur-Website mit CMS, bei der Veröffentlichen kein Deployment braucht',
+    summary:
+      'Marketing-Website für ein Studio, das MVPs in 30 Tagen liefert. Jeder Inhaltstyp wird aus dem CMS veröffentlicht, ohne Entwicklungszeit.',
     description:
       'Die Marketing-Website des Studios, auf einem CMS gebaut, sodass Referenzen, Artikel und Kundenstimmen ohne Deploy veröffentlicht werden.',
     industry: 'Softwareagentur',
@@ -620,9 +629,9 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     title: 'Real Estate Operating System',
     client: 'Vertraulich (Immobiliengruppe)',
     tagline:
-      'Mandantenfähige KI-Plattform, die den Maklerbetrieb automatisiert',
+      'Mandantenfähige KI-Plattform für Immobilienagenturen, mit einem Agenten pro Aufgabe',
     summary:
-      'Mandantenfähige KI-Plattform zur Automatisierung des Betriebs von Immobilienmaklern.',
+      'Eine mandantenfähige KI-Plattform, die Abläufe von Immobilienagenturen automatisiert. Drei spezialisierte Agenten teilen sich einen Ablauf für über 30 Agenturen.',
     description:
       'Ein einheitliches Betriebssystem für Maklerbüros, das CRM, Compliance, Marketing, Dokumentenerstellung und E-Signatur in einer mandantenfähigen Plattform zusammenführt.',
     industry: 'Immobilien',
@@ -709,9 +718,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     },
     title: 'Agent für Compliance-Prüfung',
     client: 'Vertraulich (Wirtschaftsprüfung)',
-    tagline: 'Feststellungen als Änderungsverfolgung je Klausel, KI-erzeugt',
+    tagline:
+      'KI-Compliance-Prüfer, dessen Feststellungen jeweils ihre Klausel nennen',
     summary:
-      'KI-Agent für Compliance, der Feststellungen als Änderungsverfolgung je Klausel erzeugt.',
+      'Ein KI-Agent, der Berichte gegen einen Normen-Datensatz prüft und nachverfolgte Änderungen auf Klauselebene liefert, die ein Mensch verifizieren kann.',
     description:
       'Ein KI-gestützter Prüfablauf, der hochgeladene Berichte gegen etablierte Normen abgleicht und Änderungsverfolgung auf Klauselebene zurückgibt, mit einer klaren Begründung zu jeder Feststellung.',
     industry: 'Prüfung und Compliance',
@@ -796,9 +806,9 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     },
     title: 'Sprachassistent für Interviews in Echtzeit',
     client: 'Vertraulich (Personalvermittlung)',
-    tagline: 'Live-KI-Sprachinterviews mit automatischen Transkripten',
+    tagline: 'Live-KI-Sprachinterviews, mit Transkript in derselben Sitzung',
     summary:
-      'Durchgängige KI-Interviewplattform mit Live-Sprache und Transkription.',
+      'Eine durchgängige KI-Interviewplattform. Sprache und Transkription laufen in einer Echtzeit-Sitzung, ohne manuelle Schritte danach.',
     description:
       'Eine durchgängige Interviewplattform, die Live-KI-Sprachinterviews plant, terminiert und durchführt und das Transkript nach Ende der Sitzung automatisch zustellt.',
     industry: 'Personalvermittlung',
@@ -884,8 +894,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
         'Gebündelte Bereitstellung statt Handarbeit',
       ],
     },
-    tagline: 'Mandantenfähige KI-Support-Agenten für Onlineshops',
-    summary: 'Mandantenfähige KI-Chatbot-Plattform.',
+    tagline:
+      'KI-Support-Agenten für Onlineshops, die nur aus dem eigenen Shop antworten',
+    summary:
+      'Eine mandantenfähige KI-Chatbot-Plattform. Der Abruf ist auf die Inhalte eines Shops begrenzt, und neue Shops werden gebündelt eingerichtet.',
     description:
       'Wiederverkäufer richten KI-Support-Agenten für ihre Shops in großer Zahl ein, wobei jeder Mandant getrennt ist und jede Antwort in den Inhalten des jeweiligen Shops verankert wird.',
     industry: 'E-Commerce / Kundenservice',
@@ -971,8 +983,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     },
     title: 'KI-Assistent für Physiotherapie',
     client: 'Vertraulich (Gesundheitswesen)',
-    tagline: 'Adaptive Rehabilitation, von KI begleitet',
-    summary: 'Full-Stack-KI-Plattform für adaptive Rehabilitation.',
+    tagline:
+      'KI-Reha-Assistent, dessen Pläne sich täglich nach Regeln anpassen',
+    summary:
+      'Eine Full-Stack-KI-Plattform für adaptive Rehabilitation. Tägliche Protokolle passen den Plan automatisch an, und KI übernimmt Aufnahme, Pläne und Video-Feedback.',
     description:
       'Ein durchgängiger Rehabilitationsverlauf von der Aufnahme über die Bewegungsanalyse und adaptive Trainingsplanung bis zu täglichem Fortschritt und KI-gestütztem Videofeedback.',
     industry: 'Gesundheitswesen',
@@ -1058,8 +1072,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
         'Nur das erste Bild priorisiert',
       ],
     },
-    tagline: 'Unternehmenswebsite, neu gebaut für Tempo und SEO',
-    summary: 'Unternehmenswebsite, gebaut für Performance und SEO.',
+    tagline:
+      'Unternehmenswebsite, neu gebaut, damit jede Seite nur das Nötige lädt',
+    summary:
+      'Eine Unternehmenswebsite für Performance und SEO. Vorgerenderte Routen und Code pro Route lassen Seiten 40 % schneller laden.',
     description:
       'Eine Unternehmenswebsite, auf Next.js neu gebaut für Tempo und Suche. 40 % schneller, und endlich mit guten Rankings.',
     industry: 'Professionelle Dienstleistungen',
@@ -1138,9 +1154,10 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     },
     title: 'BankIslami PEP-Screening',
     client: 'BankIslami, umgesetzt mit Aawaz AI',
-    tagline: 'Tägliches Adverse-Media-Screening politisch exponierter Personen',
+    tagline:
+      'Tägliches PEP-Medienscreening, das Analysten nur glaubwürdige Treffer zeigt',
     summary:
-      'Eine interne Web- und Mobile-Plattform, die jeden Morgen die Nachrichten liest und daraus einen Risikobericht für das Compliance-Team der Bank erstellt.',
+      'Eine interne Web- und Mobilplattform, die jeden Morgen die Nachrichten liest, sie gegen die PEP-Liste der Bank bewertet und daraus einen Risikobericht erstellt.',
     description:
       'Banken müssen politisch exponierte Personen und ihr Umfeld laufend überwachen, nicht nur beim Onboarding. Bei BankIslami hieß das: Analystinnen und Analysten öffneten jeden Morgen Dutzende Nachrichtenseiten und suchten Hunderte Namen von Hand. Wir haben eine durchgängige Screening-Plattform gebaut: einen Crawler, der die Finanz- und Politiknachrichten des Tages abruft, eine Matching-Engine, die Artikel mit den PEP-Datensätzen der Bank verknüpft, und einen Prüfprozess, der in einem signierten täglichen Risikobericht endet. Ausgeliefert als MERN-Webanwendung für Analysten am Schreibtisch und als native Mobile-App für Compliance-Beauftragte unterwegs.',
     industry: 'Banken / Compliance',
@@ -1248,9 +1265,9 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     },
     title: 'Bidnest Mobile App',
     client: 'Vertraulich (Marktplatz für Studierendenwohnungen)',
-    tagline: 'Der Auktionsmarktplatz, verpackt für iOS und Android',
+    tagline: 'Der Bieter-Marktplatz auf iOS und Android, aus einer Codebasis',
     summary:
-      'Der Bidnest-Marktplatz, mit Capacitor verpackt, damit Studierende und Eltern vom Telefon aus bieten können.',
+      'Der Bidnest-Marktplatz, mit Capacitor verpackt, sodass drei Plattformen aus einem Build entstehen, ohne etwas neu zu bauen.',
     description:
       'Dieselbe Codebasis, die die Bidnest-Webplattform betreibt, mit Capacitor zu nativen iOS- und Android-Apps verpackt. Ein Team liefert die Webplattform und beide App Stores aus einem einzigen Repository, und jeder Ablauf des Marktplatzes funktioniert innerhalb der nativen Hülle, ohne neu gebaut zu werden.',
     industry: 'Immobilientechnologie',
@@ -1343,7 +1360,7 @@ export const projectsDe: Record<string, ProjectTranslation> = {
         'Fehler schon beim Build erkannt',
       ],
     },
-    tagline: 'Referenz-Portfolio für einen erfahrenen Entwickler',
+    tagline: 'Fallstudien-Portfolio, erzeugt aus einer typisierten Datendatei',
     summary:
       'Eine persönliche Website, auf der jedes Projekt eine vollständige Fallstudie ist, erzeugt aus einer einzigen typisierten Datendatei.',
     description:

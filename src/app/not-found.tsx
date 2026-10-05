@@ -35,9 +35,9 @@ export default async function NotFound() {
             {t.home}
           </Button>
         </Link>
-        <Link href={paths.work}>
+        <Link href={paths.program}>
           <Button variant='outline' size='xl' icon={ArrowUpRight}>
-            {t.work}
+            {t.program}
           </Button>
         </Link>
       </Reveal>

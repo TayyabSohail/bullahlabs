@@ -24,7 +24,7 @@ export const siteConfig = {
   legalName: 'Bullah Labs',
   tagline: 'Work smarter with AI. Use it responsibly.',
   description:
-    'Bullah Labs helps non-technical knowledge workers use AI effectively, build future-ready skills and reduce unnecessary AI usage, through the Conscious AI program and lean systems built to the same principles.',
+    'Bullah Labs helps non-technical knowledge workers use AI effectively, build future-ready skills and reduce unnecessary AI usage, through the Conscious AI program.',
   url: env.NEXT_PUBLIC_APP_URL,
   founded: 2024,
   /** Company inbox that receives enquiries. */
@@ -72,25 +72,7 @@ export const siteConfig = {
   calLink: calHandle ? `https://cal.com/${calHandle}` : null,
   /** The bare handle, for the inline embed. Null when not configured. */
   calHandle,
-  nav: [
-    { label: 'Home', href: paths.home },
-    { label: 'Conscious AI', href: paths.program },
-    { label: 'Projects', href: paths.work },
-    { label: 'Services', href: paths.services },
-    { label: 'About', href: paths.about },
-    { label: 'Careers', href: paths.careers },
-    { label: 'Contact', href: paths.contact },
-  ],
   footerNav: {
-    company: [
-      { label: 'Home', href: paths.home },
-      { label: 'Conscious AI', href: paths.program },
-      { label: 'Projects', href: paths.work },
-      { label: 'Services', href: paths.services },
-      { label: 'About', href: paths.about },
-      { label: 'Careers', href: paths.careers },
-      { label: 'Contact', href: paths.contact },
-    ],
     legal: [
       { label: 'Privacy Policy', href: paths.legal.privacy },
       { label: 'Terms of Service', href: paths.legal.terms },
@@ -99,12 +81,6 @@ export const siteConfig = {
       { label: 'All legal documents', href: paths.legal.index },
     ],
   },
-  stats: [
-    { value: 100, suffix: '+', label: 'Projects delivered' },
-    { value: 30, suffix: '+', label: 'Clients served' },
-    { value: 5, suffix: '+', label: 'Years building products' },
-    { value: 2, suffix: '', label: 'Countries, one team' },
-  ],
 } as const;
 
 export type SiteLocation = (typeof siteConfig.locations)[number];

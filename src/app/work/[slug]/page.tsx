@@ -29,7 +29,6 @@ import {
   type Project,
   projects,
 } from '@/data/projects';
-import { getServiceBySlugLocalised } from '@/data/services';
 import { getTestimonials } from '@/data/testimonials';
 import { getDictionary } from '@/i18n/server';
 
@@ -86,11 +85,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
       (item) => item.project === project.slug,
     ) ?? null;
   const lens = dict.work.lenses[project.efficiency.lens];
-  const relatedServices = project.services
-    .map((serviceSlug) => getServiceBySlugLocalised(serviceSlug, dict.locale))
-    .filter((service): service is NonNullable<typeof service> =>
-      Boolean(service),
-    );
 
   return (
     <article>
@@ -373,7 +367,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </Reveal>
       </section>
 
-      {/* Stack + services */}
+      {/* Stack + the principle it demonstrates */}
       <section className='bl-container'>
         <div className='grid gap-4 lg:grid-cols-[1.2fr_0.8fr]'>
           <Reveal className='bl-card p-7 sm:p-9'>
@@ -402,26 +396,24 @@ export default async function CaseStudyPage({ params }: PageProps) {
               ))}
             </ul>
           </Reveal>
-          <Reveal delay={0.1} className='bl-card p-7 sm:p-9'>
-            <p className='bl-kicker'>{t.servicesInvolved}</p>
-            <ul className='mt-6 divide-y divide-line'>
-              {relatedServices.map((service) => (
-                <li key={service.slug}>
-                  <Link
-                    href={paths.service(service.slug)}
-                    className='group flex items-center justify-between py-4 text-foreground'
-                  >
-                    <span>
-                      <span className='block font-medium'>{service.title}</span>
-                      <span className='block text-sm text-muted-foreground'>
-                        {service.tagline}
-                      </span>
-                    </span>
-                    <ArrowUpRight className='h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground' />
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <Reveal
+            delay={0.1}
+            className='bl-card bl-card-tint flex flex-col p-7 sm:p-9'
+          >
+            <p className='bl-kicker'>{t.lens}</p>
+            <h2 className='bl-display mt-5 text-2xl text-ink sm:text-3xl'>
+              {lens.label}
+            </h2>
+            <p className='mt-4 text-base leading-relaxed text-foreground/80'>
+              {lens.principle}
+            </p>
+            <Link
+              href={paths.program}
+              className='bl-action mt-auto pt-8'
+            >
+              {dict.program.cta}
+              <ArrowUpRight className='h-3.5 w-3.5' />
+            </Link>
           </Reveal>
         </div>
       </section>

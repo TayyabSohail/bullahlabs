@@ -5,7 +5,7 @@ export interface Faq {
   answer: string;
 }
 
-/** General questions. The homepage shows the first four. */
+/** Questions about the program, shown on the program page. */
 export const faqs: Faq[] = [
   {
     question: 'What is Conscious AI?',
@@ -23,14 +23,9 @@ export const faqs: Faq[] = [
       'Most courses teach how to operate a tool. We teach judgement: when AI is the right choice, how to reach a reliable result in fewer rounds, how to check it, and when a formula or a search does the job better. Every module ends in something you built from your own work.',
   },
   {
-    question: 'Do you still build software for clients?',
+    question: 'Which AI tools does it cover?',
     answer:
-      'Yes. Our engineering team builds web platforms, AI systems and automation to the same principles the program teaches. Every case study on this site opens with the principle that keeps that product lean.',
-  },
-  {
-    question: 'What does the free course cover?',
-    answer:
-      'Five self-paced modules that work with any AI tool: why efficiency matters, choosing the right AI for the task, understanding workflow waste, designing the smallest reliable system, and measuring the result. You leave with one audited workflow and a personal optimization checklist.',
+      'AI Fundamentals works with any AI tool. Practitioner shows how to apply the same principles in ChatGPT, Claude, Gemini and Microsoft Copilot.',
   },
   {
     question: 'What does it cost?',
@@ -41,16 +36,6 @@ export const faqs: Faq[] = [
     question: 'How do you talk about sustainability?',
     answer:
       'Carefully. We do not claim an environmental figure for a single prompt. We focus on unnecessary usage repeated across teams and workflows, which is where cost and computation add up, and the Team tier reports estimated energy use alongside cost and time.',
-  },
-  {
-    question: 'Where is the team based?',
-    answer:
-      'Our Asian office is in Islamabad and our European office is in Fellbach, Germany. That gives clients in Europe a local contact and a working-hours overlap with the whole team.',
-  },
-  {
-    question: 'Do you sign NDAs and data processing agreements?',
-    answer:
-      'Yes. We routinely sign NDAs before discovery and provide a GDPR-compliant data processing agreement for projects that involve personal data.',
   },
 ];
 
@@ -72,14 +57,9 @@ const faqsDe: Faq[] = [
       'Die meisten Kurse zeigen, wie man ein Werkzeug bedient. Wir vermitteln Urteilsvermögen: wann KI die richtige Wahl ist, wie man in weniger Runden zu einem verlässlichen Ergebnis kommt, wie man es prüft und wann eine Formel oder eine Suche die Aufgabe besser löst. Jedes Modul endet mit etwas, das Sie aus Ihrer eigenen Arbeit gebaut haben.',
   },
   {
-    question: 'Bauen Sie weiterhin Software für Kunden?',
+    question: 'Welche KI-Werkzeuge deckt es ab?',
     answer:
-      'Ja. Unser Engineering-Team baut Webplattformen, KI-Systeme und Automatisierung nach denselben Prinzipien, die das Programm lehrt. Jede Fallstudie auf dieser Website beginnt mit dem Prinzip, das das jeweilige Produkt schlank hält.',
-  },
-  {
-    question: 'Was behandelt der kostenlose Kurs?',
-    answer:
-      'Fünf Module im eigenen Tempo, die mit jedem KI-Werkzeug funktionieren: warum Effizienz zählt, die richtige KI für die Aufgabe, Verschwendung in Abläufen verstehen, das kleinste zuverlässige System entwerfen und das Ergebnis messen. Sie gehen mit einem geprüften Ablauf und einer persönlichen Optimierungs-Checkliste heraus.',
+      'AI Fundamentals funktioniert mit jedem KI-Werkzeug. Practitioner zeigt, wie Sie dieselben Prinzipien in ChatGPT, Claude, Gemini und Microsoft Copilot anwenden.',
   },
   {
     question: 'Was kostet es?',
@@ -90,16 +70,6 @@ const faqsDe: Faq[] = [
     question: 'Wie sprechen Sie über Nachhaltigkeit?',
     answer:
       'Vorsichtig. Wir nennen keine Umweltzahl für einen einzelnen Prompt. Wir konzentrieren uns auf unnötige Nutzung, die sich über Teams und Abläufe wiederholt, denn dort summieren sich Kosten und Rechenleistung, und die Team-Stufe weist den geschätzten Energieverbrauch neben Kosten und Zeit aus.',
-  },
-  {
-    question: 'Wo sitzt das Team?',
-    answer:
-      'Unser asiatisches Büro ist in Islamabad, unser europäisches in Fellbach. So haben Kunden in Europa einen Ansprechpartner vor Ort und überlappende Arbeitszeiten mit dem gesamten Team.',
-  },
-  {
-    question: 'Unterzeichnen Sie NDAs und Auftragsverarbeitungsverträge?',
-    answer:
-      'Ja. Wir unterzeichnen regelmäßig NDAs vor dem ersten Gespräch und stellen für Projekte mit personenbezogenen Daten einen DSGVO-konformen Auftragsverarbeitungsvertrag bereit.',
   },
 ];
 
