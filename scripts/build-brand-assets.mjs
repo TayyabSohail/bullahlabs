@@ -25,22 +25,25 @@ function constant(name) {
   return match[1] ?? match[2];
 }
 
-const arch = constant('MARK_ARCH_PATH');
-const alif = constant('MARK_ALIF_PATH');
-const nuqta = constant('MARK_NUQTA_PATH');
+const glyphPath = constant('MARK_B_PATH');
+const glyphTransform = constant('MARK_B_TRANSFORM');
+const whirl = constant('MARK_WHIRL_PATH');
+const dotCx = constant('MARK_DOT_CX');
+const dotCy = constant('MARK_DOT_CY');
+const dotR = constant('MARK_DOT_R');
 
 const BRAND = '#10b981';
 const INK = '#0d0d0d';
 const PAPER = '#f5f5f3';
 
 const shapes = (plate, glyph, dot) =>
-  `<path fill="${plate}" d="${arch}"/><path fill="${glyph}" d="${alif}"/><path fill="${dot}" d="${nuqta}"/>`;
+  `<circle cx="32" cy="32" r="32" fill="${plate}"/><path fill="${glyph}" d="${whirl}"/><path fill="${glyph}" transform="${glyphTransform}" d="${glyphPath}"/><circle cx="${dotCx}" cy="${dotCy}" r="${dotR}" fill="${dot}"/>`;
 
 const mark = (plate, glyph, dot) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">${shapes(plate, glyph, dot)}</svg>`;
 
 /**
- * App icons need an opaque square, so the arch sits on a paper tile with a
+ * App icons need an opaque square, so the disc sits on a paper tile with a
  * little room around it.
  */
 const tile = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="${PAPER}"/><g transform="translate(6.4 6.4) scale(0.8)">${shapes(INK, PAPER, BRAND)}</g></svg>`;

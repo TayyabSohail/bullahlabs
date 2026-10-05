@@ -51,7 +51,8 @@ const sectionsEn: LegalSection[] = [
         <ul>
           <li>
             <strong>Contact enquiries.</strong> Name, email address, company
-            (optional), the program tier you select, and your message. We also record the IP address the enquiry came from, to
+            (optional), the service and budget range you select, and your
+            message. We also record the IP address the enquiry came from, to
             protect the form from abuse.
           </li>
           <li>
@@ -266,8 +267,8 @@ const sectionsDe: LegalSection[] = [
         <ul>
           <li>
             <strong>Kontaktanfragen.</strong> Name, E-Mail-Adresse, Unternehmen
-            (optional), die von Ihnen gewählte Programmstufe sowie Ihre
-            Nachricht. Zudem erfassen wir die IP-Adresse, von der die
+            (optional), die von Ihnen gewählte Leistung und der Budgetrahmen
+            sowie Ihre Nachricht. Zudem erfassen wir die IP-Adresse, von der die
             Anfrage kam, um das Formular vor Missbrauch zu schützen.
           </li>
           <li>

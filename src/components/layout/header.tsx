@@ -25,14 +25,17 @@ export function Header({ dict }: HeaderProps) {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const items = primaryNav(dict);
+  const items = [
+    { label: dict.nav.home, href: paths.home },
+    ...primaryNav(dict),
+  ];
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScrolled(latest > 12);
   });
 
   // Home only matches exactly, so it doesn't light up on every route.
-  // Section links such as /conscious-ai#team never read as the current page.
+  // Section links such as /about#how-it-works never read as the current page.
   const isActive = (href: string) =>
     href === paths.home
       ? pathname === href
@@ -56,8 +59,8 @@ export function Header({ dict }: HeaderProps) {
       <div className='bl-container flex h-[4.25rem] items-center justify-between'>
         <Logo />
 
-        {/* The links, flags and CTA need the width of `lg`; below that the
-            hamburger takes over. */}
+        {/* Five links plus the flags and CTA need about 1000px, so the full
+            nav only appears from `lg`; below that the hamburger takes over. */}
         <nav
           aria-label='Primary'
           className='hidden items-center gap-6 lg:flex xl:gap-8'

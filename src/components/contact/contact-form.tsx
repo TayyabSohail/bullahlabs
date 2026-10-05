@@ -3,14 +3,11 @@
 import {
   ArrowLeft,
   ArrowUpRight,
-  Briefcase,
   Check,
   CheckCircle2,
   GraduationCap,
   type LucideIcon,
-  MessageCircle,
-  Users,
-  Zap,
+  Sparkles,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useAction } from 'next-safe-action/hooks';
@@ -20,6 +17,7 @@ import { toast } from 'sonner';
 
 import { submitContact } from '@/actions/contact';
 
+import { SERVICE_ICONS } from '@/components/sections/services-grid';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -36,30 +34,20 @@ import { cn } from '@/lib/utils';
 
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
-import { getProgram } from '@/data/program';
+import { getServiceBySlugLocalised } from '@/data/services';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 import {
   type ContactInput,
-  INTEREST_OPTIONS,
-  type InterestValue,
-  isInterestValue,
+  COURSE_INTEREST,
+  SERVICE_OPTIONS,
 } from '@/schema/contact';
 
 const FIELD =
   'h-12 rounded-none border-white/20 bg-white/[0.06] px-4 text-[15px] text-white placeholder:text-white/40 focus-visible:ring-brand/60 focus-visible:ring-offset-0';
 const MESSAGE_MAX = 4000;
 
-const INTEREST_ICONS: Record<InterestValue, LucideIcon> = {
-  fundamentals: GraduationCap,
-  practitioner: Zap,
-  'role-tracks': Briefcase,
-  team: Users,
-  other: MessageCircle,
-};
-
 interface ContactFormProps {
   dict: Dictionary;
-  /** Tier to preselect, from /contact?service=...; ignored if unknown. */
   defaultService?: string;
 }
 
@@ -67,31 +55,31 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
   const [sent, setSent] = useState(false);
   const [step, setStep] = useState(0);
   const t = dict.contactForm;
-  const { tiers } = getProgram(dict.locale);
   const form = useForm<ContactInput>({
     defaultValues: {
       name: '',
       email: '',
       company: '',
-      service: isInterestValue(defaultService) ? defaultService : undefined,
+      service: defaultService ?? undefined,
+      budget: undefined,
       message: '',
       consent: undefined,
       website: '',
     },
   });
 
-  // Each tier is described by the program data, so the form never drifts
-  // from the program page: its name, then whether it is free and who it is for.
-  const interestCopy = (value: InterestValue) => {
-    if (value === 'other') {
-      return { title: t.serviceOther, description: t.serviceOtherTagline };
-    }
-    const tier = tiers.find((item) => item.id === value);
-    return {
-      title: tier?.name ?? value,
-      description: tier ? `${tier.access} · ${tier.audience}` : undefined,
-    };
-  };
+  const serviceLabel = (slug: string) =>
+    slug === 'other'
+      ? t.serviceOther
+      : slug === COURSE_INTEREST
+        ? t.serviceCourse
+        : (getServiceBySlugLocalised(slug, dict.locale)?.title ?? slug);
+  const serviceTagline = (slug: string) =>
+    slug === 'other'
+      ? undefined
+      : slug === COURSE_INTEREST
+        ? t.serviceCourseHint
+        : getServiceBySlugLocalised(slug, dict.locale)?.tagline;
 
   const { execute, isExecuting } = useAction(submitContact, {
     onSuccess: () => {
@@ -134,7 +122,7 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((values) => execute(values))}
-        className='bl-card overflow-hidden rounded-2xl border border-white/10 bg-ink text-white shadow-[0_30px_80px_-40px_hsl(var(--ink)/0.8)] [clip-path:none]'
+        className='bl-card overflow-hidden rounded-2xl border border-white/10 bg-ink text-white [clip-path:none] shadow-[0_30px_80px_-40px_hsl(var(--ink)/0.8)]'
         noValidate
       >
         <div aria-hidden='true' className='absolute -left-[9999px] top-0'>
@@ -150,7 +138,7 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
         <div className='px-5 py-6 sm:px-7 sm:py-8 lg:px-9 lg:py-9'>
           <div className='flex items-start justify-between gap-6 border-b border-white/15 pb-6'>
             <div>
-              <p className='bl-kicker text-white/60'>
+              <p className='bl-kicker'>
                 {t.stepLabel
                   .replace('{current}', String(step + 1))
                   .replace('{total}', '3')}
@@ -176,23 +164,30 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
                   <FormItem>
                     <FormLabel className='text-white'>{t.service}</FormLabel>
                     <FormControl>
-                      <div className='mt-3 grid gap-3 sm:grid-cols-2'>
-                        {INTEREST_OPTIONS.map((option) => {
-                          const copy = interestCopy(option.value);
+                      <div className='mt-3 grid sm:grid-cols-2 sm:gap-x-7'>
+                        {SERVICE_OPTIONS.map((option) => {
+                          const service =
+                            option.value === 'other' ||
+                            option.value === COURSE_INTEREST
+                              ? undefined
+                              : getServiceBySlugLocalised(
+                                  option.value,
+                                  dict.locale,
+                                );
+                          const Icon: LucideIcon = service
+                            ? (SERVICE_ICONS[service.icon] as LucideIcon)
+                            : option.value === COURSE_INTEREST
+                              ? GraduationCap
+                              : Sparkles;
                           return (
                             <ChoiceCard
                               key={option.value}
                               selected={field.value === option.value}
                               onSelect={() => field.onChange(option.value)}
-                              icon={INTEREST_ICONS[option.value]}
-                              title={copy.title}
-                              description={copy.description}
-                              // Five options: the last one spans the row.
-                              className={
-                                option.value === 'other'
-                                  ? 'sm:col-span-2'
-                                  : undefined
-                              }
+                              icon={Icon}
+                              title={serviceLabel(option.value)}
+                              description={serviceTagline(option.value)}
+                              dark
                             />
                           );
                         })}
@@ -256,7 +251,7 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
                     label={t.company}
                     placeholder={t.companyPlaceholder}
                     autoComplete='organization'
-                    optionalLabel={t.optional}
+                    optional
                   />
                 </div>
                 <FormField
@@ -276,11 +271,11 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
                             className='mt-0.5 h-5 w-5 rounded-none border-white/30 data-[state=checked]:border-brand data-[state=checked]:bg-brand data-[state=checked]:text-brand-foreground'
                           />
                         </FormControl>
-                        <FormLabel className='text-sm font-normal leading-relaxed text-white/70'>
+                        <FormLabel className='text-sm font-normal leading-relaxed text-muted-foreground'>
                           {t.consentBefore}{' '}
                           <Link
                             href={paths.legal.privacy}
-                            className='text-white underline underline-offset-4'
+                            className='text-foreground underline underline-offset-4'
                           >
                             {t.consentLink}
                           </Link>
@@ -294,8 +289,8 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
             ) : null}
           </div>
 
-          <div className='mt-6 flex flex-col gap-3 border-t border-white/15 pt-5 sm:flex-row sm:items-center sm:justify-between'>
-            <p className='text-xs text-white/60 sm:hidden'>
+          <div className='mt-6 flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between'>
+            <p className='text-xs text-muted-foreground sm:hidden'>
               {t.replyNote.replace('{time}', siteConfig.responseTime)}
             </p>
             {step > 0 ? (
@@ -303,7 +298,6 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
                 type='button'
                 variant='ghost'
                 iconLeft={ArrowLeft}
-                className='text-white hover:bg-white/10 hover:text-white'
                 onClick={() => setStep((current) => current - 1)}
               >
                 {t.back}
@@ -318,10 +312,7 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
                 size='xl'
                 icon={ArrowUpRight}
                 onClick={() => setStep((current) => current + 1)}
-                disabled={
-                  (step === 0 && !selectedService) ||
-                  (step === 1 && messageLength < 20)
-                }
+                disabled={step === 0 && !selectedService}
               >
                 {t.next}
               </Button>
@@ -351,7 +342,7 @@ function ContactInputField({
   placeholder,
   autoComplete,
   type = 'text',
-  optionalLabel,
+  optional = false,
 }: {
   control: ReturnType<typeof useForm<ContactInput>>['control'];
   name: 'name' | 'email' | 'company';
@@ -359,8 +350,7 @@ function ContactInputField({
   placeholder: string;
   autoComplete: string;
   type?: string;
-  /** Set on fields that may be left empty; shown after the label. */
-  optionalLabel?: string;
+  optional?: boolean;
 }) {
   return (
     <FormField
@@ -370,11 +360,8 @@ function ContactInputField({
         <FormItem>
           <FormLabel>
             {label}
-            {optionalLabel ? (
-              <span className='font-normal text-white/60'>
-                {' '}
-                ({optionalLabel})
-              </span>
+            {optional ? (
+              <span className='font-normal text-white/60'> (optional)</span>
             ) : null}
           </FormLabel>
           <FormControl>
@@ -398,14 +385,14 @@ function ChoiceCard({
   icon: Icon,
   title,
   description,
-  className,
+  dark = false,
 }: {
   selected: boolean;
   onSelect: () => void;
   icon: LucideIcon;
   title: string;
   description?: string;
-  className?: string;
+  dark?: boolean;
 }) {
   return (
     <button
@@ -417,16 +404,19 @@ function ChoiceCard({
         'hover:-translate-y-0.5 hover:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand/60',
         selected
           ? 'border-brand bg-brand text-brand-foreground shadow-[0_12px_30px_-18px_hsl(var(--brand))]'
-          : 'border-white/15 bg-white/[0.04] text-white',
-        className,
+          : dark
+            ? 'border-white/15 bg-white/[0.04] text-white'
+            : 'border-line bg-surface text-foreground',
       )}
     >
       <span
         className={cn(
           'flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border transition-colors',
           selected
-            ? 'border-white/40 bg-brand text-brand-foreground'
-            : 'border-white/25 bg-white/[0.04] text-white/60 group-hover:border-brand group-hover:text-brand',
+            ? 'border-brand bg-brand text-brand-foreground'
+            : dark
+              ? 'border-white/25 bg-white/[0.04] text-white/60 group-hover:border-brand group-hover:text-brand'
+              : 'border-line text-muted-foreground group-hover:border-brand group-hover:text-brand-text',
         )}
       >
         <Icon className='h-4 w-4' strokeWidth={1.6} />
@@ -437,7 +427,7 @@ function ChoiceCard({
           <span
             className={cn(
               'mt-1 block text-xs leading-snug',
-              selected ? 'text-brand-foreground/80' : 'text-white/60',
+              dark ? 'text-white/60' : 'text-muted-foreground',
             )}
           >
             {description}
@@ -448,8 +438,10 @@ function ChoiceCard({
         className={cn(
           'absolute right-4 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border transition-colors',
           selected
-            ? 'border-white/60 bg-brand text-brand-foreground'
-            : 'border-white/25 bg-transparent text-transparent group-hover:border-brand/60',
+            ? 'border-brand bg-brand text-brand-foreground'
+            : dark
+              ? 'border-white/25 bg-transparent text-transparent group-hover:border-brand/60'
+              : 'border-line bg-transparent text-transparent group-hover:border-brand/60',
         )}
       >
         <Check className='h-3 w-3' strokeWidth={3} />

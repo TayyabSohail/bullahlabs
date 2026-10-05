@@ -1,30 +1,43 @@
-import { Compare } from '@/components/sections/compare';
-import {
-  Audience,
-  Pillars,
-  ProgramTiers,
-} from '@/components/sections/conscious-ai';
+import { ConsciousAiTeaser } from '@/components/sections/conscious-ai-teaser';
 import { ContactSection } from '@/components/sections/contact-section';
+import { FaqSection } from '@/components/sections/faq';
+import { GlobalReach } from '@/components/sections/global-reach';
 import { Hero } from '@/components/sections/hero';
-import { Origin } from '@/components/sections/origin';
+import { HowItWorks } from '@/components/sections/how-it-works';
+import { Numbers } from '@/components/sections/numbers';
+import { Pricing } from '@/components/sections/pricing';
+import { ProjectsTeaser } from '@/components/sections/projects-teaser';
+import { ServicesGrid } from '@/components/sections/services-grid';
+import { Technologies } from '@/components/sections/technologies';
+import { Testimonials } from '@/components/sections/testimonials';
 
+import { getFaqs } from '@/data/faqs';
 import { getDictionary } from '@/i18n/server';
 
-/**
- * Six steps and the form: what we do, where the name comes from, the three pillars, one task shown
- * both ways, the four tiers, who it is for. Detail lives on the program page.
- */
 export default async function HomePage() {
   const dict = await getDictionary();
+  const faqs = getFaqs(dict.locale).slice(0, 4);
 
   return (
     <>
       <Hero dict={dict} />
-      <Origin dict={dict} />
-      <Pillars dict={dict} />
-      <Compare dict={dict} />
-      <ProgramTiers dict={dict} className='bl-band-stone' />
-      <Audience dict={dict} className='bl-band-white' />
+      <Numbers dict={dict} />
+      <ProjectsTeaser dict={dict} />
+      <ServicesGrid dict={dict} className='bl-band-stone' />
+      <Technologies dict={dict} />
+      <GlobalReach dict={dict} />
+      <HowItWorks dict={dict} />
+      <Testimonials dict={dict} />
+      <ConsciousAiTeaser dict={dict} />
+      <Pricing dict={dict} withLink compact />
+      <FaqSection
+        items={faqs}
+        kicker={dict.faq.kicker}
+        title={dict.faq.title}
+        accentWords={[...dict.faq.accent]}
+        description={dict.faq.description}
+        className='bl-band-stone bl-rule'
+      />
       <ContactSection dict={dict} />
     </>
   );

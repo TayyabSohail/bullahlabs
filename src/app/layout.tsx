@@ -4,10 +4,16 @@ import { Toaster } from 'sonner';
 
 import './globals.css';
 
+import { Cursor } from '@/components/effects/cursor';
+import { SpotlightEffect } from '@/components/effects/spotlight';
 import { Backdrop } from '@/components/layout/backdrop';
 import { CookieConsent } from '@/components/layout/cookie-consent';
+import { DynamicFavicon } from '@/components/layout/dynamic-favicon';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
+import { Preloader } from '@/components/layout/preloader';
+import { ScrollProgress } from '@/components/layout/scroll-progress';
+import { SectionRail } from '@/components/layout/section-rail';
 import { SmoothScroll } from '@/components/layout/smooth-scroll';
 import PosthogAnalytics from '@/components/posthog/analytics';
 import { OrganizationJsonLd } from '@/components/seo/json-ld';
@@ -57,14 +63,20 @@ export default async function RootLayout({
         <AppProviders>
           <SmoothScroll>
             <PosthogAnalytics />
+            <DynamicFavicon />
             <OrganizationJsonLd />
             <Toaster richColors position='bottom-center' />
+            <Preloader />
+            <ScrollProgress />
             <Backdrop />
+            <SpotlightEffect />
+            <Cursor />
             <Header dict={dict} />
             <main id='main' className='relative'>
               {children}
             </main>
             <Footer dict={dict} />
+            <SectionRail next={dict.nav.next} top={dict.nav.top} />
             <CookieConsent dict={dict} />
           </SmoothScroll>
         </AppProviders>

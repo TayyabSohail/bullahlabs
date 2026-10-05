@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { Flag } from '@/components/brand/flags';
 import { Logo } from '@/components/brand/logo';
+import { Silk } from '@/components/effects/silk';
 import { BackToTop } from '@/components/layout/back-to-top';
 
 import { legalLabel } from '@/lib/legal-labels';
@@ -9,7 +10,7 @@ import { legalLabel } from '@/lib/legal-labels';
 import { siteConfig } from '@/config/site';
 import { primaryNav } from '@/constants/navigation';
 import { isSectionLink, paths } from '@/constants/paths';
-import { getProgram } from '@/data/program';
+import { getServices } from '@/data/services';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface FooterProps {
@@ -19,19 +20,28 @@ interface FooterProps {
 export function Footer({ dict }: FooterProps) {
   const year = new Date().getFullYear();
   const t = dict.footer;
-  const { tiers } = getProgram(dict.locale);
+  const services = getServices(dict.locale);
 
   // Same links, same order as the header, so the two never disagree.
   const companyLinks = [
+    { label: dict.nav.home, href: paths.home },
     ...primaryNav(dict),
     { label: dict.nav.contact, href: paths.contact },
   ];
 
   return (
-    <footer className='mt-24 border-t bg-surface'>
-      <div className='bl-container'>
-        <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]'>
-          <div>
+    <footer className='relative isolate mt-24 overflow-hidden bg-background'>
+      <div className='pointer-events-none absolute inset-0'>
+        <div className='absolute inset-0 bg-background' />
+        <Silk
+          className='absolute inset-0 h-full w-full opacity-25 mix-blend-multiply'
+          brightness={1}
+          speed={0.8}
+        />
+      </div>
+      <div className='relative z-10 bl-container'>
+        <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5'>
+          <div className='lg:col-span-1'>
             <Logo />
             <p className='mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground'>
               {t.pitch}
@@ -44,10 +54,10 @@ export function Footer({ dict }: FooterProps) {
             </Link>
           </div>
 
-          <FooterColumn title={t.program}>
-            {tiers.map((tier) => (
-              <FooterLink key={tier.id} href={paths.programTier(tier.id)}>
-                {tier.name}
+          <FooterColumn title={t.services}>
+            {services.map((service) => (
+              <FooterLink key={service.slug} href={paths.service(service.slug)}>
+                {service.title}
               </FooterLink>
             ))}
           </FooterColumn>
@@ -73,9 +83,21 @@ export function Footer({ dict }: FooterProps) {
               </div>
             ))}
           </FooterColumn>
+
+          <FooterColumn title={t.connect}>
+            <Link
+              href={paths.contact}
+              className='bl-link w-fit text-sm text-foreground/80 hover:text-foreground'
+            >
+              {dict.nav.contact}
+            </Link>
+            <p className='text-xs text-muted-foreground'>
+              {siteConfig.responseTime}
+            </p>
+          </FooterColumn>
         </div>
 
-        <div className='flex flex-col gap-4 border-t py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between'>
+        <div className='flex flex-col gap-4 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between'>
           <p>
             &copy; {year} {siteConfig.legalName}. {t.rights}
           </p>
@@ -92,6 +114,28 @@ export function Footer({ dict }: FooterProps) {
           </div>
           <BackToTop label={t.backToTop} />
         </div>
+      </div>
+
+        {/* The wordmark shares the footer canvas so the company name fades out
+          of the information above instead of starting a separate section. */}
+      <div className='relative z-10 mt-0 h-[18vw] max-h-[22rem] min-h-[4rem] w-full overflow-hidden sm:h-[34vw] sm:min-h-[10rem]'>
+        <svg
+          aria-hidden='true'
+          viewBox='0 0 1000 112'
+          preserveAspectRatio='xMidYMax meet'
+          className='pointer-events-none absolute inset-x-0 bottom-[-2px] block w-full select-none opacity-75 mix-blend-multiply [mask-image:linear-gradient(to_bottom,transparent_0%,black_22%,black_100%)]'
+        >
+          <text
+            x='0'
+            y='110'
+            textLength='1000'
+            lengthAdjust='spacingAndGlyphs'
+            className='fill-ink/85 font-display font-bold uppercase'
+            style={{ fontSize: 150 }}
+          >
+            Bullah Labs
+          </text>
+        </svg>
       </div>
     </footer>
   );

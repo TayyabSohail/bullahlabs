@@ -1,95 +1,90 @@
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
+import { Contours } from '@/components/effects/contours';
+import { SystemMap } from '@/components/effects/system-map';
+import { LetterReveal } from '@/components/motion/letter-reveal';
 import { Reveal } from '@/components/motion/reveal';
 
 import { paths } from '@/constants/paths';
-import { getProgram } from '@/data/program';
 import type { Dictionary } from '@/i18n/dictionaries/en';
-import { DEFAULT_INTEREST } from '@/schema/contact';
 
 interface HeroProps {
   dict: Dictionary;
 }
 
 /**
- * Opening section: what the company does in one headline and one sentence,
- * two actions, and three facts about the program. No illustration; the tier
- * and track counts are read from the program data so they cannot drift.
+ * Opening section over a drifting contour-map texture. The headline runs
+ * the full width in two lines; beneath it the body and CTAs sit on the left
+ * and, on the right, the systems we build run as a living map: labelled
+ * tiles on a plate with requests and answers riding the wires between them.
  */
 export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
-  const { tiers, roleTracks } = getProgram(dict.locale);
-  const lines = t.title.split('\n');
-  const facts = [
-    { value: t.facts.free.value, label: t.facts.free.label },
-    { value: String(tiers.length), label: t.facts.tiers },
-    { value: String(roleTracks.length), label: t.facts.tracks },
-  ];
 
   return (
-    <section className='border-b'>
-      <div className='bl-container pb-12 pt-32 sm:pb-16 sm:pt-40 lg:pt-48'>
+    <section className='relative overflow-hidden border-b'>
+      <Contours />
+      <div
+        aria-hidden='true'
+        className='pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background'
+      />
+
+      <div className='bl-container relative pb-10 pt-24 sm:pb-14 sm:pt-28 lg:pb-16 lg:pt-32'>
         <Reveal>
-          <p className='bl-kicker'>{t.badge}</p>
-        </Reveal>
-
-        {/* The title is two sentences on two lines; the second carries the accent. */}
-        <Reveal delay={0.1}>
-          <h1 className='bl-display mt-6 text-[clamp(2.4rem,6.4vw,5.5rem)] leading-[1] tracking-[-0.03em] text-ink'>
-            {lines.map((line, index) => (
-              <span
-                key={line}
-                className={index > 0 ? 'bl-accent block' : 'block'}
-              >
-                {line}
-              </span>
-            ))}
-          </h1>
-        </Reveal>
-
-        <Reveal delay={0.3}>
-          <p className='mt-7 max-w-2xl text-lg leading-relaxed text-ink/70 sm:text-xl'>
-            {t.body}
+          <p className='inline-flex items-center gap-3 border border-ink/15 bg-white/85 px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-ink backdrop-blur-sm'>
+            <span className='h-1.5 w-1.5 bg-brand' />
+            {t.badge}
           </p>
         </Reveal>
 
-        <Reveal
-          delay={0.4}
-          className='mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center'
-        >
-          <Link
-            href={paths.program}
-            className='bl-btn bl-btn-ink inline-flex h-14 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
-          >
-            {t.primary}
-            <ArrowRight className='h-4 w-4' />
-          </Link>
-          <Link
-            href={`${paths.contact}?service=${DEFAULT_INTEREST}`}
-            className='bl-btn bl-btn-secondary inline-flex h-14 items-center justify-center gap-3 bg-white px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
-          >
-            {t.secondary}
-          </Link>
-        </Reveal>
+        <LetterReveal
+          as='h1'
+          text={t.title}
+          accentWords={[...t.accent]}
+          afterPreloader
+          stagger={0.04}
+          typingBounce
+          delay={0.2}
+          className='bl-display mt-6 justify-start text-[clamp(2.4rem,6.4vw,6rem)] leading-[0.98] tracking-[-0.035em] text-ink sm:mt-7'
+        />
 
-        <Reveal delay={0.5}>
-          <dl className='mt-14 grid gap-px overflow-hidden border bg-line sm:mt-20 sm:grid-cols-3'>
-            {facts.map((fact) => (
-              <div
-                key={fact.label}
-                className='flex items-baseline gap-4 bg-surface px-5 py-5 sm:flex-col sm:gap-2 sm:px-7 sm:py-7'
+        <div className='mt-8 grid gap-8 sm:gap-10 lg:mt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-12'>
+          <div className='min-w-0'>
+            <Reveal delay={0.7}>
+              <p className='max-w-xl text-lg leading-relaxed text-ink/70 sm:text-xl'>
+                {t.body}
+              </p>
+            </Reveal>
+            <Reveal
+              delay={0.85}
+              className='mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center'
+            >
+              <Link
+                href={paths.contact}
+                className='bl-btn bl-btn-ink inline-flex h-14 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto'
               >
-                <dd className='bl-display text-3xl text-ink sm:text-4xl'>
-                  {fact.value}
-                </dd>
-                <dt className='text-sm leading-snug text-muted-foreground'>
-                  {fact.label}
-                </dt>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
+                {t.primary}
+                <span className='h-2.5 w-2.5 bg-brand' />
+              </Link>
+              <Link
+                href={paths.work}
+                className='bl-btn bl-btn-secondary inline-flex h-14 items-center justify-center gap-3 bg-white/85 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto'
+              >
+                {t.secondary}
+                <ArrowRight className='h-4 w-4' />
+              </Link>
+            </Reveal>
+          </div>
+
+          <Reveal
+            delay={0.9}
+            distance={16}
+            className='w-full min-w-0 justify-self-center lg:-mt-6 lg:justify-self-end'
+          >
+            <SystemMap copy={t.map} delay={0.5} />
+          </Reveal>
+        </div>
       </div>
     </section>
   );

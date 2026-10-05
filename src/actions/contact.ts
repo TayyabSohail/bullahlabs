@@ -18,7 +18,11 @@ import Logger from '@/utils/logger';
 
 import { siteConfig } from '@/config/site';
 import { env, isSupabaseConfigured } from '@/env';
-import { contactSchema, INTEREST_OPTIONS } from '@/schema/contact';
+import {
+  BUDGET_OPTIONS,
+  contactSchema,
+  SERVICE_OPTIONS,
+} from '@/schema/contact';
 
 /**
  * Handles the contact form. Delivery is layered so the form always
@@ -47,14 +51,18 @@ export const submitContact = safeActionClient
     }
 
     const service =
-      INTEREST_OPTIONS.find((option) => option.value === parsedInput.service)
+      SERVICE_OPTIONS.find((option) => option.value === parsedInput.service)
         ?.label ?? parsedInput.service;
+    const budget =
+      BUDGET_OPTIONS.find((option) => option.value === parsedInput.budget)
+        ?.label ?? parsedInput.budget ?? 'Not provided';
 
     const summary = [
       `Name: ${parsedInput.name}`,
       `Email: ${parsedInput.email}`,
       `Company: ${parsedInput.company || '-'}`,
-      `Interest: ${service}`,
+      `Service: ${service}`,
+      `Budget: ${budget}`,
       '',
       parsedInput.message,
     ].join('\n');
@@ -67,7 +75,7 @@ export const submitContact = safeActionClient
         await sendInternalMail({
           subject: `New enquiry: ${parsedInput.name} (${service})`,
           text: summary,
-          html: renderEnquiryHtml({ ...parsedInput, service }),
+          html: renderEnquiryHtml({ ...parsedInput, service, budget }),
           replyTo: parsedInput.email,
         });
         delivered = true;
@@ -122,8 +130,7 @@ export const submitContact = safeActionClient
         email: parsedInput.email,
         company: parsedInput.company || null,
         service: parsedInput.service,
-        // The form no longer asks for a budget, but the column is NOT NULL.
-        budget: 'n/a',
+        budget: parsedInput.budget,
         message: parsedInput.message,
         ip,
       });

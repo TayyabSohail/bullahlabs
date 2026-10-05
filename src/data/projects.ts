@@ -7,7 +7,7 @@ import { projectsDe } from './projects.de';
  *
  * To add one: append a `Project` to `projects` and drop its cover into
  * `/public/work/`. The /work grid, each /work/[slug] page, the homepage
- * showcase, and the sitemap all read from here.
+ * showcase, the sitemap and the service "proof" links all read from here.
  */
 
 /** What the product is. Shown as context; also drives the /work filter. */
@@ -26,7 +26,7 @@ export const CATEGORY_ORDER: ProjectCategory[] = [
   'Website',
 ];
 
-/** What kind of engineering the work was. */
+/** What the work was. Mirrors the services offered. */
 export type ProjectCapability =
   | 'Full-Stack'
   | 'AI'
@@ -41,34 +41,6 @@ export const CAPABILITY_ORDER: ProjectCapability[] = [
   'Web',
   'Mobile',
 ];
-
-/**
- * The program principle a build demonstrates most clearly. Each case study
- * leads with one; see `docs/brand/positioning-and-program.md`.
- */
-export type EfficiencyLens =
-  | 'right-tool'
-  | 'lean-context'
-  | 'no-repeat'
-  | 'checked';
-
-export const LENS_ORDER: EfficiencyLens[] = [
-  'right-tool',
-  'lean-context',
-  'no-repeat',
-  'checked',
-];
-
-/** How the build avoids unnecessary computation, rework or manual effort. */
-export interface ProjectEfficiency {
-  lens: EfficiencyLens;
-  /** One claim, taken from facts already in the case study. */
-  title: string;
-  /** The mechanism behind the claim. */
-  body: string;
-  /** Three short techniques, shown as a list. */
-  techniques: string[];
-}
 
 /** Whether the product is shown on a laptop with a phone, or on phones only. */
 export type ProjectPlatform = 'web' | 'app';
@@ -118,9 +90,9 @@ export interface Project {
   title: string;
   /** Client or product owner, shown on cards. */
   client: string;
-  /** Under the title on cards: what the product is, and how it is optimized. */
+  /** Short label under the title on cards. */
   tagline: string;
-  /** For the case-study hero and SEO: what it is, then the optimization. */
+  /** One line for the hero and SEO description. */
   summary: string;
   /** Paragraph of context for the case-study lede. */
   description: string;
@@ -139,7 +111,9 @@ export interface Project {
   /** Grouped stack, rendered on the case study. */
   techStack: TechGroup[];
   category: ProjectCategory;
-  capabilities: ProjectCapability[];
+  capabilities: ProjectCapability[];
+  /** Service slugs from data/services.ts this project demonstrates. */
+  services: string[];
   industry: string;
   year: string;
   /**
@@ -147,10 +121,8 @@ export interface Project {
    * Screens are recreations of the product, not captures of it.
    */
   anonymised?: boolean;
-  /** Position in the homepage showcase and the /work grid, lowest first. */
+  /** Featured projects appear in the homepage showcase, in this order. */
   featured?: number;
-  /** The efficiency lens the case study leads with. */
-  efficiency: ProjectEfficiency;
   /**
    * Smaller builds, apps and side projects. Kept out of the main showcase on
    * the homepage and /work; each still gets a full case-study page.
@@ -172,25 +144,11 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: 'brickfold',
-    featured: 6,
-    efficiency: {
-      lens: 'checked',
-      title:
-        'Exact rules move the money, and a person approves every movement.',
-      body:
-        'Nothing here is estimated. Ownership percentages are derived from actual amounts on every read, every split rounds down to the whole shilling, and the wallet invariant is enforced rather than assumed. Each deposit, investment, rent credit and withdrawal passes an admin before it settles, and platform rules are settings, so changing them needs no release.',
-      techniques: [
-        'Deterministic ledger rules, no estimates',
-        'Human approval on every money movement',
-        'Rules changed as settings, not releases',
-      ],
-    },
     title: 'Brickfold',
     client: 'Confidential (property members club)',
-    tagline:
-      'Fractional property ownership for East Africa, on a ledger that never estimates',
+    tagline: 'Fractional property ownership for East Africa',
     summary:
-      'A members club where Ugandans co-own income-producing apartments from 1,000,000 UGX. Every shilling moves by exact rules, and a person approves each movement.',
+      'A members club where Ugandans co-own income-producing apartments from 1,000,000 UGX.',
     description:
       'Property is sold in one indivisible lump, and that lump costs more than most people will ever have in the bank at once. Brickfold breaks the lump. Vetted members pool capital to co-own real, income-producing apartments in Uganda, earn their proportional share of monthly rent, and sell their stake to other members when they want out.',
     coverImage: '/work/screens/brickfold-desktop.webp',
@@ -250,10 +208,12 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Marketplace',
-    capabilities: ['Full-Stack', 'Cloud & Automation'],
+    capabilities: ['Full-Stack', 'Cloud & Automation'],
+    services: ['product-engineering', 'team-extension'],
     industry: 'Fintech / Real estate',
     year: '2025-2026',
     anonymised: true,
+    featured: 1,
     headline: { value: '1M UGX', label: 'to start owning property' },
     problem:
       'Most people in East Africa will never own an apartment, not for lack of savings, but because property sells in one indivisible lump. Capital is locked up for years, rental income means becoming a landlord, and there is no transparency on what a building actually earns.',
@@ -316,23 +276,10 @@ export const projects: Project[] = [
 
   {
     slug: 'rankloom',
-    featured: 1,
-    efficiency: {
-      lens: 'no-repeat',
-      title: 'Batching and caching cut keyword tracking spend in half.',
-      body:
-        'Requests are batched and cached by keyword and locale, so the same data is never bought twice. Bulk generation runs as resumable jobs that retry a single failed item instead of the whole batch, and generation is routed through OpenRouter, so a model can be swapped without touching product code.',
-      techniques: [
-        'Cache keyed by keyword and locale',
-        'Retry one item, not the batch',
-        'Models swapped behind one router',
-      ],
-    },
     title: 'Rankloom',
     client: 'Confidential (SEO platform)',
-    tagline: 'AI SEO and content platform that never buys the same data twice',
-    summary:
-      'An AI-powered SEO and content platform. Batching and caching cut keyword tracking spend in half.',
+    tagline: 'AI-driven platform for smarter SEO growth',
+    summary: 'AI-powered SEO and content platform.',
     description:
       'One platform for keyword research, AI content generation and rank tracking, replacing the tool-hopping that ate up SEO teams’ days.',
     coverImage: '/work/screens/rankloom-desktop.webp',
@@ -396,10 +343,12 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'SaaS',
-    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
+    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
+    services: ['ai-automation', 'cloud-devops', 'product-engineering'],
     industry: 'Marketing technology',
     year: '2024-2025',
     anonymised: true,
+    featured: 2,
     headline: { value: '3x', label: 'lower cost per article' },
     problem:
       'SEO teams switched between five different tools just to get from keyword discovery to tracking, wasting hours and risking inconsistent data. Most tools also lean on stale keyword and ranking data, so teams react slowly to search trends.',
@@ -454,24 +403,10 @@ export const projects: Project[] = [
 
   {
     slug: 'bidnest',
-    featured: 7,
-    efficiency: {
-      lens: 'lean-context',
-      title: 'Every screen receives only the bids it is watching.',
-      body:
-        'Real-time subscriptions are scoped per listing, so a client never processes updates for listings it is not looking at. Bid order is decided once, in a serialised server-side transaction, and clients reconcile to the committed result. The platform holds 1,000+ concurrent bidders with updates in 200 ms.',
-      techniques: [
-        'Subscriptions scoped per listing',
-        'One authoritative decision on the server',
-        'Access enforced by row-level security',
-      ],
-    },
     title: 'Bidnest',
     client: 'Confidential (student housing marketplace)',
-    tagline:
-      'Off-campus rental bidding marketplace that sends each screen only its own bids',
-    summary:
-      'A bidding-based marketplace for off-campus rentals. Live updates are scoped per listing, so 1,000+ people can bid at once.',
+    tagline: 'Off-campus home rentals, on your terms',
+    summary: 'Bidding-based off-campus rental marketplace.',
     description:
       'Students bid on off-campus housing in real time, with role-scoped dashboards for students, parents and landlords.',
     coverImage: '/work/screens/bidnest-desktop.webp',
@@ -529,10 +464,12 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Marketplace',
-    capabilities: ['Full-Stack', 'Cloud & Automation'],
+    capabilities: ['Full-Stack', 'Cloud & Automation'],
+    services: ['product-engineering', 'mvp-sprint'],
     industry: 'Property technology',
     year: '2024',
     anonymised: true,
+    featured: 3,
     headline: { value: '1,000+', label: 'people bidding at once' },
     problem:
       'Student housing is dominated by fixed-price listings with no room to negotiate, scattered across unreliable platforms. Parents fund most of these rentals but have no way into the process at all.',
@@ -588,25 +525,10 @@ export const projects: Project[] = [
 
   {
     slug: 'curio-market',
-    featured: 8,
-    efficiency: {
-      lens: 'no-repeat',
-      title:
-        'Payouts and tracking run themselves, so support stops repeating them.',
-      body:
-        'The two paths that created the most manual work, seller payouts and delivery tracking, are automated end to end with Stripe Connect and DHL webhooks, with status shown directly in the order view. Support requests fell by 70%. Tenant isolation is written once, at the database, instead of in every screen.',
-      techniques: [
-        'Payouts and tracking automated end to end',
-        'Status shown where people already look',
-        'Isolation enforced once, at the database',
-      ],
-    },
     title: 'Curio Market',
     client: 'Confidential (ecommerce marketplace)',
-    tagline:
-      'Personalised multi-seller marketplace with payouts and tracking on autopilot',
-    summary:
-      'A personalised multi-seller ecommerce marketplace. Automated payouts and delivery tracking cut support requests by 70%.',
+    tagline: 'A personalised multi-seller marketplace',
+    summary: 'Personalised multi-seller ecommerce marketplace.',
     description:
       'A multi-seller marketplace with personalised recommendations, Stripe Connect payouts and automated DHL tracking.',
     coverImage: '/work/screens/curio-market-desktop.webp',
@@ -658,10 +580,12 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Marketplace',
-    capabilities: ['Full-Stack', 'Cloud & Automation', 'AI'],
+    capabilities: ['Full-Stack', 'Cloud & Automation', 'AI'],
+    services: ['product-engineering', 'team-extension'],
     industry: 'Ecommerce',
     year: '2024-2025',
     anonymised: true,
+    featured: 4,
     headline: { value: '70%', label: 'fewer support requests' },
     problem:
       'Most ecommerce shows a generic feed, burying shoppers in options that do not match their style. Sellers get basic tools with no view of orders or payouts, and manual payment handling plus opaque delivery erodes trust at checkout.',
@@ -716,25 +640,11 @@ export const projects: Project[] = [
 
   {
     slug: 'bitsmiths-hrm',
-    featured: 3,
-    efficiency: {
-      lens: 'right-tool',
-      title:
-        'Payroll is arithmetic, so it runs on rules, with no model in the loop.',
-      body:
-        'Leave and medical balances, payroll calculation and locking are Postgres functions. The calculation is idempotent, so it can be re-run safely at any point before a period locks, and every approved item feeds exactly one payroll. The result is zero manual payroll calculations.',
-      techniques: [
-        'Deterministic logic in the database',
-        'Idempotent recalculation',
-        'Each item counted exactly once',
-      ],
-    },
     title: 'Bitsmiths HRM',
     client: 'Bitsmiths Studio',
-    tagline:
-      'HR and payroll system that runs on rules, with zero manual calculations',
+    tagline: 'HR and payroll system, fully auditable',
     summary:
-      'Onboarding, leave, medical claims, overtime and payroll for Bitsmiths Studio, calculated by database rules instead of by hand.',
+      'Onboarding, leave, medical claims, overtime and payroll for Bitsmiths Studio.',
     description:
       'An internal HR platform where employees are invited, onboarded and activated; they file leave, medical claims and overtime; admins approve each one, and approved items sweep into a monthly payroll run that calculates payslips, locks them, and exports to Payoneer.',
     coverImage: '/work/screens/bitsmiths-hrm-desktop.webp',
@@ -790,9 +700,11 @@ export const projects: Project[] = [
       { category: 'Scheduling', tools: ['pg_cron'] },
     ],
     category: 'SaaS',
-    capabilities: ['Cloud & Automation', 'Full-Stack'],
+    capabilities: ['Cloud & Automation', 'Full-Stack'],
+    services: ['product-engineering', 'cloud-devops'],
     industry: 'HR technology',
     year: '2026',
+    featured: 5,
     headline: { value: '0', label: 'manual payroll calculations' },
     problem:
       'People operations were scattered across email, chat and paper: onboarding by email, leave and overtime in messages, medical claims on paper, and payroll assembled by hand each month from all of it. Nothing reconciled, and nothing was auditable.',
@@ -854,23 +766,10 @@ export const projects: Project[] = [
 
   {
     slug: 'bitsmiths-studio',
-    featured: 12,
-    efficiency: {
-      lens: 'no-repeat',
-      title: 'Publishing is a CMS action, not a deploy.',
-      body:
-        'Every content surface is modelled once in Directus and rendered through shared templates, so a new case study or post needs no engineering time. Media is converted to WebP per request, which removes the manual export step.',
-      techniques: [
-        'Shared templates for four content types',
-        'No deploy needed to publish',
-        'Images converted on request, not by hand',
-      ],
-    },
     title: 'Bitsmiths Studio',
     client: 'Bitsmiths Studio',
-    tagline: 'Agency website and CMS where publishing needs no deploy',
-    summary:
-      'Marketing site for a studio that ships MVPs in 30 days. Every content type publishes from the CMS, without engineering time.',
+    tagline: 'Agency marketing site and CMS',
+    summary: 'Marketing site for a studio that ships MVPs in 30 days.',
     description:
       'The studio marketing site, built on a CMS so case studies, articles and testimonials publish without a deploy.',
     coverImage: '/work/screens/bitsmiths-studio-desktop.webp',
@@ -910,9 +809,11 @@ export const projects: Project[] = [
       { category: 'CMS', tools: ['Directus'] },
     ],
     category: 'Website',
-    capabilities: ['Web'],
+    capabilities: ['Web'],
+    services: ['web-design-development', 'mvp-sprint'],
     industry: 'Software agency',
     year: '2025',
+    featured: 6,
     headline: { value: '30 days', label: 'from idea to shipped MVP' },
     problem:
       'The studio pitches production-ready MVPs in 30 days to founders comparing it against agencies charging many times more. That claim needs visible proof, and the team needed to publish it without a developer in the loop.',
@@ -967,24 +868,11 @@ export const projects: Project[] = [
 
   {
     slug: 'real-estate-management-system',
-    featured: 9,
-    efficiency: {
-      lens: 'right-tool',
-      title: 'Three specialised agents, each scoped to one job.',
-      body:
-        'Instead of one general assistant handed everything, CRM, compliance and knowledge work are split across three agents, with LangGraph coordinating the hand-offs. Agency differences sit behind CRM integrations, so more than 30 agencies share one workflow instead of thirty variants.',
-      techniques: [
-        'One agent per responsibility',
-        'Explicit hand-offs between agents',
-        'One shared workflow for 30+ agencies',
-      ],
-    },
     title: 'Real Estate Operating System',
     client: 'Confidential (real estate group)',
-    tagline:
-      'Multi-tenant AI platform for estate agencies, with one agent per job',
+    tagline: 'Multi-tenant AI platform automating agency operations',
     summary:
-      'A multi-tenant AI platform automating real estate agency operations. Three specialised agents share one workflow across 30+ agencies.',
+      'Multi-tenant AI platform automating real estate agency operations.',
     description:
       'A unified operating system for real estate agencies, bringing CRM, compliance, marketing, document generation and e-signing into one multi-tenant platform.',
     coverImage: '/work/screens/real-estate-management-system-desktop.webp',
@@ -1038,7 +926,8 @@ export const projects: Project[] = [
       { category: 'Architecture', tools: ['Multi-tenant Architecture'] },
     ],
     category: 'SaaS',
-    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
+    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
+    services: ['ai-automation', 'product-engineering'],
     industry: 'Real estate',
     year: '2025',
     headline: { value: '70%', label: 'less paperwork' },
@@ -1096,23 +985,11 @@ export const projects: Project[] = [
 
   {
     slug: 'qa-compliance-agent',
-    featured: 5,
-    efficiency: {
-      lens: 'checked',
-      title: 'Every finding points at the clause it came from.',
-      body:
-        'Each check is grounded in the standards dataset and returned as a clause-level tracked change with an explanation attached, so a reviewer can verify a finding where it stands. One repeatable workflow evaluates every report against the same standards and output structure.',
-      techniques: [
-        'Grounded in a standards dataset',
-        'Clause-level, traceable findings',
-        'One repeatable review workflow',
-      ],
-    },
     title: 'Compliance Review Agent',
     client: 'Confidential (audit firm)',
-    tagline: 'AI compliance reviewer whose every finding cites its clause',
+    tagline: 'Clause-level tracked-change findings, generated by AI',
     summary:
-      'An AI agent that reviews reports against a standards dataset and returns clause-level tracked changes a person can verify.',
+      'AI compliance agent generating clause-level tracked-change findings.',
     description:
       'An AI review workflow that checks uploaded reports against established standards and returns clause-level tracked changes with a clear explanation for every finding.',
     coverImage: '/work/screens/qa-compliance-agent-desktop.webp',
@@ -1154,7 +1031,8 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['Claude (Anthropic)'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Cloud & Automation'],
+    capabilities: ['AI', 'Cloud & Automation'],
+    services: ['ai-automation', 'cloud-devops'],
     industry: 'Audit and compliance',
     year: '2025',
     headline: { value: '2x', label: 'faster document review' },
@@ -1210,24 +1088,11 @@ export const projects: Project[] = [
 
   {
     slug: 'ai-interview-assistant',
-    featured: 10,
-    efficiency: {
-      lens: 'no-repeat',
-      title: 'Voice and transcription share one real-time session.',
-      body:
-        'The interview and its transcript run within the same OpenAI Realtime session, not as two separate passes over the audio. Meeting links, invitations and the transcript email follow automatically, leaving zero manual steps after a session ends.',
-      techniques: [
-        'One session for voice and transcript',
-        'No second pass over the audio',
-        'Follow-up automated end to end',
-      ],
-    },
     title: 'Realtime Voice Interview Assistant',
     client: 'Confidential (recruitment)',
-    tagline:
-      'Live AI voice interviews, with the transcript in the same session',
+    tagline: 'Live AI voice interviews with automatic transcripts',
     summary:
-      'An end-to-end AI interview platform. Voice and transcription run in one real-time session, with no manual steps afterwards.',
+      'End-to-end AI interview platform with live voice and transcription.',
     description:
       'An end-to-end interview platform that plans, schedules and conducts live AI voice interviews, then delivers the transcript automatically when the session ends.',
     coverImage: '/work/screens/ai-interview-assistant-desktop.webp',
@@ -1268,7 +1133,8 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['OpenAI Realtime API'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Full-Stack'],
+    capabilities: ['AI', 'Full-Stack'],
+    services: ['ai-automation', 'mvp-sprint'],
     industry: 'Recruitment',
     year: '2025',
     headline: { value: '30+', label: 'interviews completed' },
@@ -1326,25 +1192,10 @@ export const projects: Project[] = [
 
   {
     slug: 'snobbots',
-    featured: 4,
-    efficiency: {
-      lens: 'lean-context',
-      title:
-        'Each answer is retrieved from one shop’s content, and nothing else.',
-      body:
-        'Embeddings are partitioned per tenant in Pinecone, so retrieval can only reach the requesting shop’s namespace. The model works from one knowledge base, which keeps answers grounded in that shop’s content. Provisioning is automated, so resellers set up shops in bulk instead of one at a time.',
-      techniques: [
-        'Retrieval scoped to one namespace',
-        'Answers grounded in the shop’s own content',
-        'Bulk provisioning instead of manual setup',
-      ],
-    },
     title: 'SnobBots',
     client: 'SnobBots',
-    tagline:
-      'AI support agents for online shops, each answering only from its own shop',
-    summary:
-      'A multi-tenant AI chatbot platform. Retrieval is scoped to one shop’s content, and new shops are provisioned in bulk.',
+    tagline: 'Multi-tenant AI support agents for online shops',
+    summary: 'Multi-tenant AI chatbot platform.',
     description:
       'Resellers provision AI support agents for their shops in bulk, with each tenant isolated and each answer grounded in that shop’s own content.',
     coverImage: '/work/screens/snobbots-desktop.webp',
@@ -1387,7 +1238,8 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['RAG', 'LLM'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Cloud & Automation'],
+    capabilities: ['AI', 'Cloud & Automation'],
+    services: ['ai-automation'],
     industry: 'Ecommerce / Customer support',
     year: '2023-2024',
     headline: { value: '60%', label: 'faster shop setup' },
@@ -1444,24 +1296,10 @@ export const projects: Project[] = [
 
   {
     slug: 'ai-physiotherapy',
-    featured: 11,
-    efficiency: {
-      lens: 'right-tool',
-      title:
-        'Rules adapt the plan each day. The model does what needs judgement.',
-      body:
-        'Daily logs feed progression and regression rules, so the plan adapts automatically instead of waiting for a manual review. AI is used where it earns its place: intake, plan generation informed by uploaded injury articles, and feedback on exercise videos.',
-      techniques: [
-        'Progression and regression by rule',
-        'Plans informed by uploaded source articles',
-        'AI feedback on submitted videos',
-      ],
-    },
     title: 'AI Physiotherapy Assistant',
     client: 'Confidential (healthcare)',
-    tagline: 'AI rehabilitation assistant whose plans adapt daily by rule',
-    summary:
-      'A full-stack AI platform for adaptive rehabilitation. Daily logs adjust the plan automatically, and AI handles intake, plans and video feedback.',
+    tagline: 'Adaptive rehabilitation guided by AI',
+    summary: 'Full-stack AI platform for adaptive rehabilitation.',
     description:
       'A connected rehabilitation journey spanning intake, movement assessment, adaptive exercise planning, daily progress and AI-assisted video feedback.',
     coverImage: '/work/screens/ai-physiotherapy-desktop.webp',
@@ -1503,7 +1341,8 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['LangChain', 'OpenAI'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Full-Stack'],
+    capabilities: ['AI', 'Full-Stack'],
+    services: ['ai-automation'],
     industry: 'Healthcare',
     year: '2024',
     headline: { value: '90%+', label: 'accurate movement checks' },
@@ -1561,23 +1400,10 @@ export const projects: Project[] = [
 
   {
     slug: 'new-web-order',
-    featured: 13,
-    efficiency: {
-      lens: 'lean-context',
-      title: 'Each route ships only the code and images it needs.',
-      body:
-        'Routes are pre-rendered where content allows, JavaScript is split per route and only the above-the-fold image is prioritised. Pages load 40% faster with no layout shift from imagery, because the rendering work is done once at build time rather than on every visit.',
-      techniques: [
-        'Pre-rendered once, served many times',
-        'Code split per route',
-        'Only the first image prioritised',
-      ],
-    },
     title: 'New Web Order',
     client: 'New Web Order',
-    tagline: 'Company website rebuilt to ship only what each page needs',
-    summary:
-      'A company website built for performance and SEO. Pre-rendered routes and per-route code make pages load 40% faster.',
+    tagline: 'Company website rebuilt for speed and SEO',
+    summary: 'Company website built for performance and SEO.',
     description:
       'A company site rebuilt on Next.js for speed and search. 40% faster, and finally ranking.',
     coverImage: '/work/screens/new-web-order-desktop.webp',
@@ -1615,7 +1441,8 @@ export const projects: Project[] = [
       { category: 'Styling', tools: ['TailwindCSS'] },
     ],
     category: 'Website',
-    capabilities: ['Web'],
+    capabilities: ['Web'],
+    services: ['web-design-development'],
     industry: 'Professional services',
     year: '2024',
     headline: { value: '40%', label: 'faster-loading pages' },
@@ -1665,25 +1492,11 @@ export const projects: Project[] = [
   },
   {
     slug: 'bank-islami-pep',
-    featured: 2,
-    efficiency: {
-      lens: 'right-tool',
-      title:
-        'A scoring pipeline reads the news. Analysts see only credible matches.',
-      body:
-        'Matching is a scoring pipeline over name variants, transliterations, role and city. Only matches above a confidence threshold reach the review queue, each showing exactly which fields agreed, so analysts spend their time on decisions. Morning triage fell from four hours to 30 minutes.',
-      techniques: [
-        'Scheduled crawl before the team arrives',
-        'Confidence threshold before human review',
-        'Every match shows why it matched',
-      ],
-    },
     title: 'BankIslami PEP Screening',
     client: 'BankIslami, delivered with Aawaz AI',
-    tagline:
-      'Daily PEP adverse-media screening that shows analysts only credible matches',
+    tagline: 'Daily adverse-media screening for politically exposed persons',
     summary:
-      'An internal web and mobile platform that reads the news every morning, scores it against the bank’s PEP list and turns it into a risk report.',
+      'An internal web and mobile platform that reads the news every morning and turns it into a risk report for the bank’s compliance team.',
     description:
       'Banks must monitor politically exposed persons and their associates continuously, not just at onboarding. At BankIslami that meant analysts opening dozens of news sites every morning and searching for hundreds of names by hand. We built an end-to-end screening platform: a crawler that fetches the day’s financial and political news, a matching engine that ties articles to the bank’s PEP records, and a review workflow that ends in a signed daily risk report. It ships as a MERN web application for analysts at their desks and a native mobile app for compliance officers on the move.',
     coverImage: '/work/screens/bank-islami-pep-desktop.webp',
@@ -1740,9 +1553,15 @@ export const projects: Project[] = [
       { category: 'Auth & reports', tools: ['JWT', 'PDFKit'] },
     ],
     category: 'Mobile',
-    capabilities: ['Mobile', 'Full-Stack', 'AI', 'Cloud & Automation'],
+    capabilities: ['Mobile', 'Full-Stack', 'AI', 'Cloud & Automation'],
+    services: [
+      'mobile-app-development',
+      'product-engineering',
+      'ai-automation',
+    ],
     industry: 'Banking / Compliance',
     year: '2025',
+    featured: 7,
     headline: { value: '38', label: 'news sources screened daily' },
     problem:
       'Regulators expect banks to keep screening politically exposed persons for as long as the relationship lasts. The compliance team did this by hand: a morning spent across news sites, court lists and gazettes, searching for over a thousand names, then pasting findings into a spreadsheet. Stories were missed, the report landed late, and nobody could show an auditor how a name had been checked.',
@@ -1811,23 +1630,11 @@ export const projects: Project[] = [
   },
   {
     slug: 'bidnest-mobile',
-    featured: 14,
-    efficiency: {
-      lens: 'no-repeat',
-      title: 'Three platforms from one build, with nothing rebuilt for native.',
-      body:
-        'The existing web application is wrapped with Capacitor instead of being rewritten twice. Bidding, messaging and checkout are the same code on web, iOS and Android, so a fix ships to three platforms at once.',
-      techniques: [
-        'One codebase for web, iOS and Android',
-        'Zero features rebuilt for native',
-        'One fix, three platforms',
-      ],
-    },
     title: 'Bidnest Mobile App',
     client: 'Confidential (student housing marketplace)',
-    tagline: 'The bidding marketplace on iOS and Android, from one codebase',
+    tagline: 'The bidding marketplace, packaged for iOS and Android',
     summary:
-      'The Bidnest marketplace wrapped with Capacitor, so three platforms ship from one build with nothing rebuilt.',
+      'The Bidnest marketplace wrapped with Capacitor so students and parents can bid from their phones.',
     description:
       'The same codebase that runs the Bidnest web platform, wrapped with Capacitor into native iOS and Android apps. One team ships the web platform and both app stores from a single repository, and every marketplace flow works inside the native shell without being rebuilt.',
     coverImage: '/work/screens/bidnest-mobile-mobile.webp',
@@ -1883,7 +1690,8 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Mobile',
-    capabilities: ['Mobile', 'Full-Stack', 'Cloud & Automation'],
+    capabilities: ['Mobile', 'Full-Stack', 'Cloud & Automation'],
+    services: ['mobile-app-development', 'product-engineering', 'mvp-sprint'],
     industry: 'Property technology',
     year: '2024',
     anonymised: true,
@@ -1941,20 +1749,9 @@ export const projects: Project[] = [
   },
   {
     slug: 'tayyab-sohail-portfolio',
-    efficiency: {
-      lens: 'no-repeat',
-      title: 'One typed data file generates the whole site.',
-      body:
-        'The grid, every case-study page, the sitemap and the social previews are rendered from one array. There is no CMS or database to maintain, and the compiler refuses a build when a section is missing.',
-      techniques: [
-        'One source of truth',
-        'No CMS or database to run',
-        'Errors caught at build time',
-      ],
-    },
     title: 'Tayyab Sohail Portfolio',
     client: 'Tayyab Sohail',
-    tagline: 'Case-study portfolio generated from one typed data file',
+    tagline: 'Case-study portfolio for a senior engineer',
     summary:
       'A personal site where every project is a full case study, generated from one typed data file.',
     description:
@@ -1999,7 +1796,8 @@ export const projects: Project[] = [
       { category: 'Hosting', tools: ['Vercel'] },
     ],
     category: 'Website',
-    capabilities: ['Web'],
+    capabilities: ['Web'],
+    services: ['web-design-development', 'mvp-sprint'],
     industry: 'Software engineering',
     year: '2025',
     notable: true,
@@ -2074,23 +1872,9 @@ export function getProjectsBySlugs(slugs: readonly string[]): Project[] {
     .filter((project): project is Project => Boolean(project));
 }
 
-/** Main products: every project not flagged `notable`, in `featured` order. */
+/** Main products: every project not flagged `notable`. */
 export function getShowcaseProjects(): Project[] {
-  return projects
-    .filter((project) => !project.notable)
-    .sort(
-      (a, b) =>
-        (a.featured ?? Number.MAX_SAFE_INTEGER) -
-        (b.featured ?? Number.MAX_SAFE_INTEGER),
-    );
-}
-
-/** Lenses present in `list`, in display order. */
-export function getLenses(
-  list: readonly Project[] = projects,
-): EfficiencyLens[] {
-  const present = new Set(list.map((project) => project.efficiency.lens));
-  return LENS_ORDER.filter((lens) => present.has(lens));
+  return projects.filter((project) => !project.notable);
 }
 
 /** Categories present in `list`, in display order. */
@@ -2120,12 +1904,11 @@ function localiseProject(project: Project, locale: Locale): Project {
   const t = projectsDe[project.slug];
   if (!t) return project;
 
-  const { gallery, techStackCategories, efficiency, ...rest } = t;
+  const { gallery, techStackCategories, ...rest } = t;
 
   return {
     ...project,
     ...rest,
-    efficiency: { ...project.efficiency, ...efficiency },
     gallery: project.gallery.map((screen, index) => {
       const copy = gallery?.[index];
       return copy ? { ...screen, ...copy } : screen;

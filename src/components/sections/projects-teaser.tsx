@@ -9,29 +9,21 @@ import { ProjectMockup } from '@/components/mockups/project-mockup';
 import { Reveal } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
 
-import { cn } from '@/lib/utils';
-
 import { paths } from '@/constants/paths';
 import { getShowcaseProjectsLocalised } from '@/data/projects';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface ProjectsTeaserProps {
   dict: Dictionary;
-  /** Section band; defaults to white. */
-  className?: string;
 }
 
-const AUTO_MS = 5000;
+const AUTO_MS = 3000;
 
 /**
  * A compact featured-project showcase with the real product screens on
- * devices. Each slide names the product, says what it is and how it is
- * optimized, and links to the full case study on /work.
+ * devices, linked to the full case studies on /work.
  */
-export function ProjectsTeaser({
-  dict,
-  className = 'bl-band-white',
-}: ProjectsTeaserProps) {
+export function ProjectsTeaser({ dict }: ProjectsTeaserProps) {
   const t = dict.work.teaser;
   const showcase = getShowcaseProjectsLocalised(dict.locale);
   const listed = showcase;
@@ -58,7 +50,7 @@ export function ProjectsTeaser({
     <section
       id='work'
       data-rail={t.kicker}
-      className={cn('bl-section bl-rule', className)}
+      className='bl-section bl-rule bl-band-white'
     >
       <div className='bl-container'>
         <div className='relative overflow-hidden sm:p-8 lg:p-12'>
@@ -135,22 +127,9 @@ export function ProjectsTeaser({
                         href={paths.caseStudy(activeProject.slug)}
                         className='group min-w-0'
                       >
-                        <p className='inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
-                          <span
-                            aria-hidden='true'
-                            className='h-1.5 w-1.5 bg-brand'
-                          />
-                          {
-                            dict.work.lenses[activeProject.efficiency.lens]
-                              .label
-                          }
-                        </p>
-                        <h3 className='bl-display mt-2 min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
+                        <h3 className='bl-display min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
                           {activeProject.title}
                         </h3>
-                        <p className='mt-1.5 line-clamp-2 min-h-[2.75em] max-w-[52ch] text-sm leading-snug text-muted-foreground'>
-                          {activeProject.tagline}
-                        </p>
                       </Link>
                       <div className='flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between'>
                         <div className='flex min-w-0 flex-1 items-baseline gap-3 border-l-2 border-brand px-4 py-1 sm:gap-4 sm:px-5 sm:py-1.5'>
@@ -191,7 +170,7 @@ export function ProjectsTeaser({
                       >
                         <span
                           key={activeProject.slug}
-                          className='absolute inset-y-0 left-0 w-0 animate-[bl-project-progress_5s_linear] bg-brand'
+                          className='absolute inset-y-0 left-0 w-0 animate-[bl-project-progress_3s_linear] bg-brand'
                           style={{
                             animationPlayState: paused ? 'paused' : 'running',
                           }}

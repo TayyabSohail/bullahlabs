@@ -14,7 +14,11 @@ export interface NavItem {
  */
 export function primaryNav(dict: Dictionary): NavItem[] {
   return [
+    { label: dict.nav.services, href: paths.services },
+    { label: dict.nav.work, href: paths.work },
     { label: dict.nav.program, href: paths.program },
     { label: dict.nav.about, href: paths.about },
+    { label: dict.nav.pricing, href: paths.pricing },
+    { label: dict.nav.careers, href: paths.careers },
   ];
 }

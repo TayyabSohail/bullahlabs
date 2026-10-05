@@ -1,11 +1,7 @@
 # Bullah Labs
 
-Company website for **Bullah Labs**: AI enablement for non-technical knowledge
-workers through the Conscious AI program, plus lean builds to the same
-principles. Offices in Islamabad, Pakistan and Fellbach, Germany.
-
-Positioning, the program structure and the rules for describing projects are
-in [docs/brand/positioning-and-program.md](docs/brand/positioning-and-program.md).
+Company website for **Bullah Labs**, a software engineering studio with
+an Asian office in Islamabad, Pakistan and a European office in Fellbach, Germany.
 
 Built on Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS, shadcn/ui,
 Framer Motion, Lenis and cobe (globe). Single light theme with a WebGL silk
@@ -59,11 +55,11 @@ Edit these; the pages update themselves.
 
 | File                          | Controls                                                                 |
 | ----------------------------- | ------------------------------------------------------------------------ |
-| `src/config/site.ts`          | Company name, tagline, email, offices, founder, booking link |
+| `src/config/site.ts`          | Company name, tagline, email, **phone numbers and offices**, socials, founder, nav, stats |
 | `src/data/projects.ts`        | Every case study: copy, cover image, metrics, stack. Drives `/work`, `/work/[slug]`, the homepage showcase, outcomes and sitemap |
-| `src/data/program.ts`         | The Conscious AI program: pillars, themes, tiers, modules and role tracks. Drives `/conscious-ai`, the homepage program sections, the footer and the contact form choices |
-| `src/data/values.ts`          | The four principles on the about page                                    |
-| `src/data/faqs.ts`            | Questions on the program page                                            |
+| `src/data/services.ts`        | The six services. Drives `/services`, `/services/[slug]`, the homepage grid, footer and contact form select |
+| `src/data/process.ts`         | Engagement steps and company values                                      |
+| `src/data/faqs.ts`            | Questions on the homepage, services and contact pages                    |
 | `src/data/testimonials.ts`    | Client quotes attributed by role and company, linked to their case studies    |
 | `src/app/legal/*/page.tsx`    | Privacy, Terms, Cookie policy, Imprint                                   |
 | `src/i18n/dictionaries/*.ts` | UI and marketing copy in English and German (nav, hero, sections, footer) |
@@ -82,7 +78,7 @@ Edit these; the pages update themselves.
 - Favicon frames (rotate every 5 s, theme-aware): `src/components/brand/favicon-frames.ts`
 - Static icons and Open Graph image: `public/icon.*`, `src/app/opengraph-image.tsx`
 - Colour tokens, clipped-corner panels and fill-animation buttons: `src/app/globals.css`
-- Motion: `src/components/motion/` (reveal on scroll, text reveal). The preloader, custom cursor, side rail and shader backgrounds were removed.
+- Effects: `src/components/effects/` (silk shader, circuit backdrop, globe, cursor spotlight), scroll text highlight: `src/components/motion/scroll-highlight.tsx`, intro: `src/components/layout/preloader.tsx`
 - Device mockups: `src/components/mockups/` (laptop, phone, browser)
 
 ---
@@ -91,11 +87,12 @@ Edit these; the pages update themselves.
 
 | Route                         | Notes                                              |
 | ----------------------------- | -------------------------------------------------- |
-| `/`                           | Hero, pillars, one task two ways, tiers, audience, contact form |
-| `/conscious-ai`               | The program: tiers with modules, role tracks, FAQ   |
-| `/work`, `/work/[slug]`       | Earlier case studies. Still routable, but not linked from the nav, homepage, footer or sitemap |
-| `/about`                      | Story, principles, locations                       |
+| `/`                           | Hero, services, sticky work showcase, outcomes, process, values, stack, FAQ, CTA |
+| `/services`, `/services/[slug]` | Six services, statically generated                |
+| `/work`, `/work/[slug]`       | Filterable grid, twelve case studies               |
+| `/about`                      | Story, founder, principles, process, locations     |
 | `/contact`                    | Form (server action, rate limited, honeypot), offices with live clocks |
+| `/careers`                    | Speculative applications                           |
 | `/legal` plus `/legal/privacy`, `/legal/terms`, `/legal/cookies`, `/legal/imprint` | Legal hub and policies |
 | `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`, `/opengraph-image` | Generated |
 
