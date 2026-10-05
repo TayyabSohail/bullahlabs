@@ -84,15 +84,15 @@ export default {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-        'fw-pulse-ring': {
+        'bl-pulse-ring': {
           '0%': { transform: 'scale(0.9)', opacity: '0.8' },
           '100%': { transform: 'scale(2.2)', opacity: '0' },
         },
-        'fw-float': {
+        'bl-float': {
           '0%, 100%': { transform: 'translate3d(0, 0, 0)' },
           '50%': { transform: 'translate3d(0, -10px, 0)' },
         },
-        'fw-spin-slow': {
+        'bl-spin-slow': {
           to: { transform: 'rotate(360deg)' },
         },
       },
@@ -100,9 +100,9 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'pulse-ring':
-          'fw-pulse-ring 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite',
-        float: 'fw-float 7s ease-in-out infinite',
-        'spin-slow': 'fw-spin-slow 24s linear infinite',
+          'bl-pulse-ring 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite',
+        float: 'bl-float 7s ease-in-out infinite',
+        'spin-slow': 'bl-spin-slow 24s linear infinite',
       },
       fontFamily: {
         sans: 'var(--font-sans)',

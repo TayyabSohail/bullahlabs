@@ -30,7 +30,7 @@ export function Hero({ dict }: HeroProps) {
         className='pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background'
       />
 
-      <div className='fw-container relative pb-10 pt-24 sm:pb-14 sm:pt-28 lg:pb-16 lg:pt-32'>
+      <div className='bl-container relative pb-10 pt-24 sm:pb-14 sm:pt-28 lg:pb-16 lg:pt-32'>
         <Reveal>
           <p className='inline-flex items-center gap-3 border border-ink/15 bg-white/85 px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-ink backdrop-blur-sm'>
             <span className='h-1.5 w-1.5 bg-brand' />
@@ -46,7 +46,7 @@ export function Hero({ dict }: HeroProps) {
           stagger={0.04}
           typingBounce
           delay={0.2}
-          className='fw-display mt-6 justify-start text-[clamp(2.4rem,6.4vw,6rem)] leading-[0.98] tracking-[-0.035em] text-ink sm:mt-7'
+          className='bl-display mt-6 justify-start text-[clamp(2.4rem,6.4vw,6rem)] leading-[0.98] tracking-[-0.035em] text-ink sm:mt-7'
         />
 
         <div className='mt-8 grid gap-8 sm:gap-10 lg:mt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-12'>
@@ -62,14 +62,14 @@ export function Hero({ dict }: HeroProps) {
             >
               <Link
                 href={paths.contact}
-                className='fw-btn fw-btn-ink inline-flex h-14 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto'
+                className='bl-btn bl-btn-ink inline-flex h-14 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto'
               >
                 {t.primary}
                 <span className='h-2.5 w-2.5 bg-brand' />
               </Link>
               <Link
                 href={paths.work}
-                className='fw-btn fw-btn-secondary inline-flex h-14 items-center justify-center gap-3 bg-white/85 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto'
+                className='bl-btn bl-btn-secondary inline-flex h-14 items-center justify-center gap-3 bg-white/85 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto'
               >
                 {t.secondary}
                 <ArrowRight className='h-4 w-4' />

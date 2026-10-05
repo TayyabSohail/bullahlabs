@@ -39,7 +39,7 @@ export function Footer({ dict }: FooterProps) {
           speed={0.8}
         />
       </div>
-      <div className='relative z-10 fw-container'>
+      <div className='relative z-10 bl-container'>
         <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5'>
           <div className='lg:col-span-1'>
             <Logo />
@@ -48,7 +48,7 @@ export function Footer({ dict }: FooterProps) {
             </p>
             <Link
               href={paths.contact}
-              className='fw-btn fw-btn-primary mt-6 inline-flex h-11 items-center px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
+              className='bl-btn bl-btn-primary mt-6 inline-flex h-11 items-center px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
             >
               {t.quote}
             </Link>
@@ -87,7 +87,7 @@ export function Footer({ dict }: FooterProps) {
           <FooterColumn title={t.connect}>
             <Link
               href={paths.contact}
-              className='fw-link w-fit text-sm text-foreground/80 hover:text-foreground'
+              className='bl-link w-fit text-sm text-foreground/80 hover:text-foreground'
             >
               {dict.nav.contact}
             </Link>
@@ -106,7 +106,7 @@ export function Footer({ dict }: FooterProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className='fw-link hover:text-foreground'
+                className='bl-link hover:text-foreground'
               >
                 {legalLabel(item.href, dict) ?? item.label}
               </Link>
@@ -133,7 +133,7 @@ export function Footer({ dict }: FooterProps) {
             className='fill-ink/85 font-display font-bold uppercase'
             style={{ fontSize: 150 }}
           >
-            Feinwerk
+            Bullah Labs
           </text>
         </svg>
       </div>
@@ -169,7 +169,7 @@ function FooterLink({
     <Link
       href={href}
       scroll={!isSectionLink(href)}
-      className='fw-link w-fit text-foreground/80 transition-colors hover:text-foreground'
+      className='bl-link w-fit text-foreground/80 transition-colors hover:text-foreground'
     >
       {children}
     </Link>

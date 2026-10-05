@@ -16,18 +16,18 @@ export function GlobalReach({ dict }: GlobalReachProps) {
 
   return (
     <section
-      className='fw-section fw-rule fw-band-white overflow-hidden'
+      className='bl-section bl-rule bl-band-white overflow-hidden'
       data-rail={t.kicker}
     >
-      <div className='fw-container grid items-center gap-8 sm:gap-12 lg:grid-cols-[1fr_0.95fr]'>
+      <div className='bl-container grid items-center gap-8 sm:gap-12 lg:grid-cols-[1fr_0.95fr]'>
         <div>
           <Reveal>
-            <p className='fw-kicker'>{t.kicker}</p>
+            <p className='bl-kicker'>{t.kicker}</p>
           </Reveal>
           <TextReveal
             as='h2'
             text={t.title}
-            className='fw-display mt-5 max-w-[16ch] text-display-md text-ink'
+            className='bl-display mt-5 max-w-[16ch] text-display-md text-ink'
           />
           <Reveal delay={0.2}>
             <p className='mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
@@ -47,7 +47,7 @@ export function GlobalReach({ dict }: GlobalReachProps) {
                   />
                   {location.label}
                 </p>
-                <p className='fw-display mt-2 text-base text-ink sm:mt-3 sm:text-xl'>
+                <p className='bl-display mt-2 text-base text-ink sm:mt-3 sm:text-xl'>
                   {location.city}, {location.country}
                 </p>
               </StaggerItem>

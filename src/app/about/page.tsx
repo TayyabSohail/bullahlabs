@@ -17,7 +17,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Feinwerk Software is a software studio with offices in Islamabad, Pakistan and Fellbach, Germany, building web, AI and cloud products on fixed dates.',
+    'Bullah Labs is a software studio with offices in Islamabad, Pakistan and Fellbach, Germany, building web, AI and cloud products on fixed dates.',
   alternates: { canonical: paths.about },
 };
 
@@ -41,7 +41,7 @@ export default async function AboutPage() {
         description={t.description}
       />
 
-      <section className='fw-container grid gap-12 pb-16 lg:grid-cols-[1fr_1fr] lg:gap-20 lg:pb-24'>
+      <section className='bl-container grid gap-12 pb-16 lg:grid-cols-[1fr_1fr] lg:gap-20 lg:pb-24'>
         <Reveal className='space-y-6 text-lg leading-relaxed text-foreground/85'>
           {t.story.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
@@ -65,8 +65,8 @@ export default async function AboutPage() {
         </Stagger>
       </section>
 
-      <section className='fw-section border-t border-line'>
-        <div className='fw-container'>
+      <section className='bl-section border-t border-line'>
+        <div className='bl-container'>
           <SectionHeading
             kicker={t.principlesKicker}
             title={t.principlesTitle}
@@ -78,7 +78,7 @@ export default async function AboutPage() {
                 key={value.title}
                 className='flex flex-col bg-background p-7'
               >
-                <h3 className='fw-display text-2xl text-foreground'>
+                <h3 className='bl-display text-2xl text-foreground'>
                   {value.title}
                 </h3>
                 <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
@@ -92,8 +92,8 @@ export default async function AboutPage() {
 
       <HowItWorks dict={dict} />
 
-      <section className='fw-section'>
-        <div className='fw-container'>
+      <section className='bl-section'>
+        <div className='bl-container'>
           <SectionHeading
             kicker={t.whereKicker}
             title={t.whereTitle}
@@ -104,11 +104,11 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className='fw-container pb-6'>
-        <Reveal className='fw-card flex flex-col items-start gap-6 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10'>
+      <section className='bl-container pb-6'>
+        <Reveal className='bl-card flex flex-col items-start gap-6 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10'>
           <div>
-            <p className='fw-kicker'>{t.careersKicker}</p>
-            <p className='fw-display mt-3 text-2xl text-foreground'>
+            <p className='bl-kicker'>{t.careersKicker}</p>
+            <p className='bl-display mt-3 text-2xl text-foreground'>
               {t.careersTitle}
             </p>
             <p className='mt-3 max-w-md text-sm leading-relaxed text-muted-foreground'>

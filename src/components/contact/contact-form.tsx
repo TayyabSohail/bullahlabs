@@ -85,11 +85,11 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
 
   if (sent) {
     return (
-      <div className='fw-card flex flex-col items-start bg-surface p-8 text-foreground sm:p-10'>
+      <div className='bl-card flex flex-col items-start bg-surface p-8 text-foreground sm:p-10'>
         <span className='flex h-12 w-12 items-center justify-center rounded-full bg-brand text-brand-foreground'>
           <CheckCircle2 className='h-6 w-6' />
         </span>
-        <h3 className='fw-display mt-6 text-display-sm text-foreground'>
+        <h3 className='bl-display mt-6 text-display-sm text-foreground'>
           {t.sentTitle}
         </h3>
         <p className='mt-3 max-w-md text-base leading-relaxed text-muted-foreground'>
@@ -113,7 +113,7 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((values) => execute(values))}
-        className='fw-card overflow-hidden rounded-2xl border border-white/10 bg-ink text-white [clip-path:none] shadow-[0_30px_80px_-40px_hsl(var(--ink)/0.8)]'
+        className='bl-card overflow-hidden rounded-2xl border border-white/10 bg-ink text-white [clip-path:none] shadow-[0_30px_80px_-40px_hsl(var(--ink)/0.8)]'
         noValidate
       >
         <div aria-hidden='true' className='absolute -left-[9999px] top-0'>
@@ -129,12 +129,12 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
         <div className='px-5 py-6 sm:px-7 sm:py-8 lg:px-9 lg:py-9'>
           <div className='flex items-start justify-between gap-6 border-b border-white/15 pb-6'>
             <div>
-              <p className='fw-kicker'>
+              <p className='bl-kicker'>
                 {t.stepLabel
                   .replace('{current}', String(step + 1))
                   .replace('{total}', '3')}
               </p>
-              <h3 className='fw-display mt-3 text-display-sm text-white'>
+              <h3 className='bl-display mt-3 text-display-sm text-white'>
                 {stepContent.title}
               </h3>
               <p className='mt-2 max-w-lg text-sm leading-relaxed text-white/60'>

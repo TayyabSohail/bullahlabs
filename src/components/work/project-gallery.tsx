@@ -38,10 +38,10 @@ export function ProjectGallery({ project, labels }: ProjectGalleryProps) {
   );
 
   return (
-    <section className='fw-container py-16 lg:py-24'>
+    <section className='bl-container py-16 lg:py-24'>
       <Reveal>
-        <p className='fw-kicker'>{labels.gallery}</p>
-        <h2 className='fw-display mt-5 text-display-sm text-foreground'>
+        <p className='bl-kicker'>{labels.gallery}</p>
+        <h2 className='bl-display mt-5 text-display-sm text-foreground'>
           {labels.galleryTitle}
         </h2>
         <p className='mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
@@ -57,7 +57,7 @@ export function ProjectGallery({ project, labels }: ProjectGalleryProps) {
         <Stagger className='mt-10 grid grid-cols-2 gap-4 md:grid-cols-3'>
           {gallery.map((screen) => (
             <StaggerItem key={screen.title}>
-              <div className='fw-plate aspect-[4/5]' style={plateStyle}>
+              <div className='bl-plate aspect-[4/5]' style={plateStyle}>
                 <div className='absolute left-1/2 top-[8%] aspect-[390/844] h-[110%] -translate-x-1/2'>
                   <PhoneFrame className='h-full w-auto shadow-[0_40px_70px_-25px_rgba(0,0,0,0.85)]'>
                     <Image
@@ -79,7 +79,7 @@ export function ProjectGallery({ project, labels }: ProjectGalleryProps) {
           <Stagger className='mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
             {laptops.map((screen) => (
               <StaggerItem key={screen.title}>
-                <div className='fw-plate aspect-[16/10]' style={plateStyle}>
+                <div className='bl-plate aspect-[16/10]' style={plateStyle}>
                   <div className='absolute inset-x-[7%] top-1/2 -translate-y-1/2'>
                     <LaptopFrame>
                       <Image
@@ -108,7 +108,7 @@ export function ProjectGallery({ project, labels }: ProjectGalleryProps) {
               ...gallery,
             ].map((screen) => (
               <StaggerItem key={screen.title}>
-                <div className='fw-plate aspect-[4/5]' style={plateStyle}>
+                <div className='bl-plate aspect-[4/5]' style={plateStyle}>
                   <div className='absolute left-1/2 top-[8%] aspect-[390/844] h-[110%] -translate-x-1/2'>
                     <PhoneFrame className='h-full w-auto shadow-[0_40px_70px_-25px_rgba(0,0,0,0.85)]'>
                       <Image

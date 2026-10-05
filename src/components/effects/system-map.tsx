@@ -280,10 +280,10 @@ interface CubeProps {
 function Cube({ tone, size, className }: CubeProps) {
   const f = box(0, -size, size, size / 2, size);
   return (
-    <g className={cn('fw-map-cube', className)} data-tone={tone}>
-      <polygon className='fw-map-left' points={f.left} />
-      <polygon className='fw-map-right' points={f.right} />
-      <polygon className='fw-map-top' points={f.top} />
+    <g className={cn('bl-map-cube', className)} data-tone={tone}>
+      <polygon className='bl-map-left' points={f.left} />
+      <polygon className='bl-map-right' points={f.right} />
+      <polygon className='bl-map-top' points={f.top} />
     </g>
   );
 }
@@ -316,11 +316,11 @@ function Tile({ id, label, index, ready, pulse, reduce }: TileProps) {
       transition={{ duration: 0.6, ease, delay: index * 0.1 }}
     >
       <polygon
-        className='fw-map-shadow'
+        className='bl-map-shadow'
         points={diamond(px, py + 5, TILE_W / 2 + 3, TILE_H / 2 + 1.5)}
       />
       <motion.g
-        className='fw-map-tile'
+        className='bl-map-tile'
         data-tone={node.tone}
         animate={live ? { y: [0, -2.5, 0] } : undefined}
         transition={{
@@ -330,13 +330,13 @@ function Tile({ id, label, index, ready, pulse, reduce }: TileProps) {
           delay: 1 + index * 0.45,
         }}
       >
-        <polygon className='fw-map-left' points={f.left} />
-        <polygon className='fw-map-right' points={f.right} />
-        <polygon className='fw-map-top' points={f.top} />
+        <polygon className='bl-map-left' points={f.left} />
+        <polygon className='bl-map-right' points={f.right} />
+        <polygon className='bl-map-top' points={f.top} />
         {!reduce && pulse > 0 && (
           <g key={pulse}>
             <motion.polygon
-              className='fw-map-flash'
+              className='bl-map-flash'
               points={f.top}
               initial={{ opacity: 0.55 }}
               animate={{ opacity: 0 }}
@@ -345,7 +345,7 @@ function Tile({ id, label, index, ready, pulse, reduce }: TileProps) {
             {SPARKS.map((s, i) => (
               <motion.rect
                 key={i}
-                className='fw-map-spark'
+                className='bl-map-spark'
                 x={px + s.dx - 2.5}
                 y={py - TILE_T + s.dy - 2.5}
                 width={5}
@@ -358,7 +358,7 @@ function Tile({ id, label, index, ready, pulse, reduce }: TileProps) {
           </g>
         )}
         <text
-          className='fw-map-label'
+          className='bl-map-label'
           x={px}
           y={py - TILE_T}
           textAnchor='middle'
@@ -420,7 +420,7 @@ function PacketView({ packet, onArrive, onDone }: PacketViewProps) {
   return (
     <motion.g style={{ opacity }}>
       <motion.line
-        className='fw-map-trail'
+        className='bl-map-trail'
         data-tone={tone}
         x1={tx}
         y1={ty}
@@ -514,28 +514,28 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
       ref={rootRef}
       role='img'
       aria-label={`${copy.kicker}: ${labels}`}
-      className={cn('fw-map', className)}
-      style={{ '--fw-map-label': `${fit.label}px` } as React.CSSProperties}
+      className={cn('bl-map', className)}
+      style={{ '--bl-map-label': `${fit.label}px` } as React.CSSProperties}
     >
-      {/* Full-bleed below lg (`.fw-map-stage`) so the plate gets the whole
+      {/* Full-bleed below lg (`.bl-map-stage`) so the plate gets the whole
           screen width; the viewBox always encloses it, so nothing is cut. */}
-      <div ref={stageRef} className='fw-map-stage'>
+      <div ref={stageRef} className='bl-map-stage'>
         <svg
           aria-hidden='true'
           viewBox={viewBox}
           className='block h-auto w-full overflow-visible'
         >
-          <g className='fw-map-plate'>
-            <polygon className='fw-map-plate-side' points={PLATE.left} />
-            <polygon className='fw-map-plate-side' points={PLATE.right} />
-            <polygon className='fw-map-plate-top' points={PLATE.top} />
-            <g className='fw-map-grid'>
+          <g className='bl-map-plate'>
+            <polygon className='bl-map-plate-side' points={PLATE.left} />
+            <polygon className='bl-map-plate-side' points={PLATE.right} />
+            <polygon className='bl-map-plate-top' points={PLATE.top} />
+            <g className='bl-map-grid'>
               {GRID.map((l, i) => (
                 <line key={i} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} />
               ))}
             </g>
             <motion.polygon
-              className='fw-map-sweep'
+              className='bl-map-sweep'
               points={BAND.points}
               initial={{ x: 0, y: 0, opacity: 0 }}
               animate={
@@ -560,7 +560,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
               return (
                 <motion.line
                   key={`${a}-${b}`}
-                  className='fw-map-edge'
+                  className='bl-map-edge'
                   x1={pa.px}
                   y1={pa.py}
                   x2={pb.px}
@@ -583,7 +583,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
                 transition={{ duration: 0.6, ease, delay: 0.9 + i * 0.08 }}
               >
                 <polygon
-                  className='fw-map-shadow'
+                  className='bl-map-shadow'
                   points={diamond(px, py + 2, b.size + 2, b.size / 2 + 1)}
                 />
                 <motion.g
@@ -596,7 +596,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
                     delay: b.delay,
                   }}
                 >
-                  <Cube tone={b.tone} size={b.size} className='fw-map-block' />
+                  <Cube tone={b.tone} size={b.size} className='bl-map-block' />
                 </motion.g>
               </motion.g>
             );
@@ -625,7 +625,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
         </svg>
       </div>
 
-      <p aria-hidden='true' className='fw-kicker mt-3 text-[11px] sm:text-xs'>
+      <p aria-hidden='true' className='bl-kicker mt-3 text-[11px] sm:text-xs'>
         {copy.kicker}
       </p>
     </div>

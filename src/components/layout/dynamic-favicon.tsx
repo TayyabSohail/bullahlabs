@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { faviconFrames } from '@/components/brand/favicon-frames';
 
 const INTERVAL_MS = 10_000;
-const LINK_ID = 'fw-dynamic-favicon';
+const LINK_ID = 'bl-dynamic-favicon';
 const SVG_TYPE = 'image/svg+xml';
 const ICON_LINKS = "link[rel~='icon']";
 

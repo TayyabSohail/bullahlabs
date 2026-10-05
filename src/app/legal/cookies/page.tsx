@@ -10,7 +10,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Cookie Policy',
   description:
-    'Which cookies and browser storage the Feinwerk Software website uses, what they do, and how to change your choice.',
+    'Which cookies and browser storage the Bullah Labs website uses, what they do, and how to change your choice.',
   alternates: { canonical: paths.legal.cookies },
 };
 
@@ -40,7 +40,7 @@ const sectionsEn: LegalSection[] = [
         </p>
         <ul>
           <li>
-            <strong>fw-cookie-consent</strong> (local storage): remembers
+            <strong>bl-cookie-consent</strong> (local storage): remembers
             whether you accepted or declined analytics. Kept until you clear
             site data.
           </li>
@@ -131,7 +131,7 @@ const sectionsDe: LegalSection[] = [
         </p>
         <ul>
           <li>
-            <strong>fw-cookie-consent</strong> (Local Storage): merkt sich, ob
+            <strong>bl-cookie-consent</strong> (Local Storage): merkt sich, ob
             Sie Analyse akzeptiert oder abgelehnt haben. Bleibt, bis Sie die
             Websitedaten löschen.
           </li>

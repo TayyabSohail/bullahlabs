@@ -14,7 +14,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Pricing',
   description:
-    'Six ways to work with Feinwerk Software, from strategy and maintenance to dedicated teams and full product builds. Every plan includes a written scope and support after launch.',
+    'Six ways to work with Bullah Labs, from strategy and maintenance to dedicated teams and full product builds. Every plan includes a written scope and support after launch.',
   alternates: { canonical: paths.pricing },
 };
 
@@ -51,7 +51,7 @@ export default async function PricingPage() {
         kicker={t.faqKicker}
         title={t.faqTitle}
         accentWords={[...t.faqAccent]}
-        className='fw-band-stone fw-rule'
+        className='bl-band-stone bl-rule'
       />
       <HowItWorks dict={dict} />
       <CtaBanner dict={dict} />

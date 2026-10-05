@@ -30,10 +30,10 @@ export function HowItWorks({ dict, className }: HowItWorksProps) {
   return (
     <section
       id='how-it-works'
-      className={cn('fw-section fw-rule fw-band-stone', className)}
+      className={cn('bl-section bl-rule bl-band-stone', className)}
       data-rail={t.kicker}
     >
-      <div className='fw-container'>
+      <div className='bl-container'>
         <SectionHeading kicker={t.kicker} title={t.title} />
 
         <Stagger
@@ -51,7 +51,7 @@ export function HowItWorks({ dict, className }: HowItWorksProps) {
                   transition: { duration: 0.7, ease },
                 },
               }}
-              className='fw-card fw-grid-surface group relative flex flex-col p-6 transition-shadow duration-300 hover:shadow-glow lg:p-7'
+              className='bl-card bl-grid-surface group relative flex flex-col p-6 transition-shadow duration-300 hover:shadow-glow lg:p-7'
             >
               <motion.span
                 aria-hidden='true'
@@ -66,7 +66,7 @@ export function HowItWorks({ dict, className }: HowItWorksProps) {
               />
               <span
                 aria-hidden='true'
-                className='fw-display pointer-events-none absolute -right-1 -top-2 select-none text-[5.5rem] leading-none text-brand/10 transition-colors duration-300 group-hover:text-brand/20 lg:text-[6rem]'
+                className='bl-display pointer-events-none absolute -right-1 -top-2 select-none text-[5.5rem] leading-none text-brand/10 transition-colors duration-300 group-hover:text-brand/20 lg:text-[6rem]'
               >
                 {String(index + 1).padStart(2, '0')}
               </span>
@@ -76,7 +76,7 @@ export function HowItWorks({ dict, className }: HowItWorksProps) {
                 <span className='mx-2 text-muted-foreground/50'>/</span>
                 <span className='text-muted-foreground'>{step.when}</span>
               </p>
-              <h3 className='fw-display mt-6 max-w-[15ch] text-2xl text-foreground sm:mt-8 lg:mt-10'>
+              <h3 className='bl-display mt-6 max-w-[15ch] text-2xl text-foreground sm:mt-8 lg:mt-10'>
                 {step.title}
               </h3>
               <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
@@ -89,7 +89,7 @@ export function HowItWorks({ dict, className }: HowItWorksProps) {
         <Reveal className='mt-8 border-t pt-6 sm:mt-10 sm:pt-8 lg:mt-14'>
           <Link
             href={paths.contact}
-            className='fw-btn fw-btn-ink inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] shadow-[0_16px_30px_-22px_hsl(var(--ink))]'
+            className='bl-btn bl-btn-ink inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] shadow-[0_16px_30px_-22px_hsl(var(--ink))]'
           >
             {t.cta}
             <ArrowUpRight className='h-4 w-4' />

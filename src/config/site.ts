@@ -19,26 +19,21 @@ const calHandle = parseCalHandle(env.NEXT_PUBLIC_CAL_LINK);
  * header, footer, contact page, legal pages, structured data and metadata.
  */
 export const siteConfig = {
-  name: 'Feinwerk Software',
-  shortName: 'Feinwerk',
-  legalName: 'Feinwerk Software',
+  name: 'Bullah Labs',
+  shortName: 'Bullah Labs',
+  legalName: 'Bullah Labs',
   tagline: 'Products engineered from MVP to scale',
   description:
-    'Feinwerk Software designs, builds and maintains web platforms, AI systems and cloud automation. Written scope, fixed or custom quote, committed launch date, support after launch.',
+    'Bullah Labs designs, builds and maintains web platforms, AI systems and cloud automation. Written scope, fixed or custom quote, committed launch date, support after launch.',
   url: env.NEXT_PUBLIC_APP_URL,
   founded: 2024,
+  /** Company inbox that receives enquiries. */
+  email: 'hello@bullahlabs.com',
   /**
-   * Inbox that actually receives enquiries. Delivery only - this is a
-   * placeholder mailbox until the hello@feinwerks.software inbox exists,
-   * so it is deliberately never rendered anywhere on the site.
+   * The address shown publicly. When `null`, every surface points at the
+   * contact form instead of a mailto link.
    */
-  email: 'feinwerksoftware@gmail.com',
-  /**
-   * The address shown publicly. `null` while the company inbox is pending:
-   * every surface then points at the contact form instead of a mailto link.
-   * Set this to 'hello@feinwerks.software' once that inbox is live.
-   */
-  publicEmail: null as string | null,
+  publicEmail: 'hello@bullahlabs.com' as string | null,
   responseTime: 'within one business day',
   availability: 'Accepting new projects',
   locations: [
@@ -69,7 +64,7 @@ export const siteConfig = {
    * Cal.com booking link, built from NEXT_PUBLIC_CAL_LINK.
    *
    * That variable must hold the booking handle - "username" or
-   * "username/event", e.g. feinwerks/intro - never a Cal.com API key. A key
+   * "username/event", e.g. bullah-labs/intro - never a Cal.com API key. A key
    * was set here once and produced a dead https://cal.com/cal_live_... URL
    * that still rendered as a working button, so anything that does not look
    * like a handle is now ignored instead of linked.

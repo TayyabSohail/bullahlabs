@@ -56,7 +56,7 @@ export function Header({ dict }: HeaderProps) {
             : 'z-50 border-transparent bg-transparent',
       )}
     >
-      <div className='fw-container flex h-[4.25rem] items-center justify-between'>
+      <div className='bl-container flex h-[4.25rem] items-center justify-between'>
         <Logo />
 
         {/* Five links plus the flags and CTA need about 1000px, so the full
@@ -78,12 +78,12 @@ export function Header({ dict }: HeaderProps) {
                   'relative font-mono text-[11px] uppercase tracking-[0.2em] transition-colors',
                   active
                     ? 'font-bold text-foreground'
-                    : 'fw-link font-medium text-muted-foreground hover:text-foreground',
+                    : 'bl-link font-medium text-muted-foreground hover:text-foreground',
                 )}
               >
                 {item.label}
                 {/* The current page keeps a solid underline; other links get
-                    the sliding fw-link one on hover. */}
+                    the sliding bl-link one on hover. */}
                 {active && (
                   <span
                     aria-hidden
@@ -107,7 +107,7 @@ export function Header({ dict }: HeaderProps) {
           {!isActive(paths.contact) && (
             <Link
               href={paths.contact}
-              className='fw-btn fw-btn-primary inline-flex h-10 items-center px-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:px-5'
+              className='bl-btn bl-btn-primary inline-flex h-10 items-center px-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:px-5'
             >
               {dict.nav.contact}
             </Link>

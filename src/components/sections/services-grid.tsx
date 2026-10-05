@@ -59,9 +59,9 @@ export function ServicesGrid({
     <section
       id='services'
       data-rail={t.kicker}
-      className={cn('fw-section fw-rule', className)}
+      className={cn('bl-section bl-rule', className)}
     >
-      <div className='fw-container'>
+      <div className='bl-container'>
         {withHeading && <SectionHeading kicker={t.kicker} title={t.title} />}
 
         <GroupLabel
@@ -99,7 +99,7 @@ function GroupLabel({
     <Reveal
       className={cn('flex flex-wrap items-baseline gap-x-8 gap-y-2', className)}
     >
-      <h3 className='fw-display text-2xl text-ink sm:text-3xl'>{label}</h3>
+      <h3 className='bl-display text-2xl text-ink sm:text-3xl'>{label}</h3>
     </Reveal>
   );
 }
@@ -130,7 +130,7 @@ function CapabilityCard({
         </span>
       </div>
 
-      <h4 className='fw-display mt-6 max-w-[13ch] text-[1.65rem] text-ink sm:mt-9 sm:text-[1.8rem] lg:text-[1.3rem] xl:text-[1.7rem]'>
+      <h4 className='bl-display mt-6 max-w-[13ch] text-[1.65rem] text-ink sm:mt-9 sm:text-[1.8rem] lg:text-[1.3rem] xl:text-[1.7rem]'>
         {service.title}
       </h4>
       <p className='mt-3 max-w-[24ch] text-sm leading-relaxed text-muted-foreground'>

@@ -64,10 +64,10 @@ export function LetterReveal({
     }
 
     const reveal = () => setPreloaderFinished(true);
-    window.addEventListener('feinwerk:preloader-complete', reveal, {
+    window.addEventListener('bullahlabs:preloader-complete', reveal, {
       once: true,
     });
-    return () => window.removeEventListener('feinwerk:preloader-complete', reveal);
+    return () => window.removeEventListener('bullahlabs:preloader-complete', reveal);
   }, [afterPreloader]);
 
   return (

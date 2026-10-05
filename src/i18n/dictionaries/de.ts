@@ -422,7 +422,7 @@ export const de: Dictionary = {
     messagePlaceholder:
       'Was bauen Sie, für wen ist es, und bis wann muss es stehen?',
     consentBefore:
-      'Ich bin damit einverstanden, dass Feinwerk Software diese Anfrage speichert und verarbeitet, um mir zu antworten, wie in der',
+      'Ich bin damit einverstanden, dass Bullah Labs diese Anfrage speichert und verarbeitet, um mir zu antworten, wie in der',
     consentLink: 'Datenschutzerklärung',
     consentAfter: ' beschrieben.',
     submit: 'Anfrage senden',
@@ -507,13 +507,13 @@ export const de: Dictionary = {
       'Meist lässt sich in einem Gespräch sagen, ob sich das obige Vorgehen auf Ihr Problem übertragen lässt und was sich dafür ändern müsste.',
   },
   aboutPage: {
-    kicker: 'Über Feinwerk',
-    title: 'Ein Softwarestudio, benannt nach einem Anspruch.',
+    kicker: 'Über Bullah Labs',
+    title: 'Ein Softwarestudio, gemessen an einem Anspruch.',
     accent: [6, 7],
     description:
-      'Feinwerk steht für die Tradition der Feinwerktechnik aus der Region Stuttgart, in der unser europäisches Büro sitzt. An Software legen wir denselben Maßstab an: Sie muss exakt stimmen, und zwar an dem Tag, der zugesagt wurde.',
+      'An Software legen wir den Maßstab des Präzisionsmaschinenbaus an: Sie muss exakt stimmen, und zwar an dem Tag, der zugesagt wurde.',
     story: [
-      'Wir haben Feinwerk gegründet, nachdem wir jahrelang Produkte für Unternehmen gebaut hatten, die schlechte Erfahrungen gemacht hatten: Agenturen, die den Termin rissen, Teams, die fast das Gewünschte lieferten, Schätzungen, die sich auf halbem Weg verdoppelten.',
+      'Wir haben Bullah Labs gegründet, nachdem wir jahrelang Produkte für Unternehmen gebaut hatten, die schlechte Erfahrungen gemacht hatten: Agenturen, die den Termin rissen, Teams, die fast das Gewünschte lieferten, Schätzungen, die sich auf halbem Weg verdoppelten.',
       'Also haben wir das Studio um die vier Dinge herum aufgebaut, die Kundinnen und Kunden anderswo nicht bekamen. Termin und Preis, vereinbart bevor die Arbeit beginnt, für ein Standardpaket oder einen individuellen Umfang. Ein erfahrenes Team, das das ganze Produkt verantwortet, von der Oberfläche bis zur Cloud-Rechnung. Ein Ergebnis, das Sie nach dem Launch messen können, berichtet von Ihnen, nicht von uns. Und ein Team, das bleibt: Wir warten, was wir bauen, und übernehmen dafür im Produktivbetrieb die Verantwortung.',
       'Unser asiatisches Büro ist in Islamabad. Kundinnen und Kunden in Europa haben einen Ansprechpartner vor Ort in Fellbach. Zwischen beiden Büros arbeitet immer jemand während Ihres Arbeitstages.',
     ],
@@ -561,7 +561,7 @@ export const de: Dictionary = {
     title: 'Derzeit keine offenen Stellen.',
     accent: [1, 2],
     description:
-      'Feinwerk Software ist ein kleines Studio, das langsam einstellt. Wir rekrutieren momentan nicht, und es gibt keine Stellen, auf die Sie sich bewerben könnten. Sobald sich das ändert, werden die Stellen auf dieser Seite ausgeschrieben.',
+      'Bullah Labs ist ein kleines Studio, das langsam einstellt. Wir rekrutieren momentan nicht, und es gibt keine Stellen, auf die Sie sich bewerben könnten. Sobald sich das ändert, werden die Stellen auf dieser Seite ausgeschrieben.',
     badge: '0 offene Stellen',
     statusKicker: 'Aktueller Stand',
     statusTitle: 'Wir nehmen keine Bewerbungen an.',
@@ -599,7 +599,7 @@ export const de: Dictionary = {
       terms: {
         title: 'Allgemeine Geschäftsbedingungen',
         summary:
-          'Die allgemeinen Bedingungen für die Nutzung dieser Website und die Beauftragung von Feinwerk Software, zu Leistungsumfang, Zahlung, geistigem Eigentum und Haftung.',
+          'Die allgemeinen Bedingungen für die Nutzung dieser Website und die Beauftragung von Bullah Labs, zu Leistungsumfang, Zahlung, geistigem Eigentum und Haftung.',
         audience: 'Geschäftskunden',
       },
       cookies: {

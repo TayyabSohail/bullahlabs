@@ -13,16 +13,16 @@ export default async function NotFound() {
   const t = dict.notFound;
 
   return (
-    <section className='fw-container flex min-h-[80vh] flex-col justify-center pb-20 pt-40'>
+    <section className='bl-container flex min-h-[80vh] flex-col justify-center pb-20 pt-40'>
       <Reveal>
-        <p className='fw-kicker'>{t.kicker}</p>
+        <p className='bl-kicker'>{t.kicker}</p>
       </Reveal>
       <TextReveal
         as='h1'
         text={t.title}
         accentWords={[...t.accent]}
         delay={0.1}
-        className='fw-display mt-6 max-w-[14ch] text-display-xl text-foreground'
+        className='bl-display mt-6 max-w-[14ch] text-display-xl text-foreground'
       />
       <Reveal delay={0.4}>
         <p className='mt-7 max-w-lg text-lg text-muted-foreground'>

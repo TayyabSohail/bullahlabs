@@ -12,7 +12,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Careers',
   description:
-    'Feinwerk Software has no open positions at the moment. Roles are listed here when we hire again.',
+    'Bullah Labs has no open positions at the moment. Roles are listed here when we hire again.',
   alternates: { canonical: paths.careers },
 };
 
@@ -43,9 +43,9 @@ export default async function CareersPage() {
         </span>
       </PageHero>
 
-      <section className='fw-container pb-16 lg:pb-24'>
-        <Reveal className='fw-card p-7 sm:p-10'>
-          <p className='fw-kicker'>{t.statusKicker}</p>
+      <section className='bl-container pb-16 lg:pb-24'>
+        <Reveal className='bl-card p-7 sm:p-10'>
+          <p className='bl-kicker'>{t.statusKicker}</p>
           <h2 className='mt-6 text-xl font-semibold tracking-tight text-foreground'>
             {t.statusTitle}
           </h2>

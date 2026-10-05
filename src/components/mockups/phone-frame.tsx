@@ -23,8 +23,8 @@ export function PhoneFrame({
   children,
 }: PhoneFrameProps) {
   return (
-    <div className={cn('fw-phone relative aspect-[390/844] w-full', className)}>
-      <div className='fw-phone-screen relative h-full w-full overflow-hidden bg-black'>
+    <div className={cn('bl-phone relative aspect-[390/844] w-full', className)}>
+      <div className='bl-phone-screen relative h-full w-full overflow-hidden bg-black'>
         {children ??
           (src && (
             <Image
@@ -40,9 +40,9 @@ export function PhoneFrame({
           className='pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.08] via-transparent to-transparent'
         />
       </div>
-      <span aria-hidden='true' className='fw-phone-island' />
-      <span aria-hidden='true' className='fw-phone-button fw-phone-button-left' />
-      <span aria-hidden='true' className='fw-phone-button fw-phone-button-right' />
+      <span aria-hidden='true' className='bl-phone-island' />
+      <span aria-hidden='true' className='bl-phone-button bl-phone-button-left' />
+      <span aria-hidden='true' className='bl-phone-button bl-phone-button-right' />
     </div>
   );
 }

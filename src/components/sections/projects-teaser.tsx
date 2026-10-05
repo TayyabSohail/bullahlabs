@@ -50,20 +50,20 @@ export function ProjectsTeaser({ dict }: ProjectsTeaserProps) {
     <section
       id='work'
       data-rail={t.kicker}
-      className='fw-section fw-rule fw-band-white'
+      className='bl-section bl-rule bl-band-white'
     >
-      <div className='fw-container'>
+      <div className='bl-container'>
         <div className='relative overflow-hidden sm:p-8 lg:p-12'>
           <div className='grid gap-9 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12'>
             <div className='flex max-w-xl flex-col lg:h-full lg:justify-self-start'>
               <Reveal>
-                <p className='fw-kicker'>{t.kicker}</p>
+                <p className='bl-kicker'>{t.kicker}</p>
               </Reveal>
               <TextReveal
                 as='h2'
                 text={t.title}
                 accentWords={[...t.accent]}
-                className='fw-display mt-5 text-display-lg text-foreground'
+                className='bl-display mt-5 text-display-lg text-foreground'
               />
               <Reveal delay={0.2}>
                 <p className='mt-5 text-sm leading-relaxed text-muted-foreground md:text-base'>
@@ -76,7 +76,7 @@ export function ProjectsTeaser({ dict }: ProjectsTeaserProps) {
               >
                 <Link
                   href={paths.work}
-                  className='fw-btn fw-btn-primary inline-flex h-16 items-center gap-3 px-8 font-mono text-xs font-semibold uppercase tracking-[0.22em] shadow-[0_16px_30px_-18px_hsl(var(--brand-strong))]'
+                  className='bl-btn bl-btn-primary inline-flex h-16 items-center gap-3 px-8 font-mono text-xs font-semibold uppercase tracking-[0.22em] shadow-[0_16px_30px_-18px_hsl(var(--brand-strong))]'
                 >
                   {t.cta}
                   <ArrowUpRight className='h-4 w-4' />
@@ -90,7 +90,7 @@ export function ProjectsTeaser({ dict }: ProjectsTeaserProps) {
               onMouseLeave={() => setPaused(false)}
             >
               <Reveal>
-                <p className='fw-kicker text-[11px] sm:text-xs'>
+                <p className='bl-kicker text-[11px] sm:text-xs'>
                   {t.listLabel}
                 </p>
               </Reveal>
@@ -127,13 +127,13 @@ export function ProjectsTeaser({ dict }: ProjectsTeaserProps) {
                         href={paths.caseStudy(activeProject.slug)}
                         className='group min-w-0'
                       >
-                        <h3 className='fw-display min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
+                        <h3 className='bl-display min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
                           {activeProject.title}
                         </h3>
                       </Link>
                       <div className='flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between'>
                         <div className='flex min-w-0 flex-1 items-baseline gap-3 border-l-2 border-brand px-4 py-1 sm:gap-4 sm:px-5 sm:py-1.5'>
-                          <span className='fw-display text-3xl leading-none text-brand-text sm:text-4xl'>
+                          <span className='bl-display text-3xl leading-none text-brand-text sm:text-4xl'>
                             {activeProject.headline.value}
                           </span>
                           <span className='max-w-[22ch] text-xs font-semibold leading-snug text-ink sm:text-sm'>
@@ -170,7 +170,7 @@ export function ProjectsTeaser({ dict }: ProjectsTeaserProps) {
                       >
                         <span
                           key={activeProject.slug}
-                          className='absolute inset-y-0 left-0 w-0 animate-[fw-project-progress_3s_linear] bg-brand'
+                          className='absolute inset-y-0 left-0 w-0 animate-[bl-project-progress_3s_linear] bg-brand'
                           style={{
                             animationPlayState: paused ? 'paused' : 'running',
                           }}

@@ -87,7 +87,7 @@ export function MobileMenu({
 
             <nav
               aria-label='Mobile'
-              className='fw-container flex min-h-0 flex-1 flex-col overflow-y-auto pb-4 pt-4'
+              className='bl-container flex min-h-0 flex-1 flex-col overflow-y-auto pb-4 pt-4'
             >
               {links.map((item, index) => {
                 const active =
@@ -125,7 +125,7 @@ export function MobileMenu({
                       >
                         <span
                           className={cn(
-                            'fw-display text-display-md uppercase',
+                            'bl-display text-display-md uppercase',
                             active && 'underline underline-offset-[6px]',
                           )}
                         >
@@ -145,7 +145,7 @@ export function MobileMenu({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6, ease, delay: 0.4 }}
-              className='fw-container flex shrink-0 items-center justify-between border-t border-line/10 py-5 sm:hidden'
+              className='bl-container flex shrink-0 items-center justify-between border-t border-line/10 py-5 sm:hidden'
             >
               <span className='font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground'>
                 {dict.nav.language}

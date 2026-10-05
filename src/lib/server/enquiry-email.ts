@@ -57,7 +57,7 @@ export function renderEnquiryHtml({
     <table role="presentation" cellpadding="0" cellspacing="0" style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid #e7e5e4;">
       <tr>
         <td style="padding:24px 28px;border-bottom:1px solid #e7e5e4;">
-          <p style="margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b7280;">Feinwerk Software</p>
+          <p style="margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b7280;">Bullah Labs</p>
           <h1 style="margin:8px 0 0;font-size:20px;color:#111827;">New enquiry from the website</h1>
         </td>
       </tr>
@@ -104,7 +104,7 @@ export function renderAcknowledgementHtml({
     <table role="presentation" cellpadding="0" cellspacing="0" style="max-width:620px;margin:0 auto;background:#ffffff;border:1px solid #e7e5e4;">
       <tr>
         <td style="padding:24px 28px;border-bottom:1px solid #e7e5e4;">
-          <p style="margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b7280;">Feinwerk Software</p>
+          <p style="margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b7280;">Bullah Labs</p>
           <h1 style="margin:8px 0 0;font-size:20px;color:#111827;">We have your message, ${escapeHtml(firstName)}</h1>
         </td>
       </tr>

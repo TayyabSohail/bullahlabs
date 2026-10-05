@@ -24,12 +24,12 @@ export function Marquee({
     <div
       className={cn(
         'relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]',
-        pauseOnHover && 'fw-marquee-paused',
+        pauseOnHover && 'bl-marquee-paused',
         className,
       )}
     >
       <div
-        className={cn('fw-marquee', reverse && 'fw-marquee-reverse')}
+        className={cn('bl-marquee', reverse && 'bl-marquee-reverse')}
         style={{ '--marquee-duration': `${duration}s` } as React.CSSProperties}
       >
         <div className='flex shrink-0 items-center'>{children}</div>

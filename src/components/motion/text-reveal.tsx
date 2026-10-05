@@ -70,7 +70,7 @@ export function TextReveal({
             }}
             className={cn(
               'inline-block origin-bottom-left',
-              accentWords.includes(index) && 'fw-accent text-brand-text',
+              accentWords.includes(index) && 'bl-accent text-brand-text',
             )}
           >
             {word}

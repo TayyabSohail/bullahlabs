@@ -10,7 +10,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Tell us about your project. Feinwerk Software replies within one business day from Islamabad, Pakistan and Fellbach, Germany.',
+    'Tell us about your project. Bullah Labs replies within one business day from Islamabad, Pakistan and Fellbach, Germany.',
   alternates: { canonical: paths.contact },
 };
 
@@ -39,15 +39,15 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         ]}
       />
 
-      <section className='fw-container max-w-7xl pb-16 pt-28 sm:pt-44 lg:pb-24 lg:pt-52'>
+      <section className='bl-container max-w-7xl pb-16 pt-28 sm:pt-44 lg:pb-24 lg:pt-52'>
         <ContactChannels
           dict={dict}
           defaultService={service}
           calLink={siteConfig.calLink}
           header={
             <header className='max-w-2xl'>
-              <p className='fw-kicker'>{t.kicker}</p>
-              <h1 className='fw-display mt-4 text-display-md text-foreground sm:text-display-lg'>
+              <p className='bl-kicker'>{t.kicker}</p>
+              <h1 className='bl-display mt-4 text-display-md text-foreground sm:text-display-lg'>
                 {t.title}
               </h1>
               <p className='mt-5 max-w-xl text-base leading-relaxed text-muted-foreground'>

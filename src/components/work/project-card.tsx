@@ -39,11 +39,11 @@ export function ProjectCard({
       aria-label={`${project.title}: ${project.tagline}`}
       data-cursor='view'
       className={cn(
-        'fw-card fw-card-link group relative isolate block min-w-0 max-w-full',
+        'bl-card bl-card-link group relative isolate block min-w-0 max-w-full',
         className,
       )}
     >
-      <div className='fw-grid-surface absolute inset-0 -z-10 opacity-0 transition duration-500 group-hover:opacity-100' />
+      <div className='bl-grid-surface absolute inset-0 -z-10 opacity-0 transition duration-500 group-hover:opacity-100' />
 
       <div className='relative border-b'>
         <ProjectMockup
@@ -58,7 +58,7 @@ export function ProjectCard({
       </div>
 
       <div className='relative p-5 sm:p-6'>
-        <h3 className='fw-display text-2xl text-ink transition-colors duration-300 group-hover:text-brand-text'>
+        <h3 className='bl-display text-2xl text-ink transition-colors duration-300 group-hover:text-brand-text'>
           {project.title}
         </h3>
         <p className='mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base'>

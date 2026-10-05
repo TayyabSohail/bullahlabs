@@ -15,7 +15,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Projects from Feinwerk Software: marketplaces, SaaS platforms, AI agents and websites, each with the problem, the approach and the measured result.',
+    'Projects from Bullah Labs: marketplaces, SaaS platforms, AI agents and websites, each with the problem, the approach and the measured result.',
   alternates: { canonical: paths.work },
 };
 
@@ -38,7 +38,7 @@ export default async function WorkPage() {
         description={t.description}
         size='lg'
       />
-      <section className='fw-container pb-10'>
+      <section className='bl-container pb-10'>
         <ProjectGrid
           projects={showcase}
           categories={getCategories(showcase)}

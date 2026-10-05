@@ -25,11 +25,11 @@ export function Locations({
       {siteConfig.locations.map((location, index) => (
         <StaggerItem
           key={location.id}
-          className={cn('fw-card p-7', index === 1 && 'fw-card-tint')}
+          className={cn('bl-card p-7', index === 1 && 'bl-card-tint')}
         >
           <div className='flex items-start justify-between gap-4'>
             <div>
-              <p className='fw-kicker'>{location.label}</p>
+              <p className='bl-kicker'>{location.label}</p>
               <p className='mt-4 flex items-center gap-2.5 text-2xl font-semibold tracking-tight text-foreground'>
                 <Flag countryCode={location.countryCode} />
                 {location.city}
@@ -39,7 +39,7 @@ export function Locations({
               </p>
             </div>
             <div className='text-right'>
-              <p className='fw-display text-2xl text-foreground'>
+              <p className='bl-display text-2xl text-foreground'>
                 <LocalTime timezone={location.timezone} />
               </p>
               <p className='font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground'>
@@ -52,7 +52,7 @@ export function Locations({
             <li>
               <Link
                 href={paths.contact}
-                className='fw-link inline-flex items-center gap-2.5 text-foreground'
+                className='bl-link inline-flex items-center gap-2.5 text-foreground'
               >
                 <Mail className='h-4 w-4 text-brand-text' />
                 {contactLabel}

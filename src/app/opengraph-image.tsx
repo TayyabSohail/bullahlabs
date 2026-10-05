@@ -41,15 +41,17 @@ export default function OpenGraphImage() {
           <svg width='64' height='64' viewBox='0 0 64 64'>
             <rect width='64' height='64' rx='16' fill='#f5f5f3' />
             <g fill='#0d0d0d'>
-              <rect x='18' y='16' width='9' height='32' rx='1.5' />
-              <rect x='18' y='16' width='28' height='9' rx='1.5' />
-              <rect x='18' y='31' width='20' height='8' rx='1.5' />
+              <rect x='17' y='15' width='9' height='34' rx='1.5' />
+              <rect x='17' y='15' width='24' height='8' rx='1.5' />
+              <rect x='34' y='15' width='8' height='19' rx='1.5' />
+              <rect x='17' y='28' width='30' height='8' rx='1.5' />
+              <rect x='17' y='41' width='22' height='8' rx='1.5' />
             </g>
-            <rect x='39' y='39' width='9' height='9' rx='1.5' fill='#10b981' />
+            <rect x='39' y='36' width='8' height='13' rx='1.5' fill='#10b981' />
           </svg>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: 30, fontWeight: 700, letterSpacing: -1 }}>
-              Feinwerk
+              Bullah
             </span>
             <span
               style={{
@@ -59,7 +61,7 @@ export default function OpenGraphImage() {
                 color: '#9a9a9a',
               }}
             >
-              Software
+              Labs
             </span>
           </div>
         </div>
@@ -92,7 +94,7 @@ export default function OpenGraphImage() {
             color: '#10b981',
           }}
         >
-          <span>feinwerk software</span>
+          <span>bullah labs</span>
           <span>PK &middot; DE</span>
         </div>
       </div>

@@ -22,7 +22,7 @@ export default async function HomePage() {
       <Hero dict={dict} />
       <Numbers dict={dict} />
       <ProjectsTeaser dict={dict} />
-      <ServicesGrid dict={dict} className='fw-band-stone' />
+      <ServicesGrid dict={dict} className='bl-band-stone' />
       <Technologies dict={dict} />
       <GlobalReach dict={dict} />
       <HowItWorks dict={dict} />
@@ -34,7 +34,7 @@ export default async function HomePage() {
         title={dict.faq.title}
         accentWords={[...dict.faq.accent]}
         description={dict.faq.description}
-        className='fw-band-stone fw-rule'
+        className='bl-band-stone bl-rule'
       />
       <ContactSection dict={dict} />
     </>

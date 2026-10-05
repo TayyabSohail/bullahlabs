@@ -11,7 +11,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Imprint',
   description:
-    'Legal notice (Impressum) for Feinwerk Software: company details, contact information and responsible persons under German law.',
+    'Legal notice (Impressum) for Bullah Labs: company details, contact information and responsible persons under German law.',
   alternates: { canonical: paths.legal.imprint },
 };
 
@@ -46,7 +46,7 @@ const sectionsEn: LegalSection[] = [
     title: 'Contact',
     body: (
       <p>
-        Contact form: <a href={paths.contact}>feinwerks.software/contact</a>
+        Contact form: <a href={paths.contact}>bullahlabs.com/contact</a>
       </p>
     ),
   },
@@ -199,7 +199,7 @@ const sectionsDe: LegalSection[] = [
     title: 'Kontakt',
     body: (
       <p>
-        Kontaktformular: <a href={paths.contact}>feinwerks.software/contact</a>
+        Kontaktformular: <a href={paths.contact}>bullahlabs.com/contact</a>
       </p>
     ),
   },

@@ -19,7 +19,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Legal',
   description:
-    'Legal information for Feinwerk Software: privacy policy, terms of service, cookie policy and imprint, plus how to reach us about data or contracts.',
+    'Legal information for Bullah Labs: privacy policy, terms of service, cookie policy and imprint, plus how to reach us about data or contracts.',
   alternates: { canonical: paths.legal.index },
 };
 
@@ -57,7 +57,7 @@ export default async function LegalIndexPage() {
         </p>
       </PageHero>
 
-      <section className='fw-container pb-16 lg:pb-24'>
+      <section className='bl-container pb-16 lg:pb-24'>
         <Stagger className='grid gap-4 md:grid-cols-2'>
           {POLICY_META.map((meta) => {
             const Icon = meta.icon;
@@ -66,7 +66,7 @@ export default async function LegalIndexPage() {
               <StaggerItem key={meta.href}>
                 <Link
                   href={meta.href}
-                  className='fw-card fw-card-link group flex h-full flex-col p-7 sm:p-8'
+                  className='bl-card bl-card-link group flex h-full flex-col p-7 sm:p-8'
                 >
                   <div className='flex items-center justify-between'>
                     <span className='flex h-11 w-11 items-center justify-center rounded-none border border-line bg-surface-2 text-foreground transition-colors duration-500 group-hover:border-brand/60 group-hover:bg-brand group-hover:text-brand-foreground'>
@@ -93,10 +93,10 @@ export default async function LegalIndexPage() {
         </Stagger>
       </section>
 
-      <section className='fw-container pb-16 lg:pb-24'>
+      <section className='bl-container pb-16 lg:pb-24'>
         <Reveal>
-          <p className='fw-kicker'>{t.commitmentsKicker}</p>
-          <h2 className='fw-display mt-5 text-display-sm text-foreground'>
+          <p className='bl-kicker'>{t.commitmentsKicker}</p>
+          <h2 className='bl-display mt-5 text-display-sm text-foreground'>
             {t.commitmentsTitle}
           </h2>
         </Reveal>
@@ -117,10 +117,10 @@ export default async function LegalIndexPage() {
         </Stagger>
       </section>
 
-      <section className='fw-container pb-24'>
-        <Reveal className='fw-card grid gap-8 p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center'>
+      <section className='bl-container pb-24'>
+        <Reveal className='bl-card grid gap-8 p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center'>
           <div>
-            <p className='fw-kicker'>{t.requestsKicker}</p>
+            <p className='bl-kicker'>{t.requestsKicker}</p>
             <p className='mt-4 max-w-2xl text-lg leading-relaxed text-foreground/85'>
               {t.requestsBody}
             </p>

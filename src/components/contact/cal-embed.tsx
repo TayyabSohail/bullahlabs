@@ -10,7 +10,7 @@ export function CalEmbed({ calLink }: CalEmbedProps) {
   return (
     <Cal
       calLink={calLink}
-      namespace='feinwerk-intro'
+      namespace='bullahlabs-intro'
       config={{
         layout: 'month_view',
         theme: 'dark',

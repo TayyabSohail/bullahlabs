@@ -60,9 +60,9 @@ export function LegalPage({
         </p>
       </PageHero>
 
-      <section className='fw-container grid gap-12 pb-24 lg:grid-cols-[0.3fr_0.7fr]'>
+      <section className='bl-container grid gap-12 pb-24 lg:grid-cols-[0.3fr_0.7fr]'>
         <Reveal className='lg:sticky lg:top-32 lg:self-start'>
-          <nav aria-label={t.onThisPage} className='fw-card p-6'>
+          <nav aria-label={t.onThisPage} className='bl-card p-6'>
             <p className='font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground'>
               {t.contents}
             </p>
@@ -71,7 +71,7 @@ export function LegalPage({
                 <li key={section.id}>
                   <a
                     href={`#${section.id}`}
-                    className='fw-link flex text-foreground/80 hover:text-foreground'
+                    className='bl-link flex text-foreground/80 hover:text-foreground'
                   >
                     {section.title}
                   </a>

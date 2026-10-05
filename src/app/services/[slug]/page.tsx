@@ -65,7 +65,7 @@ export default async function ServicePage({ params }: PageProps) {
     '@type': 'Service',
     name: service.title,
     description: service.summary,
-    provider: { '@type': 'Organization', name: 'Feinwerk Software' },
+    provider: { '@type': 'Organization', name: 'Bullah Labs' },
     areaServed: ['DE', 'PK', 'EU', 'US'],
     serviceType: service.title,
   };
@@ -84,7 +84,7 @@ export default async function ServicePage({ params }: PageProps) {
         ]}
       />
 
-      <header className='fw-container pt-32 sm:pt-40 lg:pt-48'>
+      <header className='bl-container pt-32 sm:pt-40 lg:pt-48'>
         <Reveal>
           <Link
             href={paths.services}
@@ -101,7 +101,7 @@ export default async function ServicePage({ params }: PageProps) {
               <span className='flex h-12 w-12 items-center justify-center rounded-none bg-brand text-brand-foreground'>
                 <Icon className='h-5 w-5' />
               </span>
-              <p className='fw-kicker'>
+              <p className='bl-kicker'>
                 {service.kind === 'engagement'
                   ? dict.servicePage.kindEngagement
                   : dict.servicePage.kindCapability}
@@ -111,7 +111,7 @@ export default async function ServicePage({ params }: PageProps) {
               as='h1'
               text={service.title}
               delay={0.1}
-              className='fw-display mt-6 text-display-lg text-foreground'
+              className='bl-display mt-6 text-display-lg text-foreground'
             />
             <Reveal delay={0.35}>
               <p className='mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl'>
@@ -127,8 +127,8 @@ export default async function ServicePage({ params }: PageProps) {
             </Reveal>
           </div>
 
-          <Reveal delay={0.2} className='fw-card self-start p-7 sm:p-8'>
-            <p className='fw-kicker'>{dict.servicePage.engagement}</p>
+          <Reveal delay={0.2} className='bl-card self-start p-7 sm:p-8'>
+            <p className='bl-kicker'>{dict.servicePage.engagement}</p>
             <dl className='mt-6 divide-y divide-line text-sm'>
               <div className='flex justify-between gap-6 py-4'>
                 <dt className='text-muted-foreground'>
@@ -184,10 +184,10 @@ export default async function ServicePage({ params }: PageProps) {
         </div>
       </header>
 
-      <section className='fw-container py-16 lg:py-24'>
+      <section className='bl-container py-16 lg:py-24'>
         <div className='grid gap-4 lg:grid-cols-2'>
-          <Reveal className='fw-card p-7 sm:p-9'>
-            <p className='fw-kicker'>{dict.servicePage.included}</p>
+          <Reveal className='bl-card p-7 sm:p-9'>
+            <p className='bl-kicker'>{dict.servicePage.included}</p>
             <ul className='mt-6 space-y-3'>
               {service.deliverables.map((item) => (
                 <li
@@ -202,8 +202,8 @@ export default async function ServicePage({ params }: PageProps) {
               ))}
             </ul>
           </Reveal>
-          <Reveal delay={0.1} className='fw-card p-7 sm:p-9'>
-            <p className='fw-kicker'>{dict.servicePage.useCases}</p>
+          <Reveal delay={0.1} className='bl-card p-7 sm:p-9'>
+            <p className='bl-kicker'>{dict.servicePage.useCases}</p>
             <ul className='mt-6 divide-y divide-line'>
               {service.useCases.map((item) => (
                 <li key={item} className='py-4 text-[15px] text-foreground/85'>
@@ -216,17 +216,17 @@ export default async function ServicePage({ params }: PageProps) {
       </section>
 
       {proof.length > 0 && (
-        <section className='fw-container'>
+        <section className='bl-container'>
           <Reveal className='flex flex-wrap items-end justify-between gap-4'>
             <div>
-              <p className='fw-kicker'>{dict.servicePage.proof}</p>
-              <h2 className='fw-display mt-5 text-display-sm text-foreground'>
+              <p className='bl-kicker'>{dict.servicePage.proof}</p>
+              <h2 className='bl-display mt-5 text-display-sm text-foreground'>
                 {dict.servicePage.proofTitle}
               </h2>
             </div>
             <Link
               href={paths.work}
-              className='fw-link inline-flex items-center gap-1.5 text-sm font-medium text-foreground'
+              className='bl-link inline-flex items-center gap-1.5 text-sm font-medium text-foreground'
             >
               {dict.servicePage.allCaseStudies} <ArrowUpRight className='h-4 w-4' />
             </Link>
@@ -248,9 +248,9 @@ export default async function ServicePage({ params }: PageProps) {
         accentWords={[...dict.servicePage.faqAccent]}
       />
 
-      <section className='fw-container pb-6'>
+      <section className='bl-container pb-6'>
         <Reveal>
-          <p className='fw-kicker'>{dict.servicePage.others}</p>
+          <p className='bl-kicker'>{dict.servicePage.others}</p>
         </Reveal>
         <Stagger className='mt-6 grid gap-px overflow-hidden rounded-none border border-line bg-line sm:grid-cols-2 lg:grid-cols-5'>
           {others.map((item) => (

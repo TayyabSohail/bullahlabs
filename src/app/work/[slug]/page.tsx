@@ -102,7 +102,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
       />
 
       {/* Hero */}
-      <header className='fw-container pt-32 sm:pt-40 lg:pt-48'>
+      <header className='bl-container pt-32 sm:pt-40 lg:pt-48'>
         <Reveal>
           <Link
             href={paths.work}
@@ -116,7 +116,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         <div className='mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end'>
           <div>
             <Reveal>
-              <p className='fw-kicker'>
+              <p className='bl-kicker'>
                 {project.client} &middot; {project.industry}
               </p>
             </Reveal>
@@ -124,7 +124,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
               as='h1'
               text={project.title}
               delay={0.1}
-              className='fw-display mt-6 text-display-lg text-foreground'
+              className='bl-display mt-6 text-display-lg text-foreground'
             />
             <Reveal delay={0.35}>
               <p className='mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl'>
@@ -171,7 +171,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
       </header>
 
       {/* Lede */}
-      <section className='fw-container py-16 lg:py-24'>
+      <section className='bl-container py-16 lg:py-24'>
         <ScrollHighlight
           text={project.description}
           className='max-w-4xl text-xl font-medium leading-snug tracking-tight text-foreground sm:text-2xl md:text-3xl md:leading-snug'
@@ -179,16 +179,16 @@ export default async function CaseStudyPage({ params }: PageProps) {
       </section>
 
       {/* Problem / approach */}
-      <section className='fw-container'>
+      <section className='bl-container'>
         <Stagger className='grid gap-4 md:grid-cols-2'>
-          <StaggerItem className='fw-card p-7 sm:p-9'>
-            <p className='fw-kicker'>{t.problem}</p>
+          <StaggerItem className='bl-card p-7 sm:p-9'>
+            <p className='bl-kicker'>{t.problem}</p>
             <p className='mt-5 text-base leading-relaxed text-foreground/85 sm:text-lg'>
               {project.problem}
             </p>
           </StaggerItem>
-          <StaggerItem className='fw-card p-7 sm:p-9'>
-            <p className='fw-kicker'>{t.approach}</p>
+          <StaggerItem className='bl-card p-7 sm:p-9'>
+            <p className='bl-kicker'>{t.approach}</p>
             <p className='mt-5 text-base leading-relaxed text-foreground/85 sm:text-lg'>
               {project.approach}
             </p>
@@ -210,11 +210,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
       />
 
       {/* Architecture + features */}
-      <section className='fw-container pb-16 lg:pb-24'>
+      <section className='bl-container pb-16 lg:pb-24'>
         <div className='grid gap-10 lg:grid-cols-[0.8fr_1.2fr]'>
           <Reveal className='lg:sticky lg:top-32 lg:self-start'>
-            <p className='fw-kicker'>{t.architecture}</p>
-            <h2 className='fw-display mt-5 text-display-sm text-foreground'>
+            <p className='bl-kicker'>{t.architecture}</p>
+            <h2 className='bl-display mt-5 text-display-sm text-foreground'>
               Architecture
             </h2>
             <p className='mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg'>
@@ -245,15 +245,15 @@ export default async function CaseStudyPage({ params }: PageProps) {
       </section>
 
       {/* Challenges */}
-      <section className='fw-container'>
+      <section className='bl-container'>
         <Reveal>
-          <p className='fw-kicker'>{t.challengesKicker}</p>
+          <p className='bl-kicker'>{t.challengesKicker}</p>
         </Reveal>
         <Stagger className='mt-10 grid gap-4'>
           {project.challenges.map((item) => (
             <StaggerItem
               key={item.challenge}
-              className='fw-card grid gap-6 p-7 sm:p-9 md:grid-cols-2'
+              className='bl-card grid gap-6 p-7 sm:p-9 md:grid-cols-2'
             >
               <div>
                 <p className='font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground'>
@@ -277,15 +277,15 @@ export default async function CaseStudyPage({ params }: PageProps) {
       </section>
 
       {/* Results */}
-      <section className='fw-container py-16 lg:py-24'>
-        <Reveal className='fw-card fw-card-ink'>
+      <section className='bl-container py-16 lg:py-24'>
+        <Reveal className='bl-card bl-card-ink'>
           <div className='grid lg:grid-cols-[0.85fr_1.15fr]'>
             {/* What changed, in prose, plus the client's word on it */}
             <div className='flex flex-col border-b border-white/10 p-7 sm:p-10 lg:border-b-0 lg:border-r lg:p-12'>
-              <p className='fw-kicker text-white/60 [&::after]:text-brand-2 [&::before]:text-brand-2'>
+              <p className='bl-kicker text-white/60 [&::after]:text-brand-2 [&::before]:text-brand-2'>
                 {t.resultsKicker}
               </p>
-              <h2 className='fw-display mt-5 text-display-sm text-white'>
+              <h2 className='bl-display mt-5 text-display-sm text-white'>
                 {t.resultsTitle}
               </h2>
               <p className='mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg'>
@@ -318,7 +318,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <p className='fw-display text-4xl tabular-nums text-brand-2 sm:text-5xl'>
+                    <p className='bl-display text-4xl tabular-nums text-brand-2 sm:text-5xl'>
                       {result.value}
                     </p>
                     <p className='mt-2 text-sm font-medium leading-snug text-white'>
@@ -336,10 +336,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
       </section>
 
       {/* Stack + services */}
-      <section className='fw-container'>
+      <section className='bl-container'>
         <div className='grid gap-4 lg:grid-cols-[1.2fr_0.8fr]'>
-          <Reveal className='fw-card p-7 sm:p-9'>
-            <p className='fw-kicker'>{t.stack}</p>
+          <Reveal className='bl-card p-7 sm:p-9'>
+            <p className='bl-kicker'>{t.stack}</p>
             <ul className='mt-6 grid gap-6 sm:grid-cols-2'>
               {project.techStack.map((group) => (
                 <li key={group.category}>
@@ -364,8 +364,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
               ))}
             </ul>
           </Reveal>
-          <Reveal delay={0.1} className='fw-card p-7 sm:p-9'>
-            <p className='fw-kicker'>{t.servicesInvolved}</p>
+          <Reveal delay={0.1} className='bl-card p-7 sm:p-9'>
+            <p className='bl-kicker'>{t.servicesInvolved}</p>
             <ul className='mt-6 divide-y divide-line'>
               {relatedServices.map((service) => (
                 <li key={service.slug}>
@@ -389,7 +389,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
       </section>
 
       {/* Prev / next */}
-      <nav aria-label={t.more} className='fw-container py-16 lg:py-24'>
+      <nav aria-label={t.more} className='bl-container py-16 lg:py-24'>
         <div className='grid gap-4 sm:grid-cols-2'>
           {previous && (
             <AdjacentLink
@@ -454,7 +454,7 @@ function AdjacentLink({
     <Link
       href={paths.caseStudy(project.slug)}
       className={cn(
-        'fw-card fw-card-link group flex items-center gap-5 p-5',
+        'bl-card bl-card-link group flex items-center gap-5 p-5',
         isNext && 'flex-row-reverse text-right sm:col-start-2',
       )}
     >

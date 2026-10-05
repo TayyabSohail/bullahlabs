@@ -23,8 +23,8 @@ export function Industries({ dict }: IndustriesProps) {
   const t = dict.industries;
 
   return (
-    <section className='fw-section fw-rule fw-band-stone' data-rail={t.kicker}>
-      <div className='fw-container'>
+    <section className='bl-section bl-rule bl-band-stone' data-rail={t.kicker}>
+      <div className='bl-container'>
         <SectionHeading
           kicker={t.kicker}
           title={t.title}
@@ -47,7 +47,7 @@ export function Industries({ dict }: IndustriesProps) {
                 )}
               >
                 <div className='min-w-0'>
-                  <h3 className='fw-display text-3xl text-ink sm:text-4xl'>
+                  <h3 className='bl-display text-3xl text-ink sm:text-4xl'>
                     {item.name}
                   </h3>
                   <p className='mt-2 max-w-md text-base leading-relaxed text-muted-foreground'>
@@ -59,7 +59,7 @@ export function Industries({ dict }: IndustriesProps) {
                       <Link
                         key={project.slug}
                         href={paths.caseStudy(project.slug)}
-                        className='fw-link inline-flex items-center gap-1 text-ink transition-colors hover:text-brand-text'
+                        className='bl-link inline-flex items-center gap-1 text-ink transition-colors hover:text-brand-text'
                       >
                         {project.title}
                         <ArrowUpRight className='h-3 w-3' />

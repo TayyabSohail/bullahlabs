@@ -11,16 +11,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'fw-btn fw-btn-ink',
-        brand: 'fw-btn fw-btn-primary',
+        default: 'bl-btn bl-btn-ink',
+        brand: 'bl-btn bl-btn-primary',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline: 'fw-btn fw-btn-secondary',
+        outline: 'bl-btn bl-btn-secondary',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        glass: 'fw-glass hover:border-brand',
+        glass: 'bl-glass hover:border-brand',
       },
       size: {
         default: 'h-10 px-5',

@@ -44,8 +44,8 @@ export function CookieConsent({ dict }: { dict: Dictionary }) {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className='fixed inset-x-4 bottom-4 z-[60] sm:bottom-6 sm:left-auto sm:right-6 sm:w-full sm:max-w-md'
         >
-          <div className='fw-card p-5 shadow-mockup backdrop-blur-xl'>
-            <p className='fw-kicker'>{t.kicker}</p>
+          <div className='bl-card p-5 shadow-mockup backdrop-blur-xl'>
+            <p className='bl-kicker'>{t.kicker}</p>
             <p className='mt-3 text-sm leading-relaxed text-foreground/85'>
               {t.bodyBefore}{' '}
               <Link

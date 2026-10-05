@@ -27,12 +27,12 @@ export function PageHero({
   return (
     <section
       className={cn(
-        'fw-container pb-10 pt-28 sm:pb-12 sm:pt-44 lg:pb-16 lg:pt-52',
+        'bl-container pb-10 pt-28 sm:pb-12 sm:pt-44 lg:pb-16 lg:pt-52',
         className,
       )}
     >
       <Reveal>
-        <p className='fw-kicker'>{kicker}</p>
+        <p className='bl-kicker'>{kicker}</p>
       </Reveal>
       <TextReveal
         as='h1'
@@ -40,7 +40,7 @@ export function PageHero({
         accentWords={accentWords}
         delay={0.1}
         className={cn(
-          'fw-display mt-6 text-foreground',
+          'bl-display mt-6 text-foreground',
           size === 'xl'
             ? 'max-w-[14ch] text-display-xl'
             : 'max-w-[18ch] text-display-lg',

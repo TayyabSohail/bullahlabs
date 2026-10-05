@@ -109,7 +109,7 @@ export function SectionRail({ next, top }: SectionRailProps) {
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className='fixed inset-x-0 bottom-0 z-[45] border-t border-line bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl lg:hidden'
         >
-          <div className='fw-container flex h-12 items-center justify-between gap-3'>
+          <div className='bl-container flex h-12 items-center justify-between gap-3'>
             <div
               className='flex min-w-0 flex-1 items-baseline gap-2.5'
               aria-live='polite'

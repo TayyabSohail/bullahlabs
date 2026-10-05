@@ -32,7 +32,7 @@ export function ProjectMockup({
 
   return (
     <div
-      className={cn('fw-plate aspect-[16/11] w-full', className)}
+      className={cn('bl-plate aspect-[16/11] w-full', className)}
       style={{ '--plate-accent': `${project.accent}66` } as React.CSSProperties}
     >
       {isApp ? (

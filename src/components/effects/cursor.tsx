@@ -30,7 +30,7 @@ export function Cursor() {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const canvas = document.createElement('canvas');
-    canvas.className = 'fw-cursor';
+    canvas.className = 'bl-cursor';
     canvas.setAttribute('aria-hidden', 'true');
     document.body.appendChild(canvas);
     const ctx = canvas.getContext('2d');
@@ -39,7 +39,7 @@ export function Cursor() {
       return;
     }
     const root = document.documentElement;
-    root.classList.add('fw-no-cursor');
+    root.classList.add('bl-no-cursor');
 
     const styles = getComputedStyle(document.documentElement);
     const brand = styles.getPropertyValue('--brand').trim() || '160 84% 39%';
@@ -218,7 +218,7 @@ export function Cursor() {
       document.documentElement.removeEventListener('mouseleave', onLeave);
       document.removeEventListener('visibilitychange', onVisibility);
       window.removeEventListener('resize', resize);
-      root.classList.remove('fw-no-cursor');
+      root.classList.remove('bl-no-cursor');
       canvas.remove();
     };
   }, []);

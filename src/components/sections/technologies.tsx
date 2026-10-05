@@ -141,10 +141,10 @@ export function Technologies({ dict }: TechnologiesProps) {
   const t = dict.technologies;
 
   return (
-    <section className='fw-rule fw-band-stone' data-rail={t.kicker}>
-      <div className='fw-container pt-12 text-center sm:pt-14'>
+    <section className='bl-rule bl-band-stone' data-rail={t.kicker}>
+      <div className='bl-container pt-12 text-center sm:pt-14'>
         <Reveal>
-          <p className='fw-kicker'>{t.kicker}</p>
+          <p className='bl-kicker'>{t.kicker}</p>
         </Reveal>
       </div>
 
@@ -163,32 +163,32 @@ export function Technologies({ dict }: TechnologiesProps) {
                     color: color === 'currentColor' ? undefined : `${color}99`,
                   }}
                 />
-                <span className='fw-display text-2xl'>{name}</span>
+                <span className='bl-display text-2xl'>{name}</span>
               </span>
             );
           })}
         </Marquee>
       </div>
 
-      <div className='fw-container py-14 sm:py-28'>
+      <div className='bl-container py-14 sm:py-28'>
         <ScrollHighlight
           text={`${t.statement} ${t.statementMuted}`}
           accentWords={Array.from(
             { length: t.statement.split(' ').length },
             (_, index) => index,
           )}
-          className='fw-display max-w-4xl text-display-md text-ink [&_.fw-accent]:text-ink'
+          className='bl-display max-w-4xl text-display-md text-ink [&_.bl-accent]:text-ink'
         />
       </div>
 
-      <div className='fw-container pb-14 sm:pb-24'>
+      <div className='bl-container pb-14 sm:pb-24'>
         <Reveal>
-          <p className='fw-kicker'>{t.stackLabel}</p>
+          <p className='bl-kicker'>{t.stackLabel}</p>
         </Reveal>
         <Stagger className='mt-6 grid border-y sm:grid-cols-2 lg:grid-cols-3'>
           {t.layers.map((layer, index) => (
             <StaggerItem key={layer.label} className={cellClasses(index)}>
-              <h3 className='fw-display text-2xl text-ink'>{layer.label}</h3>
+              <h3 className='bl-display text-2xl text-ink'>{layer.label}</h3>
               <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
                 {layer.note}
               </p>

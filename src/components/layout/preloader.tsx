@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-const LETTERS = 'FEINWERK'.split('');
+const LETTERS = 'BULLAH LABS'.split('');
 const HINGE_LETTER_INDEX = LETTERS.length - 1;
 const DURATION_MS = 2300;
 const REDUCED_DURATION_MS = 600;
@@ -75,7 +75,7 @@ export function Preloader() {
     <AnimatePresence
       onExitComplete={() => {
         document.documentElement.dataset.preloaderComplete = 'true';
-        window.dispatchEvent(new Event('feinwerk:preloader-complete'));
+        window.dispatchEvent(new Event('bullahlabs:preloader-complete'));
       }}
     >
       {visible && (
@@ -128,7 +128,7 @@ export function Preloader() {
                       : 'inline-block text-white'
                   }
                 >
-                  {letter}
+                  {letter === ' ' ? ' ' : letter}
                 </motion.span>
               );
             })}

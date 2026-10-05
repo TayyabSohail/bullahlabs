@@ -21,22 +21,22 @@ export function ContactSection({ dict }: ContactSectionProps) {
     <section
       id='contact'
       data-rail={t.kicker}
-      className='fw-section fw-rule fw-band-stone'
+      className='bl-section bl-rule bl-band-stone'
     >
-      <div className='fw-container max-w-7xl'>
+      <div className='bl-container max-w-7xl'>
         <ContactChannels
           dict={dict}
           calLink={siteConfig.calLink}
           header={
             <div className='max-w-2xl'>
               <Reveal>
-                <p className='fw-kicker'>{t.kicker}</p>
+                <p className='bl-kicker'>{t.kicker}</p>
               </Reveal>
               <TextReveal
                 as='h2'
                 text={t.title}
                 accentWords={[...t.accent]}
-                className='fw-display mt-4 text-display-md text-foreground'
+                className='bl-display mt-4 text-display-md text-foreground'
               />
               <Reveal delay={0.2}>
                 <p className='mt-5 max-w-xl text-base leading-relaxed text-muted-foreground'>

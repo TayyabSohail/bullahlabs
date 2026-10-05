@@ -58,10 +58,10 @@ export function Pricing({
   return (
     <section
       id='pricing'
-      className={cn('fw-section fw-rule fw-band-white', className)}
+      className={cn('bl-section bl-rule bl-band-white', className)}
       data-rail={t.kicker}
     >
-      <div className='fw-container'>
+      <div className='bl-container'>
         {withHeading && (
           <SectionHeading
             kicker={t.kicker}
@@ -70,7 +70,7 @@ export function Pricing({
               withLink && !compact ? (
                 <Link
                   href={paths.pricing}
-                  className='fw-btn fw-btn-secondary inline-flex h-12 items-center gap-3 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
+                  className='bl-btn bl-btn-secondary inline-flex h-12 items-center gap-3 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
                 >
                   {t.all} <ArrowUpRight className='h-4 w-4' />
                 </Link>
@@ -83,20 +83,20 @@ export function Pricing({
           <Reveal delay={0.1} className={cn('mt-10', !withHeading && 'mt-0')}>
             <Link
               href={paths.pricing}
-              className='fw-card fw-card-ink fw-card-link group flex flex-col gap-6 rounded-xl p-5 shadow-[0_24px_60px_-30px_hsl(var(--ink)/0.6)] [clip-path:none] sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:p-8'
+              className='bl-card bl-card-ink bl-card-link group flex flex-col gap-6 rounded-xl p-5 shadow-[0_24px_60px_-30px_hsl(var(--ink)/0.6)] [clip-path:none] sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:p-8'
             >
               <div className='relative z-[2] max-w-2xl'>
                 <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-2'>
                   {t.kicker}
                 </p>
-                <h3 className='fw-display mt-3 text-2xl text-white sm:text-3xl'>
+                <h3 className='bl-display mt-3 text-2xl text-white sm:text-3xl'>
                   {t.promoTitle}
                 </h3>
                 <p className='mt-3 text-base leading-relaxed text-white/70'>
                   {t.note}
                 </p>
               </div>
-              <span className='fw-btn fw-btn-primary relative z-[2] inline-flex h-14 w-full shrink-0 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto'>
+              <span className='bl-btn bl-btn-primary relative z-[2] inline-flex h-14 w-full shrink-0 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto'>
                 {t.all} <ArrowUpRight className='h-4 w-4' />
               </span>
             </Link>
@@ -119,7 +119,7 @@ export function Pricing({
 
         {!compact && (
           <Reveal delay={0.15} className='mt-12 border-t pt-8'>
-            <p className='fw-kicker text-[11px] sm:text-xs'>
+            <p className='bl-kicker text-[11px] sm:text-xs'>
               {t.includes.title}
             </p>
             <dl className='mt-6 grid gap-px border bg-line sm:grid-cols-2 xl:grid-cols-4'>
@@ -172,7 +172,7 @@ function PlanCard({
   return (
     <div
       className={cn(
-        'fw-card fw-spot flex h-full flex-col rounded-xl border-ink/15 bg-background p-5 shadow-[0_12px_30px_-24px_hsl(var(--ink)/0.6)] [clip-path:none] max-sm:border-x-0 max-sm:py-7 sm:p-9 xl:p-7',
+        'bl-card bl-spot flex h-full flex-col rounded-xl border-ink/15 bg-background p-5 shadow-[0_12px_30px_-24px_hsl(var(--ink)/0.6)] [clip-path:none] max-sm:border-x-0 max-sm:py-7 sm:p-9 xl:p-7',
         featured && 'border-brand/70 bg-brand-soft shadow-none',
       )}
     >
@@ -183,13 +183,13 @@ function PlanCard({
             {t.badge}
           </p>
         )}
-        <h3 className='fw-display text-2xl text-ink sm:text-3xl'>
+        <h3 className='bl-display text-2xl text-ink sm:text-3xl'>
           {plan.name}
         </h3>
         <p className='mt-2 text-base text-muted-foreground'>{plan.tagline}</p>
 
         <p className='mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1 sm:mt-8'>
-          <span className='fw-display text-4xl text-ink sm:text-6xl xl:text-5xl'>
+          <span className='bl-display text-4xl text-ink sm:text-6xl xl:text-5xl'>
             {plan.price}
           </span>
           <span className='font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground'>
@@ -213,7 +213,7 @@ function PlanCard({
         <div className='mt-auto pt-6 sm:pt-9'>
           <Link
             href={PLAN_LINKS[plan.id]}
-            className='fw-btn fw-btn-primary inline-flex h-12 w-full items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
+            className='bl-btn bl-btn-primary inline-flex h-12 w-full items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
           >
             {custom ? t.customCta : t.cta}
             <ArrowUpRight className='h-4 w-4' />

@@ -44,7 +44,7 @@ export async function sendInternalMail({
 
   if (error) {
     const hint = usingSharedSender
-      ? ` (sending from onboarding@resend.dev, which only delivers to the address that owns the Resend account - verify feinwerks.software in Resend and set CONTACT_FROM_EMAIL to an address on it, or set CONTACT_TO_EMAIL to the account owner's address)`
+      ? ` (sending from onboarding@resend.dev, which only delivers to the address that owns the Resend account - verify bullahlabs.com in Resend and set CONTACT_FROM_EMAIL to an address on it, or set CONTACT_TO_EMAIL to the account owner's address)`
       : '';
     throw new Error(`${error.message}${hint}`);
   }

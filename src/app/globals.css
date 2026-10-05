@@ -85,49 +85,49 @@
 /* Typography and surface helpers                                             */
 /* ------------------------------------------------------------------------- */
 @layer components {
-  .fw-display {
+  .bl-display {
     @apply font-display font-bold tracking-[-0.02em];
     line-height: 1.02;
   }
 
   /* Highlighted word inside a headline. */
-  .fw-accent,
-  .fw-gradient-text {
+  .bl-accent,
+  .bl-gradient-text {
     @apply text-brand-text;
   }
 
-  .fw-gradient-bg {
+  .bl-gradient-bg {
     @apply bg-brand;
   }
 
   /* Bracketed mono kicker: [ SECTION ] */
-  .fw-kicker {
+  .bl-kicker {
     @apply inline-flex items-center gap-2 font-mono text-[13px] font-medium uppercase tracking-[0.2em] text-muted-foreground sm:text-sm sm:tracking-[0.22em];
   }
-  .fw-kicker::before {
+  .bl-kicker::before {
     content: '[';
     @apply text-brand-text;
   }
-  .fw-kicker::after {
+  .bl-kicker::after {
     content: ']';
     @apply text-brand-text;
   }
 
-  .fw-container {
+  .bl-container {
     @apply mx-auto w-full max-w-[88rem] px-4 sm:px-8 lg:px-10;
   }
 
-  .fw-section {
+  .bl-section {
     @apply py-12 sm:py-20 lg:py-28;
   }
 
   /* Full-width hairline between sections. */
-  .fw-rule {
+  .bl-rule {
     border-top: 1px solid hsl(var(--line) / var(--line-alpha));
   }
 
   /* Panel: clipped corners, signal line along the top, corner marker. */
-  .fw-card {
+  .bl-card {
     @apply relative overflow-hidden bg-surface;
     border: 1px solid hsl(var(--line) / var(--line-alpha));
     clip-path: polygon(
@@ -139,7 +139,7 @@
       0 calc(100% - 14px)
     );
   }
-  .fw-card::before {
+  .bl-card::before {
     content: '';
     position: absolute;
     z-index: 3;
@@ -150,7 +150,7 @@
     background: linear-gradient(90deg, hsl(var(--brand)), transparent);
     pointer-events: none;
   }
-  .fw-card::after {
+  .bl-card::after {
     content: '';
     position: absolute;
     z-index: 2;
@@ -164,24 +164,24 @@
   }
 
   /* Tinted and ink variants. */
-  .fw-card-tint {
+  .bl-card-tint {
     background: linear-gradient(
       160deg,
       hsl(var(--brand-soft)),
       hsl(var(--surface)) 60%
     );
   }
-  .fw-card-ink {
+  .bl-card-ink {
     @apply text-white;
     background: hsl(var(--ink));
     border-color: hsl(0 0% 100% / 0.14);
   }
-  .fw-card-ink::after {
+  .bl-card-ink::after {
     border-color: hsl(var(--brand) / 0.8);
   }
 
   /* Only for cards that navigate somewhere: lift, emerald edge, signal pass. */
-  .fw-card-link {
+  .bl-card-link {
     cursor: pointer;
     transition:
       transform 280ms ease,
@@ -189,21 +189,21 @@
       box-shadow 280ms ease,
       background-color 280ms ease;
   }
-  .fw-card-link:hover {
+  .bl-card-link:hover {
     transform: translateY(-4px);
     border-color: hsl(var(--brand) / 0.7);
     box-shadow: 0 30px 60px -30px hsl(var(--ink) / 0.35);
   }
-  .fw-card-link:hover::before {
-    animation: fw-signal-pass 1.4s ease-out;
+  .bl-card-link:hover::before {
+    animation: bl-signal-pass 1.4s ease-out;
   }
 
-  .fw-glass {
+  .bl-glass {
     @apply border bg-white/80 shadow-mockup backdrop-blur-xl;
   }
 
   /* Text link with the sliding underline. */
-  .fw-link {
+  .bl-link {
     @apply relative inline-block;
     background-image: linear-gradient(currentColor, currentColor);
     background-repeat: no-repeat;
@@ -211,22 +211,22 @@
     background-position: 0 100%;
     transition: background-size 400ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .fw-link:hover {
+  .bl-link:hover {
     background-size: 100% 1px;
   }
 
   /* Mono action link: SEE THE PROJECT ↗ */
-  .fw-action {
+  .bl-action {
     @apply inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-text transition-colors;
   }
-  .fw-action:hover {
+  .bl-action:hover {
     @apply text-foreground;
   }
 
   /* Site-wide action hierarchy, ported from the portfolio. The secondary
      fills upward with ink on hover; the primary is solid emerald that drains
      downward, then refills when the pointer leaves. */
-  .fw-btn {
+  .bl-btn {
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 100% 0%;
@@ -236,46 +236,46 @@
       border-color 260ms ease,
       transform 260ms ease;
   }
-  .fw-btn:hover {
+  .bl-btn:hover {
     background-size: 100% 100%;
   }
-  .fw-btn-secondary {
+  .bl-btn-secondary {
     border: 1px solid hsl(var(--ink) / 0.35);
     color: hsl(var(--ink));
     background-image: linear-gradient(hsl(var(--ink)), hsl(var(--ink)));
     background-position: bottom;
   }
-  .fw-btn-secondary:hover {
+  .bl-btn-secondary:hover {
     color: hsl(var(--primary-foreground));
     border-color: hsl(var(--ink));
   }
-  .fw-btn-primary {
+  .bl-btn-primary {
     border: 1px solid hsl(var(--brand));
     color: hsl(var(--brand-foreground));
     background-image: linear-gradient(hsl(var(--brand)), hsl(var(--brand)));
     background-position: bottom;
     background-size: 100% 100%;
   }
-  .fw-btn-primary:hover {
+  .bl-btn-primary:hover {
     color: hsl(var(--brand-text));
     border-color: hsl(var(--brand));
     background-size: 100% 0%;
   }
-  .fw-btn-ink {
+  .bl-btn-ink {
     border: 1px solid hsl(var(--ink));
     color: hsl(var(--primary-foreground));
     background-image: linear-gradient(hsl(var(--ink)), hsl(var(--ink)));
     background-position: bottom;
     background-size: 100% 100%;
   }
-  .fw-btn-ink:hover {
+  .bl-btn-ink:hover {
     color: hsl(var(--ink));
     background-size: 100% 0%;
   }
 
   /* Phone mockup: every measure is a percentage of the frame so the same
      device reads correctly at 60px in a list and 400px in a hero. */
-  .fw-phone {
+  .bl-phone {
     border-radius: 14% / 6.5%;
     padding: 2.6%;
     background: #101015;
@@ -284,10 +284,10 @@
       inset 0 0 0 1px hsl(0 0% 100% / 0.08),
       0 40px 70px -30px rgba(20, 19, 26, 0.6);
   }
-  .fw-phone-screen {
+  .bl-phone-screen {
     border-radius: 11.5% / 5.3%;
   }
-  .fw-phone-island {
+  .bl-phone-island {
     position: absolute;
     left: 50%;
     top: 4%;
@@ -297,38 +297,38 @@
     border-radius: 999px;
     background: #101015;
   }
-  .fw-phone-button {
+  .bl-phone-button {
     position: absolute;
     width: 1.2%;
     border-radius: 2px;
     background: #1c1c22;
   }
-  .fw-phone-button-left {
+  .bl-phone-button-left {
     left: -1.2%;
     top: 22%;
     height: 8%;
     box-shadow: 0 12% 0 0 #1c1c22;
   }
-  .fw-phone-button-right {
+  .bl-phone-button-right {
     right: -1.2%;
     top: 26%;
     height: 12%;
   }
 
-  .fw-marquee {
+  .bl-marquee {
     display: flex;
     width: max-content;
-    animation: fw-marquee var(--marquee-duration, 40s) linear infinite;
+    animation: bl-marquee var(--marquee-duration, 40s) linear infinite;
   }
-  .fw-marquee-reverse {
+  .bl-marquee-reverse {
     animation-direction: reverse;
   }
-  .fw-marquee-paused:hover .fw-marquee {
+  .bl-marquee-paused:hover .bl-marquee {
     animation-play-state: paused;
   }
 
   /* Faint engineering grid used inside select panels. */
-  .fw-grid-surface {
+  .bl-grid-surface {
     background-image:
       linear-gradient(to right, hsl(var(--brand) / 0.07) 1px, transparent 1px),
       linear-gradient(to bottom, hsl(var(--brand) / 0.07) 1px, transparent 1px);
@@ -336,34 +336,34 @@
   }
 
   /* Circuit backdrop strokes (light). */
-  .fw-trace {
+  .bl-trace {
     stroke: hsl(var(--ink) / 0.06);
     stroke-width: 0.8;
     vector-effect: non-scaling-stroke;
   }
-  .fw-current {
+  .bl-current {
     stroke: hsl(var(--brand) / 0.75);
     stroke-width: 1;
     stroke-dasharray: 2 98;
     vector-effect: non-scaling-stroke;
-    animation: fw-current-flow 14s linear infinite;
+    animation: bl-current-flow 14s linear infinite;
   }
-  .fw-junction {
+  .bl-junction {
     fill: hsl(var(--brand) / 0.55);
   }
 
-  .fw-scroll-line::after {
+  .bl-scroll-line::after {
     content: '';
     display: block;
     width: 1px;
     height: 2.5rem;
     margin: 0.75rem auto 0;
     background: linear-gradient(to bottom, hsl(var(--ink) / 0.5), transparent);
-    animation: fw-scroll-hint 1.8s ease-in-out infinite;
+    animation: bl-scroll-hint 1.8s ease-in-out infinite;
   }
 }
 
-@keyframes fw-marquee {
+@keyframes bl-marquee {
   from {
     transform: translate3d(0, 0, 0);
   }
@@ -372,7 +372,7 @@
   }
 }
 
-@keyframes fw-signal-pass {
+@keyframes bl-signal-pass {
   0% {
     transform: translateX(-120%);
     opacity: 0;
@@ -387,13 +387,13 @@
   }
 }
 
-@keyframes fw-current-flow {
+@keyframes bl-current-flow {
   to {
     stroke-dashoffset: -100;
   }
 }
 
-@keyframes fw-pulse-ring {
+@keyframes bl-pulse-ring {
   0% {
     transform: scale(0.9);
     opacity: 0.8;
@@ -404,7 +404,7 @@
   }
 }
 
-@keyframes fw-float {
+@keyframes bl-float {
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -414,13 +414,13 @@
   }
 }
 
-@keyframes fw-spin-slow {
+@keyframes bl-spin-slow {
   to {
     transform: rotate(360deg);
   }
 }
 
-@keyframes fw-scroll-hint {
+@keyframes bl-scroll-hint {
   0% {
     transform: scaleY(0);
     transform-origin: top;
@@ -438,7 +438,7 @@
   }
 }
 
-@keyframes fw-project-progress {
+@keyframes bl-project-progress {
   from {
     width: 0;
   }
@@ -448,12 +448,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fw-marquee,
-  .fw-current,
-  .fw-scroll-line::after {
+  .bl-marquee,
+  .bl-current,
+  .bl-scroll-line::after {
     animation: none;
   }
-  .fw-card-link:hover::before {
+  .bl-card-link:hover::before {
     animation: none;
   }
   html {
@@ -464,7 +464,7 @@
 /* ------------------------------------------------------------------------- */
 /* Depth and interaction layer                                                */
 /* ------------------------------------------------------------------------- */
-@property --fw-angle {
+@property --bl-angle {
   syntax: '<angle>';
   inherits: false;
   initial-value: 0deg;
@@ -472,10 +472,10 @@
 
 @layer components {
   /* Alternating section bands so the page is not one flat sheet. */
-  .fw-band-white {
+  .bl-band-white {
     background: hsl(var(--surface));
   }
-  .fw-band-stone {
+  .bl-band-stone {
     background:
       radial-gradient(
         60% 40% at 50% 0%,
@@ -484,7 +484,7 @@
       ),
       hsl(var(--surface-2) / 0.55);
   }
-  .fw-band-ink {
+  .bl-band-ink {
     background:
       radial-gradient(
         50% 60% at 80% 0%,
@@ -497,10 +497,10 @@
 
   /* Pointer spotlight: a radial glow that follows the cursor inside a card.
      `SpotlightEffect` writes --mx / --my on the hovered element. */
-  .fw-spot {
+  .bl-spot {
     position: relative;
   }
-  .fw-spot::after {
+  .bl-spot::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -514,10 +514,10 @@
       transparent 60%
     );
   }
-  .fw-spot:hover::after {
+  .bl-spot:hover::after {
     opacity: 1;
   }
-  .fw-spot-ink::after {
+  .bl-spot-ink::after {
     background: radial-gradient(
       460px circle at var(--mx, 50%) var(--my, 50%),
       hsl(var(--brand) / 0.28),
@@ -526,8 +526,8 @@
   }
 
   /* Rotating conic halo behind a card, revealed on hover. Wrap a card in
-     `.fw-halo` (same clip as the card) and the border lights up and turns. */
-  .fw-halo {
+     `.bl-halo` (same clip as the card) and the border lights up and turns. */
+  .bl-halo {
     position: relative;
     padding: 1px;
     /* The ::before glow spills 40% past the card. clip-path hides it, but
@@ -542,7 +542,7 @@
       0 calc(100% - 14px)
     );
   }
-  .fw-halo::before {
+  .bl-halo::before {
     content: '';
     position: absolute;
     inset: -40%;
@@ -550,25 +550,25 @@
     opacity: 0;
     transition: opacity 500ms ease;
     background: conic-gradient(
-      from var(--fw-angle),
+      from var(--bl-angle),
       transparent 0deg,
       transparent 250deg,
       hsl(var(--brand)) 310deg,
       hsl(var(--brand-2)) 330deg,
       transparent 360deg
     );
-    animation: fw-rotate 3.2s linear infinite;
+    animation: bl-rotate 3.2s linear infinite;
   }
-  .fw-halo:hover::before {
+  .bl-halo:hover::before {
     opacity: 1;
   }
-  .fw-halo > * {
+  .bl-halo > * {
     position: relative;
     z-index: 1;
   }
 
   /* Dark plate behind a device mockup, tinted by the project colour. */
-  .fw-plate {
+  .bl-plate {
     position: relative;
     overflow: hidden;
     background:
@@ -579,7 +579,7 @@
       ),
       linear-gradient(180deg, hsl(var(--ink-2)), hsl(var(--ink)));
   }
-  .fw-plate::before {
+  .bl-plate::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -592,25 +592,25 @@
   }
 
   /* Filter tabs with an animated underline. */
-  .fw-tab {
+  .bl-tab {
     @apply relative pb-3 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors;
   }
-  .fw-tab[aria-pressed='true'] {
+  .bl-tab[aria-pressed='true'] {
     @apply text-foreground;
   }
-  .fw-tab:hover {
+  .bl-tab:hover {
     @apply text-foreground;
   }
 }
 
-@keyframes fw-rotate {
+@keyframes bl-rotate {
   to {
-    --fw-angle: 360deg;
+    --bl-angle: 360deg;
   }
 }
 
 /* Page-level cursor glow. */
-.fw-cursor-glow {
+.bl-cursor-glow {
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -626,15 +626,15 @@
 /* Pointer: effects/cursor.tsx draws a plain emerald dot and a hairline
    emerald trail behind it on this fixed canvas. While the canvas is mounted
    (fine-pointer devices only) the native cursor is hidden everywhere. */
-.fw-cursor {
+.bl-cursor {
   position: fixed;
   inset: 0;
   z-index: 120;
   pointer-events: none;
 }
 
-html.fw-no-cursor,
-html.fw-no-cursor * {
+html.bl-no-cursor,
+html.bl-no-cursor * {
   cursor: none !important;
 }
 
@@ -642,195 +642,195 @@ html.fw-no-cursor * {
    plate, wired together, with small cubes riding the wires. Strokes stay
    one device pixel at any size. Tones: paper, mint (the apps), warm (the
    model) and ink (the API hub); cubes add brand and warm. */
-.fw-map polygon,
-.fw-map line,
-.fw-map rect {
+.bl-map polygon,
+.bl-map line,
+.bl-map rect {
   vector-effect: non-scaling-stroke;
   stroke-linejoin: round;
 }
 /* Below lg the map sits under the copy, so the stage breaks out of the
-   container padding (mirroring .fw-container) to use the full screen width.
+   container padding (mirroring .bl-container) to use the full screen width.
    The SVG viewBox always encloses the whole plate, so nothing is cut off. */
 @media (max-width: 1023.98px) {
-  .fw-map-stage {
+  .bl-map-stage {
     margin-inline: -1.25rem;
   }
 }
 @media (min-width: 640px) and (max-width: 1023.98px) {
-  .fw-map-stage {
+  .bl-map-stage {
     margin-inline: -2rem;
   }
 }
-.fw-map-plate-top {
+.bl-map-plate-top {
   fill: hsl(var(--surface) / 0.55);
   stroke: hsl(var(--ink) / 0.18);
   stroke-width: 1;
 }
-.fw-map-plate-side {
+.bl-map-plate-side {
   fill: hsl(var(--ink) / 0.07);
   stroke: hsl(var(--ink) / 0.18);
   stroke-width: 1;
 }
-.fw-map-grid line {
+.bl-map-grid line {
   stroke: hsl(var(--ink) / 0.09);
   stroke-width: 1;
 }
-.fw-map-sweep {
+.bl-map-sweep {
   fill: hsl(var(--brand) / 0.1);
   stroke: none;
   pointer-events: none;
 }
-.fw-map-edge {
+.bl-map-edge {
   fill: none;
   stroke: hsl(var(--ink) / 0.4);
   stroke-width: 1.25;
 }
-.fw-map-shadow {
+.bl-map-shadow {
   fill: hsl(var(--ink) / 0.08);
   stroke: none;
 }
 
 /* Tiles */
-.fw-map-tile polygon {
+.bl-map-tile polygon {
   stroke: hsl(var(--ink) / 0.3);
   stroke-width: 1;
 }
-.fw-map-tile[data-tone='paper'] .fw-map-top {
+.bl-map-tile[data-tone='paper'] .bl-map-top {
   fill: #ffffff;
 }
-.fw-map-tile[data-tone='paper'] .fw-map-left {
+.bl-map-tile[data-tone='paper'] .bl-map-left {
   fill: #ebebe7;
 }
-.fw-map-tile[data-tone='paper'] .fw-map-right {
+.bl-map-tile[data-tone='paper'] .bl-map-right {
   fill: #d7d7d2;
 }
-.fw-map-tile[data-tone='mint'] polygon {
+.bl-map-tile[data-tone='mint'] polygon {
   stroke: hsl(var(--brand-strong) / 0.45);
 }
-.fw-map-tile[data-tone='mint'] .fw-map-top {
+.bl-map-tile[data-tone='mint'] .bl-map-top {
   fill: hsl(var(--brand-soft));
 }
-.fw-map-tile[data-tone='mint'] .fw-map-left {
+.bl-map-tile[data-tone='mint'] .bl-map-left {
   fill: hsl(152 45% 86%);
 }
-.fw-map-tile[data-tone='mint'] .fw-map-right {
+.bl-map-tile[data-tone='mint'] .bl-map-right {
   fill: hsl(152 35% 78%);
 }
-.fw-map-tile[data-tone='warm'] polygon {
+.bl-map-tile[data-tone='warm'] polygon {
   stroke: hsl(18 70% 40% / 0.45);
 }
-.fw-map-tile[data-tone='warm'] .fw-map-top {
+.bl-map-tile[data-tone='warm'] .bl-map-top {
   fill: hsl(24 100% 93%);
 }
-.fw-map-tile[data-tone='warm'] .fw-map-left {
+.bl-map-tile[data-tone='warm'] .bl-map-left {
   fill: hsl(22 80% 85%);
 }
-.fw-map-tile[data-tone='warm'] .fw-map-right {
+.bl-map-tile[data-tone='warm'] .bl-map-right {
   fill: hsl(20 70% 76%);
 }
-.fw-map-tile[data-tone='ink'] polygon {
+.bl-map-tile[data-tone='ink'] polygon {
   stroke: hsl(0 0% 0% / 0.6);
 }
-.fw-map-tile[data-tone='ink'] .fw-map-top {
+.bl-map-tile[data-tone='ink'] .bl-map-top {
   fill: hsl(0 0% 14%);
 }
-.fw-map-tile[data-tone='ink'] .fw-map-left {
+.bl-map-tile[data-tone='ink'] .bl-map-left {
   fill: hsl(0 0% 8%);
 }
-.fw-map-tile[data-tone='ink'] .fw-map-right {
+.bl-map-tile[data-tone='ink'] .bl-map-right {
   fill: hsl(0 0% 4%);
 }
-.fw-map-flash {
+.bl-map-flash {
   fill: hsl(var(--brand));
   stroke: none !important;
   pointer-events: none;
 }
-.fw-map-spark {
+.bl-map-spark {
   fill: hsl(var(--brand));
   stroke: none;
   pointer-events: none;
 }
-.fw-map-label {
+.bl-map-label {
   font-family: var(--font-mono);
-  font-size: var(--fw-map-label, 11px);
+  font-size: var(--bl-map-label, 11px);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   fill: hsl(var(--ink));
 }
-.fw-map-tile[data-tone='ink'] .fw-map-label {
+.bl-map-tile[data-tone='ink'] .bl-map-label {
   fill: #ffffff;
 }
 
 /* Cubes: packets on the wires and spare blocks in the corners */
-.fw-map-cube polygon {
+.bl-map-cube polygon {
   stroke-width: 1;
 }
-.fw-map-cube[data-tone='paper'] polygon {
+.bl-map-cube[data-tone='paper'] polygon {
   stroke: hsl(var(--ink) / 0.3);
 }
-.fw-map-cube[data-tone='paper'] .fw-map-top {
+.bl-map-cube[data-tone='paper'] .bl-map-top {
   fill: #ffffff;
 }
-.fw-map-cube[data-tone='paper'] .fw-map-left {
+.bl-map-cube[data-tone='paper'] .bl-map-left {
   fill: #ebebe7;
 }
-.fw-map-cube[data-tone='paper'] .fw-map-right {
+.bl-map-cube[data-tone='paper'] .bl-map-right {
   fill: #d7d7d2;
 }
-.fw-map-cube[data-tone='brand'] polygon {
+.bl-map-cube[data-tone='brand'] polygon {
   stroke: hsl(var(--brand-strong) / 0.7);
 }
-.fw-map-cube[data-tone='brand'] .fw-map-top {
+.bl-map-cube[data-tone='brand'] .bl-map-top {
   fill: hsl(var(--brand-2));
 }
-.fw-map-cube[data-tone='brand'] .fw-map-left {
+.bl-map-cube[data-tone='brand'] .bl-map-left {
   fill: hsl(var(--brand));
 }
-.fw-map-cube[data-tone='brand'] .fw-map-right {
+.bl-map-cube[data-tone='brand'] .bl-map-right {
   fill: hsl(var(--brand-strong));
 }
-.fw-map-cube[data-tone='warm'] polygon {
+.bl-map-cube[data-tone='warm'] polygon {
   stroke: hsl(18 80% 32% / 0.7);
 }
-.fw-map-cube[data-tone='warm'] .fw-map-top {
+.bl-map-cube[data-tone='warm'] .bl-map-top {
   fill: hsl(24 100% 66%);
 }
-.fw-map-cube[data-tone='warm'] .fw-map-left {
+.bl-map-cube[data-tone='warm'] .bl-map-left {
   fill: hsl(var(--warm));
 }
-.fw-map-cube[data-tone='warm'] .fw-map-right {
+.bl-map-cube[data-tone='warm'] .bl-map-right {
   fill: hsl(16 90% 48%);
 }
-.fw-map-cube[data-tone='ink'] polygon {
+.bl-map-cube[data-tone='ink'] polygon {
   stroke: hsl(0 0% 0% / 0.55);
 }
-.fw-map-cube[data-tone='ink'] .fw-map-top {
+.bl-map-cube[data-tone='ink'] .bl-map-top {
   fill: hsl(0 0% 26%);
 }
-.fw-map-cube[data-tone='ink'] .fw-map-left {
+.bl-map-cube[data-tone='ink'] .bl-map-left {
   fill: hsl(0 0% 12%);
 }
-.fw-map-cube[data-tone='ink'] .fw-map-right {
+.bl-map-cube[data-tone='ink'] .bl-map-right {
   fill: hsl(0 0% 6%);
 }
 
 /* Glow left behind a packet on the wire */
-.fw-map-trail {
+.bl-map-trail {
   fill: none;
   stroke-width: 3;
   stroke-linecap: round;
   opacity: 0.55;
 }
-.fw-map-trail[data-tone='brand'] {
+.bl-map-trail[data-tone='brand'] {
   stroke: hsl(var(--brand));
 }
-.fw-map-trail[data-tone='warm'] {
+.bl-map-trail[data-tone='warm'] {
   stroke: hsl(var(--warm));
 }
-.fw-map-trail[data-tone='ink'] {
+.bl-map-trail[data-tone='ink'] {
   stroke: hsl(var(--ink) / 0.6);
 }
-.fw-map-trail[data-tone='paper'] {
+.bl-map-trail[data-tone='paper'] {
   stroke: hsl(var(--ink) / 0.3);
 }

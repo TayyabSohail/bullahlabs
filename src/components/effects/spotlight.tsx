@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 
 /**
- * One delegated pointer listener for every `.fw-spot` card on the page:
+ * One delegated pointer listener for every `.bl-spot` card on the page:
  * writes the pointer position into CSS variables so the card's spotlight
  * follows the cursor. Also drives the page-level cursor glow.
  */
@@ -12,7 +12,7 @@ export function SpotlightEffect() {
     if (window.matchMedia('(hover: none)').matches) return;
 
     const glow = document.createElement('div');
-    glow.className = 'fw-cursor-glow';
+    glow.className = 'bl-cursor-glow';
     glow.setAttribute('aria-hidden', 'true');
     document.body.appendChild(glow);
 
@@ -36,7 +36,7 @@ export function SpotlightEffect() {
       x = event.clientX;
       y = event.clientY;
       target =
-        (event.target as HTMLElement | null)?.closest?.('.fw-spot') ?? null;
+        (event.target as HTMLElement | null)?.closest?.('.bl-spot') ?? null;
       if (!frame) frame = requestAnimationFrame(apply);
     };
 

@@ -93,7 +93,7 @@ function Word({
       </span>
       <motion.span
         style={reduce ? undefined : { opacity }}
-        className={cn('relative inline-block', accent && 'fw-accent')}
+        className={cn('relative inline-block', accent && 'bl-accent')}
       >
         {word}
       </motion.span>

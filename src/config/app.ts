@@ -17,7 +17,7 @@ export const appConfig = {
   appName: env.NEXT_PUBLIC_APP_NAME,
   emails: {
     support: siteConfig.email,
-    sender: env.CONTACT_FROM_EMAIL ?? `Feinwerk Software <${siteConfig.email}>`,
+    sender: env.CONTACT_FROM_EMAIL ?? `Bullah Labs <${siteConfig.email}>`,
   },
 } as const;
 

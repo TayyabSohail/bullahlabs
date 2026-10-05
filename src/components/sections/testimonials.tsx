@@ -67,25 +67,25 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
       id={sectionId}
       role='tabpanel'
       aria-labelledby={`${sectionId}-title`}
-      className={cn('fw-section fw-rule fw-band-white', className)}
+      className={cn('bl-section bl-rule bl-band-white', className)}
       data-rail={t.kicker}
     >
-      <div className='fw-container'>
+      <div className='bl-container'>
         <div>
           <div>
             <Reveal>
-              <p className='fw-kicker'>{t.kicker}</p>
+              <p className='bl-kicker'>{t.kicker}</p>
             </Reveal>
             <TextReveal
               as='h2'
               text={t.title}
               id={`${sectionId}-title`}
-              className='fw-display mt-5 text-display-md text-ink'
+              className='bl-display mt-5 text-display-md text-ink'
             />
           </div>
         </div>
 
-        <Reveal className='fw-card fw-spot mt-8 grid overflow-hidden sm:mt-14 lg:grid-cols-[1fr_0.75fr]'>
+        <Reveal className='bl-card bl-spot mt-8 grid overflow-hidden sm:mt-14 lg:grid-cols-[1fr_0.75fr]'>
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
@@ -105,7 +105,7 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
                       i !== index && 'hidden sm:block',
                     )}
                   >
-                    <p className='fw-display text-xl leading-[1.3] sm:text-3xl'>
+                    <p className='bl-display text-xl leading-[1.3] sm:text-3xl'>
                       &ldquo;{q.quote}&rdquo;
                     </p>
                     <footer className='mt-6 flex flex-wrap items-center justify-between gap-4 sm:mt-8'>
@@ -133,7 +133,7 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
                     }}
                     className='absolute inset-0 cursor-grab active:cursor-grabbing'
                   >
-                    <p className='fw-display text-xl leading-[1.3] text-white sm:text-3xl'>
+                    <p className='bl-display text-xl leading-[1.3] text-white sm:text-3xl'>
                       &ldquo;{item.quote}&rdquo;
                     </p>
                     <footer className='mt-6 flex flex-wrap items-center justify-between gap-4 sm:mt-8'>
@@ -188,7 +188,7 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
                     type='button'
                     onClick={() => go(1)}
                     aria-label={t.next}
-                    className='fw-btn fw-btn-primary flex h-11 w-11 items-center justify-center'
+                    className='bl-btn bl-btn-primary flex h-11 w-11 items-center justify-center'
                   >
                     <ArrowRight className='h-4 w-4' />
                   </button>
@@ -198,7 +198,7 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
 
             {/* Product on a laptop */}
             <div
-              className='fw-plate relative z-[2] flex flex-col justify-center border-t p-5 sm:min-h-[22rem] sm:p-8 lg:border-l lg:border-t-0'
+              className='bl-plate relative z-[2] flex flex-col justify-center border-t p-5 sm:min-h-[22rem] sm:p-8 lg:border-l lg:border-t-0'
               style={
                 {
                   '--plate-accent': `${project?.accent ?? '#10b981'}66`,
@@ -228,13 +228,13 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
                           <p className='font-mono text-[9px] uppercase tracking-[0.2em] text-white/50'>
                             {project.category} &middot; {project.year}
                           </p>
-                          <p className='fw-display mt-1 text-xl'>
+                          <p className='bl-display mt-1 text-xl'>
                             {project.title}
                           </p>
                         </div>
                         <Link
                           href={paths.caseStudy(project.slug)}
-                          className='fw-action text-brand-2 hover:text-white'
+                          className='bl-action text-brand-2 hover:text-white'
                         >
                           {t.caseStudy} <ArrowUpRight className='h-3.5 w-3.5' />
                         </Link>
