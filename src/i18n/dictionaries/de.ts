@@ -4,14 +4,14 @@ import type { Dictionary } from './en';
 export const de: Dictionary = {
   locale: 'de',
   nav: {
+    program: 'Conscious AI',
     services: 'Leistungen',
     work: 'Projekte',
-    pricing: 'Preise',
     about: 'Über uns',
     contact: 'Kontakt',
     home: 'Start',
     careers: 'Karriere',
-    cta: 'Projekt starten',
+    cta: 'Kontakt aufnehmen',
     bookCall: 'Gespräch buchen',
     menuOpen: 'Menü öffnen',
     menuClose: 'Menü schließen',
@@ -20,209 +20,156 @@ export const de: Dictionary = {
     top: 'Nach oben',
   },
   hero: {
-    badge: 'Produktentwicklung für Gründer',
-    title: 'Produkte, entwickelt\nvom MVP bis zur Skalierung',
-    accent: [3, 4, 5, 6],
-    body: 'Wir begleiten Gründer beim Aufbau und Wachstum nutzerzentrierter Produkte, mit der Engineering- und Marketing-Expertise, die jede Phase erfordert.',
-    primary: 'Angebot anfordern',
-    secondary: 'Unsere Arbeit ansehen',
+    badge: 'KI-Befähigung für Wissensarbeit',
+    title: 'Klüger arbeiten mit KI.\nUnd sie bewusst nutzen.',
+    accent: [4, 5, 6, 7],
+    body: 'Bullah Labs hilft nicht-technischen Teams, KI wirksam einzusetzen, Fähigkeiten aufzubauen, die relevant bleiben, und die Nutzung zu streichen, die niemand gebraucht hat. Wir lehren es in Conscious AI und bauen es in jedes System ein, das wir ausliefern.',
+    primary: 'Conscious AI entdecken',
+    secondary: 'In unseren Projekten ansehen',
     map: {
-      kicker: 'Ein Team, das ganze System',
+      kicker: 'Das kleinste zuverlässige System für jede Aufgabe',
       nodes: {
-        web: 'Web-App',
-        mobile: 'Mobile App',
-        api: 'API',
-        db: 'Datenbank',
-        ai: 'KI-Modell',
-        cloud: 'Cloud',
+        web: 'Aufgabe',
+        mobile: 'Kontext',
+        api: 'Routing',
+        db: 'Regeln',
+        ai: 'Starke KI',
+        cloud: 'Leichte KI',
       },
     },
   },
   work: {
-    kicker: 'Ausgewählte Arbeiten',
-    title: 'Produkte, die wir geliefert haben',
+    kicker: 'Belege im Betrieb',
+    title: 'Effizienz, die sich prüfen lässt',
     description:
-      'Vierzehn Produkte im Einsatz: Marktplätze, die echtes Geld bewegen, KI-Systeme, die aus den richtigen Dokumenten antworten, interne Werkzeuge, die bis zur letzten Einheit stimmen.',
+      'Vierzehn Produkte im Einsatz. Jedes wird durch ein Prinzip gelesen, das wir lehren: das richtige Werkzeug für die Aufgabe, nur der nötige Kontext, nichts doppelt, erst geprüft, dann vertraut.',
     all: 'Alle Projekte',
-    view: 'Projekt ansehen',
+    view: 'Fallstudie lesen',
     filterLabel: 'Projekte filtern',
     filters: {
       All: 'Alle',
+      'right-tool': 'Richtiges Werkzeug',
+      'lean-context': 'Nötiger Kontext',
+      'no-repeat': 'Nichts doppelt',
+      checked: 'Geprüft',
       SaaS: 'SaaS',
       Marketplace: 'Marktplätze',
       AI: 'KI',
       Mobile: 'Mobil',
       Website: 'Websites',
-      'Full-Stack': 'Full-Stack',
-      'Cloud & Automation': 'Cloud & Automatisierung',
-      Web: 'Web',
+    },
+    lenses: {
+      'right-tool': {
+        label: 'Das richtige Werkzeug für die Aufgabe',
+        principle:
+          'Regeln und gewöhnliche Software vor KI. Ein Modell nur dort, wo es sich lohnt.',
+      },
+      'lean-context': {
+        label: 'Nur der nötige Kontext',
+        principle:
+          'Jede Anfrage, jeder Nutzer und jeder Agent erhält die Daten, die er braucht, und nicht mehr.',
+      },
+      'no-repeat': {
+        label: 'Nichts doppelt gemacht',
+        principle:
+          'Caching, Bündelung und Wiederverwendung, statt dieselbe Arbeit neu zu erzeugen.',
+      },
+      checked: {
+        label: 'Erst geprüft, dann vertraut',
+        principle:
+          'Ergebnisse sind belegt, nachvollziehbar oder von einem Menschen freigegeben, wo das Risiko es verlangt.',
+      },
     },
     count: '{n} Projekte',
     teaser: {
       kicker: 'Projekte',
-      title: 'Jedes Projekt, mit seinem Ergebnis',
-      accent: [3, 4],
-      body: 'Marktplätze, SaaS-Plattformen, KI-Systeme und Websites im Einsatz, jeweils mit den Entscheidungen und Ergebnissen dahinter.',
+      title: 'Jedes Projekt, und was es einspart',
+      accent: [3, 4, 5],
+      body: 'Wir bauen so, wie wir lehren. Jedes Produkt hier ist im Einsatz, und jede Fallstudie beginnt mit dem Prinzip, das es schlank hält.',
       cta: 'Alle Projekte ansehen',
-      listLabel: 'Einige davon',
+      listLabel: 'Ausgewählte Projekte',
       more: '{n} weitere auf der Projektseite',
     },
   },
   services: {
-    kicker: 'Leistungen',
-    title: 'Das ganze Produkt, ein erfahrenes Team',
+    kicker: 'Mit uns bauen',
+    title: 'Wir bauen so, wie wir lehren',
     explore: 'Leistung ansehen',
     groups: {
       capability: {
-        label: 'Was wir bauen',
+        label: 'Schlanke Systeme, von Anfang bis Ende',
       },
     },
     meta: {
       timeline: 'Zeitrahmen',
       team: 'Team',
-      pricing: 'Preismodell',
+      pricing: 'Angebot',
       support: 'Nach dem Launch',
     },
   },
-  pricing: {
-    kicker: 'Preise',
-    title: 'Wählen Sie die Zusammenarbeit, die zu Ihrem Unternehmen passt',
-    badge: 'Top-Empfehlung',
-    period: 'einmalig',
-    customPeriod: 'Festangebot',
-    customCta: 'Individuelles Angebot anfordern',
-    cta: 'Jetzt starten',
-    all: 'Pakete im Detail vergleichen',
-    promoTitle: 'Bauen Sie das Richtige als Nächstes.',
-    note: 'Sechs Wege der Zusammenarbeit, vom klar definierten Projekt bis zum laufenden Produktteam. Jeder beginnt mit schriftlichem Umfang und klarem Preis.',
-    includes: {
-      title: 'In jedem Paket enthalten, auch bei individuellen Lösungen',
-      items: [
-        {
-          title: 'Schriftlicher Umfang und Festangebot',
-          body: 'Standardpaket oder individuelle Lösung: Preis und Termin werden schriftlich vereinbart, bevor die Arbeit beginnt.',
-        },
-        {
-          title: 'Wartung nach dem Launch',
-          body: 'Monitoring, Fehlerbehebung, Updates und Sicherheits-Patches. Wir übergeben nicht und verschwinden.',
-        },
-        {
-          title: 'Verantwortung für das, was wir bauen',
-          body: 'Ein erfahrenes Team steht für das Produkt im Betrieb ein, so lange Sie es wünschen.',
-        },
-        {
-          title: 'Volles Eigentum',
-          body: 'Code, Konten und Designs gehören Ihnen ab dem ersten Tag, mit Dokumentation, um es ohne uns zu betreiben.',
-        },
-      ],
+  pillars: {
+    kicker: 'Wofür wir stehen',
+    title: 'Drei Säulen guter KI-Nutzung',
+    description:
+      'Produktivität zuerst, berufliche Widerstandskraft dazu, und verantwortungsvolle, effiziente Nutzung als Standard.',
+  },
+  program: {
+    kicker: 'Conscious AI',
+    title: 'Ein Programm, vier Einstiege',
+    accent: [2, 3],
+    description:
+      'Beginnen Sie mit dem kostenlosen Kurs. Vertiefen Sie in Ihren eigenen Werkzeugen, Ihrer eigenen Rolle und dann im ganzen Team. Sie können auf jeder Stufe mit einem vollständigen, nutzbaren Ergebnis aufhören.',
+    cta: 'Das ganze Programm ansehen',
+    tier: 'Stufe',
+    audience: 'Für',
+    outcome: 'Das nehmen Sie mit',
+    modules: 'Module',
+    output: 'Ergebnis',
+  },
+  programPage: {
+    kicker: 'Conscious AI',
+    title: 'KI gut nutzen. Nicht nur mehr.',
+    accent: [3, 4, 5],
+    description:
+      'Ein praktisches Programm für nicht-technische Wissensarbeit. Lernen Sie, wann KI hilft, wie Sie in weniger Runden zu einem verlässlichen Ergebnis kommen und wie Sie aufhören, in Geld und Rechenleistung für Nutzung zu zahlen, die niemand gebraucht hat.',
+    primary: 'Frühen Zugang anfragen',
+    secondary: 'Die vier Stufen ansehen',
+    principle:
+      'KI-Kompetenz heißt zu wissen, wann, warum und wie man KI gut einsetzt, nicht nur, wie man die Werkzeuge bedient.',
+    themesKicker: 'Fünf Themen',
+    themesTitle: 'Dieselben fünf Themen, auf jeder Stufe tiefer',
+    tiersKicker: 'Die Stufen',
+    tiersTitle: 'Auf jeder Stufe mit etwas aufhören, das funktioniert',
+    tiersDescription:
+      'Der kostenlose Kurs vermittelt die Prinzipien. Drei kostenpflichtige Stufen wenden sie auf Ihre Werkzeuge, Ihren Beruf und Ihr ganzes Team an.',
+    tracksKicker: 'Role Tracks',
+    tracksTitle: 'Rund um die Arbeit gebaut, die Sie wirklich tun',
+    tracksDescription:
+      'Jeder Track baut drei echte Abläufe für eine Rolle und bringt ein fertiges Vorlagenpaket mit.',
+    flagship: 'Schwerpunkt',
+    technical: 'Technisch',
+    audienceKicker: 'Für wen',
+    audienceTitle: 'Für Wissensarbeit, nicht für Entwickler',
+    audienceDescription:
+      'Geschrieben für Menschen, die mit KI bessere Arbeit leisten wollen, ohne technische Experten zu werden.',
+    employee: {
+      label: 'Für Sie',
+      title: 'Produktiver, sicherer, bereit für Veränderung',
+      body: 'Fähigkeiten, die Sie am selben Tag nutzen: weniger Runden bis zur brauchbaren Antwort, ein klares Gespür dafür, wann KI das falsche Werkzeug ist, und das Urteilsvermögen, ihre Ergebnisse zu prüfen.',
     },
-    plans: [
-      {
-        id: 'custom',
-        featured: false,
-        name: 'Individuelle Lösung',
-        tagline:
-          'Nach Ihrem Briefing zugeschnitten, schriftlich bepreist, nach dem Launch gewartet.',
-        price: 'Individuell',
-        features: [
-          'Schriftlicher Umfang aus Ihrem Briefing',
-          'Festangebot innerhalb von fünf Werktagen',
-          'Jeder Stack, jede Integration, jede Größe',
-          'KI, Cloud, Mobile und Web kombiniert',
-          'Verbindliches Launch-Datum',
-          'Wöchentliche Demos und Staging-Zugang',
-          'Wartung und Support nach dem Launch',
-          'Volles Eigentum an Ihrem Produkt',
-        ],
-      },
-      {
-        id: 'consulting',
-        featured: false,
-        name: 'Beratung & Strategie',
-        tagline: 'Fundierte Beratung, die Ihr Wachstum beschleunigt.',
-        price: '2.999 €',
-        features: [
-          'Zukunftssicherer Technologie-Blueprint',
-          '6-Monats-Wachstumsplan',
-          'Erstklassiger Tech-Stack',
-          'Skalierungsstrategie für Enterprise',
-          'ROI-orientierte Planung',
-          'Hiring- und Teamplanung',
-          'Strategie zur Risikominimierung',
-          '90-Tage-Wachstumsplan',
-          'Folgetermine nach der Übergabe',
-        ],
-      },
-      {
-        id: 'mvp',
-        featured: true,
-        name: 'MVP-Entwicklung',
-        tagline: 'Marktreifes MVP in 30 Tagen oder weniger.',
-        price: '4.999 €',
-        features: [
-          'Marktreifes MVP in 30 Tagen',
-          'Professionelles Design, das konvertiert',
-          'Die Kernfunktionen, die Ihre Nutzer brauchen',
-          'Skalierbar gebaut: für 100.000+ Nutzer',
-          'Perfekte Erfahrung auf jedem Gerät',
-          'Integriertes Wachstums-Tracking',
-          '14 Tage Launch-Support',
-          'Laufende Wartung und Updates',
-          'Volles Eigentum an Ihrem Produkt',
-        ],
-      },
-      {
-        id: 'product',
-        featured: false,
-        name: 'Komplettes Produkt',
-        tagline:
-          'Ein vollständiges Produkt, gelauncht und übergeben in 45 Tagen.',
-        price: '9.999 €',
-        features: [
-          'Launch-fertiges Produkt in 45 Tagen',
-          'Premium-UI/UX, das die Konkurrenz übertrifft',
-          'Vom ersten Tag an Umsatz erzielen',
-          'KI-gestütztes Insights-Dashboard',
-          'Sicherheit auf Bankniveau',
-          'Blitzschnelle Performance',
-          '30 Tage dedizierter Support',
-          'Laufende Wartung und Updates',
-          'Vollständige technische Übergabe',
-        ],
-      },
-      {
-        id: 'dedicated',
-        featured: false,
-        name: 'Dediziertes Produktteam',
-        tagline: 'Erfahrene Entwickler, die Ihr Team monatlich ergänzen.',
-        price: '6.500 €',
-        period: 'pro Monat',
-        features: [
-          'Dedizierte Senior-Produktentwickler',
-          'Priorisierte Planung und Umsetzung',
-          'Wöchentliche Produkt- und Technik-Reviews',
-          'Flexibler Umfang bei wechselnden Prioritäten',
-          'Direkter Zugang zum Umsetzungsteam',
-          'Dokumentation und Wissenstransfer',
-        ],
-      },
-      {
-        id: 'growth',
-        featured: false,
-        name: 'Wachstum & Wartung',
-        tagline: 'Halten Sie Ihr Produkt schnell, sicher und in Bewegung.',
-        price: '1.500 €',
-        period: 'pro Monat',
-        features: [
-          'Monitoring und Reaktion auf Vorfälle',
-          'Sicherheits- und Dependency-Updates',
-          'Monatliche Verbesserungs-Releases',
-          'Performance- und Conversion-Reviews',
-          'Kleine Produktverbesserungen inklusive',
-          'Klare Monats-Roadmap und Berichte',
-        ],
-      },
-    ],
+    employer: {
+      label: 'Für Ihr Unternehmen',
+      title: 'Eine KI-fähige Belegschaft, mit Nutzung, die sich belegen lässt',
+      body: 'Einheitliche, messbare KI-Nutzung in nicht-technischen Teams: gemeinsame Standards, eine einseitige Richtlinie, menschliche Prüfung, wo es darauf ankommt, und weniger Ausgaben für Rechenleistung, die nichts verändert hat.',
+    },
+    sustainabilityKicker: 'Zur Nachhaltigkeit',
+    sustainabilityTitle: 'Weniger Verschwendung, aufsummiert',
+    sustainabilityBody:
+      'Wir beziffern keinen einzelnen Prompt, weil das niemand seriös kann. Ins Gewicht fällt unnötige Nutzung, die sich über Teams, Abläufe und ganze Organisationen wiederholt. Das Programm reduziert sie an der Quelle, und die Team-Stufe weist den geschätzten Energieverbrauch neben Kosten und Zeit aus.',
+    ctaTitle: 'Beginnen Sie mit dem kostenlosen Kurs.',
+    ctaAccent: [4, 5],
+    ctaBody:
+      'Sagen Sie uns, wer Sie sind und wie Sie KI heute nutzen. Wir antworten innerhalb eines Werktags, mit Zugangsdetails für Sie oder einem Plan für Ihr Team.',
   },
   technologies: {
     kicker: 'Bewährte Technologie',
@@ -312,7 +259,7 @@ export const de: Dictionary = {
   },
   howItWorks: {
     kicker: 'Zusammenarbeit',
-    title: 'So läuft ein Projekt ab',
+    title: 'So läuft eine Umsetzung ab',
     stepLabel: 'Schritt',
     cta: 'Mit einem Gespräch starten',
     steps: [
@@ -363,26 +310,16 @@ export const de: Dictionary = {
     next: 'Nächste Stimme',
   },
   servicesPage: {
-    kicker: 'Leistungen',
-    title: 'Entwicklung, auf ein Ergebnis zugeschnitten.',
-    accent: [3, 4],
+    kicker: 'Mit uns bauen',
+    title: 'Systeme, passend zur Aufgabe.',
+    accent: [1, 2, 3],
     description:
-      'Fünf Kompetenzen und zwei Formen der Zusammenarbeit, die den gesamten Lebenszyklus eines Softwareprodukts abdecken, vom ersten Prototyp bis zum Team, das es betreibt. Jede ist auf ein Ergebnis kalkuliert, nicht auf Stunden, passt in ein Standardpaket oder einen individuellen Umfang und wird von uns nach dem Launch gewartet.',
+      'Unser Engineering-Team baut, was das Programm lehrt: das kleinste System, das die Arbeit zuverlässig erledigt. Fünf Kompetenzen und zwei Formen der Zusammenarbeit, jeweils schriftlich abgegrenzt und von uns nach dem Launch gewartet.',
     deliverables: 'Was Sie bekommen',
     useCases: 'Typische Projekte',
     stack: 'Werkzeuge, die wir nutzen',
     proof: 'Referenzen',
     faqTitle: 'Fragen zu dieser Leistung',
-  },
-  pricingPage: {
-    kicker: 'Preise',
-    title: 'Ein Preis, schriftlich, bevor die Arbeit beginnt.',
-    accent: [5, 6],
-    description:
-      'Sechs unterschiedliche Formen der Zusammenarbeit: von laufender Wartung und Strategie bis zum dedizierten Produktteam und zur vollständigen Produktentwicklung. Jede Option enthält einen schriftlichen Leistungsumfang, ein verbindliches Launch-Datum und Support nach dem Launch.',
-    faqKicker: 'Fragen zu den Preisen',
-    faqTitle: 'Was vor der Unterschrift gefragt wird',
-    faqAccent: [3],
   },
   servicePage: {
     back: 'Alle Leistungen',
@@ -411,6 +348,8 @@ export const de: Dictionary = {
     optional: 'optional',
     companyPlaceholder: 'Unternehmens- oder Produktname',
     service: 'Was brauchen Sie?',
+    serviceProgram: 'Programm Conscious AI',
+    serviceProgramTagline: 'Schulung für Sie oder Ihr ganzes Team.',
     servicePlaceholder: 'Leistung auswählen',
     serviceOther: 'Etwas anderes',
     budget: 'Budgetrahmen',
@@ -418,9 +357,9 @@ export const de: Dictionary = {
     budgetHeading: 'Ungefähres Budget',
     budgetHint:
       'Ein Rahmen genügt. Er zeigt uns, welches Team passt - es ist kein Angebot.',
-    message: 'Über das Projekt',
+    message: 'Ihre Nachricht',
     messagePlaceholder:
-      'Was bauen Sie, für wen ist es, und bis wann muss es stehen?',
+      'Wie nutzt Ihr Team KI heute, oder was brauchen Sie gebaut, und bis wann?',
     consentBefore:
       'Ich bin damit einverstanden, dass Bullah Labs diese Anfrage speichert und verarbeitet, um mir zu antworten, wie in der',
     consentLink: 'Datenschutzerklärung',
@@ -440,14 +379,15 @@ export const de: Dictionary = {
     back: 'Zurück',
     steps: {
       service: {
-        title: 'Was dürfen wir für Sie bauen?',
+        title: 'Wobei können wir helfen?',
         subtitle:
           'Wählen Sie das Passendste. Die Details klären wir gemeinsam.',
-        kicker: 'Die Aufgabe',
+        kicker: 'Das Anliegen',
       },
       message: {
-        title: 'Erzählen Sie uns vom Projekt.',
-        subtitle: 'Was bauen Sie, für wen ist es, und bis wann muss es stehen?',
+        title: 'Erzählen Sie uns etwas mehr.',
+        subtitle:
+          'Wie nutzt Ihr Team KI heute, oder was brauchen Sie gebaut, und bis wann?',
         kicker: 'Das Briefing',
       },
       details: {
@@ -478,6 +418,9 @@ export const de: Dictionary = {
     category: 'Kategorie',
     year: 'Jahr',
     capabilities: 'Kompetenzen',
+    lens: 'Effizienz-Prinzip',
+    efficiencyKicker: 'Warum es effizient ist',
+    techniques: 'Was es schlank hält',
     industry: 'Branche',
     problem: 'Das Problem',
     approach: 'Unser Vorgehen',
@@ -508,30 +451,30 @@ export const de: Dictionary = {
   },
   aboutPage: {
     kicker: 'Über Bullah Labs',
-    title: 'Ein Softwarestudio, gemessen an einem Anspruch.',
-    accent: [6, 7],
+    title: 'Ein Unternehmen rund um gute KI-Nutzung.',
+    accent: [3, 4, 5],
     description:
-      'An Software legen wir den Maßstab des Präzisionsmaschinenbaus an: Sie muss exakt stimmen, und zwar an dem Tag, der zugesagt wurde.',
+      'Wir bringen nicht-technischen Teams bei, KI wirksam und verantwortungsvoll einzusetzen, und wir bauen schlanke Systeme für Unternehmen, die sie brauchen.',
     story: [
-      'Wir haben Bullah Labs gegründet, nachdem wir jahrelang Produkte für Unternehmen gebaut hatten, die schlechte Erfahrungen gemacht hatten: Agenturen, die den Termin rissen, Teams, die fast das Gewünschte lieferten, Schätzungen, die sich auf halbem Weg verdoppelten.',
-      'Also haben wir das Studio um die vier Dinge herum aufgebaut, die Kundinnen und Kunden anderswo nicht bekamen. Termin und Preis, vereinbart bevor die Arbeit beginnt, für ein Standardpaket oder einen individuellen Umfang. Ein erfahrenes Team, das das ganze Produkt verantwortet, von der Oberfläche bis zur Cloud-Rechnung. Ein Ergebnis, das Sie nach dem Launch messen können, berichtet von Ihnen, nicht von uns. Und ein Team, das bleibt: Wir warten, was wir bauen, und übernehmen dafür im Produktivbetrieb die Verantwortung.',
-      'Unser asiatisches Büro ist in Islamabad. Kundinnen und Kunden in Europa haben einen Ansprechpartner vor Ort in Fellbach. Zwischen beiden Büros arbeitet immer jemand während Ihres Arbeitstages.',
+      'Bullah Labs hat als Softwarestudio begonnen. Jahre des Produktbaus haben uns gelehrt, wonach Kunden selten fragen und was sie immer brauchen: das kleinste System, das die Aufgabe zuverlässig erledigt.',
+      'Als KI in jedes Werkzeug einzog, sahen wir dieselbe Verschwendung in größerem Maßstab. Das stärkste Modell für jede Aufgabe. Ganze Dokumente eingefügt, wo ein Absatz genügt hätte. Antworten neu erzeugt statt wiederverwendet. Das meiste davon entsteht bei Menschen, die ein Werkzeug bekommen haben und keine Schulung.',
+      'Also haben wir aus unserer Praxis ein Programm gemacht. Conscious AI vermittelt Wissensarbeitenden, wann, warum und wie man KI gut einsetzt, und unser Engineering-Team baut weiterhin für Unternehmen, die ein System brauchen und keinen Kurs. Unsere Büros sind in Islamabad und Fellbach.',
     ],
     facts: [
       {
-        label: 'Was wir bauen',
+        label: 'Was wir tun',
         value:
-          'Webplattformen, KI-Produkte, Cloud-Automatisierung, Marketing-Websites',
+          'Das Programm Conscious AI sowie schlanke Web-, KI- und Automatisierungsprojekte',
       },
       {
         label: 'Für wen',
         value:
-          'Gründerinnen, Gründer und Produktteams in Europa, Asien und Nordamerika',
+          'Nicht-technische Wissensarbeitende und die Unternehmen, die sie beschäftigen',
       },
       {
         label: 'Wie',
         value:
-          'Fester Umfang, Fest- oder Individualpreis, wöchentliche Demos, Wartung nach dem Launch',
+          'Praktisch, rollenbezogen, vorher und nachher gemessen, mit menschlicher Kontrolle, wo das Risiko es verlangt',
       },
       {
         label: 'Wo',
@@ -551,10 +494,10 @@ export const de: Dictionary = {
     careersBody:
       'Wir stellen momentan nicht ein. Sobald sich das ändert, werden Stellen auf der Karriereseite ausgeschrieben.',
     careersLink: 'Karriere',
-    ctaTitle: 'Möchten Sie sehen, wie wir Ihr Projekt führen würden?',
-    ctaAccent: [7, 8],
+    ctaTitle: 'Möchten Sie sehen, wo Ihr Team KI verschwendet?',
+    ctaAccent: [6, 7],
     ctaBody:
-      'Senden Sie uns ein kurzes Briefing. Sie erhalten innerhalb einer Woche einen schriftlichen Leistungsumfang, einen Fest- oder Individualpreis und einen Launch-Termin, unverbindlich, und ein Team, das das Produkt nach dem Launch weiter wartet.',
+      'Sagen Sie uns, wie Ihr Team KI heute nutzt. Wir antworten innerhalb eines Werktags, mit dem passenden Einstieg ins Programm oder mit einem schriftlichen Umfang, falls Sie etwas gebaut brauchen.',
   },
   careersPage: {
     kicker: 'Karriere',
@@ -653,7 +596,7 @@ export const de: Dictionary = {
     kicker: 'Fehler 404',
     title: 'Diese Seite wurde nie gebaut.',
     accent: [4],
-    body: 'Die Adresse hat sich vielleicht geändert, oder der Link war falsch. Alles, was wir gebaut haben, ist einen Klick entfernt.',
+    body: 'Die Adresse hat sich vielleicht geändert, oder der Link war falsch. Das Programm und unsere Projekte sind einen Klick entfernt.',
     home: 'Zurück zur Startseite',
     work: 'Arbeiten ansehen',
   },
@@ -669,10 +612,10 @@ export const de: Dictionary = {
   },
   contact: {
     kicker: 'Kontakt',
-    title: 'Sagen Sie uns, was stimmen muss.',
-    accent: [5, 6],
+    title: 'Sagen Sie uns, wo KI helfen soll.',
+    accent: [3, 4, 5, 6],
     description:
-      'Ein paar Sätze genügen. Wir antworten innerhalb eines Werktags mit einer ersten Einschätzung zu Umfang, Zeitplan und Preis, Standardpaket oder individuell, und dazu, wer das Produkt bauen und warten würde.',
+      'Ein paar Sätze genügen. Sagen Sie uns, wie Ihr Team KI heute nutzt oder was Sie gebaut brauchen. Wir antworten innerhalb eines Werktags.',
     direct: 'So erreichen Sie uns',
     formNote:
       'Das Formular ist der schnellste Weg zu uns. Es kommt direkt bei uns an und wir beantworten jede Anfrage persönlich.',
@@ -689,30 +632,30 @@ export const de: Dictionary = {
     faqAccent: [4],
     home: {
       kicker: 'Kontakt',
-      title: 'Sagen Sie uns, was stimmen muss.',
-      accent: [5, 6],
+      title: 'Sagen Sie uns, wo KI helfen soll.',
+      accent: [3, 4, 5, 6],
       description:
-        'Ein paar Sätze genügen. Wir antworten innerhalb eines Werktags mit einer ersten Einschätzung zu Umfang, Zeitplan und Preis.',
+        'Ein paar Sätze genügen. Sagen Sie uns, wie Ihr Team KI heute nutzt oder was Sie gebaut brauchen. Wir antworten innerhalb eines Werktags.',
     },
   },
   faq: {
     kicker: 'FAQ',
     title: 'Klare Antworten, bevor Sie sich festlegen.',
-    description: 'Wie wir planen, bauen, launchen und betreuen.',
+    description: 'Zum Programm, zu unseren Projekten und zur Zusammenarbeit.',
     accent: [0, 1],
   },
   cta: {
     kicker: 'Sprechen wir',
-    title: 'Bereit, ein Datum festzulegen?',
-    accent: [3, 4],
-    body: 'Schicken Sie uns heute ein kurzes Briefing. Innerhalb einer Woche erhalten Sie Umfang, Fest- oder Individualangebot und Launch-Datum schriftlich, unverbindlich. Nach dem Launch bleiben wir dran und warten, was wir gebaut haben.',
-    button: 'Projekt starten',
+    title: 'Bereit, KI bewusst einzusetzen?',
+    accent: [2, 3, 4],
+    body: 'Erzählen Sie uns von Ihrem Team und wie es KI heute nutzt. Wir antworten innerhalb eines Werktags, mit dem passenden Einstieg in Conscious AI oder mit einem schriftlichen Umfang, falls Sie etwas gebaut brauchen.',
+    button: 'Kontakt aufnehmen',
   },
   footer: {
     pitch:
-      'Ein Studio für Produktentwicklung für Unternehmen, die sich keinen zweiten Versuch leisten können.',
-    quote: 'Angebot anfordern',
-    services: 'Leistungen',
+      'KI-Befähigung für Wissensarbeit, und schlanke Systeme für Teams, die sie gebaut brauchen.',
+    quote: 'Kontakt aufnehmen',
+    services: 'Mit uns bauen',
     company: 'Unternehmen',
     offices: 'Standorte',
     legal: 'Rechtliches',

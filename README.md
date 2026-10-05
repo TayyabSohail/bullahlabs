@@ -1,7 +1,11 @@
 # Bullah Labs
 
-Company website for **Bullah Labs**, a software engineering studio with
-an Asian office in Islamabad, Pakistan and a European office in Fellbach, Germany.
+Company website for **Bullah Labs**: AI enablement for non-technical knowledge
+workers through the Conscious AI program, plus lean builds to the same
+principles. Offices in Islamabad, Pakistan and Fellbach, Germany.
+
+Positioning, the program structure and the rules for describing projects are
+in [docs/brand/positioning-and-program.md](docs/brand/positioning-and-program.md).
 
 Built on Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS, shadcn/ui,
 Framer Motion, Lenis and cobe (globe). Single light theme with a WebGL silk

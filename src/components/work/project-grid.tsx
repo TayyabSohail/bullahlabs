@@ -7,32 +7,37 @@ import { ProjectCard } from '@/components/work/project-card';
 
 import { cn } from '@/lib/utils';
 
-import {
-  CAPABILITY_ORDER,
-  type Project,
-  type ProjectCapability,
-  type ProjectCategory,
+import type {
+  EfficiencyLens,
+  Project,
+  ProjectCategory,
 } from '@/data/projects';
 
 interface ProjectGridProps {
   projects: Project[];
+  lenses: EfficiencyLens[];
   categories: ProjectCategory[];
   labels: Record<string, string>;
+  /** Full lens names for the cards, keyed by lens. */
+  lensLabels: Record<EfficiencyLens, string>;
   filterLabel: string;
   actionLabel: string;
   countTemplate: string;
 }
 
-type Filter = 'All' | ProjectCategory | ProjectCapability;
+type Filter = 'All' | EfficiencyLens | ProjectCategory;
 
 /**
- * Filter chips over a three-column masonry of project tiles. Items are
+ * Filter chips (efficiency lenses first, then product categories) over a
+ * three-column masonry of project tiles. Items are
  * distributed across columns so the flow reads left-to-right, top-to-bottom.
  */
 export function ProjectGrid({
   projects,
+  lenses,
   categories,
   labels,
+  lensLabels,
   filterLabel,
   actionLabel,
   countTemplate,
@@ -41,22 +46,15 @@ export function ProjectGrid({
   const reduce = useReducedMotion();
 
   const filters: Filter[] = useMemo(
-    () => [
-      'All',
-      ...categories,
-      ...CAPABILITY_ORDER.filter(
-        (capability) => !(categories as string[]).includes(capability),
-      ),
-    ],
-    [categories],
+    () => ['All', ...lenses, ...categories],
+    [lenses, categories],
   );
 
   const visible = useMemo(() => {
     if (active === 'All') return projects;
     return projects.filter(
       (project) =>
-        project.category === active ||
-        project.capabilities.includes(active as ProjectCapability),
+        project.category === active || project.efficiency.lens === active,
     );
   }, [active, projects]);
 
@@ -102,6 +100,7 @@ export function ProjectGrid({
         columnCount={1}
         className='mt-8 flex flex-col gap-5 sm:hidden'
         actionLabel={actionLabel}
+        lensLabels={lensLabels}
         reduce={Boolean(reduce)}
       />
       <MasonryColumns
@@ -110,6 +109,7 @@ export function ProjectGrid({
         columnCount={2}
         className='mt-10 hidden gap-6 sm:grid sm:grid-cols-2 lg:hidden'
         actionLabel={actionLabel}
+        lensLabels={lensLabels}
         reduce={Boolean(reduce)}
       />
       <MasonryColumns
@@ -118,6 +118,7 @@ export function ProjectGrid({
         columnCount={3}
         className='mt-10 hidden gap-6 lg:grid lg:grid-cols-3'
         actionLabel={actionLabel}
+        lensLabels={lensLabels}
         reduce={Boolean(reduce)}
       />
     </>
@@ -129,12 +130,14 @@ function MasonryColumns({
   columnCount,
   className,
   actionLabel,
+  lensLabels,
   reduce,
 }: {
   projects: Project[];
   columnCount: number;
   className: string;
   actionLabel: string;
+  lensLabels: Record<EfficiencyLens, string>;
   reduce: boolean;
 }) {
   return (
@@ -161,6 +164,7 @@ function MasonryColumns({
                     project={project}
                     priority={visualIndex < 3}
                     actionLabel={actionLabel}
+                    lensLabel={lensLabels[project.efficiency.lens]}
                   />
                 </motion.div>
               );

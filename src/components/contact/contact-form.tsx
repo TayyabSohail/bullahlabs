@@ -5,6 +5,7 @@ import {
   ArrowUpRight,
   Check,
   CheckCircle2,
+  GraduationCap,
   type LucideIcon,
   Sparkles,
 } from 'lucide-react';
@@ -35,7 +36,11 @@ import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
 import { getServiceBySlugLocalised } from '@/data/services';
 import type { Dictionary } from '@/i18n/dictionaries/en';
-import { type ContactInput, SERVICE_OPTIONS } from '@/schema/contact';
+import {
+  type ContactInput,
+  PROGRAM_OPTION,
+  SERVICE_OPTIONS,
+} from '@/schema/contact';
 
 const FIELD =
   'h-12 rounded-none border-white/20 bg-white/[0.06] px-4 text-[15px] text-white placeholder:text-white/40 focus-visible:ring-brand/60 focus-visible:ring-offset-0';
@@ -63,14 +68,16 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
     },
   });
 
-  const serviceLabel = (slug: string) =>
-    slug === 'other'
-      ? t.serviceOther
-      : (getServiceBySlugLocalised(slug, dict.locale)?.title ?? slug);
-  const serviceTagline = (slug: string) =>
-    slug === 'other'
-      ? undefined
-      : getServiceBySlugLocalised(slug, dict.locale)?.tagline;
+  const serviceLabel = (slug: string) => {
+    if (slug === 'other') return t.serviceOther;
+    if (slug === PROGRAM_OPTION) return t.serviceProgram;
+    return getServiceBySlugLocalised(slug, dict.locale)?.title ?? slug;
+  };
+  const serviceTagline = (slug: string) => {
+    if (slug === 'other') return undefined;
+    if (slug === PROGRAM_OPTION) return t.serviceProgramTagline;
+    return getServiceBySlugLocalised(slug, dict.locale)?.tagline;
+  };
 
   const { execute, isExecuting } = useAction(submitContact, {
     onSuccess: () => {
@@ -166,7 +173,9 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
                                 );
                           const Icon: LucideIcon = service
                             ? (SERVICE_ICONS[service.icon] as LucideIcon)
-                            : Sparkles;
+                            : option.value === PROGRAM_OPTION
+                              ? GraduationCap
+                              : Sparkles;
                           return (
                             <ChoiceCard
                               key={option.value}

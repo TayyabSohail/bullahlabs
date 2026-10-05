@@ -88,6 +88,11 @@ Read these documents in order. This file provides a brief overview and links to 
 - FAQ and troubleshooting
   - [docs/reference/faq.md](./reference/faq.md) 🚨 TBD
 
+### 10) Brand and positioning
+
+- Positioning, the Conscious AI program and how projects are described
+  - [docs/brand/positioning-and-program.md](./brand/positioning-and-program.md)
+
 ### Notes
 
 - The linked files are the canonical source of truth for each topic. This index is intentionally brief.

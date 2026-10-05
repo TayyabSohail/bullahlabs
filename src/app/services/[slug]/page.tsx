@@ -234,7 +234,11 @@ export default async function ServicePage({ params }: PageProps) {
           <Stagger className='mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
             {proof.map((project) => (
               <StaggerItem key={project.slug}>
-                <ProjectCard project={project} actionLabel={dict.work.view} />
+                <ProjectCard
+                  project={project}
+                  actionLabel={dict.work.view}
+                  lensLabel={dict.work.lenses[project.efficiency.lens].label}
+                />
               </StaggerItem>
             ))}
           </Stagger>

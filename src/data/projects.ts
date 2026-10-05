@@ -42,6 +42,34 @@ export const CAPABILITY_ORDER: ProjectCapability[] = [
   'Mobile',
 ];
 
+/**
+ * The program principle a build demonstrates most clearly. Each case study
+ * leads with one; see `docs/brand/positioning-and-program.md`.
+ */
+export type EfficiencyLens =
+  | 'right-tool'
+  | 'lean-context'
+  | 'no-repeat'
+  | 'checked';
+
+export const LENS_ORDER: EfficiencyLens[] = [
+  'right-tool',
+  'lean-context',
+  'no-repeat',
+  'checked',
+];
+
+/** How the build avoids unnecessary computation, rework or manual effort. */
+export interface ProjectEfficiency {
+  lens: EfficiencyLens;
+  /** One claim, taken from facts already in the case study. */
+  title: string;
+  /** The mechanism behind the claim. */
+  body: string;
+  /** Three short techniques, shown as a list. */
+  techniques: string[];
+}
+
 /** Whether the product is shown on a laptop with a phone, or on phones only. */
 export type ProjectPlatform = 'web' | 'app';
 
@@ -121,8 +149,10 @@ export interface Project {
    * Screens are recreations of the product, not captures of it.
    */
   anonymised?: boolean;
-  /** Featured projects appear in the homepage showcase, in this order. */
+  /** Position in the homepage showcase and the /work grid, lowest first. */
   featured?: number;
+  /** The efficiency lens the case study leads with. */
+  efficiency: ProjectEfficiency;
   /**
    * Smaller builds, apps and side projects. Kept out of the main showcase on
    * the homepage and /work; each still gets a full case-study page.
@@ -144,6 +174,19 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: 'brickfold',
+    featured: 6,
+    efficiency: {
+      lens: 'checked',
+      title:
+        'Exact rules move the money, and a person approves every movement.',
+      body:
+        'Nothing here is estimated. Ownership percentages are derived from actual amounts on every read, every split rounds down to the whole shilling, and the wallet invariant is enforced rather than assumed. Each deposit, investment, rent credit and withdrawal passes an admin before it settles, and platform rules are settings, so changing them needs no release.',
+      techniques: [
+        'Deterministic ledger rules, no estimates',
+        'Human approval on every money movement',
+        'Rules changed as settings, not releases',
+      ],
+    },
     title: 'Brickfold',
     client: 'Confidential (property members club)',
     tagline: 'Fractional property ownership for East Africa',
@@ -213,7 +256,6 @@ export const projects: Project[] = [
     industry: 'Fintech / Real estate',
     year: '2025-2026',
     anonymised: true,
-    featured: 1,
     headline: { value: '1M UGX', label: 'to start owning property' },
     problem:
       'Most people in East Africa will never own an apartment, not for lack of savings, but because property sells in one indivisible lump. Capital is locked up for years, rental income means becoming a landlord, and there is no transparency on what a building actually earns.',
@@ -276,6 +318,18 @@ export const projects: Project[] = [
 
   {
     slug: 'rankloom',
+    featured: 1,
+    efficiency: {
+      lens: 'no-repeat',
+      title: 'Batching and caching cut keyword tracking spend in half.',
+      body:
+        'Requests are batched and cached by keyword and locale, so the same data is never bought twice. Bulk generation runs as resumable jobs that retry a single failed item instead of the whole batch, and generation is routed through OpenRouter, so a model can be swapped without touching product code.',
+      techniques: [
+        'Cache keyed by keyword and locale',
+        'Retry one item, not the batch',
+        'Models swapped behind one router',
+      ],
+    },
     title: 'Rankloom',
     client: 'Confidential (SEO platform)',
     tagline: 'AI-driven platform for smarter SEO growth',
@@ -348,7 +402,6 @@ export const projects: Project[] = [
     industry: 'Marketing technology',
     year: '2024-2025',
     anonymised: true,
-    featured: 2,
     headline: { value: '3x', label: 'lower cost per article' },
     problem:
       'SEO teams switched between five different tools just to get from keyword discovery to tracking, wasting hours and risking inconsistent data. Most tools also lean on stale keyword and ranking data, so teams react slowly to search trends.',
@@ -403,6 +456,18 @@ export const projects: Project[] = [
 
   {
     slug: 'bidnest',
+    featured: 7,
+    efficiency: {
+      lens: 'lean-context',
+      title: 'Every screen receives only the bids it is watching.',
+      body:
+        'Real-time subscriptions are scoped per listing, so a client never processes updates for listings it is not looking at. Bid order is decided once, in a serialised server-side transaction, and clients reconcile to the committed result. The platform holds 1,000+ concurrent bidders with updates in 200 ms.',
+      techniques: [
+        'Subscriptions scoped per listing',
+        'One authoritative decision on the server',
+        'Access enforced by row-level security',
+      ],
+    },
     title: 'Bidnest',
     client: 'Confidential (student housing marketplace)',
     tagline: 'Off-campus home rentals, on your terms',
@@ -469,7 +534,6 @@ export const projects: Project[] = [
     industry: 'Property technology',
     year: '2024',
     anonymised: true,
-    featured: 3,
     headline: { value: '1,000+', label: 'people bidding at once' },
     problem:
       'Student housing is dominated by fixed-price listings with no room to negotiate, scattered across unreliable platforms. Parents fund most of these rentals but have no way into the process at all.',
@@ -525,6 +589,19 @@ export const projects: Project[] = [
 
   {
     slug: 'curio-market',
+    featured: 8,
+    efficiency: {
+      lens: 'no-repeat',
+      title:
+        'Payouts and tracking run themselves, so support stops repeating them.',
+      body:
+        'The two paths that created the most manual work, seller payouts and delivery tracking, are automated end to end with Stripe Connect and DHL webhooks, with status shown directly in the order view. Support requests fell by 70%. Tenant isolation is written once, at the database, instead of in every screen.',
+      techniques: [
+        'Payouts and tracking automated end to end',
+        'Status shown where people already look',
+        'Isolation enforced once, at the database',
+      ],
+    },
     title: 'Curio Market',
     client: 'Confidential (ecommerce marketplace)',
     tagline: 'A personalised multi-seller marketplace',
@@ -585,7 +662,6 @@ export const projects: Project[] = [
     industry: 'Ecommerce',
     year: '2024-2025',
     anonymised: true,
-    featured: 4,
     headline: { value: '70%', label: 'fewer support requests' },
     problem:
       'Most ecommerce shows a generic feed, burying shoppers in options that do not match their style. Sellers get basic tools with no view of orders or payouts, and manual payment handling plus opaque delivery erodes trust at checkout.',
@@ -640,6 +716,19 @@ export const projects: Project[] = [
 
   {
     slug: 'bitsmiths-hrm',
+    featured: 3,
+    efficiency: {
+      lens: 'right-tool',
+      title:
+        'Payroll is arithmetic, so it runs on rules, with no model in the loop.',
+      body:
+        'Leave and medical balances, payroll calculation and locking are Postgres functions. The calculation is idempotent, so it can be re-run safely at any point before a period locks, and every approved item feeds exactly one payroll. The result is zero manual payroll calculations.',
+      techniques: [
+        'Deterministic logic in the database',
+        'Idempotent recalculation',
+        'Each item counted exactly once',
+      ],
+    },
     title: 'Bitsmiths HRM',
     client: 'Bitsmiths Studio',
     tagline: 'HR and payroll system, fully auditable',
@@ -704,7 +793,6 @@ export const projects: Project[] = [
     services: ['product-engineering', 'cloud-devops'],
     industry: 'HR technology',
     year: '2026',
-    featured: 5,
     headline: { value: '0', label: 'manual payroll calculations' },
     problem:
       'People operations were scattered across email, chat and paper: onboarding by email, leave and overtime in messages, medical claims on paper, and payroll assembled by hand each month from all of it. Nothing reconciled, and nothing was auditable.',
@@ -766,6 +854,18 @@ export const projects: Project[] = [
 
   {
     slug: 'bitsmiths-studio',
+    featured: 12,
+    efficiency: {
+      lens: 'no-repeat',
+      title: 'Publishing is a CMS action, not a deploy.',
+      body:
+        'Every content surface is modelled once in Directus and rendered through shared templates, so a new case study or post needs no engineering time. Media is converted to WebP per request, which removes the manual export step.',
+      techniques: [
+        'Shared templates for four content types',
+        'No deploy needed to publish',
+        'Images converted on request, not by hand',
+      ],
+    },
     title: 'Bitsmiths Studio',
     client: 'Bitsmiths Studio',
     tagline: 'Agency marketing site and CMS',
@@ -813,7 +913,6 @@ export const projects: Project[] = [
     services: ['web-design-development', 'mvp-sprint'],
     industry: 'Software agency',
     year: '2025',
-    featured: 6,
     headline: { value: '30 days', label: 'from idea to shipped MVP' },
     problem:
       'The studio pitches production-ready MVPs in 30 days to founders comparing it against agencies charging many times more. That claim needs visible proof, and the team needed to publish it without a developer in the loop.',
@@ -868,6 +967,18 @@ export const projects: Project[] = [
 
   {
     slug: 'real-estate-management-system',
+    featured: 9,
+    efficiency: {
+      lens: 'right-tool',
+      title: 'Three specialised agents, each scoped to one job.',
+      body:
+        'Instead of one general assistant handed everything, CRM, compliance and knowledge work are split across three agents, with LangGraph coordinating the hand-offs. Agency differences sit behind CRM integrations, so more than 30 agencies share one workflow instead of thirty variants.',
+      techniques: [
+        'One agent per responsibility',
+        'Explicit hand-offs between agents',
+        'One shared workflow for 30+ agencies',
+      ],
+    },
     title: 'Real Estate Operating System',
     client: 'Confidential (real estate group)',
     tagline: 'Multi-tenant AI platform automating agency operations',
@@ -985,6 +1096,18 @@ export const projects: Project[] = [
 
   {
     slug: 'qa-compliance-agent',
+    featured: 5,
+    efficiency: {
+      lens: 'checked',
+      title: 'Every finding points at the clause it came from.',
+      body:
+        'Each check is grounded in the standards dataset and returned as a clause-level tracked change with an explanation attached, so a reviewer can verify a finding where it stands. One repeatable workflow evaluates every report against the same standards and output structure.',
+      techniques: [
+        'Grounded in a standards dataset',
+        'Clause-level, traceable findings',
+        'One repeatable review workflow',
+      ],
+    },
     title: 'Compliance Review Agent',
     client: 'Confidential (audit firm)',
     tagline: 'Clause-level tracked-change findings, generated by AI',
@@ -1088,6 +1211,18 @@ export const projects: Project[] = [
 
   {
     slug: 'ai-interview-assistant',
+    featured: 10,
+    efficiency: {
+      lens: 'no-repeat',
+      title: 'Voice and transcription share one real-time session.',
+      body:
+        'The interview and its transcript run within the same OpenAI Realtime session, not as two separate passes over the audio. Meeting links, invitations and the transcript email follow automatically, leaving zero manual steps after a session ends.',
+      techniques: [
+        'One session for voice and transcript',
+        'No second pass over the audio',
+        'Follow-up automated end to end',
+      ],
+    },
     title: 'Realtime Voice Interview Assistant',
     client: 'Confidential (recruitment)',
     tagline: 'Live AI voice interviews with automatic transcripts',
@@ -1192,6 +1327,19 @@ export const projects: Project[] = [
 
   {
     slug: 'snobbots',
+    featured: 4,
+    efficiency: {
+      lens: 'lean-context',
+      title:
+        'Each answer is retrieved from one shop’s content, and nothing else.',
+      body:
+        'Embeddings are partitioned per tenant in Pinecone, so retrieval can only reach the requesting shop’s namespace. The model works from one knowledge base, which keeps answers grounded in that shop’s content. Provisioning is automated, so resellers set up shops in bulk instead of one at a time.',
+      techniques: [
+        'Retrieval scoped to one namespace',
+        'Answers grounded in the shop’s own content',
+        'Bulk provisioning instead of manual setup',
+      ],
+    },
     title: 'SnobBots',
     client: 'SnobBots',
     tagline: 'Multi-tenant AI support agents for online shops',
@@ -1296,6 +1444,19 @@ export const projects: Project[] = [
 
   {
     slug: 'ai-physiotherapy',
+    featured: 11,
+    efficiency: {
+      lens: 'right-tool',
+      title:
+        'Rules adapt the plan each day. The model does what needs judgement.',
+      body:
+        'Daily logs feed progression and regression rules, so the plan adapts automatically instead of waiting for a manual review. AI is used where it earns its place: intake, plan generation informed by uploaded injury articles, and feedback on exercise videos.',
+      techniques: [
+        'Progression and regression by rule',
+        'Plans informed by uploaded source articles',
+        'AI feedback on submitted videos',
+      ],
+    },
     title: 'AI Physiotherapy Assistant',
     client: 'Confidential (healthcare)',
     tagline: 'Adaptive rehabilitation guided by AI',
@@ -1400,6 +1561,18 @@ export const projects: Project[] = [
 
   {
     slug: 'new-web-order',
+    featured: 13,
+    efficiency: {
+      lens: 'lean-context',
+      title: 'Each route ships only the code and images it needs.',
+      body:
+        'Routes are pre-rendered where content allows, JavaScript is split per route and only the above-the-fold image is prioritised. Pages load 40% faster with no layout shift from imagery, because the rendering work is done once at build time rather than on every visit.',
+      techniques: [
+        'Pre-rendered once, served many times',
+        'Code split per route',
+        'Only the first image prioritised',
+      ],
+    },
     title: 'New Web Order',
     client: 'New Web Order',
     tagline: 'Company website rebuilt for speed and SEO',
@@ -1492,6 +1665,19 @@ export const projects: Project[] = [
   },
   {
     slug: 'bank-islami-pep',
+    featured: 2,
+    efficiency: {
+      lens: 'right-tool',
+      title:
+        'A scoring pipeline reads the news. Analysts see only credible matches.',
+      body:
+        'Matching is a scoring pipeline over name variants, transliterations, role and city. Only matches above a confidence threshold reach the review queue, each showing exactly which fields agreed, so analysts spend their time on decisions. Morning triage fell from four hours to 30 minutes.',
+      techniques: [
+        'Scheduled crawl before the team arrives',
+        'Confidence threshold before human review',
+        'Every match shows why it matched',
+      ],
+    },
     title: 'BankIslami PEP Screening',
     client: 'BankIslami, delivered with Aawaz AI',
     tagline: 'Daily adverse-media screening for politically exposed persons',
@@ -1561,7 +1747,6 @@ export const projects: Project[] = [
     ],
     industry: 'Banking / Compliance',
     year: '2025',
-    featured: 7,
     headline: { value: '38', label: 'news sources screened daily' },
     problem:
       'Regulators expect banks to keep screening politically exposed persons for as long as the relationship lasts. The compliance team did this by hand: a morning spent across news sites, court lists and gazettes, searching for over a thousand names, then pasting findings into a spreadsheet. Stories were missed, the report landed late, and nobody could show an auditor how a name had been checked.',
@@ -1630,6 +1815,18 @@ export const projects: Project[] = [
   },
   {
     slug: 'bidnest-mobile',
+    featured: 14,
+    efficiency: {
+      lens: 'no-repeat',
+      title: 'Three platforms from one build, with nothing rebuilt for native.',
+      body:
+        'The existing web application is wrapped with Capacitor instead of being rewritten twice. Bidding, messaging and checkout are the same code on web, iOS and Android, so a fix ships to three platforms at once.',
+      techniques: [
+        'One codebase for web, iOS and Android',
+        'Zero features rebuilt for native',
+        'One fix, three platforms',
+      ],
+    },
     title: 'Bidnest Mobile App',
     client: 'Confidential (student housing marketplace)',
     tagline: 'The bidding marketplace, packaged for iOS and Android',
@@ -1749,6 +1946,17 @@ export const projects: Project[] = [
   },
   {
     slug: 'tayyab-sohail-portfolio',
+    efficiency: {
+      lens: 'no-repeat',
+      title: 'One typed data file generates the whole site.',
+      body:
+        'The grid, every case-study page, the sitemap and the social previews are rendered from one array. There is no CMS or database to maintain, and the compiler refuses a build when a section is missing.',
+      techniques: [
+        'One source of truth',
+        'No CMS or database to run',
+        'Errors caught at build time',
+      ],
+    },
     title: 'Tayyab Sohail Portfolio',
     client: 'Tayyab Sohail',
     tagline: 'Case-study portfolio for a senior engineer',
@@ -1872,9 +2080,23 @@ export function getProjectsBySlugs(slugs: readonly string[]): Project[] {
     .filter((project): project is Project => Boolean(project));
 }
 
-/** Main products: every project not flagged `notable`. */
+/** Main products: every project not flagged `notable`, in `featured` order. */
 export function getShowcaseProjects(): Project[] {
-  return projects.filter((project) => !project.notable);
+  return projects
+    .filter((project) => !project.notable)
+    .sort(
+      (a, b) =>
+        (a.featured ?? Number.MAX_SAFE_INTEGER) -
+        (b.featured ?? Number.MAX_SAFE_INTEGER),
+    );
+}
+
+/** Lenses present in `list`, in display order. */
+export function getLenses(
+  list: readonly Project[] = projects,
+): EfficiencyLens[] {
+  const present = new Set(list.map((project) => project.efficiency.lens));
+  return LENS_ORDER.filter((lens) => present.has(lens));
 }
 
 /** Categories present in `list`, in display order. */
@@ -1904,11 +2126,12 @@ function localiseProject(project: Project, locale: Locale): Project {
   const t = projectsDe[project.slug];
   if (!t) return project;
 
-  const { gallery, techStackCategories, ...rest } = t;
+  const { gallery, techStackCategories, efficiency, ...rest } = t;
 
   return {
     ...project,
     ...rest,
+    efficiency: { ...project.efficiency, ...efficiency },
     gallery: project.gallery.map((screen, index) => {
       const copy = gallery?.[index];
       return copy ? { ...screen, ...copy } : screen;

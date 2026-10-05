@@ -9,7 +9,7 @@ import { useEffect, useRef } from 'react';
  * Inertial smooth scrolling, the foundation the parallax and stacking
  * effects sit on. Disabled automatically for users who prefer reduced
  * motion, and reset on route change so a new page starts at the top,
- * unless the URL names a section (/#pricing), which wins.
+ * unless the URL names a section (/#work), which wins.
  */
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<LenisRef>(null);

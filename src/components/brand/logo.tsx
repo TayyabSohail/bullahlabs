@@ -5,6 +5,15 @@ import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
 
+import {
+  MARK_B_PATH,
+  MARK_B_TRANSFORM,
+  MARK_DOT_SIZE,
+  MARK_DOT_X,
+  MARK_DOT_Y,
+  MARK_RADIUS,
+} from './mark';
+
 interface LogoMarkProps {
   className?: string;
   /** Renders the mark in fixed brand colours instead of theme tokens. */
@@ -12,9 +21,9 @@ interface LogoMarkProps {
 }
 
 /**
- * The Bullah Labs mark: a "B" built from precision bars, with the lower
- * bowl closed by a single accent block. Theme-aware by
- * default: the plate takes the foreground colour, the glyph the background.
+ * The Bullah Labs mark: the wordmark's own "B" on a square plate, closed by
+ * a square full stop in the brand colour. Theme-aware by default: the plate
+ * takes the foreground colour, the glyph the background.
  */
 export function LogoMark({ className, inverted }: LogoMarkProps) {
   return (
@@ -26,22 +35,19 @@ export function LogoMark({ className, inverted }: LogoMarkProps) {
       <rect
         width='64'
         height='64'
-        rx='8'
+        rx={MARK_RADIUS}
         className={inverted ? 'fill-brand' : 'fill-foreground'}
       />
-      <g className={inverted ? 'fill-white' : 'fill-background'}>
-        <rect x='17' y='15' width='9' height='34' rx='1.5' />
-        <rect x='17' y='15' width='24' height='8' rx='1.5' />
-        <rect x='34' y='15' width='8' height='19' rx='1.5' />
-        <rect x='17' y='28' width='30' height='8' rx='1.5' />
-        <rect x='17' y='41' width='22' height='8' rx='1.5' />
-      </g>
+      <path
+        transform={MARK_B_TRANSFORM}
+        d={MARK_B_PATH}
+        className={inverted ? 'fill-white' : 'fill-background'}
+      />
       <rect
-        x='39'
-        y='36'
-        width='8'
-        height='13'
-        rx='1.5'
+        x={MARK_DOT_X}
+        y={MARK_DOT_Y}
+        width={MARK_DOT_SIZE}
+        height={MARK_DOT_SIZE}
         className={inverted ? 'fill-white' : 'fill-brand'}
       />
     </svg>
@@ -113,7 +119,7 @@ export function Logo({
     >
       <LogoMark
         className={cn(
-          'transition-transform duration-500 ease-out-expo group-hover/logo:-rotate-6',
+          'transition-transform duration-500 ease-out-expo group-hover/logo:-translate-y-0.5',
           markClassName,
         )}
       />

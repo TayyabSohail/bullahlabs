@@ -1,6 +1,12 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      // Pricing was retired with the Conscious AI repositioning.
+      { source: '/pricing', destination: '/conscious-ai', permanent: false },
+    ];
+  },
   async rewrites() {
     return [
       {

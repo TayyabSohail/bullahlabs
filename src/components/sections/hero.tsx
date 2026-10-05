@@ -16,8 +16,9 @@ interface HeroProps {
 /**
  * Opening section over a drifting contour-map texture. The headline runs
  * the full width in two lines; beneath it the body and CTAs sit on the left
- * and, on the right, the systems we build run as a living map: labelled
- * tiles on a plate with requests and answers riding the wires between them.
+ * and, on the right, a living map of the idea we teach: a task and its
+ * context are routed to rules or a light model first, and only escalate to
+ * the full model when they have to.
  */
 export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
@@ -61,7 +62,7 @@ export function Hero({ dict }: HeroProps) {
               className='mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center'
             >
               <Link
-                href={paths.contact}
+                href={paths.program}
                 className='bl-btn bl-btn-ink inline-flex h-14 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto'
               >
                 {t.primary}

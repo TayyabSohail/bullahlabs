@@ -12,7 +12,11 @@ export const BUDGET_OPTIONS = [
   { value: 'unsure', label: 'Not sure yet' },
 ] as const;
 
+/** The program comes first; it is not a service in data/services.ts. */
+export const PROGRAM_OPTION = 'conscious-ai';
+
 export const SERVICE_OPTIONS = [
+  { value: PROGRAM_OPTION, label: 'Conscious AI program' },
   ...services.map((service) => ({ value: service.slug, label: service.title })),
   { value: 'other', label: 'Something else' },
 ] as const;

@@ -17,7 +17,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Bullah Labs is a software studio with offices in Islamabad, Pakistan and Fellbach, Germany, building web, AI and cloud products on fixed dates.',
+    'Bullah Labs teaches non-technical teams to use AI effectively and responsibly, and builds lean systems to the same principles. Offices in Islamabad and Fellbach.',
   alternates: { canonical: paths.about },
 };
 

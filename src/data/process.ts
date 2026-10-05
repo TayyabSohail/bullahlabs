@@ -13,7 +13,7 @@ export const processSteps: ProcessStep[] = [
     title: 'Brief',
     duration: 'Week 1',
     summary:
-      'One call to understand the problem, then a written scope, a fixed price for a standard package or a custom quote, and a launch date within five working days.',
+      'One call to understand the problem, then a written scope, a fixed quote and a launch date within five working days.',
     outcome: 'You know exactly what you will get, when, and for how much.',
   },
   {
@@ -59,16 +59,16 @@ export interface Value {
 
 export const values: Value[] = [
   {
-    title: 'Precision over volume',
-    body: 'We would rather ship one system that reconciles to the last unit than three that mostly work.',
+    title: 'The smallest reliable system',
+    body: 'Use the minimum that reliably does the job. Rules and ordinary software before AI, a lighter model before a heavier one.',
   },
   {
-    title: 'Own the whole problem',
-    body: 'Interface, API, data, infrastructure and the emails in between. One team responsible for the outcome, not a layer.',
+    title: 'People stay in the loop',
+    body: 'Efficiency never comes at the cost of quality, accuracy or safety. Where an error is expensive, a person checks before anything ships.',
   },
   {
-    title: 'Boring infrastructure',
-    body: 'Durable jobs, tested policies and monitoring that alerts before customers notice. Excitement belongs in the product.',
+    title: 'Measure before and after',
+    body: 'Record a baseline, change one thing, compare. We keep what the numbers support and drop what they do not.',
   },
   {
     title: 'Write it down',
@@ -78,16 +78,16 @@ export const values: Value[] = [
 
 const valuesDe: Value[] = [
   {
-    title: 'Präzision statt Menge',
-    body: 'Uns ist ein System lieber, das bis zur letzten Einheit stimmt, als drei, die größtenteils funktionieren.',
+    title: 'Das kleinste zuverlässige System',
+    body: 'Das Minimum einsetzen, das die Aufgabe zuverlässig erledigt. Regeln und gewöhnliche Software vor KI, ein leichteres Modell vor einem schwereren.',
   },
   {
-    title: 'Das ganze Problem übernehmen',
-    body: 'Oberfläche, API, Daten, Infrastruktur und die E-Mails dazwischen. Ein Team verantwortet das Ergebnis, nicht eine Schicht.',
+    title: 'Menschen bleiben beteiligt',
+    body: 'Effizienz geht nie auf Kosten von Qualität, Genauigkeit oder Sicherheit. Wo ein Fehler teuer ist, prüft ein Mensch, bevor etwas ausgeliefert wird.',
   },
   {
-    title: 'Unaufgeregte Infrastruktur',
-    body: 'Robuste Jobs, geprüfte Richtlinien und Monitoring, das alarmiert, bevor es Kundinnen und Kunden merken. Spannung gehört ins Produkt.',
+    title: 'Vorher und nachher messen',
+    body: 'Ausgangswert festhalten, eine Sache ändern, vergleichen. Wir behalten, was die Zahlen stützen, und verwerfen den Rest.',
   },
   {
     title: 'Alles aufschreiben',
@@ -100,7 +100,7 @@ const processStepsDe: ProcessStep[] = [
     title: 'Briefing',
     duration: 'Woche 1',
     summary:
-      'Ein Gespräch, um das Problem zu verstehen, dann ein schriftlicher Leistungsumfang, ein Festpreis für ein Standardpaket oder ein individuelles Angebot und ein Launch-Termin innerhalb von fünf Werktagen.',
+      'Ein Gespräch, um das Problem zu verstehen, dann ein schriftlicher Leistungsumfang, ein Festangebot und ein Launch-Termin innerhalb von fünf Werktagen.',
     outcome: 'Sie wissen genau, was Sie bekommen, wann und zu welchem Preis.',
   },
   {

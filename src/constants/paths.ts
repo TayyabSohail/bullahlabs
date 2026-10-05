@@ -6,7 +6,7 @@ export const paths = {
   caseStudy: (slug: string) => `/work/${slug}` as const,
   about: '/about',
   process: '/about#how-it-works',
-  pricing: '/pricing',
+  program: '/conscious-ai',
   careers: '/careers',
   contact: '/contact',
   legal: {

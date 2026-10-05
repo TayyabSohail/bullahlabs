@@ -7,14 +7,22 @@ import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface NumbersProps {
   dict: Dictionary;
+  /** Section band; pass `bl-band-white` to alternate with a neighbour. */
+  className?: string;
 }
 
 /** Three company figures in one ink panel. Each counts up fast on entering view. */
-export function Numbers({ dict }: NumbersProps) {
+export function Numbers({
+  dict,
+  className = 'bl-band-stone',
+}: NumbersProps) {
   const t = dict.numbers;
 
   return (
-    <section className='bl-section bl-rule bl-band-stone' data-rail={t.kicker}>
+    <section
+      className={cn('bl-section bl-rule', className)}
+      data-rail={t.kicker}
+    >
       <div className='bl-container'>
         <SectionHeading
           kicker={t.kicker}

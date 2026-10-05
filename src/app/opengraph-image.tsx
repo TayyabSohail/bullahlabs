@@ -1,5 +1,14 @@
 import { ImageResponse } from 'next/og';
 
+import {
+  MARK_B_PATH,
+  MARK_B_TRANSFORM,
+  MARK_DOT_SIZE,
+  MARK_DOT_X,
+  MARK_DOT_Y,
+  MARK_RADIUS,
+} from '@/components/brand/mark';
+
 import { siteConfig } from '@/config/site';
 
 export const runtime = 'edge';
@@ -39,15 +48,19 @@ export default function OpenGraphImage() {
         />
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <svg width='64' height='64' viewBox='0 0 64 64'>
-            <rect width='64' height='64' rx='16' fill='#f5f5f3' />
-            <g fill='#0d0d0d'>
-              <rect x='17' y='15' width='9' height='34' rx='1.5' />
-              <rect x='17' y='15' width='24' height='8' rx='1.5' />
-              <rect x='34' y='15' width='8' height='19' rx='1.5' />
-              <rect x='17' y='28' width='30' height='8' rx='1.5' />
-              <rect x='17' y='41' width='22' height='8' rx='1.5' />
-            </g>
-            <rect x='39' y='36' width='8' height='13' rx='1.5' fill='#10b981' />
+            <rect width='64' height='64' rx={MARK_RADIUS} fill='#f5f5f3' />
+            <path
+              transform={MARK_B_TRANSFORM}
+              d={MARK_B_PATH}
+              fill='#0d0d0d'
+            />
+            <rect
+              x={MARK_DOT_X}
+              y={MARK_DOT_Y}
+              width={MARK_DOT_SIZE}
+              height={MARK_DOT_SIZE}
+              fill='#10b981'
+            />
           </svg>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: 30, fontWeight: 700, letterSpacing: -1 }}>
@@ -76,11 +89,11 @@ export default function OpenGraphImage() {
               maxWidth: 900,
             }}
           >
-            Software built with precision.
+            Work smarter with AI. Use it on purpose.
           </div>
           <div style={{ fontSize: 30, color: '#b3b3b3', maxWidth: 900 }}>
-            Full-stack products, AI systems and cloud automation. Islamabad and
-            Fellbach, shipped worldwide.
+            AI enablement for knowledge workers, and lean systems built to the
+            same principles.
           </div>
         </div>
 

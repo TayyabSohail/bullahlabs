@@ -85,6 +85,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
     getTestimonials(dict.locale).find(
       (item) => item.project === project.slug,
     ) ?? null;
+  const lens = dict.work.lenses[project.efficiency.lens];
   const relatedServices = project.services
     .map((serviceSlug) => getServiceBySlugLocalised(serviceSlug, dict.locale))
     .filter((service): service is NonNullable<typeof service> =>
@@ -144,11 +145,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
           >
             <Meta label={t.category} value={project.category} />
             <Meta label={t.year} value={project.year} />
-            <Meta
-              label={t.capabilities}
-              value={project.capabilities.join(', ')}
-            />
-            <Meta label={t.industry} value={project.industry} highlight />
+            <Meta label={t.industry} value={project.industry} />
+            <Meta label={t.lens} value={lens.label} highlight />
           </Reveal>
         </div>
 
@@ -169,6 +167,46 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </Parallax>
         </Reveal>
       </header>
+
+      {/* Efficiency lens: the principle this build demonstrates */}
+      <section className='bl-container pt-16 lg:pt-24'>
+        <Reveal className='bl-card bl-card-ink bl-grid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14 lg:p-12'>
+          <div>
+            <p className='bl-kicker text-white/60'>{t.efficiencyKicker}</p>
+            <p className='mt-6 flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-2'>
+              <span aria-hidden='true' className='h-1.5 w-1.5 bg-brand' />
+              {lens.label}
+            </p>
+            <h2 className='bl-display mt-3 text-2xl text-white sm:text-3xl lg:text-4xl'>
+              {project.efficiency.title}
+            </h2>
+            <p className='mt-5 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg'>
+              {project.efficiency.body}
+            </p>
+          </div>
+          <div className='lg:border-l lg:border-white/15 lg:pl-10'>
+            <p className='font-mono text-[10px] uppercase tracking-[0.18em] text-white/50'>
+              {t.techniques}
+            </p>
+            <ul className='mt-4 divide-y divide-white/10 border-y border-white/10'>
+              {project.efficiency.techniques.map((technique, index) => (
+                <li
+                  key={technique}
+                  className='flex items-start gap-4 py-4 text-[15px] leading-snug text-white/90'
+                >
+                  <span className='font-mono text-[10px] font-semibold leading-[1.6] tracking-[0.16em] text-brand-2'>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  {technique}
+                </li>
+              ))}
+            </ul>
+            <p className='mt-5 text-sm leading-relaxed text-white/50'>
+              {lens.principle}
+            </p>
+          </div>
+        </Reveal>
+      </section>
 
       {/* Lede */}
       <section className='bl-container py-16 lg:py-24'>

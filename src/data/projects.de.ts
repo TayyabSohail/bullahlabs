@@ -1,4 +1,4 @@
-import type { Project } from './projects';
+import type { Project, ProjectEfficiency } from './projects';
 
 /**
  * German copy for each case study, keyed by slug. Only prose is translated:
@@ -24,6 +24,8 @@ export type ProjectTranslation = Partial<
     | 'challenges'
   >
 > & {
+  /** Efficiency copy; the lens itself is not translated. */
+  efficiency?: Omit<ProjectEfficiency, 'lens'>;
   /** Gallery captions, in the same order as the project's `gallery`. */
   gallery?: { title: string; caption: string }[];
   /** `techStack` category labels, in the same order. */
@@ -32,6 +34,17 @@ export type ProjectTranslation = Partial<
 
 export const projectsDe: Record<string, ProjectTranslation> = {
   brickfold: {
+    efficiency: {
+      title:
+        'Exakte Regeln bewegen das Geld, und ein Mensch gibt jede Bewegung frei.',
+      body:
+        'Hier wird nichts geschätzt. Eigentumsanteile werden bei jedem Lesen aus den tatsächlichen Beträgen abgeleitet, jede Aufteilung rundet auf den ganzen Schilling ab, und die Wallet-Invariante wird erzwungen statt angenommen. Jede Einzahlung, Investition, Mietgutschrift und Auszahlung passiert die Administration, bevor sie wirksam wird, und Plattformregeln sind Einstellungen, deren Änderung kein Release braucht.',
+      techniques: [
+        'Deterministische Buchungsregeln, keine Schätzungen',
+        'Menschliche Freigabe für jede Geldbewegung',
+        'Regeln als Einstellungen statt Releases',
+      ],
+    },
     client: 'Vertraulich (Immobilien-Mitgliederclub)',
     tagline: 'Anteiliges Immobilieneigentum für Ostafrika',
     summary:
@@ -123,6 +136,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   rankloom: {
+    efficiency: {
+      title:
+        'Bündelung und Caching halbieren die Kosten des Keyword-Trackings.',
+      body:
+        'Anfragen werden gebündelt und nach Keyword und Sprachraum zwischengespeichert, sodass dieselben Daten nie zweimal eingekauft werden. Die Massenerzeugung läuft als fortsetzbare Jobs, die einen einzelnen fehlgeschlagenen Eintrag wiederholen statt des ganzen Stapels, und die Erzeugung läuft über OpenRouter, sodass sich ein Modell austauschen lässt, ohne den Produktcode anzufassen.',
+      techniques: [
+        'Cache nach Keyword und Sprachraum',
+        'Einen Eintrag wiederholen, nicht den Stapel',
+        'Modelle hinter einem Router austauschbar',
+      ],
+    },
     client: 'Vertraulich (SEO-Plattform)',
     tagline: 'KI-gestützte Plattform für intelligenteres SEO-Wachstum',
     summary: 'KI-gestützte SEO- und Content-Plattform.',
@@ -207,6 +231,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   bidnest: {
+    efficiency: {
+      title:
+        'Jeder Bildschirm erhält nur die Gebote, die er gerade beobachtet.',
+      body:
+        'Echtzeit-Abonnements sind pro Inserat begrenzt, sodass ein Client nie Aktualisierungen für Inserate verarbeitet, die er nicht anzeigt. Die Reihenfolge der Gebote wird einmal entschieden, in einer serialisierten serverseitigen Transaktion, und die Clients gleichen sich mit dem bestätigten Ergebnis ab. Die Plattform trägt über 1.000 gleichzeitig Bietende, mit Aktualisierungen in 200 ms.',
+      techniques: [
+        'Abonnements pro Inserat begrenzt',
+        'Eine verbindliche Entscheidung auf dem Server',
+        'Zugriff über Row-Level Security erzwungen',
+      ],
+    },
     client: 'Vertraulich (Marktplatz für Studierendenwohnungen)',
     tagline: 'Wohnungen außerhalb des Campus, zu Ihren Bedingungen',
     summary:
@@ -293,6 +328,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'curio-market': {
+    efficiency: {
+      title:
+        'Auszahlungen und Sendungsverfolgung laufen von selbst, der Support muss sie nicht wiederholen.',
+      body:
+        'Die beiden Abläufe mit der meisten Handarbeit, Händlerauszahlungen und Sendungsverfolgung, sind mit Stripe Connect und DHL-Webhooks durchgängig automatisiert, der Status steht direkt in der Bestellansicht. Die Supportanfragen sanken um 70 %. Die Mandantentrennung ist einmal in der Datenbank festgelegt statt in jeder Ansicht.',
+      techniques: [
+        'Auszahlungen und Tracking durchgängig automatisiert',
+        'Status dort, wo ohnehin nachgesehen wird',
+        'Trennung einmal in der Datenbank erzwungen',
+      ],
+    },
     client: 'Vertraulich (E-Commerce-Marktplatz)',
     tagline: 'Ein personalisierter Marktplatz mit vielen Anbietern',
     summary: 'Personalisierter E-Commerce-Marktplatz mit vielen Anbietern.',
@@ -376,6 +422,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'bitsmiths-hrm': {
+    efficiency: {
+      title:
+        'Lohnabrechnung ist Rechnen, also läuft sie über Regeln, ohne Modell im Ablauf.',
+      body:
+        'Urlaubs- und Krankheitskonten, Lohnberechnung und Sperrung sind Postgres-Funktionen. Die Berechnung ist idempotent und lässt sich jederzeit gefahrlos wiederholen, bevor ein Zeitraum gesperrt wird, und jeder freigegebene Posten fließt in genau eine Abrechnung. Das Ergebnis: null manuelle Lohnberechnungen.',
+      techniques: [
+        'Deterministische Logik in der Datenbank',
+        'Idempotente Neuberechnung',
+        'Jeder Posten genau einmal gezählt',
+      ],
+    },
     tagline: 'HR- und Lohnsystem, vollständig prüfbar',
     summary:
       'Onboarding, Urlaub, Krankheitskosten, Überstunden und Lohnabrechnung für Bitsmiths Studio.',
@@ -466,6 +523,16 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'bitsmiths-studio': {
+    efficiency: {
+      title: 'Veröffentlichen ist eine CMS-Aktion, kein Deployment.',
+      body:
+        'Jede Inhaltsfläche ist einmal in Directus modelliert und wird über gemeinsame Vorlagen ausgegeben, sodass eine neue Fallstudie oder ein Beitrag keine Entwicklungszeit kostet. Medien werden pro Anfrage in WebP umgewandelt, der manuelle Export entfällt.',
+      techniques: [
+        'Gemeinsame Vorlagen für vier Inhaltstypen',
+        'Kein Deployment zum Veröffentlichen',
+        'Bilder auf Anfrage umgewandelt, nicht von Hand',
+      ],
+    },
     tagline: 'Agenturwebsite und CMS',
     summary: 'Marketing-Website für ein Studio, das MVPs in 30 Tagen liefert.',
     description:
@@ -539,6 +606,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Styling', 'CMS'],
   },
   'real-estate-management-system': {
+    efficiency: {
+      title:
+        'Drei spezialisierte Agenten, jeder auf eine Aufgabe zugeschnitten.',
+      body:
+        'Statt einem allgemeinen Assistenten alles zu übergeben, sind CRM, Compliance und Wissensarbeit auf drei Agenten verteilt, deren Übergaben LangGraph koordiniert. Die Unterschiede der Agenturen liegen hinter CRM-Integrationen, sodass mehr als 30 Agenturen einen Ablauf teilen statt dreißig Varianten.',
+      techniques: [
+        'Ein Agent pro Verantwortung',
+        'Klare Übergaben zwischen den Agenten',
+        'Ein gemeinsamer Ablauf für über 30 Agenturen',
+      ],
+    },
     title: 'Real Estate Operating System',
     client: 'Vertraulich (Immobiliengruppe)',
     tagline:
@@ -619,6 +697,16 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Backend', 'KI', 'Architektur'],
   },
   'qa-compliance-agent': {
+    efficiency: {
+      title: 'Jede Feststellung verweist auf die Klausel, aus der sie stammt.',
+      body:
+        'Jede Prüfung stützt sich auf den Normen-Datensatz und wird als nachverfolgte Änderung auf Klauselebene mit Erläuterung zurückgegeben, sodass eine Prüferin die Feststellung an Ort und Stelle verifizieren kann. Ein wiederholbarer Ablauf bewertet jeden Bericht nach denselben Normen und derselben Ausgabestruktur.',
+      techniques: [
+        'Gestützt auf einen Normen-Datensatz',
+        'Nachvollziehbare Feststellungen auf Klauselebene',
+        'Ein wiederholbarer Prüfablauf',
+      ],
+    },
     title: 'Agent für Compliance-Prüfung',
     client: 'Vertraulich (Wirtschaftsprüfung)',
     tagline: 'Feststellungen als Änderungsverfolgung je Klausel, KI-erzeugt',
@@ -696,6 +784,16 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Backend', 'Cloud', 'KI'],
   },
   'ai-interview-assistant': {
+    efficiency: {
+      title: 'Sprache und Transkription teilen sich eine Echtzeit-Sitzung.',
+      body:
+        'Das Interview und sein Transkript laufen in derselben OpenAI-Realtime-Sitzung, nicht als zwei getrennte Durchgänge über die Aufnahme. Meeting-Links, Einladungen und die Transkript-E-Mail folgen automatisch, sodass nach dem Ende einer Sitzung kein manueller Schritt bleibt.',
+      techniques: [
+        'Eine Sitzung für Sprache und Transkript',
+        'Kein zweiter Durchgang über die Aufnahme',
+        'Nachbereitung durchgängig automatisiert',
+      ],
+    },
     title: 'Sprachassistent für Interviews in Echtzeit',
     client: 'Vertraulich (Personalvermittlung)',
     tagline: 'Live-KI-Sprachinterviews mit automatischen Transkripten',
@@ -775,6 +873,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend & Backend', 'KI'],
   },
   snobbots: {
+    efficiency: {
+      title:
+        'Jede Antwort stammt aus den Inhalten eines Shops, und aus nichts anderem.',
+      body:
+        'Embeddings sind in Pinecone pro Mandant getrennt, sodass der Abruf nur den Namespace des anfragenden Shops erreichen kann. Das Modell arbeitet mit einer einzigen Wissensbasis, wodurch die Antworten in den Inhalten dieses Shops verankert bleiben. Die Bereitstellung ist automatisiert, sodass Reseller Shops gebündelt statt einzeln einrichten.',
+      techniques: [
+        'Abruf auf einen Namespace begrenzt',
+        'Antworten aus den eigenen Inhalten des Shops',
+        'Gebündelte Bereitstellung statt Handarbeit',
+      ],
+    },
     tagline: 'Mandantenfähige KI-Support-Agenten für Onlineshops',
     summary: 'Mandantenfähige KI-Chatbot-Plattform.',
     description:
@@ -849,6 +958,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Backend', 'Datenbank', 'KI'],
   },
   'ai-physiotherapy': {
+    efficiency: {
+      title:
+        'Regeln passen den Plan täglich an. Das Modell übernimmt, was Urteilsvermögen braucht.',
+      body:
+        'Tägliche Protokolle speisen Regeln für Steigerung und Rücknahme, sodass sich der Plan automatisch anpasst, statt auf eine manuelle Durchsicht zu warten. KI kommt dort zum Einsatz, wo sie sich lohnt: bei der Aufnahme, bei der Planerstellung auf Basis hochgeladener Fachartikel und beim Feedback zu Übungsvideos.',
+      techniques: [
+        'Steigerung und Rücknahme nach Regeln',
+        'Pläne auf Basis hochgeladener Fachartikel',
+        'KI-Feedback zu eingereichten Videos',
+      ],
+    },
     title: 'KI-Assistent für Physiotherapie',
     client: 'Vertraulich (Gesundheitswesen)',
     tagline: 'Adaptive Rehabilitation, von KI begleitet',
@@ -927,6 +1047,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Backend', 'KI'],
   },
   'new-web-order': {
+    efficiency: {
+      title:
+        'Jede Route liefert nur den Code und die Bilder aus, die sie braucht.',
+      body:
+        'Routen werden vorgerendert, wo der Inhalt es erlaubt, JavaScript wird pro Route aufgeteilt, und nur das Bild im sichtbaren Bereich wird priorisiert. Die Seiten laden 40 % schneller und ohne Layoutverschiebung durch Bilder, weil das Rendern einmal beim Build geschieht statt bei jedem Besuch.',
+      techniques: [
+        'Einmal vorgerendert, vielfach ausgeliefert',
+        'Code pro Route aufgeteilt',
+        'Nur das erste Bild priorisiert',
+      ],
+    },
     tagline: 'Unternehmenswebsite, neu gebaut für Tempo und SEO',
     summary: 'Unternehmenswebsite, gebaut für Performance und SEO.',
     description:
@@ -994,6 +1125,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Styling'],
   },
   'bank-islami-pep': {
+    efficiency: {
+      title:
+        'Eine Scoring-Pipeline liest die Nachrichten. Analysten sehen nur glaubwürdige Treffer.',
+      body:
+        'Der Abgleich ist eine Scoring-Pipeline über Namensvarianten, Transliterationen, Funktion und Stadt. Nur Treffer über einer Konfidenzschwelle erreichen die Prüfwarteschlange, jeweils mit genau den Feldern, die übereinstimmten, sodass Analysten ihre Zeit für Entscheidungen nutzen. Die morgendliche Sichtung sank von vier Stunden auf 30 Minuten.',
+      techniques: [
+        'Geplanter Crawl, bevor das Team eintrifft',
+        'Konfidenzschwelle vor der menschlichen Prüfung',
+        'Jeder Treffer zeigt, warum er passt',
+      ],
+    },
     title: 'BankIslami PEP-Screening',
     client: 'BankIslami, umgesetzt mit Aawaz AI',
     tagline: 'Tägliches Adverse-Media-Screening politisch exponierter Personen',
@@ -1094,6 +1236,16 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'bidnest-mobile': {
+    efficiency: {
+      title: 'Drei Plattformen aus einem Build, ohne etwas nativ neu zu bauen.',
+      body:
+        'Die bestehende Webanwendung wird mit Capacitor verpackt, statt zweimal neu geschrieben zu werden. Bieten, Nachrichten und Bezahlen sind derselbe Code im Web, auf iOS und auf Android, sodass eine Korrektur drei Plattformen zugleich erreicht.',
+      techniques: [
+        'Eine Codebasis für Web, iOS und Android',
+        'Keine Funktion nativ neu gebaut',
+        'Eine Korrektur, drei Plattformen',
+      ],
+    },
     title: 'Bidnest Mobile App',
     client: 'Vertraulich (Marktplatz für Studierendenwohnungen)',
     tagline: 'Der Auktionsmarktplatz, verpackt für iOS und Android',
@@ -1181,6 +1333,16 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'tayyab-sohail-portfolio': {
+    efficiency: {
+      title: 'Eine typisierte Datendatei erzeugt die gesamte Website.',
+      body:
+        'Das Raster, jede Fallstudienseite, die Sitemap und die Social-Media-Vorschauen entstehen aus einem einzigen Array. Es gibt kein CMS und keine Datenbank zu pflegen, und der Compiler verweigert den Build, wenn ein Abschnitt fehlt.',
+      techniques: [
+        'Eine einzige Quelle der Wahrheit',
+        'Kein CMS und keine Datenbank im Betrieb',
+        'Fehler schon beim Build erkannt',
+      ],
+    },
     tagline: 'Referenz-Portfolio für einen erfahrenen Entwickler',
     summary:
       'Eine persönliche Website, auf der jedes Projekt eine vollständige Fallstudie ist, erzeugt aus einer einzigen typisierten Datendatei.',

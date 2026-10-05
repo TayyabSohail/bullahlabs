@@ -22,9 +22,9 @@ export const siteConfig = {
   name: 'Bullah Labs',
   shortName: 'Bullah Labs',
   legalName: 'Bullah Labs',
-  tagline: 'Products engineered from MVP to scale',
+  tagline: 'Work smarter with AI. Use it responsibly.',
   description:
-    'Bullah Labs designs, builds and maintains web platforms, AI systems and cloud automation. Written scope, fixed or custom quote, committed launch date, support after launch.',
+    'Bullah Labs helps non-technical knowledge workers use AI effectively, build future-ready skills and reduce unnecessary AI usage, through the Conscious AI program and lean systems built to the same principles.',
   url: env.NEXT_PUBLIC_APP_URL,
   founded: 2024,
   /** Company inbox that receives enquiries. */
@@ -35,7 +35,7 @@ export const siteConfig = {
    */
   publicEmail: 'hello@bullahlabs.com' as string | null,
   responseTime: 'within one business day',
-  availability: 'Accepting new projects',
+  availability: 'Open for early access',
   locations: [
     {
       id: 'islamabad',
@@ -74,9 +74,9 @@ export const siteConfig = {
   calHandle,
   nav: [
     { label: 'Home', href: paths.home },
-    { label: 'Services', href: paths.services },
+    { label: 'Conscious AI', href: paths.program },
     { label: 'Projects', href: paths.work },
-    { label: 'Pricing', href: paths.pricing },
+    { label: 'Services', href: paths.services },
     { label: 'About', href: paths.about },
     { label: 'Careers', href: paths.careers },
     { label: 'Contact', href: paths.contact },
@@ -84,9 +84,9 @@ export const siteConfig = {
   footerNav: {
     company: [
       { label: 'Home', href: paths.home },
-      { label: 'Services', href: paths.services },
+      { label: 'Conscious AI', href: paths.program },
       { label: 'Projects', href: paths.work },
-      { label: 'Pricing', href: paths.pricing },
+      { label: 'Services', href: paths.services },
       { label: 'About', href: paths.about },
       { label: 'Careers', href: paths.careers },
       { label: 'Contact', href: paths.contact },

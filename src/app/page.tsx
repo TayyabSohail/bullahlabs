@@ -1,10 +1,9 @@
+import { Pillars, ProgramTiers } from '@/components/sections/conscious-ai';
 import { ContactSection } from '@/components/sections/contact-section';
 import { FaqSection } from '@/components/sections/faq';
 import { GlobalReach } from '@/components/sections/global-reach';
 import { Hero } from '@/components/sections/hero';
-import { HowItWorks } from '@/components/sections/how-it-works';
 import { Numbers } from '@/components/sections/numbers';
-import { Pricing } from '@/components/sections/pricing';
 import { ProjectsTeaser } from '@/components/sections/projects-teaser';
 import { ServicesGrid } from '@/components/sections/services-grid';
 import { Technologies } from '@/components/sections/technologies';
@@ -20,21 +19,21 @@ export default async function HomePage() {
   return (
     <>
       <Hero dict={dict} />
-      <Numbers dict={dict} />
-      <ProjectsTeaser dict={dict} />
+      <Pillars dict={dict} />
+      <ProgramTiers dict={dict} />
+      <ProjectsTeaser dict={dict} className='bl-band-stone' />
+      <Numbers dict={dict} className='bl-band-white' />
       <ServicesGrid dict={dict} className='bl-band-stone' />
       <Technologies dict={dict} />
       <GlobalReach dict={dict} />
-      <HowItWorks dict={dict} />
-      <Testimonials dict={dict} />
-      <Pricing dict={dict} withLink compact />
+      <Testimonials dict={dict} className='bl-band-stone' />
       <FaqSection
         items={faqs}
         kicker={dict.faq.kicker}
         title={dict.faq.title}
         accentWords={[...dict.faq.accent]}
         description={dict.faq.description}
-        className='bl-band-stone bl-rule'
+        className='bl-band-white bl-rule'
       />
       <ContactSection dict={dict} />
     </>
