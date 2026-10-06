@@ -25,28 +25,22 @@ function constant(name) {
   return match[1] ?? match[2];
 }
 
-const glyphPath = constant('MARK_B_PATH');
-const glyphTransform = constant('MARK_B_TRANSFORM');
-const whirl = constant('MARK_WHIRL_PATH');
-const dotCx = constant('MARK_DOT_CX');
-const dotCy = constant('MARK_DOT_CY');
-const dotR = constant('MARK_DOT_R');
+const plate = constant('MARK_PLATE_PATH');
+const body = constant('MARK_BODY_PATH');
+const skirt = constant('MARK_SKIRT_PATH');
+const nodes = constant('MARK_NODES_PATH');
+const hand = constant('MARK_HAND_PATH');
+const node = constant('MARK_NODE_PATH');
 
 const BRAND = '#10b981';
 const INK = '#0d0d0d';
 const PAPER = '#f5f5f3';
 
-const shapes = (plate, glyph, dot) =>
-  `<circle cx="32" cy="32" r="32" fill="${plate}"/><path fill="${glyph}" d="${whirl}"/><path fill="${glyph}" transform="${glyphTransform}" d="${glyphPath}"/><circle cx="${dotCx}" cy="${dotCy}" r="${dotR}" fill="${dot}"/>`;
+const shapes = (plateFill, glyph, dot) =>
+  `<path fill="${plateFill}" d="${plate}"/><path fill="none" stroke="${glyph}" stroke-width="2" stroke-linecap="round" d="${skirt}"/><path fill="none" stroke="${glyph}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="${body}"/><path fill="${glyph}" d="${nodes}"/><path fill="${plateFill}" stroke="${glyph}" stroke-width="2.2" d="${hand}"/><path fill="${dot}" d="${node}"/>`;
 
 const mark = (plate, glyph, dot) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">${shapes(plate, glyph, dot)}</svg>`;
-
-/**
- * App icons need an opaque square, so the disc sits on a paper tile with a
- * little room around it.
- */
-const tile = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="${PAPER}"/><g transform="translate(6.4 6.4) scale(0.8)">${shapes(INK, PAPER, BRAND)}</g></svg>`;
 
 const dark = mark(INK, PAPER, BRAND);
 
@@ -66,8 +60,9 @@ const pngs = {
   'public/apple-icon.png': 180,
 };
 for (const [file, size] of Object.entries(pngs)) {
-  await sharp(Buffer.from(tile), { density: (72 * size) / 64 })
+  await sharp(Buffer.from(dark), { density: (72 * size) / 64 })
     .resize(size, size)
+    .flatten(file.includes('apple') ? { background: PAPER } : false)
     .png()
     .toFile(join(root, file));
 }

@@ -3,42 +3,84 @@ import type { Locale } from '../config';
 export const en = {
   locale: 'en' as Locale,
   nav: {
-    services: 'Services',
+    program: 'Conscious AI',
     work: 'Projects',
-    pricing: 'Pricing',
     about: 'About',
     contact: 'Contact',
     home: 'Home',
-    careers: 'Careers',
-    program: 'Conscious AI',
-    cta: 'Start a project',
+    cta: 'Get in touch',
     bookCall: 'Book a call',
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
     language: 'Language',
-    next: 'Next',
-    top: 'Back to top',
   },
   hero: {
-    badge: 'Product design for founders',
-    title: 'Products engineered\nfrom MVP to scale',
-    accent: [3, 4, 5],
-    body: 'We partner with founders to build and grow user-centric products, providing the engineering and marketing expertise each stage requires.',
-    primary: 'Request a proposal',
-    secondary: 'View our work',
-    /** The living system map beside the hero copy. */
+    badge: 'AI enablement & optimization',
+    title: 'Stop using AI by default.\nStart using it on purpose.',
+    body: 'Conscious AI is a practical program that teaches non-technical teams to pick the right tool for each task, check what comes back, and use AI without waste.',
+    primary: 'See the program',
+    secondary: 'Request early access',
+    /** Three facts under the hero; the two counts come from the program data. */
+    facts: {
+      free: { value: 'Free', label: 'Fundamentals course, for any AI tool' },
+      tiers: 'Tiers, from one person to a whole team',
+      tracks: 'Role tracks, built around real jobs',
+    },
+    /** The map beside the hero copy: a team goes through the program's three
+        pillars and comes out using AI well. A newline splits a tile label. */
     map: {
-      kicker: 'One team, the whole system',
+      kicker: 'A team goes through the program and comes out using AI well',
       nodes: {
-        web: 'Web app',
-        mobile: 'Mobile app',
-        api: 'API',
-        db: 'Database',
-        ai: 'AI model',
-        cloud: 'Cloud',
+        team: 'Your team',
+        program: 'Conscious\nAI',
+        use: 'Conscious\nuse',
+        teams: 'Trained\nteams',
+        usage: 'Optimized\nusage',
+        result: 'AI used\nwell',
       },
     },
   },
+  /** One everyday task done out of habit and done deliberately, side by side. */
+  compare: {
+    kicker: 'In practice',
+    title: 'The same task, two ways',
+    accent: [3, 4],
+    description:
+      'Turning a long report into a short client update. Nothing here needs a technical background.',
+    defaultLabel: 'By default',
+    consciousLabel: 'On purpose',
+    rows: [
+      {
+        step: 'Tool',
+        default: 'The most powerful model, because it is the one already open.',
+        conscious:
+          'A lighter model. A summary is easy to check against the source.',
+      },
+      {
+        step: 'Context',
+        default: 'The whole 40-page report, pasted in.',
+        conscious: 'Only the two sections the client asked about.',
+      },
+      {
+        step: 'Prompt',
+        default:
+          '"Summarise this." Then four follow-ups to fix the tone and the length.',
+        conscious:
+          'Task, audience, length and format, all in the first prompt.',
+      },
+      {
+        step: 'Finish',
+        default: 'Regenerate until one version feels right.',
+        conscious: 'Edit the first usable draft, check the figures, send.',
+      },
+    ],
+    defaultResult: 'More rounds and more computation, for the same update.',
+    consciousResult:
+      'Fewer rounds, less computation, and a result you checked.',
+    note: 'An illustration of the habits taught in the free course, not a measured result.',
+    cta: 'See what the free course covers',
+  },
+  /** Where the name comes from, and why the program is called conscious. */
   origin: {
     kicker: 'The name',
     title: 'Bullah, after Bulleh Shah',
@@ -48,367 +90,121 @@ export const en = {
       'You read and read and became a scholar, but you never read yourself.',
     attribution: 'Bulleh Shah, Punjabi poet, c. 1680 to 1757',
     body: [
-      'Bulleh Shah held that learning counts for little without awareness of what you are doing and why.',
-      'That is what conscious means here: not more tools and more prompts, but knowing what the task needs and stopping there. Our mark is the B of Bullah inside one turning line, after the whirling dance he is remembered for.',
+      'Bulleh Shah, remembered for his verse and his whirling dance, held that learning counts for little without awareness of what you are doing and why.',
+      'That is what conscious means here: not more tools and more prompts, but knowing what the task needs and stopping there. Our mark is that dancer drawn as a neural network: every joint a node, every limb a link, and the skirt two layers of nodes fanning out as the figure turns.',
     ],
   },
   work: {
-    kicker: 'Selected work',
-    title: 'Products we have shipped',
+    kicker: 'Proof in production',
+    title: 'What we built, and how it is optimized',
     description:
-      'Fourteen products in production: marketplaces that move real money, AI systems that answer from the right documents, internal tools that reconcile to the last unit.',
+      'Fourteen products in production. Each case study says what the product is, then shows the optimization behind it: the right tool for the task, only the needed context, nothing done twice, checked before trusted.',
     all: 'All projects',
-    view: 'View project',
+    view: 'Read the case study',
     filterLabel: 'Filter projects',
     filters: {
       All: 'All work',
+      'right-tool': 'Right tool',
+      'lean-context': 'Needed context',
+      'no-repeat': 'Nothing twice',
+      checked: 'Checked',
       SaaS: 'SaaS',
       Marketplace: 'Marketplaces',
       AI: 'AI',
       Mobile: 'Mobile',
       Website: 'Websites',
-      'Full-Stack': 'Full-stack',
-      'Cloud & Automation': 'Cloud & automation',
-      Web: 'Web',
+    },
+    /** The four efficiency lenses a case study can lead with. */
+    lenses: {
+      'right-tool': {
+        label: 'Right tool for the task',
+        principle:
+          'Rules and ordinary software before AI. A model only where it earns its place.',
+      },
+      'lean-context': {
+        label: 'Only the needed context',
+        principle:
+          'Each request, user or agent gets the data it needs and nothing more.',
+      },
+      'no-repeat': {
+        label: 'Nothing done twice',
+        principle:
+          'Caching, batching and reuse instead of regenerating the same work.',
+      },
+      checked: {
+        label: 'Checked before trusted',
+        principle:
+          'Output is grounded, traceable or approved by a person where the risk requires it.',
+      },
     },
     count: '{n} projects',
     /** Homepage pointer to the projects page; the work itself lives there. */
     teaser: {
       kicker: 'Projects',
-      title: 'Every project, with its result',
-      accent: [3, 4],
-      body: 'Marketplaces, SaaS platforms, AI systems and websites in production, each with the decisions and results behind it.',
+      title: 'Real products, built to waste nothing',
+      accent: [4, 5],
+      body: 'Marketplaces, SaaS platforms, AI systems and websites in production. Each one says what it is, and how it was optimized.',
       cta: 'Browse all projects',
       listLabel: 'Featured projects',
       more: '{n} more on the projects page',
     },
   },
-  services: {
-    kicker: 'Services',
-    title: 'The whole product, one senior team',
-    explore: 'See the service',
-    groups: {
-      capability: {
-        label: 'What we build',
-      },
-    },
-    meta: {
-      timeline: 'Timeline',
-      team: 'Team',
-      pricing: 'Pricing',
-      support: 'After launch',
-    },
+  pillars: {
+    kicker: 'What we stand for',
+    title: 'Three pillars of using AI well',
   },
-  pricing: {
-    kicker: 'Pricing plans',
-    title: 'Choose the way of working that fits your business',
-    badge: 'Top pick',
-    period: 'one time',
-    customPeriod: 'fixed quote',
-    customCta: 'Request a custom quote',
-    cta: 'Get started now',
-    all: 'Compare plans in detail',
-    promoTitle: 'Build the next thing right.',
-    note: 'Six ways to work with us, from a fixed-scope build to an ongoing product team. Every one starts with a written scope and a clear price.',
-    includes: {
-      title: 'Included in every plan, custom solutions too',
-      items: [
-        {
-          title: 'Written scope and fixed quote',
-          body: 'Standard package or custom solution: the price and the date are agreed in writing before work starts.',
-        },
-        {
-          title: 'Maintenance after launch',
-          body: 'Monitoring, fixes, updates and security patches. We do not hand over and disappear.',
-        },
-        {
-          title: 'Accountability for what we build',
-          body: 'One senior team answers for the product in production, for as long as you want us to.',
-        },
-        {
-          title: 'Full ownership',
-          body: 'Code, accounts and designs are yours from day one, with documentation to run it without us.',
-        },
-      ],
-    },
-    plans: [
-      {
-        id: 'custom' as const,
-        featured: false,
-        name: 'Custom Solution',
-        tagline:
-          'Scoped to your brief, priced in writing, maintained after launch.',
-        price: 'Custom',
-        features: [
-          'Written scope from your brief',
-          'Fixed quote within five working days',
-          'Any stack, integration or scale',
-          'AI, cloud, mobile and web combined',
-          'Committed launch date',
-          'Weekly demos and staging access',
-          'Maintenance and support after launch',
-          'Full ownership of your product',
-        ],
-      },
-      {
-        id: 'consulting' as const,
-        featured: false,
-        name: 'Consulting & Strategy',
-        tagline: 'Expert guidance to accelerate your growth.',
-        price: '€2,999',
-        features: [
-          'Future-proof tech blueprint',
-          '6-month growth roadmap',
-          'Best-in-class tech stack',
-          'Enterprise scaling strategy',
-          'ROI-focused planning',
-          'Hiring & team planning',
-          'Risk mitigation strategy',
-          '90-day growth blueprint',
-          'Follow-up sessions after delivery',
-        ],
-      },
-      {
-        id: 'mvp' as const,
-        featured: true,
-        name: 'MVP Development',
-        tagline: 'Market-ready MVP in 30 days or less.',
-        price: '€4,999',
-        features: [
-          'Market-ready MVP in 30 days',
-          'Professional design that converts',
-          'Essential features your users need',
-          'Built to scale: handle 100k+ users',
-          'Perfect experience on any device',
-          'Built-in growth tracking',
-          '14 days of launch support',
-          'Ongoing maintenance and updates',
-          'Full ownership of your product',
-        ],
-      },
-      {
-        id: 'product' as const,
-        featured: false,
-        name: 'Full-Scale Product',
-        tagline: 'A complete product, launched and handed over in 45 days.',
-        price: '€9,999',
-        features: [
-          'Launch-ready product within 45 days',
-          'Premium UI/UX that outshines competitors',
-          'Start making money from day one',
-          'AI-powered insights dashboard',
-          'Bank-level security protocols',
-          'Lightning-fast performance',
-          '30 days of dedicated support',
-          'Ongoing maintenance and updates',
-          'Complete technical handover',
-        ],
-      },
-      {
-        id: 'dedicated' as const,
-        featured: false,
-        name: 'Dedicated Product Team',
-        tagline: 'Senior engineers embedded with your team every month.',
-        price: '€6,500',
-        period: 'per month',
-        features: [
-          'Dedicated senior product engineers',
-          'Priority planning and delivery',
-          'Weekly product and technical reviews',
-          'Flexible scope as priorities change',
-          'Direct access to the delivery team',
-          'Documentation and knowledge transfer',
-        ],
-      },
-      {
-        id: 'growth' as const,
-        featured: false,
-        name: 'Growth & Maintenance',
-        tagline: 'Keep your product fast, secure and moving forward.',
-        price: '€1,500',
-        period: 'per month',
-        features: [
-          'Monitoring and incident response',
-          'Security and dependency updates',
-          'Monthly improvement releases',
-          'Performance and conversion reviews',
-          'Small product improvements included',
-          'Clear monthly roadmap and reporting',
-        ],
-      },
-    ],
-  },
-  technologies: {
-    kicker: 'Trusted technology',
-    statement: 'Built on the tools that matter.',
-    statementMuted: 'Proven tools. No experiments on your budget.',
-    stackLabel: 'The stack, by layer',
-    layers: [
-      { label: 'Interface', note: 'What your users see and touch.' },
-      { label: 'Mobile', note: 'iOS and Android, native or cross-platform.' },
-      { label: 'Backend & data', note: 'Where the truth lives.' },
-      {
-        label: 'AI systems',
-        note: 'Models, retrieval and agents on your data.',
-      },
-      {
-        label: 'Automation',
-        note: 'Work that runs without a human in the loop.',
-      },
-      { label: 'Cloud & delivery', note: 'Where it runs and keeps running.' },
-    ],
-  },
-  industries: {
-    kicker: 'Industries',
-    title: 'Who we build for',
+  program: {
+    kicker: 'Conscious AI',
+    title: 'One program, four ways in',
+    accent: [2, 3, 4],
     description:
-      'Products where a wrong number costs money. Every industry below has a shipped case study behind it.',
-    shipped: 'Shipped',
-    items: {
-      fintech: {
-        name: 'Fintech',
-        blurb: 'Wallets, ledgers and payouts that reconcile to the last unit.',
-      },
-      realEstate: {
-        name: 'Real estate',
-        blurb: 'Marketplaces, rental platforms and agency operations.',
-      },
-      ecommerce: {
-        name: 'Ecommerce',
-        blurb:
-          'Multi-seller storefronts, checkout, shipping and support automation.',
-      },
-      hr: {
-        name: 'HR & payroll',
-        blurb: 'Attendance, leave and payroll that pass an audit.',
-      },
-      healthcare: {
-        name: 'Healthcare',
-        blurb:
-          'Rehabilitation and patient-facing assistants with clinical guardrails.',
-      },
-      recruiting: {
-        name: 'Recruiting',
-        blurb: 'Structured voice interviews, scoring and transcripts at scale.',
-      },
-      martech: {
-        name: 'Marketing technology',
-        blurb: 'SEO and content platforms that generate, publish and measure.',
-      },
-      compliance: {
-        name: 'Compliance',
-        blurb: 'Clause-level document review with an audit trail.',
-      },
+      'Start with the free course. Go deeper in your own tools, your own role, then your whole team. You can stop at any tier with a complete, usable result.',
+    cta: 'See the full program',
+    tracksCta: 'See what each track builds',
+    tier: 'Tier',
+    audience: 'For',
+    outcome: 'You leave with',
+    modules: 'Modules',
+    output: 'Output',
+  },
+  programPage: {
+    kicker: 'Conscious AI',
+    title: 'Use AI well. Not just more.',
+    accent: [3, 4, 5],
+    description:
+      'A practical program for non-technical knowledge workers: when AI helps, how to reach a reliable result in fewer rounds, and how to stop paying for usage nobody needed.',
+    primary: 'Request early access',
+    secondary: 'See the four tiers',
+    principle:
+      'AI literacy is knowing when, why and how to use AI well, not just how to operate the tools.',
+    tiersKicker: 'The tiers',
+    tiersTitle: 'Stop at any tier with something that works',
+    tiersDescription:
+      'The free course teaches the principles. Three paid tiers apply them to your own tools, your job and your whole team.',
+    tracksKicker: 'Role tracks',
+    tracksTitle: 'Built around the job you actually do',
+    tracksDescription:
+      'Each track builds three real workflows for one role and comes with a ready-to-use template pack.',
+    flagship: 'Flagship',
+    technical: 'Technical',
+    audienceKicker: 'Who it is for',
+    audienceTitle: 'Knowledge workers, not engineers',
+    audienceDescription:
+      'Written for people who want better work out of AI without becoming technical experts.',
+    employee: {
+      label: 'For you',
+      title: 'More productive, more confident, ready for what changes',
+      body: 'Skills you use the same day: fewer rounds to a usable answer, a clear sense of when AI is the wrong tool, and the judgement to check what it gives you.',
     },
-  },
-  globalReach: {
-    kicker: 'Offices',
-    title: 'Delivering worldwide, from Germany and Pakistan.',
-    description:
-      'Clients across Europe, North America, the Middle East, Africa and Asia, served from Fellbach and Islamabad.',
-    legend: 'Offices and client locations',
-  },
-  numbers: {
-    kicker: 'By the numbers',
-    title: 'Proof, not promises',
-    description: 'Figures from projects we have delivered.',
-    items: [
-      { value: '150+', label: 'Projects delivered' },
-      { value: '40+', label: 'Clients on four continents' },
-      { value: '6 wks', label: 'Typical time to first release' },
-    ],
-  },
-  howItWorks: {
-    kicker: 'Working with us',
-    title: 'How a project runs',
-    stepLabel: 'Step',
-    cta: 'Start with a call',
-    steps: [
-      {
-        title: 'Know the cost before the code',
-        when: 'Kick-off',
-        summary:
-          'A short call about the product and its deadline. Within a week you have a written scope, a price and a launch date.',
-      },
-      {
-        title: 'Shape the first release',
-        when: 'Scope',
-        summary:
-          'We cut the brief down to the smallest product that is useful on day one.',
-      },
-      {
-        title: 'See it before it is built',
-        when: 'Design',
-        summary:
-          'Clickable screens of the main flows, reviewed together before any production code exists.',
-      },
-      {
-        title: 'Use it while it is being built',
-        when: 'Build',
-        summary:
-          'Every sprint ends with a staging link and a short note on what comes next.',
-      },
-      {
-        title: 'Launch with confidence',
-        when: 'Launch',
-        summary:
-          'We test the paths that matter, set up monitoring and rehearse the handover.',
-      },
-      {
-        title: 'Ownership stays with you',
-        when: 'Live',
-        summary:
-          'We watch production and fix what breaks. Keep us on retainer, or take over the code and accounts in full.',
-      },
-    ],
-  },
-  testimonials: {
-    kicker: 'Client voices',
-    title: 'What it is like to work with us',
-    accent: [6],
-    caseStudy: 'View project',
-    prev: 'Previous testimonial',
-    next: 'Next testimonial',
-  },
-  servicesPage: {
-    kicker: 'Services',
-    title: 'Engineering, scoped to an outcome.',
-    accent: [3, 4],
-    description:
-      'Five capabilities and two ways to engage, covering the whole lifecycle of a software product from the first prototype to the team that runs it. Each one is priced for a result, not for hours, fits a standard package or a custom scope, and is maintained by us after launch.',
-    deliverables: 'What you get',
-    useCases: 'Typical engagements',
-    stack: 'Tools we use',
-    proof: 'Proof',
-    faqTitle: 'Questions about this service',
-  },
-  pricingPage: {
-    kicker: 'Pricing',
-    title: 'A price in writing, before work starts.',
-    accent: [5, 6],
-    description:
-      'Six distinct ways to work with us, from ongoing maintenance and strategy through to a dedicated product team and a full-scale build. Every plan comes with a written scope, a committed launch date and support after launch.',
-    faqKicker: 'Pricing questions',
-    faqTitle: 'What people ask before they sign',
-    faqAccent: [5],
-  },
-  servicePage: {
-    back: 'All services',
-    kindEngagement: 'Engagement model',
-    kindCapability: 'Capability',
-    discuss: 'Discuss this service',
-    engagement: 'Engagement',
-    coreStack: 'Core stack',
-    included: 'What is included',
-    useCases: 'Typical use cases',
-    proof: 'Proof',
-    proofTitle: 'Where we have done this before.',
-    allCaseStudies: 'All case studies',
-    faqKicker: 'Questions',
-    faqTitle: 'About this service.',
-    faqAccent: [1, 2],
-    others: 'Other services',
-    notFound: 'Service not found',
+    employer: {
+      label: 'For your company',
+      title: 'An AI-capable workforce, with usage you can account for',
+      body: 'Consistent, measurable AI use across non-technical teams: shared standards, a one-page policy, human review where it matters and less spend on computation that changed nothing.',
+    },
+    ctaTitle: 'Start with the free course.',
+    ctaAccent: [3, 4],
+    ctaBody:
+      'Tell us who you are and how you use AI today. We reply within one business day, with access details for you or a plan for your team.',
   },
   contactForm: {
     name: 'Full name',
@@ -417,20 +213,13 @@ export const en = {
     emailPlaceholder: 'jane@company.com',
     company: 'Company',
     optional: 'optional',
-    companyPlaceholder: 'Company or product name',
-    service: 'What do you need?',
-    servicePlaceholder: 'Choose a service',
+    companyPlaceholder: 'Company or team name',
+    service: 'What are you interested in?',
     serviceOther: 'Something else',
-    serviceCourse: 'Conscious AI course',
-    serviceCourseHint: 'Hear when the course opens.',
-    budget: 'Budget range',
-    budgetPlaceholder: 'Choose a range',
-    budgetHeading: 'Rough budget',
-    budgetHint:
-      'A range is enough. It tells us what shape of team fits - it is not a quote.',
-    message: 'About the project',
+    serviceOtherTagline: 'A question, a partnership or anything not listed.',
+    message: 'Your message',
     messagePlaceholder:
-      'What are you building, who is it for, and when does it need to exist?',
+      'How do you or your team use AI today, and what would you like to get better at?',
     consentBefore:
       'I agree that Bullah Labs may store and process this enquiry to respond to me, as described in the',
     consentLink: 'privacy policy',
@@ -439,7 +228,6 @@ export const en = {
     replyNote: 'We reply {time}.',
     errorGeneric: 'Something went wrong. Please try again in a moment.',
     sentTitle: 'Message received.',
-    sentToast: 'Your enquiry has been sent. We reply {time}.',
     sentBody:
       'Thank you. We read every enquiry personally and reply {time}, straight to the address you gave us.',
     sentAgain: 'Send another',
@@ -449,35 +237,21 @@ export const en = {
     back: 'Back',
     steps: {
       service: {
-        title: 'What can we build for you?',
-        subtitle: 'Pick the closest match. We will refine it together.',
-        kicker: 'The work',
+        title: 'Where would you like to start?',
+        subtitle: 'Pick the closest match. You can move between tiers later.',
       },
       message: {
-        title: 'Tell us about the project.',
+        title: 'Tell us a little more.',
         subtitle:
-          'What are you building, who is it for, and when does it need to exist?',
-        kicker: 'The brief',
+          'Your role, the AI tools you use and what you want to improve.',
       },
       details: {
         title: 'Where do we send the reply?',
         subtitle: 'Last step. We only use this to answer your enquiry.',
-        kicker: 'Your details',
       },
     },
-    reviewTitle: 'Your enquiry',
-    notProvided: 'Not provided',
     charactersLeft: '{count} characters left',
     minChars: 'At least 20 characters',
-    budgets: {
-      'under-10k': 'Under €10k',
-      '10k-25k': '€10k - €25k',
-      '25k-50k': '€25k - €50k',
-      '50k-100k': '€50k - €100k',
-      'over-100k': '€100k+',
-      retainer: 'Monthly retainer',
-      unsure: 'Not sure yet',
-    },
   },
   workPage: {
     back: 'All projects',
@@ -486,6 +260,9 @@ export const en = {
     category: 'Category',
     year: 'Year',
     capabilities: 'Capabilities',
+    lens: 'Optimization',
+    efficiencyKicker: 'How it is optimized',
+    techniques: 'What keeps it lean',
     industry: 'Industry',
     problem: 'The problem',
     approach: 'Our approach',
@@ -504,40 +281,39 @@ export const en = {
     galleryMore: '{n} more screens from {title}, captured at device size.',
     homeScreen: 'Home',
     stack: 'Stack',
-    servicesInvolved: 'Services involved',
     more: 'More case studies',
     previous: 'previous',
     next: 'next',
     notFound: 'Case study not found',
-    ctaTitle: 'Building something similar?',
-    ctaAccent: [1, 2],
+    ctaTitle: 'Want your team to work this way?',
+    ctaAccent: [4, 5, 6],
     ctaBody:
-      'We can usually tell within one call whether the approach above transfers to your problem, and what would need to change.',
+      'The principles behind this build are the ones Conscious AI teaches. Tell us how your team uses AI today and we reply within one business day.',
   },
   aboutPage: {
     kicker: 'About Bullah Labs',
-    title: 'A software studio held to a standard.',
-    accent: [6, 7],
+    title: 'A company built around using AI well.',
+    accent: [4, 5, 6],
     description:
-      'We hold software to the bar of precision engineering: it has to be exactly right, on the day it was promised.',
+      'We teach non-technical teams to use AI effectively and responsibly.',
     story: [
-      'We started Bullah Labs after years of building products for companies that had been burned before: agencies that missed the date, teams that shipped almost what was asked, estimates that doubled halfway through.',
-      'So we structured the studio around the four things clients said they could not get elsewhere. A date and a price agreed before work starts, for a standard package or a custom scope. One senior team that owns the whole product, from the interface to the cloud bill. A result you can measure after launch, reported by you, not by us. And a team that stays: we maintain what we build and take accountability for it in production.',
-      'Our Asian office is in Islamabad. Clients in Europe have a local contact in Fellbach. Between the two offices, someone is working during your working day.',
+      'Bullah Labs started as a software studio. Years of building products taught us one rule: use the smallest system that reliably does the job.',
+      'When AI arrived in every tool, we saw the opposite everywhere: the strongest model for every task, whole documents pasted where a paragraph would do, answers regenerated instead of reused. So we turned the rule into a program. Conscious AI is now the whole company.',
     ],
     facts: [
       {
-        label: 'What we build',
-        value: 'Web platforms, AI products, cloud automation, marketing sites',
+        label: 'What we do',
+        value: 'The Conscious AI program: a free course and three paid tiers',
       },
       {
         label: 'Who for',
-        value: 'Founders and product teams in Europe, Asia and North America',
+        value:
+          'Non-technical knowledge workers and the companies that employ them',
       },
       {
         label: 'How',
         value:
-          'Fixed scope, fixed or custom price, weekly demos, maintained after launch',
+          'Practical, role-specific, measured before and after, with human oversight where risk requires it',
       },
       {
         label: 'Where',
@@ -545,72 +321,17 @@ export const en = {
       },
     ],
     principlesKicker: 'Principles',
-    principlesTitle: 'Four rules every project is held to.',
+    principlesTitle: 'Four rules we teach and work by.',
     principlesAccent: [0, 1],
     whereKicker: 'Where we are',
     whereTitle: 'Two offices, one working day.',
     whereAccent: [3, 4],
     whereDescription:
-      'An Asian office in Islamabad and a European office in Fellbach. Call whichever is closer; the same team answers.',
-    careersKicker: 'Careers',
-    careersTitle: 'No open positions right now.',
-    careersBody:
-      'We are not hiring at the moment. When that changes, roles will be listed on the careers page.',
-    careersLink: 'Careers',
-    ctaTitle: 'Want to see how we would run your project?',
+      'An Asian office in Islamabad and a European office in Fellbach. Write to whichever is closer; the same team answers.',
+    ctaTitle: 'Want to see where your team is wasting AI?',
     ctaAccent: [7, 8],
     ctaBody:
-      'Send a short brief. You get a written scope, a fixed or custom price and a launch date within a week, with no obligation, and a team that keeps maintaining the product after launch.',
-  },
-  careersPage: {
-    kicker: 'Careers',
-    title: 'No open positions right now.',
-    accent: [1, 2],
-    description:
-      'Bullah Labs is a small studio that hires slowly. We are not recruiting at the moment, and there are no vacancies to apply for. When that changes, the roles will be listed on this page.',
-    badge: '0 open positions',
-    statusKicker: 'Current status',
-    statusTitle: 'We are not accepting applications.',
-    statusBody:
-      'There are no vacancies for engineers, designers or any other role, in Islamabad, in Fellbach or remote.',
-    notifyBefore: 'Want to hear when this changes? Send us a note through',
-    notifyAfter:
-      'mentioning “Future roles” and we will let you know once a position opens.',
-    ctaTitle: 'Rather hire us than join us?',
-    ctaAccent: [1, 2],
-    ctaBody:
-      'Our dedicated team service embeds senior engineers in your roadmap, in your tools, on your schedule.',
-  },
-  consciousAi: {
-    kicker: 'Conscious AI',
-    title: 'A course on using AI on purpose',
-    accent: [5, 6, 7],
-    description:
-      'Conscious AI is the course we are building for people who use AI at work and want to use it well. It is in the making, and this page is where it will open.',
-    status: 'Coming soon',
-    notify: 'Tell me when it opens',
-    course: {
-      label: 'Course',
-      title: 'Conscious AI',
-      body: 'The curriculum, format and dates will be published here when enrolment opens.',
-      details: [
-        { label: 'Curriculum', value: 'To be announced' },
-        { label: 'Format', value: 'To be announced' },
-        { label: 'Enrolment', value: 'Not open yet' },
-      ],
-    },
-    /** Homepage pointer to the course page. */
-    teaser: {
-      kicker: 'New from Bullah Labs',
-      title: 'Conscious AI, our first course, is on its way',
-      accent: [0, 1],
-      body: 'A course on using AI well at work. Details will follow on the course page.',
-      cta: 'See the course page',
-    },
-    ctaTitle: 'Want to hear when it opens?',
-    ctaAccent: [5],
-    ctaBody:
-      'Leave your email and we will write once, when the course is ready.',
+      'Tell us how your team uses AI today. We reply within one business day with where the program fits.',
   },
   legal: {
     kicker: 'Legal',
@@ -689,9 +410,9 @@ export const en = {
     kicker: 'Error 404',
     title: 'This page was never engineered.',
     accent: [4],
-    body: 'The address may have changed, or the link was wrong. Everything we have built is one click away.',
+    body: 'The address may have changed, or the link was wrong. The program is one click away.',
     home: 'Back home',
-    work: 'See the work',
+    program: 'See the program',
   },
   cookies: {
     label: 'Cookie consent',
@@ -705,10 +426,10 @@ export const en = {
   },
   contact: {
     kicker: 'Contact',
-    title: 'Tell us what has to be right.',
-    accent: [5, 6],
+    title: 'Tell us where AI should help.',
+    accent: [3, 4, 5],
     description:
-      'A few sentences are enough. We reply within one business day with a first take on scope, timeline and price, standard package or custom, and on who would build and maintain it.',
+      'A few sentences are enough. Tell us how you or your team use AI today. We reply within one business day.',
     direct: 'How to reach us',
     formNote:
       'The form is the fastest way in. It comes straight to us and we answer every enquiry personally.',
@@ -726,35 +447,32 @@ export const en = {
     /** Closing section of the homepage: the same form, without leaving. */
     home: {
       kicker: 'Contact',
-      title: 'Tell us what has to be right.',
-      accent: [5, 6],
+      title: 'Tell us where AI should help.',
+      accent: [3, 4, 5],
       description:
-        'A few sentences are enough. We reply within one business day with a first take on scope, timeline and price.',
+        'A few sentences are enough. Tell us how you or your team use AI today. We reply within one business day.',
     },
   },
   faq: {
     kicker: 'FAQ',
     title: 'Straight answers, before you commit.',
-    description: 'How we scope, build, launch and support.',
+    description: 'About the program, who it is for and how it works.',
     accent: [0, 1],
   },
   cta: {
     kicker: "Let's talk",
-    title: 'Ready to put a date on it?',
-    accent: [5, 6],
-    body: 'Send a short brief today. Within a week you will have a written scope, a fixed or custom quote and a launch date, with no obligation. After launch we stay on to maintain what we built.',
-    button: 'Start a project',
+    title: 'Ready to use AI on purpose?',
+    accent: [4, 5],
+    body: 'Tell us about your team and how it uses AI today. We reply within one business day with where Conscious AI fits.',
+    button: 'Get in touch',
   },
   footer: {
-    pitch:
-      'A product engineering studio for companies that cannot afford a second attempt.',
-    quote: 'Get a quote',
-    services: 'Services',
+    pitch: 'AI enablement for non-technical knowledge workers.',
+    quote: 'Get in touch',
+    program: 'The program',
     company: 'Company',
     offices: 'Offices',
     legal: 'Legal',
-    connect: 'Connect',
-    caseStudies: 'Projects',
     rights: 'All rights reserved.',
     backToTop: 'Back to top',
   },
