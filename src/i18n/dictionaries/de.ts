@@ -21,7 +21,7 @@ export const de: Dictionary = {
     badge: 'KI-Befähigung & Optimierung',
     title: 'KI nicht aus Gewohnheit.\nSondern bewusst.',
     accent: [4, 5],
-    body: 'Conscious AI ist eine Arbeitsweise, nicht nur ein Kurs: wissen, wann KI hilft, das kleinste Werkzeug nehmen, das die Aufgabe löst, und prüfen, was zurückkommt. Weniger Verschwendung, geringere Kosten, ein sauberer Fußabdruck.',
+    body: 'Wissen, wann KI wirklich hilft, das kleinste passende Werkzeug nehmen und prüfen, was zurückkommt. Weniger verschwendete Stunden, geringere Kosten, ein Fußabdruck, zu dem Sie stehen können.',
     primary: 'Zum Programm',
     secondary: 'Projekte ansehen',
     decision: {
@@ -52,11 +52,14 @@ export const de: Dictionary = {
             },
             {
               byDefault: 'Das ganze Produkt-Wiki, eingefügt.',
-              onPurpose: 'Das einseitige Briefing und die Mail vom letzten Launch.',
+              onPurpose:
+                'Das einseitige Briefing und die Mail vom letzten Launch.',
             },
             {
-              byDefault: 'Niemand. Neu generieren, bis es sich richtig anfühlt.',
-              onPurpose: 'Sie. Den ersten brauchbaren Entwurf bearbeiten, dann senden.',
+              byDefault:
+                'Niemand. Neu generieren, bis es sich richtig anfühlt.',
+              onPurpose:
+                'Sie. Den ersten brauchbaren Entwurf bearbeiten, dann senden.',
             },
           ],
           outcome:
@@ -88,7 +91,8 @@ export const de: Dictionary = {
           task: 'Einem verärgerten Kunden antworten.',
           answers: [
             {
-              byDefault: 'Eine Antwort anfordern und abschicken, was zurückkommt.',
+              byDefault:
+                'Eine Antwort anfordern und abschicken, was zurückkommt.',
               onPurpose: 'Ja, für die Struktur. Der Ton muss Ihrer sein.',
             },
             {
@@ -97,7 +101,8 @@ export const de: Dictionary = {
             },
             {
               byDefault: 'Der gesamte Ticketverlauf.',
-              onPurpose: 'Die letzten zwei Nachrichten und was Sie behoben haben.',
+              onPurpose:
+                'Die letzten zwei Nachrichten und was Sie behoben haben.',
             },
             {
               byDefault: 'Niemand. Es las sich gut.',
@@ -115,14 +120,16 @@ export const de: Dictionary = {
             },
             {
               byDefault: 'Jedes Mal ein neues Gespräch.',
-              onPurpose: 'Eine gespeicherte Antwort. KI glättet nur die Formulierung.',
+              onPurpose:
+                'Eine gespeicherte Antwort. KI glättet nur die Formulierung.',
             },
             {
               byDefault: 'Das ganze Handbuch, erneut eingefügt.',
               onPurpose: 'Der eine Absatz der Richtlinie, der gilt.',
             },
             {
-              byDefault: 'Niemand. Zehn leicht verschiedene Antworten gehen raus.',
+              byDefault:
+                'Niemand. Zehn leicht verschiedene Antworten gehen raus.',
               onPurpose: 'Sie, einmal. Dann bekommen alle dieselbe Antwort.',
             },
           ],
@@ -335,37 +342,33 @@ export const de: Dictionary = {
   },
   program: {
     kicker: 'Conscious AI',
-    title: 'Ein Programm, vier Einstiege',
-    accent: [2, 3],
+    title: 'Ein kostenloser Kurs, Lektion für Lektion',
+    accent: [1, 2],
     description:
-      'Beginnen Sie mit dem kostenlosen Kurs. Vertiefen Sie in Ihren eigenen Werkzeugen, Ihrer eigenen Rolle und dann im ganzen Team. Sie können auf jeder Stufe mit einem vollständigen, nutzbaren Ergebnis aufhören.',
-    cta: 'Das ganze Programm ansehen',
-    tracksCta: 'Was jeder Track aufbaut',
-    tier: 'Stufe',
-    outcome: 'Das nehmen Sie mit',
-    modules: 'Module',
-    output: 'Ergebnis',
+      'Kurze Videos dazu, wann KI hilft, wie Sie in weniger Runden zu einem verlässlichen Ergebnis kommen und wann Sie sie besser weglassen. Gemacht für Menschen, die keine Entwickler sind.',
+    cta: 'Zum Programm',
+    watch: 'Kurs ansehen',
+    request: 'Zugang anfragen',
+    lesson: 'Lektion',
+    comingSoon: 'Demnächst',
+    placeholderNote:
+      'Die Lektionen erscheinen hier, sobald sie veröffentlicht sind. Fragen Sie Zugang an, und wir sagen Ihnen Bescheid, wenn die ersten online sind.',
   },
   programPage: {
     kicker: 'Conscious AI',
     title: 'KI gut nutzen. Nicht nur mehr.',
     accent: [3, 4, 5],
     description:
-      'Ein praktisches Programm für nicht-technische Wissensarbeit: wann KI hilft, wie Sie in weniger Runden zu einem verlässlichen Ergebnis kommen und wie Sie aufhören, für Nutzung zu zahlen, die niemand gebraucht hat.',
-    primary: 'Frühen Zugang anfragen',
-    secondary: 'Die vier Stufen ansehen',
+      'Ein kostenloser Videokurs für nicht-technische Wissensarbeit: wann KI hilft, wie Sie in weniger Runden zu einem verlässlichen Ergebnis kommen und wie Sie aufhören, für Nutzung zu zahlen, die niemand gebraucht hat.',
+    primary: 'Kurs ansehen',
+    secondary: 'Zugang anfragen',
     principle:
       'KI-Kompetenz heißt zu wissen, wann, warum und wie man KI gut einsetzt, nicht nur, wie man die Werkzeuge bedient.',
-    tiersKicker: 'Die Stufen',
-    tiersTitle: 'Auf jeder Stufe mit etwas aufhören, das funktioniert',
-    tiersDescription:
-      'Der kostenlose Kurs vermittelt die Prinzipien. Drei kostenpflichtige Stufen wenden sie auf Ihre Werkzeuge, Ihren Beruf und Ihr ganzes Team an.',
-    tracksKicker: 'Role Tracks',
-    tracksTitle: 'Rund um die Arbeit gebaut, die Sie wirklich tun',
-    tracksDescription:
-      'Jeder Track baut drei echte Abläufe für eine Rolle und bringt ein fertiges Vorlagenpaket mit.',
-    flagship: 'Schwerpunkt',
-    technical: 'Technisch',
+    courseKicker: 'Der Kurs',
+    courseTitle: 'Ansehen, dann an der eigenen Arbeit ausprobieren',
+    courseAccent: [0],
+    courseDescription:
+      'Jede Lektion dauert wenige Minuten und endet mit einer Sache, die Sie an Ihrer Arbeitsweise ändern. Die ersten Lektionen werden gerade aufgenommen.',
     ctaTitle: 'Beginnen Sie mit dem kostenlosen Kurs.',
     ctaAccent: [4, 5],
     ctaBody:
@@ -383,6 +386,16 @@ export const de: Dictionary = {
     serviceOther: 'Etwas anderes',
     serviceOtherTagline:
       'Eine Frage, eine Partnerschaft oder etwas, das hier nicht steht.',
+    interests: {
+      course: {
+        title: 'Der kostenlose Kurs',
+        description: 'Zugang zu den Conscious-AI-Videolektionen.',
+      },
+      team: {
+        title: 'Schulung für mein Team',
+        description: 'Conscious AI für ein ganzes Team oder Unternehmen.',
+      },
+    },
     message: 'Ihre Nachricht',
     messagePlaceholder:
       'Wie nutzen Sie oder Ihr Team KI heute, und worin möchten Sie besser werden?',
@@ -405,8 +418,7 @@ export const de: Dictionary = {
     steps: {
       service: {
         title: 'Wo möchten Sie anfangen?',
-        subtitle:
-          'Wählen Sie das Passendste. Sie können später zwischen den Stufen wechseln.',
+        subtitle: 'Wählen Sie das Passendste.',
       },
       message: {
         title: 'Erzählen Sie uns etwas mehr.',
@@ -473,7 +485,7 @@ export const de: Dictionary = {
       {
         label: 'Was wir tun',
         value:
-          'Das Programm Conscious AI: ein kostenloser Kurs und drei kostenpflichtige Stufen',
+          'Conscious AI: ein kostenloser Videokurs und Schulungen für Teams',
       },
       {
         label: 'Für wen',

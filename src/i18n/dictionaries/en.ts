@@ -21,7 +21,7 @@ export const en = {
     title: 'Stop using AI by default.\nStart using it on purpose.',
     /** Words (0-based, across both lines) in the accent colour: line two. */
     accent: [5, 6, 7, 8, 9],
-    body: 'Conscious AI is a way of working, not just a course: know when AI helps, use the smallest tool that does the job, check what comes back. Less waste, lower bills, a cleaner footprint.',
+    body: 'Know when AI actually helps, pick the smallest tool for the job, and check what comes back. Fewer wasted hours, lower bills, a footprint you can stand behind.',
     primary: 'See the program',
     secondary: 'See the projects',
     /** The card beside the hero copy: everyday tasks decided in four steps.
@@ -339,37 +339,33 @@ export const en = {
   },
   program: {
     kicker: 'Conscious AI',
-    title: 'One program, four ways in',
-    accent: [2, 3, 4],
+    title: 'A free course, one lesson at a time',
+    accent: [1, 2],
     description:
-      'Start with the free course. Go deeper in your own tools, your own role, then your whole team. You can stop at any tier with a complete, usable result.',
-    cta: 'See the full program',
-    tracksCta: 'See what each track builds',
-    tier: 'Tier',
-    outcome: 'You leave with',
-    modules: 'Modules',
-    output: 'Output',
+      'Short videos on when AI helps, how to get a reliable result in fewer rounds, and when to leave it alone. Made for people who are not engineers.',
+    cta: 'See the program',
+    watch: 'Watch the course',
+    request: 'Request access',
+    lesson: 'Lesson',
+    comingSoon: 'Coming soon',
+    placeholderNote:
+      'Lessons appear here as they are published. Request access and we will tell you when the first ones are live.',
   },
   programPage: {
     kicker: 'Conscious AI',
     title: 'Use AI well. Not just more.',
     accent: [3, 4, 5],
     description:
-      'A practical program for non-technical knowledge workers: when AI helps, how to reach a reliable result in fewer rounds, and how to stop paying for usage nobody needed.',
-    primary: 'Request early access',
-    secondary: 'See the four tiers',
+      'A free video course for non-technical knowledge workers: when AI helps, how to reach a reliable result in fewer rounds, and how to stop paying for usage nobody needed.',
+    primary: 'Watch the course',
+    secondary: 'Request access',
     principle:
       'AI literacy is knowing when, why and how to use AI well, not just how to operate the tools.',
-    tiersKicker: 'The tiers',
-    tiersTitle: 'Stop at any tier with something that works',
-    tiersDescription:
-      'The free course teaches the principles. Three paid tiers apply them to your own tools, your job and your whole team.',
-    tracksKicker: 'Role tracks',
-    tracksTitle: 'Built around the job you actually do',
-    tracksDescription:
-      'Each track builds three real workflows for one role and comes with a ready-to-use template pack.',
-    flagship: 'Flagship',
-    technical: 'Technical',
+    courseKicker: 'The course',
+    courseTitle: 'Watch, then try it on your own work',
+    courseAccent: [0],
+    courseDescription:
+      'Each lesson is a few minutes long and ends with one thing to change in how you work. The first lessons are being recorded now.',
     ctaTitle: 'Start with the free course.',
     ctaAccent: [3, 4],
     ctaBody:
@@ -386,6 +382,16 @@ export const en = {
     service: 'What are you interested in?',
     serviceOther: 'Something else',
     serviceOtherTagline: 'A question, a partnership or anything not listed.',
+    interests: {
+      course: {
+        title: 'The free course',
+        description: 'Access to the Conscious AI video lessons.',
+      },
+      team: {
+        title: 'Training for my team',
+        description: 'Conscious AI for a whole team or organisation.',
+      },
+    },
     message: 'Your message',
     messagePlaceholder:
       'How do you or your team use AI today, and what would you like to get better at?',
@@ -407,7 +413,7 @@ export const en = {
     steps: {
       service: {
         title: 'Where would you like to start?',
-        subtitle: 'Pick the closest match. You can move between tiers later.',
+        subtitle: 'Pick the closest match.',
       },
       message: {
         title: 'Tell us a little more.',
@@ -472,7 +478,7 @@ export const en = {
     facts: [
       {
         label: 'What we do',
-        value: 'The Conscious AI program: a free course and three paid tiers',
+        value: 'Conscious AI: a free video course, and training for teams',
       },
       {
         label: 'Who for',

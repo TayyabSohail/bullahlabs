@@ -45,6 +45,7 @@ All optional except `NEXT_PUBLIC_APP_URL`. See [`.env.example`](./.env.example).
 | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Contact form delivery by email via Resend        |
 | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` | Contact form storage in `contact_messages` (see `supabase/migrations`) |
 | `NEXT_PUBLIC_CAL_LINK`                               | "Book a call" link on the contact page (`user/event`) |
+| `NEXT_PUBLIC_COURSE_URL`                             | Where the Conscious AI course is hosted; "Watch the course" links go there, or to the contact form while unset |
 | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | Analytics, loaded only after cookie consent          |
 
 Without Resend or Supabase, contact submissions are validated and logged on
@@ -61,7 +62,7 @@ Edit these; the pages update themselves.
 | ----------------------------- | ------------------------------------------------------------------------ |
 | `src/config/site.ts`          | Company name, tagline, email, offices, founder, booking link |
 | `src/data/projects.ts`        | Every case study: copy, cover image, metrics, stack. Drives `/work`, `/work/[slug]`, the homepage showcase, outcomes and sitemap |
-| `src/data/program.ts`         | The Conscious AI program: pillars, themes, tiers, modules and role tracks. Drives `/conscious-ai`, the homepage program sections, the footer and the contact form choices |
+| `src/data/program.ts`         | The three Conscious AI pillars, shown on the homepage. The course itself is hosted off-site (`NEXT_PUBLIC_COURSE_URL`) |
 | `src/data/values.ts`          | The four principles on the about page                                    |
 | `src/data/faqs.ts`            | Questions, tagged `studio` (homepage) or `program` (program page)        |
 | `src/data/testimonials.ts`    | Client quotes attributed by role and company, linked to their case studies    |
@@ -92,8 +93,8 @@ Edit these; the pages update themselves.
 
 | Route                         | Notes                                              |
 | ----------------------------- | -------------------------------------------------- |
-| `/`                           | Hero, figures, project showcase, pillars, one task two ways, stack, globe, how a project runs, testimonials, tiers, FAQ, contact form |
-| `/conscious-ai`               | The program: tiers with modules, role tracks, FAQ   |
+| `/`                           | Hero, figures, project showcase, pillars, one task two ways, stack, globe, how a project runs, testimonials, course lessons, FAQ, contact form |
+| `/conscious-ai`               | The course: lesson placeholders, link to the course, FAQ |
 | `/work`, `/work/[slug]`       | Case studies, each read through an efficiency lens; filterable by lens and category |
 | `/about`                      | Story, principles, how a project runs, locations   |
 | `/contact`                    | Form (server action, rate limited, honeypot), offices with live clocks |

@@ -62,7 +62,6 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
   const [sent, setSent] = useState(false);
   const [step, setStep] = useState(0);
   const t = dict.contactForm;
-  const { tiers } = getProgram(dict.locale);
   const form = useForm<ContactInput>({
     defaultValues: {
       name: '',
@@ -75,17 +74,11 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
     },
   });
 
-  // Each tier is described by the program data, so the form never drifts
-  // from the program page: its name, then whether it is free and who it is for.
   const interestCopy = (value: InterestValue) => {
     if (value === 'other') {
       return { title: t.serviceOther, description: t.serviceOtherTagline };
     }
-    const tier = tiers.find((item) => item.id === value);
-    return {
-      title: tier?.name ?? value,
-      description: tier?.access,
-    };
+    return t.interests[value];
   };
 
   const { execute, isExecuting } = useAction(submitContact, {

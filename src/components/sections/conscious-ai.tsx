@@ -6,7 +6,11 @@ import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 
 import { cn } from '@/lib/utils';
 
-import { courseHref, courseIsLive, requestAccessHref } from '@/constants/course';
+import {
+  courseHref,
+  courseIsLive,
+  requestAccessHref,
+} from '@/constants/course';
 import { paths } from '@/constants/paths';
 import { getProgram, type PillarId } from '@/data/program';
 import type { Dictionary } from '@/i18n/dictionaries/en';

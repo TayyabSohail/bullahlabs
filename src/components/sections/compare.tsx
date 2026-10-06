@@ -76,10 +76,7 @@ export function Compare({ dict, className }: CompareProps) {
           <p className='max-w-xl text-xs leading-relaxed text-muted-foreground'>
             {t.note}
           </p>
-          <Link
-            href={paths.program}
-            className='bl-action shrink-0'
-          >
+          <Link href={paths.program} className='bl-action shrink-0'>
             {t.cta}
             <ArrowUpRight className='h-3.5 w-3.5' />
           </Link>

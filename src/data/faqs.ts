@@ -91,31 +91,31 @@ export const faqs: Faq[] = [
     topic: 'program',
     question: 'What is Conscious AI?',
     answer:
-      'A practical program that teaches non-technical knowledge workers when, why and how to use AI well. It starts with a free fundamentals course and continues with three paid tiers: Practitioner for your own tools, Role Tracks for your job, and Team for a whole organisation. You can stop at any tier with a complete, usable result.',
+      'A free video course that teaches non-technical knowledge workers when, why and how to use AI well. Short lessons, each ending with one thing to change in how you work. Teams that want more than the videos can ask us about training.',
   },
   {
     topic: 'program',
     question: 'How is it different from other AI training?',
     answer:
-      'Most courses teach how to operate a tool. We teach judgement: when AI is the right choice, how to reach a reliable result in fewer rounds, how to check it, and when a formula or a search does the job better. Every module ends in something you built from your own work.',
+      'Most courses teach how to operate a tool. We teach judgement: when AI is the right choice, how to reach a reliable result in fewer rounds, how to check it, and when a formula or a search does the job better. Every lesson ends with something you apply to your own work.',
   },
   {
     topic: 'program',
     question: 'Which AI tools does it cover?',
     answer:
-      'AI Fundamentals works with any AI tool. Practitioner shows how to apply the same principles in ChatGPT, Claude, Gemini and Microsoft Copilot.',
+      'The course works with any AI tool. The examples use ChatGPT, Claude, Gemini and Microsoft Copilot, and the principles carry over to whichever one your company uses.',
   },
   {
     topic: 'program',
     question: 'What does it cost?',
     answer:
-      'AI Fundamentals is free. The paid tiers are not priced publicly. Tell us about yourself or your team and we will reply with what applies.',
+      'The course is free. Training for a whole team is scoped individually. Tell us about your team and we will reply with what applies.',
   },
   {
     topic: 'program',
     question: 'How do you talk about sustainability?',
     answer:
-      'Carefully. We do not claim an environmental figure for a single prompt. We focus on unnecessary usage repeated across teams and workflows, which is where cost and computation add up, and the Team tier reports estimated energy use alongside cost and time.',
+      'Carefully. We do not claim an environmental figure for a single prompt. We focus on unnecessary usage repeated across teams and workflows, which is where cost and computation add up.',
   },
 ];
 
@@ -199,31 +199,31 @@ const faqsDe: Faq[] = [
     topic: 'program',
     question: 'Was ist Conscious AI?',
     answer:
-      'Ein praktisches Programm, das nicht-technischen Wissensarbeitenden vermittelt, wann, warum und wie man KI gut einsetzt. Es beginnt mit einem kostenlosen Grundlagenkurs und setzt sich in drei kostenpflichtigen Stufen fort: Practitioner für Ihre eigenen Werkzeuge, Role Tracks für Ihren Beruf und Team für die ganze Organisation. Sie können auf jeder Stufe mit einem vollständigen, nutzbaren Ergebnis aufhören.',
+      'Ein kostenloser Videokurs, der nicht-technischen Wissensarbeitenden vermittelt, wann, warum und wie man KI gut einsetzt. Kurze Lektionen, jede endet mit einer Sache, die Sie an Ihrer Arbeitsweise ändern. Teams, die mehr als die Videos wollen, können uns nach einer Schulung fragen.',
   },
   {
     topic: 'program',
     question: 'Worin unterscheidet es sich von anderen KI-Schulungen?',
     answer:
-      'Die meisten Kurse zeigen, wie man ein Werkzeug bedient. Wir vermitteln Urteilsvermögen: wann KI die richtige Wahl ist, wie man in weniger Runden zu einem verlässlichen Ergebnis kommt, wie man es prüft und wann eine Formel oder eine Suche die Aufgabe besser löst. Jedes Modul endet mit etwas, das Sie aus Ihrer eigenen Arbeit gebaut haben.',
+      'Die meisten Kurse zeigen, wie man ein Werkzeug bedient. Wir vermitteln Urteilsvermögen: wann KI die richtige Wahl ist, wie man in weniger Runden zu einem verlässlichen Ergebnis kommt, wie man es prüft und wann eine Formel oder eine Suche die Aufgabe besser löst. Jede Lektion endet mit etwas, das Sie auf Ihre eigene Arbeit anwenden.',
   },
   {
     topic: 'program',
     question: 'Welche KI-Werkzeuge deckt es ab?',
     answer:
-      'AI Fundamentals funktioniert mit jedem KI-Werkzeug. Practitioner zeigt, wie Sie dieselben Prinzipien in ChatGPT, Claude, Gemini und Microsoft Copilot anwenden.',
+      'Der Kurs funktioniert mit jedem KI-Werkzeug. Die Beispiele nutzen ChatGPT, Claude, Gemini und Microsoft Copilot, und die Prinzipien lassen sich auf das Werkzeug übertragen, das Ihr Unternehmen einsetzt.',
   },
   {
     topic: 'program',
     question: 'Was kostet es?',
     answer:
-      'AI Fundamentals ist kostenlos. Die kostenpflichtigen Stufen haben keine öffentlichen Preise. Erzählen Sie uns von sich oder Ihrem Team, und wir antworten mit dem, was für Sie gilt.',
+      'Der Kurs ist kostenlos. Eine Schulung für ein ganzes Team wird individuell abgestimmt. Erzählen Sie uns von Ihrem Team, und wir antworten mit dem, was für Sie gilt.',
   },
   {
     topic: 'program',
     question: 'Wie sprechen Sie über Nachhaltigkeit?',
     answer:
-      'Vorsichtig. Wir nennen keine Umweltzahl für einen einzelnen Prompt. Wir konzentrieren uns auf unnötige Nutzung, die sich über Teams und Abläufe wiederholt, denn dort summieren sich Kosten und Rechenleistung, und die Team-Stufe weist den geschätzten Energieverbrauch neben Kosten und Zeit aus.',
+      'Vorsichtig. Wir nennen keine Umweltzahl für einen einzelnen Prompt. Wir konzentrieren uns auf unnötige Nutzung, die sich über Teams und Abläufe wiederholt, denn dort summieren sich Kosten und Rechenleistung.',
   },
 ];
 

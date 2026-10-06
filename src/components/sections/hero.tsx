@@ -2,7 +2,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { Contours } from '@/components/effects/contours';
-import { DecisionCard } from '@/components/effects/decision-card';
+import { SystemMap } from '@/components/effects/system-map';
 import { LetterReveal } from '@/components/motion/letter-reveal';
 import { Reveal } from '@/components/motion/reveal';
 
@@ -15,9 +15,8 @@ interface HeroProps {
 
 /**
  * Opening section: what the company does in one headline and one sentence,
- * two actions, and beside them the headline acted out: everyday tasks,
- * each decided in four steps, the habit struck through and the deliberate
- * choice put in its place.
+ * two actions, and beside them a light living map that shows the mission in
+ * motion: intentional input, right-sized AI and cleaner output.
  */
 export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
@@ -82,7 +81,7 @@ export function Hero({ dict }: HeroProps) {
           </div>
 
           <Reveal delay={0.9} distance={16} className='min-w-0'>
-            <DecisionCard copy={t.decision} delay={1.4} />
+            <SystemMap delay={1.15} />
           </Reveal>
         </div>
       </div>

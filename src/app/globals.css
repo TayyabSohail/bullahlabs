@@ -609,6 +609,722 @@
   }
 }
 
+/* ------------------------------------------------------------------------- */
+/* Conscious AI mission flow                                                  */
+/* ------------------------------------------------------------------------- */
+
+@layer components {
+  .bl-mission-flow {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    min-height: 28rem;
+    overflow: hidden;
+    border: 1px solid hsl(var(--ink) / 0.16);
+    background: hsl(var(--ink));
+    color: white;
+  }
+  .bl-mission-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    opacity: 0.36;
+    background-image:
+      linear-gradient(to right, hsl(0 0% 100% / 0.075) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(0 0% 100% / 0.075) 1px, transparent 1px);
+    background-size: 38px 38px;
+    mask-image: radial-gradient(ellipse at 50% 45%, black, transparent 72%);
+  }
+  .bl-mission-route {
+    position: absolute;
+    left: 14%;
+    right: 14%;
+    height: 1px;
+    z-index: -1;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--brand) / 0.7),
+      transparent
+    );
+  }
+  .bl-mission-route-a {
+    top: 39%;
+    transform: rotate(18deg);
+  }
+  .bl-mission-route-b {
+    top: 55%;
+    transform: rotate(-18deg);
+  }
+  .bl-mission-packet {
+    position: absolute;
+    z-index: 0;
+    width: 8px;
+    height: 8px;
+    background: hsl(var(--brand));
+    box-shadow:
+      0 0 0 5px hsl(var(--brand) / 0.13),
+      0 0 20px hsl(var(--brand) / 0.8);
+    animation: bl-mission-travel 5.4s linear infinite;
+  }
+  .bl-mission-packet-a {
+    top: calc(39% - 4px);
+    left: 14%;
+    transform: rotate(18deg);
+  }
+  .bl-mission-packet-b {
+    top: calc(55% - 4px);
+    left: 14%;
+    animation-delay: -2.7s;
+    transform: rotate(-18deg);
+  }
+  .bl-mission-node,
+  .bl-mission-core {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid hsl(0 0% 100% / 0.18);
+    background: hsl(var(--ink-2) / 0.92);
+    box-shadow: 0 22px 45px -32px black;
+    backdrop-filter: blur(10px);
+  }
+  .bl-mission-node {
+    width: min(10.8rem, 38%);
+    padding: 1rem;
+    animation: bl-mission-drift 5s ease-in-out infinite;
+  }
+  .bl-mission-input {
+    left: 6%;
+    top: 14%;
+  }
+  .bl-mission-output {
+    right: 6%;
+    bottom: 21%;
+    animation-delay: -2.5s;
+  }
+  .bl-mission-icon,
+  .bl-mission-core-mark {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    margin-bottom: 1.35rem;
+    color: hsl(var(--brand));
+    border: 1px solid hsl(var(--brand) / 0.5);
+    background: hsl(var(--brand) / 0.1);
+  }
+  .bl-mission-eyebrow {
+    margin-bottom: 0.35rem;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.57rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: hsl(var(--brand-2));
+  }
+  .bl-mission-node strong,
+  .bl-mission-core strong {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+  .bl-mission-node small,
+  .bl-mission-core small {
+    margin-top: 0.65rem;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    color: hsl(0 0% 100% / 0.62);
+  }
+  .bl-mission-core {
+    left: 50%;
+    top: 50%;
+    width: min(13.5rem, 48%);
+    min-height: 11.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    border-color: hsl(var(--brand) / 0.65);
+    background:
+      radial-gradient(
+        circle at 50% 50%,
+        hsl(var(--brand) / 0.2),
+        transparent 65%
+      ),
+      hsl(var(--ink-2) / 0.97);
+  }
+  .bl-mission-core-mark {
+    margin-bottom: 0.85rem;
+  }
+  .bl-mission-orbit {
+    position: absolute;
+    border: 1px solid hsl(var(--brand) / 0.33);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: bl-mission-spin 13s linear infinite;
+  }
+  .bl-mission-orbit-a {
+    width: 116%;
+    height: 54%;
+    transform: rotate(-24deg);
+  }
+  .bl-mission-orbit-b {
+    width: 77%;
+    height: 138%;
+    transform: rotate(46deg);
+    animation-direction: reverse;
+    animation-duration: 17s;
+  }
+  .bl-mission-benefits {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid hsl(0 0% 100% / 0.15);
+    background: hsl(0 0% 100% / 0.04);
+  }
+  .bl-mission-benefits div {
+    display: flex;
+    min-height: 4.4rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.65rem;
+    color: hsl(var(--brand-2));
+  }
+  .bl-mission-benefits div + div {
+    border-left: 1px solid hsl(0 0% 100% / 0.12);
+  }
+  .bl-mission-benefits span:last-child {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+}
+
+@keyframes bl-mission-travel {
+  from {
+    margin-left: 0;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    margin-left: 72%;
+    opacity: 0;
+  }
+}
+@keyframes bl-mission-drift {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+@keyframes bl-mission-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (max-width: 440px) {
+  .bl-mission-flow {
+    min-height: 25rem;
+  }
+  .bl-mission-node {
+    padding: 0.75rem;
+  }
+  .bl-mission-node strong,
+  .bl-mission-core strong {
+    font-size: 1.1rem;
+  }
+  .bl-mission-node small {
+    font-size: 0.63rem;
+  }
+  .bl-mission-icon {
+    margin-bottom: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bl-mission-packet,
+  .bl-mission-node,
+  .bl-mission-orbit {
+    animation: none;
+  }
+}
+
+/* Hero system map (effects/system-map.tsx): labelled isometric tiles on a
+   plate, wired together, with small cubes riding the wires. Strokes stay
+   one device pixel at any size. Tones: paper, mint (the apps), warm (the
+   model) and ink (the API hub); cubes add brand and warm. */
+.bl-map polygon,
+.bl-map line,
+.bl-map rect {
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+}
+.bl-map {
+  max-width: 100%;
+  overflow: clip;
+}
+.bl-map-vertical svg {
+  max-height: 31rem;
+}
+.bl-map-flow-lines path {
+  fill: none;
+  stroke: hsl(var(--brand) / 0.46);
+  stroke-width: 1.25;
+  stroke-dasharray: 3 4;
+}
+.bl-map-core > circle:first-child {
+  fill: hsl(var(--brand) / 0.18);
+  stroke: hsl(var(--brand-2));
+  stroke-width: 1;
+}
+.bl-map-core-orbit {
+  fill: none;
+  stroke: hsl(var(--brand) / 0.58);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+.bl-map-core path {
+  fill: hsl(var(--brand-2));
+}
+.bl-map-core-dot {
+  fill: hsl(var(--brand));
+}
+.bl-map-core text {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  fill: #fff;
+}
+/* Below lg the map sits under the copy, so the stage breaks out of the
+   container padding (mirroring .bl-container) to use the full screen width.
+   The SVG viewBox always encloses the whole plate, so nothing is cut off. */
+@media (max-width: 1023.98px) {
+  .bl-map-stage {
+    margin-inline: -1.25rem;
+  }
+}
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .bl-map-stage {
+    margin-inline: -2rem;
+  }
+}
+.bl-map-plate-top {
+  fill: hsl(var(--surface) / 0.55);
+  stroke: hsl(var(--ink) / 0.18);
+  stroke-width: 1;
+}
+.bl-map-plate-side {
+  fill: hsl(var(--ink) / 0.07);
+  stroke: hsl(var(--ink) / 0.18);
+  stroke-width: 1;
+}
+.bl-map-grid line {
+  stroke: hsl(var(--ink) / 0.09);
+  stroke-width: 1;
+}
+.bl-map-sweep {
+  fill: hsl(var(--brand) / 0.1);
+  stroke: none;
+  pointer-events: none;
+}
+.bl-map-edge {
+  fill: none;
+  stroke: hsl(var(--ink) / 0.4);
+  stroke-width: 1.25;
+}
+.bl-map-shadow {
+  fill: hsl(var(--ink) / 0.08);
+  stroke: none;
+}
+
+/* Tiles */
+.bl-map-tile polygon {
+  stroke: hsl(var(--ink) / 0.3);
+  stroke-width: 1;
+}
+.bl-map-tile[data-tone='paper'] .bl-map-top {
+  fill: #ffffff;
+}
+.bl-map-tile[data-tone='paper'] .bl-map-left {
+  fill: #ebebe7;
+}
+.bl-map-tile[data-tone='paper'] .bl-map-right {
+  fill: #d7d7d2;
+}
+.bl-map-tile[data-tone='mint'] polygon {
+  stroke: hsl(var(--brand-strong) / 0.45);
+}
+.bl-map-tile[data-tone='mint'] .bl-map-top {
+  fill: hsl(var(--brand-soft));
+}
+.bl-map-tile[data-tone='mint'] .bl-map-left {
+  fill: hsl(152 45% 86%);
+}
+.bl-map-tile[data-tone='mint'] .bl-map-right {
+  fill: hsl(152 35% 78%);
+}
+.bl-map-tile[data-tone='warm'] polygon {
+  stroke: hsl(18 70% 40% / 0.45);
+}
+.bl-map-tile[data-tone='warm'] .bl-map-top {
+  fill: hsl(24 100% 93%);
+}
+.bl-map-tile[data-tone='warm'] .bl-map-left {
+  fill: hsl(22 80% 85%);
+}
+.bl-map-tile[data-tone='warm'] .bl-map-right {
+  fill: hsl(20 70% 76%);
+}
+.bl-map-tile[data-tone='ink'] polygon {
+  stroke: hsl(0 0% 0% / 0.6);
+}
+.bl-map-tile[data-tone='ink'] .bl-map-top {
+  fill: hsl(0 0% 14%);
+}
+.bl-map-tile[data-tone='ink'] .bl-map-left {
+  fill: hsl(0 0% 8%);
+}
+.bl-map-tile[data-tone='ink'] .bl-map-right {
+  fill: hsl(0 0% 4%);
+}
+.bl-map-flash {
+  fill: hsl(var(--brand));
+  stroke: none !important;
+  pointer-events: none;
+}
+.bl-map-spark {
+  fill: hsl(var(--brand));
+  stroke: none;
+  pointer-events: none;
+}
+.bl-map-label {
+  font-family: var(--font-mono);
+  font-size: var(--bl-map-label, 11px);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  fill: hsl(var(--ink));
+}
+.bl-map-processor rect,
+.bl-map-processor line {
+  stroke: hsl(var(--brand-2));
+  stroke-width: 1.25;
+}
+.bl-map-processor rect {
+  fill: hsl(var(--ink-2));
+}
+.bl-map-processor .bl-map-processor-core {
+  fill: hsl(var(--brand));
+  stroke: hsl(var(--brand-2));
+}
+.bl-map-processor circle {
+  fill: hsl(var(--brand-2));
+}
+.bl-map-tile[data-tone='ink'] .bl-map-label {
+  fill: #ffffff;
+}
+
+/* Cubes: packets on the wires and spare blocks in the corners */
+.bl-map-cube polygon {
+  stroke-width: 1;
+}
+.bl-map-cube[data-tone='paper'] polygon {
+  stroke: hsl(var(--ink) / 0.3);
+}
+.bl-map-cube[data-tone='paper'] .bl-map-top {
+  fill: #ffffff;
+}
+.bl-map-cube[data-tone='paper'] .bl-map-left {
+  fill: #ebebe7;
+}
+.bl-map-cube[data-tone='paper'] .bl-map-right {
+  fill: #d7d7d2;
+}
+.bl-map-cube[data-tone='brand'] polygon {
+  stroke: hsl(var(--brand-strong) / 0.7);
+}
+.bl-map-cube[data-tone='brand'] .bl-map-top {
+  fill: hsl(var(--brand-2));
+}
+.bl-map-cube[data-tone='brand'] .bl-map-left {
+  fill: hsl(var(--brand));
+}
+.bl-map-cube[data-tone='brand'] .bl-map-right {
+  fill: hsl(var(--brand-strong));
+}
+.bl-map-cube[data-tone='warm'] polygon {
+  stroke: hsl(18 80% 32% / 0.7);
+}
+.bl-map-cube[data-tone='warm'] .bl-map-top {
+  fill: hsl(24 100% 66%);
+}
+.bl-map-cube[data-tone='warm'] .bl-map-left {
+  fill: hsl(var(--warm));
+}
+.bl-map-cube[data-tone='warm'] .bl-map-right {
+  fill: hsl(16 90% 48%);
+}
+.bl-map-cube[data-tone='ink'] polygon {
+  stroke: hsl(0 0% 0% / 0.55);
+}
+.bl-map-cube[data-tone='ink'] .bl-map-top {
+  fill: hsl(0 0% 26%);
+}
+.bl-map-cube[data-tone='ink'] .bl-map-left {
+  fill: hsl(0 0% 12%);
+}
+.bl-map-cube[data-tone='ink'] .bl-map-right {
+  fill: hsl(0 0% 6%);
+}
+
+/* Glow left behind a packet on the wire */
+.bl-map-trail {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+.bl-map-trail[data-tone='brand'] {
+  stroke: hsl(var(--brand));
+}
+.bl-map-trail[data-tone='warm'] {
+  stroke: hsl(var(--warm));
+}
+.bl-map-trail[data-tone='ink'] {
+  stroke: hsl(var(--ink) / 0.6);
+}
+.bl-map-trail[data-tone='paper'] {
+  stroke: hsl(var(--ink) / 0.3);
+}
+
+/* Vertical mission flow: a readable explanation, not a decorative diagram. */
+.bl-purpose-flow {
+  width: min(100%, 34rem);
+  margin-inline: auto;
+  padding: 0.25rem 0;
+}
+.bl-purpose-tile,
+.bl-purpose-chip-stage {
+  border: 1px solid hsl(var(--ink) / 0.18);
+  background: hsl(var(--surface));
+  box-shadow: 0 16px 28px -28px hsl(var(--ink) / 0.6);
+}
+.bl-purpose-tile {
+  position: relative;
+  padding: 1.15rem 1.25rem 1.2rem 4.4rem;
+}
+.bl-purpose-tile::before {
+  content: '';
+  position: absolute;
+  top: 1.2rem;
+  left: 1.25rem;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 1px solid hsl(var(--brand) / 0.55);
+  background: hsl(var(--brand-soft));
+}
+.bl-purpose-step {
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.61rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--brand-text));
+}
+.bl-purpose-tile h3,
+.bl-purpose-chip-stage h3 {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.35rem, 3.2vw, 1.7rem);
+  line-height: 1;
+  color: hsl(var(--ink));
+}
+.bl-purpose-tile > p:last-child,
+.bl-purpose-chip-stage > div > p:last-child {
+  margin: 0.45rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: hsl(var(--muted-foreground));
+}
+.bl-purpose-tile-emphasis {
+  border-color: hsl(var(--brand) / 0.65);
+  background: linear-gradient(
+    110deg,
+    hsl(var(--brand-soft)),
+    hsl(var(--surface)) 70%
+  );
+}
+.bl-purpose-tile-emphasis::before {
+  background: hsl(var(--brand));
+}
+.bl-purpose-connector {
+  position: relative;
+  width: 1px;
+  height: 1.9rem;
+  margin-inline: auto;
+  overflow: hidden;
+  background: hsl(var(--ink) / 0.18);
+}
+.bl-purpose-connector span {
+  position: absolute;
+  left: -2px;
+  width: 5px;
+  height: 9px;
+  background: hsl(var(--brand));
+  box-shadow: 0 0 12px hsl(var(--brand) / 0.75);
+  animation: bl-purpose-signal 1.8s ease-in-out infinite;
+}
+.bl-purpose-chip-stage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.15rem 1.25rem;
+}
+.bl-purpose-chip {
+  position: relative;
+  display: grid;
+  width: 4.8rem;
+  height: 4.8rem;
+  place-items: center;
+  border: 1px solid hsl(var(--ink));
+  background: hsl(var(--ink));
+  box-shadow:
+    inset 0 0 0 5px hsl(var(--ink-2)),
+    0 12px 25px -18px hsl(var(--ink));
+}
+.bl-purpose-chip-core {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid hsl(var(--brand));
+  color: hsl(var(--brand-2));
+  background: hsl(var(--brand) / 0.15);
+  animation: bl-purpose-chip 2.8s ease-in-out infinite;
+}
+.bl-purpose-chip i {
+  position: absolute;
+  width: 0.45rem;
+  height: 0.15rem;
+  background: hsl(var(--brand-2));
+}
+.bl-purpose-chip i:nth-of-type(1),
+.bl-purpose-chip i:nth-of-type(2),
+.bl-purpose-chip i:nth-of-type(3),
+.bl-purpose-chip i:nth-of-type(4) {
+  top: -0.08rem;
+}
+.bl-purpose-chip i:nth-of-type(1) {
+  left: 0.7rem;
+}
+.bl-purpose-chip i:nth-of-type(2) {
+  left: 1.75rem;
+}
+.bl-purpose-chip i:nth-of-type(3) {
+  right: 1.75rem;
+}
+.bl-purpose-chip i:nth-of-type(4) {
+  right: 0.7rem;
+}
+.bl-purpose-chip i:nth-of-type(5),
+.bl-purpose-chip i:nth-of-type(6),
+.bl-purpose-chip i:nth-of-type(7),
+.bl-purpose-chip i:nth-of-type(8) {
+  bottom: -0.08rem;
+}
+.bl-purpose-chip i:nth-of-type(5) {
+  left: 0.7rem;
+}
+.bl-purpose-chip i:nth-of-type(6) {
+  left: 1.75rem;
+}
+.bl-purpose-chip i:nth-of-type(7) {
+  right: 1.75rem;
+}
+.bl-purpose-chip i:nth-of-type(8) {
+  right: 0.7rem;
+}
+.bl-purpose-outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.bl-purpose-outcome {
+  display: flex;
+  min-height: 5.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  border: 1px solid hsl(var(--ink) / 0.17);
+  background: hsl(var(--surface));
+  color: hsl(var(--brand-text));
+}
+.bl-purpose-outcome span {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(0.55rem, 1.4vw, 0.66rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+@keyframes bl-purpose-signal {
+  from {
+    transform: translateY(-12px);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(34px);
+    opacity: 0;
+  }
+}
+@keyframes bl-purpose-chip {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--brand) / 0);
+  }
+  50% {
+    box-shadow: 0 0 0 6px hsl(var(--brand) / 0.14);
+  }
+}
+@media (max-width: 380px) {
+  .bl-purpose-outcomes {
+    gap: 0.3rem;
+  }
+  .bl-purpose-outcome {
+    padding: 0.65rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bl-purpose-connector span,
+  .bl-purpose-chip-core {
+    animation: none;
+  }
+}
+
 /* Page-level cursor glow. */
 .bl-cursor-glow {
   position: fixed;
@@ -637,4 +1353,3 @@ html.bl-no-cursor,
 html.bl-no-cursor * {
   cursor: none !important;
 }
-

@@ -1,4 +1,3 @@
-import { Compare } from '@/components/sections/compare';
 import { CourseVideos, Pillars } from '@/components/sections/conscious-ai';
 import { ContactSection } from '@/components/sections/contact-section';
 import { FaqSection } from '@/components/sections/faq';
@@ -29,7 +28,6 @@ export default async function HomePage() {
       <Numbers dict={dict} />
       <ProjectsTeaser dict={dict} />
       <Pillars dict={dict} />
-      <Compare dict={dict} />
       <Technologies dict={dict} />
       <GlobalReach dict={dict} />
       <HowItWorks dict={dict} />

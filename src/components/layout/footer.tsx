@@ -8,7 +8,11 @@ import { BackToTop } from '@/components/layout/back-to-top';
 import { legalLabel } from '@/lib/legal-labels';
 
 import { siteConfig } from '@/config/site';
-import { courseHref, courseIsLive, requestAccessHref } from '@/constants/course';
+import {
+  courseHref,
+  courseIsLive,
+  requestAccessHref,
+} from '@/constants/course';
 import { primaryNav } from '@/constants/navigation';
 import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
