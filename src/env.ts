@@ -9,6 +9,7 @@ import { z } from 'zod';
  * - NEXT_PUBLIC_SUPABASE_*             -> contact form is also stored in DB
  * - NEXT_PUBLIC_POSTHOG_*              -> analytics (after cookie consent)
  * - NEXT_PUBLIC_CAL_LINK               -> "Book a call" links to Cal.com
+ * - NEXT_PUBLIC_COURSE_URL             -> "Watch the course" links to the course
  */
 export const env = createEnv({
   server: {
@@ -23,6 +24,7 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().optional(),
     NEXT_PUBLIC_CAL_LINK: z.string().optional(),
+    NEXT_PUBLIC_COURSE_URL: z.string().url().optional(),
 
     NEXT_PUBLIC_APP_URL: z.string().default('http://localhost:3000'),
     NEXT_PUBLIC_APP_NAME: z.string().default('Bullah Labs'),
@@ -41,6 +43,8 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     // Booking
     NEXT_PUBLIC_CAL_LINK: process.env.NEXT_PUBLIC_CAL_LINK,
+    // Course
+    NEXT_PUBLIC_COURSE_URL: process.env.NEXT_PUBLIC_COURSE_URL,
     // App specific variables
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,

@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 interface RevealProps {
   children: React.ReactNode;
   className?: string;
+  /** Anchor id, for blocks that are linked to directly. */
+  id?: string;
   delay?: number;
   /** Pixels to travel on entry. */
   distance?: number;
@@ -20,6 +22,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 export function Reveal({
   children,
   className,
+  id,
   delay = 0,
   distance = 28,
   once = true,
@@ -30,6 +33,7 @@ export function Reveal({
 
   return (
     <Component
+      id={id}
       initial={reduce ? false : { opacity: 0, y: distance }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, margin: '0px 0px -10% 0px' }}

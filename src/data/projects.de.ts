@@ -1,4 +1,4 @@
-import type { Project } from './projects';
+import type { Project, ProjectEfficiency } from './projects';
 
 /**
  * German copy for each case study, keyed by slug. Only prose is translated:
@@ -24,6 +24,8 @@ export type ProjectTranslation = Partial<
     | 'challenges'
   >
 > & {
+  /** Efficiency copy; the lens itself is not translated. */
+  efficiency?: Omit<ProjectEfficiency, 'lens'>;
   /** Gallery captions, in the same order as the project's `gallery`. */
   gallery?: { title: string; caption: string }[];
   /** `techStack` category labels, in the same order. */
@@ -32,10 +34,22 @@ export type ProjectTranslation = Partial<
 
 export const projectsDe: Record<string, ProjectTranslation> = {
   brickfold: {
+    efficiency: {
+      title:
+        'Exakte Regeln bewegen das Geld, und ein Mensch gibt jede Bewegung frei.',
+      body:
+        'Hier wird nichts geschätzt. Eigentumsanteile werden bei jedem Lesen aus den tatsächlichen Beträgen abgeleitet, jede Aufteilung rundet auf den ganzen Schilling ab, und die Wallet-Invariante wird erzwungen statt angenommen. Jede Einzahlung, Investition, Mietgutschrift und Auszahlung passiert die Administration, bevor sie wirksam wird, und Plattformregeln sind Einstellungen, deren Änderung kein Release braucht.',
+      techniques: [
+        'Deterministische Buchungsregeln, keine Schätzungen',
+        'Menschliche Freigabe für jede Geldbewegung',
+        'Regeln als Einstellungen statt Releases',
+      ],
+    },
     client: 'Vertraulich (Immobilien-Mitgliederclub)',
-    tagline: 'Anteiliges Immobilieneigentum für Ostafrika',
+    tagline:
+      'Anteiliges Immobilieneigentum für Ostafrika, auf einem Hauptbuch, das nie schätzt',
     summary:
-      'Ein Mitgliederclub, in dem Uganderinnen und Ugander ertragsstarke Wohnungen ab 1.000.000 UGX gemeinsam besitzen.',
+      'Ein Mitgliederclub, in dem Uganderinnen und Ugander ertragsstarke Wohnungen ab 1.000.000 UGX gemeinsam besitzen. Jeder Schilling bewegt sich nach exakten Regeln, und ein Mensch gibt jede Bewegung frei.',
     description:
       'Immobilien werden als ein unteilbares Ganzes verkauft, und dieses Ganze kostet mehr, als die meisten Menschen je auf einmal auf dem Konto haben. Brickfold teilt es auf. Geprüfte Mitglieder bündeln Kapital, besitzen gemeinsam echte, ertragsstarke Wohnungen in Uganda, erhalten ihren anteiligen Anteil an der Monatsmiete und verkaufen ihren Anteil an andere Mitglieder, wenn sie aussteigen möchten.',
     industry: 'Fintech / Immobilien',
@@ -123,9 +137,22 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   rankloom: {
+    efficiency: {
+      title:
+        'Bündelung und Caching halbieren die Kosten des Keyword-Trackings.',
+      body:
+        'Anfragen werden gebündelt und nach Keyword und Sprachraum zwischengespeichert, sodass dieselben Daten nie zweimal eingekauft werden. Die Massenerzeugung läuft als fortsetzbare Jobs, die einen einzelnen fehlgeschlagenen Eintrag wiederholen statt des ganzen Stapels, und die Erzeugung läuft über OpenRouter, sodass sich ein Modell austauschen lässt, ohne den Produktcode anzufassen.',
+      techniques: [
+        'Cache nach Keyword und Sprachraum',
+        'Einen Eintrag wiederholen, nicht den Stapel',
+        'Modelle hinter einem Router austauschbar',
+      ],
+    },
     client: 'Vertraulich (SEO-Plattform)',
-    tagline: 'KI-gestützte Plattform für intelligenteres SEO-Wachstum',
-    summary: 'KI-gestützte SEO- und Content-Plattform.',
+    tagline:
+      'KI-Plattform für SEO und Content, die dieselben Daten nie zweimal einkauft',
+    summary:
+      'Eine KI-gestützte Plattform für SEO und Content. Bündelung und Caching halbieren die Kosten des Keyword-Trackings.',
     description:
       'Eine Plattform für Keyword-Recherche, KI-Content-Erstellung und Rank-Tracking, die dem Hin und Her zwischen Werkzeugen ein Ende macht, das SEO-Teams ganze Tage gekostet hat.',
     industry: 'Marketingtechnologie',
@@ -207,10 +234,22 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   bidnest: {
+    efficiency: {
+      title:
+        'Jeder Bildschirm erhält nur die Gebote, die er gerade beobachtet.',
+      body:
+        'Echtzeit-Abonnements sind pro Inserat begrenzt, sodass ein Client nie Aktualisierungen für Inserate verarbeitet, die er nicht anzeigt. Die Reihenfolge der Gebote wird einmal entschieden, in einer serialisierten serverseitigen Transaktion, und die Clients gleichen sich mit dem bestätigten Ergebnis ab. Die Plattform trägt über 1.000 gleichzeitig Bietende, mit Aktualisierungen in 200 ms.',
+      techniques: [
+        'Abonnements pro Inserat begrenzt',
+        'Eine verbindliche Entscheidung auf dem Server',
+        'Zugriff über Row-Level Security erzwungen',
+      ],
+    },
     client: 'Vertraulich (Marktplatz für Studierendenwohnungen)',
-    tagline: 'Wohnungen außerhalb des Campus, zu Ihren Bedingungen',
+    tagline:
+      'Bieter-Marktplatz für Studentenwohnungen, der jedem Bildschirm nur seine Gebote sendet',
     summary:
-      'Auktionsbasierter Mietmarktplatz für Wohnungen außerhalb des Campus.',
+      'Ein gebotsbasierter Marktplatz für Mietwohnungen außerhalb des Campus. Live-Aktualisierungen sind pro Inserat begrenzt, sodass über 1.000 Menschen gleichzeitig bieten können.',
     description:
       'Studierende bieten in Echtzeit auf Wohnungen außerhalb des Campus, mit rollenspezifischen Dashboards für Studierende, Eltern und Vermietende.',
     industry: 'Immobilientechnologie',
@@ -293,9 +332,22 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'curio-market': {
+    efficiency: {
+      title:
+        'Auszahlungen und Sendungsverfolgung laufen von selbst, der Support muss sie nicht wiederholen.',
+      body:
+        'Die beiden Abläufe mit der meisten Handarbeit, Händlerauszahlungen und Sendungsverfolgung, sind mit Stripe Connect und DHL-Webhooks durchgängig automatisiert, der Status steht direkt in der Bestellansicht. Die Supportanfragen sanken um 70 %. Die Mandantentrennung ist einmal in der Datenbank festgelegt statt in jeder Ansicht.',
+      techniques: [
+        'Auszahlungen und Tracking durchgängig automatisiert',
+        'Status dort, wo ohnehin nachgesehen wird',
+        'Trennung einmal in der Datenbank erzwungen',
+      ],
+    },
     client: 'Vertraulich (E-Commerce-Marktplatz)',
-    tagline: 'Ein personalisierter Marktplatz mit vielen Anbietern',
-    summary: 'Personalisierter E-Commerce-Marktplatz mit vielen Anbietern.',
+    tagline:
+      'Personalisierter Multi-Seller-Marktplatz mit automatischen Auszahlungen und Tracking',
+    summary:
+      'Ein personalisierter E-Commerce-Marktplatz für viele Händler. Automatisierte Auszahlungen und Sendungsverfolgung senken die Supportanfragen um 70 %.',
     description:
       'Ein Marktplatz mit vielen Anbietern, personalisierten Empfehlungen, Auszahlungen über Stripe Connect und automatisierter Sendungsverfolgung von DHL.',
     industry: 'E-Commerce',
@@ -376,9 +428,21 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'bitsmiths-hrm': {
-    tagline: 'HR- und Lohnsystem, vollständig prüfbar',
+    efficiency: {
+      title:
+        'Lohnabrechnung ist Rechnen, also läuft sie über Regeln, ohne Modell im Ablauf.',
+      body:
+        'Urlaubs- und Krankheitskonten, Lohnberechnung und Sperrung sind Postgres-Funktionen. Die Berechnung ist idempotent und lässt sich jederzeit gefahrlos wiederholen, bevor ein Zeitraum gesperrt wird, und jeder freigegebene Posten fließt in genau eine Abrechnung. Das Ergebnis: null manuelle Lohnberechnungen.',
+      techniques: [
+        'Deterministische Logik in der Datenbank',
+        'Idempotente Neuberechnung',
+        'Jeder Posten genau einmal gezählt',
+      ],
+    },
+    tagline:
+      'HR- und Lohnsystem, das auf Regeln läuft, ohne manuelle Berechnungen',
     summary:
-      'Onboarding, Urlaub, Krankheitskosten, Überstunden und Lohnabrechnung für Bitsmiths Studio.',
+      'Onboarding, Urlaub, Krankheitskosten, Überstunden und Lohnabrechnung für Bitsmiths Studio, berechnet durch Datenbankregeln statt von Hand.',
     description:
       'Eine interne HR-Plattform, auf der Mitarbeitende eingeladen, eingearbeitet und aktiviert werden; sie reichen Urlaub, Krankheitskosten und Überstunden ein, die Administration gibt jeden Vorgang frei, und die freigegebenen Posten fließen in einen monatlichen Abrechnungslauf, der Lohnabrechnungen berechnet, sperrt und nach Payoneer exportiert.',
     industry: 'HR-Technologie',
@@ -466,8 +530,20 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'bitsmiths-studio': {
-    tagline: 'Agenturwebsite und CMS',
-    summary: 'Marketing-Website für ein Studio, das MVPs in 30 Tagen liefert.',
+    efficiency: {
+      title: 'Veröffentlichen ist eine CMS-Aktion, kein Deployment.',
+      body:
+        'Jede Inhaltsfläche ist einmal in Directus modelliert und wird über gemeinsame Vorlagen ausgegeben, sodass eine neue Fallstudie oder ein Beitrag keine Entwicklungszeit kostet. Medien werden pro Anfrage in WebP umgewandelt, der manuelle Export entfällt.',
+      techniques: [
+        'Gemeinsame Vorlagen für vier Inhaltstypen',
+        'Kein Deployment zum Veröffentlichen',
+        'Bilder auf Anfrage umgewandelt, nicht von Hand',
+      ],
+    },
+    tagline:
+      'Agentur-Website mit CMS, bei der Veröffentlichen kein Deployment braucht',
+    summary:
+      'Marketing-Website für ein Studio, das MVPs in 30 Tagen liefert. Jeder Inhaltstyp wird aus dem CMS veröffentlicht, ohne Entwicklungszeit.',
     description:
       'Die Marketing-Website des Studios, auf einem CMS gebaut, sodass Referenzen, Artikel und Kundenstimmen ohne Deploy veröffentlicht werden.',
     industry: 'Softwareagentur',
@@ -539,12 +615,23 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Styling', 'CMS'],
   },
   'real-estate-management-system': {
+    efficiency: {
+      title:
+        'Drei spezialisierte Agenten, jeder auf eine Aufgabe zugeschnitten.',
+      body:
+        'Statt einem allgemeinen Assistenten alles zu übergeben, sind CRM, Compliance und Wissensarbeit auf drei Agenten verteilt, deren Übergaben LangGraph koordiniert. Die Unterschiede der Agenturen liegen hinter CRM-Integrationen, sodass mehr als 30 Agenturen einen Ablauf teilen statt dreißig Varianten.',
+      techniques: [
+        'Ein Agent pro Verantwortung',
+        'Klare Übergaben zwischen den Agenten',
+        'Ein gemeinsamer Ablauf für über 30 Agenturen',
+      ],
+    },
     title: 'Real Estate Operating System',
     client: 'Vertraulich (Immobiliengruppe)',
     tagline:
-      'Mandantenfähige KI-Plattform, die den Maklerbetrieb automatisiert',
+      'Mandantenfähige KI-Plattform für Immobilienagenturen, mit einem Agenten pro Aufgabe',
     summary:
-      'Mandantenfähige KI-Plattform zur Automatisierung des Betriebs von Immobilienmaklern.',
+      'Eine mandantenfähige KI-Plattform, die Abläufe von Immobilienagenturen automatisiert. Drei spezialisierte Agenten teilen sich einen Ablauf für über 30 Agenturen.',
     description:
       'Ein einheitliches Betriebssystem für Maklerbüros, das CRM, Compliance, Marketing, Dokumentenerstellung und E-Signatur in einer mandantenfähigen Plattform zusammenführt.',
     industry: 'Immobilien',
@@ -619,11 +706,22 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Backend', 'KI', 'Architektur'],
   },
   'qa-compliance-agent': {
+    efficiency: {
+      title: 'Jede Feststellung verweist auf die Klausel, aus der sie stammt.',
+      body:
+        'Jede Prüfung stützt sich auf den Normen-Datensatz und wird als nachverfolgte Änderung auf Klauselebene mit Erläuterung zurückgegeben, sodass eine Prüferin die Feststellung an Ort und Stelle verifizieren kann. Ein wiederholbarer Ablauf bewertet jeden Bericht nach denselben Normen und derselben Ausgabestruktur.',
+      techniques: [
+        'Gestützt auf einen Normen-Datensatz',
+        'Nachvollziehbare Feststellungen auf Klauselebene',
+        'Ein wiederholbarer Prüfablauf',
+      ],
+    },
     title: 'Agent für Compliance-Prüfung',
     client: 'Vertraulich (Wirtschaftsprüfung)',
-    tagline: 'Feststellungen als Änderungsverfolgung je Klausel, KI-erzeugt',
+    tagline:
+      'KI-Compliance-Prüfer, dessen Feststellungen jeweils ihre Klausel nennen',
     summary:
-      'KI-Agent für Compliance, der Feststellungen als Änderungsverfolgung je Klausel erzeugt.',
+      'Ein KI-Agent, der Berichte gegen einen Normen-Datensatz prüft und nachverfolgte Änderungen auf Klauselebene liefert, die ein Mensch verifizieren kann.',
     description:
       'Ein KI-gestützter Prüfablauf, der hochgeladene Berichte gegen etablierte Normen abgleicht und Änderungsverfolgung auf Klauselebene zurückgibt, mit einer klaren Begründung zu jeder Feststellung.',
     industry: 'Prüfung und Compliance',
@@ -696,11 +794,21 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Backend', 'Cloud', 'KI'],
   },
   'ai-interview-assistant': {
+    efficiency: {
+      title: 'Sprache und Transkription teilen sich eine Echtzeit-Sitzung.',
+      body:
+        'Das Interview und sein Transkript laufen in derselben OpenAI-Realtime-Sitzung, nicht als zwei getrennte Durchgänge über die Aufnahme. Meeting-Links, Einladungen und die Transkript-E-Mail folgen automatisch, sodass nach dem Ende einer Sitzung kein manueller Schritt bleibt.',
+      techniques: [
+        'Eine Sitzung für Sprache und Transkript',
+        'Kein zweiter Durchgang über die Aufnahme',
+        'Nachbereitung durchgängig automatisiert',
+      ],
+    },
     title: 'Sprachassistent für Interviews in Echtzeit',
     client: 'Vertraulich (Personalvermittlung)',
-    tagline: 'Live-KI-Sprachinterviews mit automatischen Transkripten',
+    tagline: 'Live-KI-Sprachinterviews, mit Transkript in derselben Sitzung',
     summary:
-      'Durchgängige KI-Interviewplattform mit Live-Sprache und Transkription.',
+      'Eine durchgängige KI-Interviewplattform. Sprache und Transkription laufen in einer Echtzeit-Sitzung, ohne manuelle Schritte danach.',
     description:
       'Eine durchgängige Interviewplattform, die Live-KI-Sprachinterviews plant, terminiert und durchführt und das Transkript nach Ende der Sitzung automatisch zustellt.',
     industry: 'Personalvermittlung',
@@ -775,8 +883,21 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend & Backend', 'KI'],
   },
   snobbots: {
-    tagline: 'Mandantenfähige KI-Support-Agenten für Onlineshops',
-    summary: 'Mandantenfähige KI-Chatbot-Plattform.',
+    efficiency: {
+      title:
+        'Jede Antwort stammt aus den Inhalten eines Shops, und aus nichts anderem.',
+      body:
+        'Embeddings sind in Pinecone pro Mandant getrennt, sodass der Abruf nur den Namespace des anfragenden Shops erreichen kann. Das Modell arbeitet mit einer einzigen Wissensbasis, wodurch die Antworten in den Inhalten dieses Shops verankert bleiben. Die Bereitstellung ist automatisiert, sodass Reseller Shops gebündelt statt einzeln einrichten.',
+      techniques: [
+        'Abruf auf einen Namespace begrenzt',
+        'Antworten aus den eigenen Inhalten des Shops',
+        'Gebündelte Bereitstellung statt Handarbeit',
+      ],
+    },
+    tagline:
+      'KI-Support-Agenten für Onlineshops, die nur aus dem eigenen Shop antworten',
+    summary:
+      'Eine mandantenfähige KI-Chatbot-Plattform. Der Abruf ist auf die Inhalte eines Shops begrenzt, und neue Shops werden gebündelt eingerichtet.',
     description:
       'Wiederverkäufer richten KI-Support-Agenten für ihre Shops in großer Zahl ein, wobei jeder Mandant getrennt ist und jede Antwort in den Inhalten des jeweiligen Shops verankert wird.',
     industry: 'E-Commerce / Kundenservice',
@@ -849,10 +970,23 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Backend', 'Datenbank', 'KI'],
   },
   'ai-physiotherapy': {
+    efficiency: {
+      title:
+        'Regeln passen den Plan täglich an. Das Modell übernimmt, was Urteilsvermögen braucht.',
+      body:
+        'Tägliche Protokolle speisen Regeln für Steigerung und Rücknahme, sodass sich der Plan automatisch anpasst, statt auf eine manuelle Durchsicht zu warten. KI kommt dort zum Einsatz, wo sie sich lohnt: bei der Aufnahme, bei der Planerstellung auf Basis hochgeladener Fachartikel und beim Feedback zu Übungsvideos.',
+      techniques: [
+        'Steigerung und Rücknahme nach Regeln',
+        'Pläne auf Basis hochgeladener Fachartikel',
+        'KI-Feedback zu eingereichten Videos',
+      ],
+    },
     title: 'KI-Assistent für Physiotherapie',
     client: 'Vertraulich (Gesundheitswesen)',
-    tagline: 'Adaptive Rehabilitation, von KI begleitet',
-    summary: 'Full-Stack-KI-Plattform für adaptive Rehabilitation.',
+    tagline:
+      'KI-Reha-Assistent, dessen Pläne sich täglich nach Regeln anpassen',
+    summary:
+      'Eine Full-Stack-KI-Plattform für adaptive Rehabilitation. Tägliche Protokolle passen den Plan automatisch an, und KI übernimmt Aufnahme, Pläne und Video-Feedback.',
     description:
       'Ein durchgängiger Rehabilitationsverlauf von der Aufnahme über die Bewegungsanalyse und adaptive Trainingsplanung bis zu täglichem Fortschritt und KI-gestütztem Videofeedback.',
     industry: 'Gesundheitswesen',
@@ -927,8 +1061,21 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Backend', 'KI'],
   },
   'new-web-order': {
-    tagline: 'Unternehmenswebsite, neu gebaut für Tempo und SEO',
-    summary: 'Unternehmenswebsite, gebaut für Performance und SEO.',
+    efficiency: {
+      title:
+        'Jede Route liefert nur den Code und die Bilder aus, die sie braucht.',
+      body:
+        'Routen werden vorgerendert, wo der Inhalt es erlaubt, JavaScript wird pro Route aufgeteilt, und nur das Bild im sichtbaren Bereich wird priorisiert. Die Seiten laden 40 % schneller und ohne Layoutverschiebung durch Bilder, weil das Rendern einmal beim Build geschieht statt bei jedem Besuch.',
+      techniques: [
+        'Einmal vorgerendert, vielfach ausgeliefert',
+        'Code pro Route aufgeteilt',
+        'Nur das erste Bild priorisiert',
+      ],
+    },
+    tagline:
+      'Unternehmenswebsite, neu gebaut, damit jede Seite nur das Nötige lädt',
+    summary:
+      'Eine Unternehmenswebsite für Performance und SEO. Vorgerenderte Routen und Code pro Route lassen Seiten 40 % schneller laden.',
     description:
       'Eine Unternehmenswebsite, auf Next.js neu gebaut für Tempo und Suche. 40 % schneller, und endlich mit guten Rankings.',
     industry: 'Professionelle Dienstleistungen',
@@ -994,11 +1141,23 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     techStackCategories: ['Frontend', 'Styling'],
   },
   'bank-islami-pep': {
+    efficiency: {
+      title:
+        'Eine Scoring-Pipeline liest die Nachrichten. Analysten sehen nur glaubwürdige Treffer.',
+      body:
+        'Der Abgleich ist eine Scoring-Pipeline über Namensvarianten, Transliterationen, Funktion und Stadt. Nur Treffer über einer Konfidenzschwelle erreichen die Prüfwarteschlange, jeweils mit genau den Feldern, die übereinstimmten, sodass Analysten ihre Zeit für Entscheidungen nutzen. Die morgendliche Sichtung sank von vier Stunden auf 30 Minuten.',
+      techniques: [
+        'Geplanter Crawl, bevor das Team eintrifft',
+        'Konfidenzschwelle vor der menschlichen Prüfung',
+        'Jeder Treffer zeigt, warum er passt',
+      ],
+    },
     title: 'BankIslami PEP-Screening',
     client: 'BankIslami, umgesetzt mit Aawaz AI',
-    tagline: 'Tägliches Adverse-Media-Screening politisch exponierter Personen',
+    tagline:
+      'Tägliches PEP-Medienscreening, das Analysten nur glaubwürdige Treffer zeigt',
     summary:
-      'Eine interne Web- und Mobile-Plattform, die jeden Morgen die Nachrichten liest und daraus einen Risikobericht für das Compliance-Team der Bank erstellt.',
+      'Eine interne Web- und Mobilplattform, die jeden Morgen die Nachrichten liest, sie gegen die PEP-Liste der Bank bewertet und daraus einen Risikobericht erstellt.',
     description:
       'Banken müssen politisch exponierte Personen und ihr Umfeld laufend überwachen, nicht nur beim Onboarding. Bei BankIslami hieß das: Analystinnen und Analysten öffneten jeden Morgen Dutzende Nachrichtenseiten und suchten Hunderte Namen von Hand. Wir haben eine durchgängige Screening-Plattform gebaut: einen Crawler, der die Finanz- und Politiknachrichten des Tages abruft, eine Matching-Engine, die Artikel mit den PEP-Datensätzen der Bank verknüpft, und einen Prüfprozess, der in einem signierten täglichen Risikobericht endet. Ausgeliefert als MERN-Webanwendung für Analysten am Schreibtisch und als native Mobile-App für Compliance-Beauftragte unterwegs.',
     industry: 'Banken / Compliance',
@@ -1094,11 +1253,21 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'bidnest-mobile': {
+    efficiency: {
+      title: 'Drei Plattformen aus einem Build, ohne etwas nativ neu zu bauen.',
+      body:
+        'Die bestehende Webanwendung wird mit Capacitor verpackt, statt zweimal neu geschrieben zu werden. Bieten, Nachrichten und Bezahlen sind derselbe Code im Web, auf iOS und auf Android, sodass eine Korrektur drei Plattformen zugleich erreicht.',
+      techniques: [
+        'Eine Codebasis für Web, iOS und Android',
+        'Keine Funktion nativ neu gebaut',
+        'Eine Korrektur, drei Plattformen',
+      ],
+    },
     title: 'Bidnest Mobile App',
     client: 'Vertraulich (Marktplatz für Studierendenwohnungen)',
-    tagline: 'Der Auktionsmarktplatz, verpackt für iOS und Android',
+    tagline: 'Der Bieter-Marktplatz auf iOS und Android, aus einer Codebasis',
     summary:
-      'Der Bidnest-Marktplatz, mit Capacitor verpackt, damit Studierende und Eltern vom Telefon aus bieten können.',
+      'Der Bidnest-Marktplatz, mit Capacitor verpackt, sodass drei Plattformen aus einem Build entstehen, ohne etwas neu zu bauen.',
     description:
       'Dieselbe Codebasis, die die Bidnest-Webplattform betreibt, mit Capacitor zu nativen iOS- und Android-Apps verpackt. Ein Team liefert die Webplattform und beide App Stores aus einem einzigen Repository, und jeder Ablauf des Marktplatzes funktioniert innerhalb der nativen Hülle, ohne neu gebaut zu werden.',
     industry: 'Immobilientechnologie',
@@ -1181,7 +1350,17 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     ],
   },
   'tayyab-sohail-portfolio': {
-    tagline: 'Referenz-Portfolio für einen erfahrenen Entwickler',
+    efficiency: {
+      title: 'Eine typisierte Datendatei erzeugt die gesamte Website.',
+      body:
+        'Das Raster, jede Fallstudienseite, die Sitemap und die Social-Media-Vorschauen entstehen aus einem einzigen Array. Es gibt kein CMS und keine Datenbank zu pflegen, und der Compiler verweigert den Build, wenn ein Abschnitt fehlt.',
+      techniques: [
+        'Eine einzige Quelle der Wahrheit',
+        'Kein CMS und keine Datenbank im Betrieb',
+        'Fehler schon beim Build erkannt',
+      ],
+    },
+    tagline: 'Fallstudien-Portfolio, erzeugt aus einer typisierten Datendatei',
     summary:
       'Eine persönliche Website, auf der jedes Projekt eine vollständige Fallstudie ist, erzeugt aus einer einzigen typisierten Datendatei.',
     description:

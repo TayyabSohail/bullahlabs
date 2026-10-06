@@ -14,7 +14,7 @@ interface OriginProps {
 /**
  * Where the name comes from. Bulleh Shah's line about reading yourself sits
  * on an ink panel under the mark; the copy next to it says what "conscious"
- * means for the course.
+ * means for the program.
  */
 export function Origin({ dict, className }: OriginProps) {
   const t = dict.origin;
@@ -27,7 +27,7 @@ export function Origin({ dict, className }: OriginProps) {
     >
       <div className='bl-container grid gap-8 sm:gap-12 lg:grid-cols-2 lg:items-center lg:gap-16'>
         <Reveal className='bl-card bl-card-ink p-7 sm:p-10 lg:p-12'>
-          <LogoMark className='h-14 w-14 [&>circle:first-child]:fill-white [&>path]:fill-ink' />
+          <LogoMark className='h-14 w-14' />
           <blockquote className='mt-8'>
             <p
               lang='pa-Latn'

@@ -13,32 +13,216 @@ export const en = {
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
     language: 'Language',
+    next: 'Next',
+    top: 'Back to top',
   },
   hero: {
     badge: 'AI enablement & optimization',
     title: 'Stop using AI by default.\nStart using it on purpose.',
-    body: 'Conscious AI is a practical program that teaches non-technical teams to pick the right tool for each task, check what comes back, and use AI without waste.',
+    /** Words (0-based, across both lines) in the accent colour: line two. */
+    accent: [5, 6, 7, 8, 9],
+    body: 'Conscious AI is a way of working, not just a course: know when AI helps, use the smallest tool that does the job, check what comes back. Less waste, lower bills, a cleaner footprint.',
     primary: 'See the program',
-    secondary: 'Request early access',
-    /** Three facts under the hero; the two counts come from the program data. */
-    facts: {
-      free: { value: 'Free', label: 'Fundamentals course, for any AI tool' },
-      tiers: 'Tiers, from one person to a whole team',
-      tracks: 'Role tracks, built around real jobs',
+    secondary: 'See the projects',
+    /** The card beside the hero copy: everyday tasks decided in four steps.
+        Each answer shows the habit first, then the deliberate choice that
+        replaces it. Answers follow the order of `questions`. */
+    decision: {
+      kicker:
+        'Four everyday tasks, each decided before AI is opened: whether it helps, which tool, how much context, and who checks the result.',
+      live: 'Live',
+      taskLabel: 'Task',
+      defaultLabel: 'By default',
+      consciousLabel: 'On purpose',
+      outcomeLabel: 'Outcome',
+      questions: [
+        'Does AI help?',
+        'Which tool?',
+        'How much context?',
+        'Who checks?',
+      ],
+      tasks: [
+        {
+          task: 'Write the launch email for a new feature.',
+          answers: [
+            {
+              byDefault: 'Open the chatbot. It is already there.',
+              onPurpose: 'Yes, for a first draft. The voice stays yours.',
+            },
+            {
+              byDefault: 'The most powerful model.',
+              onPurpose: 'A lighter one. A draft is easy to judge.',
+            },
+            {
+              byDefault: 'The whole product wiki, pasted in.',
+              onPurpose: 'The one-page brief and the last launch email.',
+            },
+            {
+              byDefault: 'Nobody. Regenerate until it feels right.',
+              onPurpose: 'You. Edit the first usable draft, then send.',
+            },
+          ],
+          outcome:
+            'One round instead of six. The same email, a fraction of the computation.',
+        },
+        {
+          task: "Total last quarter's invoices by client.",
+          answers: [
+            {
+              byDefault: 'Paste the sheet into a chat and ask.',
+              onPurpose: 'No. A formula does this exactly, every time.',
+            },
+            {
+              byDefault: 'A chatbot doing arithmetic.',
+              onPurpose: 'SUMIF. Instant, exact, free.',
+            },
+            {
+              byDefault: 'The whole workbook, client names included.',
+              onPurpose: 'Nothing leaves the spreadsheet.',
+            },
+            {
+              byDefault: 'Nobody. The number looked plausible.',
+              onPurpose: 'The formula is the check. It does not guess.',
+            },
+          ],
+          outcome: 'No AI run at all, and no client data shared.',
+        },
+        {
+          task: 'Reply to a frustrated customer.',
+          answers: [
+            {
+              byDefault: 'Ask for a reply and send what comes back.',
+              onPurpose: 'Yes, for the structure. The tone has to be yours.',
+            },
+            {
+              byDefault: 'The most powerful model.',
+              onPurpose: 'A lighter model, for an outline only.',
+            },
+            {
+              byDefault: 'The whole ticket history.',
+              onPurpose: 'The last two messages and what you fixed.',
+            },
+            {
+              byDefault: 'Nobody. It read fine.',
+              onPurpose: 'You. Every promise in it is yours to keep.',
+            },
+          ],
+          outcome: 'One outline, your own words, one read-through.',
+        },
+        {
+          task: 'Answer the same onboarding question. Again.',
+          answers: [
+            {
+              byDefault: 'Ask the chatbot each time it comes up.',
+              onPurpose: 'Once. Write the answer, then reuse it.',
+            },
+            {
+              byDefault: 'A new conversation every time.',
+              onPurpose: 'One saved answer. AI only tidies the wording.',
+            },
+            {
+              byDefault: 'The full handbook, pasted in again.',
+              onPurpose: 'The one policy paragraph that applies.',
+            },
+            {
+              byDefault: 'Nobody. Ten slightly different answers go out.',
+              onPurpose: 'You, once. Then everyone gets the same answer.',
+            },
+          ],
+          outcome: 'Ten questions, one AI run, one consistent answer.',
+        },
+      ],
     },
-    /** The map beside the hero copy: a team goes through the program's three
-        pillars and comes out using AI well. A newline splits a tile label. */
-    map: {
-      kicker: 'A team goes through the program and comes out using AI well',
-      nodes: {
-        team: 'Your team',
-        program: 'Conscious\nAI',
-        use: 'Conscious\nuse',
-        teams: 'Trained\nteams',
-        usage: 'Optimized\nusage',
-        result: 'AI used\nwell',
+  },
+  numbers: {
+    kicker: 'By the numbers',
+    title: 'Proof, not promises',
+    description: 'Figures from the work we have delivered.',
+    items: [
+      { value: '150+', label: 'Projects delivered' },
+      { value: '40+', label: 'Clients on four continents' },
+      { value: '2', label: 'Offices, Germany and Pakistan' },
+    ],
+  },
+  technologies: {
+    kicker: 'Trusted technology',
+    statement: 'Built on the tools that matter.',
+    statementMuted: 'Proven tools. No experiments on your budget.',
+    stackLabel: 'The stack, by layer',
+    layers: [
+      { label: 'Interface', note: 'What your users see and touch.' },
+      { label: 'Mobile', note: 'iOS and Android, native or cross-platform.' },
+      { label: 'Backend & data', note: 'Where the truth lives.' },
+      {
+        label: 'AI systems',
+        note: 'Models, retrieval and agents on your data.',
       },
-    },
+      {
+        label: 'Automation',
+        note: 'Work that runs without a human in the loop.',
+      },
+      { label: 'Cloud & delivery', note: 'Where it runs and keeps running.' },
+    ],
+  },
+  /** The way of working, step by step through one task. */
+  howItWorks: {
+    kicker: 'The way of working',
+    title: 'How conscious use works',
+    stepLabel: 'Step',
+    cta: 'Start with the free course',
+    steps: [
+      {
+        title: 'Ask whether AI belongs here',
+        when: 'Before',
+        summary:
+          'Many tasks that go to a chatbot are better served by a rule, a formula or a search. Decide first, type second.',
+      },
+      {
+        title: 'Pick the smallest tool that does the job',
+        when: 'Choose',
+        summary:
+          'A light model for a draft, a heavy one only when the result is hard to check. Right-sizing is where most of the saving sits.',
+      },
+      {
+        title: 'Say it once, properly',
+        when: 'Prompt',
+        summary:
+          'State what you need, for whom and in what shape in the first prompt. Share only the part of the document that matters.',
+      },
+      {
+        title: 'Stop when it meets the requirement',
+        when: 'Work',
+        summary:
+          'Every extra round, step or hand-off has to earn its place. The goal is a checked result that does the job, not a perfect one.',
+      },
+      {
+        title: 'Check what comes back',
+        when: 'Review',
+        summary:
+          'Verify the figures, sources and claims before anything leaves your hands. AI drafts. You decide.',
+      },
+      {
+        title: 'Measure, then make it a habit',
+        when: 'After',
+        summary:
+          'Record a baseline, change one thing, compare. Less waste, lower bills, a cleaner footprint, and a workflow you can teach.',
+      },
+    ],
+  },
+  globalReach: {
+    kicker: 'Offices',
+    title: 'One mindset, from Stuttgart to Islamabad.',
+    description:
+      'Teams across Europe, North America, the Middle East, Africa and Asia, served from Fellbach near Stuttgart and from Islamabad. Whenever you work, someone on the team is online.',
+    legend: 'Offices and client locations',
+  },
+  testimonials: {
+    kicker: 'Client voices',
+    title: 'What it is like to work with us',
+    accent: [6],
+    caseStudy: 'View project',
+    prev: 'Previous testimonial',
+    next: 'Next testimonial',
   },
   /** One everyday task done out of habit and done deliberately, side by side. */
   compare: {
@@ -162,7 +346,6 @@ export const en = {
     cta: 'See the full program',
     tracksCta: 'See what each track builds',
     tier: 'Tier',
-    audience: 'For',
     outcome: 'You leave with',
     modules: 'Modules',
     output: 'Output',
@@ -187,20 +370,6 @@ export const en = {
       'Each track builds three real workflows for one role and comes with a ready-to-use template pack.',
     flagship: 'Flagship',
     technical: 'Technical',
-    audienceKicker: 'Who it is for',
-    audienceTitle: 'Knowledge workers, not engineers',
-    audienceDescription:
-      'Written for people who want better work out of AI without becoming technical experts.',
-    employee: {
-      label: 'For you',
-      title: 'More productive, more confident, ready for what changes',
-      body: 'Skills you use the same day: fewer rounds to a usable answer, a clear sense of when AI is the wrong tool, and the judgement to check what it gives you.',
-    },
-    employer: {
-      label: 'For your company',
-      title: 'An AI-capable workforce, with usage you can account for',
-      body: 'Consistent, measurable AI use across non-technical teams: shared standards, a one-page policy, human review where it matters and less spend on computation that changed nothing.',
-    },
     ctaTitle: 'Start with the free course.',
     ctaAccent: [3, 4],
     ctaBody:
@@ -456,7 +625,7 @@ export const en = {
   faq: {
     kicker: 'FAQ',
     title: 'Straight answers, before you commit.',
-    description: 'About the program, who it is for and how it works.',
+    description: 'How we work, what we build and how the program runs.',
     accent: [0, 1],
   },
   cta: {

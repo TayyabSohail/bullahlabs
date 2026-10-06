@@ -29,7 +29,6 @@ import {
   type Project,
   projects,
 } from '@/data/projects';
-import { getServiceBySlugLocalised } from '@/data/services';
 import { getTestimonials } from '@/data/testimonials';
 import { getDictionary } from '@/i18n/server';
 
@@ -85,11 +84,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
     getTestimonials(dict.locale).find(
       (item) => item.project === project.slug,
     ) ?? null;
-  const relatedServices = project.services
-    .map((serviceSlug) => getServiceBySlugLocalised(serviceSlug, dict.locale))
-    .filter((service): service is NonNullable<typeof service> =>
-      Boolean(service),
-    );
+  const lens = dict.work.lenses[project.efficiency.lens];
 
   return (
     <article>
@@ -144,11 +139,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
           >
             <Meta label={t.category} value={project.category} />
             <Meta label={t.year} value={project.year} />
-            <Meta
-              label={t.capabilities}
-              value={project.capabilities.join(', ')}
-            />
-            <Meta label={t.industry} value={project.industry} highlight />
+            <Meta label={t.industry} value={project.industry} />
+            <Meta label={t.lens} value={lens.label} highlight />
           </Reveal>
         </div>
 
@@ -169,6 +161,46 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </Parallax>
         </Reveal>
       </header>
+
+      {/* Efficiency lens: the principle this build demonstrates */}
+      <section className='bl-container pt-16 lg:pt-24'>
+        <Reveal className='bl-card bl-card-ink bl-grid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14 lg:p-12'>
+          <div>
+            <p className='bl-kicker text-white/60'>{t.efficiencyKicker}</p>
+            <p className='mt-6 flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-2'>
+              <span aria-hidden='true' className='h-1.5 w-1.5 bg-brand' />
+              {lens.label}
+            </p>
+            <h2 className='bl-display mt-3 text-2xl text-white sm:text-3xl lg:text-4xl'>
+              {project.efficiency.title}
+            </h2>
+            <p className='mt-5 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg'>
+              {project.efficiency.body}
+            </p>
+          </div>
+          <div className='lg:border-l lg:border-white/15 lg:pl-10'>
+            <p className='font-mono text-[10px] uppercase tracking-[0.18em] text-white/50'>
+              {t.techniques}
+            </p>
+            <ul className='mt-4 divide-y divide-white/10 border-y border-white/10'>
+              {project.efficiency.techniques.map((technique, index) => (
+                <li
+                  key={technique}
+                  className='flex items-start gap-4 py-4 text-[15px] leading-snug text-white/90'
+                >
+                  <span className='font-mono text-[10px] font-semibold leading-[1.6] tracking-[0.16em] text-brand-2'>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  {technique}
+                </li>
+              ))}
+            </ul>
+            <p className='mt-5 text-sm leading-relaxed text-white/50'>
+              {lens.principle}
+            </p>
+          </div>
+        </Reveal>
+      </section>
 
       {/* Lede */}
       <section className='bl-container py-16 lg:py-24'>
@@ -335,7 +367,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </Reveal>
       </section>
 
-      {/* Stack + services */}
+      {/* Stack + the principle it demonstrates */}
       <section className='bl-container'>
         <div className='grid gap-4 lg:grid-cols-[1.2fr_0.8fr]'>
           <Reveal className='bl-card p-7 sm:p-9'>
@@ -364,26 +396,24 @@ export default async function CaseStudyPage({ params }: PageProps) {
               ))}
             </ul>
           </Reveal>
-          <Reveal delay={0.1} className='bl-card p-7 sm:p-9'>
-            <p className='bl-kicker'>{t.servicesInvolved}</p>
-            <ul className='mt-6 divide-y divide-line'>
-              {relatedServices.map((service) => (
-                <li key={service.slug}>
-                  <Link
-                    href={paths.service(service.slug)}
-                    className='group flex items-center justify-between py-4 text-foreground'
-                  >
-                    <span>
-                      <span className='block font-medium'>{service.title}</span>
-                      <span className='block text-sm text-muted-foreground'>
-                        {service.tagline}
-                      </span>
-                    </span>
-                    <ArrowUpRight className='h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground' />
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <Reveal
+            delay={0.1}
+            className='bl-card bl-card-tint flex flex-col p-7 sm:p-9'
+          >
+            <p className='bl-kicker'>{t.lens}</p>
+            <h2 className='bl-display mt-5 text-2xl text-ink sm:text-3xl'>
+              {lens.label}
+            </h2>
+            <p className='mt-4 text-base leading-relaxed text-foreground/80'>
+              {lens.principle}
+            </p>
+            <Link
+              href={paths.program}
+              className='bl-action mt-auto pt-8'
+            >
+              {dict.program.cta}
+              <ArrowUpRight className='h-3.5 w-3.5' />
+            </Link>
           </Reveal>
         </div>
       </section>

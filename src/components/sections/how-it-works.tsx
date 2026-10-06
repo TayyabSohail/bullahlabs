@@ -88,7 +88,7 @@ export function HowItWorks({ dict, className }: HowItWorksProps) {
 
         <Reveal className='mt-8 border-t pt-6 sm:mt-10 sm:pt-8 lg:mt-14'>
           <Link
-            href={paths.contact}
+            href={paths.program}
             className='bl-btn bl-btn-ink inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] shadow-[0_16px_30px_-22px_hsl(var(--ink))]'
           >
             {t.cta}

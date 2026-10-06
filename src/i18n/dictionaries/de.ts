@@ -14,32 +14,214 @@ export const de: Dictionary = {
     menuOpen: 'Menü öffnen',
     menuClose: 'Menü schließen',
     language: 'Sprache',
+    next: 'Weiter',
+    top: 'Nach oben',
   },
   hero: {
     badge: 'KI-Befähigung & Optimierung',
     title: 'KI nicht aus Gewohnheit.\nSondern bewusst.',
-    body: 'Conscious AI ist ein praktisches Programm, das nicht-technischen Teams beibringt, für jede Aufgabe das richtige Werkzeug zu wählen, Ergebnisse zu prüfen und KI ohne Verschwendung zu nutzen.',
+    accent: [4, 5],
+    body: 'Conscious AI ist eine Arbeitsweise, nicht nur ein Kurs: wissen, wann KI hilft, das kleinste Werkzeug nehmen, das die Aufgabe löst, und prüfen, was zurückkommt. Weniger Verschwendung, geringere Kosten, ein sauberer Fußabdruck.',
     primary: 'Zum Programm',
-    secondary: 'Frühen Zugang anfragen',
-    facts: {
-      free: {
-        value: 'Kostenlos',
-        label: 'Grundlagenkurs, für jedes KI-Werkzeug',
-      },
-      tiers: 'Stufen, von der Einzelperson bis zum ganzen Team',
-      tracks: 'Role Tracks, rund um echte Aufgaben',
+    secondary: 'Projekte ansehen',
+    decision: {
+      kicker:
+        'Vier Alltagsaufgaben, jede entschieden, bevor KI geöffnet wird: ob sie hilft, welches Werkzeug, wie viel Kontext und wer das Ergebnis prüft.',
+      live: 'Live',
+      taskLabel: 'Aufgabe',
+      defaultLabel: 'Aus Gewohnheit',
+      consciousLabel: 'Bewusst',
+      outcomeLabel: 'Ergebnis',
+      questions: [
+        'Hilft KI hier?',
+        'Welches Werkzeug?',
+        'Wie viel Kontext?',
+        'Wer prüft?',
+      ],
+      tasks: [
+        {
+          task: 'Die Launch-Mail für ein neues Feature schreiben.',
+          answers: [
+            {
+              byDefault: 'Den Chatbot öffnen. Er ist ohnehin schon offen.',
+              onPurpose: 'Ja, für den ersten Entwurf. Die Stimme bleibt Ihre.',
+            },
+            {
+              byDefault: 'Das stärkste Modell.',
+              onPurpose: 'Ein leichteres. Einen Entwurf beurteilt man leicht.',
+            },
+            {
+              byDefault: 'Das ganze Produkt-Wiki, eingefügt.',
+              onPurpose: 'Das einseitige Briefing und die Mail vom letzten Launch.',
+            },
+            {
+              byDefault: 'Niemand. Neu generieren, bis es sich richtig anfühlt.',
+              onPurpose: 'Sie. Den ersten brauchbaren Entwurf bearbeiten, dann senden.',
+            },
+          ],
+          outcome:
+            'Eine Runde statt sechs. Dieselbe Mail, ein Bruchteil der Rechenleistung.',
+        },
+        {
+          task: 'Die Rechnungen des letzten Quartals je Kunde summieren.',
+          answers: [
+            {
+              byDefault: 'Die Tabelle in einen Chat einfügen und fragen.',
+              onPurpose: 'Nein. Eine Formel rechnet das exakt, jedes Mal.',
+            },
+            {
+              byDefault: 'Ein Chatbot, der rechnet.',
+              onPurpose: 'SUMMEWENN. Sofort, exakt, kostenlos.',
+            },
+            {
+              byDefault: 'Die ganze Arbeitsmappe, Kundennamen inklusive.',
+              onPurpose: 'Nichts verlässt die Tabelle.',
+            },
+            {
+              byDefault: 'Niemand. Die Zahl sah plausibel aus.',
+              onPurpose: 'Die Formel ist die Prüfung. Sie rät nicht.',
+            },
+          ],
+          outcome: 'Kein KI-Lauf, keine Kundendaten geteilt.',
+        },
+        {
+          task: 'Einem verärgerten Kunden antworten.',
+          answers: [
+            {
+              byDefault: 'Eine Antwort anfordern und abschicken, was zurückkommt.',
+              onPurpose: 'Ja, für die Struktur. Der Ton muss Ihrer sein.',
+            },
+            {
+              byDefault: 'Das stärkste Modell.',
+              onPurpose: 'Ein leichteres Modell, nur für die Gliederung.',
+            },
+            {
+              byDefault: 'Der gesamte Ticketverlauf.',
+              onPurpose: 'Die letzten zwei Nachrichten und was Sie behoben haben.',
+            },
+            {
+              byDefault: 'Niemand. Es las sich gut.',
+              onPurpose: 'Sie. Jedes Versprechen darin müssen Sie halten.',
+            },
+          ],
+          outcome: 'Eine Gliederung, Ihre eigenen Worte, einmal gegenlesen.',
+        },
+        {
+          task: 'Dieselbe Onboarding-Frage beantworten. Wieder.',
+          answers: [
+            {
+              byDefault: 'Jedes Mal den Chatbot fragen.',
+              onPurpose: 'Einmal. Die Antwort schreiben, dann wiederverwenden.',
+            },
+            {
+              byDefault: 'Jedes Mal ein neues Gespräch.',
+              onPurpose: 'Eine gespeicherte Antwort. KI glättet nur die Formulierung.',
+            },
+            {
+              byDefault: 'Das ganze Handbuch, erneut eingefügt.',
+              onPurpose: 'Der eine Absatz der Richtlinie, der gilt.',
+            },
+            {
+              byDefault: 'Niemand. Zehn leicht verschiedene Antworten gehen raus.',
+              onPurpose: 'Sie, einmal. Dann bekommen alle dieselbe Antwort.',
+            },
+          ],
+          outcome: 'Zehn Fragen, ein KI-Lauf, eine einheitliche Antwort.',
+        },
+      ],
     },
-    map: {
-      kicker: 'Ein Team durchläuft das Programm und nutzt KI danach gut',
-      nodes: {
-        team: 'Ihr Team',
-        program: 'Conscious\nAI',
-        use: 'Bewusste\nNutzung',
-        teams: 'Geschulte\nTeams',
-        usage: 'Optimierter\nEinsatz',
-        result: 'KI gut\ngenutzt',
+  },
+  numbers: {
+    kicker: 'In Zahlen',
+    title: 'Belege statt Versprechen',
+    description: 'Zahlen aus gelieferter Arbeit.',
+    items: [
+      { value: '150+', label: 'Abgeschlossene Projekte' },
+      { value: '40+', label: 'Kunden auf vier Kontinenten' },
+      { value: '2', label: 'Standorte, Deutschland und Pakistan' },
+    ],
+  },
+  technologies: {
+    kicker: 'Bewährte Technologie',
+    statement: 'Gebaut auf den Werkzeugen, die zählen.',
+    statementMuted: 'Bewährte Werkzeuge. Keine Experimente auf Ihre Kosten.',
+    stackLabel: 'Der Stack, nach Ebene',
+    layers: [
+      { label: 'Oberfläche', note: 'Was Ihre Nutzer sehen und bedienen.' },
+      {
+        label: 'Mobile',
+        note: 'iOS und Android, nativ oder plattformübergreifend.',
       },
-    },
+      { label: 'Backend & Daten', note: 'Wo die Wahrheit liegt.' },
+      {
+        label: 'KI-Systeme',
+        note: 'Modelle, Retrieval und Agenten auf Ihren Daten.',
+      },
+      {
+        label: 'Automatisierung',
+        note: 'Abläufe, die ohne Menschen im Loop laufen.',
+      },
+      { label: 'Cloud & Betrieb', note: 'Wo es läuft und weiterläuft.' },
+    ],
+  },
+  howItWorks: {
+    kicker: 'Die Arbeitsweise',
+    title: 'So funktioniert bewusste Nutzung',
+    stepLabel: 'Schritt',
+    cta: 'Mit dem kostenlosen Kurs starten',
+    steps: [
+      {
+        title: 'Fragen, ob KI hier überhaupt hingehört',
+        when: 'Vorher',
+        summary:
+          'Viele Aufgaben, die an einen Chatbot gehen, löst eine Regel, eine Formel oder eine Suche besser. Erst entscheiden, dann tippen.',
+      },
+      {
+        title: 'Das kleinste Werkzeug nehmen, das die Aufgabe löst',
+        when: 'Wählen',
+        summary:
+          'Ein leichtes Modell für den Entwurf, ein schweres nur, wenn das Ergebnis schwer zu prüfen ist. In der richtigen Größe steckt der größte Teil der Ersparnis.',
+      },
+      {
+        title: 'Einmal sagen, aber richtig',
+        when: 'Prompt',
+        summary:
+          'Im ersten Prompt klar sagen, was Sie brauchen, für wen und in welcher Form. Nur den Teil des Dokuments teilen, der zählt.',
+      },
+      {
+        title: 'Aufhören, wenn die Anforderung erfüllt ist',
+        when: 'Arbeiten',
+        summary:
+          'Jede weitere Runde, jeder Schritt und jede Übergabe muss sich verdienen. Das Ziel ist ein geprüftes Ergebnis, das seinen Zweck erfüllt, kein perfektes.',
+      },
+      {
+        title: 'Prüfen, was zurückkommt',
+        when: 'Prüfen',
+        summary:
+          'Zahlen, Quellen und Behauptungen verifizieren, bevor etwas Ihre Hände verlässt. KI entwirft. Sie entscheiden.',
+      },
+      {
+        title: 'Messen, dann zur Gewohnheit machen',
+        when: 'Danach',
+        summary:
+          'Ausgangswert festhalten, eine Sache ändern, vergleichen. Weniger Verschwendung, geringere Kosten, ein sauberer Fußabdruck und ein Ablauf, den Sie weitergeben können.',
+      },
+    ],
+  },
+  globalReach: {
+    kicker: 'Standorte',
+    title: 'Eine Haltung, von Stuttgart bis Islamabad.',
+    description:
+      'Teams in Europa, Nordamerika, dem Nahen Osten, Afrika und Asien, betreut aus Fellbach bei Stuttgart und aus Islamabad. Wann immer Sie arbeiten, ist jemand aus dem Team online.',
+    legend: 'Standorte und Kundenorte',
+  },
+  testimonials: {
+    kicker: 'Kundenstimmen',
+    title: 'So ist die Zusammenarbeit mit uns',
+    accent: [3],
+    caseStudy: 'Projekt ansehen',
+    prev: 'Vorherige Stimme',
+    next: 'Nächste Stimme',
   },
   compare: {
     kicker: 'In der Praxis',
@@ -160,7 +342,6 @@ export const de: Dictionary = {
     cta: 'Das ganze Programm ansehen',
     tracksCta: 'Was jeder Track aufbaut',
     tier: 'Stufe',
-    audience: 'Für',
     outcome: 'Das nehmen Sie mit',
     modules: 'Module',
     output: 'Ergebnis',
@@ -185,20 +366,6 @@ export const de: Dictionary = {
       'Jeder Track baut drei echte Abläufe für eine Rolle und bringt ein fertiges Vorlagenpaket mit.',
     flagship: 'Schwerpunkt',
     technical: 'Technisch',
-    audienceKicker: 'Für wen',
-    audienceTitle: 'Für Wissensarbeit, nicht für Entwickler',
-    audienceDescription:
-      'Geschrieben für Menschen, die mit KI bessere Arbeit leisten wollen, ohne technische Experten zu werden.',
-    employee: {
-      label: 'Für Sie',
-      title: 'Produktiver, sicherer, bereit für Veränderung',
-      body: 'Fähigkeiten, die Sie am selben Tag nutzen: weniger Runden bis zur brauchbaren Antwort, ein klares Gespür dafür, wann KI das falsche Werkzeug ist, und das Urteilsvermögen, ihre Ergebnisse zu prüfen.',
-    },
-    employer: {
-      label: 'Für Ihr Unternehmen',
-      title: 'Eine KI-fähige Belegschaft, mit Nutzung, die sich belegen lässt',
-      body: 'Einheitliche, messbare KI-Nutzung in nicht-technischen Teams: gemeinsame Standards, eine einseitige Richtlinie, menschliche Prüfung, wo es darauf ankommt, und weniger Ausgaben für Rechenleistung, die nichts verändert hat.',
-    },
     ctaTitle: 'Beginnen Sie mit dem kostenlosen Kurs.',
     ctaAccent: [4, 5],
     ctaBody:
@@ -458,7 +625,8 @@ export const de: Dictionary = {
   faq: {
     kicker: 'FAQ',
     title: 'Klare Antworten, bevor Sie sich festlegen.',
-    description: 'Zum Programm, für wen es gedacht ist und wie es abläuft.',
+    description:
+      'Wie wir arbeiten, was wir bauen und wie das Programm abläuft.',
     accent: [0, 1],
   },
   cta: {

@@ -31,7 +31,7 @@ sitemap.
 | --- | --- |
 | Program content (tiers, modules, role tracks, pillars, themes) | `src/data/program.ts`, German in `src/data/program.de.ts` |
 | Program page | `src/app/conscious-ai/page.tsx` |
-| Program sections (pillars, tiers, themes, role tracks, audience) | `src/components/sections/conscious-ai.tsx` |
+| Program sections (pillars, tiers, themes, role tracks) | `src/components/sections/conscious-ai.tsx` |
 | Home: the problem and the side-by-side task | `src/components/sections/gap.tsx`, `compare.tsx` |
 | Contact form interests (the four tiers) | `src/schema/contact.ts` |
 | Efficiency lens per case study | `efficiency` on each project in `src/data/projects.ts` and `projects.de.ts` |

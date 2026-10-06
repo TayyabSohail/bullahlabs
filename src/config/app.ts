@@ -9,7 +9,7 @@ export const appConfig = {
   description: siteConfig.description,
   keywords:
     'AI enablement, AI optimization, AI literacy, AI training for teams, responsible AI use, efficient AI workflows, Conscious AI, knowledge workers, Germany, Pakistan',
-  logo: '/brand/logo-mark.svg',
+  logo: '/brand/logo-mark.png',
   defaultLocale: 'en-US',
   defaultCurrency: 'EUR',
   defaultCountryCode: 'DE',
@@ -34,7 +34,7 @@ export default function getMetadata(): Metadata {
     manifest: '/manifest.webmanifest',
     icons: {
       icon: [
-        { url: '/icon.svg', type: 'image/svg+xml' },
+        { url: '/icon-64.png', type: 'image/png', sizes: '64x64' },
         { url: '/icon.png', type: 'image/png', sizes: '512x512' },
       ],
       apple: '/apple-icon.png',

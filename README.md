@@ -63,7 +63,7 @@ Edit these; the pages update themselves.
 | `src/data/projects.ts`        | Every case study: copy, cover image, metrics, stack. Drives `/work`, `/work/[slug]`, the homepage showcase, outcomes and sitemap |
 | `src/data/program.ts`         | The Conscious AI program: pillars, themes, tiers, modules and role tracks. Drives `/conscious-ai`, the homepage program sections, the footer and the contact form choices |
 | `src/data/values.ts`          | The four principles on the about page                                    |
-| `src/data/faqs.ts`            | Questions on the program page                                            |
+| `src/data/faqs.ts`            | Questions, tagged `studio` (homepage) or `program` (program page)        |
 | `src/data/testimonials.ts`    | Client quotes attributed by role and company, linked to their case studies    |
 | `src/app/legal/*/page.tsx`    | Privacy, Terms, Cookie policy, Imprint                                   |
 | `src/i18n/dictionaries/*.ts` | UI and marketing copy in English and German (nav, hero, sections, footer) |
@@ -78,9 +78,10 @@ Edit these; the pages update themselves.
 
 ### Brand
 
+- Source artwork: `public/brand/logo.jpg`. Run `node scripts/build-brand-assets.mjs` after replacing it to regenerate the square mark and every icon.
 - Logo mark and wordmark: `src/components/brand/logo.tsx`
-- Favicon frames (rotate every 5 s, theme-aware): `src/components/brand/favicon-frames.ts`
-- Static icons and Open Graph image: `public/icon.*`, `src/app/opengraph-image.tsx`
+- Favicon frames (rotate every 10 s, plain and ringed): `src/components/brand/favicon-frames.ts`
+- Static icons and Open Graph image: `public/icon*.png`, `src/app/opengraph-image.tsx`
 - Colour tokens, clipped-corner panels and fill-animation buttons: `src/app/globals.css`
 - Motion: `src/components/motion/` (reveal on scroll, text reveal). The preloader, custom cursor, side rail and shader backgrounds were removed.
 - Device mockups: `src/components/mockups/` (laptop, phone, browser)
@@ -91,10 +92,10 @@ Edit these; the pages update themselves.
 
 | Route                         | Notes                                              |
 | ----------------------------- | -------------------------------------------------- |
-| `/`                           | Hero, pillars, one task two ways, tiers, audience, contact form |
+| `/`                           | Hero, figures, project showcase, pillars, one task two ways, stack, globe, how a project runs, testimonials, tiers, FAQ, contact form |
 | `/conscious-ai`               | The program: tiers with modules, role tracks, FAQ   |
-| `/work`, `/work/[slug]`       | Earlier case studies. Still routable, but not linked from the nav, homepage, footer or sitemap |
-| `/about`                      | Story, principles, locations                       |
+| `/work`, `/work/[slug]`       | Case studies, each read through an efficiency lens; filterable by lens and category |
+| `/about`                      | Story, principles, how a project runs, locations   |
 | `/contact`                    | Form (server action, rate limited, honeypot), offices with live clocks |
 | `/legal` plus `/legal/privacy`, `/legal/terms`, `/legal/cookies`, `/legal/imprint` | Legal hub and policies |
 | `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`, `/opengraph-image` | Generated |

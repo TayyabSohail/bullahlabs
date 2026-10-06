@@ -72,6 +72,11 @@ export const siteConfig = {
   calLink: calHandle ? `https://cal.com/${calHandle}` : null,
   /** The bare handle, for the inline embed. Null when not configured. */
   calHandle,
+  /**
+   * Where the Conscious AI course is hosted, from NEXT_PUBLIC_COURSE_URL.
+   * Null until it is set; the site then sends people to the contact form.
+   */
+  courseUrl: env.NEXT_PUBLIC_COURSE_URL ?? null,
   footerNav: {
     legal: [
       { label: 'Privacy Policy', href: paths.legal.privacy },

@@ -1,23 +1,21 @@
 import { z } from 'zod';
 
 /**
- * What the enquiry is about: one of the four program tiers, or something
- * else. The values match the tier ids in data/program.ts, so a link such as
- * /contact?service=team opens the form with that tier already chosen. The
- * field is still called `service` because that is the column it is stored in.
+ * What the enquiry is about: the course, training for a team, or something
+ * else. A link such as /contact?service=team opens the form with that option
+ * already chosen. The field is still called `service` because that is the
+ * column it is stored in.
  */
 export const INTEREST_OPTIONS = [
-  { value: 'fundamentals', label: 'AI Fundamentals (free course)' },
-  { value: 'practitioner', label: 'Practitioner' },
-  { value: 'role-tracks', label: 'Role Tracks' },
-  { value: 'team', label: 'Team' },
+  { value: 'course', label: 'The free course' },
+  { value: 'team', label: 'Training for a team' },
   { value: 'other', label: 'Something else' },
 ] as const;
 
 export type InterestValue = (typeof INTEREST_OPTIONS)[number]['value'];
 
-/** The free course: where "request early access" links point. */
-export const DEFAULT_INTEREST: InterestValue = 'fundamentals';
+/** The course: where "request access" links point. */
+export const DEFAULT_INTEREST: InterestValue = 'course';
 
 const interestValues = INTEREST_OPTIONS.map((option) => option.value) as [
   InterestValue,

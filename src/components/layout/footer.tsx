@@ -8,9 +8,9 @@ import { BackToTop } from '@/components/layout/back-to-top';
 import { legalLabel } from '@/lib/legal-labels';
 
 import { siteConfig } from '@/config/site';
+import { courseHref, courseIsLive, requestAccessHref } from '@/constants/course';
 import { primaryNav } from '@/constants/navigation';
-import { isSectionLink, paths } from '@/constants/paths';
-import { getServices } from '@/data/services';
+import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface FooterProps {
@@ -20,14 +20,20 @@ interface FooterProps {
 export function Footer({ dict }: FooterProps) {
   const year = new Date().getFullYear();
   const t = dict.footer;
-  const services = getServices(dict.locale);
 
   // Same links, same order as the header, so the two never disagree.
   const companyLinks = [
-    { label: dict.nav.home, href: paths.home },
     ...primaryNav(dict),
     { label: dict.nav.contact, href: paths.contact },
   ];
+
+  // The course when it is live, and the form to request access either way.
+  const programLinks = courseIsLive
+    ? [
+        { label: dict.program.watch, href: courseHref, external: true },
+        { label: dict.program.request, href: requestAccessHref },
+      ]
+    : [{ label: dict.program.request, href: requestAccessHref }];
 
   return (
     <footer className='relative isolate mt-24 overflow-hidden bg-background'>
@@ -39,9 +45,9 @@ export function Footer({ dict }: FooterProps) {
           speed={0.8}
         />
       </div>
-      <div className='relative z-10 bl-container'>
-        <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5'>
-          <div className='lg:col-span-1'>
+      <div className='bl-container relative z-10'>
+        <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]'>
+          <div>
             <Logo />
             <p className='mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground'>
               {t.pitch}
@@ -54,10 +60,15 @@ export function Footer({ dict }: FooterProps) {
             </Link>
           </div>
 
-          <FooterColumn title={t.services}>
-            {services.map((service) => (
-              <FooterLink key={service.slug} href={paths.service(service.slug)}>
-                {service.title}
+          <FooterColumn title={t.program}>
+            <FooterLink href={paths.program}>{dict.nav.program}</FooterLink>
+            {programLinks.map((item) => (
+              <FooterLink
+                key={item.href}
+                href={item.href}
+                external={item.external}
+              >
+                {item.label}
               </FooterLink>
             ))}
           </FooterColumn>
@@ -83,21 +94,9 @@ export function Footer({ dict }: FooterProps) {
               </div>
             ))}
           </FooterColumn>
-
-          <FooterColumn title={t.connect}>
-            <Link
-              href={paths.contact}
-              className='bl-link w-fit text-sm text-foreground/80 hover:text-foreground'
-            >
-              {dict.nav.contact}
-            </Link>
-            <p className='text-xs text-muted-foreground'>
-              {siteConfig.responseTime}
-            </p>
-          </FooterColumn>
         </div>
 
-        <div className='flex flex-col gap-4 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between'>
+        <div className='flex flex-col gap-4 border-t py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between'>
           <p>
             &copy; {year} {siteConfig.legalName}. {t.rights}
           </p>
@@ -116,7 +115,7 @@ export function Footer({ dict }: FooterProps) {
         </div>
       </div>
 
-        {/* The wordmark shares the footer canvas so the company name fades out
+      {/* The wordmark shares the footer canvas so the company name fades out
           of the information above instead of starting a separate section. */}
       <div className='relative z-10 mt-0 h-[18vw] max-h-[22rem] min-h-[4rem] w-full overflow-hidden sm:h-[34vw] sm:min-h-[10rem]'>
         <svg
@@ -160,17 +159,25 @@ function FooterColumn({
 
 function FooterLink({
   href,
+  external = false,
   children,
 }: {
   href: string;
+  /** Opens off-site, in a new tab. */
+  external?: boolean;
   children: React.ReactNode;
 }) {
+  const className =
+    'bl-link w-fit text-foreground/80 transition-colors hover:text-foreground';
+  if (external) {
+    return (
+      <a href={href} target='_blank' rel='noreferrer' className={className}>
+        {children}
+      </a>
+    );
+  }
   return (
-    <Link
-      href={href}
-      scroll={!isSectionLink(href)}
-      className='bl-link w-fit text-foreground/80 transition-colors hover:text-foreground'
-    >
+    <Link href={href} className={className}>
       {children}
     </Link>
   );

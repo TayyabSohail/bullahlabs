@@ -15,13 +15,16 @@ interface ProjectCardProps {
   className?: string;
   /** Text for the footer action. */
   actionLabel?: string;
+  /** Localised name of the project's efficiency lens. */
+  lensLabel?: string;
 }
 
 const VISIBLE_TECH = 4;
 
 /**
  * Portfolio-style project tile: the product on devices, category chip,
- * title, tagline, capability badges, tech chips, full-bleed action footer.
+ * title, a tagline that says what the product is and how it is optimized,
+ * the optimization lens, tech chips, full-bleed action footer.
  * The whole card is the link, so it is the one card type that lifts.
  */
 export function ProjectCard({
@@ -29,6 +32,7 @@ export function ProjectCard({
   priority,
   className,
   actionLabel = 'View project',
+  lensLabel,
 }: ProjectCardProps) {
   const visibleTech = project.tech.slice(0, VISIBLE_TECH);
   const overflow = project.tech.length - visibleTech.length;
@@ -61,21 +65,16 @@ export function ProjectCard({
         <h3 className='bl-display text-2xl text-ink transition-colors duration-300 group-hover:text-brand-text'>
           {project.title}
         </h3>
-        <p className='mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base'>
+        <p className='mt-2 text-[15px] leading-snug text-ink/80 sm:text-base sm:leading-snug'>
           {project.tagline}
         </p>
+        {lensLabel && (
+          <p className='mt-4 inline-flex items-center gap-2 border border-brand/30 bg-brand/[0.06] px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-text'>
+            <span aria-hidden='true' className='h-1.5 w-1.5 bg-brand' />
+            {lensLabel}
+          </p>
+        )}
 
-        <ul className='mt-4 flex flex-wrap items-center gap-1.5'>
-          {project.capabilities.map((capability) => (
-            <li
-              key={capability}
-              className='inline-flex items-center gap-1.5 border border-ink/10 bg-white px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.08em] text-ink/70 transition-colors group-hover:border-brand/40'
-            >
-              <span aria-hidden='true' className='h-1 w-1 bg-brand' />
-              {capability}
-            </li>
-          ))}
-        </ul>
 
         <ul className='mt-5 flex flex-wrap items-center gap-1.5 border-t pt-5'>
           {visibleTech.map((tech) => {

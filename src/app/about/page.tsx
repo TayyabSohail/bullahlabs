@@ -1,6 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 import { PageHero } from '@/components/common/page-hero';
 import { SectionHeading } from '@/components/common/section-heading';
@@ -12,16 +10,15 @@ import { Origin } from '@/components/sections/origin';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 
 import { paths } from '@/constants/paths';
-import { getValues } from '@/data/process';
+import { getValues } from '@/data/values';
 import { getDictionary } from '@/i18n/server';
 
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Bullah Labs is a software studio with offices in Islamabad, Pakistan and Fellbach, Germany, building web, AI and cloud products on fixed dates.',
+    'Bullah Labs teaches non-technical teams to use AI effectively and responsibly through the Conscious AI program. Offices in Islamabad and Fellbach.',
   alternates: { canonical: paths.about },
 };
-
 
 export default async function AboutPage() {
   const dict = await getDictionary();
@@ -105,26 +102,6 @@ export default async function AboutPage() {
           />
           <Locations className='mt-14' contactLabel={dict.nav.contact} />
         </div>
-      </section>
-
-      <section className='bl-container pb-6'>
-        <Reveal className='bl-card flex flex-col items-start gap-6 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10'>
-          <div>
-            <p className='bl-kicker'>{t.careersKicker}</p>
-            <p className='bl-display mt-3 text-2xl text-foreground'>
-              {t.careersTitle}
-            </p>
-            <p className='mt-3 max-w-md text-sm leading-relaxed text-muted-foreground'>
-              {t.careersBody}
-            </p>
-          </div>
-          <Link
-            href={paths.careers}
-            className='inline-flex h-12 items-center gap-2 rounded-full border border-line bg-surface px-6 text-sm font-medium transition-colors hover:border-brand/60'
-          >
-            {t.careersLink} <ArrowUpRight className='h-4 w-4' />
-          </Link>
-        </Reveal>
       </section>
 
       <CtaBanner

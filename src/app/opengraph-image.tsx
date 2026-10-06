@@ -1,14 +1,5 @@
 import { ImageResponse } from 'next/og';
 
-import {
-  MARK_B_PATH,
-  MARK_B_TRANSFORM,
-  MARK_DOT_CX,
-  MARK_DOT_CY,
-  MARK_DOT_R,
-  MARK_WHIRL_PATH,
-} from '@/components/brand/mark';
-
 import { siteConfig } from '@/config/site';
 
 export const runtime = 'edge';
@@ -17,7 +8,11 @@ export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 /** Default social share image, generated at build time. */
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const mark = await fetch(
+    new URL('../../public/brand/logo-mark.png', import.meta.url),
+  ).then((res) => res.arrayBuffer());
+
   return new ImageResponse(
     (
       <div
@@ -47,17 +42,15 @@ export default function OpenGraphImage() {
           }}
         />
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          <svg width='64' height='64' viewBox='0 0 64 64'>
-            <circle cx='32' cy='32' r='32' fill='#f5f5f3' />
-            <path d={MARK_WHIRL_PATH} fill='#0d0d0d' />
-            <path transform={MARK_B_TRANSFORM} d={MARK_B_PATH} fill='#0d0d0d' />
-            <circle
-              cx={MARK_DOT_CX}
-              cy={MARK_DOT_CY}
-              r={MARK_DOT_R}
-              fill='#10b981'
-            />
-          </svg>
+          {/* Satori renders plain img tags only; it accepts an ArrayBuffer src. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt=''
+            src={mark as unknown as string}
+            width={64}
+            height={64}
+            style={{ borderRadius: 14 }}
+          />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontSize: 30, fontWeight: 700, letterSpacing: -1 }}>
               Bullah
@@ -85,11 +78,11 @@ export default function OpenGraphImage() {
               maxWidth: 900,
             }}
           >
-            Software built with precision.
+            Stop using AI by default. Start using it on purpose.
           </div>
           <div style={{ fontSize: 30, color: '#b3b3b3', maxWidth: 900 }}>
-            Full-stack products, AI systems and cloud automation. Islamabad and
-            Fellbach, shipped worldwide.
+            Conscious AI: a practical program for non-technical knowledge
+            workers and their teams.
           </div>
         </div>
 

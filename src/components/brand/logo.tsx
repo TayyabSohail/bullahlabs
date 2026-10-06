@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
@@ -5,50 +6,33 @@ import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
 
-import {
-  MARK_B_PATH,
-  MARK_B_TRANSFORM,
-  MARK_DOT_CX,
-  MARK_DOT_CY,
-  MARK_DOT_R,
-  MARK_WHIRL_PATH,
-} from './mark';
+const LOGO_MARK_SRC = '/brand/logo-mark.png';
 
 interface LogoMarkProps {
   className?: string;
-  /** Renders the mark in fixed brand colours instead of theme tokens. */
-  inverted?: boolean;
+  /** Rendering priority, for the header where the mark is above the fold. */
+  priority?: boolean;
 }
 
 /**
- * The Bullah Labs mark: the wordmark's "B" on a round plate, inside one
- * turning line that ends at a point in the brand colour. Theme-aware by
- * default: the plate takes the foreground colour, the letter and the whirl
- * the background.
+ * The Bullah Labs mark: the whirling dancer artwork in public/brand/logo.jpg,
+ * square-cropped by `scripts/build-brand-assets.mjs`. The artwork carries its
+ * own ink background, so it reads the same on light and dark surfaces.
  */
-export function LogoMark({ className, inverted }: LogoMarkProps) {
-  const glyph = inverted ? 'fill-white' : 'fill-background';
+export function LogoMark({ className, priority }: LogoMarkProps) {
   return (
-    <svg
-      viewBox='0 0 64 64'
-      aria-hidden='true'
-      className={cn('h-9 w-9', className)}
-    >
-      <circle
-        cx='32'
-        cy='32'
-        r='32'
-        className={inverted ? 'fill-brand' : 'fill-foreground'}
-      />
-      <path d={MARK_WHIRL_PATH} className={glyph} />
-      <path transform={MARK_B_TRANSFORM} d={MARK_B_PATH} className={glyph} />
-      <circle
-        cx={MARK_DOT_CX}
-        cy={MARK_DOT_CY}
-        r={MARK_DOT_R}
-        className={inverted ? 'fill-white' : 'fill-brand'}
-      />
-    </svg>
+    <Image
+      src={LOGO_MARK_SRC}
+      alt=''
+      width={512}
+      height={512}
+      priority={priority}
+      sizes='(min-width: 640px) 56px, 36px'
+      className={cn(
+        'h-9 w-9 shrink-0 select-none rounded-[22%] object-cover',
+        className,
+      )}
+    />
   );
 }
 
@@ -93,6 +77,8 @@ export function Wordmark({ className }: WordmarkProps) {
 
 interface LogoProps {
   className?: string;
+  /** Preload the mark; set in the header where it is above the fold. */
+  priority?: boolean;
   /** Hide the wordmark and show only the mark. */
   compact?: boolean;
   /** Wraps in a link to the homepage unless false. */
@@ -106,6 +92,7 @@ export function Logo({
   compact,
   linked = true,
   markClassName,
+  priority,
   wordmarkClassName,
 }: LogoProps) {
   const content = (
@@ -116,6 +103,7 @@ export function Logo({
       )}
     >
       <LogoMark
+        priority={priority}
         className={cn(
           'transition-transform duration-500 ease-out-expo group-hover/logo:-translate-y-0.5',
           markClassName,

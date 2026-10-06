@@ -11,7 +11,7 @@ import { LocaleSwitcher } from '@/components/layout/locale-switcher';
 import { cn } from '@/lib/utils';
 
 import { primaryNav } from '@/constants/navigation';
-import { isSectionLink, paths } from '@/constants/paths';
+import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -93,8 +93,7 @@ export function MobileMenu({
                 const active =
                   item.href === paths.home
                     ? pathname === item.href
-                    : !isSectionLink(item.href) &&
-                      pathname.startsWith(item.href);
+                    : pathname.startsWith(item.href);
                 return (
                   <div
                     key={item.href}
@@ -112,11 +111,7 @@ export function MobileMenu({
                     >
                       <Link
                         href={item.href}
-                        // Same-page section links do not change the pathname,
-                        // so the menu has to close itself. Lenis animates
-                        // them; Next's own jump would fight it.
                         onClick={() => setOpen(false)}
-                        scroll={!isSectionLink(item.href)}
                         aria-current={active ? 'page' : undefined}
                         className={cn(
                           'flex items-baseline gap-4 py-3',

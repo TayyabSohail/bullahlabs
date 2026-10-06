@@ -6,11 +6,12 @@ import { faviconFrames } from '@/components/brand/favicon-frames';
 
 const INTERVAL_MS = 10_000;
 const LINK_ID = 'bl-dynamic-favicon';
-const SVG_TYPE = 'image/svg+xml';
+const ICON_TYPE = 'image/png';
+const ICON_SIZES = '64x64';
 const ICON_LINKS = "link[rel~='icon']";
 
 /**
- * Flips the tab icon between the dark and light brand frames so the tab
+ * Flips the tab icon between the plain mark and the ringed mark so the tab
  * stands out in a crowded tab strip.
  *
  * Next re-inserts the static metadata icons whenever the head re-renders,
@@ -30,7 +31,7 @@ export function DynamicFavicon() {
       own = document.createElement('link');
       own.id = LINK_ID;
       own.rel = 'icon';
-      own.type = SVG_TYPE;
+      own.type = ICON_TYPE;
       head.appendChild(own);
     }
 
@@ -41,9 +42,10 @@ export function DynamicFavicon() {
       const links = head.querySelectorAll<HTMLLinkElement>(ICON_LINKS);
       links.forEach((link) => {
         if (link.getAttribute('href') !== href) link.setAttribute('href', href);
-        if (link.getAttribute('type') !== SVG_TYPE)
-          link.setAttribute('type', SVG_TYPE);
-        if (link.hasAttribute('sizes')) link.removeAttribute('sizes');
+        if (link.getAttribute('type') !== ICON_TYPE)
+          link.setAttribute('type', ICON_TYPE);
+        if (link.getAttribute('sizes') !== ICON_SIZES)
+          link.setAttribute('sizes', ICON_SIZES);
       });
       if (own && links[links.length - 1] !== own) head.appendChild(own);
     };

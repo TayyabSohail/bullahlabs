@@ -12,7 +12,7 @@ import { MobileMenu } from '@/components/layout/mobile-menu';
 import { cn } from '@/lib/utils';
 
 import { primaryNav } from '@/constants/navigation';
-import { isSectionLink, paths } from '@/constants/paths';
+import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface HeaderProps {
@@ -25,21 +25,15 @@ export function Header({ dict }: HeaderProps) {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const items = [
-    { label: dict.nav.home, href: paths.home },
-    ...primaryNav(dict),
-  ];
+  const items = primaryNav(dict);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScrolled(latest > 12);
   });
 
   // Home only matches exactly, so it doesn't light up on every route.
-  // Section links such as /about#how-it-works never read as the current page.
   const isActive = (href: string) =>
-    href === paths.home
-      ? pathname === href
-      : !isSectionLink(href) && pathname.startsWith(href);
+    href === paths.home ? pathname === href : pathname.startsWith(href);
 
   return (
     <motion.header
@@ -57,10 +51,10 @@ export function Header({ dict }: HeaderProps) {
       )}
     >
       <div className='bl-container flex h-[4.25rem] items-center justify-between'>
-        <Logo />
+        <Logo priority />
 
-        {/* Five links plus the flags and CTA need about 1000px, so the full
-            nav only appears from `lg`; below that the hamburger takes over. */}
+        {/* The links, flags and CTA need the width of `lg`; below that the
+            hamburger takes over. */}
         <nav
           aria-label='Primary'
           className='hidden items-center gap-6 lg:flex xl:gap-8'
@@ -72,7 +66,6 @@ export function Header({ dict }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 // Lenis animates section links; Next's own jump would fight it.
-                scroll={!isSectionLink(item.href)}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
                   'relative font-mono text-[11px] uppercase tracking-[0.2em] transition-colors',
