@@ -23,7 +23,7 @@ function faces(
   };
 }
 
-/** A compact, vertical isometric story with stable tiles and moving boxes. */
+/** A compact, vertical isometric story with quiet signal movement. */
 export function SystemMap({ className }: SystemMapProps) {
   return (
     <div
@@ -56,19 +56,8 @@ export function SystemMap({ className }: SystemMapProps) {
         />
         <Tile x={120} y={245} lines={['COST', 'SAVED']} tone='paper' compact />
         <Tile x={0} y={280} lines={['ENERGY', 'SAVED']} tone='paper' compact />
-        <Tile x={0} y={335} lines={['CLEAN', 'OUTPUT']} tone='warm' />
-
-        <MovingCube path='M 0 117 L 0 136' begin='0s' tone='brand' />
-        <MovingCube path='M -42 207 L -73 220' begin='1.4s' tone='brand' />
-        <MovingCube path='M 42 207 L 73 220' begin='2.8s' tone='brand' />
-        <MovingCube path='M 0 208 L 0 249' begin='4.2s' tone='warm' />
+        <Tile x={0} y={335} lines={['VERIFIED', 'OUTPUT']} tone='warm' />
       </svg>
-      <p
-        aria-hidden='true'
-        className='mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text sm:text-xs'
-      >
-        Bullah Labs
-      </p>
     </div>
   );
 }
@@ -146,35 +135,6 @@ function BullahCore({ x, y }: { x: number; y: number }) {
           repeatCount='indefinite'
         />
       </circle>
-      <text x={x} y={y + 17} textAnchor='middle'>
-        BULLAH LABS
-      </text>
-    </g>
-  );
-}
-
-function MovingCube({
-  path,
-  begin,
-  tone,
-}: {
-  path: string;
-  begin: string;
-  tone: 'brand' | 'warm';
-}) {
-  const shape = faces(0, -7, 8, 4, 8);
-  return (
-    <g className='bl-map-cube' data-tone={tone}>
-      <animateMotion
-        path={path}
-        begin={begin}
-        dur='1.6s'
-        repeatCount='indefinite'
-        rotate='auto'
-      />
-      <polygon className='bl-map-left' points={shape.left} />
-      <polygon className='bl-map-right' points={shape.right} />
-      <polygon className='bl-map-top' points={shape.top} />
     </g>
   );
 }
