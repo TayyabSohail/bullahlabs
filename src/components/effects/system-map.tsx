@@ -33,28 +33,19 @@ export function SystemMap({ className }: SystemMapProps) {
     >
       <svg
         aria-hidden='true'
-        viewBox='-250 0 500 385'
+        viewBox='-220 35 440 335'
         className='block h-auto w-full'
       >
-        <polygon
-          className='bl-map-plate-side'
-          points='0,20 210,125 0,355 -210,250 -210,260 0,365 210,135'
-        />
-        <polygon
-          className='bl-map-plate-top'
-          points='0,20 210,125 0,355 -210,250'
-        />
-
         <g className='bl-map-flow-lines'>
-          <path d='M -100 85 L 0 165 L -120 245' />
-          <path d='M 100 85 L 0 165 L 120 245' />
-          <path d='M 0 165 L 0 280 L 0 335' />
+          <path d='M 0 116 L 0 137' />
+          <path d='M -42 206 L -74 220' />
+          <path d='M 42 206 L 74 220' />
+          <path d='M 0 207 L 0 250' />
           <path d='M -120 245 L 0 335' />
           <path d='M 120 245 L 0 335' />
         </g>
 
-        <Tile x={-100} y={85} lines={['PRACTICAL', 'AI']} tone='mint' />
-        <Tile x={100} y={85} lines={['MEASURED', 'IMPACT']} tone='mint' />
+        <Tile x={0} y={88} lines={['WASTEFUL', 'AI USE']} tone='mint' />
         <Tile x={0} y={165} lines={['', '']} tone='ink' core />
         <Tile
           x={-120}
@@ -67,23 +58,16 @@ export function SystemMap({ className }: SystemMapProps) {
         <Tile x={0} y={280} lines={['ENERGY', 'SAVED']} tone='paper' compact />
         <Tile x={0} y={335} lines={['CLEAN', 'OUTPUT']} tone='warm' />
 
-        <MovingCube
-          path='M -100 85 L 0 165 L -120 245'
-          begin='0s'
-          tone='brand'
-        />
-        <MovingCube
-          path='M 100 85 L 0 165 L 120 245'
-          begin='1.5s'
-          tone='brand'
-        />
-        <MovingCube path='M 0 165 L 0 280 L 0 335' begin='3s' tone='warm' />
+        <MovingCube path='M 0 117 L 0 136' begin='0s' tone='brand' />
+        <MovingCube path='M -42 207 L -73 220' begin='1.4s' tone='brand' />
+        <MovingCube path='M 42 207 L 73 220' begin='2.8s' tone='brand' />
+        <MovingCube path='M 0 208 L 0 249' begin='4.2s' tone='warm' />
       </svg>
       <p
         aria-hidden='true'
         className='mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text sm:text-xs'
       >
-        Bullah Labs · Conscious AI that delivers more with less
+        Bullah Labs
       </p>
     </div>
   );
@@ -184,7 +168,7 @@ function MovingCube({
       <animateMotion
         path={path}
         begin={begin}
-        dur='4.5s'
+        dur='1.6s'
         repeatCount='indefinite'
         rotate='auto'
       />

@@ -22,7 +22,7 @@ export const siteConfig = {
   name: 'Bullah Labs',
   shortName: 'Bullah Labs',
   legalName: 'Bullah Labs',
-  tagline: 'Work smarter with AI. Use it responsibly.',
+  tagline: 'DELIVER MORE WITH LESS',
   description:
     'Bullah Labs helps non-technical knowledge workers use AI effectively, build future-ready skills and reduce unnecessary AI usage, through the Conscious AI program.',
   url: env.NEXT_PUBLIC_APP_URL,
