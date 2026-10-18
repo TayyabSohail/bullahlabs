@@ -875,14 +875,17 @@
   }
 }
 
-/* Hero system map (effects/system-map.tsx): the conscious-AI habit as
-   labelled isometric tiles on a plate, wired together, with one cube (the
-   task) riding the wires. Strokes stay one device pixel at any size. Tones:
-   paper (your task), ink (need AI?), mint (small model, less input), warm
-   (you check), brand (done with less waste). */
-.bl-map polygon,
+/* Hero graphic (effects/system-map.tsx): Conscious AI as the difference it
+   makes. Two lanes: the usual way on top, where a ghost of the task goes
+   straight into the biggest model; the conscious lane below, where our
+   switch diverts the task through need AI?, small model, you check. Each
+   lane ends in a computation bar, and the gap between the bars is the
+   saving, hatched in brand and counted. Strokes stay one device pixel at
+   any size. Boxes are the site's ruled boxes on hard shadows. */
 .bl-map line,
-.bl-map rect {
+.bl-map rect,
+.bl-map path,
+.bl-map polyline {
   vector-effect: non-scaling-stroke;
   stroke-linejoin: round;
 }
@@ -890,16 +893,17 @@
   max-width: 100%;
   overflow: clip;
   --bl-map-label: 11px;
+  --bl-map-note: 9.5px;
 }
-/* Below sm the map is drawn at phone width, so the labels get a size up. */
+/* Below sm the graphic is drawn at phone width, so the text gets a size up. */
 @media (max-width: 639.98px) {
   .bl-map {
     --bl-map-label: 12px;
+    --bl-map-note: 11px;
   }
 }
-/* Below lg the map sits under the copy, so the stage breaks out of the
-   container padding (mirroring .bl-container) to use the full screen width.
-   The SVG viewBox always encloses the whole plate, so nothing is cut off. */
+/* Below lg the graphic sits under the copy, so the stage breaks out of the
+   container padding (mirroring .bl-container) to use the full screen width. */
 @media (max-width: 1023.98px) {
   .bl-map-stage {
     margin-inline: -1.25rem;
@@ -910,95 +914,8 @@
     margin-inline: -2rem;
   }
 }
-.bl-map-plate-top {
-  fill: hsl(var(--surface) / 0.55);
-  stroke: hsl(var(--ink) / 0.18);
-  stroke-width: 1;
-}
-.bl-map-plate-side {
-  fill: hsl(var(--ink) / 0.07);
-  stroke: hsl(var(--ink) / 0.18);
-  stroke-width: 1;
-}
-.bl-map-grid line {
-  stroke: hsl(var(--ink) / 0.09);
-  stroke-width: 1;
-}
-.bl-map-sweep {
-  fill: hsl(var(--brand) / 0.1);
-  stroke: none;
-  pointer-events: none;
-}
-.bl-map-edge {
-  fill: none;
-  stroke: hsl(var(--ink) / 0.4);
-  stroke-width: 1.25;
-}
-.bl-map-shadow {
-  fill: hsl(var(--ink) / 0.08);
-  stroke: none;
-}
 
-/* Tiles */
-.bl-map-tile polygon {
-  stroke: hsl(var(--ink) / 0.3);
-  stroke-width: 1;
-}
-.bl-map-tile[data-tone='paper'] .bl-map-top {
-  fill: #ffffff;
-}
-.bl-map-tile[data-tone='paper'] .bl-map-left {
-  fill: #ebebe7;
-}
-.bl-map-tile[data-tone='paper'] .bl-map-right {
-  fill: #d7d7d2;
-}
-.bl-map-tile[data-tone='mint'] polygon {
-  stroke: hsl(var(--brand-strong) / 0.45);
-}
-.bl-map-tile[data-tone='mint'] .bl-map-top {
-  fill: hsl(var(--brand-soft));
-}
-.bl-map-tile[data-tone='mint'] .bl-map-left {
-  fill: hsl(152 45% 86%);
-}
-.bl-map-tile[data-tone='mint'] .bl-map-right {
-  fill: hsl(152 35% 78%);
-}
-.bl-map-tile[data-tone='warm'] polygon {
-  stroke: hsl(18 70% 40% / 0.45);
-}
-.bl-map-tile[data-tone='warm'] .bl-map-top {
-  fill: hsl(24 100% 93%);
-}
-.bl-map-tile[data-tone='warm'] .bl-map-left {
-  fill: hsl(22 80% 85%);
-}
-.bl-map-tile[data-tone='warm'] .bl-map-right {
-  fill: hsl(20 70% 76%);
-}
-.bl-map-tile[data-tone='ink'] polygon {
-  stroke: hsl(0 0% 0% / 0.6);
-}
-.bl-map-tile[data-tone='ink'] .bl-map-top {
-  fill: hsl(0 0% 14%);
-}
-.bl-map-tile[data-tone='ink'] .bl-map-left {
-  fill: hsl(0 0% 8%);
-}
-.bl-map-tile[data-tone='ink'] .bl-map-right {
-  fill: hsl(0 0% 4%);
-}
-.bl-map-flash {
-  fill: hsl(var(--brand));
-  stroke: none !important;
-  pointer-events: none;
-}
-.bl-map-spark {
-  fill: hsl(var(--brand));
-  stroke: none;
-  pointer-events: none;
-}
+/* Type on the drawing: box labels, and small notes beside things. */
 .bl-map-label {
   font-family: var(--font-mono);
   font-size: var(--bl-map-label, 11px);
@@ -1007,110 +924,277 @@
   text-transform: uppercase;
   fill: hsl(var(--ink));
 }
-.bl-map-tile[data-tone='ink'] .bl-map-label {
-  fill: #ffffff;
+.bl-map-note {
+  font-family: var(--font-mono);
+  font-size: var(--bl-map-note, 9.5px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: hsl(var(--muted-foreground));
 }
 
-/* The computation meter under the map: ten segments, lit in brand while a
-   task still carries that much of the usual computation, hollow once a
-   conscious stop has saved it. Segments go out one after another. */
-.bl-map-meter {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: baseline;
-  gap: 0.6rem;
+/* Lane titles */
+.bl-map-lane-title {
+  font-family: var(--font-mono);
+  font-size: var(--bl-map-label, 11px);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  fill: hsl(var(--ink));
 }
-.bl-map-meter-bar {
-  display: inline-flex;
-  gap: 2px;
-  transform: translateY(1px);
+.bl-map-lane-mark {
+  fill: hsl(var(--ink));
 }
-.bl-map-meter-seg {
-  display: inline-block;
-  width: 5px;
-  height: 10px;
-  background: transparent;
-  box-shadow: inset 0 0 0 1px hsl(var(--ink) / 0.25);
-  transition:
-    background-color 0.25s ease,
-    box-shadow 0.25s ease;
+.bl-map-lane[data-tone='brand'] .bl-map-lane-title {
+  fill: hsl(var(--brand-text));
 }
-.bl-map-meter-seg[data-on] {
-  background: hsl(var(--brand));
-  box-shadow: inset 0 0 0 1px hsl(var(--brand-strong) / 0.6);
-}
-
-/* Cubes: packets on the wires and spare blocks in the corners */
-.bl-map-cube polygon {
-  stroke-width: 1;
-}
-.bl-map-cube[data-tone='paper'] polygon {
-  stroke: hsl(var(--ink) / 0.3);
-}
-.bl-map-cube[data-tone='paper'] .bl-map-top {
-  fill: #ffffff;
-}
-.bl-map-cube[data-tone='paper'] .bl-map-left {
-  fill: #ebebe7;
-}
-.bl-map-cube[data-tone='paper'] .bl-map-right {
-  fill: #d7d7d2;
-}
-.bl-map-cube[data-tone='brand'] polygon {
-  stroke: hsl(var(--brand-strong) / 0.7);
-}
-.bl-map-cube[data-tone='brand'] .bl-map-top {
-  fill: hsl(var(--brand-2));
-}
-.bl-map-cube[data-tone='brand'] .bl-map-left {
+.bl-map-lane[data-tone='brand'] .bl-map-lane-mark {
   fill: hsl(var(--brand));
 }
-.bl-map-cube[data-tone='brand'] .bl-map-right {
-  fill: hsl(var(--brand-strong));
+
+/* Rails the task rides, and the curve once the switch has lit it. */
+.bl-map-rail {
+  fill: none;
+  stroke: hsl(var(--ink) / 0.3);
+  stroke-width: 1.25;
 }
-.bl-map-cube[data-tone='warm'] polygon {
-  stroke: hsl(18 80% 32% / 0.7);
-}
-.bl-map-cube[data-tone='warm'] .bl-map-top {
-  fill: hsl(24 100% 66%);
-}
-.bl-map-cube[data-tone='warm'] .bl-map-left {
-  fill: hsl(var(--warm));
-}
-.bl-map-cube[data-tone='warm'] .bl-map-right {
-  fill: hsl(16 90% 48%);
-}
-.bl-map-cube[data-tone='ink'] polygon {
-  stroke: hsl(0 0% 0% / 0.55);
-}
-.bl-map-cube[data-tone='ink'] .bl-map-top {
-  fill: hsl(0 0% 26%);
-}
-.bl-map-cube[data-tone='ink'] .bl-map-left {
-  fill: hsl(0 0% 12%);
-}
-.bl-map-cube[data-tone='ink'] .bl-map-right {
-  fill: hsl(0 0% 6%);
+.bl-map-rail-lit {
+  fill: none;
+  stroke: hsl(var(--brand));
+  stroke-width: 2.5;
+  stroke-linecap: round;
 }
 
-/* Glow left behind a packet on the wire */
-.bl-map-trail {
+/* Ruled boxes on hard shadows */
+.bl-map-box-shadow {
+  fill: hsl(var(--ink) / 0.9);
+  stroke: none;
+}
+.bl-map-box-face {
+  fill: hsl(var(--surface));
+  stroke: hsl(var(--ink) / 0.9);
+  stroke-width: 1;
+  transition: fill 0.3s ease;
+}
+.bl-map-box[data-tone='ink'] .bl-map-box-face {
+  fill: hsl(var(--ink));
+}
+.bl-map-box[data-tone='ink'] .bl-map-label {
+  fill: #ffffff;
+}
+.bl-map-box[data-tone='brand'] .bl-map-box-face {
+  fill: hsl(var(--brand));
+}
+.bl-map-box[data-tone='brand'] .bl-map-label {
+  fill: hsl(var(--ink));
+}
+.bl-map-box[data-tone='warm'] .bl-map-box-face {
+  fill: hsl(24 100% 88%);
+}
+/* The stop the task is at lifts a little: its shadow grows. */
+.bl-map-box[data-active] .bl-map-box-shadow {
+  fill: hsl(var(--brand-strong));
+}
+.bl-map-box[data-tone='ink'][data-active] .bl-map-box-shadow {
+  fill: hsl(var(--warm));
+}
+/* A model that does not run for this task. */
+.bl-map-box[data-off] .bl-map-box-face {
+  fill: hsl(var(--surface));
+  stroke-dasharray: 3 3;
+}
+.bl-map-box[data-off] .bl-map-box-shadow {
+  fill: hsl(var(--ink) / 0.25);
+}
+.bl-map-box[data-off] .bl-map-label {
+  fill: hsl(var(--muted-foreground));
+}
+
+/* Input: the whole file as a grid of cells, and the three that are enough. */
+.bl-map-cell {
+  fill: hsl(var(--ink) / 0.55);
+  stroke: none;
+  transition: opacity 0.2s ease;
+}
+.bl-map-cell[data-gone] {
+  opacity: 0.12;
+}
+.bl-map-cell[data-small] {
+  fill: hsl(var(--brand-strong));
+}
+.bl-map-cell-flying {
+  fill: hsl(var(--ink));
+  stroke: none;
+}
+
+/* The rounds the big model takes */
+.bl-map-round-arrow {
   fill: none;
+  stroke: hsl(var(--muted-foreground));
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* The switch: our part. An ink block with the brand mark, and an arm that
+   swings from the usual lane down to the conscious one. */
+.bl-map-switch-arm {
+  stroke: hsl(var(--ink));
   stroke-width: 3;
   stroke-linecap: round;
-  opacity: 0.55;
 }
-.bl-map-trail[data-tone='brand'] {
+.bl-map-switch[data-on] .bl-map-switch-arm {
   stroke: hsl(var(--brand));
 }
-.bl-map-trail[data-tone='warm'] {
-  stroke: hsl(var(--warm));
+.bl-map-switch-shadow {
+  fill: hsl(var(--brand));
+  stroke: none;
 }
-.bl-map-trail[data-tone='ink'] {
+.bl-map-switch-face {
+  fill: hsl(var(--ink));
+  stroke: hsl(var(--ink));
+  stroke-width: 1;
+}
+.bl-map-switch-mark {
+  fill: hsl(var(--brand));
+  stroke: none;
+  transition: fill 0.3s ease;
+}
+.bl-map-switch[data-on] .bl-map-switch-mark {
+  fill: #ffffff;
+}
+.bl-map-switch-label {
+  fill: hsl(var(--ink));
+  font-weight: 600;
+}
+
+/* Your check */
+.bl-map-tick {
+  fill: none;
+  stroke: hsl(var(--brand-strong));
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The computation bars */
+.bl-map-bar-track {
+  fill: hsl(var(--surface));
+  stroke: hsl(var(--ink) / 0.5);
+  stroke-width: 1;
+}
+.bl-map-bar-fill {
+  stroke: none;
+}
+.bl-map-bar-fill[data-tone='ink'] {
+  fill: hsl(var(--ink));
+}
+.bl-map-bar-fill[data-tone='brand'] {
+  fill: hsl(var(--brand));
+}
+
+/* The saving: the gap between the bars, hatched in brand and counted. */
+.bl-map-hatch {
+  stroke: hsl(var(--brand) / 0.55);
+  stroke-width: 1.5;
+}
+.bl-map-gap {
+  stroke: none;
+}
+.bl-map-gap-rule {
+  fill: hsl(var(--brand-soft) / 0.55);
+  stroke: hsl(var(--brand-strong) / 0.7);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.bl-map-saved-label {
+  font-family: var(--font-mono);
+  font-size: var(--bl-map-note, 9.5px);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  fill: hsl(var(--brand-text));
+  paint-order: stroke;
+  stroke: hsl(var(--background));
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+.bl-map-saved-figure {
+  font-family: var(--font-mono);
+  font-size: calc(var(--bl-map-label, 11px) + 1px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  fill: hsl(var(--brand-text));
+  paint-order: stroke;
+  stroke: hsl(var(--background));
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+/* The share saved: the headline figure in the gap. */
+.bl-map-saved-share {
+  font-family: var(--font-mono);
+  font-size: calc(var(--bl-map-label, 11px) + 13px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  fill: hsl(var(--brand-text));
+  paint-order: stroke;
+  stroke: hsl(var(--background));
+  stroke-width: 6px;
+  stroke-linejoin: round;
+}
+/* The figure beside each meter: ink on the usual lane, brand below. */
+.bl-map-figure {
+  font-family: var(--font-mono);
+  font-size: var(--bl-map-note, 9.5px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  fill: hsl(var(--ink));
+}
+.bl-map-meters[data-tone='brand'] .bl-map-figure {
+  fill: hsl(var(--brand-text));
+}
+.bl-map-meters[data-tone='ink'] .bl-map-bar-fill {
+  fill: hsl(var(--ink));
+}
+.bl-map-meters[data-tone='brand'] .bl-map-bar-fill {
+  fill: hsl(var(--brand));
+}
+
+/* The task block, and its ghost on the usual lane */
+.bl-map-task-shadow {
+  fill: hsl(var(--ink) / 0.9);
+  stroke: none;
+}
+.bl-map-task-face {
+  stroke: hsl(var(--ink));
+  stroke-width: 1;
+  transition: fill 0.3s ease;
+}
+.bl-map-task[data-tone='ink'] .bl-map-task-face {
+  fill: hsl(var(--ink));
+}
+.bl-map-task[data-tone='ink'] .bl-map-task-shadow {
+  fill: hsl(var(--brand));
+}
+.bl-map-task[data-tone='brand'] .bl-map-task-face {
+  fill: hsl(var(--brand));
+}
+.bl-map-task[data-tone='paper'] .bl-map-task-face {
+  fill: #ffffff;
+}
+.bl-map-ghost rect {
+  fill: hsl(var(--surface));
   stroke: hsl(var(--ink) / 0.6);
+  stroke-width: 1.25;
+  stroke-dasharray: 3 2;
 }
-.bl-map-trail[data-tone='paper'] {
-  stroke: hsl(var(--ink) / 0.3);
+
+
+/* Stems from the conscious rail down to each stop */
+.bl-map-stem {
+  stroke: hsl(var(--ink) / 0.5);
+  stroke-width: 1.25;
 }
 
 /* Vertical mission flow: a readable explanation, not a decorative diagram. */
@@ -1351,64 +1435,6 @@
 html.bl-no-cursor,
 html.bl-no-cursor * {
   cursor: none !important;
-}
-
-/* Hero map: the result tile is solid brand. */
-.bl-map-tile[data-tone='brand'] polygon {
-  stroke: hsl(var(--brand-strong) / 0.9);
-}
-.bl-map-tile[data-tone='brand'] .bl-map-top {
-  fill: hsl(var(--brand));
-}
-.bl-map-tile[data-tone='brand'] .bl-map-left {
-  fill: hsl(var(--brand-strong));
-}
-.bl-map-tile[data-tone='brand'] .bl-map-right {
-  fill: hsl(161 94% 24%);
-}
-.bl-map-tile[data-tone='brand'] .bl-map-label,
-.bl-map-tile[data-tone='ink'] .bl-map-label {
-  fill: #ffffff;
-}
-/* The route the task has taken so far, drawn in brand over the wire. */
-.bl-map-edge-lit {
-  fill: none;
-  stroke: hsl(var(--brand));
-  stroke-width: 2.5;
-  stroke-linecap: round;
-}
-/* The tile the task is resting on gets a brand edge. */
-.bl-map-tile[data-active] .bl-map-top {
-  stroke: hsl(var(--brand-strong));
-  stroke-width: 1.5;
-}
-/* Tick rising over the check when a task passes it. */
-.bl-map-tick {
-  fill: none;
-  stroke: hsl(var(--brand-strong));
-  stroke-width: 3.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-/* Ring spreading from the result when a task lands. */
-.bl-map-ring {
-  fill: none;
-  stroke: hsl(var(--brand));
-  stroke-width: 3;
-  pointer-events: none;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: bl-map-ring 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-@keyframes bl-map-ring {
-  from {
-    transform: scale(1);
-    opacity: 0.9;
-  }
-  to {
-    transform: scale(1.8);
-    opacity: 0;
-  }
 }
 
 /* ------------------------------------------------------------------------- */

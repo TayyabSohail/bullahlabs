@@ -8,11 +8,12 @@ import {
   useMotionValue,
   useReducedMotion,
 } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
-export type MapNodeId =
+/** The stops a task passes on the conscious lane, in order. */
+export type MapStep =
   | 'task'
   | 'decide'
   | 'tool'
@@ -21,197 +22,266 @@ export type MapNodeId =
   | 'result';
 
 /**
- * One real task walked through the conscious-AI habit, stop by stop.
- * Every task takes the same six stops; `ai` says whether a model is part
- * of the answer. It colours the cube, shrinks it as the model and the
- * input are kept small, and drives the computation meter under the map.
+ * What one way of doing the work spends: tokens sent to a model, money in
+ * US dollars, and carbon in kilograms of CO₂. A scenario carries two of
+ * these, the usual way and the conscious way; the difference is the saving.
+ */
+export interface MapFigures {
+  tokens: number;
+  cost: number;
+  co2: number;
+}
+
+/**
+ * The work sent down both lanes at once. `ai` says whether a model is part
+ * of the conscious answer: it colours the task block and decides whether
+ * the lean model runs at all. `usual` is what the work costs the usual way;
+ * `lean` what it costs done consciously.
  */
 export interface MapScenario {
+  /** What the work is; kept for the record, not drawn. */
   task: string;
   ai: boolean;
-  decide: string;
-  tool: string;
-  context: string;
-  check: string;
-  result: string;
+  usual: MapFigures;
+  lean: MapFigures;
 }
 
 export interface SystemMapCopy {
-  /** Shown under the map before the first task starts; also the alt text. */
+  /** The line under the graphic; also the alt text. */
   kicker: string;
-  /** Small tag in front of the task name. */
-  taskLabel: string;
-  /** Tile labels; a newline splits one over two lines. */
-  nodes: Record<MapNodeId, string>;
+  /** The two lanes. */
+  lanes: { usual: string; conscious: string };
+  /** Labels on the drawing; keep each box label under about twelve characters. */
+  nodes: {
+    /** The large model on the usual lane. */
+    largeModel: string;
+    /** The grid of input that goes into it: the full context, every time. */
+    fullContext: string;
+    /** The few cells that are enough on the conscious lane. */
+    minimalContext: string;
+    /** Prefix of the round counter above the large model: "Round 3/5". */
+    round: string;
+    /** The switch at the junction: our name, and a note on what we do there. */
+    guide: string;
+    guideNote: string;
+    decide: string;
+    tool: string;
+    check: string;
+  };
   /**
-   * The computation meter under the map: its label, and the three states
-   * it names: full (the usual way), empty (no model ran) and what is
-   * left once a task is done consciously.
+   * The saving between the lanes: its label, the locale the figures are
+   * written in, the currency code for the money figure, and the words
+   * after the token and carbon figures.
    */
-  meter: { label: string; usual: string; none: string; lean: string };
-  /** Played one after another, then again from the start. */
+  saved: {
+    label: string;
+    locale: string;
+    currency: string;
+    tokens: string;
+    co2: string;
+  };
+  /** Played one after another, then again from the start. One is enough. */
   scenarios: MapScenario[];
 }
 
 interface SystemMapProps {
   copy: SystemMapCopy;
-  /** Seconds after the preloader lifts before the tiles rise. */
+  /** Seconds after the preloader lifts before the drawing builds. */
   delay?: number;
   className?: string;
 }
 
-type Tone = 'paper' | 'ink' | 'mint' | 'warm' | 'brand';
-type CubeTone = 'ink' | 'brand' | 'paper';
+/* ----------------------------------------------------------------------- */
+/* Layout                                                                   */
 
-/** One grid unit on screen: half a cell wide, half a cell tall. */
-const UX = 40;
-const UY = 20;
-/** Tile side in grid units, and its top diamond in pixels, plus the edge. */
-const TILE = 1.5;
-const TILE_HW = TILE * UX;
-const TILE_HH = TILE * UY;
-const TILE_T = 11;
-/** Distance between tile centres along a row and between the two rows. */
-const COL = 2.2;
-const ROW = 2.7;
-/** Plate: the desk everything happens on, with a margin around the tiles. */
-const PLATE_X: [number, number] = [-1.1, 2 * COL + 1.1];
-const PLATE_Y: [number, number] = [-1.1, ROW + 1.1];
-const PLATE_T = 8;
-/** Cube: the task, riding the wires. Its base sits on the front of a tile. */
-const CUBE = 12;
-const CUBE_DY = 11;
-/** Labels sit on the back half of a tile, clear of the cube. */
-const LABEL_DY = -(TILE_T + 7);
-/** Seconds to travel one wire; milliseconds the cube rests on each tile. */
-const TRAVEL_S = 0.6;
-const DWELL: Record<MapNodeId, number> = {
-  task: 900,
-  decide: 1500,
-  tool: 1300,
-  context: 1300,
-  check: 1300,
-  result: 2200,
+const W = 640;
+const H = 372;
+/** The two lanes: the usual way on top, the conscious way below. */
+const LANE_A = 104;
+const LANE_B = 268;
+const ENTRY_X = 26;
+/** The switch where our part diverts the task down to the conscious lane. */
+const JUNCTION_X = 118;
+const CURVE_END_X = 196;
+/** The usual lane: the full context as a grid, the large model, rounds. */
+const FILE = { x: 206, y: LANE_A - 22, cols: 6, rows: 4, step: 12, size: 7 };
+const MODEL = { x: 296, y: LANE_A - 34, w: 118, h: 68 };
+const ROUNDS = 5;
+/**
+ * The conscious lane: three ruled stops hanging under the rail like
+ * stations, so the task rides over them and never covers a label.
+ */
+const STOP = {
+  decide: { x: 214, w: 72, h: 38 },
+  tool: { x: 308, w: 92, h: 38 },
+  check: { x: 400, w: 72, h: 38 },
 };
+const STOP_DROP = 12;
+const STOP_CY = LANE_B + STOP_DROP + STOP.decide.h / 2;
+const SMALL_INPUT = 3;
+const SMALL_Y = LANE_B - 26;
+/**
+ * Three meters at the end of each lane, tokens, money, carbon, each with
+ * a short figure beside it. The panel between the lanes' meters is the
+ * saving, written out in full.
+ */
+const BAR = { x: 440, w: 92, h: 8, gap: 6 };
+const FIGURE_X = BAR.x + BAR.w + 7;
+const METER_KEYS: (keyof MapFigures)[] = ['tokens', 'cost', 'co2'];
+/** Top of meter row i, relative to the lane: the three rows centre on it. */
+const barY = (lane: number, i: number) =>
+  lane - (3 * BAR.h + 2 * BAR.gap) / 2 + i * (BAR.h + BAR.gap);
+const PANEL_X = BAR.x;
+const PANEL_RIGHT = W - 4;
+/** The task block. */
+const BLOCK = 18;
 const ease = [0.16, 1, 0.3, 1] as const;
 
-/**
- * The computation meter: how much of the usual computation a task still
- * carries after each stop, in segments. A task arrives at full, the usual
- * way: the biggest model, the whole document, several rounds. Deciding
- * "no AI" empties it at once; a smaller model and less input empty most
- * of it; the check and the result cost nothing more.
- */
-export const METER_SEGMENTS = 10;
-const LEVEL: Record<MapNodeId, [ai: number, noAi: number]> = {
-  task: [10, 10],
-  decide: [9, 0],
-  tool: [5, 0],
-  context: [2, 0],
-  check: [2, 0],
-  result: [2, 0],
+/** Where a task ends on each lane: resting just before the meters. */
+const END_X = BAR.x - 18;
+
+/** The curve the task takes from the switch down to the conscious lane. */
+const CURVE = {
+  p0: { x: JUNCTION_X, y: LANE_A },
+  p1: { x: JUNCTION_X + 58, y: LANE_A },
+  p2: { x: CURVE_END_X - 58, y: LANE_B },
+  p3: { x: CURVE_END_X, y: LANE_B },
 };
+const CURVE_D = `M ${CURVE.p0.x} ${CURVE.p0.y} C ${CURVE.p1.x} ${CURVE.p1.y}, ${CURVE.p2.x} ${CURVE.p2.y}, ${CURVE.p3.x} ${CURVE.p3.y}`;
 
-export function levelFor(scenario: MapScenario, step: MapNodeId) {
-  return LEVEL[step][scenario.ai ? 0 : 1];
-}
-
-/**
- * The conscious-AI habit laid out as a loop around the plate, in the order
- * it is taught: your task comes in top-left, the first question is whether
- * it needs AI at all, then the smallest model that does the job, only the
- * input it needs, a check by you, and the task lands back on the left done
- * with less waste. Tones carry the meaning: the decision is ink, the two
- * saving steps mint, the human check warm, the lean result solid brand.
- */
-const NODES: Record<MapNodeId, { x: number; y: number; tone: Tone }> = {
-  task: { x: 0, y: 0, tone: 'paper' },
-  decide: { x: COL, y: 0, tone: 'ink' },
-  tool: { x: 2 * COL, y: 0, tone: 'mint' },
-  context: { x: 2 * COL, y: ROW, tone: 'mint' },
-  check: { x: COL, y: ROW, tone: 'warm' },
-  result: { x: 0, y: ROW, tone: 'brand' },
-};
-
-/** Back to front, so tiles paint in the right order. */
-const NODE_ORDER: MapNodeId[] = [
-  'task',
-  'decide',
-  'result',
-  'tool',
-  'check',
-  'context',
-];
-
-/** The one route every task takes, as a loop around the plate. */
-const ROUTE: MapNodeId[] = [
-  'task',
-  'decide',
-  'tool',
-  'context',
-  'check',
-  'result',
-];
-
-const EDGES: { from: MapNodeId; to: MapNodeId }[] = ROUTE.slice(1).map(
-  (to, i) => ({ from: ROUTE[i], to }),
-);
-
-const edgeKey = (from: MapNodeId, to: MapNodeId) => `${from}>${to}`;
-
-const project = (x: number, y: number) => ({
-  px: (x - y) * UX,
-  py: (x + y) * UY,
-});
-
-const at = (id: MapNodeId) => project(NODES[id].x, NODES[id].y);
-
-const diamond = (cx: number, cy: number, hw: number, hh: number) =>
-  `${cx},${cy - hh} ${cx + hw},${cy} ${cx},${cy + hh} ${cx - hw},${cy}`;
-
-/** Three faces of a box whose top diamond is centred on (cx, cy). */
-function box(cx: number, cy: number, hw: number, hh: number, t: number) {
+function bezier(t: number) {
+  const { p0, p1, p2, p3 } = CURVE;
+  const u = 1 - t;
+  const a = u * u * u;
+  const b = 3 * u * u * t;
+  const c = 3 * u * t * t;
+  const d = t * t * t;
   return {
-    top: diamond(cx, cy, hw, hh),
-    left: `${cx - hw},${cy} ${cx},${cy + hh} ${cx},${cy + hh + t} ${cx - hw},${cy + t}`,
-    right: `${cx},${cy + hh} ${cx + hw},${cy} ${cx + hw},${cy + t} ${cx},${cy + hh + t}`,
+    x: a * p0.x + b * p1.x + c * p2.x + d * p3.x,
+    y: a * p0.y + b * p1.y + c * p2.y + d * p3.y,
   };
 }
 
-/** Plate grid lines at whole units. */
-const GRID: { x1: number; y1: number; x2: number; y2: number }[] = [];
-for (let i = Math.ceil(PLATE_X[0]); i <= Math.floor(PLATE_X[1]); i++) {
-  const a = project(i, PLATE_Y[0]);
-  const b = project(i, PLATE_Y[1]);
-  GRID.push({ x1: a.px, y1: a.py, x2: b.px, y2: b.py });
+const FILE_CELLS = Array.from({ length: FILE.cols * FILE.rows }, (_, i) => ({
+  x: FILE.x + (i % FILE.cols) * FILE.step,
+  y: FILE.y + Math.floor(i / FILE.cols) * FILE.step,
+}));
+
+/* ----------------------------------------------------------------------- */
+/* Figures                                                                  */
+
+const ZERO: MapFigures = { tokens: 0, cost: 0, co2: 0 };
+
+type Units = SystemMapCopy['saved'];
+
+/** A whole number written out in full with thousands separators. */
+const full = (n: number, locale: string) =>
+  Math.round(n).toLocaleString(locale);
+
+/** A short figure for the meters: 288M, 9.6M, 4,320. */
+function compact(n: number, locale: string) {
+  if (n >= 1e6) {
+    return `${(n / 1e6).toLocaleString(locale, { maximumFractionDigits: 1 })}M`;
+  }
+  if (n >= 1e4) {
+    return `${(n / 1e3).toLocaleString(locale, { maximumFractionDigits: 0 })}k`;
+  }
+  return full(n, locale);
 }
-for (let j = Math.ceil(PLATE_Y[0]); j <= Math.floor(PLATE_Y[1]); j++) {
-  const c = project(PLATE_X[0], j);
-  const d = project(PLATE_X[1], j);
-  GRID.push({ x1: c.px, y1: c.py, x2: d.px, y2: d.py });
+
+function money(n: number, units: Units) {
+  return n.toLocaleString(units.locale, {
+    style: 'currency',
+    currency: units.currency,
+    maximumFractionDigits: n >= 10 ? 0 : 2,
+  });
 }
-const PLATE = (() => {
-  const t = project(PLATE_X[0], PLATE_Y[0]);
-  const r = project(PLATE_X[1], PLATE_Y[0]);
-  const b = project(PLATE_X[1], PLATE_Y[1]);
-  const l = project(PLATE_X[0], PLATE_Y[1]);
-  return {
-    top: `${t.px},${t.py} ${r.px},${r.py} ${b.px},${b.py} ${l.px},${l.py}`,
-    left: `${l.px},${l.py} ${b.px},${b.py} ${b.px},${b.py + PLATE_T} ${l.px},${l.py + PLATE_T}`,
-    right: `${b.px},${b.py} ${r.px},${r.py} ${r.px},${r.py + PLATE_T} ${b.px},${b.py + PLATE_T}`,
-    minX: l.px,
-    maxX: r.px,
-    minY: t.py,
-    maxY: b.py + PLATE_T,
-  };
-})();
-/** The drawing hugs the plate; room above for the lifted tiles and the tick. */
-const VIEW_BOX = [
-  PLATE.minX - 12,
-  PLATE.minY - 30,
-  PLATE.maxX - PLATE.minX + 24,
-  PLATE.maxY - PLATE.minY + 42,
-].join(' ');
+
+function carbon(kg: number, units: Units) {
+  const figure = kg.toLocaleString(units.locale, {
+    maximumFractionDigits: kg < 10 ? 1 : 0,
+  });
+  return `${figure} ${units.co2}`;
+}
+
+/** The figures beside the meters: short. */
+function formatShort(key: keyof MapFigures, n: number, units: Units) {
+  switch (key) {
+    case 'tokens':
+      return `${compact(n, units.locale)} ${units.tokens}`;
+    case 'cost':
+      return money(n, units);
+    case 'co2':
+      return carbon(n, units);
+  }
+}
+
+/** The figures in the saving: written out in full. */
+function formatFull(key: keyof MapFigures, n: number, units: Units) {
+  switch (key) {
+    case 'tokens':
+      return `${full(n, units.locale)} ${units.tokens}`;
+    case 'cost':
+      return money(n, units);
+    case 'co2':
+      return carbon(n, units);
+  }
+}
+
+const percent = (share: number, locale: string) =>
+  `${Math.round(share * 100).toLocaleString(locale)}%`;
+
+/**
+ * A figure that counts from what it last showed to its new value. The
+ * text is written straight into the node on every frame so the counting
+ * never re-renders the drawing.
+ */
+function Count({
+  value,
+  format,
+  duration = 0.8,
+  delay = 0,
+  reduce,
+}: {
+  value: number;
+  format: (n: number) => string;
+  duration?: number;
+  delay?: number;
+  reduce: boolean;
+}) {
+  const ref = useRef<SVGTSpanElement>(null);
+  const shown = useRef(reduce ? value : 0);
+  const formatRef = useRef(format);
+  formatRef.current = format;
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    if (reduce) {
+      shown.current = value;
+      node.textContent = formatRef.current(value);
+      return;
+    }
+    const controls = animate(shown.current, value, {
+      duration,
+      delay,
+      ease,
+      onUpdate: (v) => {
+        shown.current = v;
+        node.textContent = formatRef.current(v);
+      },
+    });
+    return () => controls.stop();
+  }, [value, duration, delay, reduce]);
+
+  return <tspan ref={ref}>{format(shown.current)}</tspan>;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Pieces                                                                   */
+
+const sleep = (ms: number) =>
+  new Promise<void>((resolve) => window.setTimeout(resolve, ms));
 
 /**
  * Resolves once the first-load preloader has lifted its curtain (it keeps
@@ -231,141 +301,219 @@ function waitForCurtain(): Promise<void> {
   });
 }
 
-const sleep = (ms: number) =>
-  new Promise<void>((resolve) => window.setTimeout(resolve, ms));
+type Tone = 'paper' | 'ink' | 'brand' | 'warm';
 
-function captionFor(scenario: MapScenario, step: MapNodeId) {
-  switch (step) {
-    case 'task':
-      return null;
-    case 'decide':
-      return scenario.decide;
-    case 'tool':
-      return scenario.tool;
-    case 'context':
-      return scenario.context;
-    case 'check':
-      return scenario.check;
-    case 'result':
-      return scenario.result;
-  }
-}
-
-interface TileProps {
-  id: MapNodeId;
-  index: number;
-  ready: boolean;
-  pulse: number;
-  active: boolean;
-  reduce: boolean;
-}
-
-/** The box of a tile; its label is drawn in a separate layer above the cube. */
-function Tile({ id, index, ready, pulse, active, reduce }: TileProps) {
-  const { px, py } = at(id);
-  const f = box(px, py - TILE_T, TILE_HW, TILE_HH, TILE_T);
-  return (
-    <motion.g
-      className='bl-map-tile'
-      data-tone={NODES[id].tone}
-      data-active={active || undefined}
-      initial={reduce ? false : { opacity: 0, y: 16 }}
-      animate={ready ? { opacity: 1, y: active ? -6 : 0 } : undefined}
-      transition={{ duration: 0.5, ease, delay: ready ? 0 : index * 0.1 }}
-    >
-      <polygon className='bl-map-left' points={f.left} />
-      <polygon className='bl-map-right' points={f.right} />
-      <polygon className='bl-map-top' points={f.top} />
-      {!reduce && pulse > 0 && (
-        <motion.polygon
-          key={pulse}
-          className='bl-map-flash'
-          points={f.top}
-          initial={{ opacity: 0.55 }}
-          animate={{ opacity: 0 }}
-          transition={{ duration: 0.9, ease: 'easeOut' }}
-        />
-      )}
-    </motion.g>
-  );
-}
-
-function TileLabel({
-  id,
+/** A ruled box on a hard shadow, the site's own box style, centred on (cx, cy). */
+function Box({
+  cx,
+  cy,
+  w,
+  h,
+  tone,
   label,
-  ready,
   active,
-  reduce,
+  off,
+  className,
 }: {
-  id: MapNodeId;
+  cx: number;
+  cy: number;
+  w: number;
+  h: number;
+  tone: Tone;
   label: string;
-  ready: boolean;
-  active: boolean;
-  reduce: boolean;
+  active?: boolean;
+  off?: boolean;
+  className?: string;
 }) {
-  const { px, py } = at(id);
+  const x = cx - w / 2;
+  const y = cy - h / 2;
   const lines = label.split('\n');
   return (
-    <motion.g
-      className='bl-map-tile'
-      data-tone={NODES[id].tone}
-      initial={reduce ? false : { opacity: 0, y: 16 }}
-      animate={ready ? { opacity: 1, y: active ? -6 : 0 } : undefined}
-      transition={{ duration: 0.5, ease }}
+    <g
+      className={cn('bl-map-box', className)}
+      data-tone={tone}
+      data-active={active || undefined}
+      data-off={off || undefined}
     >
+      <rect
+        className='bl-map-box-shadow'
+        x={x + 3}
+        y={y + 3}
+        width={w}
+        height={h}
+      />
+      <rect className='bl-map-box-face' x={x} y={y} width={w} height={h} />
       <text
         className='bl-map-label'
-        x={px}
-        y={py + LABEL_DY - (lines.length - 1) * 4}
+        x={cx}
+        y={cy - (lines.length - 1) * 6.5}
         textAnchor='middle'
         dominantBaseline='central'
       >
         {lines.map((line, i) => (
-          <tspan
-            key={i}
-            x={px}
-            dy={i === 0 ? `${-(lines.length - 1) * 0.6}em` : '1.2em'}
-          >
+          <tspan key={i} x={cx} dy={i === 0 ? 0 : '1.2em'}>
             {line}
           </tspan>
         ))}
       </text>
-    </motion.g>
+    </g>
   );
 }
 
-/** The task cube: where it is, what it looks like. */
-interface Walker {
-  node: MapNodeId | null;
-  tone: CubeTone;
-  scale: number;
-}
-
-const IDLE: Walker = { node: null, tone: 'ink', scale: 1 };
-
-/** Which task is on the plate and where it has got to. */
-interface Stage {
-  scenario: number;
-  step: MapNodeId;
+/** A lane title: a small square and mono caps. */
+function LaneTitle({
+  x,
+  y,
+  text,
+  tone,
+}: {
+  x: number;
+  y: number;
+  text: string;
+  tone: 'ink' | 'brand';
+}) {
+  return (
+    <g className='bl-map-lane' data-tone={tone}>
+      <rect
+        x={x}
+        y={y - 4}
+        width={7}
+        height={7}
+        className='bl-map-lane-mark'
+      />
+      <text
+        x={x + 13}
+        y={y}
+        className='bl-map-lane-title'
+        dominantBaseline='central'
+      >
+        {text}
+      </text>
+    </g>
+  );
 }
 
 /**
- * Conscious AI as a working habit. Real tasks are sent across the plate
- * one at a time and every one takes the same six stops: your task, need
- * AI?, small model, less input, you check, less waste. When a model is
- * part of the answer the cube turns green at "need AI?" and shrinks at the
- * two saving stops, because the model and the input are kept small; when
- * the answer is a formula, a poll or a person, the cube stays white and
- * nothing is sent to a model. A computation meter under the map starts
- * full, the usual way, and drains as the task passes each conscious stop.
- * The route lights up behind the cube and a caption names the task and
- * says, in one short line, what is decided at each stop and what it
- * saves. Tiles rise in after the preloader and the wires draw; the walk
- * only runs while the map is on screen. Reduced motion shows the finished
- * map with the cube resting on the result.
+ * The three meters at the end of a lane, tokens, money, carbon, each with
+ * a short figure beside it. `share` is how full each meter is against the
+ * usual way; `shown` the figures to write, which count as they change.
+ */
+function Meters({
+  lane,
+  tone,
+  share,
+  shown,
+  units,
+  reduce,
+}: {
+  lane: number;
+  tone: 'ink' | 'brand';
+  share: MapFigures;
+  shown: MapFigures;
+  units: Units;
+  reduce: boolean;
+}) {
+  return (
+    <g className='bl-map-meters' data-tone={tone}>
+      {METER_KEYS.map((key, i) => {
+        const y = barY(lane, i);
+        return (
+          <g key={key}>
+            <rect
+              className='bl-map-bar-track'
+              x={BAR.x}
+              y={y}
+              width={BAR.w}
+              height={BAR.h}
+            />
+            <motion.rect
+              className='bl-map-bar-fill'
+              x={BAR.x}
+              y={y}
+              height={BAR.h}
+              initial={false}
+              animate={{ width: Math.max(0, BAR.w * share[key]) }}
+              transition={{ duration: share[key] === 0 ? 0 : 0.6, ease }}
+            />
+            <text
+              className='bl-map-figure'
+              x={FIGURE_X}
+              y={y + BAR.h / 2}
+              dominantBaseline='central'
+            >
+              <Count
+                value={shown[key]}
+                format={(n) => formatShort(key, n, units)}
+                duration={0.6}
+                reduce={reduce}
+              />
+            </text>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+/* ----------------------------------------------------------------------- */
+/* The graphic                                                              */
+
+/** Which run is on and where the task has got to on the conscious lane. */
+interface Stage {
+  scenario: number;
+  step: MapStep;
+}
+
+/** Everything the drawing shows at a given moment, besides the positions. */
+interface Scene {
+  /** The switch has flipped and the lanes have split. */
+  split: boolean;
+  /** The usual lane is churning: the context streams in, rounds tick. */
+  streaming: boolean;
+  round: number;
+  /** How far the usual way has got, 0..1; its meters fill with it. */
+  usual: number;
+  /** The conscious way has spent what it spends; its meters show it. */
+  lean: boolean;
+  /** The minimal context has dropped into the lean model. */
+  dropped: boolean;
+  /** The task has passed your check. */
+  checked: number;
+  /** The task is done and the saving is counted. */
+  saved: boolean;
+  /** The task block: ink on arrival, brand when a model helps, paper when not. */
+  tone: 'ink' | 'brand' | 'paper';
+}
+
+const RESET: Scene = {
+  split: false,
+  streaming: false,
+  round: 0,
+  usual: 0,
+  lean: false,
+  dropped: false,
+  checked: 0,
+  saved: false,
+  tone: 'ink',
+};
+
+/**
+ * Conscious AI shown as the difference it makes. The same work is sent
+ * down two lanes at the same time. On the usual lane, a ghost of the task
+ * goes straight into a large model: the full context streams in, the
+ * model churns through five rounds, and the token, money and carbon
+ * meters at the end fill up, figures counting. At the junction our switch
+ * diverts the task itself down to the conscious lane: is AI needed at
+ * all, a lean model, minimal context, a check by you. Its meters barely
+ * move. When the task is done, the panel between the two lanes' meters
+ * shows the saving: the share saved, then money counting up and landing
+ * with a beat, tokens rolling up, and carbon wiped in. The kicker sits under the
+ * drawing. The drawing builds after the preloader and only
+ * runs while it is on screen. Reduced motion shows the finished picture.
  */
 export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
   const reduce = useReducedMotion() === true;
+  const uid = useId().replace(/:/g, '');
   const rootRef = useRef<HTMLDivElement>(null);
   const inView = useInView(rootRef, { amount: 0.4 });
   const inViewRef = useRef(false);
@@ -374,91 +522,148 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
   scenariosRef.current = copy.scenarios;
 
   const [ready, setReady] = useState(false);
-  const [walker, setWalker] = useState<Walker>(IDLE);
   const [stage, setStage] = useState<Stage | null>(null);
-  const [round, setRound] = useState(0);
-  const [lit, setLit] = useState<string[]>([]);
-  const [checked, setChecked] = useState(0);
-  const [landed, setLanded] = useState(0);
-  const [pulses, setPulses] = useState<Record<MapNodeId, number>>({
-    task: 0,
-    decide: 0,
-    tool: 0,
-    context: 0,
-    check: 0,
-    result: 0,
-  });
+  const [scene, setScene] = useState<Scene>(RESET);
+  const [run, setRun] = useState(0);
 
-  const start = at('task');
-  const cubeX = useMotionValue(start.px);
-  const cubeY = useMotionValue(start.py);
-  const cubeOpacity = useMotionValue(0);
+  const taskX = useMotionValue(ENTRY_X);
+  const taskY = useMotionValue(LANE_A);
+  const taskOpacity = useMotionValue(0);
+  const ghostX = useMotionValue(JUNCTION_X);
+  const ghostOpacity = useMotionValue(0);
 
   useEffect(() => {
+    const patch = (p: Partial<Scene>) => setScene((s) => ({ ...s, ...p }));
+
     if (reduce) {
       setReady(true);
-      const end = at('result');
-      cubeX.set(end.px);
-      cubeY.set(end.py);
-      cubeOpacity.set(1);
-      setWalker({ node: 'result', tone: 'paper', scale: 0.65 });
+      taskX.set(END_X);
+      taskY.set(LANE_B);
+      taskOpacity.set(1);
+      ghostX.set(END_X);
+      ghostOpacity.set(0.5);
       setStage({ scenario: 0, step: 'result' });
-      setLit(EDGES.map(({ from, to }) => edgeKey(from, to)));
+      setScene({
+        split: true,
+        streaming: false,
+        round: ROUNDS,
+        usual: 1,
+        lean: true,
+        dropped: true,
+        checked: 1,
+        saved: true,
+        tone: 'paper',
+      });
+      setRun(1);
       return;
     }
 
     let cancelled = false;
     const running: { stop: () => void }[] = [];
-    const pulse = (id: MapNodeId) =>
-      setPulses((prev) => ({ ...prev, [id]: prev[id] + 1 }));
-
-    const move = (id: MapNodeId) => {
-      const target = at(id);
-      const a = animate(cubeX, target.px, { duration: TRAVEL_S, ease });
-      const b = animate(cubeY, target.py, { duration: TRAVEL_S, ease });
-      running.push(a, b);
-      return Promise.all([a, b]);
+    const track = <T extends { stop: () => void }>(c: T) => {
+      running.push(c);
+      return c;
     };
+    const moveTask = (x: number, duration = 0.5) =>
+      track(animate(taskX, x, { duration, ease }));
 
-    /** One task walking the loop, stop by stop. */
-    const walk = async (index: number, scenario: MapScenario) => {
-      cubeX.set(start.px);
-      cubeY.set(start.py);
-      setRound((n) => n + 1);
-      setLit([]);
-      setWalker({ node: 'task', tone: 'ink', scale: 1 });
-      setStage({ scenario: index, step: 'task' });
-      pulse('task');
-      await animate(cubeOpacity, 1, { duration: 0.3 });
-      await sleep(DWELL.task);
+    /** The usual lane, left to run on its own once the lanes split. */
+    const churn = async () => {
+      await track(
+        animate(ghostX, MODEL.x + MODEL.w / 2, { duration: 0.7, ease }),
+      );
       if (cancelled) return;
-
-      for (let i = 1; i < ROUTE.length; i += 1) {
-        const id = ROUTE[i];
-        // The wire lights up under the cube as it travels and the caption
-        // announces the stop as the cube sets off for it.
-        setStage({ scenario: index, step: id });
-        setLit((prev) => [...prev, edgeKey(ROUTE[i - 1], id)]);
-        await move(id);
-        if (cancelled) return;
-        pulse(id);
-        setWalker((prev) => ({
-          ...prev,
-          node: id,
-          // A model is part of the answer: the task goes green. It is not:
-          // the task stays white and nothing is sent anywhere.
-          ...(id === 'decide' && { tone: scenario.ai ? 'brand' : 'paper' }),
-          // The smallest tool that does the job, then only the context
-          // it needs: the task gets lighter at each of the two stops.
-          ...(id === 'tool' && scenario.ai && { scale: 0.8 }),
-          ...(id === 'context' && scenario.ai && { scale: 0.65 }),
-          ...(id === 'result' && { tone: 'paper' }), // delivered
-        }));
-        if (id === 'check') setChecked((n) => n + 1);
-        if (id === 'result') setLanded((n) => n + 1);
-        await sleep(DWELL[id]);
+      patch({ streaming: true });
+      for (let r = 1; r <= ROUNDS; r += 1) {
+        patch({ round: r, usual: r / ROUNDS });
+        await sleep(880);
         if (cancelled) return;
       }
+      patch({ streaming: false });
+      await track(animate(ghostX, END_X, { duration: 0.5, ease }));
+    };
+
+    /** One run, both lanes. */
+    const play = async (index: number, scenario: MapScenario) => {
+      setRun((n) => n + 1);
+      setScene(RESET);
+      setStage({ scenario: index, step: 'task' });
+      taskX.set(ENTRY_X);
+      taskY.set(LANE_A);
+      ghostX.set(JUNCTION_X);
+      ghostOpacity.set(0);
+      await track(animate(taskOpacity, 1, { duration: 0.3 }));
+      await sleep(500);
+      if (cancelled) return;
+
+      // In along the usual lane to the switch.
+      await moveTask(JUNCTION_X, 0.7);
+      if (cancelled) return;
+      await sleep(250);
+      patch({ split: true });
+      await sleep(350);
+      if (cancelled) return;
+
+      // The lanes split: the ghost carries on, the task takes the curve.
+      ghostOpacity.set(1);
+      setStage({ scenario: index, step: 'decide' });
+      const usual = churn();
+      await track(
+        animate(0, 1, {
+          duration: 0.8,
+          ease,
+          onUpdate: (v) => {
+            const p = bezier(v);
+            taskX.set(p.x);
+            taskY.set(p.y);
+          },
+        }),
+      );
+      if (cancelled) return;
+
+      // Need AI?
+      await moveTask(STOP.decide.x);
+      await sleep(350);
+      if (cancelled) return;
+      patch({ tone: scenario.ai ? 'brand' : 'paper' });
+      await sleep(1000);
+      if (cancelled) return;
+
+      // A lean model, then only the context it needs.
+      setStage({ scenario: index, step: 'tool' });
+      await moveTask(STOP.tool.x);
+      await sleep(900);
+      if (cancelled) return;
+      setStage({ scenario: index, step: 'context' });
+      if (scenario.ai) {
+        patch({ dropped: true });
+        await sleep(500);
+      }
+      patch({ lean: true });
+      await sleep(1000);
+      if (cancelled) return;
+
+      // You check.
+      setStage({ scenario: index, step: 'check' });
+      await moveTask(STOP.check.x);
+      setScene((s) => ({ ...s, checked: s.checked + 1 }));
+      await sleep(1200);
+      if (cancelled) return;
+
+      // Done: the panel between the lanes' meters is the saving.
+      setStage({ scenario: index, step: 'result' });
+      await moveTask(END_X);
+      await usual;
+      if (cancelled) return;
+      patch({ saved: true });
+      await sleep(5200);
+      if (cancelled) return;
+
+      await Promise.all([
+        track(animate(taskOpacity, 0, { duration: 0.35 })),
+        track(animate(ghostOpacity, 0, { duration: 0.35 })),
+      ]);
+      await sleep(350);
     };
 
     (async () => {
@@ -466,7 +671,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
       await sleep(delay * 1000);
       if (cancelled) return;
       setReady(true);
-      await sleep(1000);
+      await sleep(900);
 
       let i = 0;
       while (!cancelled) {
@@ -476,12 +681,8 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
         }
         const scenarios = scenariosRef.current;
         const index = i % scenarios.length;
-        await walk(index, scenarios[index]);
+        await play(index, scenarios[index]);
         if (cancelled) return;
-        await animate(cubeOpacity, 0, { duration: 0.3 });
-        setWalker(IDLE);
-        setLit([]);
-        await sleep(450);
         i += 1;
       }
     })();
@@ -493,261 +694,587 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
     // The motion values are stable; the copy is read through a ref.
   }, [reduce, delay]);
 
-  const cube = box(0, -CUBE, CUBE, CUBE / 2, CUBE);
-  const checkAt = at('check');
-  const resultAt = at('result');
   const scenario = stage ? copy.scenarios[stage.scenario] : null;
-  const caption = stage && scenario ? captionFor(scenario, stage.step) : null;
-  const level =
-    stage && scenario ? levelFor(scenario, stage.step) : METER_SEGMENTS;
-  const meterHint =
-    level === METER_SEGMENTS
-      ? copy.meter.usual
-      : level === 0
-        ? copy.meter.none
-        : stage?.step === 'result'
-          ? copy.meter.lean
-          : null;
-  const labels = NODE_ORDER.map((id) => copy.nodes[id].replace('\n', ' ')).join(
-    ', ',
-  );
+  const units = copy.saved;
+
+  // What each lane spends, and how full its meters are against the usual way.
+  const usualFigures = scenario?.usual ?? ZERO;
+  const leanFigures = scenario?.lean ?? ZERO;
+  const shareOf = (lean: number, usual: number) =>
+    usual > 0 ? lean / usual : 0;
+  const usualShown: MapFigures = {
+    tokens: usualFigures.tokens * scene.usual,
+    cost: usualFigures.cost * scene.usual,
+    co2: usualFigures.co2 * scene.usual,
+  };
+  const leanShown = scene.lean ? leanFigures : ZERO;
+  const leanShare: MapFigures = {
+    tokens: scene.lean ? shareOf(leanFigures.tokens, usualFigures.tokens) : 0,
+    cost: scene.lean ? shareOf(leanFigures.cost, usualFigures.cost) : 0,
+    co2: scene.lean ? shareOf(leanFigures.co2, usualFigures.co2) : 0,
+  };
+  const saved: MapFigures = {
+    tokens: usualFigures.tokens - leanFigures.tokens,
+    cost: usualFigures.cost - leanFigures.cost,
+    co2: usualFigures.co2 - leanFigures.co2,
+  };
+  const savedShare =
+    usualFigures.cost > 0 ? saved.cost / usualFigures.cost : 0;
+
+  // The panel: between the lanes' meters, spanning meters and figures.
+  const panelW = PANEL_RIGHT - PANEL_X;
+  const panelCX = PANEL_X + panelW / 2;
+  const PANEL_Y = barY(LANE_A, 2) + BAR.h + 7;
+  const PANEL_H = barY(LANE_B, 0) - 7 - PANEL_Y;
+
+  const laneTop = LANE_A - 44;
+  const laneBottom = LANE_B - 44;
+  const build = (i: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 10 },
+    animate: ready ? { opacity: 1, y: 0 } : undefined,
+    transition: { duration: 0.5, ease, delay: ready ? i * 0.07 : 0 },
+  });
+  const altText = `${copy.kicker} ${copy.lanes.usual}: ${copy.nodes.largeModel}, ${copy.nodes.fullContext}. ${copy.lanes.conscious}: ${copy.nodes.decide} ${copy.nodes.tool} ${copy.nodes.check}. ${copy.nodes.guide}.`;
+
+  /** Rows in the saving: each figure arrives its own way. */
+  const rowY = { cost: PANEL_Y + 60, tokens: PANEL_Y + 80, co2: PANEL_Y + 100 };
 
   return (
     <div
       ref={rootRef}
       role='img'
-      aria-label={`${copy.kicker} ${labels}.`}
+      aria-label={altText}
       className={cn('bl-map', className)}
     >
       <svg
         aria-hidden='true'
-        viewBox={VIEW_BOX}
+        viewBox={`0 0 ${W} ${H}`}
         className='block h-auto w-full overflow-visible'
       >
-        <g className='bl-map-plate'>
-          <polygon className='bl-map-plate-side' points={PLATE.left} />
-          <polygon className='bl-map-plate-side' points={PLATE.right} />
-          <polygon className='bl-map-plate-top' points={PLATE.top} />
-          <g className='bl-map-grid'>
-            {GRID.map((l, i) => (
-              <line key={i} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} />
-            ))}
-          </g>
-        </g>
-
-        {/* Wires */}
-        <g>
-          {EDGES.map(({ from, to }, i) => {
-            const pa = at(from);
-            const pb = at(to);
-            return (
-              <motion.line
-                key={edgeKey(from, to)}
-                className='bl-map-edge'
-                x1={pa.px}
-                y1={pa.py}
-                x2={pb.px}
-                y2={pb.py}
-                initial={reduce ? false : { pathLength: 0, opacity: 0 }}
-                animate={ready ? { pathLength: 1, opacity: 1 } : undefined}
-                transition={{ duration: 0.6, ease, delay: 0.55 + i * 0.08 }}
-              />
-            );
-          })}
-        </g>
-
-        {/* The route so far, lit in brand behind the cube. */}
-        <g>
-          <AnimatePresence>
-            {lit.map((key) => {
-              const [from, to] = key.split('>') as [MapNodeId, MapNodeId];
-              const pa = at(from);
-              const pb = at(to);
-              return (
-                <motion.line
-                  key={`${round}:${key}`}
-                  className='bl-map-edge-lit'
-                  x1={pa.px}
-                  y1={pa.py}
-                  x2={pb.px}
-                  y2={pb.py}
-                  initial={reduce ? false : { pathLength: 0, opacity: 1 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    pathLength: { duration: TRAVEL_S, ease },
-                    opacity: { duration: 0.3 },
-                  }}
-                />
-              );
-            })}
-          </AnimatePresence>
-        </g>
-
-        {/* Tiles */}
-        {NODE_ORDER.map((id, i) => (
-          <Tile
-            key={id}
-            id={id}
-            index={i}
-            ready={ready}
-            pulse={pulses[id]}
-            active={walker.node === id}
-            reduce={reduce}
-          />
-        ))}
-
-        {/* A ring spreads from the result each time a task lands. */}
-        {!reduce && landed > 0 && (
-          <g
-            key={`ring-${landed}`}
-            transform={`translate(${resultAt.px} ${resultAt.py - TILE_T})`}
+        <defs>
+          <pattern
+            id={`${uid}-hatch`}
+            width='6'
+            height='6'
+            patternUnits='userSpaceOnUse'
+            patternTransform='rotate(45)'
           >
-            <polygon
-              className='bl-map-ring'
-              points={diamond(0, 0, TILE_HW, TILE_HH)}
+            <line x1='0' y1='0' x2='0' y2='6' className='bl-map-hatch' />
+          </pattern>
+          {/* The carbon figure is wiped in from the left. */}
+          <clipPath id={`${uid}-wipe`}>
+            <motion.rect
+              x={PANEL_X}
+              y={rowY.co2 - 12}
+              height={24}
+              initial={false}
+              animate={{ width: scene.saved ? panelW : 0 }}
+              transition={
+                scene.saved
+                  ? { duration: 0.9, ease, delay: 1.1 }
+                  : { duration: 0 }
+              }
             />
+          </clipPath>
+        </defs>
+
+        {/* Lane titles */}
+        <motion.g {...build(0)}>
+          <LaneTitle
+            x={ENTRY_X - 9}
+            y={laneTop}
+            text={copy.lanes.usual}
+            tone='ink'
+          />
+        </motion.g>
+        <motion.g {...build(1)}>
+          <LaneTitle
+            x={ENTRY_X - 9}
+            y={laneBottom}
+            text={copy.lanes.conscious}
+            tone='brand'
+          />
+        </motion.g>
+
+        {/* Rails */}
+        <motion.g {...build(2)}>
+          <line
+            className='bl-map-rail'
+            x1={ENTRY_X - 9}
+            y1={LANE_A}
+            x2={BAR.x - 6}
+            y2={LANE_A}
+          />
+          <line
+            className='bl-map-rail'
+            x1={CURVE_END_X}
+            y1={LANE_B}
+            x2={BAR.x - 6}
+            y2={LANE_B}
+          />
+          <path className='bl-map-rail' d={CURVE_D} />
+        </motion.g>
+
+        {/* The curve lights up once the switch has sent the task down it. */}
+        <AnimatePresence>
+          {scene.split && (
+            <motion.path
+              key={`curve-${run}`}
+              className='bl-map-rail-lit'
+              d={CURVE_D}
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease }}
+            />
+          )}
+        </AnimatePresence>
+
+        {/* The ghost: the same task, the usual way. Drawn under the model
+            so it vanishes inside it. */}
+        <motion.g
+          className='bl-map-ghost'
+          style={{ x: ghostX, opacity: ghostOpacity }}
+        >
+          <rect
+            x={-BLOCK / 2}
+            y={LANE_A - BLOCK / 2}
+            width={BLOCK}
+            height={BLOCK}
+          />
+        </motion.g>
+
+        {/* The full context: a grid that empties into the large model. */}
+        <motion.g {...build(3)}>
+          {/* Anchored to the grid's right edge so it never runs into the model. */}
+          <text
+            className='bl-map-note'
+            x={FILE.x + (FILE.cols - 1) * FILE.step + FILE.size}
+            y={FILE.y - 12}
+            textAnchor='end'
+            dominantBaseline='central'
+          >
+            {copy.nodes.fullContext}
+          </text>
+          {FILE_CELLS.map((c, i) => (
+            <rect
+              key={i}
+              className='bl-map-cell'
+              x={c.x}
+              y={c.y}
+              width={FILE.size}
+              height={FILE.size}
+              data-gone={scene.streaming || scene.round > 0 || undefined}
+            />
+          ))}
+        </motion.g>
+        {/* ...and the cells in flight, one after another, into the model. */}
+        {!reduce && scene.streaming && (
+          <g key={`stream-${run}`}>
+            {FILE_CELLS.map((c, i) => (
+              <motion.rect
+                key={i}
+                className='bl-map-cell-flying'
+                x={c.x}
+                y={c.y}
+                width={FILE.size}
+                height={FILE.size}
+                initial={{ x: 0, y: 0, opacity: 1 }}
+                animate={{
+                  x: MODEL.x + MODEL.w / 2 - c.x - FILE.size / 2,
+                  y: LANE_A - c.y - FILE.size / 2,
+                  opacity: [1, 1, 0],
+                }}
+                transition={{
+                  duration: 0.55,
+                  ease,
+                  delay: i * 0.085,
+                  opacity: {
+                    duration: 0.55,
+                    delay: i * 0.085,
+                    times: [0, 0.8, 1],
+                  },
+                }}
+              />
+            ))}
           </g>
         )}
 
-        {/* The task */}
-        <motion.g
-          className='bl-map-cube'
-          data-tone={walker.tone}
-          style={{ x: cubeX, y: cubeY, opacity: cubeOpacity }}
-        >
-          <g transform={`translate(0 ${CUBE_DY})`}>
-            <motion.g
-              animate={{ scale: walker.scale }}
-              transition={{ duration: 0.4, ease }}
+        {/* The large model, and the rounds it takes. */}
+        <motion.g {...build(4)}>
+          <Box
+            cx={MODEL.x + MODEL.w / 2}
+            cy={LANE_A}
+            w={MODEL.w}
+            h={MODEL.h}
+            tone='ink'
+            label={copy.nodes.largeModel}
+            active={scene.streaming}
+            className='bl-map-model'
+          />
+          <g transform={`translate(${MODEL.x + MODEL.w / 2} ${MODEL.y - 16})`}>
+            <motion.path
+              className='bl-map-round-arrow'
+              d='M -7 0 A 7 7 0 1 1 0 7'
+              animate={scene.streaming ? { rotate: 360 } : { rotate: 0 }}
+              transition={
+                scene.streaming
+                  ? { duration: 0.88, ease: 'linear', repeat: Infinity }
+                  : { duration: 0 }
+              }
+            />
+            <path className='bl-map-round-arrow' d='M -3 7 L 0 7 L 0 4' />
+            <text
+              className='bl-map-note'
+              x={14}
+              y={0}
+              dominantBaseline='central'
             >
-              <polygon className='bl-map-left' points={cube.left} />
-              <polygon className='bl-map-right' points={cube.right} />
-              <polygon className='bl-map-top' points={cube.top} />
-            </motion.g>
+              {`${copy.nodes.round} ${Math.max(scene.round, scene.split ? 1 : 0)}/${ROUNDS}`}
+            </text>
           </g>
         </motion.g>
 
-        {/* Labels sit above the cube so they stay readable. */}
-        {NODE_ORDER.map((id) => (
-          <TileLabel
-            key={id}
-            id={id}
-            label={copy.nodes[id]}
-            ready={ready}
-            active={walker.node === id}
+        {/* The switch: our part, where the task is diverted. */}
+        <motion.g
+          {...build(5)}
+          className='bl-map-switch'
+          data-on={scene.split || undefined}
+        >
+          <motion.line
+            className='bl-map-switch-arm'
+            x1={JUNCTION_X}
+            y1={LANE_A}
+            x2={JUNCTION_X + 22}
+            y2={LANE_A}
+            style={{ originX: 0, originY: 0.5 }}
+            animate={{ rotate: scene.split ? 52 : 0 }}
+            transition={{ duration: 0.35, ease }}
+          />
+          <rect
+            className='bl-map-switch-shadow'
+            x={JUNCTION_X - 8}
+            y={LANE_A - 8}
+            width={22}
+            height={22}
+          />
+          <rect
+            className='bl-map-switch-face'
+            x={JUNCTION_X - 11}
+            y={LANE_A - 11}
+            width={22}
+            height={22}
+          />
+          <rect
+            className='bl-map-switch-mark'
+            x={JUNCTION_X - 3}
+            y={LANE_A - 3}
+            width={6}
+            height={6}
+          />
+          <text
+            className='bl-map-label bl-map-switch-label'
+            x={JUNCTION_X + 11}
+            y={LANE_A + 21}
+            textAnchor='end'
+            dominantBaseline='central'
+          >
+            {copy.nodes.guide}
+          </text>
+          <text
+            className='bl-map-note'
+            x={JUNCTION_X + 11}
+            y={LANE_A + 34}
+            textAnchor='end'
+            dominantBaseline='central'
+          >
+            {copy.nodes.guideNote}
+          </text>
+        </motion.g>
+
+        {/* The conscious lane: three ruled stops hanging under the rail. */}
+        <motion.g {...build(6)}>
+          <line
+            className='bl-map-stem'
+            x1={STOP.decide.x}
+            y1={LANE_B}
+            x2={STOP.decide.x}
+            y2={LANE_B + STOP_DROP}
+          />
+          <Box
+            cx={STOP.decide.x}
+            cy={STOP_CY}
+            w={STOP.decide.w}
+            h={STOP.decide.h}
+            tone='paper'
+            label={copy.nodes.decide}
+            active={stage?.step === 'decide'}
+          />
+        </motion.g>
+        <motion.g {...build(7)}>
+          {/* Minimal context: three cells above the rail that drop through
+              it into the lean model. */}
+          <text
+            className='bl-map-note'
+            x={STOP.tool.x - 26}
+            y={SMALL_Y}
+            textAnchor='end'
+            dominantBaseline='central'
+          >
+            {copy.nodes.minimalContext}
+          </text>
+          {Array.from({ length: SMALL_INPUT }, (_, i) => {
+            const x =
+              STOP.tool.x -
+              ((SMALL_INPUT - 1) * FILE.step) / 2 +
+              i * FILE.step -
+              FILE.size / 2;
+            return (
+              <motion.rect
+                key={`${run}-${i}`}
+                className='bl-map-cell'
+                data-small
+                x={x}
+                y={SMALL_Y - FILE.size / 2}
+                width={FILE.size}
+                height={FILE.size}
+                animate={
+                  scene.dropped
+                    ? { y: STOP_CY - SMALL_Y, opacity: 0 }
+                    : { y: 0, opacity: 1 }
+                }
+                transition={
+                  scene.dropped
+                    ? { duration: 0.5, ease, delay: i * 0.12 }
+                    : { duration: 0 }
+                }
+              />
+            );
+          })}
+          <line
+            className='bl-map-stem'
+            x1={STOP.tool.x}
+            y1={LANE_B}
+            x2={STOP.tool.x}
+            y2={LANE_B + STOP_DROP}
+          />
+          <Box
+            cx={STOP.tool.x}
+            cy={STOP_CY}
+            w={STOP.tool.w}
+            h={STOP.tool.h}
+            tone='brand'
+            label={copy.nodes.tool}
+            active={stage?.step === 'tool' || stage?.step === 'context'}
+            off={scenario ? !scenario.ai && scene.tone === 'paper' : false}
+          />
+        </motion.g>
+        <motion.g {...build(8)}>
+          <line
+            className='bl-map-stem'
+            x1={STOP.check.x}
+            y1={LANE_B}
+            x2={STOP.check.x}
+            y2={LANE_B + STOP_DROP}
+          />
+          <Box
+            cx={STOP.check.x}
+            cy={STOP_CY}
+            w={STOP.check.w}
+            h={STOP.check.h}
+            tone='warm'
+            label={copy.nodes.check}
+            active={stage?.step === 'check'}
+          />
+          {!reduce && scene.checked > 0 && (
+            <motion.polyline
+              key={`tick-${run}-${scene.checked}`}
+              className='bl-map-tick'
+              points={`${STOP.check.x - 9},${LANE_B - 28} ${STOP.check.x - 2},${LANE_B - 21} ${STOP.check.x + 11},${LANE_B - 36}`}
+              initial={{ pathLength: 0, opacity: 1, y: 6 }}
+              animate={{ pathLength: 1, opacity: [1, 1, 0], y: [6, 0, -8] }}
+              transition={{ duration: 1.5, ease, times: [0, 0.7, 1] }}
+            />
+          )}
+        </motion.g>
+
+        {/* The meters: tokens, money, carbon, at the end of each lane. */}
+        <motion.g {...build(9)}>
+          <Meters
+            lane={LANE_A}
+            tone='ink'
+            share={{ tokens: scene.usual, cost: scene.usual, co2: scene.usual }}
+            shown={usualShown}
+            units={units}
             reduce={reduce}
           />
-        ))}
-
-        {/* A tick rises over the review each time a task passes it. */}
-        {!reduce && checked > 0 && (
-          <motion.polyline
-            key={`tick-${checked}`}
-            className='bl-map-tick'
-            points={`${checkAt.px - 14},${checkAt.py - TILE_T - TILE_HH - 16} ${checkAt.px - 4},${checkAt.py - TILE_T - TILE_HH - 6} ${checkAt.px + 16},${checkAt.py - TILE_T - TILE_HH - 28}`}
-            initial={{ pathLength: 0, opacity: 1, y: 8 }}
-            animate={{ pathLength: 1, opacity: [1, 1, 0], y: [8, 0, -8] }}
-            transition={{ duration: 1.6, ease, times: [0, 0.7, 1] }}
+          <Meters
+            lane={LANE_B}
+            tone='brand'
+            share={leanShare}
+            shown={leanShown}
+            units={units}
+            reduce={reduce}
           />
-        )}
-      </svg>
+        </motion.g>
 
-      {/* The task on the plate, and what is happening to it right now. */}
-      <div className='mt-3 min-h-[4.5rem] sm:min-h-[4rem]'>
-        <AnimatePresence mode='wait' initial={false}>
-          {scenario && stage ? (
-            <motion.div
-              key={stage.scenario}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.3, ease }}
+        {/* The saving: the panel between the lanes' meters. The share saved
+            drops in first; then money counts up and lands with a beat,
+            tokens roll up over a longer count, and carbon is wiped in. */}
+        <AnimatePresence>
+          {scene.saved && scenario && (
+            <motion.g
+              key={`saved-${run}`}
+              initial={reduce ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0.3 } }}
+              transition={{ duration: 0.3 }}
             >
-              <div className='flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground'>
-                <p className='flex min-w-0 items-baseline gap-3'>
-                  <span className='inline-flex shrink-0 items-baseline gap-2 font-semibold text-ink'>
-                    <span
-                      aria-hidden='true'
-                      className={cn(
-                        'inline-block h-2 w-2 translate-y-px',
-                        walker.tone === 'brand' ? 'bg-brand' : 'bg-ink',
-                      )}
-                    />
-                    {copy.taskLabel}
-                  </span>
-                  <span className='truncate'>{scenario.task}</span>
-                </p>
-                {/* How much of the usual computation the task still
-                    carries: full when it arrives, drained stop by stop. */}
-                <p
-                  className='bl-map-meter'
-                  aria-label={`${copy.meter.label}: ${level} / ${METER_SEGMENTS}`}
+              <motion.rect
+                className='bl-map-gap'
+                x={PANEL_X}
+                y={PANEL_Y}
+                width={panelW}
+                height={PANEL_H}
+                fill={`url(#${uid}-hatch)`}
+                initial={reduce ? false : { scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+                transition={{ duration: 0.5, ease }}
+                style={{ originY: 0 }}
+              />
+              <rect
+                className='bl-map-gap-rule'
+                x={PANEL_X}
+                y={PANEL_Y}
+                width={panelW}
+                height={PANEL_H}
+              />
+              <motion.text
+                className='bl-map-saved-label'
+                x={panelCX}
+                y={PANEL_Y + 13}
+                textAnchor='middle'
+                dominantBaseline='central'
+                initial={reduce ? false : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease, delay: 0.25 }}
+              >
+                {copy.saved.label}
+              </motion.text>
+              {/* The share saved: drops in, large. */}
+              <motion.text
+                className='bl-map-saved-share'
+                x={panelCX}
+                y={PANEL_Y + 37}
+                textAnchor='middle'
+                dominantBaseline='central'
+                initial={reduce ? false : { opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.34, 1.56, 0.64, 1],
+                  delay: 0.35,
+                }}
+              >
+                <Count
+                  value={savedShare}
+                  format={(n) => percent(n, units.locale)}
+                  duration={0.9}
+                  delay={0.35}
+                  reduce={reduce}
+                />
+              </motion.text>
+              {/* Money: counts up fast, then lands with a beat. */}
+              <motion.g
+                initial={reduce ? false : { opacity: 0 }}
+                animate={{ opacity: 1, scale: [1, 1, 1.12, 1] }}
+                transition={{
+                  opacity: { duration: 0.2, delay: 0.5 },
+                  scale: {
+                    duration: 1.6,
+                    times: [0, 0.78, 0.86, 1],
+                    ease: 'easeOut',
+                    delay: 0.5,
+                  },
+                }}
+                style={{ originX: 0.5, originY: 0.5 }}
+              >
+                <text
+                  className='bl-map-saved-figure bl-map-saved-money'
+                  x={panelCX}
+                  y={rowY.cost}
+                  textAnchor='middle'
+                  dominantBaseline='central'
                 >
-                  <span className='font-semibold text-ink'>
-                    {copy.meter.label}
-                  </span>
-                  <span aria-hidden='true' className='bl-map-meter-bar'>
-                    {Array.from({ length: METER_SEGMENTS }, (_, i) => (
-                      <span
-                        key={i}
-                        className='bl-map-meter-seg'
-                        data-on={i < level || undefined}
-                        style={{
-                          transitionDelay: `${Math.max(0, level - 1 - i) * 40}ms`,
-                        }}
-                      />
-                    ))}
-                  </span>
-                  <AnimatePresence mode='wait' initial={false}>
-                    {meterHint && (
-                      <motion.span
-                        key={meterHint}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className={cn(
-                          'lowercase tracking-normal',
-                          level === 0 || stage.step === 'result'
-                            ? 'text-brand-text'
-                            : 'text-muted-foreground',
-                        )}
-                      >
-                        {meterHint}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </p>
-              </div>
-              <AnimatePresence mode='wait' initial={false}>
-                <motion.p
-                  key={caption ?? 'task'}
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.25, ease }}
-                  className={cn(
-                    'mt-2 min-h-[1.4em] text-base font-medium leading-snug sm:text-lg',
-                    stage.step === 'result' ? 'text-brand-text' : 'text-ink',
-                  )}
+                  <Count
+                    value={saved.cost}
+                    format={(n) => formatFull('cost', n, units)}
+                    duration={1.2}
+                    delay={0.5}
+                    reduce={reduce}
+                  />
+                </text>
+              </motion.g>
+              {/* Tokens: slide in and roll up over a longer count. */}
+              <motion.text
+                className='bl-map-saved-figure'
+                x={panelCX}
+                y={rowY.tokens}
+                textAnchor='middle'
+                dominantBaseline='central'
+                initial={reduce ? false : { opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, ease, delay: 0.8 }}
+              >
+                <Count
+                  value={saved.tokens}
+                  format={(n) => formatFull('tokens', n, units)}
+                  duration={1.8}
+                  delay={0.8}
+                  reduce={reduce}
+                />
+              </motion.text>
+              {/* Carbon: wiped in from the left, already whole. */}
+              <g clipPath={reduce ? undefined : `url(#${uid}-wipe)`}>
+                <text
+                  className='bl-map-saved-figure'
+                  x={panelCX}
+                  y={rowY.co2}
+                  textAnchor='middle'
+                  dominantBaseline='central'
                 >
-                  {caption ?? ' '}
-                </motion.p>
-              </AnimatePresence>
-            </motion.div>
-          ) : (
-            <motion.p
-              key='kicker'
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.3, ease }}
-              className='bl-kicker !tracking-[0.16em]'
-            >
-              {copy.kicker}
-            </motion.p>
+                  {formatFull('co2', saved.co2, units)}
+                </text>
+              </g>
+            </motion.g>
           )}
         </AnimatePresence>
-      </div>
+
+        {/* The task. */}
+        <motion.g
+          className='bl-map-task'
+          data-tone={scene.tone}
+          style={{ x: taskX, y: taskY, opacity: taskOpacity }}
+        >
+          <rect
+            className='bl-map-task-shadow'
+            x={-BLOCK / 2 + 3}
+            y={-BLOCK / 2 + 3}
+            width={BLOCK}
+            height={BLOCK}
+          />
+          <rect
+            className='bl-map-task-face'
+            x={-BLOCK / 2}
+            y={-BLOCK / 2}
+            width={BLOCK}
+            height={BLOCK}
+          />
+        </motion.g>
+      </svg>
+
+      {/* One line under the drawing: what Conscious AI is. */}
+      <p className='bl-kicker mt-3 !tracking-[0.16em]'>{copy.kicker}</p>
     </div>
   );
 }

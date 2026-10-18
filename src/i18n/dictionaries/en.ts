@@ -27,71 +27,54 @@ export const en = {
     primary: 'Discuss your project',
     secondary: 'See the projects',
     /**
-     * The living map beside the hero copy: Conscious AI as a habit, shown
-     * on real tasks. Six stops, each one a decision the program teaches:
-     * does this need AI at all, the smallest model that does the job, only
-     * the input it needs, a check by you, and the task done with less
-     * waste. Tile labels stay under about eleven characters so they fit
-     * the tiles; every caption is one short line that says what is decided
-     * at that stop and what it saves. `ai` says whether a model is part of
-     * the answer; it colours the cube and drains the computation meter, it
-     * does not change the route. Never put a percentage or a figure in a
-     * caption: the meter shows the saving, the words say why.
+     * The living graphic beside the hero copy: Conscious AI shown as the
+     * difference it makes, on one piece of work: a team's contract
+     * summaries over a year. The work is sent down two lanes at the same
+     * time. The usual way: straight into a large model, the full context,
+     * five rounds, and the token, money and carbon meters fill up, figures
+     * counting beside them. Our switch diverts the work to the conscious
+     * lane: need AI at all, a lean model, minimal context, a check by you,
+     * and the meters barely move. The panel between the lanes' meters is
+     * the saving: the share saved, then money, tokens and carbon, each
+     * arriving its own way. Box labels stay under about twelve characters.
+     * `usual` and `lean` are what the work costs each way, rounded orders
+     * of magnitude, not measurements: twenty people, twenty contracts a
+     * month each, sixty thousand tokens a summary the usual way against two
+     * thousand done consciously, a large model at about fifteen dollars and
+     * a fifth of a kilogram of CO₂ per million tokens against a lean one at
+     * about a tenth of that.
      */
     map: {
       kicker:
         'Conscious AI: use it where it helps, as little as it needs, checked by you.',
-      taskLabel: 'Task',
-      nodes: {
-        task: 'Your task',
-        decide: 'Need AI?',
-        tool: 'Small model',
-        context: 'Less input',
-        check: 'You check',
-        result: 'Less waste',
+      lanes: {
+        usual: 'The usual way',
+        conscious: 'Conscious AI',
       },
-      meter: {
-        label: 'Computation',
-        usual: 'the usual way',
-        none: 'no model runs',
-        lean: 'only what it needs',
+      nodes: {
+        largeModel: 'Large model',
+        fullContext: 'Full context',
+        minimalContext: 'Minimal context',
+        round: 'Round',
+        guide: 'Bullah Labs',
+        guideNote: 'we step in here',
+        decide: 'Need AI?',
+        tool: 'Lean model',
+        check: 'You check',
+      },
+      saved: {
+        label: 'Saved',
+        locale: 'en',
+        currency: 'USD',
+        tokens: 'tokens',
+        co2: 'kg CO₂',
       },
       scenarios: [
         {
-          task: 'Summarise a 40-page contract',
+          task: 'Contract summaries, one team, one year',
           ai: true,
-          decide: 'Yes. A draft is quick for you to judge.',
-          tool: 'A small model. The biggest one adds nothing.',
-          context: 'Three clauses go in. Not forty pages.',
-          check: 'You read it. You decide what stands.',
-          result: 'Same summary. A fraction of the computation.',
-        },
-        {
-          task: 'Margin on 200 order lines',
-          ai: false,
-          decide: 'No. A formula is exact. A model guesses.',
-          tool: 'A spreadsheet. No model runs at all.',
-          context: 'Your numbers never leave your machine.',
-          check: 'Spot-checked against last month.',
-          result: 'Exact figures. Zero computation spent.',
-        },
-        {
-          task: 'Reply to an upset customer',
-          ai: true,
-          decide: 'Yes, for the tone. The facts stay yours.',
-          tool: 'A small model, asked for three sentences.',
-          context: 'The complaint and your policy. Nothing else.',
-          check: 'You read it once. You press send.',
-          result: 'One round, not five. In your words.',
-        },
-        {
-          task: 'Translate the product page for Germany',
-          ai: true,
-          decide: 'Yes. A draft, then a native reader.',
-          tool: 'A translation model, not a chat giant.',
-          context: 'The page and your glossary. Not the whole site.',
-          check: 'A native speaker reads every line.',
-          result: 'Live today. Nothing regenerated. Tone intact.',
+          usual: { tokens: 288000000, cost: 4320, co2: 58 },
+          lean: { tokens: 9600000, cost: 96, co2: 1.9 },
         },
       ],
     },
