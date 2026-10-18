@@ -46,7 +46,7 @@ export function Header({ dict }: HeaderProps) {
         mobileMenuOpen
           ? 'z-[70] border-line bg-background'
           : scrolled
-            ? 'z-50 border-line bg-background/85 backdrop-blur-xl'
+            ? 'z-50 border-ink/80 bg-background'
             : 'z-50 border-transparent bg-transparent',
       )}
     >

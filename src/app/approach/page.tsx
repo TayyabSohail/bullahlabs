@@ -38,7 +38,7 @@ export default async function ApproachPage() {
         size='lg'
       />
       <HowItWorks dict={dict} heading={false} className='pt-0' />
-      <ConsciousTechnology dict={dict} className='bl-band-white' />
+      <ConsciousTechnology dict={dict} className='bl-band-stone' />
       <Principles dict={dict} />
       <CtaBanner dict={dict} />
     </>

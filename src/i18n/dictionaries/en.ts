@@ -27,81 +27,71 @@ export const en = {
     primary: 'Discuss your project',
     secondary: 'See the projects',
     /**
-     * The case ledger beside the hero copy: one shipped project at a time in
-     * three beats. Every line is a fact from `data/projects`; keep a line to
-     * about ninety characters so it stays on two lines, and the conscience
-     * line to one sentence or two.
+     * The living map beside the hero copy: Conscious AI as a habit, shown
+     * on real tasks. Six stops, each one a decision the program teaches:
+     * does this need AI at all, the smallest model that does the job, only
+     * the input it needs, a check by you, and the task done with less
+     * waste. Tile labels stay under about eleven characters so they fit
+     * the tiles; every caption is one short line that says what is decided
+     * at that stop and what it saves. `ai` says whether a model is part of
+     * the answer; it colours the cube and drains the computation meter, it
+     * does not change the route. Never put a percentage or a figure in a
+     * caption: the meter shows the saving, the words say why.
      */
-    cases: {
-      kicker: 'Real projects: the problem, what we built, the result.',
-      heading: 'Real projects',
-      stages: {
-        problem: 'The problem',
-        built: 'What we built',
-        conscience: 'With conscience',
-        result: 'The result',
+    map: {
+      kicker:
+        'Conscious AI: use it where it helps, as little as it needs, checked by you.',
+      taskLabel: 'Task',
+      nodes: {
+        task: 'Your task',
+        decide: 'Need AI?',
+        tool: 'Small model',
+        context: 'Less input',
+        check: 'You check',
+        result: 'Less waste',
       },
-      link: 'Read the case',
-      cases: [
+      meter: {
+        label: 'Computation',
+        usual: 'the usual way',
+        none: 'no model runs',
+        lean: 'only what it needs',
+      },
+      scenarios: [
         {
-          slug: 'bank-islami-pep',
-          client: 'BankIslami',
-          problem:
-            'Analysts opened dozens of news sites every morning and searched hundreds of names by hand.',
-          built:
-            'A screening platform that reads the day’s news, matches it to the PEP list and ends in a signed risk report.',
-          conscience:
-            'A scoring pipeline does the reading. Analysts make the decisions.',
-          value: '30 min',
-          label: 'of morning triage, down from four hours',
+          task: 'Summarise a 40-page contract',
+          ai: true,
+          decide: 'Yes. A draft is quick for you to judge.',
+          tool: 'A small model. The biggest one adds nothing.',
+          context: 'Three clauses go in. Not forty pages.',
+          check: 'You read it. You decide what stands.',
+          result: 'Same summary. A fraction of the computation.',
         },
         {
-          slug: 'bitsmiths-hrm',
-          client: 'Bitsmiths Studio',
-          problem:
-            'Leave, claims, overtime and payroll for a whole studio, calculated by hand every month.',
-          built:
-            'One HR system where approved items sweep into a payroll run that calculates, locks and exports.',
-          conscience:
-            'Payroll is arithmetic, so it runs on rules. No AI model in the loop.',
-          value: '0',
-          label: 'manual payroll calculations',
+          task: 'Margin on 200 order lines',
+          ai: false,
+          decide: 'No. A formula is exact. A model guesses.',
+          tool: 'A spreadsheet. No model runs at all.',
+          context: 'Your numbers never leave your machine.',
+          check: 'Spot-checked against last month.',
+          result: 'Exact figures. Zero computation spent.',
         },
         {
-          slug: 'curio-market',
-          client: 'Ecommerce marketplace',
-          problem:
-            'Seller payouts and delivery tracking were handled by hand, and the support inbox showed it.',
-          built:
-            'A multi-seller marketplace with Stripe Connect payouts and DHL tracking that run themselves.',
-          conscience:
-            'The two paths that caused the most manual work were automated first.',
-          value: '70%',
-          label: 'fewer support requests',
+          task: 'Reply to an upset customer',
+          ai: true,
+          decide: 'Yes, for the tone. The facts stay yours.',
+          tool: 'A small model, asked for three sentences.',
+          context: 'The complaint and your policy. Nothing else.',
+          check: 'You read it once. You press send.',
+          result: 'One round, not five. In your words.',
         },
         {
-          slug: 'rankloom',
-          client: 'SEO platform',
-          problem:
-            'SEO teams hopped between tools all day and paid for the same keyword data again and again.',
-          built:
-            'One platform for keyword research, AI content and rank tracking, with requests batched and cached.',
-          conscience:
-            'The same data is never bought twice. Models can be swapped without touching the product.',
-          value: '3x',
-          label: 'lower cost per article',
-        },
-        {
-          slug: 'qa-compliance-agent',
-          client: 'Audit firm',
-          problem:
-            'Reports were checked against the standards clause by clause, by hand.',
-          built:
-            'An AI reviewer that returns every finding as a tracked change with its clause and the reason.',
-          conscience:
-            'Every finding can be verified where it stands. Nothing is taken on trust.',
-          value: '2x',
-          label: 'faster document review',
+          task: 'Translate the product page for Germany',
+          ai: true,
+          decide: 'Yes. A draft, then a native reader.',
+          tool: 'A translation model, not a chat giant.',
+          context: 'The page and your glossary. Not the whole site.',
+          check: 'A native speaker reads every line.',
+          result: 'Live today. Nothing regenerated. Tone intact.',
         },
       ],
     },
@@ -148,23 +138,35 @@ export const en = {
   },
   technologies: {
     kicker: 'Tools and technology',
-    statement: 'Proven tools. Chosen for a reason.',
+    statement: 'Proven tools. Chosen with care, not by habit.',
     statementMuted:
-      'Established technologies that fit the problem, the team and the product, chosen to work well and stay practical to run and improve.',
-    stackLabel: 'The stack, by layer',
+      'We use established technology that fits the problem, the team and the budget. Nothing is added because it is new or trending. Every tool has to earn its place, stay easy to understand and cost little in time, money and energy to run.',
+    stackLabel: 'What we build with, in plain words',
     layers: [
-      { label: 'Interface', note: 'What your users see and touch.' },
-      { label: 'Mobile', note: 'iOS and Android, native or cross-platform.' },
-      { label: 'Backend & data', note: 'Where the truth lives.' },
       {
-        label: 'AI systems',
-        note: 'Models, retrieval and agents on your data.',
+        label: 'Websites and web apps',
+        note: 'What people open in a browser. Fast, accessible and simple to keep up to date.',
+      },
+      {
+        label: 'Mobile apps',
+        note: 'iOS and Android, native or one codebase for both.',
+      },
+      {
+        label: 'Logic and data',
+        note: 'Where your business rules and records live. Kept consistent, private and safe.',
+      },
+      {
+        label: 'AI, used with care',
+        note: 'The models we build with and the assistants we teach people to use well. Only where it genuinely helps.',
       },
       {
         label: 'Automation',
-        note: 'Work that runs without a human in the loop.',
+        note: 'Repetitive work that runs on its own, with a person checking what matters.',
       },
-      { label: 'Cloud & delivery', note: 'Where it runs and keeps running.' },
+      {
+        label: 'Hosting and running',
+        note: 'Where it runs, how updates ship and how we know it is healthy.',
+      },
     ],
   },
   /** How we work, in four steps. */
@@ -310,11 +312,12 @@ export const en = {
     request: 'Training for a team',
     /** Labels in the course player and the module list. */
     player: {
+      courses: 'Courses',
+      course: 'Course',
       modules: 'Modules',
       module: 'Module',
       lesson: 'Lesson',
       lessons: 'lessons',
-      published: 'published',
       watched: 'watched',
       watchedTag: 'Watched',
       minutes: 'min',
@@ -322,9 +325,11 @@ export const en = {
       nothingYet:
         "This lesson is being recorded. We'll tell you the moment it's live.",
       listLabel: 'Course modules and lessons',
+      search: 'Search lessons',
+      clearSearch: 'Clear search',
+      noResults: 'No lesson matches',
       previous: 'Previous lesson',
       next: 'Next lesson',
-      upNext: 'Up next',
       play: 'Play',
       pause: 'Pause',
       mute: 'Mute',
@@ -556,6 +561,7 @@ export const en = {
     solution: 'Solution',
     resultsKicker: 'The impact',
     resultsTitle: 'What became easier, better or more effective.',
+    learning: 'The learning',
     gallery: 'Inside the product',
     onThePhone: 'On the phone',
     galleryTitle: 'More than one screen.',
@@ -755,7 +761,6 @@ export const en = {
     legal: 'Legal',
     rights: 'All rights reserved.',
     backToTop: 'Back to top',
-    status: 'Online',
   },
 };
 

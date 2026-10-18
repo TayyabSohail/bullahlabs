@@ -104,10 +104,6 @@ export function Locations({
         delay={0.1}
         className='relative mx-auto w-full max-w-[360px] sm:max-w-[520px]'
       >
-        <div
-          aria-hidden='true'
-          className='absolute inset-[10%] rounded-full bg-brand/10 blur-[80px]'
-        />
         <Globe markers={OFFICE_MARKERS} />
       </Reveal>
     </div>

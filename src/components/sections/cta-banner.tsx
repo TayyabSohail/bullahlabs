@@ -35,10 +35,6 @@ export function CtaBanner({
   return (
     <section className='bl-container pb-6 pt-10' data-rail={kicker ?? t.kicker}>
       <div className='bl-card bl-card-ink bl-grid-surface relative px-6 py-16 text-center sm:px-12 sm:py-20 lg:py-24'>
-        <div
-          aria-hidden='true'
-          className='absolute -right-32 -top-32 h-[24rem] w-[24rem] rounded-full bg-brand/25 blur-[110px]'
-        />
         <div className='relative mx-auto max-w-3xl'>
           <Reveal>
             <p className='bl-kicker bl-kicker-numbered justify-center text-white/60'>

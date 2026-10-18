@@ -50,30 +50,6 @@ export function Footer({ dict }: FooterProps) {
         />
       </div>
       <div className='bl-container relative z-10'>
-        {/* Status bar in three zones: founded and offices on the left, the
-            tagline centred (wide screens only), the live dot on the right. */}
-        <div className='grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-2 border-b py-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground lg:grid-cols-[1fr_auto_1fr]'>
-          <div className='flex flex-wrap items-center gap-x-6 gap-y-2'>
-            <span className='bl-kicker text-[10px]'>
-              Est. {siteConfig.founded}
-            </span>
-            <span className='bl-kicker text-[10px]'>
-              {siteConfig.locations
-                .map((location) => location.city)
-                .join(' / ')}
-            </span>
-          </div>
-          <span className='bl-kicker hidden text-[10px] lg:inline-flex'>
-            {siteConfig.tagline}
-          </span>
-          <span className='inline-flex items-center gap-2 justify-self-end text-foreground'>
-            <span
-              aria-hidden='true'
-              className='h-1.5 w-1.5 animate-pulse bg-brand'
-            />
-            {t.status}
-          </span>
-        </div>
         <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]'>
           <div>
             <Logo />

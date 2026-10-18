@@ -29,17 +29,17 @@ export default async function HomePage() {
   return (
     <>
       <Hero dict={dict} />
-      <ConsciousAiIntro dict={dict} className='bl-band-stone' />
-      <ConsciousTechnology dict={dict} className='bl-band-white' />
+      <ConsciousAiIntro dict={dict} />
+      <ConsciousTechnology dict={dict} />
       <Numbers dict={dict} />
       <ProjectsTeaser dict={dict} />
-      <Services dict={dict} className='bl-band-stone' />
+      <Services dict={dict} />
       <Technologies dict={dict} />
       <GlobalReach dict={dict} />
-      <WhoWeAre dict={dict} className='bl-band-stone' />
-      <HowItWorks dict={dict} className='bl-band-white' />
-      <Testimonials dict={dict} className='bl-band-stone' />
-      <Principles dict={dict} className='bl-band-white' />
+      <WhoWeAre dict={dict} />
+      <HowItWorks dict={dict} />
+      <Testimonials dict={dict} />
+      <Principles dict={dict} />
       <FaqSection
         items={getFaqs(dict.locale)}
         kicker={dict.faq.kicker}

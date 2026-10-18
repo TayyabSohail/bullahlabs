@@ -25,7 +25,7 @@ export function ConsciousAiIntro({ dict, className }: ConsciousAiIntroProps) {
 
   return (
     <section
-      className={cn('bl-section bl-rule bl-band-white', className)}
+      className={cn('bl-section bl-rule bl-band-stone', className)}
       data-rail={t.kicker}
     >
       <div className='bl-container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16'>
@@ -60,10 +60,6 @@ export function ConsciousAiIntro({ dict, className }: ConsciousAiIntroProps) {
           delay={0.25}
           className='bl-card bl-card-ink bl-grid-surface relative flex flex-col justify-between p-6 text-white sm:p-8 lg:p-10'
         >
-          <div
-            aria-hidden='true'
-            className='pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand/25 blur-[80px]'
-          />
           <div className='relative'>
             <p className='bl-kicker text-white/60'>{t.closingKicker}</p>
             <p className='bl-display mt-4 text-2xl leading-tight text-white sm:text-3xl lg:text-4xl'>

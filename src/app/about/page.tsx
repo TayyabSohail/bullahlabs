@@ -63,7 +63,7 @@ export default async function AboutPage() {
 
       <Principles dict={dict} />
 
-      <HowItWorks dict={dict} className='bl-band-white' />
+      <HowItWorks dict={dict} className='bl-band-stone' />
 
       <section className='bl-section bl-rule bl-band-stone overflow-hidden'>
         <div className='bl-container'>

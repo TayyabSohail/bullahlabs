@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
 import { Toaster } from 'sonner';
 
 import './globals.css';
@@ -23,18 +23,23 @@ import { getDictionary } from '@/i18n/server';
 
 import AppProviders from './providers';
 
-const inter = Inter({
+/* Old-school type: IBM Plex for the running text and the mono, like a
+   1980s technical manual, and Fraunces, an old-style serif with its optical
+   size and "wonk" axes exposed, for the headlines and italic accents. */
+const plexSans = IBM_Plex_Sans({
   variable: '--font-sans',
   subsets: ['latin'],
+  weight: ['400', '500', '600'],
 });
 
-const spaceGrotesk = Space_Grotesk({
+const fraunces = Fraunces({
   variable: '--font-display',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  axes: ['opsz', 'SOFT', 'WONK'],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const plexMono = IBM_Plex_Mono({
   variable: '--font-mono',
   subsets: ['latin'],
   weight: ['400', '500', '600'],
@@ -43,7 +48,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = getMetadata();
 
 export const viewport: Viewport = {
-  themeColor: '#f5f5f3',
+  themeColor: '#f3eee1',
   width: 'device-width',
   initialScale: 1,
 };
@@ -58,7 +63,7 @@ export default async function RootLayout({
   return (
     <html lang={dict.locale}>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans`}
+        className={`${plexSans.variable} ${fraunces.variable} ${plexMono.variable} font-sans`}
       >
         <AppProviders>
           <SmoothScroll>

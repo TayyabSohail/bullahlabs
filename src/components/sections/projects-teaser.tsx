@@ -30,7 +30,7 @@ const AUTO_MS = 5000;
  */
 export function ProjectsTeaser({
   dict,
-  className = 'bl-band-white',
+  className = 'bl-band-stone',
 }: ProjectsTeaserProps) {
   const t = dict.work.teaser;
   const showcase = getShowcaseProjectsLocalised(dict.locale);

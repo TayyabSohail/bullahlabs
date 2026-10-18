@@ -55,7 +55,7 @@ export function ProjectCard({
           priority={priority}
           sizes='(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'
         />
-        <span className='absolute left-4 top-4 inline-flex items-center gap-2 border border-white/20 bg-black/40 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-white backdrop-blur-md'>
+        <span className='absolute left-4 top-4 inline-flex items-center gap-2 border border-white/30 bg-ink px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-white'>
           <span aria-hidden='true' className='h-px w-3 bg-brand' />
           {project.category}
         </span>
@@ -74,7 +74,6 @@ export function ProjectCard({
             {lensLabel}
           </p>
         )}
-
 
         <ul className='mt-5 flex flex-wrap items-center gap-1.5 border-t pt-5'>
           {visibleTech.map((tech) => {

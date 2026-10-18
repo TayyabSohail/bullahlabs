@@ -18,6 +18,7 @@ export type ProjectTranslation = Partial<
     | 'problem'
     | 'approach'
     | 'resultsSummary'
+    | 'learning'
     | 'results'
     | 'architecture'
     | 'keyFeatures'
@@ -55,11 +56,13 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Fintech / Immobilien',
     headline: { value: '1 Mio. UGX', label: 'für den Einstieg in Eigentum' },
     problem:
-      'Die meisten Menschen in Ostafrika werden nie eine Wohnung besitzen, nicht aus Mangel an Ersparnissen, sondern weil Immobilien als unteilbares Ganzes verkauft werden. Kapital ist über Jahre gebunden, Mieteinnahmen bedeuten, Vermieter zu werden, und es gibt keine Transparenz darüber, was ein Gebäude tatsächlich einbringt.',
+      'Die meisten Menschen in Ostafrika werden nie eine Wohnung besitzen, nicht aus Mangel an Ersparnissen, sondern weil Immobilien als unteilbares Ganzes verkauft werden. Kapital ist über Jahre gebunden, Mieteinnahmen bedeuten, Vermieter zu werden, und niemand außer dem Eigentümer sieht, was ein Gebäude tatsächlich einbringt. Ändern musste sich die Einheit des Eigentums: klein genug für normale Sparer, exakt genug, um ihr das Geld anderer Menschen anzuvertrauen.',
     approach:
-      'Wir haben einen zweiseitigen Mitgliederclub gebaut: einen geprüften Bewerbungs- und Onboarding-Prozess, eine Wallet, durch die jeder Schilling läuft, drei Wege zum Eigentum und einen internen Zweitmarkt für den Ausstieg. Jede finanzielle Entscheidung läuft über eine reale Person in der Administration.',
+      'Wir haben den Mitgliederclub von Anfang bis Ende entworfen und gebaut: einen geprüften Bewerbungs- und Onboarding-Prozess, eine Wallet, durch die jeder Schilling läuft, drei Wege zum Anteil an einer Wohnung, eine monatliche Mietausschüttung nach exaktem Anteil und einen internen Zweitmarkt für den Ausstieg. Jede Geldbewegung läuft über eine reale Person in der Administration, und Gebühren und Mindestbeträge sind Einstellungen, die das Team ohne Release ändert.',
     resultsSummary:
-      'Brickfold ist als funktionierender Mitgliederclub gestartet, nicht als Warteliste. Mitglieder bewerben sich, füllen ihre Wallet, kaufen sich in Wohnungen ein, erhalten ihren Anteil an der Miete und steigen über den Zweitmarkt aus, und jeder Schilling davon stimmt mit dem Hauptbuch überein.',
+      'Brickfold ist als funktionierender Mitgliederclub gestartet, nicht als Warteliste. Ein Mitglied kann sich bewerben, seine Wallet füllen, sich ab 1.000.000 UGX in eine Wohnung einkaufen, seinen Anteil an der Miete erhalten und seinen Anteil an ein anderes Mitglied verkaufen, wenn es aussteigen möchte. Für das Team stimmt jeder Saldo mit dem Hauptbuch überein, und jede Entscheidung trägt einen Namen. Nur so lässt sich das Geld anderer Menschen mit gutem Gewissen verwalten.',
+    learning:
+      'Bevor etwas gebaut wurde, wurde jede Buchungsregel in einfacher Sprache erklärt und mit dem Gründer vereinbart: warum Prozentsätze abgeleitet statt gespeichert werden, warum jede Aufteilung abrundet, warum ein Mensch jede Bewegung freigibt. Das Team betreibt die Plattform und weiß, warum sie sich so verhält, nicht nur wie.',
     results: [
       {
         value: '1 Mio. UGX',
@@ -71,13 +74,13 @@ export const projectsDe: Record<string, ProjectTranslation> = {
         value: '3',
         label: 'Eigentumsprodukte auf einem Hauptbuch',
         detail:
-          'Fractional, Live und Prime teilen sich dieselbe Wallet, Mietausschüttung und denselben Zweitmarkt.',
+          'Fractional, Live und Prime teilen sich dieselbe Wallet, Mietausschüttung und denselben Zweitmarkt. Ein Mitglied lernt ein System, nicht drei.',
       },
       {
         value: '100 %',
         label: 'der Geldbewegungen von einer Person freigegeben',
         detail:
-          'Jede Einzahlung, Investition, Mietgutschrift und Auszahlung passiert die Freigabestelle der Administration, bevor sie wirksam wird.',
+          'Jede Einzahlung, Investition, Mietgutschrift und Auszahlung passiert die Freigabestelle der Administration, bevor sie wirksam wird. Nichts bewegt sich, weil Software es entschieden hat.',
       },
     ],
     architecture:
@@ -158,29 +161,31 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Marketingtechnologie',
     headline: { value: '3x', label: 'geringere Kosten pro Artikel' },
     problem:
-      'SEO-Teams wechselten zwischen fünf verschiedenen Werkzeugen, nur um von der Keyword-Recherche bis zum Tracking zu kommen, verloren dabei Stunden und riskierten uneinheitliche Daten. Die meisten Werkzeuge stützen sich zudem auf veraltete Keyword- und Ranking-Daten, sodass Teams langsam auf Suchtrends reagieren.',
+      'SEO-Teams wechselten zwischen fünf Tools, um von der Keyword-Recherche zum Rank-Tracking zu kommen, verloren Stunden am Tag und standen am Ende vor Zahlen, die nicht zusammenpassten. Die meisten dieser Tools liefen zudem auf veralteten Daten, sodass Teams spät auf das reagierten, was in der Suche tatsächlich passierte. Die Arbeit musste an einen Ort, auf Live-Daten laufen und weniger kosten als die Tools, die sie ersetzte.',
     approach:
-      'Eine Plattform: eine KI-Content-Engine auf OpenRouter, verbunden mit Live-Daten aus DataForSEO und Google Maps, während Trigger.dev Massenjobs und Caching im Hintergrund ausführt.',
+      'Wir haben eine Plattform gebaut: Keyword-Recherche und Rank-Tracking auf Live-Daten von DataForSEO und Google Maps, eine KI-Content-Engine über OpenRouter, sodass Modelle ohne Eingriff in den Produktcode getauscht werden können, und Trigger.dev für die Massengenerierung als wiederaufnehmbare Hintergrundjobs. Anfragen werden gebündelt und nach Keyword und Sprache gecacht, sodass dieselben Daten nie zweimal gekauft werden.',
     resultsSummary:
-      'Rankloom hat fünf separate SEO-Tools durch eine Plattform ersetzt. Keyword-Recherche, Texterstellung und Rank-Tracking laufen als automatisierte Abläufe, die das Team prüft statt bedient, und der größte Kostenposten hat sich halbiert.',
+      'Rankloom hat fünf separate Tools durch eines ersetzt. Keyword-Recherche, Texterstellung und Rank-Tracking laufen als Workflows, die das Team prüft statt bedient, Entwürfe kommen mit einem SEO-Score an, und der größte Kostenblock des Unternehmens, die Keyword-Daten, hat sich halbiert, ohne dass die Daten älter geworden wären.',
+    learning:
+      'Das Produktteam sieht heute, was ein getracktes Keyword und ein generierter Artikel tatsächlich kosten. Die Gespräche darüber, welche Anforderungen später teuer geworden wären, fanden statt, bevor etwas gebaut wurde, nicht danach.',
     results: [
       {
         value: '3x',
         label: 'geringere Kosten pro Artikel',
         detail:
-          'Entwurf, Optimierung und Veröffentlichung laufen als ein automatisierter Ablauf statt über eine Kette aus Tools und Übergaben.',
+          'Texterstellung, Optimierung und Veröffentlichung laufen als ein Workflow statt als Kette aus Tools und Übergaben. Ein Artikel kostet ein Drittel von vorher.',
       },
       {
         value: '30',
         label: 'Artikel in 10 Minuten erzeugt',
         detail:
-          'Ein Stapel, der das Content-Team zuvor Stunden kostete, jetzt ein fortsetzbarer Hintergrundjob mit SEO-Score je Entwurf.',
+          'Ein Stapel, der das Content-Team früher Stunden kostete, ist jetzt ein wiederaufnehmbarer Hintergrundjob, mit einem SEO-Score pro Entwurf, damit die Redaktion weiß, wo sie anfängt.',
       },
       {
         value: '50 %',
         label: 'geringere Kosten für Keyword-Tracking',
         detail:
-          'Von 0,18 $ auf 0,09 $ je verfolgtem Keyword, ohne Verlust an Aktualität.',
+          'Von 0,18 $ auf 0,09 $ pro getracktem Keyword, ohne Verlust an Aktualität. Dieselben Daten werden schlicht nicht zweimal gekauft.',
       },
     ],
     architecture:
@@ -255,29 +260,29 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Immobilientechnologie',
     headline: { value: '1.000+', label: 'gleichzeitig Bietende' },
     problem:
-      'Der Markt für Studierendenwohnungen ist von Festpreisangeboten ohne Verhandlungsspielraum geprägt, verstreut über unzuverlässige Plattformen. Eltern finanzieren die meisten dieser Mieten, haben aber überhaupt keinen Zugang zum Prozess.',
+      'Studentisches Wohnen wird von Festpreisangeboten ohne Verhandlungsspielraum dominiert, verstreut über Plattformen, denen niemand vertraut. Eltern bezahlen die meisten dieser Mieten und haben keinerlei Zugang zum Prozess. Der Markt brauchte einen Ort, an dem der Preis offen gefunden wird, jeder Bietende dieselbe Zahl sieht und Eltern im Namen ihres Kindes handeln können.',
     approach:
-      'Wir haben ein Live-Auktionssystem über WebSockets mit Aktualisierungen unter 200 ms entworfen, gestützt auf Datenmodelle für Angebote, Gebote und Benachrichtigungen sowie getrennte Dashboards je Rolle.',
+      'Wir haben einen Live-Bietmarktplatz über WebSockets entworfen und gebaut. Die Annahme von Geboten ist serverseitig serialisiert, sodass es eine verbindliche Reihenfolge gibt, und Echtzeit-Abonnements sind pro Inserat begrenzt, sodass jeder Bildschirm nur die Gebote erhält, die er beobachtet. Studierende, Eltern und Vermieter bekamen jeweils ein Dashboard für ihre Rolle, dazu Messaging, Servicebuchungen und Benachrichtigungen.',
     resultsSummary:
-      'Bidnest ging zum Semesterstart live und hat gehalten. Tausend Studierende können gleichzeitig auf dasselbe Angebot bieten, alle sehen denselben Preis innerhalb einer Fünftelsekunde, und Studierende, Eltern und Vermietende arbeiten je in einer Ansicht für ihre Rolle.',
+      'Bidnest ging zum Semesterstart live und hielt stand. Tausend Studierende können gleichzeitig auf dasselbe Inserat bieten und sehen alle innerhalb einer Fünftelsekunde denselben Preis. Eltern können erstmals im Namen ihres Kindes bieten und schreiben, und Vermieter lassen den Markt den Preis finden, statt ihn zu raten.',
     results: [
       {
         value: '1.000+',
         label: 'gleichzeitig Bietende ohne Konflikt',
         detail:
-          'Die Annahme von Geboten wird serverseitig serialisiert, sodass es eine verbindliche Reihenfolge gibt und kein Angebot zweimal vergeben wird.',
+          'Die Annahme von Geboten ist serverseitig serialisiert, sodass es eine verbindliche Reihenfolge gibt und kein Inserat je zweimal vergeben wird.',
       },
       {
         value: '200 ms',
         label: 'vom Gebot bis zur Aktualisierung aller Bildschirme',
         detail:
-          'Live-Updates halten Studierende, Eltern und Vermietende auf derselben Zahl.',
+          'Studierende, Eltern und Vermieter sehen im selben Moment dieselbe Zahl. Genau das macht eine offene Auktion fair.',
       },
       {
         value: '3',
         label: 'Dashboards, eines je Rolle',
         detail:
-          'Studierende, Eltern und Vermietende erhalten genau die Aktionen und Informationen, die für sie zählen, und sonst nichts.',
+          'Studierende, Eltern und Vermieter bekommen jeweils die Aktionen und Informationen, die für sie wichtig sind, und nichts anderes.',
       },
     ],
     architecture:
@@ -353,29 +358,31 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'E-Commerce',
     headline: { value: '70 %', label: 'weniger Support-Anfragen' },
     problem:
-      'Die meisten Shops zeigen einen allgemeinen Feed und begraben Kundinnen und Kunden unter Optionen, die nicht zu ihrem Stil passen. Anbieter erhalten einfache Werkzeuge ohne Überblick über Bestellungen oder Auszahlungen, und die manuelle Zahlungsabwicklung samt undurchsichtiger Lieferung untergräbt das Vertrauen an der Kasse.',
+      'Die meisten Shops zeigen allen Käuferinnen und Käufern denselben Feed und begraben sie unter Optionen, die nicht zu ihrem Geschmack passen. Verkäufer hatten nur Basiswerkzeuge ohne klaren Blick auf Bestellungen und Auszahlungen, und manuelle Zahlungsabwicklung plus undurchsichtige Lieferung füllten den Support mit immer denselben zwei Fragen. Der Marktplatz musste sich für Käufer persönlich anfühlen und für Verkäufer von selbst laufen.',
     approach:
-      'Wir haben eine serverseitig gerenderte Empfehlungs-Engine auf einer mandantenfähigen Supabase-Architektur mit strikter Datentrennung gebaut und anschließend die Wege für Geld und Logistik durchgängig automatisiert, mit Stripe Connect und der DHL-API.',
+      'Wir haben uns zuerst die Support-Warteschlange angesehen und dann gebaut: eine serverseitig gerenderte Empfehlungs-Engine auf Basis eines Geschmacksquiz mit acht Fragen, eine mandantenfähige Supabase-Architektur mit Verkäufertrennung direkt in der Datenbank, und die beiden Pfade mit dem meisten Aufwand, Auszahlungen und Sendungsverfolgung, durchgängig automatisiert mit Stripe Connect und DHL-Webhooks, mit dem Status direkt in der Bestellansicht.',
     resultsSummary:
-      'Curio Market wurde von einem generischen Shop zu einem Marktplatz, der lernt, was jede Person mag, und beim Bezahlen nicht im Weg steht. Verkaufende werden planmäßig ausgezahlt, Pakete verfolgen sich selbst, und der Support-Posteingang ist ruhig geworden.',
+      'Curio Market wurde vom generischen Storefront zu einem Marktplatz, der lernt, was jeder Käuferin und jedem Käufer gefällt, und beim Checkout aus dem Weg geht. Verkäufer werden planmäßig bezahlt und sehen das auch, Pakete verfolgen sich selbst, und der Support-Posteingang wurde still. Das eigene Team des Kunden betreibt die Plattform heute.',
+    learning:
+      'Die Übergabe war Teil des Projekts. Das Operations-Team wurde durch Auszahlungen, Sendungsverfolgung und Mandantentrennung geführt, mit dem Warum hinter jeder Entscheidung, gründlich genug, dass es den Marktplatz heute ohne uns betreibt.',
     results: [
       {
         value: '40 %',
         label: 'mehr Interaktion der Käuferschaft',
         detail:
-          'Ein Geschmacksquiz mit acht Fragen macht aus einem generischen Feed einen persönlichen für jeden wiederkehrenden Besuch.',
+          'Ein Geschmacksquiz mit acht Fragen macht aus einem generischen Feed einen persönlichen, sodass wiederkehrende Käufer finden, was sie wirklich wollen.',
       },
       {
         value: '70 %',
         label: 'weniger Support-Tickets',
         detail:
-          'Automatische Auszahlungen über Stripe Connect und DHL-Sendungsverfolgung haben die zwei Fragen beseitigt, die den Posteingang füllten.',
+          'Automatisierte Auszahlungen und Sendungsverfolgung haben die beiden Fragen beseitigt, die den Posteingang füllten. Die Antworten stehen jetzt in der Bestellansicht, wo ohnehin alle hinschauen.',
       },
       {
         value: '1',
         label: 'Bezahlvorgang über alle Verkaufenden hinweg',
         detail:
-          'Kundinnen und Kunden zahlen einmal; Stripe Connect teilt die Zahlung auf und rechnet mit jedem Shop planmäßig ab.',
+          'Käufer zahlen einmal; Stripe Connect teilt die Zahlung auf und rechnet planmäßig mit jedem Verkäufer ab, ohne dass jemand Geld von Hand bewegt.',
       },
     ],
     architecture:
@@ -448,29 +455,31 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'HR-Technologie',
     headline: { value: '0', label: 'manuelle Payroll-Berechnungen' },
     problem:
-      'Die Personalarbeit war über E-Mail, Chat und Papier verstreut: Onboarding per E-Mail, Urlaub und Überstunden in Nachrichten, Krankheitskosten auf Papier und eine Lohnabrechnung, die jeden Monat von Hand aus all dem zusammengesetzt wurde. Nichts stimmte überein, und nichts war prüfbar.',
+      'Die Personalprozesse bei Bitsmiths Studio waren über E-Mail, Chat und Papier verstreut: Onboarding per E-Mail, Urlaub und Überstunden in Nachrichten, Krankheitskosten auf Papier und die Gehaltsabrechnung jeden Monat von Hand aus alldem zusammengesetzt. Nichts stimmte überein, nichts war nachvollziehbar. Das Studio brauchte einen Ort, an dem jeder Antrag einen Status hat und die Abrechnung nicht falsch sein kann.',
     approach:
-      'Ein System, in dem jeder Antrag ein Datensatz mit einem Status ist. Mitarbeitende reichen ein, die Administration gibt frei; freigegebener Urlaub, Krankheitskosten und Überstunden fließen dann in einen monatlichen Abrechnungslauf, der die Lohnabrechnungen berechnet und sperrt.',
+      'Wir haben ein System gebaut, in dem jeder Antrag eine Zeile mit Status ist. Mitarbeitende werden eingeladen, onboardet und aktiviert; sie reichen Urlaub, Krankheitskosten und Überstunden ein; Admins genehmigen jeden Antrag; genehmigte Posten fließen in einen monatlichen Abrechnungslauf, der Gehaltsabrechnungen berechnet, sperrt und nach Payoneer exportiert. Salden, Berechnung und Sperrung sind Postgres-Funktionen, denn Gehaltsabrechnung ist Arithmetik und sollte nach Regeln laufen.',
     resultsSummary:
-      'Bitsmiths Studio führt seine Personalprozesse jetzt in einem System statt über E-Mail, Chat und Papier. Jeder Antrag ist eine Zeile mit Status, jede Freigabe ist nachvollziehbar, und die Lohnabrechnung ist ein gesperrter Lauf, der sich selbst berechnet.',
+      'Das Studio führt seine Personalprozesse jetzt in einem System statt über E-Mail, Chat und Papier. Jeder Antrag ist nachvollziehbar, Mitarbeitende erfahren ohne Nachfragen, wo ihr Antrag steht, und die Abrechnung ist ein gesperrter Lauf, der sich selbst berechnet. Als eine Feinheit auftauchte, etwa späte Genehmigungen mit dem Risiko doppelter Zahlung, wurde sie in derselben Woche erklärt, behoben und dokumentiert.',
+    learning:
+      'Weil die Abrechnungsregeln in der Datenbank liegen und aufgeschrieben sind, verstehen die Menschen, die die Abrechnung durchführen, woraus jede Zahl besteht. Die Fallstricke aus dem Projekt, Doppelzählung und verlorene Überschreibungen, sind dokumentiert, damit die nächste Person sie nicht neu entdecken muss.',
     results: [
       {
         value: '0',
         label: 'manuelle Lohnberechnungen',
         detail:
-          'Genehmigter Urlaub, Krankheitskosten und Überstunden fließen automatisch in den Monatslauf und werden dann gesperrt, sodass nichts doppelt gezahlt wird.',
+          'Genehmigter Urlaub, Krankheitskosten und Überstunden fließen automatisch in den Monatslauf und werden dann gesperrt, sodass nichts zweimal ausgezahlt wird.',
       },
       {
         value: '5',
         label: 'Abläufe in einem System',
         detail:
-          'Onboarding, Urlaub, Krankheitskosten, Überstunden und Lohnabrechnung ersetzen fünf getrennte Kanäle.',
+          'Onboarding, Urlaub, Krankheitskosten, Überstunden und Gehaltsabrechnung haben fünf separate Kanäle ersetzt. Niemand muss sich merken, wo ein Antrag gelandet ist.',
       },
       {
         value: '12',
         label: 'automatisierte E-Mails',
         detail:
-          'Statusänderungen benachrichtigen von selbst, sodass niemand mehr einer Freigabe im Chat hinterherläuft.',
+          'Statusänderungen benachrichtigen die Betroffenen von selbst, sodass niemand einer Genehmigung im Chat hinterherläuft.',
       },
     ],
     architecture:
@@ -549,23 +558,23 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Softwareagentur',
     headline: { value: '30 Tage', label: 'von der Idee zum fertigen MVP' },
     problem:
-      'Das Studio verspricht produktionsreife MVPs in 30 Tagen, und zwar Gründerinnen und Gründern, die es mit Agenturen vergleichen, die ein Vielfaches verlangen. Dieses Versprechen braucht sichtbare Belege, und das Team musste sie ohne Entwicklung veröffentlichen können.',
+      'Das Studio verspricht Gründerinnen und Gründern produktionsreife MVPs in 30 Tagen, und die vergleichen es mit Agenturen, die ein Vielfaches verlangen. Dieses Versprechen braucht sichtbare Belege, und die ändern sich jeden Monat: neue Fallstudien, Artikel und Kundenstimmen. Das Team musste all das veröffentlichen können, ohne dass ein Entwickler beteiligt ist.',
     approach:
-      'Next.js über einem Directus-CMS, sodass jede Inhaltsfläche bearbeitbar ist. Die Seite ist als geordnete Argumentation aufgebaut: Versprechen, Beleg, Einwände, ein Handlungsaufruf.',
+      'Wir haben die Marketing-Website mit Next.js auf einem Directus-CMS gebaut, jede Inhaltsfläche einmal modelliert und über gemeinsame Templates gerendert. Die Seite ist als Argument aufgebaut: Versprechen, Beleg, Einwände, ein Call-to-Action. Medien werden pro Anfrage zu WebP konvertiert, sodass niemand Bilder von Hand exportiert.',
     resultsSummary:
-      'Die Website übernimmt den Vertrieb des Studios. Fallstudien, Artikel, Kundenstimmen und FAQs werden aus dem CMS veröffentlicht, ohne dass ein Entwickler beteiligt ist, und die Seite führt Gründende vom 30-Tage-Versprechen über den Beleg zu einem einzigen Handlungsaufruf.',
+      'Die Website übernimmt den Vertrieb des Studios. Fallstudien, Artikel, Kundenstimmen und FAQs werden beim Speichern aus dem CMS veröffentlicht, sodass die Belege hinter dem 30-Tage-Versprechen ohne Entwicklungszeit aktuell bleiben, und wer bis zum Ende liest, kommt informiert beim Anfrageformular an.',
     results: [
       {
         value: '30 Tage',
         label: 'vom Briefing zum ausgelieferten MVP',
         detail:
-          'Das Versprechen der Website, belegt durch die Fallstudien, die sie veröffentlicht.',
+          'Das Versprechen, das die Website gibt, gestützt durch die Fallstudien, die sie veröffentlicht.',
       },
       {
         value: '4',
         label: 'Inhaltstypen, veröffentlichbar ohne Deploy',
         detail:
-          'Fallstudien, Beiträge, Kundenstimmen und FAQs werden in Directus bearbeitet und sind beim Speichern live.',
+          'Fallstudien, Beiträge, Kundenstimmen und FAQs werden in Directus bearbeitet und gehen beim Speichern live, durch die Person, die sie geschrieben hat.',
       },
       {
         value: '1',
@@ -637,29 +646,29 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Immobilien',
     headline: { value: '70 %', label: 'weniger Papierarbeit' },
     problem:
-      'Maklerbüros verwalteten CRM, Compliance, Marketing und Dokumentenabläufe über unverbundene Werkzeuge und manuelle Prozesse hinweg. Für Kunden- und Objektverwaltung oder die Erstellung von Verträgen gab es kein einheitliches System.',
+      'Immobilienagenturen führten CRM, Compliance, Marketing und Dokumente über unverbundene Tools und manuelle Prozesse, und jede Agentur tat es ein wenig anders. Es gab kein gemeinsames System für Kunden und Objekte, und Verträge wurden jedes Mal neu getippt. Die Gruppe brauchte eine Plattform, die zu dreißig Agenturen passt, ohne zu dreißig Produkten zu werden.',
     approach:
-      'Wir haben ein mandantenfähiges KI-System mit spezialisierten Agenten für CRM, Compliance und Wissen gebaut und diese dann mit einem Marketingmodul und einer vollständigen Pipeline für Dokumentenerstellung und E-Signatur verbunden.',
+      'Wir haben eine mandantenfähige Plattform mit drei spezialisierten Agenten für CRM, Compliance und Wissen gebaut, koordiniert von LangGraph, statt einem allgemeinen Assistenten alles zu übergeben. Die Unterschiede zwischen Agenturen liegen hinter CRM-Integrationen, sodass der Workflow gemeinsam bleibt; ein Marketing-Modul und eine Pipeline für Dokumentenerstellung und E-Signatur vervollständigen das Betriebssystem.',
     resultsSummary:
-      'Mehr als dreißig Maklerbüros führen CRM, Compliance, Marketing und Papierkram jetzt auf einer Plattform. Verträge entstehen aus Vorlagen und gehen direkt zur E-Signatur, und die spezialisierten Agenten erledigen die Arbeit, die früher in Postfächern lag.',
+      'Mehr als dreißig Agenturen führen CRM, Compliance, Marketing und Papierkram heute auf einer Plattform. Mietverträge entstehen aus Vorlagen und gehen direkt zur E-Signatur, statt neu getippt zu werden, und die Agenten übernehmen die Routinearbeit, die früher in Postfächern lag. Die Menschen verbringen mehr ihres Tages mit Kunden.',
     results: [
       {
         value: '30+',
         label: 'Maklerbüros auf einer Plattform',
         detail:
-          'Jedes mit eigener CRM-Anbindung und eigenen Abläufen, bedient aus einer einzigen mandantenfähigen Installation.',
+          'Jede mit eigener CRM-Integration und eigenen Workflows, bereitgestellt aus einer einzigen mandantenfähigen Installation, sodass eine Verbesserung alle gleichzeitig erreicht.',
       },
       {
         value: '70 %',
         label: 'weniger Zeit für Dokumente und Verträge',
         detail:
-          'Mietverträge entstehen aus Vorlagen und werden zur E-Signatur versendet, ohne dass jemand sie neu tippt.',
+          'Mietverträge entstehen aus Vorlagen und werden zur E-Signatur verschickt, ohne dass jemand sie neu tippt.',
       },
       {
         value: '3',
         label: 'spezialisierte KI-Agenten',
         detail:
-          'CRM-, Compliance- und Wissensagenten, begrenzt auf die Daten des jeweiligen Büros und koordiniert über LangGraph.',
+          'CRM-, Compliance- und Wissensagenten, jeweils auf die Daten der eigenen Agentur begrenzt und von LangGraph koordiniert. Jeder macht eine Sache gut.',
       },
     ],
     architecture:
@@ -727,29 +736,31 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Prüfung und Compliance',
     headline: { value: '2x', label: 'schnellere Dokumentenprüfung' },
     problem:
-      'Manuelle Compliance- und Prüfungsdurchsichten gegen etablierte Normen waren langsam und fielen je nach prüfender Person unterschiedlich aus, wobei jeder Bericht rund eine Woche in Anspruch nahm.',
+      'Compliance- und Prüfungsreviews gegen etablierte Standards liefen von Hand. Jeder Bericht dauerte etwa eine Woche, und zwei Prüfende konnten beim selben Dokument zu unterschiedlichen Schlüssen kommen. Die Kanzlei wollte schnellere und konsistente Reviews, war gegenüber KI in der Prüfungsarbeit aber zu Recht skeptisch und hätte keine Befunde akzeptiert, die sie nicht nachprüfen kann.',
     approach:
-      'Wir haben einen Agenten gebaut, der hochgeladene Berichte gegen einen Datensatz etablierter Normen prüft und daraus einen Feststellungsbericht mit Änderungsverfolgung auf Klauselebene und KI-verfassten Kommentaren zu jedem beanstandeten Punkt erzeugt.',
+      'Wir haben einen Agenten gebaut, der hochgeladene Berichte gegen den Standards-Datensatz der Kanzlei prüft und einen Befundbericht als Änderungen auf Klauselebene zurückgibt, jeweils mit schriftlicher Begründung und dem zitierten Standard. Wir haben mit einem kleinen Pilotprojekt begonnen, die Begründung hinter jedem Befund gezeigt und erst erweitert, als die Prüfenden der Kanzlei zufrieden waren.',
     resultsSummary:
-      'Prüfungen, die eine Woche dauerten, brauchen jetzt die Hälfte, und jede Feststellung nennt die Klausel und die Norm dahinter. Prüfende verbringen ihre Zeit mit Ermessensentscheidungen statt mit der Suche nach dem auslösenden Absatz.',
+      'Reviews, die eine Woche dauerten, dauern jetzt etwa die Hälfte, und jeder Befund verweist auf die Klausel und den Standard dahinter. Prüfende verbringen ihre Zeit mit Ermessensentscheidungen statt mit der Suche nach dem Absatz, der ein Problem ausgelöst hat, und weil jeder Bericht denselben Workflow durchläuft, sind die Ergebnisse zwischen Prüfenden vergleichbar.',
+    learning:
+      'Das Pilotprojekt war zugleich Training. Die Prüfenden lernten, die Befunde des Agenten als Behauptungen zu behandeln, die zu prüfen sind, nicht als Urteile, die zu übernehmen sind, und das Format auf Klauselebene machte diese Prüfung schnell. Aus Skepsis gegenüber KI in der Prüfungsarbeit wurde eine Arbeitsregel: Sie ist genau dort nützlich, wo ihre Begründung sichtbar ist.',
     results: [
       {
         value: '2x',
         label: 'schnellere Dokumentenprüfung',
         detail:
-          'Die Durchlaufzeit eines Compliance-Berichts sank von etwa einer Woche auf ungefähr die Hälfte.',
+          'Die Bearbeitungszeit eines Compliance-Berichts fiel von etwa einer Woche auf ungefähr die Hälfte, und die Prüfenden treffen weiterhin die endgültige Entscheidung.',
       },
       {
         value: '100 %',
         label: 'der Feststellungen einer Klausel zugeordnet',
         detail:
-          'Jede kommt als nachverfolgte Änderung mit der zitierten Norm und einer schriftlichen Begründung.',
+          'Jeder kommt als nachverfolgte Änderung mit dem zitierten Standard und einer schriftlichen Erklärung an, sodass Prüfende ihn an Ort und Stelle verifizieren können.',
       },
       {
         value: '1',
         label: 'Prüfmaßstab für jeden Bericht',
         detail:
-          'Derselbe Agenten-Workflow bewertet jedes Dokument, sodass Ergebnisse zwischen Prüfenden einheitlich und über Berichte hinweg vergleichbar sind.',
+          'Derselbe Workflow bewertet jedes Dokument, sodass die Ergebnisse zwischen Prüfenden konsistent und über Berichte hinweg vergleichbar sind.',
       },
     ],
     architecture:
@@ -814,29 +825,29 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Personalvermittlung',
     headline: { value: '30+', label: 'Interviews abgeschlossen' },
     problem:
-      'Strukturierte allgemeine, podcastartige oder Bewerbungsinterviews in größerer Zahl zu führen, erforderte für jede Sitzung manuelle Terminplanung, Moderation und Nachbearbeitung des Transkripts.',
+      'Strukturierte Interviews in großer Zahl zu führen, ob allgemein, im Podcast-Stil oder für Recruiting, bedeutete: Jemand plante jede Sitzung, jemand moderierte sie live, jemand kümmerte sich danach um das Transkript. Das Format war wiederholbar, der Aufwand drumherum nicht. Der Kunde brauchte Interviews, die von der Einladung bis zum Transkript von selbst laufen.',
     approach:
-      'Wir haben eine Plattform gebaut, auf der Nutzende Interviewart, Beschreibung, Stil sowie eigene Einleitung und Abschluss wählen. Sie führt das Interview live über die OpenAI Realtime API, übernimmt Transkription, Meeting-Links und Einladungen und stellt das Transkript anschließend automatisch zu.',
+      'Wir haben eine Plattform gebaut, auf der Nutzer Interviewtyp, Beschreibung, Stil sowie ein eigenes Intro oder Outro wählen. Sie führt das Interview live über die OpenAI Realtime API, erstellt das Transkript in derselben Sitzung, generiert Meeting-Links und Einladungen, unterstützt mehrere Kandidaten und Lebensläufe in Recruiting-Runden und verschickt das Transkript per E-Mail, sobald die Sitzung endet.',
     resultsSummary:
-      'Interviews, die eine Terminplanung, eine Moderation und jemanden für das Transkript brauchten, laufen jetzt durchgängig von selbst. Recruiting wählt Format und Fragen; die Plattform bucht, führt und dokumentiert die Sitzung.',
+      'Interviews, die eine Planung, eine Moderation und eine Transkription brauchten, laufen jetzt durchgängig von selbst. Das Recruiting-Team legt Format und Fragen fest; die Plattform bucht, führt und dokumentiert die Sitzung, und Praktikums-Recruiting-Runden werden für alle Kandidaten nach derselben Rubrik bewertet.',
     results: [
       {
         value: '30+',
         label: 'Interviews auf der Plattform geführt',
         detail:
-          'Recruiting-Runden für Praktika laufen live über die KI-Interviewerin, jede nach derselben Rubrik bewertet.',
+          'Praktikums-Recruiting-Runden laufen live über den KI-Interviewer, jede Kandidatin und jeder Kandidat nach derselben Rubrik bewertet.',
       },
       {
         value: '3',
         label: 'Interviewformate',
         detail:
-          'Allgemeine, podcastartige und Recruiting-Sitzungen, jeweils mit eigener Beschreibung, eigenem Stil, Intro und Outro.',
+          'Allgemeine, Podcast- und Recruiting-Sitzungen, jeweils mit eigener Beschreibung, eigenem Stil, Intro und Outro.',
       },
       {
         value: '0',
         label: 'manuelle Schritte nach Ende einer Sitzung',
         detail:
-          'Das Transkript entsteht live und wird beim Schließen des Interviews automatisch per E-Mail versendet.',
+          'Das Transkript entsteht live und wird automatisch per E-Mail verschickt, wenn das Interview endet. Niemand tippt eine Sitzung ab.',
       },
     ],
     architecture:
@@ -903,29 +914,29 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'E-Commerce / Kundenservice',
     headline: { value: '60 %', label: 'schnellere Shop-Einrichtung' },
     problem:
-      'Wiederverkäufer wollten ihren eigenen Kunden KI-Support-Agenten anbieten, doch jede Bereitstellung war Maßarbeit, sodass die Einrichtung eines neuen Shops Tage manueller Arbeit kostete.',
+      'Reseller wollten ihren Shops KI-Support-Agenten anbieten, aber jede Installation war maßgeschneidert, sodass das Onboarding eines Shops Tage manueller Einrichtung kostete. Schlimmer noch: Ein gemeinsamer Index barg das Risiko, dass Inhalte eines Shops in den Antworten eines anderen auftauchen. Die Plattform musste Shops in großer Zahl einrichten und das Wissen jedes Shops strikt bei ihm belassen.',
     approach:
-      'Wir haben eine mandantenfähige MERN-Architektur gebaut, in der jeder Shop einen eigenständigen, kontextbewussten Agenten betreibt, und darüber eine automatisierte Bereitstellung gelegt, sodass Wiederverkäufer Bots in großer Zahl statt einzeln aufsetzen können.',
+      'Wir haben eine mandantenfähige MERN-Plattform gebaut, auf der jeder Shop seinen eigenen kontextbewussten Agenten betreibt. Embeddings sind in Pinecone pro Mandant partitioniert, sodass die Suche nur den Namespace des anfragenden Shops erreicht, und Antworten sind in Katalog, Bestellungen und Richtlinien dieses Shops verankert. Darüber liegt eine automatisierte Bereitstellung, mit der Reseller Shops aus einem Verwaltungs-Dashboard in großer Zahl einrichten.',
     resultsSummary:
-      'Reseller richten KI-Support-Agenten für ihre Shops jetzt gebündelt ein statt als einzelne Sonderanfertigung. Jeder Bot antwortet nur aus Katalog, Bestellungen und Richtlinien seines eigenen Shops und übergibt an eine Person, wenn er ein Gespräch nicht abschließen kann.',
+      'Reseller richten Support-Agenten für ihre Shops jetzt in großer Zahl ein statt eine maßgeschneiderte Installation nach der anderen. Jeder Bot antwortet nur aus den Inhalten seines eigenen Shops und übergibt an einen Menschen, wenn er ein Gespräch nicht abschließen kann. Kunden bekommen fundierte Antworten, und Shop-Betreiber behalten das letzte Wort.',
     results: [
       {
         value: '60 %',
         label: 'schnelleres Onboarding je Shop',
         detail:
-          'Automatisierte Bereitstellung machte aus einer mehrtägigen manuellen Einrichtung einen Sammelvorgang.',
+          'Automatisierte Bereitstellung hat aus einer tagelangen manuellen Einrichtung einen Massenvorgang gemacht, den ein Reseller aus dem Dashboard startet.',
       },
       {
         value: '1',
         label: 'isolierter Namensraum je Shop',
         detail:
-          'Embeddings sind in Pinecone je Mandant partitioniert, sodass kein Bot je Inhalte eines anderen Shops ausspielen kann.',
+          'Embeddings sind in Pinecone pro Mandant partitioniert, sodass kein Bot je Inhalte eines anderen Shops ausgeben kann.',
       },
       {
         value: '100 %',
         label: 'der Antworten aus den Inhalten des eigenen Shops',
         detail:
-          'Die Suche läuft über Katalog, Bestell-API und Richtlinien, die der Reseller für diesen Bot freigegeben hat.',
+          'Die Suche läuft über Katalog, Bestell-API und Richtlinien, die der Reseller für diesen Bot freigegeben hat, und über nichts außerhalb davon.',
       },
     ],
     architecture:
@@ -992,29 +1003,29 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Gesundheitswesen',
     headline: { value: '90 %+', label: 'genaue Bewegungsanalysen' },
     problem:
-      'Der Rehabilitationsverlauf war zersplittert: manuelle Aufnahme, Bewegungsanalyse, allgemeine Trainingspläne und seltene Nachkontrollen. Zwischen den betreuten Terminen hatten Patientinnen und Patienten kaum Anleitung, und die Pläne reagierten nicht schnell auf die tatsächliche Leistung.',
+      'Der Rehabilitationsweg war zerstückelt: manuelle Aufnahme, eine Bewegungsanalyse, ein generischer Übungsplan und seltene Nachkontrollen. Zwischen den betreuten Sitzungen hatten Patientinnen und Patienten kaum Anleitung, und Pläne reagierten nicht, wenn jemand Fortschritte machte oder Mühe hatte. Die Genesung musste ein zusammenhängender Weg werden, der sich jeden Tag anpasst.',
     approach:
-      'Wir haben den Verlauf um einen Aufnahme-Agenten, eine angeleitete Bewegungsanalyse und die automatische Erstellung von Trainingsplänen herum gebaut. Tägliche Einträge steuern die Steigerung oder Reduktion des Plans, während hochgeladene Übungsvideos KI-Feedback erhalten und Fachartikel zu Verletzungen in künftige Pläne einfließen.',
+      'Wir haben den Weg von Anfang bis Ende gebaut: einen Aufnahme-Agenten, eine geführte Bewegungsanalyse mit Anleitungsvideos, automatische Erstellung von Übungsplänen auf Basis hochgeladener Fachartikel zu Verletzungen, tägliches Protokollieren und KI-Feedback zu hochgeladenen Übungsvideos. Steigerung und Rücknahme sind Regeln, die vom Tagesprotokoll gesteuert werden; das Modell kommt dort zum Einsatz, wo Urteilsvermögen gefragt ist: bei Aufnahme, Planerstellung und Videofeedback.',
     resultsSummary:
-      'Patientinnen und Patienten haben jetzt jeden Tag Anleitung, nicht nur in betreuten Sitzungen. Aufnahme, Bewegungsanalyse, Planerstellung und Videofeedback laufen als ein zusammenhängender Weg, und der Plan passt sich der tatsächlichen Leistung an.',
+      'Patientinnen und Patienten haben jetzt jeden Tag Anleitung, nicht nur in betreuten Sitzungen. Der Plan passt sich daran an, wie sie tatsächlich abgeschnitten haben, Feedback zur Ausführung kommt zu den Clips, die sie hochladen, und die Therapeutin prüft Gelenkwinkel und Korrekturen, statt zu raten, was zwischen den Terminen passiert ist.',
     results: [
       {
         value: '90 %+',
         label: 'Genauigkeit bei Bewegungs- und Ausführungsprüfungen',
         detail:
-          'Die Posenanalyse hochgeladener Clips liefert Gelenkwinkel und korrigierendes Feedback, das die Klinik prüfen kann.',
+          'Die Posenanalyse hochgeladener Clips liefert Gelenkwinkel und korrigierendes Feedback, das die Therapeutin prüfen kann, bevor es die Patientin erreicht.',
       },
       {
         value: '8 Wochen',
         label: 'Plan, täglich angepasst',
         detail:
-          'Tägliche Protokolle steuern Steigerung oder Reduktion automatisch, statt auf den nächsten Termin zu warten.',
+          'Tagesprotokolle steuern Steigerung oder Rücknahme automatisch, statt auf den nächsten Termin zu warten.',
       },
       {
         value: '1',
         label: 'durchgehender Weg von der Aufnahme bis zur Genesung',
         detail:
-          'Aufnahme-Agent, Analyse, Plan, tägliches Protokoll und KI-Videofeedback ersetzen vier getrennte Schritte.',
+          'Aufnahme-Agent, Analyse, Plan, tägliches Protokoll und KI-Videofeedback ersetzen vier unverbundene Schritte.',
       },
     ],
     architecture:
@@ -1081,30 +1092,30 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Professionelle Dienstleistungen',
     headline: { value: '40 %', label: 'schneller ladende Seiten' },
     problem:
-      'Die bestehende Website lud langsam und rankte schlecht, was das Unternehmen Anfragen kostete, noch bevor Besuchende das Angebot überhaupt sahen.',
+      'Die Website des Unternehmens lud langsam und rankte schlecht, sodass Anfragen verloren gingen, bevor Besucher das Angebot überhaupt sahen. Sie musste beim ersten Besuch schnell sein, in der Suche auffindbar und so gebaut, dass jede Seite irgendwohin führt.',
     approach:
-      'Wir haben die Website auf Next.js mit TypeScript für Typsicherheit und Tailwind für das Styling neu gebaut und uns dann durch das Performance-Budget gearbeitet: Code-Splitting, Bildoptimierung und je Route abgestimmte Rendering-Strategien.',
+      'Wir haben die Website mit Next.js, TypeScript und Tailwind neu gebaut und dann das Performance-Budget abgearbeitet: Routen vorgerendert, wo der Inhalt es erlaubt, JavaScript pro Route aufgeteilt, Bilder über next/image mit expliziten Abmessungen ausgeliefert und nur das Bild im sichtbaren Bereich priorisiert, dazu SEO-Metadaten auf jeder Route.',
     resultsSummary:
-      'Die neu gebaute Website lädt schneller, rankt für die Begriffe, mit denen das Unternehmen verkauft, und bringt auf jeder Route eine Anfrage in Reichweite eines Scrollvorgangs. Eingehende Leads springen nicht mehr ab, bevor sie das Angebot sehen.',
+      'Die neue Website lädt 40 % schneller, rankt für die Begriffe, mit denen das Unternehmen verkauft, und hat auf jeder Route eine Anfrage innerhalb eines Scrolls. Besucher sehen das Angebot, bevor sie Gelegenheit haben zu gehen, und die Rendering-Arbeit wird einmal beim Build erledigt statt bei jedem Besuch.',
     results: [
       {
         value: '40 %',
         label: 'schnellere Seitenladezeiten',
         detail:
-          'Statisches Rendering zuerst, Code-Splitting je Route und optimierte Bilder auf der gesamten Website.',
+          'Statisches Rendering zuerst, Code-Splitting pro Route und optimierte Bilder, damit schon der erste Besuch der schnelle ist.',
       },
       {
         value: '100 %',
         label:
           'der Routen erreichen den Handlungsaufruf in einem Scrollvorgang',
         detail:
-          'Jede Seite führt vom Angebot zur Anfrage, ohne dass jemand suchen muss.',
+          'Jede Seite führt Besucher vom Angebot zur Anfrage, ohne dass sie suchen müssen.',
       },
       {
         value: '0',
         label: 'Layoutverschiebung durch Bilder',
         detail:
-          'Alle Bilder laufen über next/image mit festen Abmessungen und modernen Formaten.',
+          'Alle Bilder laufen über next/image mit expliziten Abmessungen und modernen Formaten, sodass beim Laden nichts springt.',
       },
     ],
     architecture:
@@ -1163,17 +1174,19 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Banken / Compliance',
     headline: { value: '38', label: 'Nachrichtenquellen täglich geprüft' },
     problem:
-      'Aufsichtsbehörden erwarten, dass Banken politisch exponierte Personen über die gesamte Geschäftsbeziehung hinweg prüfen. Das Compliance-Team tat dies von Hand: ein Vormittag über Nachrichtenseiten, Gerichtslisten und Amtsblätter, die Suche nach über tausend Namen, dann das Übertragen der Funde in eine Tabelle. Meldungen wurden übersehen, der Bericht kam spät, und niemand konnte einem Prüfer zeigen, wie ein Name geprüft worden war.',
+      'Aufsichtsbehörden erwarten, dass Banken politisch exponierte Personen so lange prüfen, wie die Geschäftsbeziehung besteht. Das Compliance-Team von BankIslami tat das von Hand: ein Vormittag über Nachrichtenseiten, Gerichtslisten und Amtsblätter, auf der Suche nach über tausend Namen, dann Befunde in eine Tabelle kopiert. Meldungen wurden übersehen, der Bericht kam erst am Nachmittag, und niemand konnte einer Prüferin zeigen, wie ein Name geprüft worden war. Das Screening musste vollständig, früh und belegbar werden.',
     approach:
-      'Wir haben bei den Quellen begonnen, nicht bei der Oberfläche: ein geplanter Crawler ruft um 06:00 Uhr jedes relevante pakistanische und internationale Medium ab, normalisiert die Artikel und legt sie in MongoDB ab. Eine Matching-Engine bewertet jeden Artikel gegen die PEP-Liste der Bank anhand von Namensvarianten, Rollen und Orten, und nur glaubwürdige Treffer erreichen eine Analystin. Prüfwarteschlange, Risikoprofile und der generierte Bericht wurden einmal als Komponentenbibliothek gebaut und in den Browser sowie auf iOS und Android ausgeliefert.',
+      'Gemeinsam mit Aawaz AI haben wir bei den Quellen angefangen, nicht beim Interface: ein geplanter Crawler, der um 06:00 Uhr jedes relevante pakistanische und internationale Medium abruft, die Artikel normalisiert und speichert. Eine Scoring-Pipeline gleicht jeden Artikel über Namensvarianten, Transliterationen, Rolle und Stadt mit der PEP-Liste der Bank ab, und nur Treffer über einer Konfidenzschwelle erreichen eine Analystin, jeweils mit den Feldern, die übereinstimmten. Prüfwarteschlange, Risikoprofile und der signierte Tagesbericht wurden einmal als Komponentensatz gebaut und für Browser, iOS und Android ausgeliefert.',
     resultsSummary:
-      'Das Compliance-Team beginnt den Tag jetzt mit einem fertigen Bericht statt mit einem Vormittag voller Suche. Jedes relevante Medium ist gelesen, bevor jemand eintrifft, nur glaubwürdige Treffer erreichen eine Analystin, und jede Entscheidung zu einem Namen ist so dokumentiert, dass sie einem Prüfer gezeigt werden kann.',
+      'Das Compliance-Team beginnt den Tag jetzt mit einem fertigen Bericht statt mit einem Vormittag Suche. Jedes relevante Medium ist gelesen, bevor jemand eintrifft, Analysten verbringen ihre Zeit mit Entscheidungen statt mit Suchen, und jede Entscheidung zu einem Namen ist so dokumentiert, dass man sie einer Prüferin zeigen kann. Das Modell liest; der Mensch entscheidet.',
+    learning:
+      'Compliance heißt, die eigene Begründung zeigen zu können, und so wurde das Produkt vom ersten Sprint an gebaut. Jeder Treffer erklärt sich selbst, sodass die Analysten schnell lernten, welchen Signalen sie vertrauen und welche sie hinterfragen, und nichts wurde ausgeliefert, was das Team einer Prüferin nicht hätte erklären können.',
     results: [
       {
         value: '38',
         label: 'Quellen geprüft, bevor das Team eintrifft',
         detail:
-          'Rund 200 Artikel am Tag werden ab 06:00 Uhr abgerufen, normalisiert und mit der PEP-Liste abgeglichen.',
+          'Rund 200 Artikel pro Tag werden ab 06:00 Uhr gecrawlt, normalisiert und mit der PEP-Liste abgeglichen, bevor sich die erste Analystin anmeldet.',
       },
       {
         value: '30 Min.',
@@ -1185,12 +1198,12 @@ export const projectsDe: Record<string, ProjectTranslation> = {
         value: '07:30',
         label: 'Uhr, täglicher Risikobericht zugestellt',
         detail:
-          'Wo er früher am Nachmittag ankam, jetzt mit vollständigem Prüfpfad pro Name und Zustellung an Compliance und Risiko.',
+          'Wo er früher am Nachmittag ankam, jetzt mit vollständigem Prüfpfad pro Name und Zustellung an Compliance und Risk.',
       },
       {
         value: '1.240',
         label: 'Konten laufend überwacht',
-        detail: 'PEP- und Umfeldkonten, jeden Tag über Web und Mobile geprüft.',
+        detail: 'PEP- und verbundene Konten, die jeden Tag über Web und Mobile geprüft werden, keines davon an einem vollen Vormittag übersprungen.',
       },
     ],
     architecture:
@@ -1273,23 +1286,23 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Immobilientechnologie',
     headline: { value: '3', label: 'Plattformen aus einem Build' },
     problem:
-      'Studierende leben auf ihrem Telefon. Ein vom Laptop abgegebenes Gebot kann überboten werden, während sie in der Vorlesung sitzen, und ein Browser-Tab weckt niemanden. Zwei native Apps von Grund auf zu bauen, hätte die Arbeit für einen bereits bestehenden Marktplatz verdoppelt.',
+      'Studierende leben am Handy. Ein Gebot vom Laptop kann während einer Vorlesung überboten werden, und ein Browser-Tab weckt niemanden auf. Den Marktplatz gab es bereits im Web, und zwei native Apps von Grund auf zu bauen hätte die Arbeit verdoppelt und das Team gespalten. Bidnest musste in die Hosentasche der Studierenden, ohne zu drei Produkten zu werden.',
     approach:
-      'Statt das Produkt nativ neu zu bauen, haben wir die bestehende Next.js-Anwendung mit Capacitor verpackt, die Screens für Gebote und Nachrichten auf Touch und sichere Bereiche abgestimmt und das Ergebnis aus demselben Repository in beide Stores geliefert.',
+      'Statt nativ neu zu bauen, haben wir die bestehende Next.js-Anwendung mit Capacitor verpackt, die Biet- und Messaging-Screens für Touch und Safe Areas abgestimmt, native Navigation, einen Offline-Screen, Deep Links aus Benachrichtigungen und eine gespeicherte Sitzung ergänzt und aus demselben Repository wie die Website in beide Stores ausgeliefert.',
     resultsSummary:
-      'Bidnest hat App Store und Google Play erreicht, ohne zweite Codebasis und ohne zweites Team. Studierende bieten, schreiben und bezahlen vom Telefon mit denselben Abläufen wie auf der Web-Plattform, und ein Fix erreicht alle drei Plattformen auf einmal.',
+      'Bidnest kam ohne zweite Codebasis und ohne zweites Team in den App Store und auf Google Play. Studierende bieten, schreiben und zahlen vom Handy mit denselben Abläufen wie auf der Web-Plattform, werden per Benachrichtigung geweckt, wenn sie überboten wurden, und ein Fix erreicht alle drei Plattformen gleichzeitig.',
     results: [
       {
         value: '3',
         label: 'Plattformen aus einem Build',
         detail:
-          'Website, iOS-App und Android-App werden aus einem Repository und einem Release-Branch ausgeliefert.',
+          'Website, iOS-App und Android-App werden aus einem einzigen Repository und Release-Branch ausgeliefert.',
       },
       {
         value: '0',
         label: 'für Native neu gebaute Funktionen',
         detail:
-          'Echtzeitgebote, Nachrichten und Stripe-Checkout sind derselbe Code, der die Web-Plattform bedient.',
+          'Echtzeitgebote, Messaging und Stripe-Checkout sind derselbe Code, der die Web-Plattform bedient. Nichts wurde zweimal gebaut.',
       },
       {
         value: '2',
@@ -1368,29 +1381,29 @@ export const projectsDe: Record<string, ProjectTranslation> = {
     industry: 'Softwareentwicklung',
     headline: { value: '12', label: 'Projekte in einem Portfolio' },
     problem:
-      'Ein Lebenslauf zählt Technologien auf; er zeigt nicht, wie ein Produkt gebaut wurde oder was sich nach dem Launch verändert hat. Die meisten Portfolio-Websites sind ein Raster aus Vorschaubildern ohne Substanz dahinter, und ein Dutzend Projektseiten von Hand konsistent zu halten, ist genau die Stelle, an der sie auseinanderfallen.',
+      'Ein Lebenslauf listet Technologien auf; er zeigt nicht, wie ein Produkt gebaut wurde oder was sich nach dem Launch verändert hat. Die meisten Portfolio-Websites sind ein Raster aus Vorschaubildern ohne etwas dahinter, und ein Dutzend Projektseiten von Hand konsistent zu halten ist der Punkt, an dem sie scheitern. Das Portfolio musste die Arbeit richtig zeigen und ohne ständige Pflege konsistent bleiben.',
     approach:
-      'Wir haben das Portfolio wie ein Produkt behandelt. Jedes Projekt ist ein typisierter Datensatz mit Problem, Vorgehen, Architektur, Funktionen, Herausforderungen und Ergebnissen, und die Website erzeugt Raster, Fallstudienseiten, Sitemap und Social-Vorschauen aus diesem einen Array.',
+      'Wir haben das Portfolio wie ein Produkt behandelt. Jedes Projekt ist ein typisierter Datensatz mit Problem, Vorgehen, Architektur, Funktionen, Herausforderungen und Ergebnissen, und die Website rendert Raster, Fallstudienseiten, Sitemap und Social-Vorschauen aus diesem einen Array. Sie wird als statisches HTML ausgeliefert, animiert nach dem ersten Paint und bucht Gespräche über einen eingebetteten Cal.com-Kalender.',
     resultsSummary:
-      'Jedes Projekt auf der Website ist eine vollständige Fallstudie statt eines Vorschaubilds, und alle teilen eine Struktur, weil sie aus einer typisierten Datendatei stammen. Die Website wird als statisches HTML ausgeliefert, sodass die Animation beim Laden nichts kostet, und ein Termin ist von jeder Seite einen Klick entfernt.',
+      'Jedes Projekt auf der Website ist eine vollständige Fallstudie statt eines Vorschaubilds, und alle teilen eine Struktur, weil sie aus einer typisierten Datendatei stammen. Es gibt kein CMS und keine Datenbank zu pflegen, die Animationen kosten beim Laden nichts, und ein Gespräch ist von jeder Seite einen Klick entfernt.',
     results: [
       {
         value: '12',
         label: 'Fallstudien aus einer typisierten Datendatei',
         detail:
-          'Raster, jede Fallstudienseite, Sitemap und Social-Vorschauen entstehen aus einem einzigen Array.',
+          'Raster, jede Fallstudienseite, Sitemap und Social-Vorschauen werden aus einem einzigen Array gerendert.',
       },
       {
         value: '0',
         label: 'CMS oder Datenbank zu pflegen',
         detail:
-          'Jede Seite wird beim Deploy statisch gebaut, und die Typprüfung verweigert einen Build, wenn ein Abschnitt fehlt.',
+          'Jede Seite wird beim Deploy statisch gebaut, und der Type-Checker verweigert den Build, wenn ein Abschnitt fehlt.',
       },
       {
         value: '1',
         label: 'Klick von jeder Fallstudie zum gebuchten Termin',
         detail:
-          'Ein eingebetteter Cal.com-Kalender liegt auf dem Kontakt-Screen neben dem Nachrichtenformular.',
+          'Ein eingebetteter Cal.com-Kalender sitzt auf dem Kontakt-Screen neben dem Nachrichtenformular.',
       },
     ],
     architecture:

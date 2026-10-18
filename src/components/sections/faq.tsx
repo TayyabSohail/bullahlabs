@@ -60,8 +60,14 @@ export function FaqSection({
                 value={`faq-${index}`}
                 className='border-b-0'
               >
-                <AccordionTrigger className='py-5 text-left text-base font-medium tracking-tight hover:no-underline sm:py-6 sm:text-lg [&[data-state=open]]:text-brand-text'>
-                  {item.question}
+                <AccordionTrigger className='gap-4 py-5 text-left text-base font-medium tracking-tight hover:no-underline sm:py-6 sm:text-lg [&>svg]:hidden [&[data-state=open]]:text-brand-text [&[data-state=open]_.bl-faq-mark]:rotate-45'>
+                  <span className='flex-1'>{item.question}</span>
+                  <span
+                    aria-hidden='true'
+                    className='bl-faq-mark flex h-7 w-7 shrink-0 items-center justify-center border border-ink font-mono text-base font-medium leading-none text-ink transition-transform duration-200'
+                  >
+                    +
+                  </span>
                 </AccordionTrigger>
                 <AccordionContent className='pb-7 text-base leading-relaxed text-muted-foreground'>
                   {item.answer}

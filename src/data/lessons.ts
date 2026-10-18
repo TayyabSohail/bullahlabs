@@ -1,6 +1,6 @@
 import type { Locale } from '@/i18n/config';
 
-import { lessonsDe } from './lessons.de';
+import { coursesDe } from './lessons.de';
 
 /**
  * The Conscious AI course as the site plays it: modules of short video
@@ -38,6 +38,15 @@ export interface CourseModule {
   /** One line under the title. */
   tagline: string;
   lessons: Lesson[];
+}
+
+/** A course: a named set of modules. The player lists every course. */
+export interface Course {
+  id: string;
+  title: string;
+  /** One line under the title. */
+  tagline: string;
+  modules: CourseModule[];
 }
 
 export const modules: CourseModule[] = [
@@ -118,8 +127,18 @@ export const modules: CourseModule[] = [
   },
 ];
 
-export function getModules(locale: Locale): CourseModule[] {
-  return locale === 'de' ? lessonsDe : modules;
+/** Every course the site plays. Add a course here and the player lists it. */
+export const courses: Course[] = [
+  {
+    id: 'conscious-ai',
+    title: 'Conscious AI',
+    tagline: 'Less AI, better AI: the free course.',
+    modules,
+  },
+];
+
+export function getCourses(locale: Locale): Course[] {
+  return locale === 'de' ? coursesDe : courses;
 }
 
 /** Every lesson in order, with the module it belongs to. */

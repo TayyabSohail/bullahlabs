@@ -23,7 +23,7 @@ export function WhoWeAre({ dict, className }: WhoWeAreProps) {
 
   return (
     <section
-      className={cn('bl-section bl-rule bl-band-white', className)}
+      className={cn('bl-section bl-rule bl-band-stone', className)}
       data-rail={t.kicker}
     >
       <div className='bl-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20'>

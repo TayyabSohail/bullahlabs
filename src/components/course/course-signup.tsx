@@ -199,10 +199,6 @@ export function CourseSignup({
         className,
       )}
     >
-      <div
-        aria-hidden='true'
-        className='pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand/25 blur-[80px]'
-      />
       <div className='relative'>
         <p className='bl-kicker text-white/60'>{kicker ?? t.kicker}</p>
         <h3 className='bl-display mt-4 text-2xl text-white sm:text-3xl'>

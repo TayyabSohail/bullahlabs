@@ -107,7 +107,7 @@ export function SectionRail({ next, top }: SectionRailProps) {
           animate={{ y: 0 }}
           exit={{ y: '110%' }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className='fixed inset-x-0 bottom-0 z-[45] border-t border-line bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl lg:hidden'
+          className='fixed inset-x-0 bottom-0 z-[45] border-t border-ink/80 bg-background pb-[env(safe-area-inset-bottom)] lg:hidden'
         >
           <div className='bl-container flex h-12 items-center justify-between gap-3'>
             <div

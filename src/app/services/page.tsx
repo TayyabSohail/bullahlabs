@@ -41,7 +41,7 @@ export default async function ServicesPage() {
       <Services dict={dict} heading={false} className='pt-0' />
       <HowItWorks dict={dict} />
       <Technologies dict={dict} />
-      <Principles dict={dict} className='bl-band-white' />
+      <Principles dict={dict} className='bl-band-stone' />
       <CtaBanner dict={dict} />
     </>
   );

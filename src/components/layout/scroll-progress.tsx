@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useSpring } from 'framer-motion';
 
-/** Solid reading-progress bar pinned to the very top of the viewport. */
+/** Reading-progress line pinned to the top of the viewport. */
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -15,7 +15,7 @@ export function ScrollProgress() {
     <motion.div
       aria-hidden='true'
       style={{ scaleX }}
-      className='pointer-events-none fixed inset-x-0 top-0 z-[55] h-[3px] origin-left bg-brand'
+      className='pointer-events-none fixed inset-x-0 top-0 z-[55] h-1 origin-left bg-brand'
     />
   );
 }

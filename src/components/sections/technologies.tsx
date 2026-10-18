@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
+/** The dimmed marquee: a mix of what we build with and what we teach. */
 const TOOLS = [
   'Next.js',
   'React',
@@ -15,29 +16,34 @@ const TOOLS = [
   'Flutter',
   'Python',
   'FastAPI',
-  'Django',
   'PostgreSQL',
   'Supabase',
   'OpenAI',
   'Claude',
+  'Google Gemini',
+  'Perplexity',
+  'GitHub Copilot',
+  'Ollama',
   'LangGraph',
-  'PyTorch',
   'Hugging Face',
   'n8n',
+  'Zapier',
+  'Notion',
+  'Slack',
   'AWS',
   'Vercel',
   'Docker',
-  'Kubernetes',
-  'Terraform',
   'Stripe',
-  'WebSockets',
-  'Directus',
-  'OpenRouter',
   'PostHog',
 ];
 
-/** Tools per layer, in the same order as `dict.technologies.layers`. */
+/**
+ * Tools per layer, in the same order as `dict.technologies.layers`. Kept to
+ * what a non-technical reader may recognise or can look up in one search;
+ * deep infrastructure (orchestration, IaC, task queues) stays out on purpose.
+ */
 const LAYERS = [
+  // Websites and web apps
   [
     'Next.js',
     'React',
@@ -45,18 +51,21 @@ const LAYERS = [
     'Tailwind CSS',
     'ShadCN',
     'Framer Motion',
-    'TanStack',
+    'Directus',
+    'Vercel',
   ],
+  // Mobile apps
   [
     'React Native',
     'Expo',
     'Flutter',
     'Swift',
     'Kotlin',
-    'Firebase',
-    'Capacitor',
     'iOS',
+    'Android',
+    'Firebase',
   ],
+  // Logic and data
   [
     'Python',
     'FastAPI',
@@ -65,48 +74,44 @@ const LAYERS = [
     'PostgreSQL',
     'Supabase',
     'Redis',
-    'Pandas',
-    'Zod',
     'Stripe',
-    'WebSockets',
     'Resend',
+    'WebSockets',
   ],
+  // AI, used with care
   [
     'OpenAI',
     'Claude',
-    'LangGraph',
-    'LangChain',
-    'Hugging Face',
-    'PyTorch',
+    'Google Gemini',
+    'Perplexity',
+    'GitHub Copilot',
     'Ollama',
-    'Pinecone',
     'OpenRouter',
-    'DataForSEO',
-    'Google Maps API',
+    'LangGraph',
+    'Hugging Face',
+    'Pinecone',
   ],
+  // Automation
   [
     'n8n',
     'Zapier',
     'Make',
     'Trigger.dev',
-    'Celery',
-    'Apache Airflow',
-    'Puppeteer',
+    'Notion',
+    'Slack',
+    'Airtable',
     'Twilio',
-    'pg_cron',
-    'PostHog',
   ],
+  // Hosting and running
   [
     'AWS',
+    'Google Cloud',
     'Vercel',
     'Docker',
-    'Kubernetes',
-    'Terraform',
     'CI/CD',
-    'AWS EC2',
-    'AWS Lambda',
-    'Google Cloud',
-    'Directus',
+    'Monitoring',
+    'PostHog',
+    'Cal.com',
   ],
 ];
 
@@ -170,7 +175,7 @@ export function Technologies({ dict }: TechnologiesProps) {
         </Marquee>
       </div>
 
-      <div className='bl-container py-14 sm:py-24'>
+      <div className='bl-container py-10 sm:py-14'>
         <ScrollHighlight
           text={t.statement}
           className='bl-display max-w-3xl text-display-md text-ink'
@@ -182,7 +187,7 @@ export function Technologies({ dict }: TechnologiesProps) {
         </Reveal>
       </div>
 
-      <div className='bl-container pb-14 sm:pb-24'>
+      <div className='bl-container pb-10 sm:pb-14'>
         <Reveal>
           <p className='bl-kicker'>{t.stackLabel}</p>
         </Reveal>

@@ -16,7 +16,7 @@ export function GlobalReach({ dict }: GlobalReachProps) {
 
   return (
     <section
-      className='bl-section bl-rule bl-band-white overflow-hidden'
+      className='bl-section bl-rule bl-band-stone overflow-hidden'
       data-rail={t.kicker}
     >
       <div className='bl-container grid items-center gap-8 sm:gap-12 lg:grid-cols-[1fr_0.95fr]'>
@@ -59,10 +59,6 @@ export function GlobalReach({ dict }: GlobalReachProps) {
           delay={0.1}
           className='relative mx-auto w-full max-w-[400px] sm:max-w-[560px]'
         >
-          <div
-            aria-hidden='true'
-            className='absolute inset-[10%] rounded-full bg-brand/10 blur-[80px]'
-          />
           <Globe />
           <p className='mt-2 text-center font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground'>
             {t.legend}

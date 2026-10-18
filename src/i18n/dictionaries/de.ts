@@ -26,77 +26,60 @@ export const de: Dictionary = {
     body: 'Wir entwerfen, bauen und verbessern digitale Produkte mit Blick auf ihre Wirkung in der echten Welt. Von den Systemen, die wir bauen, bis zur KI, die wir nutzen, konzentrieren wir uns auf das, was nützlich ist, was verantwortbar ist und was es wert ist, gebaut zu werden.',
     primary: 'Projekt besprechen',
     secondary: 'Projekte ansehen',
-    cases: {
+    map: {
       kicker:
-        'Echte Projekte: das Problem, was wir gebaut haben, das Ergebnis.',
-      heading: 'Echte Projekte',
-      stages: {
-        problem: 'Das Problem',
-        built: 'Was wir gebaut haben',
-        conscience: 'Mit Gewissen',
-        result: 'Das Ergebnis',
+        'Conscious AI: KI nur, wo sie hilft, so wenig wie nötig, von Ihnen geprüft.',
+      taskLabel: 'Aufgabe',
+      nodes: {
+        task: 'Ihre Aufgabe',
+        decide: 'KI nötig?',
+        tool: 'Kleines\nModell',
+        context: 'Weniger\nInput',
+        check: 'Sie prüfen',
+        result: 'Weniger\nVerbrauch',
       },
-      link: 'Zur Fallstudie',
-      cases: [
+      meter: {
+        label: 'Rechenaufwand',
+        usual: 'wie üblich',
+        none: 'kein Modell läuft',
+        lean: 'nur so viel wie nötig',
+      },
+      scenarios: [
         {
-          slug: 'bank-islami-pep',
-          client: 'BankIslami',
-          problem:
-            'Analysten öffneten jeden Morgen Dutzende Nachrichtenseiten und suchten Hunderte Namen von Hand.',
-          built:
-            'Eine Plattform, die die Tagesnachrichten liest, mit der PEP-Liste abgleicht und den Risikobericht erstellt.',
-          conscience:
-            'Eine Scoring-Pipeline liest. Die Entscheidung treffen Analysten.',
-          value: '30 Min.',
-          label: 'Morgen-Triage statt vier Stunden',
+          task: 'Einen 40-seitigen Vertrag zusammenfassen',
+          ai: true,
+          decide: 'Ja. Einen Entwurf beurteilen Sie schnell.',
+          tool: 'Ein kleines Modell. Das größte bringt nichts.',
+          context: 'Drei Klauseln gehen rein. Nicht vierzig Seiten.',
+          check: 'Sie lesen. Sie entscheiden, was bleibt.',
+          result: 'Gleiches Ergebnis. Ein Bruchteil des Aufwands.',
         },
         {
-          slug: 'bitsmiths-hrm',
-          client: 'Bitsmiths Studio',
-          problem:
-            'Urlaub, Spesen, Überstunden und Lohnabrechnung für ein ganzes Studio, jeden Monat von Hand berechnet.',
-          built:
-            'Ein HR-System, in dem Freigaben in einen Payroll-Lauf fließen, der berechnet, sperrt und exportiert.',
-          conscience:
-            'Lohnabrechnung ist Arithmetik, also laufen Regeln. Kein KI-Modell im Spiel.',
-          value: '0',
-          label: 'manuelle Payroll-Berechnungen',
+          task: 'Marge auf 200 Auftragszeilen',
+          ai: false,
+          decide: 'Nein. Eine Formel ist exakt. Ein Modell rät.',
+          tool: 'Eine Tabelle. Kein Modell läuft.',
+          context: 'Ihre Zahlen verlassen Ihren Rechner nicht.',
+          check: 'Stichprobe gegen den Vormonat.',
+          result: 'Exakte Zahlen. Null Rechenaufwand.',
         },
         {
-          slug: 'curio-market',
-          client: 'E-Commerce-Marktplatz',
-          problem:
-            'Auszahlungen an Verkäufer und Sendungsverfolgung liefen von Hand, und der Support-Posteingang zeigte es.',
-          built:
-            'Ein Multi-Seller-Marktplatz mit Stripe-Connect-Auszahlungen und DHL-Tracking, die von allein laufen.',
-          conscience:
-            'Die zwei Pfade mit der meisten Handarbeit wurden zuerst automatisiert.',
-          value: '70 %',
-          label: 'weniger Support-Anfragen',
+          task: 'Einem verärgerten Kunden antworten',
+          ai: true,
+          decide: 'Ja, für den Ton. Die Fakten bleiben Ihre.',
+          tool: 'Ein kleines Modell, drei Sätze bestellt.',
+          context: 'Die Beschwerde und Ihre Richtlinie. Sonst nichts.',
+          check: 'Sie lesen einmal. Sie drücken auf Senden.',
+          result: 'Eine Runde statt fünf. In Ihren Worten.',
         },
         {
-          slug: 'rankloom',
-          client: 'SEO-Plattform',
-          problem:
-            'SEO-Teams sprangen den ganzen Tag zwischen Tools und kauften dieselben Keyword-Daten immer wieder.',
-          built:
-            'Eine Plattform für Keyword-Recherche, KI-Content und Rank-Tracking, mit gebündelten und gecachten Anfragen.',
-          conscience:
-            'Dieselben Daten werden nie zweimal gekauft. Modelle lassen sich ohne Umbau tauschen.',
-          value: '3x',
-          label: 'geringere Kosten pro Artikel',
-        },
-        {
-          slug: 'qa-compliance-agent',
-          client: 'Prüfungsgesellschaft',
-          problem:
-            'Berichte wurden Klausel für Klausel von Hand gegen die Standards geprüft.',
-          built:
-            'Ein KI-Reviewer, der jeden Befund als nachverfolgbare Änderung mit Klausel und Begründung zurückgibt.',
-          conscience:
-            'Jeder Befund lässt sich an Ort und Stelle prüfen. Nichts wird blind übernommen.',
-          value: '2x',
-          label: 'schnellere Dokumentenprüfung',
+          task: 'Die Produktseite für Deutschland übersetzen',
+          ai: true,
+          decide: 'Ja. Ein Entwurf, dann ein Muttersprachler.',
+          tool: 'Ein Übersetzungsmodell, kein Chat-Riese.',
+          context: 'Die Seite und Ihr Glossar. Nicht die ganze Website.',
+          check: 'Ein Muttersprachler liest jede Zeile.',
+          result: 'Heute live. Nichts neu generiert. Ton getroffen.',
         },
       ],
     },
@@ -142,26 +125,35 @@ export const de: Dictionary = {
   },
   technologies: {
     kicker: 'Werkzeuge und Technologie',
-    statement: 'Bewährte Werkzeuge. Aus gutem Grund gewählt.',
+    statement: 'Bewährte Werkzeuge. Mit Bedacht gewählt, nicht aus Gewohnheit.',
     statementMuted:
-      'Etablierte Technologien, die zu Problem, Team und Produkt passen, gewählt, damit Systeme gut funktionieren und praktisch zu betreiben und zu verbessern bleiben.',
-    stackLabel: 'Der Stack, nach Ebene',
+      'Wir setzen auf etablierte Technologie, die zu Problem, Team und Budget passt. Nichts kommt dazu, nur weil es neu oder im Trend ist. Jedes Werkzeug muss sich seinen Platz verdienen, verständlich bleiben und im Betrieb wenig Zeit, Geld und Energie kosten.',
+    stackLabel: 'Womit wir bauen, in einfachen Worten',
     layers: [
-      { label: 'Oberfläche', note: 'Was Ihre Nutzer sehen und bedienen.' },
       {
-        label: 'Mobile',
-        note: 'iOS und Android, nativ oder plattformübergreifend.',
+        label: 'Websites und Web-Apps',
+        note: 'Was Menschen im Browser öffnen. Schnell, barrierearm und einfach aktuell zu halten.',
       },
-      { label: 'Backend & Daten', note: 'Wo die Wahrheit liegt.' },
       {
-        label: 'KI-Systeme',
-        note: 'Modelle, Retrieval und Agenten auf Ihren Daten.',
+        label: 'Mobile Apps',
+        note: 'iOS und Android, nativ oder eine Codebasis für beide.',
+      },
+      {
+        label: 'Logik und Daten',
+        note: 'Wo Ihre Geschäftsregeln und Datensätze liegen. Konsistent, privat und sicher.',
+      },
+      {
+        label: 'KI, mit Bedacht eingesetzt',
+        note: 'Die Modelle, mit denen wir bauen, und die Assistenten, deren guten Einsatz wir vermitteln. Nur dort, wo sie wirklich helfen.',
       },
       {
         label: 'Automatisierung',
-        note: 'Abläufe, die ohne Menschen im Loop laufen.',
+        note: 'Wiederkehrende Arbeit, die von selbst läuft, während ein Mensch prüft, was zählt.',
       },
-      { label: 'Cloud & Betrieb', note: 'Wo es läuft und weiterläuft.' },
+      {
+        label: 'Hosting und Betrieb',
+        note: 'Wo es läuft, wie Updates live gehen und woran wir erkennen, dass alles gesund ist.',
+      },
     ],
   },
   howItWorks: {
@@ -305,11 +297,12 @@ export const de: Dictionary = {
     watch: 'Ganzen Kurs ansehen',
     request: 'Schulung für ein Team',
     player: {
+      courses: 'Kurse',
+      course: 'Kurs',
       modules: 'Module',
       module: 'Modul',
       lesson: 'Lektion',
       lessons: 'Lektionen',
-      published: 'veröffentlicht',
       watched: 'gesehen',
       watchedTag: 'Gesehen',
       minutes: 'Min.',
@@ -317,9 +310,11 @@ export const de: Dictionary = {
       nothingYet:
         'Diese Lektion wird gerade aufgenommen. Wir sagen Bescheid, sobald sie online ist.',
       listLabel: 'Kursmodule und Lektionen',
+      search: 'Lektionen durchsuchen',
+      clearSearch: 'Suche löschen',
+      noResults: 'Keine Lektion passt',
       previous: 'Vorherige Lektion',
       next: 'Nächste Lektion',
-      upNext: 'Als Nächstes',
       play: 'Abspielen',
       pause: 'Pause',
       mute: 'Stumm',
@@ -557,6 +552,7 @@ export const de: Dictionary = {
     solution: 'Lösung',
     resultsKicker: 'Die Wirkung',
     resultsTitle: 'Was leichter, besser oder wirksamer wurde.',
+    learning: 'Die Erkenntnis',
     gallery: 'Im Produkt',
     onThePhone: 'Auf dem Telefon',
     galleryTitle: 'Mehr als ein Screen.',
@@ -755,6 +751,5 @@ export const de: Dictionary = {
     legal: 'Rechtliches',
     rights: 'Alle Rechte vorbehalten.',
     backToTop: 'Nach oben',
-    status: 'Online',
   },
 };

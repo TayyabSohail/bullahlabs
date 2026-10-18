@@ -145,11 +145,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
 
         <Reveal delay={0.3} className='relative mt-14'>
-          <div
-            aria-hidden='true'
-            className='absolute inset-x-1/4 top-1/4 -z-10 h-1/2 rounded-full opacity-30 blur-[120px]'
-            style={{ background: project.accent }}
-          />
           <Parallax distance={40} scaleFrom={0.97}>
             <ProjectMockup
               project={project}
@@ -323,6 +318,16 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <p className='mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg'>
                 {project.resultsSummary}
               </p>
+              {project.learning && (
+                <div className='mt-8 border-l-2 border-brand-2 pl-5'>
+                  <p className='font-mono text-[10px] uppercase tracking-[0.16em] text-brand-2'>
+                    {t.learning}
+                  </p>
+                  <p className='mt-3 max-w-lg text-sm leading-relaxed text-white/70 sm:text-[15px]'>
+                    {project.learning}
+                  </p>
+                </div>
+              )}
               {testimonial && (
                 <figure className='mt-10 border-t border-white/10 pt-8 lg:mt-auto'>
                   <Quote className='h-6 w-6 text-brand-2' />

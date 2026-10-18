@@ -162,6 +162,11 @@ export interface Project {
   approach: string;
   /** One paragraph on what changed for the client after launch. Opens the results section. */
   resultsSummary: string;
+  /**
+   * Where the project genuinely helped people understand or use technology
+   * more thoughtfully. Set only when a client has said so; never implied.
+   */
+  learning?: string;
   /** Headline figures for the results section, three per project. */
   results: ProjectResult[];
   architecture: string;
@@ -256,29 +261,31 @@ export const projects: Project[] = [
     anonymised: true,
     headline: { value: '1M UGX', label: 'to start owning property' },
     problem:
-      'Most people in East Africa will never own an apartment, not for lack of savings, but because property sells in one indivisible lump. Capital is locked up for years, rental income means becoming a landlord, and there is no transparency on what a building actually earns.',
+      'Most people in East Africa will never own an apartment, not for lack of savings, but because property sells in one indivisible lump. Capital is locked up for years, rental income means becoming a landlord, and nobody outside the owner can see what a building actually earns. What needed to change was the unit of ownership: small enough for an ordinary saver, exact enough to be trusted with other people’s money.',
     approach:
-      'We built a two-sided members club: a vetted application and onboarding funnel, a wallet every shilling passes through, three ways to own, and an internal resale market for exits. Every financial decision routes through a real admin.',
+      'We designed and built the members club end to end: a vetted application and onboarding funnel, a wallet every shilling passes through, three ways to own a share of an apartment, monthly rent distribution split by exact stake, and an internal resale market for exits. Every money movement routes through a real admin, and the platform’s fees and minimums are settings the team changes without a release.',
     resultsSummary:
-      'Brickfold launched as a working members club, not a waitlist. Members apply, fund a wallet, buy into apartments, collect their share of the rent and exit through the secondary market, and every shilling of it reconciles to the ledger.',
+      'Brickfold launched as a working members club, not a waitlist. A member can apply, fund a wallet, buy into an apartment from 1,000,000 UGX, collect their share of the rent and sell their stake to another member when they want out. For the team, every balance reconciles to the ledger and every decision has a name on it, which is what makes it possible to hold other people’s money with a clear conscience.',
+    learning:
+      'Before any of it was built, each ledger rule was explained in plain language and agreed with the founder: why percentages are derived rather than stored, why every split rounds down, why a person approves each movement. The team runs the platform knowing why it behaves the way it does, not just how.',
     results: [
       {
         value: '1M UGX',
         label: 'minimum stake to co-own an apartment',
         detail:
-          'Property that only ever sold as one indivisible lump now opens at a price ordinary savers can reach.',
+          'Property that only ever sold as one indivisible lump now opens at a price an ordinary saver can reach.',
       },
       {
         value: '3',
         label: 'ownership products on one ledger',
         detail:
-          'Fractional, Live and Prime share the same wallet, rent distribution and secondary market.',
+          'Fractional, Live and Prime share the same wallet, rent distribution and secondary market, so a member learns one system, not three.',
       },
       {
         value: '100%',
         label: 'of money movements approved by a person',
         detail:
-          'Every deposit, investment, rent credit and withdrawal passes the admin desk before it settles.',
+          'Every deposit, investment, rent credit and withdrawal passes the admin desk before it settles. Nothing moves because software decided it should.',
       },
     ],
     architecture:
@@ -402,29 +409,31 @@ export const projects: Project[] = [
     anonymised: true,
     headline: { value: '3x', label: 'lower cost per article' },
     problem:
-      'SEO teams switched between five different tools just to get from keyword discovery to tracking, wasting hours and risking inconsistent data. Most tools also lean on stale keyword and ranking data, so teams react slowly to search trends.',
+      'SEO teams switched between five tools to get from keyword discovery to rank tracking, losing hours a day and ending up with numbers that did not agree. Most of those tools also ran on stale data, so teams reacted late to what search was actually doing. The work needed to collapse into one place, run on live data, and cost less than the tools it replaced.',
     approach:
-      'One platform: an AI content engine on OpenRouter wired to live DataForSEO and Google Maps data, with Trigger.dev running bulk jobs and caching in the background.',
+      'We built one platform: keyword research and rank tracking on live DataForSEO and Google Maps data, an AI content engine routed through OpenRouter so models can be swapped without touching product code, and Trigger.dev running bulk generation as resumable background jobs. Requests are batched and cached by keyword and locale, so the same data is never bought twice.',
     resultsSummary:
-      'Rankloom replaced five separate SEO tools with one platform. Keyword research, drafting and rank tracking run as automated workflows the team reviews rather than operates, and the largest cost line in the business fell by half.',
+      'Rankloom replaced five separate tools with one. Keyword research, drafting and rank tracking run as workflows the team reviews rather than operates, drafts arrive with an SEO score attached, and the largest cost line in the business, keyword data, fell by half without the data getting any older.',
+    learning:
+      'The product team now sees what a tracked keyword and a generated article actually cost. The conversations about which requests would be expensive later happened before anything was built, not after.',
     results: [
       {
         value: '3x',
         label: 'lower cost per article',
         detail:
-          'Drafting, optimisation and publishing run as one automated workflow instead of a chain of tools and hand-offs.',
+          'Drafting, optimisation and publishing run as one workflow instead of a chain of tools and hand-offs, so an article costs a third of what it did.',
       },
       {
         value: '30',
         label: 'articles generated in 10 minutes',
         detail:
-          'A batch that previously cost the content team hours, now a resumable background job with an SEO score per draft.',
+          'A batch that used to take the content team hours is now a resumable background job, with an SEO score on each draft so the editor knows where to start.',
       },
       {
         value: '50%',
         label: 'lower keyword tracking spend',
         detail:
-          'From $0.18 to $0.09 per tracked keyword, with no loss of data freshness.',
+          'From $0.18 to $0.09 per tracked keyword, with no loss of freshness. The same data is simply not bought twice.',
       },
     ],
     architecture:
@@ -535,11 +544,11 @@ export const projects: Project[] = [
     anonymised: true,
     headline: { value: '1,000+', label: 'people bidding at once' },
     problem:
-      'Student housing is dominated by fixed-price listings with no room to negotiate, scattered across unreliable platforms. Parents fund most of these rentals but have no way into the process at all.',
+      'Student housing is dominated by fixed-price listings with no room to negotiate, scattered across platforms nobody trusts. Parents pay for most of these rentals and have no way into the process at all. The market needed a place where the price could be found openly, where every bidder saw the same number, and where a parent could act on a student’s behalf.',
     approach:
-      'We designed a live bidding system over WebSockets with sub-200 ms updates, backed by data models tuned for listings, bids and notifications, and separate dashboards scoped to each role.',
+      'We designed and built a live bidding marketplace over WebSockets, with bid acceptance serialised on the server so there is one authoritative order, and real-time subscriptions scoped per listing so each screen receives only the bids it is watching. Students, parents and landlords each got a dashboard built for their role, with messaging, service booking and notifications on top.',
     resultsSummary:
-      'Bidnest went live for a semester rush and held. A thousand students can bid on the same listing at once, every bidder sees the same price within a fifth of a second, and students, parents and landlords each work from a view built for their role.',
+      'Bidnest went live for a semester rush and held. A thousand students can bid on the same listing at once and all of them see the same price within a fifth of a second. Parents can bid and message on a student’s behalf for the first time, and landlords let the market find the price instead of guessing it.',
     results: [
       {
         value: '1,000+',
@@ -551,7 +560,7 @@ export const projects: Project[] = [
         value: '200 ms',
         label: 'from a bid to every screen updating',
         detail:
-          'Live updates keep students, parents and landlords looking at the same number.',
+          'Students, parents and landlords are looking at the same number at the same moment, which is what makes an open auction fair.',
       },
       {
         value: '3',
@@ -664,29 +673,31 @@ export const projects: Project[] = [
     anonymised: true,
     headline: { value: '70%', label: 'fewer support requests' },
     problem:
-      'Most ecommerce shows a generic feed, burying shoppers in options that do not match their style. Sellers get basic tools with no view of orders or payouts, and manual payment handling plus opaque delivery erodes trust at checkout.',
+      'Most ecommerce shows every shopper the same feed, burying them in options that do not match their taste. Sellers got basic tools with no clear view of orders or payouts, and manual payment handling plus opaque delivery meant the support inbox filled with the same two questions. The marketplace needed to feel personal to shoppers and run itself for sellers.',
     approach:
-      'We built a server-rendered recommendation engine over a multi-tenant Supabase architecture with strict data isolation, then automated the money and logistics paths end to end with Stripe Connect and the DHL API.',
+      'We sat with the support queue first, then built: a server-rendered recommendation engine driven by an eight-question taste quiz, a multi-tenant Supabase architecture with seller isolation enforced at the database, and the two paths that caused most of the work, seller payouts and delivery tracking, automated end to end with Stripe Connect and DHL webhooks, with status shown directly in the order view.',
     resultsSummary:
-      'Curio Market went from a generic storefront to a marketplace that learns what each shopper likes and gets out of the way at checkout. Sellers are paid on schedule, parcels track themselves, and the support inbox went quiet.',
+      'Curio Market went from a generic storefront to a marketplace that learns what each shopper likes and gets out of the way at checkout. Sellers are paid on schedule and can see it, parcels track themselves, and the support inbox went quiet. The client’s own team runs the platform today.',
+    learning:
+      'Handover was treated as part of the build. The operations team was walked through how payouts, tracking and tenant isolation work and why they were built that way, thoroughly enough that they now run the marketplace without us.',
     results: [
       {
         value: '40%',
         label: 'increase in shopper engagement',
         detail:
-          'An eight-question taste quiz turns a generic feed into a personal one for every returning visitor.',
+          'An eight-question taste quiz turns a generic feed into a personal one, so returning shoppers find things they actually want.',
       },
       {
         value: '70%',
         label: 'fewer support tickets',
         detail:
-          'Automated Stripe Connect payouts and DHL tracking removed the two questions that filled the inbox.',
+          'Automated payouts and tracking removed the two questions that filled the inbox, and the answers now sit in the order view where people already look.',
       },
       {
         value: '1',
         label: 'checkout across every seller',
         detail:
-          'Shoppers pay once; Stripe Connect splits the payment and settles each seller on schedule.',
+          'Shoppers pay once; Stripe Connect splits the payment and settles each seller on schedule, with nobody moving money by hand.',
       },
     ],
     architecture:
@@ -795,11 +806,13 @@ export const projects: Project[] = [
     year: '2026',
     headline: { value: '0', label: 'manual payroll calculations' },
     problem:
-      'People operations were scattered across email, chat and paper: onboarding by email, leave and overtime in messages, medical claims on paper, and payroll assembled by hand each month from all of it. Nothing reconciled, and nothing was auditable.',
+      'People operations at Bitsmiths Studio were scattered across email, chat and paper: onboarding by email, leave and overtime in messages, medical claims on paper, and payroll assembled by hand each month from all of it. Nothing reconciled and nothing was auditable. The studio needed one place where every request had a status and payroll could not be wrong.',
     approach:
-      'One system where every request is a row with a status. Employees submit; admins approve; approved leave, medical and overtime then sweep into a monthly payroll run that computes payslips and locks them.',
+      'We built one system where every request is a row with a status. Employees are invited, onboarded and activated; they file leave, medical claims and overtime; admins approve each one; and approved items sweep into a monthly payroll run that computes payslips, locks them and exports to Payoneer. Balances, payroll calculation and locking live in Postgres functions, because payroll is arithmetic and should run on rules.',
     resultsSummary:
-      'Bitsmiths Studio now runs its people operations from one system instead of email, chat and paper. Every request is a row with a status, every approval is traceable, and payroll is a locked run that computes itself.',
+      'The studio now runs its people operations from one system instead of email, chat and paper. Every request is traceable, people are told where their request stands without asking, and payroll is a locked run that computes itself. When a subtlety surfaced, such as late approvals risking double payment, it was explained, fixed and documented in the same week.',
+    learning:
+      'Because the payroll rules live in the database and are written down, the people running payroll understand what each number is made of. The pitfalls found during the build, double counting and lost overrides, are documented so the next person does not rediscover them.',
     results: [
       {
         value: '0',
@@ -811,7 +824,7 @@ export const projects: Project[] = [
         value: '5',
         label: 'workflows in one system',
         detail:
-          'Onboarding, leave, medical claims, overtime and payroll replaced five separate channels.',
+          'Onboarding, leave, medical claims, overtime and payroll replaced five separate channels, so nobody has to remember where a request went.',
       },
       {
         value: '12',
@@ -915,11 +928,11 @@ export const projects: Project[] = [
     year: '2025',
     headline: { value: '30 days', label: 'from idea to shipped MVP' },
     problem:
-      'The studio pitches production-ready MVPs in 30 days to founders comparing it against agencies charging many times more. That claim needs visible proof, and the team needed to publish it without a developer in the loop.',
+      'The studio pitches production-ready MVPs in 30 days to founders who are comparing it against agencies charging many times more. That claim needs visible proof, and the proof changes every month: new case studies, articles and testimonials. The team needed to publish all of it without a developer in the loop.',
     approach:
-      'Next.js over a Directus CMS, so every content surface is editable. The page is ordered as an argument: promise, proof, objections, one call to action.',
+      'We built the marketing site on Next.js over a Directus CMS, modelling every content surface once and rendering it through shared templates. The page is ordered as an argument: promise, proof, objections, one call to action. Media is converted to WebP per request, so nobody exports images by hand.',
     resultsSummary:
-      'The site does the studio’s selling. Case studies, articles, testimonials and FAQs publish from the CMS without a developer in the loop, and the page walks a founder from the 30-day promise to the proof to a single call to action.',
+      'The site does the studio’s selling. Case studies, articles, testimonials and FAQs publish from the CMS on save, so the proof behind the 30-day promise stays current without engineering time, and a founder who reads to the end arrives at the enquiry form already informed.',
     results: [
       {
         value: '30 days',
@@ -931,7 +944,7 @@ export const projects: Project[] = [
         value: '4',
         label: 'content types publishable without a deploy',
         detail:
-          'Case studies, posts, testimonials and FAQs are edited in Directus and go live on save.',
+          'Case studies, posts, testimonials and FAQs are edited in Directus and go live on save, by whoever wrote them.',
       },
       {
         value: '1',
@@ -1043,17 +1056,17 @@ export const projects: Project[] = [
     year: '2025',
     headline: { value: '70%', label: 'less paperwork' },
     problem:
-      'Real estate agencies managed CRM, compliance, marketing and document workflows across disconnected tools and manual processes. They had no unified system for client and property management or agreement generation.',
+      'Estate agencies ran CRM, compliance, marketing and documents across disconnected tools and manual processes, and each agency did it slightly differently. There was no shared system for clients and properties, and agreements were retyped from scratch. The group needed one platform that fitted thirty agencies without becoming thirty products.',
     approach:
-      'We built a multi-tenant AI system with specialised CRM, compliance and knowledge agents, then connected them to a marketing module and a complete document generation and e-signing pipeline.',
+      'We built a multi-tenant platform with three specialised agents, for CRM, compliance and knowledge, coordinated by LangGraph, rather than one general assistant handed everything. Agency differences sit behind CRM integrations so the workflow stays shared, and a marketing module and a document generation and e-signing pipeline complete the operating system.',
     resultsSummary:
-      'More than thirty agencies now run CRM, compliance, marketing and paperwork on one platform. Agreements generate from templates and go straight to e-signature, and the specialised agents handle the work that used to sit in inboxes.',
+      'More than thirty agencies now run CRM, compliance, marketing and paperwork on one platform. Tenancy agreements generate from templates and go straight to e-signature instead of being retyped, and the agents handle the routine work that used to sit in inboxes, so people spend more of their day with clients.',
     results: [
       {
         value: '30+',
         label: 'agencies on one platform',
         detail:
-          'Each with its own CRM integration and workflows, served from a single multi-tenant deployment.',
+          'Each with its own CRM integration and workflows, served from a single multi-tenant deployment, so an improvement reaches everyone at once.',
       },
       {
         value: '70%',
@@ -1065,7 +1078,7 @@ export const projects: Project[] = [
         value: '3',
         label: 'specialised AI agents',
         detail:
-          'CRM, compliance and knowledge agents scoped to each agency’s own data and coordinated by LangGraph.',
+          'CRM, compliance and knowledge agents scoped to each agency’s own data and coordinated by LangGraph, each doing one job well.',
       },
     ],
     architecture:
@@ -1159,29 +1172,31 @@ export const projects: Project[] = [
     year: '2025',
     headline: { value: '2x', label: 'faster document review' },
     problem:
-      'Manual compliance and audit reviews against established standards were slow and inconsistent between reviewers, with each report taking about a week to complete.',
+      'Compliance and audit reviews against established standards were done by hand. Each report took about a week, and two reviewers could reach different conclusions on the same document. The firm wanted reviews to be faster and consistent, but was rightly sceptical of AI in audit work and would not accept findings it could not verify.',
     approach:
-      'We built an agent that checks uploaded reports against an established standards dataset, then generates a findings report with clause-level tracked changes and AI-written comments explaining every flagged issue.',
+      'We built an agent that checks uploaded reports against the firm’s standards dataset and returns a findings report as clause-level tracked changes, each with a written explanation and the standard it cites. We started with a small pilot, showed the reasoning behind every finding, and expanded only when the firm’s reviewers were satisfied.',
     resultsSummary:
-      'Reviews that took a week now take half that, and every finding cites the clause and the standard behind it. Reviewers spend their time on judgement calls instead of hunting for the paragraph that triggered an issue.',
+      'Reviews that took a week now take about half that, and every finding points at the clause and standard behind it. Reviewers spend their time on judgement calls instead of hunting for the paragraph that triggered an issue, and because every report goes through the same workflow, results are comparable between reviewers.',
+    learning:
+      'The pilot doubled as training. Reviewers learned to treat the agent’s findings as claims to check, not verdicts to accept, and the clause-level format made that check quick. Scepticism about AI in audit work turned into a working rule: it is useful exactly where its reasoning can be seen.',
     results: [
       {
         value: '2x',
         label: 'faster document review',
         detail:
-          'Turnaround on a compliance report fell from about a week to roughly half.',
+          'Turnaround on a compliance report fell from about a week to roughly half, with reviewers still making the final call.',
       },
       {
         value: '100%',
         label: 'of findings tied to a clause',
         detail:
-          'Each one arrives as a tracked change with the standard it cites and a written explanation.',
+          'Each one arrives as a tracked change with the standard it cites and a written explanation, so a reviewer can verify it where it stands.',
       },
       {
         value: '1',
         label: 'review standard for every report',
         detail:
-          'The same agent workflow evaluates every document, so results are consistent between reviewers and comparable across reports.',
+          'The same workflow evaluates every document, so results are consistent between reviewers and comparable across reports.',
       },
     ],
     architecture:
@@ -1273,17 +1288,17 @@ export const projects: Project[] = [
     year: '2025',
     headline: { value: '30+', label: 'interviews completed' },
     problem:
-      'Running structured general, podcast-style or recruitment interviews at scale required manual scheduling, live facilitation and transcript handling for every session.',
+      'Running structured interviews at scale, whether general, podcast-style or for recruitment, meant someone scheduling every session, someone facilitating it live and someone handling the transcript afterwards. The format was repeatable; the effort around it was not. The client needed interviews that ran themselves from invitation to transcript.',
     approach:
-      'We built a platform where users choose an interview type, description, style and custom intro or outro. It conducts the interview live through the OpenAI Realtime API, handles transcription, meeting links and invitations, then delivers the transcript automatically.',
+      'We built a platform where the user chooses an interview type, description, style and a custom intro or outro. It conducts the interview live through the OpenAI Realtime API with the transcript produced in the same session, generates meeting links and invitations, supports several candidates and CVs in recruitment rounds, and emails the transcript the moment the session ends.',
     resultsSummary:
-      'Interviews that needed a scheduler, a facilitator and someone to handle the transcript now run end to end on their own. The recruiter picks the format and the questions; the platform books, conducts and documents the session.',
+      'Interviews that needed a scheduler, a facilitator and a transcriber now run end to end on their own. The recruiter decides the format and the questions; the platform books, conducts and documents the session, and intern recruitment rounds are scored on the same rubric for every candidate.',
     results: [
       {
         value: '30+',
         label: 'interviews completed on the platform',
         detail:
-          'Intern recruitment rounds run live through the AI interviewer, each scored on the same rubric.',
+          'Intern recruitment rounds run live through the AI interviewer, each candidate scored on the same rubric.',
       },
       {
         value: '3',
@@ -1295,7 +1310,7 @@ export const projects: Project[] = [
         value: '0',
         label: 'manual steps after a session ends',
         detail:
-          'The transcript is generated live and emailed automatically when the interview closes.',
+          'The transcript is generated live and emailed automatically when the interview closes, so nobody types up a session.',
       },
     ],
     architecture:
@@ -1392,17 +1407,17 @@ export const projects: Project[] = [
     year: '2023-2024',
     headline: { value: '60%', label: 'faster shop setup' },
     problem:
-      'Resellers wanted to offer AI support agents to their own customers, but every deployment was bespoke, so onboarding a new shop took days of manual setup.',
+      'Resellers wanted to offer AI support agents to their own shops, but every deployment was bespoke, so onboarding one shop took days of manual setup. Worse, a shared index risked one shop’s content surfacing in another shop’s answers. The platform needed to provision shops in bulk and keep each one’s knowledge strictly its own.',
     approach:
-      'We built a multi-tenant MERN architecture where each shop runs an independent, context-aware agent, and layered automated provisioning on top so resellers could stand up bots in bulk rather than one at a time.',
+      'We built a multi-tenant MERN platform where each shop runs its own context-aware agent. Embeddings are partitioned per tenant in Pinecone, so retrieval can only reach the requesting shop’s namespace, and answers are grounded in that shop’s catalogue, orders and policies. Automated provisioning sits on top, so resellers set up shops in bulk from a management dashboard.',
     resultsSummary:
-      'Resellers now stand up AI support agents for their shops in bulk instead of one bespoke deployment at a time. Each bot answers only from its own shop’s catalogue, orders and policies, and hands over to a person when it cannot close a conversation.',
+      'Resellers now stand up support agents for their shops in bulk instead of one bespoke deployment at a time. Each bot answers only from its own shop’s content and hands over to a person when it cannot close a conversation, so shoppers get grounded answers and shop owners keep the final word.',
     results: [
       {
         value: '60%',
         label: 'faster shop onboarding',
         detail:
-          'Automated provisioning turned a multi-day manual setup into a bulk operation.',
+          'Automated provisioning turned a multi-day manual setup into a bulk operation a reseller runs from the dashboard.',
       },
       {
         value: '1',
@@ -1414,7 +1429,7 @@ export const projects: Project[] = [
         value: '100%',
         label: 'of answers grounded in the shop’s own content',
         detail:
-          'Retrieval runs over the catalogue, orders API and policies the reseller has allowed for that bot.',
+          'Retrieval runs over the catalogue, orders API and policies the reseller has allowed for that bot, and nothing outside them.',
       },
     ],
     architecture:
@@ -1508,17 +1523,17 @@ export const projects: Project[] = [
     year: '2024',
     headline: { value: '90%+', label: 'accurate movement checks' },
     problem:
-      'The rehabilitation journey was fragmented across manual intake, movement assessment, generic exercise plans and infrequent follow-up. Patients had little guidance between supervised sessions, and plans did not respond quickly to performance.',
+      'The rehabilitation journey was fragmented: manual intake, a movement assessment, a generic exercise plan and infrequent follow-up. Between supervised sessions patients had little guidance, and plans did not respond when a patient improved or struggled. Recovery needed to be one connected journey that adapted every day.',
     approach:
-      'We built the journey around an intake agent, guided movement assessment and automatic exercise plan generation. Daily logs drive plan progression or regression, while uploaded exercise videos receive AI feedback and injury articles inform future plans.',
+      'We built the journey end to end: an intake agent, guided movement assessment with instructional videos, automatic exercise plan generation informed by uploaded injury articles, daily logging, and AI feedback on uploaded exercise videos. Progression and regression are rules driven by the daily log; the model is used where judgement is needed, in intake, plan generation and video feedback.',
     resultsSummary:
-      'Patients now have guidance every day, not just at supervised sessions. Intake, movement assessment, plan generation and video feedback run as one connected journey, and the plan adapts to how the patient actually performed.',
+      'Patients now have guidance every day, not just at supervised sessions. The plan adapts to how they actually performed, form feedback arrives on the clips they upload, and the clinician reviews joint angles and corrections instead of guessing what happened between appointments.',
     results: [
       {
         value: '90%+',
         label: 'accuracy on movement and form checks',
         detail:
-          'Pose analysis on uploaded clips returns joint angles and corrective feedback the clinician can review.',
+          'Pose analysis on uploaded clips returns joint angles and corrective feedback the clinician can review before it reaches the patient.',
       },
       {
         value: '8 weeks',
@@ -1620,29 +1635,29 @@ export const projects: Project[] = [
     year: '2024',
     headline: { value: '40%', label: 'faster-loading pages' },
     problem:
-      'The existing site loaded slowly and ranked poorly, costing the company inbound leads before visitors ever saw the offering.',
+      'The company’s site loaded slowly and ranked poorly, so it lost inbound leads before a visitor ever saw the offering. It needed to be fast on the first visit, findable in search and built so that every page led somewhere.',
     approach:
-      'We rebuilt the site on Next.js with TypeScript for type safety and Tailwind for styling, then worked through the performance budget: code splitting, image optimisation and tuned rendering strategies per route.',
+      'We rebuilt the site on Next.js with TypeScript and Tailwind, then worked through the performance budget: routes pre-rendered where content allows, JavaScript split per route, images served through next/image with explicit dimensions and only the above-the-fold image prioritised, and SEO metadata on every route.',
     resultsSummary:
-      'The rebuilt site loads faster, ranks for the terms the company sells on and puts an enquiry within one scroll on every route. Inbound leads no longer bounce before they see the offering.',
+      'The rebuilt site loads 40% faster, ranks for the terms the company sells on, and puts an enquiry within one scroll on every route. Visitors see the offering before they have a chance to leave, and the rendering work is done once at build time rather than on every visit.',
     results: [
       {
         value: '40%',
         label: 'faster page loads',
         detail:
-          'Static-first rendering, route-level code splitting and optimised imagery across the site.',
+          'Static-first rendering, route-level code splitting and optimised imagery, so the first visit is the fast one.',
       },
       {
         value: '100%',
         label: 'of routes reach a call to action in one scroll',
         detail:
-          'Every page is built to move a visitor from the offering to an enquiry without hunting.',
+          'Every page moves a visitor from the offering to an enquiry without hunting.',
       },
       {
         value: '0',
         label: 'layout shift from imagery',
         detail:
-          'All images serve through next/image with explicit dimensions and modern formats.',
+          'All images serve through next/image with explicit dimensions and modern formats, so nothing jumps while the page loads.',
       },
     ],
     architecture:
@@ -1745,17 +1760,19 @@ export const projects: Project[] = [
     year: '2025',
     headline: { value: '38', label: 'news sources screened daily' },
     problem:
-      'Regulators expect banks to keep screening politically exposed persons for as long as the relationship lasts. The compliance team did this by hand: a morning spent across news sites, court lists and gazettes, searching for over a thousand names, then pasting findings into a spreadsheet. Stories were missed, the report landed late, and nobody could show an auditor how a name had been checked.',
+      'Regulators expect banks to keep screening politically exposed persons for as long as the relationship lasts. BankIslami’s compliance team did this by hand: a morning across news sites, court lists and gazettes, searching for over a thousand names, then pasting findings into a spreadsheet. Stories were missed, the report landed mid-afternoon, and nobody could show an auditor how a name had been checked. Screening needed to be complete, early and provable.',
     approach:
-      'We started with the sources, not the interface: a scheduled crawler that fetches every relevant Pakistani and international outlet at 06:00, normalises the articles and stores them in MongoDB. A matching engine scores each article against the bank’s PEP list using name variants, roles and locations, and only credible matches reach an analyst. The review queue, risk profiles and the generated report were then built once as a component library and shipped to the browser and to iOS and Android.',
+      'With Aawaz AI we started with the sources, not the interface: a scheduled crawler that fetches every relevant Pakistani and international outlet at 06:00, normalises the articles and stores them. A scoring pipeline matches each article against the bank’s PEP list on name variants, transliterations, role and city, and only matches above a confidence threshold reach an analyst, each showing which fields agreed. The review queue, risk profiles and signed daily report were built once as a component set and shipped to the browser and to iOS and Android.',
     resultsSummary:
-      'The compliance team now starts the day with a finished report instead of a morning of searching. Every relevant outlet is read before anyone arrives, only credible matches reach an analyst, and every decision on a name is recorded well enough to show an auditor.',
+      'The compliance team now starts the day with a finished report instead of a morning of searching. Every relevant outlet is read before anyone arrives, analysts spend their time deciding rather than hunting, and every decision on a name is recorded well enough to show an auditor. The model does the reading; the person makes the call.',
+    learning:
+      'Compliance is about being able to show your reasoning, and the product was built that way from the first sprint. Every match explains itself, so analysts learned quickly which signals to trust and which to question, and nothing shipped that the team could not explain to an auditor.',
     results: [
       {
         value: '38',
         label: 'sources screened before the team arrives',
         detail:
-          'Roughly 200 articles a day are crawled, normalised and matched against the PEP list from 06:00.',
+          'Roughly 200 articles a day are crawled, normalised and matched against the PEP list from 06:00, before the first analyst logs in.',
       },
       {
         value: '30 min',
@@ -1773,7 +1790,7 @@ export const projects: Project[] = [
         value: '1,240',
         label: 'accounts monitored continuously',
         detail:
-          'PEP and related-party accounts screened every day across web and mobile.',
+          'PEP and related-party accounts screened every day across web and mobile, none of them skipped on a busy morning.',
       },
     ],
     architecture:
@@ -1889,11 +1906,11 @@ export const projects: Project[] = [
     anonymised: true,
     headline: { value: '3', label: 'platforms from one build' },
     problem:
-      'Students live on their phones. A bid placed from a laptop can be outbid while they are in a lecture, and a browser tab does not wake anyone up. Building two native apps from scratch would have doubled the work for a marketplace that already existed.',
+      'Students live on their phones. A bid placed from a laptop can be outbid during a lecture, and a browser tab does not wake anyone up. The marketplace already existed on the web, and building two native apps from scratch would have doubled the work and split the team. Bidnest needed to be in students’ pockets without becoming three products.',
     approach:
-      'Rather than rebuild the product natively, we wrapped the existing Next.js application with Capacitor, tuned the bidding and messaging screens for touch and safe areas, and shipped the result to both stores from the same repository as the website.',
+      'Rather than rebuild natively, we wrapped the existing Next.js application with Capacitor, tuned the bidding and messaging screens for touch and safe areas, added native navigation, an offline screen, deep links from notifications and session persistence, and shipped to both stores from the same repository as the website.',
     resultsSummary:
-      'Bidnest reached the App Store and Google Play without a second codebase or a second team. Students bid, message and pay from their phones with the same flows as the web platform, and a fix ships to all three at once.',
+      'Bidnest reached the App Store and Google Play without a second codebase or a second team. Students bid, message and pay from their phones with the same flows as the web platform, get woken up by a notification when they are outbid, and a fix ships to all three platforms at once.',
     results: [
       {
         value: '3',
@@ -1905,7 +1922,7 @@ export const projects: Project[] = [
         value: '0',
         label: 'features rebuilt for native',
         detail:
-          'Real-time bids, messaging and Stripe checkout are the same code that serves the web platform.',
+          'Real-time bids, messaging and Stripe checkout are the same code that serves the web platform, so nothing was built twice.',
       },
       {
         value: '2',
@@ -2005,11 +2022,11 @@ export const projects: Project[] = [
     notable: true,
     headline: { value: '12', label: 'projects in one portfolio' },
     problem:
-      'A CV lists technologies; it does not show how a product was built or what changed after it shipped. Most portfolio sites are a grid of thumbnails with nothing behind them, and keeping a dozen project pages consistent by hand is where they fall apart.',
+      'A CV lists technologies; it does not show how a product was built or what changed after it shipped. Most portfolio sites are a grid of thumbnails with nothing behind them, and keeping a dozen project pages consistent by hand is where they fall apart. The portfolio needed to show the work properly and stay consistent without constant upkeep.',
     approach:
-      'We treated the portfolio like a product. Every project is a typed record with problem, approach, architecture, features, challenges and outcomes, and the site renders the grid, the case-study pages, the sitemap and the social previews from that one array.',
+      'We treated the portfolio like a product. Every project is a typed record with problem, approach, architecture, features, challenges and outcomes, and the site renders the grid, the case-study pages, the sitemap and the social previews from that one array. It ships as static HTML, animates after first paint and books calls through an embedded Cal.com calendar.',
     resultsSummary:
-      'Every project on the site is a full case study rather than a thumbnail, and all of them share one structure because they come from one typed data file. The site ships as static HTML, so the motion costs nothing on load, and a call is one click from any page.',
+      'Every project on the site is a full case study rather than a thumbnail, and all of them share one structure because they come from one typed data file. There is no CMS or database to maintain, the motion costs nothing on load, and a call is one click from any page.',
     results: [
       {
         value: '12',

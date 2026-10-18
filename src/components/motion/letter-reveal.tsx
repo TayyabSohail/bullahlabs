@@ -67,7 +67,8 @@ export function LetterReveal({
     window.addEventListener('bullahlabs:preloader-complete', reveal, {
       once: true,
     });
-    return () => window.removeEventListener('bullahlabs:preloader-complete', reveal);
+    return () =>
+      window.removeEventListener('bullahlabs:preloader-complete', reveal);
   }, [afterPreloader]);
 
   return (
@@ -75,7 +76,9 @@ export function LetterReveal({
       key={text}
       aria-label={text.replace(/\n/g, ' ')}
       initial='hidden'
-      animate={afterPreloader ? (preloaderFinished ? 'visible' : 'hidden') : undefined}
+      animate={
+        afterPreloader ? (preloaderFinished ? 'visible' : 'hidden') : undefined
+      }
       whileInView={afterPreloader ? undefined : 'visible'}
       viewport={{ once, margin: '0px 0px -10% 0px' }}
       className={cn('flex flex-wrap justify-center', className)}
@@ -96,8 +99,10 @@ export function LetterReveal({
                 aria-hidden='true'
                 className={cn(
                   'mr-[0.28em] inline-flex pb-[0.06em] last:mr-0',
-                  wordHasHinge || typingBounce ? 'overflow-visible' : 'overflow-hidden',
-                  accentWords.includes(w) && 'text-brand-text',
+                  wordHasHinge || typingBounce
+                    ? 'overflow-visible'
+                    : 'overflow-hidden',
+                  accentWords.includes(w) && 'bl-accent text-brand-text',
                 )}
                 style={{ perspective: '800px' }}
               >
@@ -110,11 +115,12 @@ export function LetterReveal({
                     <motion.span
                       key={`${letter}-${letterIndex}`}
                       variants={{
-                        hidden: !reveals || reduce
-                          ? { opacity: 0 }
-                          : typingBounce
-                            ? { y: 0, opacity: 1 }
-                          : { y: '110%', opacity: 0, rotate: 0 },
+                        hidden:
+                          !reveals || reduce
+                            ? { opacity: 0 }
+                            : typingBounce
+                              ? { y: 0, opacity: 1 }
+                              : { y: '110%', opacity: 0, rotate: 0 },
                         visible: hangs
                           ? {
                               y: ['110%', 0, 0, 0, 0],
@@ -129,26 +135,26 @@ export function LetterReveal({
                             }
                           : !reveals
                             ? { opacity: 1 }
-                          : typingBounce
-                            ? {
-                                y: [0, -12, 0],
-                                opacity: 1,
-                                transition: {
-                                  duration: 0.5,
-                                  ease,
-                                  delay: delay + i * stagger,
-                                  times: [0, 0.4, 1],
+                            : typingBounce
+                              ? {
+                                  y: [0, -12, 0],
+                                  opacity: 1,
+                                  transition: {
+                                    duration: 0.5,
+                                    ease,
+                                    delay: delay + i * stagger,
+                                    times: [0, 0.4, 1],
+                                  },
+                                }
+                              : {
+                                  y: 0,
+                                  opacity: 1,
+                                  transition: {
+                                    duration: 0.8,
+                                    ease,
+                                    delay: delay + i * stagger,
+                                  },
                                 },
-                              }
-                          : {
-                              y: 0,
-                              opacity: 1,
-                              transition: {
-                                duration: 0.8,
-                                ease,
-                                delay: delay + i * stagger,
-                              },
-                            },
                       }}
                       className={cn(
                         'inline-block',

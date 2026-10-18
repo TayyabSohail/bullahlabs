@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 
 import { courseHref, courseIsLive } from '@/constants/course';
 import { paths } from '@/constants/paths';
-import { getModules } from '@/data/lessons';
+import { getCourses } from '@/data/lessons';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface SectionProps {
@@ -46,14 +46,14 @@ export function CourseLink({
 }
 
 /**
- * The course as a player: the current lesson in a 16:9 frame and the
- * modules in a list beside it. A lesson plays here as soon as its `video`
+ * The courses as a player: the current lesson in a 16:9 frame and a
+ * searchable course / module / lesson list beside it. A lesson plays here as soon as its `video`
  * is set in `src/data/lessons.ts`; until then the frame says so. The
  * sign-up lives in the hero and the closing banner, not in the frame.
  */
 export function CourseSection({ dict, className }: SectionProps) {
   const t = dict.programPage.course;
-  const modules = getModules(dict.locale);
+  const courses = getCourses(dict.locale);
 
   return (
     <section
@@ -76,7 +76,7 @@ export function CourseSection({ dict, className }: SectionProps) {
         />
 
         <Reveal className='mt-8 sm:mt-14'>
-          <CoursePlayer modules={modules} labels={dict.program.player} />
+          <CoursePlayer courses={courses} labels={dict.program.player} />
         </Reveal>
       </div>
     </section>
@@ -93,7 +93,7 @@ export function ProblemApproach({ dict, className }: SectionProps) {
 
   return (
     <section
-      className={cn('bl-section bl-rule bl-band-white', className)}
+      className={cn('bl-section bl-rule bl-band-stone', className)}
       data-rail={problem.kicker}
     >
       <div className='bl-container grid gap-4 lg:grid-cols-2 lg:gap-5'>
@@ -126,10 +126,6 @@ export function ProblemApproach({ dict, className }: SectionProps) {
           delay={0.15}
           className='bl-card bl-card-ink bl-grid-surface relative flex flex-col p-6 text-white sm:p-8 lg:p-10'
         >
-          <div
-            aria-hidden='true'
-            className='pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand/25 blur-[80px]'
-          />
           <p className='bl-kicker relative text-white/60'>{approach.kicker}</p>
           <TextReveal
             as='h2'
@@ -206,7 +202,7 @@ export function WhoFor({ dict, className }: SectionProps) {
 
   return (
     <section
-      className={cn('bl-section bl-rule bl-band-white', className)}
+      className={cn('bl-section bl-rule bl-band-stone', className)}
       data-rail={t.kicker}
     >
       <div className='bl-container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16'>
@@ -314,7 +310,7 @@ export function Vision({ dict, className }: SectionProps) {
 
   return (
     <section
-      className={cn('bl-section bl-rule bl-band-white', className)}
+      className={cn('bl-section bl-rule bl-band-stone', className)}
       data-rail={t.kicker}
     >
       <div className='bl-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20'>

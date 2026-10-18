@@ -1,4 +1,4 @@
-import type { CourseModule } from './lessons';
+import type { Course, CourseModule } from './lessons';
 
 /** German copy for the course modules, same ids and video sources as `modules`. */
 export const lessonsDe: CourseModule[] = [
@@ -76,5 +76,15 @@ export const lessonsDe: CourseModule[] = [
           'Aus der eigenen Routine eine machen, der ein Team folgen kann, ohne ein Richtliniendokument, das niemand liest.',
       },
     ],
+  },
+];
+
+/** German copy for the courses, same ids as `courses`. */
+export const coursesDe: Course[] = [
+  {
+    id: 'conscious-ai',
+    title: 'Conscious AI',
+    tagline: 'Weniger KI, bessere KI: der kostenlose Kurs.',
+    modules: lessonsDe,
   },
 ];

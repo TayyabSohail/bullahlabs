@@ -27,7 +27,7 @@ export function Services({ dict, className, heading = true }: ServicesProps) {
 
   return (
     <section
-      className={cn('bl-section bl-rule bl-band-white', className)}
+      className={cn('bl-section bl-rule bl-band-stone', className)}
       data-rail={t.kicker}
     >
       <div className='bl-container'>
@@ -48,10 +48,6 @@ export function Services({ dict, className, heading = true }: ServicesProps) {
           )}
         >
           <StaggerItem className='bl-grid-surface relative flex flex-col justify-between bg-ink p-6 text-white sm:p-8'>
-            <div
-              aria-hidden='true'
-              className='pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand/30 blur-[60px]'
-            />
             <p className='bl-display relative text-2xl leading-tight lg:text-3xl'>
               {t.promise}
             </p>
