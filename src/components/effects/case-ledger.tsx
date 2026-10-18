@@ -153,7 +153,7 @@ function Figure({ value, run }: { value: string; run: boolean }) {
   }, [run]);
 
   return (
-    <span className='bl-display text-[2.75rem] tabular-nums leading-none text-brand-text sm:text-[3.5rem]'>
+    <span className='bl-display text-[2.75rem] tabular-nums leading-none text-brand-text sm:text-[3.25rem]'>
       {parsed ? `${parsed.prefix}${parsed.format(n)}${parsed.suffix}` : value}
     </span>
   );
@@ -200,7 +200,7 @@ function Row({
           </span>
         )}
       </div>
-      <div className={cn('min-w-0 py-3.5 pr-4 sm:py-4 sm:pr-6', className)}>
+      <div className={cn('min-w-0 py-3 pr-4 sm:pr-5', className)}>
         <p
           className={cn(
             'truncate font-mono text-[10px] font-semibold uppercase tracking-[0.22em] transition-colors duration-300 sm:text-[11px]',
@@ -373,9 +373,9 @@ export function CaseLedger({ copy, delay = 0.5, className }: CaseLedgerProps) {
             on
             active={activeRow === 0}
             fill={rank >= 1}
-            className='min-h-[6.5rem] sm:min-h-[7rem]'
+            className='min-h-[6rem] sm:min-h-[6.25rem]'
           >
-            <p className='text-[1.1rem] font-medium leading-snug text-ink sm:text-[1.3rem]'>
+            <p className='text-[1.1rem] font-medium leading-snug text-ink sm:text-[1.2rem]'>
               {c.problem.slice(0, stage.typed)}
               {typing && (
                 <span aria-hidden='true' className='bl-ledger-caret' />
@@ -389,14 +389,14 @@ export function CaseLedger({ copy, delay = 0.5, className }: CaseLedgerProps) {
             on={rank >= 1}
             active={activeRow === 1}
             fill={rank >= 3}
-            className='min-h-[9.25rem] sm:min-h-[10rem]'
+            className='min-h-[8.75rem] sm:min-h-[9rem]'
           >
             {rank >= 1 && (
               <motion.p
                 initial={running ? { opacity: 0, y: 8 } : false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease }}
-                className='text-[1.1rem] font-medium leading-snug text-ink/85 sm:text-[1.3rem]'
+                className='text-[1.1rem] font-medium leading-snug text-ink/85 sm:text-[1.2rem]'
               >
                 {c.built}
               </motion.p>
@@ -406,7 +406,7 @@ export function CaseLedger({ copy, delay = 0.5, className }: CaseLedgerProps) {
                 initial={running ? { opacity: 0, x: -10 } : false}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, ease }}
-                className='mt-3 border-l-2 border-brand pl-3'
+                className='mt-2.5 border-l-2 border-brand pl-3'
               >
                 <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-text'>
                   {copy.stages.conscience}
@@ -424,37 +424,39 @@ export function CaseLedger({ copy, delay = 0.5, className }: CaseLedgerProps) {
             on={rank >= 3}
             active={activeRow === 2}
             last
-            className='min-h-[7rem] sm:min-h-[7.5rem]'
+            className='min-h-[6rem] sm:min-h-[6.25rem]'
           >
-            {rank >= 3 && (
-              <motion.div
-                initial={running ? { opacity: 0, y: 8 } : false}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease }}
-                className='flex flex-wrap items-end gap-x-4 gap-y-2'
-              >
-                <Figure value={c.value} run={running} />
-                <span className='max-w-[18rem] pb-1 text-sm leading-snug text-ink/70 sm:text-base'>
-                  {c.label}
-                </span>
-              </motion.div>
-            )}
-            {rank >= 4 && (
-              <motion.div
-                initial={running ? { opacity: 0, scale: 0.96 } : false}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, ease }}
-                className='mt-4'
-              >
-                <Link
-                  href={paths.caseStudy(c.slug)}
-                  className='bl-btn bl-btn-secondary inline-flex h-9 items-center gap-2 bg-white px-3 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-ink'
+            <div className='flex flex-wrap items-end gap-x-4 gap-y-3'>
+              {rank >= 3 && (
+                <motion.div
+                  initial={running ? { opacity: 0, y: 8 } : false}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease }}
+                  className='flex min-w-0 flex-wrap items-end gap-x-4 gap-y-2'
                 >
-                  {copy.link}
-                  <ArrowRight className='h-3.5 w-3.5' />
-                </Link>
-              </motion.div>
-            )}
+                  <Figure value={c.value} run={running} />
+                  <span className='max-w-[13rem] pb-1 text-sm leading-snug text-ink/70'>
+                    {c.label}
+                  </span>
+                </motion.div>
+              )}
+              {rank >= 4 && (
+                <motion.div
+                  initial={running ? { opacity: 0, scale: 0.96 } : false}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, ease }}
+                  className='pb-1 sm:ml-auto'
+                >
+                  <Link
+                    href={paths.caseStudy(c.slug)}
+                    className='bl-btn bl-btn-secondary inline-flex h-9 items-center gap-2 bg-white px-3 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-ink'
+                  >
+                    {copy.link}
+                    <ArrowRight className='h-3.5 w-3.5' />
+                  </Link>
+                </motion.div>
+              )}
+            </div>
           </Row>
         </motion.div>
       </div>

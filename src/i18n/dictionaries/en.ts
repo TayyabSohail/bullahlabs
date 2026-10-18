@@ -320,7 +320,7 @@ export const en = {
       minutes: 'min',
       comingSoon: 'Coming soon',
       nothingYet:
-        'This lesson is being recorded. Leave your email and we will tell you the moment it is live.',
+        "This lesson is being recorded. We'll tell you the moment it's live.",
       listLabel: 'Course modules and lessons',
       previous: 'Previous lesson',
       next: 'Next lesson',
@@ -363,28 +363,13 @@ export const en = {
     title: 'Use AI with purpose.',
     accent: [2, 3],
     description:
-      "AI is moving fast. Feel like you're falling behind? Not sure where to start, what to trust or how to use it responsibly?",
-    promise:
-      "We're creating free, practical learning modules to help you use AI confidently, work smarter and reduce unnecessary waste.",
+      'Free, practical learning modules to help you use AI confidently, work smarter and waste less.',
     heroCta: 'Tell me when it opens',
     principle: 'Practical skills. Conscious choices. No coding required.',
     course: {
       kicker: 'Coming soon',
       title: 'Better AI habits start here.',
       accent: [0, 1, 2],
-      learnKicker: 'Learn to',
-      learn: [
-        'Choose the right tool for the task.',
-        'Write better prompts and get useful results.',
-        'Set up reusable AI workflows.',
-        "Understand AI's costs, energy and water use.",
-        'Recognise limitations and check outputs.',
-      ],
-      facts: [
-        { label: 'Format', value: 'Coming soon' },
-        { label: 'Enrolment', value: 'Not open yet' },
-      ],
-      cta: 'Get notified',
     },
     problem: {
       kicker: 'The problem',
@@ -392,7 +377,6 @@ export const en = {
       accent: [6, 7, 8, 9],
       lines: [
         'New tools. New trends. More pressure to keep up.',
-        "You want to work smarter and stay relevant. But you also want to make informed choices about AI's environmental and social impact.",
         "You shouldn't have to choose between doing your job well and using AI responsibly.",
       ],
     },
@@ -402,7 +386,6 @@ export const en = {
       accent: [3, 4],
       lines: [
         'Use AI when it helps. Choose the right model. Give clear instructions. Skip unnecessary steps.',
-        'Small changes can save time, improve results and reduce unnecessary computation.',
         'Use what you need. Understand the impact. Keep human judgement in the loop.',
       ],
     },
@@ -435,14 +418,12 @@ export const en = {
           body: 'Learn how everyday choices affect resource use.',
         },
       ],
-      cta: 'Notify me when it launches',
     },
     whoFor: {
       kicker: 'Made for non-developers',
       title: 'Curious about AI. No coding required.',
       accent: [3, 4, 5],
       paragraphs: [
-        'For people who want to use AI at work without becoming technical experts.',
         'Whether you work in marketing, operations, finance, HR, sales or project management, learn skills you can put to use straight away.',
       ],
       questions: [
@@ -458,8 +439,7 @@ export const en = {
       title: 'Help your team use AI well.',
       accent: [4, 5],
       paragraphs: [
-        'Giving people AI tools is easy. Helping them use those tools effectively and responsibly takes practice.',
-        'We help teams build confidence, improve workflows and make more conscious choices.',
+        'Giving people AI tools is easy. Using them well takes practice. We help teams build confidence, improve workflows and make more conscious choices.',
       ],
       offers: [
         {
@@ -480,31 +460,21 @@ export const en = {
         },
       ],
       cta: 'Discuss team training',
-      note: 'Free learning for individuals. Practical training and guidance for teams.',
     },
     vision: {
       kicker: 'Why we do this',
       title: 'Technology should move us forward, thoughtfully.',
       accent: [5],
       paragraphs: [
-        'At Bullah Labs, we build digital products and help people make better technology decisions.',
         'We believe progress means solving real problems, not building more for its own sake.',
-        "That means considering technology's environmental footprint, social consequences and ethical implications.",
-        'Our vision: technology that advances human capabilities without losing sight of its impact.',
+        'Technology that advances human capabilities without losing sight of its impact.',
       ],
-    },
-    notify: {
-      kicker: 'Stay in the loop',
-      title: 'Be first to know.',
-      body: "The free learning modules are in the making. Leave your email and we'll let you know when they're ready.",
-      cta: 'Notify me',
-      note: "One email when it's ready.",
     },
     comingSoon: {
       kicker: 'Something new is in the works',
       title: 'Learn consciously. Put it into practice.',
       accent: [2, 3, 4, 5],
-      body: "Free learning is just the beginning. We're building a new product to bring more conscious technology into everyday use. More soon. Built with purpose.",
+      body: "Free learning is just the beginning. We're building a new product to bring more conscious technology into everyday use. Leave your email and you'll hear about both.",
       cta: 'Stay in the loop',
     },
   },

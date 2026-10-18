@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import { SectionHeading } from '@/components/common/section-heading';
 import { CoursePlayer } from '@/components/course/course-player';
-import { CourseSignup } from '@/components/course/course-signup';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
 
@@ -49,9 +48,8 @@ export function CourseLink({
 /**
  * The course as a player: the current lesson in a 16:9 frame and the
  * modules in a list beside it. A lesson plays here as soon as its `video`
- * is set in `src/data/lessons.ts`; until then the frame says so and offers
- * the sign-up. Under the player: what the course teaches, and where it
- * stands (format, enrolment).
+ * is set in `src/data/lessons.ts`; until then the frame says so. The
+ * sign-up lives in the hero and the closing banner, not in the frame.
  */
 export function CourseSection({ dict, className }: SectionProps) {
   const t = dict.programPage.course;
@@ -78,76 +76,8 @@ export function CourseSection({ dict, className }: SectionProps) {
         />
 
         <Reveal className='mt-8 sm:mt-14'>
-          <CoursePlayer
-            modules={modules}
-            labels={dict.program.player}
-            placeholderAction={
-              <CourseSignup
-                dict={dict}
-                source='conscious-ai:player'
-                variant='inline'
-                submitLabel={t.cta}
-                className='w-full max-w-md text-left'
-              />
-            }
-          />
+          <CoursePlayer modules={modules} labels={dict.program.player} />
         </Reveal>
-
-        <div className='mt-4 grid gap-4 lg:mt-5 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:gap-5'>
-          <Reveal delay={0.1} className='bl-card p-6 sm:p-8'>
-            <p className='bl-kicker'>{t.learnKicker}</p>
-            <ul className='mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2'>
-              {t.learn.map((item) => (
-                <li
-                  key={item}
-                  className='flex items-start gap-3 text-base font-medium leading-snug text-foreground'
-                >
-                  <span
-                    aria-hidden='true'
-                    className='mt-2 h-2 w-2 shrink-0 bg-brand'
-                  />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal
-            delay={0.2}
-            className='bl-card bl-card-ink bl-grid-surface relative flex flex-col justify-between p-6 text-white sm:p-8'
-          >
-            <dl className='relative grid gap-3'>
-              {t.facts.map((fact) => (
-                <div
-                  key={fact.label}
-                  className='flex items-baseline justify-between gap-4 border-b border-white/15 pb-3'
-                >
-                  <dt className='font-mono text-[10px] uppercase tracking-[0.2em] text-white/55'>
-                    {fact.label}
-                  </dt>
-                  <dd className='bl-display text-lg text-white'>
-                    {fact.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-            <div className='relative mt-6'>
-              {courseIsLive ? (
-                <CourseLink className='bl-btn bl-btn-primary inline-flex h-12 w-full items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'>
-                  {dict.program.watch}
-                  <ArrowUpRight className='h-4 w-4' />
-                </CourseLink>
-              ) : (
-                <CourseSignup
-                  dict={dict}
-                  source='conscious-ai:course'
-                  variant='inline'
-                  tone='dark'
-                  submitLabel={t.cta}
-                />
-              )}
-            </div>
-          </Reveal>
-        </div>
       </div>
     </section>
   );
@@ -265,15 +195,6 @@ export function LearningHabits({ dict, className }: SectionProps) {
             </StaggerItem>
           ))}
         </Stagger>
-        <Reveal className='mt-8 border-t pt-6 sm:mt-10 sm:pt-8'>
-          <CourseSignup
-            dict={dict}
-            source='conscious-ai:modules'
-            variant='inline'
-            submitLabel={t.cta}
-            className='max-w-xl'
-          />
-        </Reveal>
       </div>
     </section>
   );
@@ -373,7 +294,7 @@ export function ForBusiness({ dict, className }: SectionProps) {
             </StaggerItem>
           ))}
         </Stagger>
-        <Reveal className='mt-8 flex flex-col gap-5 border-t pt-6 sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:pt-8'>
+        <Reveal className='mt-8 border-t pt-6 sm:mt-10 sm:pt-8'>
           <Link
             href={`${paths.contact}?service=team`}
             className='bl-btn bl-btn-ink inline-flex h-14 items-center justify-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]'
@@ -381,16 +302,13 @@ export function ForBusiness({ dict, className }: SectionProps) {
             {t.cta}
             <ArrowUpRight className='h-4 w-4' />
           </Link>
-          <p className='max-w-md text-sm leading-relaxed text-muted-foreground'>
-            {t.note}
-          </p>
         </Reveal>
       </div>
     </section>
   );
 }
 
-/** Why we do this: the Bullah Labs vision, in four short paragraphs. */
+/** Why we do this: the Bullah Labs vision, in two short paragraphs. */
 export function Vision({ dict, className }: SectionProps) {
   const t = dict.programPage.vision;
 
@@ -425,35 +343,6 @@ export function Vision({ dict, className }: SectionProps) {
               {paragraph}
             </p>
           ))}
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/** The sign-up on its own: one field, one email when the modules are ready. */
-export function Notify({ dict, className }: SectionProps) {
-  const t = dict.programPage.notify;
-
-  return (
-    <section
-      className={cn('bl-section bl-rule bl-band-stone', className)}
-      data-rail={t.kicker}
-    >
-      <div className='bl-container'>
-        <Reveal className='mx-auto max-w-3xl'>
-          <CourseSignup
-            dict={dict}
-            source='conscious-ai:notify'
-            kicker={t.kicker}
-            title={t.title}
-            body={t.body}
-            submitLabel={t.cta}
-            className='p-8 sm:p-12'
-          />
-          <p className='mt-4 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground'>
-            {t.note}
-          </p>
         </Reveal>
       </div>
     </section>

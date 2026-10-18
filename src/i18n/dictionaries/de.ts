@@ -44,7 +44,7 @@ export const de: Dictionary = {
           problem:
             'Analysten öffneten jeden Morgen Dutzende Nachrichtenseiten und suchten Hunderte Namen von Hand.',
           built:
-            'Eine Screening-Plattform, die die Tagesnachrichten liest, mit der PEP-Liste abgleicht und in einem signierten Risikobericht endet.',
+            'Eine Plattform, die die Tagesnachrichten liest, mit der PEP-Liste abgleicht und den Risikobericht erstellt.',
           conscience:
             'Eine Scoring-Pipeline liest. Die Entscheidung treffen Analysten.',
           value: '30 Min.',
@@ -56,7 +56,7 @@ export const de: Dictionary = {
           problem:
             'Urlaub, Spesen, Überstunden und Lohnabrechnung für ein ganzes Studio, jeden Monat von Hand berechnet.',
           built:
-            'Ein HR-System, in dem freigegebene Posten in einen Payroll-Lauf fließen, der berechnet, sperrt und exportiert.',
+            'Ein HR-System, in dem Freigaben in einen Payroll-Lauf fließen, der berechnet, sperrt und exportiert.',
           conscience:
             'Lohnabrechnung ist Arithmetik, also laufen Regeln. Kein KI-Modell im Spiel.',
           value: '0',
@@ -315,7 +315,7 @@ export const de: Dictionary = {
       minutes: 'Min.',
       comingSoon: 'Demnächst',
       nothingYet:
-        'Diese Lektion wird gerade aufgenommen. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen Bescheid, sobald sie online ist.',
+        'Diese Lektion wird gerade aufgenommen. Wir sagen Bescheid, sobald sie online ist.',
       listLabel: 'Kursmodule und Lektionen',
       previous: 'Vorherige Lektion',
       next: 'Nächste Lektion',
@@ -358,9 +358,7 @@ export const de: Dictionary = {
     title: 'KI mit Absicht nutzen.',
     accent: [1, 2],
     description:
-      'KI entwickelt sich schnell. Fühlen Sie sich abgehängt? Unsicher, wo Sie anfangen, wem Sie trauen oder wie Sie KI verantwortungsvoll nutzen sollen?',
-    promise:
-      'Wir entwickeln kostenlose, praktische Lernmodule, mit denen Sie KI sicher nutzen, smarter arbeiten und unnötige Verschwendung vermeiden.',
+      'Kostenlose, praktische Lernmodule, mit denen Sie KI sicher nutzen, smarter arbeiten und weniger verschwenden.',
     heroCta: 'Bescheid geben, wenn es öffnet',
     principle:
       'Praktische Fähigkeiten. Bewusste Entscheidungen. Kein Programmieren nötig.',
@@ -368,19 +366,6 @@ export const de: Dictionary = {
       kicker: 'Demnächst',
       title: 'Bessere KI-Gewohnheiten beginnen hier.',
       accent: [0, 1],
-      learnKicker: 'Sie lernen',
-      learn: [
-        'Das richtige Werkzeug für die Aufgabe wählen.',
-        'Bessere Prompts schreiben und brauchbare Ergebnisse bekommen.',
-        'Wiederverwendbare KI-Abläufe einrichten.',
-        'Kosten, Energie- und Wasserverbrauch von KI verstehen.',
-        'Grenzen erkennen und Ergebnisse prüfen.',
-      ],
-      facts: [
-        { label: 'Format', value: 'Demnächst' },
-        { label: 'Anmeldung', value: 'Noch nicht offen' },
-      ],
-      cta: 'Benachrichtigen',
     },
     problem: {
       kicker: 'Das Problem',
@@ -388,7 +373,6 @@ export const de: Dictionary = {
       accent: [6, 7, 8],
       lines: [
         'Neue Werkzeuge. Neue Trends. Mehr Druck, Schritt zu halten.',
-        'Sie wollen smarter arbeiten und relevant bleiben. Aber Sie wollen auch informierte Entscheidungen über die ökologischen und sozialen Folgen von KI treffen.',
         'Sie sollten nicht wählen müssen zwischen guter Arbeit und einem verantwortungsvollen Umgang mit KI.',
       ],
     },
@@ -398,7 +382,6 @@ export const de: Dictionary = {
       accent: [3, 4],
       lines: [
         'KI nutzen, wenn sie hilft. Das richtige Modell wählen. Klare Anweisungen geben. Unnötige Schritte weglassen.',
-        'Kleine Änderungen können Zeit sparen, Ergebnisse verbessern und unnötige Rechenleistung vermeiden.',
         'Nutzen, was Sie brauchen. Die Wirkung verstehen. Das menschliche Urteil im Spiel behalten.',
       ],
     },
@@ -434,14 +417,12 @@ export const de: Dictionary = {
           body: 'Lernen, wie alltägliche Entscheidungen den Ressourcenverbrauch beeinflussen.',
         },
       ],
-      cta: 'Bescheid geben, wenn es startet',
     },
     whoFor: {
       kicker: 'Für Nicht-Entwickler',
       title: 'Neugierig auf KI. Kein Programmieren nötig.',
       accent: [3, 4, 5],
       paragraphs: [
-        'Für Menschen, die KI bei der Arbeit nutzen wollen, ohne technische Experten zu werden.',
         'Ob Sie in Marketing, Operations, Finanzen, HR, Vertrieb oder Projektmanagement arbeiten: Lernen Sie Fähigkeiten, die Sie sofort einsetzen können.',
       ],
       questions: [
@@ -457,8 +438,7 @@ export const de: Dictionary = {
       title: 'Helfen Sie Ihrem Team, KI gut zu nutzen.',
       accent: [4, 5, 6, 7],
       paragraphs: [
-        'Menschen KI-Werkzeuge zu geben ist leicht. Ihnen zu helfen, diese Werkzeuge wirksam und verantwortungsvoll zu nutzen, braucht Übung.',
-        'Wir helfen Teams, Sicherheit aufzubauen, Abläufe zu verbessern und bewusstere Entscheidungen zu treffen.',
+        'Menschen KI-Werkzeuge zu geben ist leicht. Sie gut zu nutzen, braucht Übung. Wir helfen Teams, Sicherheit aufzubauen, Abläufe zu verbessern und bewusstere Entscheidungen zu treffen.',
       ],
       offers: [
         {
@@ -479,31 +459,21 @@ export const de: Dictionary = {
         },
       ],
       cta: 'Teamschulung besprechen',
-      note: 'Kostenloses Lernen für Einzelne. Praktische Schulung und Beratung für Teams.',
     },
     vision: {
       kicker: 'Warum wir das tun',
       title: 'Technologie soll uns voranbringen, mit Bedacht.',
       accent: [4, 5],
       paragraphs: [
-        'Bei Bullah Labs bauen wir digitale Produkte und helfen Menschen, bessere Technologieentscheidungen zu treffen.',
         'Wir glauben, Fortschritt heißt, echte Probleme zu lösen, nicht mehr zu bauen um des Bauens willen.',
-        'Das heißt, den ökologischen Fußabdruck, die sozialen Folgen und die ethischen Implikationen von Technologie mitzudenken.',
-        'Unsere Vision: Technologie, die menschliche Fähigkeiten erweitert, ohne ihre Wirkung aus dem Blick zu verlieren.',
+        'Technologie, die menschliche Fähigkeiten erweitert, ohne ihre Wirkung aus dem Blick zu verlieren.',
       ],
-    },
-    notify: {
-      kicker: 'Auf dem Laufenden bleiben',
-      title: 'Erfahren Sie es als Erste.',
-      body: 'Die kostenlosen Lernmodule entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen Bescheid, sobald sie fertig sind.',
-      cta: 'Bescheid geben',
-      note: 'Eine E-Mail, sobald es so weit ist.',
     },
     comingSoon: {
       kicker: 'Etwas Neues entsteht',
       title: 'Bewusst lernen. In die Praxis bringen.',
       accent: [2, 3, 4, 5],
-      body: 'Kostenloses Lernen ist erst der Anfang. Wir bauen ein neues Produkt, das mehr bewusste Technologie in den Alltag bringt. Bald mehr. Mit Absicht gebaut.',
+      body: 'Kostenloses Lernen ist erst der Anfang. Wir bauen ein neues Produkt, das mehr bewusste Technologie in den Alltag bringt. Hinterlassen Sie Ihre E-Mail, und Sie erfahren von beidem.',
       cta: 'Auf dem Laufenden bleiben',
     },
   },

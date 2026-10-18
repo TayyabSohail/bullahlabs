@@ -173,16 +173,17 @@ export function CoursePlayer({
           </p>
 
           <div className='mt-6 flex items-center gap-2 border-t pt-5 sm:mt-auto'>
-            <button
-              type='button'
-              onClick={() => playerRef.current?.enterFullscreen()}
-              disabled={!active.lesson.video}
-              className='bl-btn bl-btn-ink inline-flex h-11 min-w-0 items-center gap-2.5 px-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] disabled:cursor-not-allowed disabled:opacity-40 sm:px-5'
-            >
-              <Maximize2 className='h-4 w-4 shrink-0' />
-              <span className='sm:hidden'>{labels.fullscreenShort}</span>
-              <span className='hidden sm:inline'>{labels.fullscreen}</span>
-            </button>
+            {active.lesson.video && (
+              <button
+                type='button'
+                onClick={() => playerRef.current?.enterFullscreen()}
+                className='bl-btn bl-btn-ink inline-flex h-11 min-w-0 items-center gap-2.5 px-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:px-5'
+              >
+                <Maximize2 className='h-4 w-4 shrink-0' />
+                <span className='sm:hidden'>{labels.fullscreenShort}</span>
+                <span className='hidden sm:inline'>{labels.fullscreen}</span>
+              </button>
+            )}
             <span className='flex-1' />
             <button
               type='button'
@@ -224,16 +225,18 @@ export function CoursePlayer({
                 {entries.length} {labels.lessons}
               </p>
             </div>
-            <div className='text-right font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground'>
-              <p>
-                <span className='text-brand-text'>{published.length}</span>/
-                {entries.length} {labels.published}
-              </p>
-              <p>
-                <span className='text-brand-text'>{watchedCount}</span>/
-                {entries.length} {labels.watched}
-              </p>
-            </div>
+            {published.length > 0 && (
+              <div className='text-right font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground'>
+                <p>
+                  <span className='text-brand-text'>{published.length}</span>/
+                  {entries.length} {labels.published}
+                </p>
+                <p>
+                  <span className='text-brand-text'>{watchedCount}</span>/
+                  {entries.length} {labels.watched}
+                </p>
+              </div>
+            )}
           </div>
 
           <div
@@ -301,16 +304,12 @@ export function CoursePlayer({
                             >
                               {lesson.title}
                             </span>
-                            <span className='mt-1 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground'>
-                              {lesson.minutes ? (
-                                <>
-                                  <Clock className='h-3 w-3' />
-                                  {lesson.minutes} {labels.minutes}
-                                </>
-                              ) : (
-                                labels.comingSoon
-                              )}
-                            </span>
+                            {lesson.minutes ? (
+                              <span className='mt-1 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground'>
+                                <Clock className='h-3 w-3' />
+                                {lesson.minutes} {labels.minutes}
+                              </span>
+                            ) : null}
                           </span>
                         </button>
                       </li>

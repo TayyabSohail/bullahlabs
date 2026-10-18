@@ -928,6 +928,11 @@
    case, the problem types in behind a block caret. */
 .bl-ledger {
   box-shadow: 8px 8px 0 0 hsl(var(--brand));
+  background-image: radial-gradient(
+    hsl(var(--ink) / 0.07) 1px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
 }
 .bl-ledger-tick {
   position: absolute;
@@ -1320,7 +1325,7 @@ html.bl-no-cursor * {
 /* Retro layer                                                                */
 /* Film grain and faint scanlines over everything, dot-grid paper on the     */
 /* stone bands, crosshair ticks on section rules, numbered kickers, hard     */
-/* offset shadows on buttons and linked cards, and a segmented progress bar. */
+/* offset shadows on buttons and linked cards, and a solid scroll-progress bar. */
 /* ------------------------------------------------------------------------- */
 
 /* Grain: an SVG noise tile, multiplied in at low opacity. Scanlines: a 3px

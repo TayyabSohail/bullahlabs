@@ -40,7 +40,7 @@ export function Footer({ dict }: FooterProps) {
     : [{ label: dict.program.request, href: requestAccessHref }];
 
   return (
-    <footer className='relative isolate mt-24 overflow-hidden bg-background'>
+    <footer className='relative isolate overflow-hidden border-t bg-background'>
       <div className='pointer-events-none absolute inset-0'>
         <div className='absolute inset-0 bg-background' />
         <Silk
@@ -50,18 +50,23 @@ export function Footer({ dict }: FooterProps) {
         />
       </div>
       <div className='bl-container relative z-10'>
-        {/* Status strip: founded, offices, tagline, and a live dot. */}
-        <div className='flex flex-wrap items-center gap-x-6 gap-y-2 border-b py-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground'>
-          <span className='bl-kicker text-[10px]'>
-            Est. {siteConfig.founded}
-          </span>
-          <span className='bl-kicker text-[10px]'>
-            {siteConfig.locations.map((location) => location.city).join(' / ')}
-          </span>
-          <span className='bl-kicker hidden text-[10px] sm:inline-flex'>
+        {/* Status bar in three zones: founded and offices on the left, the
+            tagline centred (wide screens only), the live dot on the right. */}
+        <div className='grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-2 border-b py-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground lg:grid-cols-[1fr_auto_1fr]'>
+          <div className='flex flex-wrap items-center gap-x-6 gap-y-2'>
+            <span className='bl-kicker text-[10px]'>
+              Est. {siteConfig.founded}
+            </span>
+            <span className='bl-kicker text-[10px]'>
+              {siteConfig.locations
+                .map((location) => location.city)
+                .join(' / ')}
+            </span>
+          </div>
+          <span className='bl-kicker hidden text-[10px] lg:inline-flex'>
             {siteConfig.tagline}
           </span>
-          <span className='ml-auto inline-flex items-center gap-2 text-foreground'>
+          <span className='inline-flex items-center gap-2 justify-self-end text-foreground'>
             <span
               aria-hidden='true'
               className='h-1.5 w-1.5 animate-pulse bg-brand'

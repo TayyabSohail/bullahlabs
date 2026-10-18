@@ -6,7 +6,6 @@ import {
   CourseSection,
   ForBusiness,
   LearningHabits,
-  Notify,
   ProblemApproach,
   Vision,
   WhoFor,
@@ -27,8 +26,8 @@ export const metadata: Metadata = {
 /**
  * The program page: the promise and the sign-up, the course player, the
  * problem and the answer, the habits the modules teach, who it is for,
- * the offer for teams, why we do this, the sign-up once more on its own,
- * and what comes after the free modules.
+ * the offer for teams, why we do this, and one closing banner with the
+ * sign-up, like every other page's closing CTA.
  */
 export default async function ConsciousAiPage() {
   const dict = await getDictionary();
@@ -48,17 +47,14 @@ export default async function ConsciousAiPage() {
         accentWords={[...t.accent]}
         description={t.description}
       >
-        <p className='max-w-2xl text-lg font-medium leading-snug text-foreground sm:text-xl'>
-          {t.promise}
-        </p>
         <CourseSignup
           dict={dict}
           source='conscious-ai:hero'
           variant='inline'
           submitLabel={t.heroCta}
-          className='mt-8 max-w-xl'
+          className='max-w-xl'
         />
-        <p className='mt-10 max-w-3xl border-l-2 border-brand pl-5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-foreground'>
+        <p className='mt-8 max-w-3xl border-l-2 border-brand pl-5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-foreground'>
           {t.principle}
         </p>
       </PageHero>
@@ -69,7 +65,6 @@ export default async function ConsciousAiPage() {
       <WhoFor dict={dict} />
       <ForBusiness dict={dict} />
       <Vision dict={dict} />
-      <Notify dict={dict} />
 
       <CtaBanner
         dict={dict}
