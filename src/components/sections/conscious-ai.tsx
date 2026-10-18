@@ -1,7 +1,9 @@
-import { ArrowUpRight, Eye, Gauge, Play, Users } from 'lucide-react';
+import { ArrowUpRight, Eye, Gauge, Users } from 'lucide-react';
 import Link from 'next/link';
 
 import { SectionHeading } from '@/components/common/section-heading';
+import { CoursePlayer } from '@/components/course/course-player';
+import { CourseSignup } from '@/components/course/course-signup';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 
 import { cn } from '@/lib/utils';
@@ -12,6 +14,7 @@ import {
   requestAccessHref,
 } from '@/constants/course';
 import { paths } from '@/constants/paths';
+import { getModules } from '@/data/lessons';
 import { getProgram, type PillarId } from '@/data/program';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
@@ -108,17 +111,17 @@ interface CourseVideosProps extends SectionProps {
   title: string;
   accentWords?: number[];
   description?: string;
-  /** How many lesson placeholders to show. */
-  count?: number;
   /** The homepage adds a link through to the program page. */
   showProgramLink?: boolean;
 }
 
 /**
- * The course as a grid of lesson placeholders, each a 16:9 frame that a
- * video embed replaces once it is published, with the link to the course
- * underneath. Until NEXT_PUBLIC_COURSE_URL is set the link opens the
- * contact form instead.
+ * The course as a player: the current lesson in a 16:9 frame, the modules
+ * in a list that scrolls on its own beside it, and under both the sign-up
+ * for being told when a lesson is published. A lesson plays here as soon
+ * as its `video` is set in `src/data/lessons.ts`; until then the frame says
+ * so. When NEXT_PUBLIC_COURSE_URL is set the full course off-site is linked
+ * as well.
  */
 export function CourseVideos({
   dict,
@@ -127,11 +130,11 @@ export function CourseVideos({
   title,
   accentWords,
   description,
-  count = 3,
   showProgramLink = false,
 }: CourseVideosProps) {
   const t = dict.program;
-  const lessons = Array.from({ length: count }, (_, index) => index + 1);
+  const modules = getModules(dict.locale);
+  const source = showProgramLink ? 'home' : 'conscious-ai';
 
   return (
     <section
@@ -144,68 +147,72 @@ export function CourseVideos({
           title={title}
           accentWords={accentWords}
           description={description}
+          aside={
+            courseIsLive ? (
+              <CourseLink className='bl-action'>
+                {t.watch}
+                <ArrowUpRight className='h-3.5 w-3.5' />
+              </CourseLink>
+            ) : undefined
+          }
         />
 
-        <Stagger
-          stagger={0.08}
-          className='mt-8 grid gap-3 sm:mt-14 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3'
-        >
-          {lessons.map((lesson) => (
-            <StaggerItem key={lesson} className='flex'>
-              <div className='bl-card flex w-full flex-col overflow-hidden'>
-                {/* The frame a lesson's video will sit in */}
-                <div
-                  aria-hidden='true'
-                  className='relative aspect-video w-full border-b bg-ink bg-[repeating-linear-gradient(135deg,transparent_0_14px,hsl(0_0%_100%/0.035)_14px_15px)]'
-                >
-                  <span className='absolute left-4 top-4 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50'>
-                    {t.lesson} {String(lesson).padStart(2, '0')}
-                  </span>
-                  <span className='absolute inset-0 flex items-center justify-center'>
-                    <span className='flex h-14 w-14 items-center justify-center border border-white/15 bg-white/[0.06] text-white/80 backdrop-blur-sm'>
-                      <Play className='ml-0.5 h-5 w-5' strokeWidth={1.5} />
-                    </span>
-                  </span>
-                  <span className='absolute bottom-4 right-4 border border-brand bg-brand px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-foreground'>
-                    {t.comingSoon}
-                  </span>
-                </div>
-                <p className='px-5 py-4 text-sm text-muted-foreground'>
-                  {t.lesson} {String(lesson).padStart(2, '0')}
-                  <span className='sr-only'>: {t.comingSoon}</span>
-                </p>
-              </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
+        <Reveal className='mt-8 sm:mt-14'>
+          <CoursePlayer
+            modules={modules}
+            labels={t.player}
+            placeholderAction={
+              <CourseSignup
+                dict={dict}
+                source={`${source}:player`}
+                variant='inline'
+                className='w-full max-w-md text-left'
+              />
+            }
+          />
+        </Reveal>
 
-        <Reveal className='mt-8 flex flex-col gap-4 border-t pt-6 sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:pt-8'>
-          <p className='max-w-xl text-xs leading-relaxed text-muted-foreground'>
-            {t.placeholderNote}
-          </p>
-          <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
-            <CourseLink className='bl-btn bl-btn-primary inline-flex h-14 items-center justify-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] shadow-[0_16px_30px_-18px_hsl(var(--brand-strong))]'>
-              {courseIsLive ? t.watch : t.request}
-              <ArrowUpRight className='h-4 w-4' />
-            </CourseLink>
-            {showProgramLink ? (
-              <Link href={paths.program} className='bl-action justify-center'>
-                {t.cta}
-                <ArrowUpRight className='h-3.5 w-3.5' />
-              </Link>
-            ) : (
-              courseIsLive && (
+        <div className='mt-4 grid gap-4 lg:mt-5 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:gap-5'>
+          <Reveal delay={0.1}>
+            <CourseSignup dict={dict} source={source} className='h-full' />
+          </Reveal>
+          <Reveal
+            delay={0.2}
+            className='bl-card flex flex-col justify-between p-6 sm:p-8'
+          >
+            <div>
+              <p className='bl-kicker'>{t.nextKicker}</p>
+              <p className='mt-4 text-base leading-relaxed text-muted-foreground'>
+                {t.nextBody}
+              </p>
+            </div>
+            <div className='mt-6 flex flex-col gap-3'>
+              {courseIsLive && (
+                <CourseLink className='bl-btn bl-btn-primary inline-flex h-12 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'>
+                  {t.watch}
+                  <ArrowUpRight className='h-4 w-4' />
+                </CourseLink>
+              )}
+              {showProgramLink ? (
+                <Link
+                  href={paths.program}
+                  className='bl-btn bl-btn-ink inline-flex h-12 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
+                >
+                  {t.cta}
+                  <ArrowUpRight className='h-4 w-4' />
+                </Link>
+              ) : (
                 <Link
                   href={requestAccessHref}
-                  className='bl-action justify-center'
+                  className='bl-btn bl-btn-ink inline-flex h-12 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
                 >
                   {t.request}
-                  <ArrowUpRight className='h-3.5 w-3.5' />
+                  <ArrowUpRight className='h-4 w-4' />
                 </Link>
-              )
-            )}
-          </div>
-        </Reveal>
+              )}
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

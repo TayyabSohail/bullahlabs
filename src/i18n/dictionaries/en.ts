@@ -22,7 +22,7 @@ export const en = {
     /** Words (0-based, across both lines) in the accent colour: line two. */
     accent: [5, 6, 7, 8, 9],
     body: 'Know when AI actually helps, pick the smallest tool for the job, and check what comes back. Fewer wasted hours, lower bills, a footprint you can stand behind.',
-    primary: 'See the program',
+    primary: 'Start the free course',
     secondary: 'See the projects',
     /** The card beside the hero copy: everyday tasks decided in four steps.
         Each answer shows the habit first, then the deliberate choice that
@@ -137,7 +137,8 @@ export const en = {
   numbers: {
     kicker: 'By the numbers',
     title: 'Proof, not promises',
-    description: 'Figures from the work we have delivered.',
+    description:
+      'The course is taught by a team that builds and runs AI products. These are the figures behind that.',
     items: [
       { value: '150+', label: 'Projects delivered' },
       { value: '40+', label: 'Clients on four continents' },
@@ -145,9 +146,10 @@ export const en = {
     ],
   },
   technologies: {
-    kicker: 'Trusted technology',
-    statement: 'Built on the tools that matter.',
-    statementMuted: 'Proven tools. No experiments on your budget.',
+    kicker: 'The tools we teach with',
+    statement: 'We teach with the tools we build with.',
+    statementMuted:
+      'Every lesson comes from a stack that runs in production, not from a slide.',
     stackLabel: 'The stack, by layer',
     layers: [
       { label: 'Interface', note: 'What your users see and touch.' },
@@ -264,20 +266,6 @@ export const en = {
     note: 'An illustration of the habits taught in the free course, not a measured result.',
     cta: 'See what the free course covers',
   },
-  /** Where the name comes from, and why the program is called conscious. */
-  origin: {
-    kicker: 'The name',
-    title: 'Bullah, after Bulleh Shah',
-    accent: [2, 3],
-    verse: 'Parh parh aalim faazil hoya, kadi apne aap nu parhya ee nahin.',
-    translation:
-      'You read and read and became a scholar, but you never read yourself.',
-    attribution: 'Bulleh Shah, Punjabi poet, c. 1680 to 1757',
-    body: [
-      'Bulleh Shah, remembered for his verse and his whirling dance, held that learning counts for little without awareness of what you are doing and why.',
-      'That is what conscious means here: not more tools and more prompts, but knowing what the task needs and stopping there. Our mark is that dancer drawn as a neural network: every joint a node, every limb a link, and the skirt two layers of nodes fanning out as the figure turns.',
-    ],
-  },
   work: {
     kicker: 'Proof in production',
     title: 'What we built, and how it is optimized',
@@ -327,7 +315,7 @@ export const en = {
       kicker: 'Projects',
       title: 'Real products, built to waste nothing',
       accent: [4, 5],
-      body: 'Marketplaces, SaaS platforms, AI systems and websites in production. Each one says what it is, and how it was optimized.',
+      body: 'Marketplaces, SaaS platforms, AI systems and websites in production. Each one shows the rules the course teaches, applied: the right tool, only the needed context, nothing done twice, checked before trusted.',
       cta: 'Browse all projects',
       listLabel: 'Featured projects',
       more: '{n} more on the projects page',
@@ -344,12 +332,62 @@ export const en = {
     description:
       'Short videos on when AI helps, how to get a reliable result in fewer rounds, and when to leave it alone. Made for people who are not engineers.',
     cta: 'See the program',
-    watch: 'Watch the course',
-    request: 'Request access',
-    lesson: 'Lesson',
-    comingSoon: 'Coming soon',
-    placeholderNote:
-      'Lessons appear here as they are published. Request access and we will tell you when the first ones are live.',
+    watch: 'Watch the full course',
+    request: 'Request access for a team',
+    /** Beside the sign-up: what happens next and how to get the course. */
+    nextKicker: 'What happens next',
+    nextBody:
+      'Lessons are published here one at a time, each a few minutes long. Watch one, try it on your own work, come back for the next. Teams get the same lessons with a session on their own tasks.',
+    /** Labels in the course player and the module list. */
+    player: {
+      modules: 'Modules',
+      module: 'Module',
+      lesson: 'Lesson',
+      lessons: 'lessons',
+      published: 'published',
+      watched: 'watched',
+      watchedTag: 'Watched',
+      minutes: 'min',
+      comingSoon: 'Coming soon',
+      nothingYet:
+        'This lesson is being recorded. Leave your email and we will tell you the moment it is live.',
+      listLabel: 'Course modules and lessons',
+      previous: 'Previous lesson',
+      next: 'Next lesson',
+      upNext: 'Up next',
+      play: 'Play',
+      pause: 'Pause',
+      mute: 'Mute',
+      unmute: 'Unmute',
+      speed: 'Playback speed',
+      fullscreen: 'Watch full screen',
+      fullscreenShort: 'Full screen',
+      exitFullscreen: 'Exit full screen',
+      pip: 'Picture in picture',
+      back: 'Back 10 seconds',
+      forward: 'Forward 10 seconds',
+      loadEmbed: 'Play the lesson',
+      seek: 'Seek',
+    },
+    /** The "tell me when a lesson is live" form under the player. */
+    signup: {
+      kicker: 'Get notified',
+      title: 'Be first to know when a lesson goes live.',
+      body: 'One email per published lesson, nothing else. Reply to any of them to come off the list.',
+      email: 'Work email',
+      placeholder: 'you@company.com',
+      submit: 'Notify me',
+      consentBefore:
+        'By signing up you agree that we store your address to send these notices, as described in the',
+      consentLink: 'privacy policy',
+      consentAfter: '.',
+      doneTitle: 'You are on the list.',
+      alreadyTitle: 'You were already on the list.',
+      doneBody:
+        'We will email you when the first lesson is live, and once for each one after it.',
+      errorGeneric: 'Something went wrong. Please try again in a moment.',
+      teamLink: 'Training for a whole team?',
+    },
   },
   programPage: {
     kicker: 'Conscious AI',
@@ -365,7 +403,7 @@ export const en = {
     courseTitle: 'Watch, then try it on your own work',
     courseAccent: [0],
     courseDescription:
-      'Each lesson is a few minutes long and ends with one thing to change in how you work. The first lessons are being recorded now.',
+      'Three modules, each a handful of short lessons that end with one thing to change in how you work. Pick a lesson, watch, then try it on your own task. The first ones are being recorded now.',
     ctaTitle: 'Start with the free course.',
     ctaAccent: [3, 4],
     ctaBody:
@@ -631,7 +669,8 @@ export const en = {
   faq: {
     kicker: 'FAQ',
     title: 'Straight answers, before you commit.',
-    description: 'How we work, what we build and how the program runs.',
+    description:
+      'How the program runs, what it costs, and how we work with the teams behind it.',
     accent: [0, 1],
   },
   cta: {

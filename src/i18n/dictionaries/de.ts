@@ -22,7 +22,7 @@ export const de: Dictionary = {
     title: 'KI nicht aus Gewohnheit.\nSondern bewusst.',
     accent: [4, 5],
     body: 'Wissen, wann KI wirklich hilft, das kleinste passende Werkzeug nehmen und prüfen, was zurückkommt. Weniger verschwendete Stunden, geringere Kosten, ein Fußabdruck, zu dem Sie stehen können.',
-    primary: 'Zum Programm',
+    primary: 'Kostenlosen Kurs starten',
     secondary: 'Projekte ansehen',
     decision: {
       kicker:
@@ -141,7 +141,8 @@ export const de: Dictionary = {
   numbers: {
     kicker: 'In Zahlen',
     title: 'Belege statt Versprechen',
-    description: 'Zahlen aus gelieferter Arbeit.',
+    description:
+      'Den Kurs gibt ein Team, das KI-Produkte baut und betreibt. Das sind die Zahlen dahinter.',
     items: [
       { value: '150+', label: 'Abgeschlossene Projekte' },
       { value: '40+', label: 'Kunden auf vier Kontinenten' },
@@ -149,9 +150,10 @@ export const de: Dictionary = {
     ],
   },
   technologies: {
-    kicker: 'Bewährte Technologie',
-    statement: 'Gebaut auf den Werkzeugen, die zählen.',
-    statementMuted: 'Bewährte Werkzeuge. Keine Experimente auf Ihre Kosten.',
+    kicker: 'Die Werkzeuge, mit denen wir lehren',
+    statement: 'Wir lehren mit den Werkzeugen, mit denen wir bauen.',
+    statementMuted:
+      'Jede Lektion stammt aus einem Stack, der im Betrieb läuft, nicht von einer Folie.',
     stackLabel: 'Der Stack, nach Ebene',
     layers: [
       { label: 'Oberfläche', note: 'Was Ihre Nutzer sehen und bedienen.' },
@@ -270,19 +272,6 @@ export const de: Dictionary = {
     note: 'Eine Veranschaulichung der Gewohnheiten aus dem kostenlosen Kurs, kein gemessenes Ergebnis.',
     cta: 'Was der kostenlose Kurs behandelt',
   },
-  origin: {
-    kicker: 'Der Name',
-    title: 'Bullah, nach Bulleh Shah',
-    accent: [2, 3],
-    verse: 'Parh parh aalim faazil hoya, kadi apne aap nu parhya ee nahin.',
-    translation:
-      'Du hast gelesen und gelesen und bist ein Gelehrter geworden, doch dich selbst hast du nie gelesen.',
-    attribution: 'Bulleh Shah, Dichter aus dem Punjab, ca. 1680 bis 1757',
-    body: [
-      'Für Bulleh Shah, in Erinnerung geblieben für seine Verse und seinen wirbelnden Tanz, zählte Wissen wenig ohne das Bewusstsein dafür, was man tut und warum.',
-      'Das bedeutet „conscious“ bei uns: nicht mehr Werkzeuge und mehr Prompts, sondern zu wissen, was die Aufgabe braucht, und dort aufzuhören. Unser Zeichen ist dieser Tänzer als neuronales Netz: jedes Gelenk ein Knoten, jedes Glied eine Verbindung, und der Rock zwei Schichten von Knoten, die sich beim Drehen auffächern.',
-    ],
-  },
   work: {
     kicker: 'Belege im Betrieb',
     title: 'Was wir gebaut haben, und wie es optimiert ist',
@@ -330,7 +319,7 @@ export const de: Dictionary = {
       kicker: 'Projekte',
       title: 'Echte Produkte, gebaut ohne Verschwendung',
       accent: [3, 4],
-      body: 'Marktplätze, SaaS-Plattformen, KI-Systeme und Websites im Einsatz. Jedes sagt, was es ist und wie es optimiert wurde.',
+      body: 'Marktplätze, SaaS-Plattformen, KI-Systeme und Websites im Einsatz. Jedes zeigt die Regeln aus dem Kurs in der Anwendung: das richtige Werkzeug, nur der nötige Kontext, nichts doppelt, erst geprüft, dann vertraut.',
       cta: 'Alle Projekte ansehen',
       listLabel: 'Ausgewählte Projekte',
       more: '{n} weitere auf der Projektseite',
@@ -347,12 +336,60 @@ export const de: Dictionary = {
     description:
       'Kurze Videos dazu, wann KI hilft, wie Sie in weniger Runden zu einem verlässlichen Ergebnis kommen und wann Sie sie besser weglassen. Gemacht für Menschen, die keine Entwickler sind.',
     cta: 'Zum Programm',
-    watch: 'Kurs ansehen',
-    request: 'Zugang anfragen',
-    lesson: 'Lektion',
-    comingSoon: 'Demnächst',
-    placeholderNote:
-      'Die Lektionen erscheinen hier, sobald sie veröffentlicht sind. Fragen Sie Zugang an, und wir sagen Ihnen Bescheid, wenn die ersten online sind.',
+    watch: 'Ganzen Kurs ansehen',
+    request: 'Zugang für ein Team anfragen',
+    nextKicker: 'Wie es weitergeht',
+    nextBody:
+      'Die Lektionen erscheinen hier eine nach der anderen, jede wenige Minuten lang. Eine ansehen, an der eigenen Arbeit ausprobieren, für die nächste wiederkommen. Teams bekommen dieselben Lektionen plus eine Sitzung zu ihren eigenen Aufgaben.',
+    player: {
+      modules: 'Module',
+      module: 'Modul',
+      lesson: 'Lektion',
+      lessons: 'Lektionen',
+      published: 'veröffentlicht',
+      watched: 'gesehen',
+      watchedTag: 'Gesehen',
+      minutes: 'Min.',
+      comingSoon: 'Demnächst',
+      nothingYet:
+        'Diese Lektion wird gerade aufgenommen. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen Bescheid, sobald sie online ist.',
+      listLabel: 'Kursmodule und Lektionen',
+      previous: 'Vorherige Lektion',
+      next: 'Nächste Lektion',
+      upNext: 'Als Nächstes',
+      play: 'Abspielen',
+      pause: 'Pause',
+      mute: 'Stumm',
+      unmute: 'Ton an',
+      speed: 'Geschwindigkeit',
+      fullscreen: 'Im Vollbild ansehen',
+      fullscreenShort: 'Vollbild',
+      exitFullscreen: 'Vollbild beenden',
+      pip: 'Bild im Bild',
+      back: '10 Sekunden zurück',
+      forward: '10 Sekunden vor',
+      loadEmbed: 'Lektion abspielen',
+      seek: 'Position',
+    },
+    signup: {
+      kicker: 'Benachrichtigung',
+      title: 'Erfahren Sie als Erste, wenn eine Lektion online geht.',
+      body: 'Eine E-Mail pro veröffentlichter Lektion, sonst nichts. Antworten Sie auf eine davon, um sich auszutragen.',
+      email: 'Geschäftliche E-Mail',
+      placeholder: 'sie@firma.de',
+      submit: 'Bescheid geben',
+      consentBefore:
+        'Mit der Anmeldung stimmen Sie zu, dass wir Ihre Adresse für diese Hinweise speichern, wie in der',
+      consentLink: 'Datenschutzerklärung',
+      consentAfter: ' beschrieben.',
+      doneTitle: 'Sie stehen auf der Liste.',
+      alreadyTitle: 'Sie standen schon auf der Liste.',
+      doneBody:
+        'Wir schreiben Ihnen, sobald die erste Lektion online ist, und einmal für jede weitere.',
+      errorGeneric:
+        'Etwas ist schiefgelaufen. Bitte versuchen Sie es gleich noch einmal.',
+      teamLink: 'Schulung für ein ganzes Team?',
+    },
   },
   programPage: {
     kicker: 'Conscious AI',
@@ -368,7 +405,7 @@ export const de: Dictionary = {
     courseTitle: 'Ansehen, dann an der eigenen Arbeit ausprobieren',
     courseAccent: [0],
     courseDescription:
-      'Jede Lektion dauert wenige Minuten und endet mit einer Sache, die Sie an Ihrer Arbeitsweise ändern. Die ersten Lektionen werden gerade aufgenommen.',
+      'Drei Module mit je einer Handvoll kurzer Lektionen, die mit einer Sache enden, die Sie an Ihrer Arbeitsweise ändern. Lektion wählen, ansehen, an der eigenen Aufgabe ausprobieren. Die ersten werden gerade aufgenommen.',
     ctaTitle: 'Beginnen Sie mit dem kostenlosen Kurs.',
     ctaAccent: [4, 5],
     ctaBody:
@@ -638,7 +675,7 @@ export const de: Dictionary = {
     kicker: 'FAQ',
     title: 'Klare Antworten, bevor Sie sich festlegen.',
     description:
-      'Wie wir arbeiten, was wir bauen und wie das Programm abläuft.',
+      'Wie das Programm abläuft, was es kostet und wie wir mit den Teams dahinter arbeiten.',
     accent: [0, 1],
   },
   cta: {

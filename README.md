@@ -25,13 +25,13 @@ pnpm dev                      # http://localhost:3000
 
 Other scripts:
 
-| Script           | What it does                        |
-| ---------------- | ----------------------------------- |
-| `pnpm build`     | Production build (also typechecks)  |
-| `pnpm start`     | Serve the production build          |
-| `pnpm typecheck` | `tsc --noEmit`                      |
-| `pnpm lint`      | ESLint with auto-fix                |
-| `pnpm format`    | Prettier                            |
+| Script           | What it does                       |
+| ---------------- | ---------------------------------- |
+| `pnpm build`     | Production build (also typechecks) |
+| `pnpm start`     | Serve the production build         |
+| `pnpm typecheck` | `tsc --noEmit`                     |
+| `pnpm lint`      | ESLint with auto-fix               |
+| `pnpm format`    | Prettier                           |
 
 ---
 
@@ -39,14 +39,14 @@ Other scripts:
 
 All optional except `NEXT_PUBLIC_APP_URL`. See [`.env.example`](./.env.example).
 
-| Variable                                             | Enables                                               |
-| ---------------------------------------------------- | ----------------------------------------------------- |
-| `NEXT_PUBLIC_APP_URL`                                | Canonical URLs, sitemap, Open Graph, structured data  |
-| `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Contact form delivery by email via Resend        |
-| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` | Contact form storage in `contact_messages` (see `supabase/migrations`) |
-| `NEXT_PUBLIC_CAL_LINK`                               | "Book a call" link on the contact page (`user/event`) |
-| `NEXT_PUBLIC_COURSE_URL`                             | Where the Conscious AI course is hosted; "Watch the course" links go there, or to the contact form while unset |
-| `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | Analytics, loaded only after cookie consent          |
+| Variable                                                                                 | Enables                                                                                                        |
+| ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_APP_URL`                                                                    | Canonical URLs, sitemap, Open Graph, structured data                                                           |
+| `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`                               | Contact form delivery by email via Resend                                                                      |
+| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` | Contact form storage in `contact_messages` and lesson sign-ups in `course_signups` (see `supabase/migrations`) |
+| `NEXT_PUBLIC_CAL_LINK`                                                                   | "Book a call" link on the contact page (`user/event`)                                                          |
+| `NEXT_PUBLIC_COURSE_URL`                                                                 | Where the Conscious AI course is hosted; "Watch the course" links go there, or to the contact form while unset |
+| `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST`                                    | Analytics, loaded only after cookie consent                                                                    |
 
 Without Resend or Supabase, contact submissions are validated and logged on
 the server so nothing is lost during development.
@@ -58,16 +58,17 @@ the server so nothing is lost during development.
 Everything visible on the site is data-driven from a handful of typed files.
 Edit these; the pages update themselves.
 
-| File                          | Controls                                                                 |
-| ----------------------------- | ------------------------------------------------------------------------ |
-| `src/config/site.ts`          | Company name, tagline, email, offices, founder, booking link |
-| `src/data/projects.ts`        | Every case study: copy, cover image, metrics, stack. Drives `/work`, `/work/[slug]`, the homepage showcase, outcomes and sitemap |
-| `src/data/program.ts`         | The three Conscious AI pillars, shown on the homepage. The course itself is hosted off-site (`NEXT_PUBLIC_COURSE_URL`) |
-| `src/data/values.ts`          | The four principles on the about page                                    |
-| `src/data/faqs.ts`            | Questions, tagged `studio` (homepage) or `program` (program page)        |
-| `src/data/testimonials.ts`    | Client quotes attributed by role and company, linked to their case studies    |
-| `src/app/legal/*/page.tsx`    | Privacy, Terms, Cookie policy, Imprint                                   |
-| `src/i18n/dictionaries/*.ts` | UI and marketing copy in English and German (nav, hero, sections, footer) |
+| File                         | Controls                                                                                                                                                                                                                                                                  |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/config/site.ts`         | Company name, tagline, email, offices, founder, booking link                                                                                                                                                                                                              |
+| `src/data/projects.ts`       | Every case study: copy, cover image, metrics, stack. Drives `/work`, `/work/[slug]`, the homepage showcase, outcomes and sitemap                                                                                                                                          |
+| `src/data/program.ts`        | The three Conscious AI pillars, shown on the homepage                                                                                                                                                                                                                     |
+| `src/data/lessons.ts`        | The course modules and lessons the player shows (German in `lessons.de.ts`). Set a lesson's `video` (`youtube`, `vimeo` or hosted `file`) to publish it; without one it is listed as coming soon. The full course off-site is linked when `NEXT_PUBLIC_COURSE_URL` is set |
+| `src/data/values.ts`         | The four principles on the about page                                                                                                                                                                                                                                     |
+| `src/data/faqs.ts`           | Questions, tagged `studio` (homepage) or `program` (program page)                                                                                                                                                                                                         |
+| `src/data/testimonials.ts`   | Client quotes attributed by role and company, linked to their case studies                                                                                                                                                                                                |
+| `src/app/legal/*/page.tsx`   | Privacy, Terms, Cookie policy, Imprint                                                                                                                                                                                                                                    |
+| `src/i18n/dictionaries/*.ts` | UI and marketing copy in English and German (nav, hero, sections, footer)                                                                                                                                                                                                 |
 
 ### Adding a case study
 
@@ -91,15 +92,15 @@ Edit these; the pages update themselves.
 
 ## Pages
 
-| Route                         | Notes                                              |
-| ----------------------------- | -------------------------------------------------- |
-| `/`                           | Hero, figures, project showcase, pillars, one task two ways, stack, globe, how a project runs, testimonials, course lessons, FAQ, contact form |
-| `/conscious-ai`               | The course: lesson placeholders, link to the course, FAQ |
-| `/work`, `/work/[slug]`       | Case studies, each read through an efficiency lens; filterable by lens and category |
-| `/about`                      | Story, principles, how a project runs, locations   |
-| `/contact`                    | Form (server action, rate limited, honeypot), offices with live clocks |
-| `/legal` plus `/legal/privacy`, `/legal/terms`, `/legal/cookies`, `/legal/imprint` | Legal hub and policies |
-| `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`, `/opengraph-image` | Generated |
+| Route                                                                              | Notes                                                                                                                                                                   |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                                                                                | Hero, course player with the module list and lesson sign-up, figures, project showcase, pillars, stack, globe, how conscious use works, testimonials, FAQ, contact form |
+| `/conscious-ai`                                                                    | The course: player with the module list, sign-up for new lessons, link to the full course, FAQ                                                                          |
+| `/work`, `/work/[slug]`                                                            | Case studies, each read through an efficiency lens; filterable by lens and category                                                                                     |
+| `/about`                                                                           | Story, principles, how a project runs, locations                                                                                                                        |
+| `/contact`                                                                         | Form (server action, rate limited, honeypot), offices with live clocks                                                                                                  |
+| `/legal` plus `/legal/privacy`, `/legal/terms`, `/legal/cookies`, `/legal/imprint` | Legal hub and policies                                                                                                                                                  |
+| `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`, `/opengraph-image`         | Generated                                                                                                                                                               |
 
 ---
 

@@ -13,25 +13,24 @@ import { getFaqs } from '@/data/faqs';
 import { getDictionary } from '@/i18n/server';
 
 /**
- * Proof first, then the mindset: the figures and the work, the three
- * pillars and one task shown both ways; the stack, the two offices on the
- * globe and how conscious use works; what clients said; then the program,
- * questions about working with us, and the form.
+ * The program first, then the proof behind it: the course player straight
+ * after the hero, the figures and the work, the three pillars, the stack,
+ * the two offices on the globe and how conscious use works, what clients
+ * said, questions, and the form.
  */
 export default async function HomePage() {
   const dict = await getDictionary();
-  const faqs = getFaqs(dict.locale, 'studio').slice(0, 4);
+  // The program questions lead; two studio questions (how AI is used in
+  // what we build, and where the team is) round the list off.
+  const studio = getFaqs(dict.locale, 'studio');
+  const faqs = [
+    ...getFaqs(dict.locale, 'program').slice(0, 3),
+    ...studio.filter((_, index) => index === 1 || index === 4),
+  ];
 
   return (
     <>
       <Hero dict={dict} />
-      <Numbers dict={dict} />
-      <ProjectsTeaser dict={dict} />
-      <Pillars dict={dict} />
-      <Technologies dict={dict} />
-      <GlobalReach dict={dict} />
-      <HowItWorks dict={dict} />
-      <Testimonials dict={dict} />
       <CourseVideos
         dict={dict}
         kicker={dict.program.kicker}
@@ -39,15 +38,22 @@ export default async function HomePage() {
         accentWords={[...dict.program.accent]}
         description={dict.program.description}
         showProgramLink
-        className='bl-band-stone'
+        className='bl-band-white'
       />
+      <Numbers dict={dict} />
+      <ProjectsTeaser dict={dict} />
+      <Pillars dict={dict} />
+      <Technologies dict={dict} />
+      <GlobalReach dict={dict} />
+      <HowItWorks dict={dict} />
+      <Testimonials dict={dict} />
       <FaqSection
         items={faqs}
         kicker={dict.faq.kicker}
         title={dict.faq.title}
         accentWords={[...dict.faq.accent]}
         description={dict.faq.description}
-        className='bl-band-white bl-rule'
+        className='bl-band-stone bl-rule'
       />
       <ContactSection dict={dict} />
     </>

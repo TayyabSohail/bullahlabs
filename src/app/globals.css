@@ -447,6 +447,61 @@
   }
 }
 
+/* Course player: the seek slider sits over its own drawn track, so the
+   native track is hidden and only the thumb shows. */
+.bl-seek::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 100%;
+}
+.bl-seek::-moz-range-track {
+  background: transparent;
+  height: 100%;
+}
+.bl-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: 4px;
+  background: hsl(var(--brand));
+  border: 2px solid #fff;
+  border-radius: 9999px;
+  transform: scale(0);
+  transition: transform 160ms ease;
+}
+.bl-seek::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: hsl(var(--brand));
+  border: 2px solid #fff;
+  border-radius: 9999px;
+  transform: scale(0);
+  transition: transform 160ms ease;
+}
+.bl-seek:hover::-webkit-slider-thumb,
+.bl-seek:focus-visible::-webkit-slider-thumb {
+  transform: scale(1);
+}
+.bl-seek:hover::-moz-range-thumb,
+.bl-seek:focus-visible::-moz-range-thumb {
+  transform: scale(1);
+}
+
+/* Thin, quiet scrollbar for the module list. */
+.bl-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--ink) / 0.25) transparent;
+}
+.bl-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.bl-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--ink) / 0.25);
+}
+.bl-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bl-marquee,
   .bl-current,

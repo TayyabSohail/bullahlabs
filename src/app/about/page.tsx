@@ -6,7 +6,6 @@ import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { HowItWorks } from '@/components/sections/how-it-works';
 import { Locations } from '@/components/sections/locations';
-import { Origin } from '@/components/sections/origin';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 
 import { paths } from '@/constants/paths';
@@ -62,8 +61,6 @@ export default async function AboutPage() {
           ))}
         </Stagger>
       </section>
-
-      <Origin dict={dict} />
 
       <section className='bl-section border-t border-line'>
         <div className='bl-container'>

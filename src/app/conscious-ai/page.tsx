@@ -68,7 +68,6 @@ export default async function ConsciousAiPage() {
         title={t.courseTitle}
         accentWords={[...t.courseAccent]}
         description={t.courseDescription}
-        count={6}
         className='bl-band-stone'
       />
 
