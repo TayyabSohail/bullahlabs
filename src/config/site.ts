@@ -47,8 +47,8 @@ export const siteConfig = {
       utc: 'UTC+5',
     },
     {
-      id: 'fellbach',
-      city: 'Fellbach',
+      id: 'stuttgart',
+      city: 'Stuttgart',
       country: 'Germany',
       countryCode: 'DE',
       label: 'European Office',

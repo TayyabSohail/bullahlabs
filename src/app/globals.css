@@ -921,271 +921,97 @@
   }
 }
 
-/* Hero system map (effects/system-map.tsx): labelled isometric tiles on a
-   plate, wired together, with one cube (the task) riding the wires. Strokes
-   stay one device pixel at any size. Tones: paper (the task), ink (the
-   question), mint (the AI steps), warm (the check), brand (the result). */
-.bl-map polygon,
-.bl-map line,
-.bl-map rect {
-  vector-effect: non-scaling-stroke;
-  stroke-linejoin: round;
+/* Hero case ledger (effects/case-ledger.tsx): a flat job card that plays
+   one shipped project at a time in three beats. The card sits on a hard
+   brand shadow with crosshair ticks at its corners; a rail down the left
+   fills beat by beat, a bar under the header runs for the length of the
+   case, the problem types in behind a block caret. */
+.bl-ledger {
+  box-shadow: 8px 8px 0 0 hsl(var(--brand));
 }
-.bl-map {
-  max-width: 100%;
-  overflow: clip;
-  --bl-map-label: 11px;
-}
-/* Below sm the map is drawn at phone width, so the labels get a size up. */
-@media (max-width: 639.98px) {
-  .bl-map {
-    --bl-map-label: 12px;
-  }
-}
-.bl-map-vertical svg {
-  max-height: 31rem;
-}
-.bl-map-flow-lines path {
-  fill: none;
-  stroke: hsl(var(--brand) / 0.46);
-  stroke-width: 1.25;
-  stroke-dasharray: 2 5;
-  animation: bl-map-signal 1.2s linear infinite;
-}
-.bl-map-core > circle:first-child {
-  fill: hsl(var(--brand) / 0.18);
-  stroke: hsl(var(--brand-2));
-  stroke-width: 1;
-}
-.bl-map-core-orbit {
-  fill: none;
-  stroke: hsl(var(--brand) / 0.58);
-  stroke-width: 1;
-  stroke-dasharray: 2 3;
-}
-.bl-map-core path {
-  fill: hsl(var(--brand-2));
-}
-.bl-map-core-dot {
-  fill: hsl(var(--brand));
-}
-.bl-map-core text {
+.bl-ledger-tick {
+  position: absolute;
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  fill: #fff;
+  font-size: 12px;
+  line-height: 1;
+  color: hsl(var(--ink) / 0.5);
+  pointer-events: none;
 }
-@keyframes bl-map-signal {
-  to {
-    stroke-dashoffset: -14;
+.bl-ledger-live {
+  animation: bl-ledger-live 1.4s steps(2, jump-none) infinite;
+}
+@keyframes bl-ledger-live {
+  0%,
+  100% {
+    opacity: 1;
   }
+  50% {
+    opacity: 0.25;
+  }
+}
+.bl-ledger-caret {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.95em;
+  margin-left: 0.08em;
+  vertical-align: -0.1em;
+  background: hsl(var(--brand));
+  animation: bl-ledger-caret 0.9s steps(2, jump-none) infinite;
+}
+@keyframes bl-ledger-caret {
+  50% {
+    opacity: 0;
+  }
+}
+.bl-ledger-progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 3px;
+  width: 100%;
+  background: hsl(var(--brand));
+  transform-origin: left;
+  transform: scaleX(0);
+}
+.bl-ledger-progress[data-run] {
+  animation: bl-ledger-progress linear forwards;
+}
+@keyframes bl-ledger-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.bl-ledger-mark {
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+.bl-ledger-mark[data-on] {
+  background: hsl(var(--brand));
+  border-color: hsl(var(--brand));
+  box-shadow: 0 0 0 3px hsl(var(--brand) / 0.2);
+}
+.bl-ledger-rail-fill {
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bl-ledger-rail-fill[data-on] {
+  transform: scaleY(1);
 }
 @media (prefers-reduced-motion: reduce) {
-  .bl-map-flow-lines path {
+  .bl-ledger-live,
+  .bl-ledger-caret,
+  .bl-ledger-progress[data-run] {
     animation: none;
   }
-}
-/* Below lg the map sits under the copy, so the stage breaks out of the
-   container padding (mirroring .bl-container) to use the full screen width.
-   The SVG viewBox always encloses the whole plate, so nothing is cut off. */
-@media (max-width: 1023.98px) {
-  .bl-map-stage {
-    margin-inline: -1.25rem;
+  .bl-ledger-progress {
+    transform: none;
   }
-}
-@media (min-width: 640px) and (max-width: 1023.98px) {
-  .bl-map-stage {
-    margin-inline: -2rem;
-  }
-}
-.bl-map-plate-top {
-  fill: hsl(var(--surface) / 0.55);
-  stroke: hsl(var(--ink) / 0.18);
-  stroke-width: 1;
-}
-.bl-map-plate-side {
-  fill: hsl(var(--ink) / 0.07);
-  stroke: hsl(var(--ink) / 0.18);
-  stroke-width: 1;
-}
-.bl-map-grid line {
-  stroke: hsl(var(--ink) / 0.09);
-  stroke-width: 1;
-}
-.bl-map-sweep {
-  fill: hsl(var(--brand) / 0.1);
-  stroke: none;
-  pointer-events: none;
-}
-.bl-map-edge {
-  fill: none;
-  stroke: hsl(var(--ink) / 0.4);
-  stroke-width: 1.25;
-}
-.bl-map-shadow {
-  fill: hsl(var(--ink) / 0.08);
-  stroke: none;
-}
-
-/* Tiles */
-.bl-map-tile polygon {
-  stroke: hsl(var(--ink) / 0.3);
-  stroke-width: 1;
-}
-.bl-map-tile[data-tone='paper'] .bl-map-top {
-  fill: #ffffff;
-}
-.bl-map-tile[data-tone='paper'] .bl-map-left {
-  fill: #ebebe7;
-}
-.bl-map-tile[data-tone='paper'] .bl-map-right {
-  fill: #d7d7d2;
-}
-.bl-map-tile[data-tone='mint'] polygon {
-  stroke: hsl(var(--brand-strong) / 0.45);
-}
-.bl-map-tile[data-tone='mint'] .bl-map-top {
-  fill: hsl(var(--brand-soft));
-}
-.bl-map-tile[data-tone='mint'] .bl-map-left {
-  fill: hsl(152 45% 86%);
-}
-.bl-map-tile[data-tone='mint'] .bl-map-right {
-  fill: hsl(152 35% 78%);
-}
-.bl-map-tile[data-tone='warm'] polygon {
-  stroke: hsl(18 70% 40% / 0.45);
-}
-.bl-map-tile[data-tone='warm'] .bl-map-top {
-  fill: hsl(24 100% 93%);
-}
-.bl-map-tile[data-tone='warm'] .bl-map-left {
-  fill: hsl(22 80% 85%);
-}
-.bl-map-tile[data-tone='warm'] .bl-map-right {
-  fill: hsl(20 70% 76%);
-}
-.bl-map-tile[data-tone='ink'] polygon {
-  stroke: hsl(0 0% 0% / 0.6);
-}
-.bl-map-tile[data-tone='ink'] .bl-map-top {
-  fill: hsl(0 0% 14%);
-}
-.bl-map-tile[data-tone='ink'] .bl-map-left {
-  fill: hsl(0 0% 8%);
-}
-.bl-map-tile[data-tone='ink'] .bl-map-right {
-  fill: hsl(0 0% 4%);
-}
-.bl-map-flash {
-  fill: hsl(var(--brand));
-  stroke: none !important;
-  pointer-events: none;
-}
-.bl-map-spark {
-  fill: hsl(var(--brand));
-  stroke: none;
-  pointer-events: none;
-}
-.bl-map-label {
-  font-family: var(--font-mono);
-  font-size: var(--bl-map-label, 11px);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  fill: hsl(var(--ink));
-}
-.bl-map-processor rect,
-.bl-map-processor line {
-  stroke: hsl(var(--brand-2));
-  stroke-width: 1.25;
-}
-.bl-map-processor rect {
-  fill: hsl(var(--ink-2));
-}
-.bl-map-processor .bl-map-processor-core {
-  fill: hsl(var(--brand));
-  stroke: hsl(var(--brand-2));
-}
-.bl-map-processor circle {
-  fill: hsl(var(--brand-2));
-}
-.bl-map-tile[data-tone='ink'] .bl-map-label {
-  fill: #ffffff;
-}
-
-/* Cubes: packets on the wires and spare blocks in the corners */
-.bl-map-cube polygon {
-  stroke-width: 1;
-}
-.bl-map-cube[data-tone='paper'] polygon {
-  stroke: hsl(var(--ink) / 0.3);
-}
-.bl-map-cube[data-tone='paper'] .bl-map-top {
-  fill: #ffffff;
-}
-.bl-map-cube[data-tone='paper'] .bl-map-left {
-  fill: #ebebe7;
-}
-.bl-map-cube[data-tone='paper'] .bl-map-right {
-  fill: #d7d7d2;
-}
-.bl-map-cube[data-tone='brand'] polygon {
-  stroke: hsl(var(--brand-strong) / 0.7);
-}
-.bl-map-cube[data-tone='brand'] .bl-map-top {
-  fill: hsl(var(--brand-2));
-}
-.bl-map-cube[data-tone='brand'] .bl-map-left {
-  fill: hsl(var(--brand));
-}
-.bl-map-cube[data-tone='brand'] .bl-map-right {
-  fill: hsl(var(--brand-strong));
-}
-.bl-map-cube[data-tone='warm'] polygon {
-  stroke: hsl(18 80% 32% / 0.7);
-}
-.bl-map-cube[data-tone='warm'] .bl-map-top {
-  fill: hsl(24 100% 66%);
-}
-.bl-map-cube[data-tone='warm'] .bl-map-left {
-  fill: hsl(var(--warm));
-}
-.bl-map-cube[data-tone='warm'] .bl-map-right {
-  fill: hsl(16 90% 48%);
-}
-.bl-map-cube[data-tone='ink'] polygon {
-  stroke: hsl(0 0% 0% / 0.55);
-}
-.bl-map-cube[data-tone='ink'] .bl-map-top {
-  fill: hsl(0 0% 26%);
-}
-.bl-map-cube[data-tone='ink'] .bl-map-left {
-  fill: hsl(0 0% 12%);
-}
-.bl-map-cube[data-tone='ink'] .bl-map-right {
-  fill: hsl(0 0% 6%);
-}
-
-/* Glow left behind a packet on the wire */
-.bl-map-trail {
-  fill: none;
-  stroke-width: 3;
-  stroke-linecap: round;
-  opacity: 0.55;
-}
-.bl-map-trail[data-tone='brand'] {
-  stroke: hsl(var(--brand));
-}
-.bl-map-trail[data-tone='warm'] {
-  stroke: hsl(var(--warm));
-}
-.bl-map-trail[data-tone='ink'] {
-  stroke: hsl(var(--ink) / 0.6);
-}
-.bl-map-trail[data-tone='paper'] {
-  stroke: hsl(var(--ink) / 0.3);
 }
 
 /* Vertical mission flow: a readable explanation, not a decorative diagram. */

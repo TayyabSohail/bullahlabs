@@ -1,8 +1,8 @@
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
+import { CaseLedger } from '@/components/effects/case-ledger';
 import { Contours } from '@/components/effects/contours';
-import { SystemMap } from '@/components/effects/system-map';
 import { LetterReveal } from '@/components/motion/letter-reveal';
 import { Reveal } from '@/components/motion/reveal';
 
@@ -15,8 +15,8 @@ interface HeroProps {
 
 /**
  * Opening section: what the company does in one headline and one sentence,
- * two actions, and beside them a large living map that acts the headline
- * out: real tasks decided on purpose, right-sized AI, a check, a result.
+ * two actions, and beside them a job card that acts the headline out with
+ * real projects: the problem, what was built with conscience, the result.
  */
 export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
@@ -85,7 +85,7 @@ export function Hero({ dict }: HeroProps) {
             distance={16}
             className='w-full min-w-0 max-w-[44rem] justify-self-center lg:-mt-10 lg:justify-self-end'
           >
-            <SystemMap copy={t.map} delay={0.5} />
+            <CaseLedger copy={t.cases} delay={0.5} />
           </Reveal>
         </div>
       </div>

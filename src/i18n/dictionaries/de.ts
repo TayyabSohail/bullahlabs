@@ -26,41 +26,77 @@ export const de: Dictionary = {
     body: 'Wir entwerfen, bauen und verbessern digitale Produkte mit Blick auf ihre Wirkung in der echten Welt. Von den Systemen, die wir bauen, bis zur KI, die wir nutzen, konzentrieren wir uns auf das, was nützlich ist, was verantwortbar ist und was es wert ist, gebaut zu werden.',
     primary: 'Projekt besprechen',
     secondary: 'Projekte ansehen',
-    map: {
-      kicker: 'Jede Aufgabe, entschieden bevor KI geöffnet wird.',
-      taskLabel: 'Aufgabe',
-      nodes: {
-        task: 'Die Aufgabe',
-        decide: 'Hilft KI?',
-        tool: 'Kleinstes\nWerkzeug',
-        context: 'Nötiger\nKontext',
-        check: 'Geprüft',
-        result: 'Ergebnis',
+    cases: {
+      kicker:
+        'Echte Projekte: das Problem, was wir gebaut haben, das Ergebnis.',
+      heading: 'Echte Projekte',
+      stages: {
+        problem: 'Das Problem',
+        built: 'Was wir gebaut haben',
+        conscience: 'Mit Gewissen',
+        result: 'Das Ergebnis',
       },
-      scenarios: [
+      link: 'Zur Fallstudie',
+      cases: [
         {
-          task: 'Einen 40-seitigen Vertrag für den Vorstand zusammenfassen',
-          decide:
-            'KI hilft hier. Ein erster Entwurf ist schnell zu beurteilen.',
-          tool: 'Ein leichtes Modell reicht. Nicht das größte.',
-          context:
-            'Die drei Klauseln, die zählen, gehen hinein. Nicht vierzig Seiten.',
-          check: 'Gelesen und korrigiert, bevor es Ihre Hände verlässt.',
-          result: 'In einer Runde fertig. Nichts Vertrauliches geteilt.',
+          slug: 'bank-islami-pep',
+          client: 'BankIslami',
+          problem:
+            'Analysten öffneten jeden Morgen Dutzende Nachrichtenseiten und suchten Hunderte Namen von Hand.',
+          built:
+            'Eine Screening-Plattform, die die Tagesnachrichten liest, mit der PEP-Liste abgleicht und in einem signierten Risikobericht endet.',
+          conscience:
+            'Eine Scoring-Pipeline liest. Die Entscheidung treffen Analysten.',
+          value: '30 Min.',
+          label: 'Morgen-Triage statt vier Stunden',
         },
         {
-          task: 'Die Marge auf 200 Auftragszeilen berechnen',
-          decide: 'KI hilft hier nicht. Eine Tabellenformel ist exakt.',
-          check: 'Trotzdem geprüft, wie alles andere.',
-          result: 'Exakte Zahlen. Kein KI-Lauf, keine Daten geteilt.',
+          slug: 'bitsmiths-hrm',
+          client: 'Bitsmiths Studio',
+          problem:
+            'Urlaub, Spesen, Überstunden und Lohnabrechnung für ein ganzes Studio, jeden Monat von Hand berechnet.',
+          built:
+            'Ein HR-System, in dem freigegebene Posten in einen Payroll-Lauf fließen, der berechnet, sperrt und exportiert.',
+          conscience:
+            'Lohnabrechnung ist Arithmetik, also laufen Regeln. Kein KI-Modell im Spiel.',
+          value: '0',
+          label: 'manuelle Payroll-Berechnungen',
         },
         {
-          task: 'Einem verärgerten Kunden antworten',
-          decide: 'KI hilft beim Ton. Die Fakten bleiben Ihre.',
-          tool: 'Ein leichtes Modell, drei Sätze. Kein schweres Reasoning nötig.',
-          context: 'Die Beschwerde und Ihre Richtlinie. Sonst nichts.',
-          check: 'Einmal gelesen und von Ihnen freigegeben.',
-          result: 'In einer Runde verschickt, in Ihren eigenen Worten.',
+          slug: 'curio-market',
+          client: 'E-Commerce-Marktplatz',
+          problem:
+            'Auszahlungen an Verkäufer und Sendungsverfolgung liefen von Hand, und der Support-Posteingang zeigte es.',
+          built:
+            'Ein Multi-Seller-Marktplatz mit Stripe-Connect-Auszahlungen und DHL-Tracking, die von allein laufen.',
+          conscience:
+            'Die zwei Pfade mit der meisten Handarbeit wurden zuerst automatisiert.',
+          value: '70 %',
+          label: 'weniger Support-Anfragen',
+        },
+        {
+          slug: 'rankloom',
+          client: 'SEO-Plattform',
+          problem:
+            'SEO-Teams sprangen den ganzen Tag zwischen Tools und kauften dieselben Keyword-Daten immer wieder.',
+          built:
+            'Eine Plattform für Keyword-Recherche, KI-Content und Rank-Tracking, mit gebündelten und gecachten Anfragen.',
+          conscience:
+            'Dieselben Daten werden nie zweimal gekauft. Modelle lassen sich ohne Umbau tauschen.',
+          value: '3x',
+          label: 'geringere Kosten pro Artikel',
+        },
+        {
+          slug: 'qa-compliance-agent',
+          client: 'Prüfungsgesellschaft',
+          problem:
+            'Berichte wurden Klausel für Klausel von Hand gegen die Standards geprüft.',
+          built:
+            'Ein KI-Reviewer, der jeden Befund als nachverfolgbare Änderung mit Klausel und Begründung zurückgibt.',
+          conscience:
+            'Jeder Befund lässt sich an Ort und Stelle prüfen. Nichts wird blind übernommen.',
+          value: '2x',
+          label: 'schnellere Dokumentenprüfung',
         },
       ],
     },
@@ -108,7 +144,7 @@ export const de: Dictionary = {
     kicker: 'Werkzeuge und Technologie',
     statement: 'Bewährte Werkzeuge. Aus gutem Grund gewählt.',
     statementMuted:
-      'Wir setzen etablierte Technologien ein, die zum Problem, zum Team und zum Produkt passen. Es geht nicht darum, Trends zu folgen oder Werkzeuge um ihrer selbst willen hinzuzufügen, sondern Systeme zu bauen, die gut funktionieren und praktisch zu betreiben und zu verbessern bleiben.',
+      'Etablierte Technologien, die zu Problem, Team und Produkt passen, gewählt, damit Systeme gut funktionieren und praktisch zu betreiben und zu verbessern bleiben.',
     stackLabel: 'Der Stack, nach Ebene',
     layers: [
       { label: 'Oberfläche', note: 'Was Ihre Nutzer sehen und bedienen.' },
@@ -167,7 +203,7 @@ export const de: Dictionary = {
     kicker: 'Weltweit im Einsatz',
     title: 'Ein Team. Wo immer die Arbeit stattfindet.',
     description:
-      'Wir arbeiten mit Teams an verschiedenen Standorten zusammen und verbinden klare Kommunikation mit praktischer Produkt- und Entwicklungsarbeit. Betreut aus Fellbach bei Stuttgart und aus Islamabad, damit immer jemand aus dem Team online ist, wenn Sie arbeiten.',
+      'Wir arbeiten mit Teams an verschiedenen Standorten zusammen und verbinden klare Kommunikation mit praktischer Produkt- und Entwicklungsarbeit. Betreut aus Stuttgart und aus Islamabad, damit immer jemand aus dem Team online ist, wenn Sie arbeiten.',
     legend: 'Standorte und Kundenorte',
   },
   testimonials: {
@@ -599,14 +635,14 @@ export const de: Dictionary = {
       },
       {
         label: 'Wo',
-        value: 'Islamabad und Fellbach, mit überlappenden Arbeitszeiten',
+        value: 'Islamabad und Stuttgart, mit überlappenden Arbeitszeiten',
       },
     ],
     whereKicker: 'Wo wir sind',
     whereTitle: 'Zwei Büros, ein Arbeitstag.',
     whereAccent: [3, 4],
     whereDescription:
-      'Ein asiatisches Büro in Islamabad und ein europäisches in Fellbach. Schreiben Sie dem, das näher ist; es antwortet dasselbe Team.',
+      'Ein asiatisches Büro in Islamabad und ein europäisches in Stuttgart. Schreiben Sie dem, das näher ist; es antwortet dasselbe Team.',
   },
   legal: {
     kicker: 'Rechtliches',

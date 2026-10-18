@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
 import { PageHero } from '@/components/common/page-hero';
-import { SectionHeading } from '@/components/common/section-heading';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { HowItWorks } from '@/components/sections/how-it-works';
@@ -15,7 +14,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Who We Are',
   description:
-    'Bullah Labs is a product and engineering team that builds technology with purpose and believes progress comes with responsibility. Offices in Islamabad and Fellbach.',
+    'Bullah Labs is a product and engineering team that builds technology with purpose and believes progress comes with responsibility. Offices in Islamabad and Stuttgart.',
   alternates: { canonical: paths.about },
 };
 
@@ -66,15 +65,15 @@ export default async function AboutPage() {
 
       <HowItWorks dict={dict} className='bl-band-white' />
 
-      <section className='bl-section bl-rule bl-band-stone'>
+      <section className='bl-section bl-rule bl-band-stone overflow-hidden'>
         <div className='bl-container'>
-          <SectionHeading
+          <Locations
             kicker={t.whereKicker}
             title={t.whereTitle}
             accentWords={[...t.whereAccent]}
             description={t.whereDescription}
+            contactLabel={dict.nav.contact}
           />
-          <Locations className='mt-14' contactLabel={dict.nav.contact} />
         </div>
       </section>
 

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const UPDATED = '5 September 2026';
 
-const [islamabad, fellbach] = siteConfig.locations;
+const [islamabad, stuttgart] = siteConfig.locations;
 
 const sectionsEn: LegalSection[] = [
   {
@@ -30,7 +30,7 @@ const sectionsEn: LegalSection[] = [
           <br />
           Owner: {siteConfig.founder.name}
           <br />
-          {fellbach.city}, Baden-Württemberg, {fellbach.country}
+          {stuttgart.city}, Baden-Württemberg, {stuttgart.country}
         </p>
         <p>
           Information according to § 5 DDG (German Digital Services Act) and §
@@ -79,8 +79,8 @@ const sectionsEn: LegalSection[] = [
     body: (
       <p>
         Responsible for the content of this website according to § 18 (2) MStV:{' '}
-        {siteConfig.founder.name}, {siteConfig.founder.role}, {fellbach.city},{' '}
-        {fellbach.country}.
+        {siteConfig.founder.name}, {siteConfig.founder.role}, {stuttgart.city},{' '}
+        {stuttgart.country}.
       </p>
     ),
   },
@@ -183,7 +183,7 @@ const sectionsDe: LegalSection[] = [
           <br />
           Inhaber: {siteConfig.founder.name}
           <br />
-          {fellbach.city}, Baden-Württemberg, {fellbach.country}
+          {stuttgart.city}, Baden-Württemberg, {stuttgart.country}
         </p>
         <p>
           Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz) und § 18 Abs. 2 MStV.
@@ -232,8 +232,8 @@ const sectionsDe: LegalSection[] = [
     body: (
       <p>
         Verantwortlich für den Inhalt dieser Website nach § 18 Abs. 2 MStV:{' '}
-        {siteConfig.founder.name}, {siteConfig.founder.role}, {fellbach.city},{' '}
-        {fellbach.country}.
+        {siteConfig.founder.name}, {siteConfig.founder.role}, {stuttgart.city},{' '}
+        {stuttgart.country}.
       </p>
     ),
   },

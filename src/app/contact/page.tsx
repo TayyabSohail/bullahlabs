@@ -10,7 +10,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Ask about the Conscious AI program for yourself or your team. Bullah Labs replies within one business day from Islamabad, Pakistan and Fellbach, Germany.',
+    'Ask about the Conscious AI program for yourself or your team. Bullah Labs replies within one business day from Islamabad, Pakistan and Stuttgart, Germany.',
   alternates: { canonical: paths.contact },
 };
 

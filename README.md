@@ -4,7 +4,7 @@ Company website for **Bullah Labs**: a product and engineering team that
 designs, builds and improves digital products with care for their real-world
 impact, and helps people use technology, including AI, with greater care
 through the free Conscious AI learning modules. Offices in Islamabad, Pakistan
-and Fellbach, Germany.
+and Stuttgart, Germany.
 
 Positioning, the program structure and the rules for describing projects are
 in [docs/brand/positioning-and-program.md](docs/brand/positioning-and-program.md).
@@ -108,7 +108,7 @@ Edit these; the pages update themselves.
 
 ## Before launch
 
-- Add the full postal address of the Fellbach office plus any register or VAT
+- Add the full postal address of the Stuttgart office plus any register or VAT
   number to `src/app/legal/imprint/page.tsx` once they exist; German law
   requires them for a business site.
 - Replace the testimonial `author` roles in `src/data/testimonials.ts` with

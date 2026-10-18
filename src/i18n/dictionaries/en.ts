@@ -26,47 +26,82 @@ export const en = {
     body: 'We design, build and improve digital products with care for their real-world impact. From the systems we create to the AI we use, we focus on what is useful, what is responsible and what is worth building.',
     primary: 'Discuss your project',
     secondary: 'See the projects',
-    /** The living map beside the hero copy: real tasks, decided on purpose. */
-    map: {
-      kicker: 'Every task, decided before AI is opened.',
-      taskLabel: 'Task',
-      /** A newline splits a tile label over two lines. */
-      nodes: {
-        task: 'The task',
-        decide: 'Does AI\nhelp?',
-        tool: 'Smallest\ntool',
-        context: 'Needed\ncontext',
-        check: 'Checked',
+    /**
+     * The case ledger beside the hero copy: one shipped project at a time in
+     * three beats. Every line is a fact from `data/projects`; keep a line to
+     * about ninety characters so it stays on two lines, and the conscience
+     * line to one sentence or two.
+     */
+    cases: {
+      kicker: 'Real projects: the problem, what we built, the result.',
+      heading: 'Real projects',
+      stages: {
+        problem: 'The problem',
+        built: 'What we built',
+        conscience: 'With conscience',
         result: 'The result',
       },
-      /**
-       * Played one after another. A task with `tool` and `context` takes
-       * the AI route; one without goes from the question straight to the
-       * check. Each caption is read in about two seconds: keep it to one
-       * short sentence or two.
-       */
-      scenarios: [
+      link: 'Read the case',
+      cases: [
         {
-          task: 'Summarise a 40-page contract for the board',
-          decide: 'AI helps here. A first draft is quick to judge.',
-          tool: 'A light model is enough. Not the biggest one.',
-          context: 'The three clauses that matter go in. Not forty pages.',
-          check: 'Read and corrected before it leaves your hands.',
-          result: 'Done in one round. Nothing confidential shared.',
+          slug: 'bank-islami-pep',
+          client: 'BankIslami',
+          problem:
+            'Analysts opened dozens of news sites every morning and searched hundreds of names by hand.',
+          built:
+            'A screening platform that reads the day’s news, matches it to the PEP list and ends in a signed risk report.',
+          conscience:
+            'A scoring pipeline does the reading. Analysts make the decisions.',
+          value: '30 min',
+          label: 'of morning triage, down from four hours',
         },
         {
-          task: 'Work out the margin on 200 order lines',
-          decide: 'AI does not help here. A spreadsheet formula is exact.',
-          check: 'Still checked, like everything else.',
-          result: 'Exact numbers. No AI run, no data shared.',
+          slug: 'bitsmiths-hrm',
+          client: 'Bitsmiths Studio',
+          problem:
+            'Leave, claims, overtime and payroll for a whole studio, calculated by hand every month.',
+          built:
+            'One HR system where approved items sweep into a payroll run that calculates, locks and exports.',
+          conscience:
+            'Payroll is arithmetic, so it runs on rules. No AI model in the loop.',
+          value: '0',
+          label: 'manual payroll calculations',
         },
         {
-          task: 'Reply to an angry customer',
-          decide: 'AI helps with the tone. The facts stay yours.',
-          tool: 'A light model, three sentences. No heavy reasoning needed.',
-          context: 'The complaint and your policy. Nothing else.',
-          check: 'Read once and signed off by you.',
-          result: 'Sent in one round, in your own words.',
+          slug: 'curio-market',
+          client: 'Ecommerce marketplace',
+          problem:
+            'Seller payouts and delivery tracking were handled by hand, and the support inbox showed it.',
+          built:
+            'A multi-seller marketplace with Stripe Connect payouts and DHL tracking that run themselves.',
+          conscience:
+            'The two paths that caused the most manual work were automated first.',
+          value: '70%',
+          label: 'fewer support requests',
+        },
+        {
+          slug: 'rankloom',
+          client: 'SEO platform',
+          problem:
+            'SEO teams hopped between tools all day and paid for the same keyword data again and again.',
+          built:
+            'One platform for keyword research, AI content and rank tracking, with requests batched and cached.',
+          conscience:
+            'The same data is never bought twice. Models can be swapped without touching the product.',
+          value: '3x',
+          label: 'lower cost per article',
+        },
+        {
+          slug: 'qa-compliance-agent',
+          client: 'Audit firm',
+          problem:
+            'Reports were checked against the standards clause by clause, by hand.',
+          built:
+            'An AI reviewer that returns every finding as a tracked change with its clause and the reason.',
+          conscience:
+            'Every finding can be verified where it stands. Nothing is taken on trust.',
+          value: '2x',
+          label: 'faster document review',
         },
       ],
     },
@@ -115,7 +150,7 @@ export const en = {
     kicker: 'Tools and technology',
     statement: 'Proven tools. Chosen for a reason.',
     statementMuted:
-      'We use established technologies that fit the problem, the team and the product. The goal is not to chase trends or add tools for their own sake. It is to build systems that work well and remain practical to operate and improve.',
+      'Established technologies that fit the problem, the team and the product, chosen to work well and stay practical to run and improve.',
     stackLabel: 'The stack, by layer',
     layers: [
       { label: 'Interface', note: 'What your users see and touch.' },
@@ -171,7 +206,7 @@ export const en = {
     kicker: 'Working worldwide',
     title: 'One team. Wherever the work happens.',
     description:
-      'We collaborate with teams across locations, combining clear communication with hands-on product and engineering work. Served from Fellbach near Stuttgart and from Islamabad, so whenever you work, someone on the team is online.',
+      'We collaborate with teams across locations, combining clear communication with hands-on product and engineering work. Served from Stuttgart and from Islamabad, so whenever you work, someone on the team is online.',
     legend: 'Offices and client locations',
   },
   testimonials: {
@@ -599,14 +634,14 @@ export const en = {
       },
       {
         label: 'Where',
-        value: 'Islamabad and Fellbach, with overlapping working hours',
+        value: 'Islamabad and Stuttgart, with overlapping working hours',
       },
     ],
     whereKicker: 'Where we are',
     whereTitle: 'Two offices, one working day.',
     whereAccent: [3, 4],
     whereDescription:
-      'An Asian office in Islamabad and a European office in Fellbach. Write to whichever is closer; the same team answers.',
+      'An Asian office in Islamabad and a European office in Stuttgart. Write to whichever is closer; the same team answers.',
   },
   legal: {
     kicker: 'Legal',

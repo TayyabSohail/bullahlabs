@@ -170,15 +170,16 @@ export function Technologies({ dict }: TechnologiesProps) {
         </Marquee>
       </div>
 
-      <div className='bl-container py-14 sm:py-28'>
+      <div className='bl-container py-14 sm:py-24'>
         <ScrollHighlight
-          text={`${t.statement} ${t.statementMuted}`}
-          accentWords={Array.from(
-            { length: t.statement.split(' ').length },
-            (_, index) => index,
-          )}
-          className='bl-display max-w-4xl text-display-md text-ink [&_.bl-accent]:text-ink'
+          text={t.statement}
+          className='bl-display max-w-3xl text-display-md text-ink'
         />
+        <Reveal delay={0.15}>
+          <p className='mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
+            {t.statementMuted}
+          </p>
+        </Reveal>
       </div>
 
       <div className='bl-container pb-14 sm:pb-24'>
