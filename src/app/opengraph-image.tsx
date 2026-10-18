@@ -1,17 +1,25 @@
 import { ImageResponse } from 'next/og';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
 import { siteConfig } from '@/config/site';
 
-export const runtime = 'edge';
+// Node runtime on purpose: the Edge bundle (Satori wasm + the logo bytes)
+// exceeded Vercel's 1 MB Edge Function limit. The image is static anyway,
+// so it is rendered once at build time.
 export const alt = `${siteConfig.name} - ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 /** Default social share image, generated at build time. */
 export default async function OpenGraphImage() {
-  const mark = await fetch(
-    new URL('../../public/brand/logo-mark.png', import.meta.url),
-  ).then((res) => res.arrayBuffer());
+  // The mark is drawn at 64px, so the 64px icon is enough.
+  const bytes = await readFile(join(process.cwd(), 'public/icon-64.png'));
+  // Satori wants a real ArrayBuffer, not a Node Buffer view.
+  const mark = bytes.buffer.slice(
+    bytes.byteOffset,
+    bytes.byteOffset + bytes.byteLength,
+  );
 
   return new ImageResponse(
     (
