@@ -8,7 +8,7 @@ export const appConfig = {
   title: siteConfig.name,
   description: siteConfig.description,
   keywords:
-    'AI enablement, AI optimization, AI literacy, AI training for teams, responsible AI use, efficient AI workflows, Conscious AI, knowledge workers, Germany, Pakistan',
+    'digital product development, product engineering, AI and automation, systems integration, architecture optimisation, conscious technology, Conscious AI, technology education, Germany, Pakistan',
   logo: '/brand/logo-mark.png',
   defaultLocale: 'en-US',
   defaultCurrency: 'EUR',

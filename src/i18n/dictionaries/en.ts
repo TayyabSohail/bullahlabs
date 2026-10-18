@@ -3,12 +3,14 @@ import type { Locale } from '../config';
 export const en = {
   locale: 'en' as Locale,
   nav: {
+    about: 'Who We Are',
     program: 'Conscious AI',
-    work: 'Projects',
-    about: 'About',
+    services: 'Services',
+    work: 'Selected Work',
+    approach: 'Our Approach',
     contact: 'Contact',
     home: 'Home',
-    cta: 'Get in touch',
+    cta: "Let's talk",
     bookCall: 'Book a call',
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
@@ -17,128 +19,92 @@ export const en = {
     top: 'Back to top',
   },
   hero: {
-    badge: 'AI enablement & optimization',
-    title: 'Stop using AI by default.\nStart using it on purpose.',
+    badge: 'Thoughtful technology. Practical impact.',
+    title: 'Technology that solves problems.\nBuilt with conscience.',
     /** Words (0-based, across both lines) in the accent colour: line two. */
-    accent: [5, 6, 7, 8, 9],
-    body: 'Know when AI actually helps, pick the smallest tool for the job, and check what comes back. Fewer wasted hours, lower bills, a footprint you can stand behind.',
-    primary: 'Start the free course',
+    accent: [4, 5, 6],
+    body: 'We design, build and improve digital products with care for their real-world impact. From the systems we create to the AI we use, we focus on what is useful, what is responsible and what is worth building.',
+    primary: 'Discuss your project',
     secondary: 'See the projects',
-    /** The card beside the hero copy: everyday tasks decided in four steps.
-        Each answer shows the habit first, then the deliberate choice that
-        replaces it. Answers follow the order of `questions`. */
-    decision: {
-      kicker:
-        'Four everyday tasks, each decided before AI is opened: whether it helps, which tool, how much context, and who checks the result.',
-      live: 'Live',
+    /** The living map beside the hero copy: real tasks, decided on purpose. */
+    map: {
+      kicker: 'Every task, decided before AI is opened.',
       taskLabel: 'Task',
-      defaultLabel: 'By default',
-      consciousLabel: 'On purpose',
-      outcomeLabel: 'Outcome',
-      questions: [
-        'Does AI help?',
-        'Which tool?',
-        'How much context?',
-        'Who checks?',
-      ],
-      tasks: [
+      /** A newline splits a tile label over two lines. */
+      nodes: {
+        task: 'The task',
+        decide: 'Does AI\nhelp?',
+        tool: 'Smallest\ntool',
+        context: 'Needed\ncontext',
+        check: 'Checked',
+        result: 'The result',
+      },
+      /**
+       * Played one after another. A task with `tool` and `context` takes
+       * the AI route; one without goes from the question straight to the
+       * check. Each caption is read in about two seconds: keep it to one
+       * short sentence or two.
+       */
+      scenarios: [
         {
-          task: 'Write the launch email for a new feature.',
-          answers: [
-            {
-              byDefault: 'Open the chatbot. It is already there.',
-              onPurpose: 'Yes, for a first draft. The voice stays yours.',
-            },
-            {
-              byDefault: 'The most powerful model.',
-              onPurpose: 'A lighter one. A draft is easy to judge.',
-            },
-            {
-              byDefault: 'The whole product wiki, pasted in.',
-              onPurpose: 'The one-page brief and the last launch email.',
-            },
-            {
-              byDefault: 'Nobody. Regenerate until it feels right.',
-              onPurpose: 'You. Edit the first usable draft, then send.',
-            },
-          ],
-          outcome:
-            'One round instead of six. The same email, a fraction of the computation.',
+          task: 'Summarise a 40-page contract for the board',
+          decide: 'AI helps here. A first draft is quick to judge.',
+          tool: 'A light model is enough. Not the biggest one.',
+          context: 'The three clauses that matter go in. Not forty pages.',
+          check: 'Read and corrected before it leaves your hands.',
+          result: 'Done in one round. Nothing confidential shared.',
         },
         {
-          task: "Total last quarter's invoices by client.",
-          answers: [
-            {
-              byDefault: 'Paste the sheet into a chat and ask.',
-              onPurpose: 'No. A formula does this exactly, every time.',
-            },
-            {
-              byDefault: 'A chatbot doing arithmetic.',
-              onPurpose: 'SUMIF. Instant, exact, free.',
-            },
-            {
-              byDefault: 'The whole workbook, client names included.',
-              onPurpose: 'Nothing leaves the spreadsheet.',
-            },
-            {
-              byDefault: 'Nobody. The number looked plausible.',
-              onPurpose: 'The formula is the check. It does not guess.',
-            },
-          ],
-          outcome: 'No AI run at all, and no client data shared.',
+          task: 'Work out the margin on 200 order lines',
+          decide: 'AI does not help here. A spreadsheet formula is exact.',
+          check: 'Still checked, like everything else.',
+          result: 'Exact numbers. No AI run, no data shared.',
         },
         {
-          task: 'Reply to a frustrated customer.',
-          answers: [
-            {
-              byDefault: 'Ask for a reply and send what comes back.',
-              onPurpose: 'Yes, for the structure. The tone has to be yours.',
-            },
-            {
-              byDefault: 'The most powerful model.',
-              onPurpose: 'A lighter model, for an outline only.',
-            },
-            {
-              byDefault: 'The whole ticket history.',
-              onPurpose: 'The last two messages and what you fixed.',
-            },
-            {
-              byDefault: 'Nobody. It read fine.',
-              onPurpose: 'You. Every promise in it is yours to keep.',
-            },
-          ],
-          outcome: 'One outline, your own words, one read-through.',
-        },
-        {
-          task: 'Answer the same onboarding question. Again.',
-          answers: [
-            {
-              byDefault: 'Ask the chatbot each time it comes up.',
-              onPurpose: 'Once. Write the answer, then reuse it.',
-            },
-            {
-              byDefault: 'A new conversation every time.',
-              onPurpose: 'One saved answer. AI only tidies the wording.',
-            },
-            {
-              byDefault: 'The full handbook, pasted in again.',
-              onPurpose: 'The one policy paragraph that applies.',
-            },
-            {
-              byDefault: 'Nobody. Ten slightly different answers go out.',
-              onPurpose: 'You, once. Then everyone gets the same answer.',
-            },
-          ],
-          outcome: 'Ten questions, one AI run, one consistent answer.',
+          task: 'Reply to an angry customer',
+          decide: 'AI helps with the tone. The facts stay yours.',
+          tool: 'A light model, three sentences. No heavy reasoning needed.',
+          context: 'The complaint and your policy. Nothing else.',
+          check: 'Read once and signed off by you.',
+          result: 'Sent in one round, in your own words.',
         },
       ],
     },
   },
+  /** Homepage: the pressure to keep up with AI, and the free resources. */
+  consciousAi: {
+    kicker: 'Conscious AI',
+    title:
+      "AI is moving fast. You're expected to keep up. But where do you start?",
+    accent: [9, 10, 11, 12, 13],
+    paragraphs: [
+      "New tools appear every day. You want to work smarter, build skills and stay relevant, but it's hard to know what to learn, which tools to trust or whether you're using AI well. You may also worry about its environmental and social impact.",
+      "You shouldn't have to choose between doing your job well and using AI responsibly.",
+      'We offer free resources and practical guidance to help you use AI with more confidence and less waste. Learn how to choose the right tool for the task, set up your AI workspace, write clearer prompts and avoid unnecessary usage.',
+      "You'll discover where AI genuinely helps, where it falls short, and how everyday choices affect time, cost, energy and water use. No technical background needed. No need to chase every new trend.",
+    ],
+    closingKicker: 'Free resources',
+    closing:
+      'Work smarter with AI. Feel more confident. Make more conscious choices.',
+    cta: 'Explore free AI resources',
+    notifyNote:
+      "The free learning modules are in the making. Leave your email and we'll tell you when they open.",
+  },
+  consciousTech: {
+    kicker: 'Conscious technology',
+    title: 'Technology is never just technology.',
+    accent: [3, 4],
+    paragraphs: [
+      'Every product shapes how people work, live and make decisions. Every system uses resources. Every technical choice has consequences.',
+      'We build technology with these consequences in mind, considering environmental impact, social responsibility and ethical questions from the start.',
+      'Better technology means more than making it work. It means understanding what it changes, what it consumes and who it affects.',
+    ],
+  },
   numbers: {
-    kicker: 'By the numbers',
-    title: 'Proof, not promises',
+    kicker: 'Proof and outcomes',
+    title: 'Built to deliver real outcomes.',
     description:
-      'The course is taught by a team that builds and runs AI products. These are the figures behind that.',
+      'We turn ideas into useful products, combining thoughtful engineering with a focus on lasting value.',
     items: [
       { value: '150+', label: 'Projects delivered' },
       { value: '40+', label: 'Clients on four continents' },
@@ -146,10 +112,10 @@ export const en = {
     ],
   },
   technologies: {
-    kicker: 'The tools we teach with',
-    statement: 'We teach with the tools we build with.',
+    kicker: 'Tools and technology',
+    statement: 'Proven tools. Chosen for a reason.',
     statementMuted:
-      'Every lesson comes from a stack that runs in production, not from a slide.',
+      'We use established technologies that fit the problem, the team and the product. The goal is not to chase trends or add tools for their own sake. It is to build systems that work well and remain practical to operate and improve.',
     stackLabel: 'The stack, by layer',
     layers: [
       { label: 'Interface', note: 'What your users see and touch.' },
@@ -166,111 +132,61 @@ export const en = {
       { label: 'Cloud & delivery', note: 'Where it runs and keeps running.' },
     ],
   },
-  /** The way of working, step by step through one task. */
+  /** How we work, in four steps. */
   howItWorks: {
-    kicker: 'The way of working',
-    title: 'How conscious use works',
+    kicker: 'How we work',
+    title: 'Clear thinking. Deliberate building.',
+    accent: [2, 3],
+    description: 'From understanding the problem to improving what we built.',
     stepLabel: 'Step',
-    cta: 'Start with the free course',
+    cta: 'Discuss your project',
     steps: [
       {
-        title: 'Ask whether AI belongs here',
-        when: 'Before',
+        title: 'Understand the problem',
+        when: 'Discover',
         summary:
-          'Many tasks that go to a chatbot are better served by a rule, a formula or a search. Decide first, type second.',
+          'We learn what people need, what is getting in the way and what success should look like.',
       },
       {
-        title: 'Pick the smallest tool that does the job',
-        when: 'Choose',
+        title: 'Choose the right approach',
+        when: 'Decide',
         summary:
-          'A light model for a draft, a heavy one only when the result is hard to check. Right-sizing is where most of the saving sits.',
+          'We evaluate possible solutions, including their complexity, costs, resource needs and consequences.',
       },
       {
-        title: 'Say it once, properly',
-        when: 'Prompt',
+        title: 'Build and learn',
+        when: 'Build',
         summary:
-          'State what you need, for whom and in what shape in the first prompt. Share only the part of the document that matters.',
+          'We develop, test and refine the solution with regular feedback and clear priorities.',
       },
       {
-        title: 'Stop when it meets the requirement',
-        when: 'Work',
+        title: 'Improve with purpose',
+        when: 'Improve',
         summary:
-          'Every extra round, step or hand-off has to earn its place. The goal is a checked result that does the job, not a perfect one.',
-      },
-      {
-        title: 'Check what comes back',
-        when: 'Review',
-        summary:
-          'Verify the figures, sources and claims before anything leaves your hands. AI drafts. You decide.',
-      },
-      {
-        title: 'Measure, then make it a habit',
-        when: 'After',
-        summary:
-          'Record a baseline, change one thing, compare. Less waste, lower bills, a cleaner footprint, and a workflow you can teach.',
+          'We measure what matters and keep improving where it creates real value. Sometimes the right next step is to simplify, not add more.',
       },
     ],
   },
   globalReach: {
-    kicker: 'Offices',
-    title: 'One mindset, from Stuttgart to Islamabad.',
+    kicker: 'Working worldwide',
+    title: 'One team. Wherever the work happens.',
     description:
-      'Teams across Europe, North America, the Middle East, Africa and Asia, served from Fellbach near Stuttgart and from Islamabad. Whenever you work, someone on the team is online.',
+      'We collaborate with teams across locations, combining clear communication with hands-on product and engineering work. Served from Fellbach near Stuttgart and from Islamabad, so whenever you work, someone on the team is online.',
     legend: 'Offices and client locations',
   },
   testimonials: {
     kicker: 'Client voices',
-    title: 'What it is like to work with us',
-    accent: [6],
+    title: 'Good work, built together.',
+    accent: [2, 3],
     caseStudy: 'View project',
     prev: 'Previous testimonial',
     next: 'Next testimonial',
   },
-  /** One everyday task done out of habit and done deliberately, side by side. */
-  compare: {
-    kicker: 'In practice',
-    title: 'The same task, two ways',
-    accent: [3, 4],
-    description:
-      'Turning a long report into a short client update. Nothing here needs a technical background.',
-    defaultLabel: 'By default',
-    consciousLabel: 'On purpose',
-    rows: [
-      {
-        step: 'Tool',
-        default: 'The most powerful model, because it is the one already open.',
-        conscious:
-          'A lighter model. A summary is easy to check against the source.',
-      },
-      {
-        step: 'Context',
-        default: 'The whole 40-page report, pasted in.',
-        conscious: 'Only the two sections the client asked about.',
-      },
-      {
-        step: 'Prompt',
-        default:
-          '"Summarise this." Then four follow-ups to fix the tone and the length.',
-        conscious:
-          'Task, audience, length and format, all in the first prompt.',
-      },
-      {
-        step: 'Finish',
-        default: 'Regenerate until one version feels right.',
-        conscious: 'Edit the first usable draft, check the figures, send.',
-      },
-    ],
-    defaultResult: 'More rounds and more computation, for the same update.',
-    consciousResult:
-      'Fewer rounds, less computation, and a result you checked.',
-    note: 'An illustration of the habits taught in the free course, not a measured result.',
-    cta: 'See what the free course covers',
-  },
   work: {
-    kicker: 'Proof in production',
-    title: 'What we built, and how it is optimized',
+    kicker: 'Selected work',
+    title: 'Every project should make a difference.',
     description:
-      'Fourteen products in production. Each case study says what the product is, then shows the optimization behind it: the right tool for the task, only the needed context, nothing done twice, checked before trusted.',
+      'We work on digital products and systems that solve real problems. That includes building new products, improving existing ones and helping teams make more informed technology decisions.',
     all: 'All projects',
     view: 'Read the case study',
     filterLabel: 'Filter projects',
@@ -312,32 +228,51 @@ export const en = {
     count: '{n} projects',
     /** Homepage pointer to the projects page; the work itself lives there. */
     teaser: {
-      kicker: 'Projects',
-      title: 'Real products, built to waste nothing',
-      accent: [4, 5],
-      body: 'Marketplaces, SaaS platforms, AI systems and websites in production. Each one shows the rules the course teaches, applied: the right tool, only the needed context, nothing done twice, checked before trusted.',
+      kicker: 'Selected work',
+      title: 'Every project should make a difference.',
+      accent: [4, 5, 6],
+      body: [
+        'We work on digital products and systems that solve real problems. That includes building new products, improving existing ones and helping teams make more informed technology decisions.',
+        'Our work also creates opportunities to share knowledge, helping people understand the tools they use, make better choices and recognise the wider impact of technology.',
+      ],
       cta: 'Browse all projects',
       listLabel: 'Featured projects',
       more: '{n} more on the projects page',
     },
   },
-  pillars: {
-    kicker: 'What we stand for',
-    title: 'Three pillars of using AI well',
+  services: {
+    kicker: 'Services',
+    title: 'Thoughtful technology, from idea to improvement.',
+    accent: [2, 3, 4, 5, 6],
+    description:
+      'We bring product thinking, engineering and responsible technology choices together. We also help clients build the knowledge to make better decisions beyond a single project.',
+    promise:
+      'Product thinking, engineering and responsible technology choices, together.',
+    cta: 'Discuss your project',
+  },
+  whoWeAre: {
+    kicker: 'Who we are',
+    title:
+      'We build technology with purpose, and believe progress comes with responsibility.',
+    accent: [7, 8, 9, 10],
+    paragraphs: [
+      'Bullah Labs is a product and engineering team helping turn ideas into useful digital products. We combine thoughtful engineering with a conscious approach to how technology is designed, built and used.',
+      'We believe technology should solve real problems, not create complexity for its own sake. That means looking beyond what a product can do and asking what it should do, what resources it requires, and how it affects people and the world around us.',
+      'Our vision goes beyond building software or adopting AI. We want to help shape a future where technology advances human capabilities without losing sight of its environmental, social and ethical consequences.',
+      'That starts with understanding. We help people and organisations make informed choices, use technology effectively and recognise when less is more.',
+      'For us, better technology is not simply more powerful. It is more useful, more thoughtful and more responsible.',
+    ],
+    cta: 'More about us',
+  },
+  principles: {
+    kicker: 'Engineering principles',
+    title: "Build what matters. Avoid what doesn't.",
+    accent: [3, 4, 5],
+    description: 'The rules behind every technical decision we make.',
   },
   program: {
-    kicker: 'Conscious AI',
-    title: 'A free course, one lesson at a time',
-    accent: [1, 2],
-    description:
-      'Short videos on when AI helps, how to get a reliable result in fewer rounds, and when to leave it alone. Made for people who are not engineers.',
-    cta: 'See the program',
     watch: 'Watch the full course',
-    request: 'Request access for a team',
-    /** Beside the sign-up: what happens next and how to get the course. */
-    nextKicker: 'What happens next',
-    nextBody:
-      'Lessons are published here one at a time, each a few minutes long. Watch one, try it on your own work, come back for the next. Teams get the same lessons with a session on their own tasks.',
+    request: 'Training for a team',
     /** Labels in the course player and the module list. */
     player: {
       modules: 'Modules',
@@ -369,45 +304,174 @@ export const en = {
       loadEmbed: 'Play the lesson',
       seek: 'Seek',
     },
-    /** The "tell me when a lesson is live" form under the player. */
+    /** The "tell me when the modules open" form. */
     signup: {
-      kicker: 'Get notified',
-      title: 'Be first to know when a lesson goes live.',
-      body: 'One email per published lesson, nothing else. Reply to any of them to come off the list.',
-      email: 'Work email',
-      placeholder: 'you@company.com',
+      kicker: 'Stay in the loop',
+      title: 'Be first to know.',
+      body: "The free learning modules are in the making. Leave your email and we'll let you know when they're ready.",
+      email: 'Email address',
+      placeholder: 'Your email address',
       submit: 'Notify me',
       consentBefore:
-        'By signing up you agree that we store your address to send these notices, as described in the',
+        'By signing up you agree that we store your address to send this notice, as described in the',
       consentLink: 'privacy policy',
       consentAfter: '.',
       doneTitle: 'You are on the list.',
       alreadyTitle: 'You were already on the list.',
-      doneBody:
-        'We will email you when the first lesson is live, and once for each one after it.',
+      doneBody: "One email when it's ready, nothing else.",
       errorGeneric: 'Something went wrong. Please try again in a moment.',
       teamLink: 'Training for a whole team?',
     },
   },
   programPage: {
     kicker: 'Conscious AI',
-    title: 'Use AI well. Not just more.',
-    accent: [3, 4, 5],
+    title: 'Use AI with purpose.',
+    accent: [2, 3],
     description:
-      'A free video course for non-technical knowledge workers: when AI helps, how to reach a reliable result in fewer rounds, and how to stop paying for usage nobody needed.',
-    primary: 'Watch the course',
-    secondary: 'Request access',
-    principle:
-      'AI literacy is knowing when, why and how to use AI well, not just how to operate the tools.',
-    courseKicker: 'The course',
-    courseTitle: 'Watch, then try it on your own work',
-    courseAccent: [0],
-    courseDescription:
-      'Three modules, each a handful of short lessons that end with one thing to change in how you work. Pick a lesson, watch, then try it on your own task. The first ones are being recorded now.',
-    ctaTitle: 'Start with the free course.',
-    ctaAccent: [3, 4],
-    ctaBody:
-      'Tell us who you are and how you use AI today. We reply within one business day, with access details for you or a plan for your team.',
+      "AI is moving fast. Feel like you're falling behind? Not sure where to start, what to trust or how to use it responsibly?",
+    promise:
+      "We're creating free, practical learning modules to help you use AI confidently, work smarter and reduce unnecessary waste.",
+    heroCta: 'Tell me when it opens',
+    principle: 'Practical skills. Conscious choices. No coding required.',
+    course: {
+      kicker: 'Coming soon',
+      title: 'Better AI habits start here.',
+      accent: [0, 1, 2],
+      learnKicker: 'Learn to',
+      learn: [
+        'Choose the right tool for the task.',
+        'Write better prompts and get useful results.',
+        'Set up reusable AI workflows.',
+        "Understand AI's costs, energy and water use.",
+        'Recognise limitations and check outputs.',
+      ],
+      facts: [
+        { label: 'Format', value: 'Coming soon' },
+        { label: 'Enrolment', value: 'Not open yet' },
+      ],
+      cta: 'Get notified',
+    },
+    problem: {
+      kicker: 'The problem',
+      title: 'Everyone expects you to use AI. Few show you how.',
+      accent: [6, 7, 8, 9],
+      lines: [
+        'New tools. New trends. More pressure to keep up.',
+        "You want to work smarter and stay relevant. But you also want to make informed choices about AI's environmental and social impact.",
+        "You shouldn't have to choose between doing your job well and using AI responsibly.",
+      ],
+    },
+    approach: {
+      kicker: 'Use AI better',
+      title: 'Not more AI. Better AI.',
+      accent: [3, 4],
+      lines: [
+        'Use AI when it helps. Choose the right model. Give clear instructions. Skip unnecessary steps.',
+        'Small changes can save time, improve results and reduce unnecessary computation.',
+        'Use what you need. Understand the impact. Keep human judgement in the loop.',
+      ],
+    },
+    modules: {
+      kicker: 'Learn by doing',
+      title: 'Practical skills. Real work.',
+      accent: [2, 3],
+      description:
+        'Free resources to help you build better AI habits, one task at a time.',
+      habits: [
+        {
+          title: 'Set up once.',
+          body: 'Create reusable instructions for recurring tasks.',
+        },
+        {
+          title: 'Prompt clearly.',
+          body: 'Get better results with fewer follow-ups.',
+        },
+        { title: 'Choose wisely.', body: 'Match the model to the task.' },
+        {
+          title: 'Keep context relevant.',
+          body: 'Give AI what it needs, not everything you have.',
+        },
+        {
+          title: 'Think critically.',
+          body: 'Check outputs and know when not to use AI.',
+        },
+        {
+          title: 'Understand the impact.',
+          body: 'Learn how everyday choices affect resource use.',
+        },
+      ],
+      cta: 'Notify me when it launches',
+    },
+    whoFor: {
+      kicker: 'Made for non-developers',
+      title: 'Curious about AI. No coding required.',
+      accent: [3, 4, 5],
+      paragraphs: [
+        'For people who want to use AI at work without becoming technical experts.',
+        'Whether you work in marketing, operations, finance, HR, sales or project management, learn skills you can put to use straight away.',
+      ],
+      questions: [
+        'Unsure where to start?',
+        'Struggling to keep up?',
+        'Want better results with less effort?',
+        "Concerned about AI's impact?",
+      ],
+      closing: 'Start with the work you already do.',
+    },
+    business: {
+      kicker: 'For teams and organisations',
+      title: 'Help your team use AI well.',
+      accent: [4, 5],
+      paragraphs: [
+        'Giving people AI tools is easy. Helping them use those tools effectively and responsibly takes practice.',
+        'We help teams build confidence, improve workflows and make more conscious choices.',
+      ],
+      offers: [
+        {
+          title: 'Group training and workshops',
+          body: 'Practical sessions tailored to everyday tasks and team needs.',
+        },
+        {
+          title: 'AI skills and workflows',
+          body: 'Help people find useful applications, improve prompts and evaluate results.',
+        },
+        {
+          title: 'Conscious AI guidance',
+          body: 'Understand tool choices, costs, resource use and responsible adoption.',
+        },
+        {
+          title: 'AI optimisation',
+          body: 'Identify unnecessary complexity and computation while maintaining quality, reliability and safety.',
+        },
+      ],
+      cta: 'Discuss team training',
+      note: 'Free learning for individuals. Practical training and guidance for teams.',
+    },
+    vision: {
+      kicker: 'Why we do this',
+      title: 'Technology should move us forward, thoughtfully.',
+      accent: [5],
+      paragraphs: [
+        'At Bullah Labs, we build digital products and help people make better technology decisions.',
+        'We believe progress means solving real problems, not building more for its own sake.',
+        "That means considering technology's environmental footprint, social consequences and ethical implications.",
+        'Our vision: technology that advances human capabilities without losing sight of its impact.',
+      ],
+    },
+    notify: {
+      kicker: 'Stay in the loop',
+      title: 'Be first to know.',
+      body: "The free learning modules are in the making. Leave your email and we'll let you know when they're ready.",
+      cta: 'Notify me',
+      note: "One email when it's ready.",
+    },
+    comingSoon: {
+      kicker: 'Something new is in the works',
+      title: 'Learn consciously. Put it into practice.',
+      accent: [2, 3, 4, 5],
+      body: "Free learning is just the beginning. We're building a new product to bring more conscious technology into everyday use. More soon. Built with purpose.",
+      cta: 'Stay in the loop',
+    },
   },
   contactForm: {
     name: 'Full name',
@@ -419,11 +483,12 @@ export const en = {
     companyPlaceholder: 'Company or team name',
     service: 'What are you interested in?',
     serviceOther: 'Something else',
-    serviceOtherTagline: 'A question, a partnership or anything not listed.',
+    serviceOtherTagline:
+      'A project, a question, a partnership or anything not listed.',
     interests: {
       course: {
         title: 'The free course',
-        description: 'Access to the Conscious AI video lessons.',
+        description: 'Access to the Conscious AI learning modules.',
       },
       team: {
         title: 'Training for my team',
@@ -432,7 +497,7 @@ export const en = {
     },
     message: 'Your message',
     messagePlaceholder:
-      'How do you or your team use AI today, and what would you like to get better at?',
+      'What are you building, what do you want to improve, or where is technology getting in the way?',
     consentBefore:
       'I agree that Bullah Labs may store and process this enquiry to respond to me, as described in the',
     consentLink: 'privacy policy',
@@ -456,7 +521,7 @@ export const en = {
       message: {
         title: 'Tell us a little more.',
         subtitle:
-          'Your role, the AI tools you use and what you want to improve.',
+          'What you are building, what you want to improve or where technology is getting in the way.',
       },
       details: {
         title: 'Where do we send the reply?',
@@ -477,15 +542,15 @@ export const en = {
     efficiencyKicker: 'How it is optimized',
     techniques: 'What keeps it lean',
     industry: 'Industry',
-    problem: 'The problem',
-    approach: 'Our approach',
+    problem: 'The challenge',
+    approach: 'The work',
     architecture: 'How it is built',
     keyFeatures: 'Key features',
     challengesKicker: 'Challenges & solutions',
     challenge: 'Challenge',
     solution: 'Solution',
-    resultsKicker: 'Results',
-    resultsTitle: 'What shipping it changed.',
+    resultsKicker: 'The impact',
+    resultsTitle: 'What became easier, better or more effective.',
     gallery: 'Inside the product',
     onThePhone: 'On the phone',
     galleryTitle: 'More than one screen.',
@@ -498,53 +563,50 @@ export const en = {
     previous: 'previous',
     next: 'next',
     notFound: 'Case study not found',
-    ctaTitle: 'Want your team to work this way?',
-    ctaAccent: [4, 5, 6],
+    ctaTitle: 'Have a problem worth solving?',
+    ctaAccent: [2, 3, 4],
     ctaBody:
-      'The principles behind this build are the ones Conscious AI teaches. Tell us how your team uses AI today and we reply within one business day.',
+      "Tell us what you are building, what you want to improve or where technology is getting in the way. We'll help you find a practical next step.",
   },
   aboutPage: {
-    kicker: 'About Bullah Labs',
-    title: 'A company built around using AI well.',
-    accent: [4, 5, 6],
+    kicker: 'Who we are',
+    title:
+      'We build technology with purpose, and believe progress comes with responsibility.',
+    accent: [7, 8, 9, 10],
     description:
-      'We teach non-technical teams to use AI effectively and responsibly.',
+      'Bullah Labs is a product and engineering team helping turn ideas into useful digital products. We combine thoughtful engineering with a conscious approach to how technology is designed, built and used.',
     story: [
-      'Bullah Labs started as a software studio. Years of building products taught us one rule: use the smallest system that reliably does the job.',
-      'When AI arrived in every tool, we saw the opposite everywhere: the strongest model for every task, whole documents pasted where a paragraph would do, answers regenerated instead of reused. So we turned the rule into a program. Conscious AI is now the whole company.',
+      'We believe technology should solve real problems, not create complexity for its own sake. That means looking beyond what a product can do and asking what it should do, what resources it requires, and how it affects people and the world around us.',
+      'Our vision goes beyond building software or adopting AI. We want to help shape a future where technology advances human capabilities without losing sight of its environmental, social and ethical consequences.',
+      'That starts with understanding. We help people and organisations make informed choices, use technology effectively and recognise when less is more.',
+      'For us, better technology is not simply more powerful. It is more useful, more thoughtful and more responsible.',
     ],
     facts: [
       {
         label: 'What we do',
-        value: 'Conscious AI: a free video course, and training for teams',
+        value:
+          'Digital products, designed, built and improved, with guidance on using technology and AI well',
       },
       {
         label: 'Who for',
         value:
-          'Non-technical knowledge workers and the companies that employ them',
+          'Teams building a new product, improving an existing one or making technology decisions',
       },
       {
         label: 'How',
         value:
-          'Practical, role-specific, measured before and after, with human oversight where risk requires it',
+          'Understand the problem, choose the right approach, build and learn, improve with purpose',
       },
       {
         label: 'Where',
         value: 'Islamabad and Fellbach, with overlapping working hours',
       },
     ],
-    principlesKicker: 'Principles',
-    principlesTitle: 'Four rules we teach and work by.',
-    principlesAccent: [0, 1],
     whereKicker: 'Where we are',
     whereTitle: 'Two offices, one working day.',
     whereAccent: [3, 4],
     whereDescription:
       'An Asian office in Islamabad and a European office in Fellbach. Write to whichever is closer; the same team answers.',
-    ctaTitle: 'Want to see where your team is wasting AI?',
-    ctaAccent: [7, 8],
-    ctaBody:
-      'Tell us how your team uses AI today. We reply within one business day with where the program fits.',
   },
   legal: {
     kicker: 'Legal',
@@ -623,9 +685,9 @@ export const en = {
     kicker: 'Error 404',
     title: 'This page was never engineered.',
     accent: [4],
-    body: 'The address may have changed, or the link was wrong. The program is one click away.',
+    body: 'The address may have changed, or the link was wrong. Home is one click away.',
     home: 'Back home',
-    program: 'See the program',
+    program: 'Conscious AI',
   },
   cookies: {
     label: 'Cookie consent',
@@ -639,10 +701,10 @@ export const en = {
   },
   contact: {
     kicker: 'Contact',
-    title: 'Tell us where AI should help.',
-    accent: [3, 4, 5],
+    title: 'Have a problem worth solving?',
+    accent: [2, 3, 4],
     description:
-      'A few sentences are enough. Tell us how you or your team use AI today. We reply within one business day.',
+      "Tell us what you are building, what you want to improve or where technology is getting in the way. We'll help you find a practical next step.",
     direct: 'How to reach us',
     formNote:
       'The form is the fastest way in. It comes straight to us and we answer every enquiry personally.',
@@ -660,35 +722,35 @@ export const en = {
     /** Closing section of the homepage: the same form, without leaving. */
     home: {
       kicker: 'Contact',
-      title: 'Tell us where AI should help.',
-      accent: [3, 4, 5],
+      title: 'Have a problem worth solving?',
+      accent: [2, 3, 4],
       description:
-        'A few sentences are enough. Tell us how you or your team use AI today. We reply within one business day.',
+        "Tell us what you are building, what you want to improve or where technology is getting in the way. We'll help you find a practical next step.",
     },
   },
   faq: {
     kicker: 'FAQ',
-    title: 'Straight answers, before you commit.',
-    description:
-      'How the program runs, what it costs, and how we work with the teams behind it.',
+    title: 'Straight answers to important questions.',
+    description: 'What we do, how we work and where AI fits.',
     accent: [0, 1],
   },
   cta: {
     kicker: "Let's talk",
-    title: 'Ready to use AI on purpose?',
-    accent: [4, 5],
-    body: 'Tell us about your team and how it uses AI today. We reply within one business day with where Conscious AI fits.',
-    button: 'Get in touch',
+    title: 'Have a problem worth solving?',
+    accent: [2, 3, 4],
+    body: "Tell us what you are building, what you want to improve or where technology is getting in the way. We'll help you find a practical next step.",
+    button: 'Tell us about your project',
   },
   footer: {
-    pitch: 'AI enablement for non-technical knowledge workers.',
-    quote: 'Get in touch',
-    program: 'The program',
+    pitch:
+      'We build digital products and help people use technology with greater care, clarity and responsibility.',
+    program: 'Conscious AI',
     company: 'Company',
     offices: 'Offices',
     legal: 'Legal',
     rights: 'All rights reserved.',
     backToTop: 'Back to top',
+    status: 'Online',
   },
 };
 

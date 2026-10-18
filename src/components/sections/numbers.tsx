@@ -32,6 +32,10 @@ export function Numbers({ dict }: NumbersProps) {
                   i > 0 && 'border-l',
                 )}
               >
+                <span className='absolute left-3 top-3 font-mono text-[9px] tracking-[0.2em] text-white/35 sm:left-5 sm:top-5'>
+                  {'// '}
+                  {String(i + 1).padStart(2, '0')}
+                </span>
                 <p className='bl-display text-3xl tabular-nums text-white min-[400px]:text-4xl sm:text-7xl lg:text-8xl'>
                   <CountUp value={item.value} delay={i * 0.08} />
                 </p>

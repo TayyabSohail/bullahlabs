@@ -15,15 +15,21 @@ import type { Dictionary } from '@/i18n/dictionaries/en';
 interface HowItWorksProps {
   dict: Dictionary;
   className?: string;
+  /** The approach page has its own hero, so it drops the section heading. */
+  heading?: boolean;
 }
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
- * Six step cards in a responsive grid. Each card fades up in turn and a
+ * How we work: four step cards in a row. Each card fades up in turn and a
  * brand hairline draws across its top edge as it lands.
  */
-export function HowItWorks({ dict, className }: HowItWorksProps) {
+export function HowItWorks({
+  dict,
+  className,
+  heading = true,
+}: HowItWorksProps) {
   const t = dict.howItWorks;
   const reduce = Boolean(useReducedMotion());
 
@@ -34,11 +40,21 @@ export function HowItWorks({ dict, className }: HowItWorksProps) {
       data-rail={t.kicker}
     >
       <div className='bl-container'>
-        <SectionHeading kicker={t.kicker} title={t.title} />
+        {heading && (
+          <SectionHeading
+            kicker={t.kicker}
+            title={t.title}
+            accentWords={[...t.accent]}
+            description={t.description}
+          />
+        )}
 
         <Stagger
           stagger={0.12}
-          className='mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:mt-14 lg:grid-cols-3 lg:gap-5'
+          className={cn(
+            'grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-5',
+            heading && 'mt-8 sm:mt-10 lg:mt-14',
+          )}
         >
           {t.steps.map((step, index) => (
             <motion.article
@@ -88,7 +104,7 @@ export function HowItWorks({ dict, className }: HowItWorksProps) {
 
         <Reveal className='mt-8 border-t pt-6 sm:mt-10 sm:pt-8 lg:mt-14'>
           <Link
-            href={paths.program}
+            href={paths.contact}
             className='bl-btn bl-btn-ink inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] shadow-[0_16px_30px_-22px_hsl(var(--ink))]'
           >
             {t.cta}

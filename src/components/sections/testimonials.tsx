@@ -74,7 +74,7 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
         <div>
           <div>
             <Reveal>
-              <p className='bl-kicker'>{t.kicker}</p>
+              <p className='bl-kicker bl-kicker-numbered'>{t.kicker}</p>
             </Reveal>
             <TextReveal
               as='h2'

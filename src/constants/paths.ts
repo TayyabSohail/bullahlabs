@@ -3,6 +3,8 @@ export const paths = {
   work: '/work',
   caseStudy: (slug: string) => `/work/${slug}` as const,
   about: '/about',
+  services: '/services',
+  approach: '/approach',
   program: '/conscious-ai',
   contact: '/contact',
   legal: {

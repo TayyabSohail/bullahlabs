@@ -4,12 +4,14 @@ import type { Dictionary } from './en';
 export const de: Dictionary = {
   locale: 'de',
   nav: {
+    about: 'Wer wir sind',
     program: 'Conscious AI',
+    services: 'Leistungen',
     work: 'Projekte',
-    about: 'Über uns',
+    approach: 'Unser Ansatz',
     contact: 'Kontakt',
     home: 'Start',
-    cta: 'Kontakt aufnehmen',
+    cta: 'Sprechen wir',
     bookCall: 'Gespräch buchen',
     menuOpen: 'Menü öffnen',
     menuClose: 'Menü schließen',
@@ -18,131 +20,84 @@ export const de: Dictionary = {
     top: 'Nach oben',
   },
   hero: {
-    badge: 'KI-Befähigung & Optimierung',
-    title: 'KI nicht aus Gewohnheit.\nSondern bewusst.',
-    accent: [4, 5],
-    body: 'Wissen, wann KI wirklich hilft, das kleinste passende Werkzeug nehmen und prüfen, was zurückkommt. Weniger verschwendete Stunden, geringere Kosten, ein Fußabdruck, zu dem Sie stehen können.',
-    primary: 'Kostenlosen Kurs starten',
+    badge: 'Durchdachte Technologie. Spürbare Wirkung.',
+    title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
+    accent: [4, 5, 6],
+    body: 'Wir entwerfen, bauen und verbessern digitale Produkte mit Blick auf ihre Wirkung in der echten Welt. Von den Systemen, die wir bauen, bis zur KI, die wir nutzen, konzentrieren wir uns auf das, was nützlich ist, was verantwortbar ist und was es wert ist, gebaut zu werden.',
+    primary: 'Projekt besprechen',
     secondary: 'Projekte ansehen',
-    decision: {
-      kicker:
-        'Vier Alltagsaufgaben, jede entschieden, bevor KI geöffnet wird: ob sie hilft, welches Werkzeug, wie viel Kontext und wer das Ergebnis prüft.',
-      live: 'Live',
+    map: {
+      kicker: 'Jede Aufgabe, entschieden bevor KI geöffnet wird.',
       taskLabel: 'Aufgabe',
-      defaultLabel: 'Aus Gewohnheit',
-      consciousLabel: 'Bewusst',
-      outcomeLabel: 'Ergebnis',
-      questions: [
-        'Hilft KI hier?',
-        'Welches Werkzeug?',
-        'Wie viel Kontext?',
-        'Wer prüft?',
-      ],
-      tasks: [
+      nodes: {
+        task: 'Die Aufgabe',
+        decide: 'Hilft KI?',
+        tool: 'Kleinstes\nWerkzeug',
+        context: 'Nötiger\nKontext',
+        check: 'Geprüft',
+        result: 'Ergebnis',
+      },
+      scenarios: [
         {
-          task: 'Die Launch-Mail für ein neues Feature schreiben.',
-          answers: [
-            {
-              byDefault: 'Den Chatbot öffnen. Er ist ohnehin schon offen.',
-              onPurpose: 'Ja, für den ersten Entwurf. Die Stimme bleibt Ihre.',
-            },
-            {
-              byDefault: 'Das stärkste Modell.',
-              onPurpose: 'Ein leichteres. Einen Entwurf beurteilt man leicht.',
-            },
-            {
-              byDefault: 'Das ganze Produkt-Wiki, eingefügt.',
-              onPurpose:
-                'Das einseitige Briefing und die Mail vom letzten Launch.',
-            },
-            {
-              byDefault:
-                'Niemand. Neu generieren, bis es sich richtig anfühlt.',
-              onPurpose:
-                'Sie. Den ersten brauchbaren Entwurf bearbeiten, dann senden.',
-            },
-          ],
-          outcome:
-            'Eine Runde statt sechs. Dieselbe Mail, ein Bruchteil der Rechenleistung.',
+          task: 'Einen 40-seitigen Vertrag für den Vorstand zusammenfassen',
+          decide:
+            'KI hilft hier. Ein erster Entwurf ist schnell zu beurteilen.',
+          tool: 'Ein leichtes Modell reicht. Nicht das größte.',
+          context:
+            'Die drei Klauseln, die zählen, gehen hinein. Nicht vierzig Seiten.',
+          check: 'Gelesen und korrigiert, bevor es Ihre Hände verlässt.',
+          result: 'In einer Runde fertig. Nichts Vertrauliches geteilt.',
         },
         {
-          task: 'Die Rechnungen des letzten Quartals je Kunde summieren.',
-          answers: [
-            {
-              byDefault: 'Die Tabelle in einen Chat einfügen und fragen.',
-              onPurpose: 'Nein. Eine Formel rechnet das exakt, jedes Mal.',
-            },
-            {
-              byDefault: 'Ein Chatbot, der rechnet.',
-              onPurpose: 'SUMMEWENN. Sofort, exakt, kostenlos.',
-            },
-            {
-              byDefault: 'Die ganze Arbeitsmappe, Kundennamen inklusive.',
-              onPurpose: 'Nichts verlässt die Tabelle.',
-            },
-            {
-              byDefault: 'Niemand. Die Zahl sah plausibel aus.',
-              onPurpose: 'Die Formel ist die Prüfung. Sie rät nicht.',
-            },
-          ],
-          outcome: 'Kein KI-Lauf, keine Kundendaten geteilt.',
+          task: 'Die Marge auf 200 Auftragszeilen berechnen',
+          decide: 'KI hilft hier nicht. Eine Tabellenformel ist exakt.',
+          check: 'Trotzdem geprüft, wie alles andere.',
+          result: 'Exakte Zahlen. Kein KI-Lauf, keine Daten geteilt.',
         },
         {
-          task: 'Einem verärgerten Kunden antworten.',
-          answers: [
-            {
-              byDefault:
-                'Eine Antwort anfordern und abschicken, was zurückkommt.',
-              onPurpose: 'Ja, für die Struktur. Der Ton muss Ihrer sein.',
-            },
-            {
-              byDefault: 'Das stärkste Modell.',
-              onPurpose: 'Ein leichteres Modell, nur für die Gliederung.',
-            },
-            {
-              byDefault: 'Der gesamte Ticketverlauf.',
-              onPurpose:
-                'Die letzten zwei Nachrichten und was Sie behoben haben.',
-            },
-            {
-              byDefault: 'Niemand. Es las sich gut.',
-              onPurpose: 'Sie. Jedes Versprechen darin müssen Sie halten.',
-            },
-          ],
-          outcome: 'Eine Gliederung, Ihre eigenen Worte, einmal gegenlesen.',
-        },
-        {
-          task: 'Dieselbe Onboarding-Frage beantworten. Wieder.',
-          answers: [
-            {
-              byDefault: 'Jedes Mal den Chatbot fragen.',
-              onPurpose: 'Einmal. Die Antwort schreiben, dann wiederverwenden.',
-            },
-            {
-              byDefault: 'Jedes Mal ein neues Gespräch.',
-              onPurpose:
-                'Eine gespeicherte Antwort. KI glättet nur die Formulierung.',
-            },
-            {
-              byDefault: 'Das ganze Handbuch, erneut eingefügt.',
-              onPurpose: 'Der eine Absatz der Richtlinie, der gilt.',
-            },
-            {
-              byDefault:
-                'Niemand. Zehn leicht verschiedene Antworten gehen raus.',
-              onPurpose: 'Sie, einmal. Dann bekommen alle dieselbe Antwort.',
-            },
-          ],
-          outcome: 'Zehn Fragen, ein KI-Lauf, eine einheitliche Antwort.',
+          task: 'Einem verärgerten Kunden antworten',
+          decide: 'KI hilft beim Ton. Die Fakten bleiben Ihre.',
+          tool: 'Ein leichtes Modell, drei Sätze. Kein schweres Reasoning nötig.',
+          context: 'Die Beschwerde und Ihre Richtlinie. Sonst nichts.',
+          check: 'Einmal gelesen und von Ihnen freigegeben.',
+          result: 'In einer Runde verschickt, in Ihren eigenen Worten.',
         },
       ],
     },
   },
+  consciousAi: {
+    kicker: 'Conscious AI',
+    title:
+      'KI entwickelt sich schnell. Sie sollen Schritt halten. Aber wo anfangen?',
+    accent: [8, 9, 10],
+    paragraphs: [
+      'Jeden Tag erscheinen neue Werkzeuge. Sie wollen smarter arbeiten, Fähigkeiten aufbauen und relevant bleiben, aber es ist schwer zu wissen, was man lernen soll, welchen Werkzeugen man trauen kann oder ob man KI überhaupt gut nutzt. Vielleicht beschäftigen Sie auch ihre ökologischen und sozialen Folgen.',
+      'Sie sollten nicht wählen müssen zwischen guter Arbeit und einem verantwortungsvollen Umgang mit KI.',
+      'Wir bieten kostenlose Ressourcen und praktische Anleitung, damit Sie KI mit mehr Sicherheit und weniger Verschwendung nutzen. Lernen Sie, das richtige Werkzeug für die Aufgabe zu wählen, Ihren KI-Arbeitsplatz einzurichten, klarere Prompts zu schreiben und unnötige Nutzung zu vermeiden.',
+      'Sie erfahren, wo KI wirklich hilft, wo sie an Grenzen stößt und wie alltägliche Entscheidungen Zeit, Kosten, Energie- und Wasserverbrauch beeinflussen. Kein technischer Hintergrund nötig. Kein Hinterherlaufen hinter jedem Trend.',
+    ],
+    closingKicker: 'Kostenlose Ressourcen',
+    closing:
+      'Smarter mit KI arbeiten. Sicherer werden. Bewusstere Entscheidungen treffen.',
+    cta: 'Kostenlose KI-Ressourcen entdecken',
+    notifyNote:
+      'Die kostenlosen Lernmodule entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen Bescheid, sobald sie offen sind.',
+  },
+  consciousTech: {
+    kicker: 'Bewusste Technologie',
+    title: 'Technologie ist nie nur Technologie.',
+    accent: [2, 3, 4],
+    paragraphs: [
+      'Jedes Produkt prägt, wie Menschen arbeiten, leben und Entscheidungen treffen. Jedes System verbraucht Ressourcen. Jede technische Entscheidung hat Folgen.',
+      'Wir bauen Technologie mit diesen Folgen im Blick und denken Umweltwirkung, soziale Verantwortung und ethische Fragen von Anfang an mit.',
+      'Bessere Technologie heißt mehr, als dass sie funktioniert. Es heißt zu verstehen, was sie verändert, was sie verbraucht und wen sie betrifft.',
+    ],
+  },
   numbers: {
-    kicker: 'In Zahlen',
-    title: 'Belege statt Versprechen',
+    kicker: 'Belege und Ergebnisse',
+    title: 'Gebaut für echte Ergebnisse.',
     description:
-      'Den Kurs gibt ein Team, das KI-Produkte baut und betreibt. Das sind die Zahlen dahinter.',
+      'Wir machen aus Ideen nützliche Produkte und verbinden durchdachte Technik mit dem Blick auf bleibenden Wert.',
     items: [
       { value: '150+', label: 'Abgeschlossene Projekte' },
       { value: '40+', label: 'Kunden auf vier Kontinenten' },
@@ -150,10 +105,10 @@ export const de: Dictionary = {
     ],
   },
   technologies: {
-    kicker: 'Die Werkzeuge, mit denen wir lehren',
-    statement: 'Wir lehren mit den Werkzeugen, mit denen wir bauen.',
+    kicker: 'Werkzeuge und Technologie',
+    statement: 'Bewährte Werkzeuge. Aus gutem Grund gewählt.',
     statementMuted:
-      'Jede Lektion stammt aus einem Stack, der im Betrieb läuft, nicht von einer Folie.',
+      'Wir setzen etablierte Technologien ein, die zum Problem, zum Team und zum Produkt passen. Es geht nicht darum, Trends zu folgen oder Werkzeuge um ihrer selbst willen hinzuzufügen, sondern Systeme zu bauen, die gut funktionieren und praktisch zu betreiben und zu verbessern bleiben.',
     stackLabel: 'Der Stack, nach Ebene',
     layers: [
       { label: 'Oberfläche', note: 'Was Ihre Nutzer sehen und bedienen.' },
@@ -174,109 +129,60 @@ export const de: Dictionary = {
     ],
   },
   howItWorks: {
-    kicker: 'Die Arbeitsweise',
-    title: 'So funktioniert bewusste Nutzung',
+    kicker: 'So arbeiten wir',
+    title: 'Klar denken. Bewusst bauen.',
+    accent: [2, 3],
+    description:
+      'Vom Verstehen des Problems bis zur Verbesserung dessen, was wir gebaut haben.',
     stepLabel: 'Schritt',
-    cta: 'Mit dem kostenlosen Kurs starten',
+    cta: 'Projekt besprechen',
     steps: [
       {
-        title: 'Fragen, ob KI hier überhaupt hingehört',
-        when: 'Vorher',
+        title: 'Das Problem verstehen',
+        when: 'Verstehen',
         summary:
-          'Viele Aufgaben, die an einen Chatbot gehen, löst eine Regel, eine Formel oder eine Suche besser. Erst entscheiden, dann tippen.',
+          'Wir lernen, was Menschen brauchen, was im Weg steht und wie Erfolg aussehen soll.',
       },
       {
-        title: 'Das kleinste Werkzeug nehmen, das die Aufgabe löst',
-        when: 'Wählen',
+        title: 'Den richtigen Ansatz wählen',
+        when: 'Entscheiden',
         summary:
-          'Ein leichtes Modell für den Entwurf, ein schweres nur, wenn das Ergebnis schwer zu prüfen ist. In der richtigen Größe steckt der größte Teil der Ersparnis.',
+          'Wir bewerten mögliche Lösungen, einschließlich ihrer Komplexität, Kosten, Ressourcenbedarfe und Folgen.',
       },
       {
-        title: 'Einmal sagen, aber richtig',
-        when: 'Prompt',
+        title: 'Bauen und lernen',
+        when: 'Bauen',
         summary:
-          'Im ersten Prompt klar sagen, was Sie brauchen, für wen und in welcher Form. Nur den Teil des Dokuments teilen, der zählt.',
+          'Wir entwickeln, testen und verfeinern die Lösung mit regelmäßigem Feedback und klaren Prioritäten.',
       },
       {
-        title: 'Aufhören, wenn die Anforderung erfüllt ist',
-        when: 'Arbeiten',
+        title: 'Mit Absicht verbessern',
+        when: 'Verbessern',
         summary:
-          'Jede weitere Runde, jeder Schritt und jede Übergabe muss sich verdienen. Das Ziel ist ein geprüftes Ergebnis, das seinen Zweck erfüllt, kein perfektes.',
-      },
-      {
-        title: 'Prüfen, was zurückkommt',
-        when: 'Prüfen',
-        summary:
-          'Zahlen, Quellen und Behauptungen verifizieren, bevor etwas Ihre Hände verlässt. KI entwirft. Sie entscheiden.',
-      },
-      {
-        title: 'Messen, dann zur Gewohnheit machen',
-        when: 'Danach',
-        summary:
-          'Ausgangswert festhalten, eine Sache ändern, vergleichen. Weniger Verschwendung, geringere Kosten, ein sauberer Fußabdruck und ein Ablauf, den Sie weitergeben können.',
+          'Wir messen, was zählt, und verbessern dort weiter, wo echter Wert entsteht. Manchmal ist der richtige nächste Schritt, zu vereinfachen statt mehr hinzuzufügen.',
       },
     ],
   },
   globalReach: {
-    kicker: 'Standorte',
-    title: 'Eine Haltung, von Stuttgart bis Islamabad.',
+    kicker: 'Weltweit im Einsatz',
+    title: 'Ein Team. Wo immer die Arbeit stattfindet.',
     description:
-      'Teams in Europa, Nordamerika, dem Nahen Osten, Afrika und Asien, betreut aus Fellbach bei Stuttgart und aus Islamabad. Wann immer Sie arbeiten, ist jemand aus dem Team online.',
+      'Wir arbeiten mit Teams an verschiedenen Standorten zusammen und verbinden klare Kommunikation mit praktischer Produkt- und Entwicklungsarbeit. Betreut aus Fellbach bei Stuttgart und aus Islamabad, damit immer jemand aus dem Team online ist, wenn Sie arbeiten.',
     legend: 'Standorte und Kundenorte',
   },
   testimonials: {
     kicker: 'Kundenstimmen',
-    title: 'So ist die Zusammenarbeit mit uns',
-    accent: [3],
+    title: 'Gute Arbeit, gemeinsam gebaut.',
+    accent: [2, 3],
     caseStudy: 'Projekt ansehen',
     prev: 'Vorherige Stimme',
     next: 'Nächste Stimme',
   },
-  compare: {
-    kicker: 'In der Praxis',
-    title: 'Dieselbe Aufgabe, zwei Wege',
-    accent: [2, 3],
-    description:
-      'Aus einem langen Bericht wird ein kurzes Update für einen Kunden. Nichts davon erfordert technisches Vorwissen.',
-    defaultLabel: 'Aus Gewohnheit',
-    consciousLabel: 'Bewusst',
-    rows: [
-      {
-        step: 'Werkzeug',
-        default: 'Das stärkste Modell, weil es gerade offen ist.',
-        conscious:
-          'Ein leichteres Modell. Eine Zusammenfassung lässt sich leicht mit der Quelle abgleichen.',
-      },
-      {
-        step: 'Kontext',
-        default: 'Der ganze 40-seitige Bericht, eingefügt.',
-        conscious: 'Nur die zwei Abschnitte, nach denen der Kunde gefragt hat.',
-      },
-      {
-        step: 'Prompt',
-        default:
-          '„Fass das zusammen.“ Danach vier Nachfragen, um Ton und Länge zu korrigieren.',
-        conscious:
-          'Aufgabe, Zielgruppe, Länge und Format, alles im ersten Prompt.',
-      },
-      {
-        step: 'Abschluss',
-        default: 'Neu erzeugen, bis sich eine Version richtig anfühlt.',
-        conscious:
-          'Den ersten brauchbaren Entwurf überarbeiten, die Zahlen prüfen, senden.',
-      },
-    ],
-    defaultResult: 'Mehr Runden und mehr Rechenleistung, für dasselbe Update.',
-    consciousResult:
-      'Weniger Runden, weniger Rechenleistung und ein geprüftes Ergebnis.',
-    note: 'Eine Veranschaulichung der Gewohnheiten aus dem kostenlosen Kurs, kein gemessenes Ergebnis.',
-    cta: 'Was der kostenlose Kurs behandelt',
-  },
   work: {
-    kicker: 'Belege im Betrieb',
-    title: 'Was wir gebaut haben, und wie es optimiert ist',
+    kicker: 'Ausgewählte Projekte',
+    title: 'Jedes Projekt soll einen Unterschied machen.',
     description:
-      'Vierzehn Produkte im Einsatz. Jede Fallstudie sagt, was das Produkt ist, und zeigt dann die Optimierung dahinter: das richtige Werkzeug für die Aufgabe, nur der nötige Kontext, nichts doppelt, erst geprüft, dann vertraut.',
+      'Wir arbeiten an digitalen Produkten und Systemen, die echte Probleme lösen. Dazu gehört, neue Produkte zu bauen, bestehende zu verbessern und Teams zu fundierteren Technologieentscheidungen zu verhelfen.',
     all: 'Alle Projekte',
     view: 'Fallstudie lesen',
     filterLabel: 'Projekte filtern',
@@ -316,31 +222,52 @@ export const de: Dictionary = {
     },
     count: '{n} Projekte',
     teaser: {
-      kicker: 'Projekte',
-      title: 'Echte Produkte, gebaut ohne Verschwendung',
-      accent: [3, 4],
-      body: 'Marktplätze, SaaS-Plattformen, KI-Systeme und Websites im Einsatz. Jedes zeigt die Regeln aus dem Kurs in der Anwendung: das richtige Werkzeug, nur der nötige Kontext, nichts doppelt, erst geprüft, dann vertraut.',
+      kicker: 'Ausgewählte Projekte',
+      title: 'Jedes Projekt soll einen Unterschied machen.',
+      accent: [3, 4, 5],
+      body: [
+        'Wir arbeiten an digitalen Produkten und Systemen, die echte Probleme lösen. Dazu gehört, neue Produkte zu bauen, bestehende zu verbessern und Teams zu fundierteren Technologieentscheidungen zu verhelfen.',
+        'Unsere Arbeit schafft auch Gelegenheiten, Wissen zu teilen: Menschen verstehen die Werkzeuge, die sie nutzen, treffen bessere Entscheidungen und erkennen die weitere Wirkung von Technologie.',
+      ],
       cta: 'Alle Projekte ansehen',
       listLabel: 'Ausgewählte Projekte',
       more: '{n} weitere auf der Projektseite',
     },
   },
-  pillars: {
-    kicker: 'Wofür wir stehen',
-    title: 'Drei Säulen guter KI-Nutzung',
+  services: {
+    kicker: 'Leistungen',
+    title: 'Durchdachte Technologie, von der Idee bis zur Verbesserung.',
+    accent: [2, 3, 4, 5, 6, 7],
+    description:
+      'Wir bringen Produktdenken, Technik und verantwortungsvolle Technologieentscheidungen zusammen. Und wir helfen Kundinnen und Kunden, das Wissen aufzubauen, um über ein einzelnes Projekt hinaus bessere Entscheidungen zu treffen.',
+    promise:
+      'Produktdenken, Technik und verantwortungsvolle Technologieentscheidungen, zusammen.',
+    cta: 'Projekt besprechen',
+  },
+  whoWeAre: {
+    kicker: 'Wer wir sind',
+    title:
+      'Wir bauen Technologie mit Absicht und glauben, dass Fortschritt Verantwortung bedeutet.',
+    accent: [8, 9, 10],
+    paragraphs: [
+      'Bullah Labs ist ein Produkt- und Entwicklungsteam, das Ideen in nützliche digitale Produkte verwandelt. Wir verbinden durchdachte Technik mit einem bewussten Blick darauf, wie Technologie entworfen, gebaut und genutzt wird.',
+      'Wir glauben, dass Technologie echte Probleme lösen soll, statt Komplexität um ihrer selbst willen zu schaffen. Das heißt, über das hinauszuschauen, was ein Produkt kann, und zu fragen, was es tun sollte, welche Ressourcen es braucht und wie es Menschen und die Welt um uns herum beeinflusst.',
+      'Unsere Vision geht über das Bauen von Software oder die Einführung von KI hinaus. Wir wollen eine Zukunft mitgestalten, in der Technologie menschliche Fähigkeiten erweitert, ohne ihre ökologischen, sozialen und ethischen Folgen aus dem Blick zu verlieren.',
+      'Das beginnt mit Verstehen. Wir helfen Menschen und Organisationen, informierte Entscheidungen zu treffen, Technologie wirksam zu nutzen und zu erkennen, wann weniger mehr ist.',
+      'Für uns ist bessere Technologie nicht einfach leistungsfähiger. Sie ist nützlicher, durchdachter und verantwortungsvoller.',
+    ],
+    cta: 'Mehr über uns',
+  },
+  principles: {
+    kicker: 'Technische Grundsätze',
+    title: 'Bauen, was zählt. Weglassen, was nicht zählt.',
+    accent: [3, 4, 5, 6],
+    description:
+      'Die Regeln hinter jeder technischen Entscheidung, die wir treffen.',
   },
   program: {
-    kicker: 'Conscious AI',
-    title: 'Ein kostenloser Kurs, Lektion für Lektion',
-    accent: [1, 2],
-    description:
-      'Kurze Videos dazu, wann KI hilft, wie Sie in weniger Runden zu einem verlässlichen Ergebnis kommen und wann Sie sie besser weglassen. Gemacht für Menschen, die keine Entwickler sind.',
-    cta: 'Zum Programm',
     watch: 'Ganzen Kurs ansehen',
-    request: 'Zugang für ein Team anfragen',
-    nextKicker: 'Wie es weitergeht',
-    nextBody:
-      'Die Lektionen erscheinen hier eine nach der anderen, jede wenige Minuten lang. Eine ansehen, an der eigenen Arbeit ausprobieren, für die nächste wiederkommen. Teams bekommen dieselben Lektionen plus eine Sitzung zu ihren eigenen Aufgaben.',
+    request: 'Schulung für ein Team',
     player: {
       modules: 'Module',
       module: 'Modul',
@@ -372,20 +299,19 @@ export const de: Dictionary = {
       seek: 'Position',
     },
     signup: {
-      kicker: 'Benachrichtigung',
-      title: 'Erfahren Sie als Erste, wenn eine Lektion online geht.',
-      body: 'Eine E-Mail pro veröffentlichter Lektion, sonst nichts. Antworten Sie auf eine davon, um sich auszutragen.',
-      email: 'Geschäftliche E-Mail',
-      placeholder: 'sie@firma.de',
+      kicker: 'Auf dem Laufenden bleiben',
+      title: 'Erfahren Sie es als Erste.',
+      body: 'Die kostenlosen Lernmodule entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen Bescheid, sobald sie fertig sind.',
+      email: 'E-Mail-Adresse',
+      placeholder: 'Ihre E-Mail-Adresse',
       submit: 'Bescheid geben',
       consentBefore:
-        'Mit der Anmeldung stimmen Sie zu, dass wir Ihre Adresse für diese Hinweise speichern, wie in der',
+        'Mit der Anmeldung stimmen Sie zu, dass wir Ihre Adresse für diesen Hinweis speichern, wie in der',
       consentLink: 'Datenschutzerklärung',
       consentAfter: ' beschrieben.',
       doneTitle: 'Sie stehen auf der Liste.',
       alreadyTitle: 'Sie standen schon auf der Liste.',
-      doneBody:
-        'Wir schreiben Ihnen, sobald die erste Lektion online ist, und einmal für jede weitere.',
+      doneBody: 'Eine E-Mail, sobald es so weit ist, sonst nichts.',
       errorGeneric:
         'Etwas ist schiefgelaufen. Bitte versuchen Sie es gleich noch einmal.',
       teamLink: 'Schulung für ein ganzes Team?',
@@ -393,23 +319,157 @@ export const de: Dictionary = {
   },
   programPage: {
     kicker: 'Conscious AI',
-    title: 'KI gut nutzen. Nicht nur mehr.',
-    accent: [3, 4, 5],
+    title: 'KI mit Absicht nutzen.',
+    accent: [1, 2],
     description:
-      'Ein kostenloser Videokurs für nicht-technische Wissensarbeit: wann KI hilft, wie Sie in weniger Runden zu einem verlässlichen Ergebnis kommen und wie Sie aufhören, für Nutzung zu zahlen, die niemand gebraucht hat.',
-    primary: 'Kurs ansehen',
-    secondary: 'Zugang anfragen',
+      'KI entwickelt sich schnell. Fühlen Sie sich abgehängt? Unsicher, wo Sie anfangen, wem Sie trauen oder wie Sie KI verantwortungsvoll nutzen sollen?',
+    promise:
+      'Wir entwickeln kostenlose, praktische Lernmodule, mit denen Sie KI sicher nutzen, smarter arbeiten und unnötige Verschwendung vermeiden.',
+    heroCta: 'Bescheid geben, wenn es öffnet',
     principle:
-      'KI-Kompetenz heißt zu wissen, wann, warum und wie man KI gut einsetzt, nicht nur, wie man die Werkzeuge bedient.',
-    courseKicker: 'Der Kurs',
-    courseTitle: 'Ansehen, dann an der eigenen Arbeit ausprobieren',
-    courseAccent: [0],
-    courseDescription:
-      'Drei Module mit je einer Handvoll kurzer Lektionen, die mit einer Sache enden, die Sie an Ihrer Arbeitsweise ändern. Lektion wählen, ansehen, an der eigenen Aufgabe ausprobieren. Die ersten werden gerade aufgenommen.',
-    ctaTitle: 'Beginnen Sie mit dem kostenlosen Kurs.',
-    ctaAccent: [4, 5],
-    ctaBody:
-      'Sagen Sie uns, wer Sie sind und wie Sie KI heute nutzen. Wir antworten innerhalb eines Werktags, mit Zugangsdetails für Sie oder einem Plan für Ihr Team.',
+      'Praktische Fähigkeiten. Bewusste Entscheidungen. Kein Programmieren nötig.',
+    course: {
+      kicker: 'Demnächst',
+      title: 'Bessere KI-Gewohnheiten beginnen hier.',
+      accent: [0, 1],
+      learnKicker: 'Sie lernen',
+      learn: [
+        'Das richtige Werkzeug für die Aufgabe wählen.',
+        'Bessere Prompts schreiben und brauchbare Ergebnisse bekommen.',
+        'Wiederverwendbare KI-Abläufe einrichten.',
+        'Kosten, Energie- und Wasserverbrauch von KI verstehen.',
+        'Grenzen erkennen und Ergebnisse prüfen.',
+      ],
+      facts: [
+        { label: 'Format', value: 'Demnächst' },
+        { label: 'Anmeldung', value: 'Noch nicht offen' },
+      ],
+      cta: 'Benachrichtigen',
+    },
+    problem: {
+      kicker: 'Das Problem',
+      title: 'Alle erwarten, dass Sie KI nutzen. Wenige zeigen, wie.',
+      accent: [6, 7, 8],
+      lines: [
+        'Neue Werkzeuge. Neue Trends. Mehr Druck, Schritt zu halten.',
+        'Sie wollen smarter arbeiten und relevant bleiben. Aber Sie wollen auch informierte Entscheidungen über die ökologischen und sozialen Folgen von KI treffen.',
+        'Sie sollten nicht wählen müssen zwischen guter Arbeit und einem verantwortungsvollen Umgang mit KI.',
+      ],
+    },
+    approach: {
+      kicker: 'KI besser nutzen',
+      title: 'Nicht mehr KI. Bessere KI.',
+      accent: [3, 4],
+      lines: [
+        'KI nutzen, wenn sie hilft. Das richtige Modell wählen. Klare Anweisungen geben. Unnötige Schritte weglassen.',
+        'Kleine Änderungen können Zeit sparen, Ergebnisse verbessern und unnötige Rechenleistung vermeiden.',
+        'Nutzen, was Sie brauchen. Die Wirkung verstehen. Das menschliche Urteil im Spiel behalten.',
+      ],
+    },
+    modules: {
+      kicker: 'Lernen durch Tun',
+      title: 'Praktische Fähigkeiten. Echte Arbeit.',
+      accent: [2, 3],
+      description:
+        'Kostenlose Ressourcen, mit denen Sie bessere KI-Gewohnheiten aufbauen, eine Aufgabe nach der anderen.',
+      habits: [
+        {
+          title: 'Einmal einrichten.',
+          body: 'Wiederverwendbare Anweisungen für wiederkehrende Aufgaben anlegen.',
+        },
+        {
+          title: 'Klar prompten.',
+          body: 'Bessere Ergebnisse mit weniger Nachfragen.',
+        },
+        {
+          title: 'Klug wählen.',
+          body: 'Das Modell zur Aufgabe passend wählen.',
+        },
+        {
+          title: 'Kontext relevant halten.',
+          body: 'Der KI geben, was sie braucht, nicht alles, was Sie haben.',
+        },
+        {
+          title: 'Kritisch denken.',
+          body: 'Ergebnisse prüfen und wissen, wann man KI nicht nutzt.',
+        },
+        {
+          title: 'Die Wirkung verstehen.',
+          body: 'Lernen, wie alltägliche Entscheidungen den Ressourcenverbrauch beeinflussen.',
+        },
+      ],
+      cta: 'Bescheid geben, wenn es startet',
+    },
+    whoFor: {
+      kicker: 'Für Nicht-Entwickler',
+      title: 'Neugierig auf KI. Kein Programmieren nötig.',
+      accent: [3, 4, 5],
+      paragraphs: [
+        'Für Menschen, die KI bei der Arbeit nutzen wollen, ohne technische Experten zu werden.',
+        'Ob Sie in Marketing, Operations, Finanzen, HR, Vertrieb oder Projektmanagement arbeiten: Lernen Sie Fähigkeiten, die Sie sofort einsetzen können.',
+      ],
+      questions: [
+        'Unsicher, wo Sie anfangen sollen?',
+        'Mühe, Schritt zu halten?',
+        'Bessere Ergebnisse mit weniger Aufwand?',
+        'Sorgen um die Wirkung von KI?',
+      ],
+      closing: 'Beginnen Sie mit der Arbeit, die Sie ohnehin tun.',
+    },
+    business: {
+      kicker: 'Für Teams und Organisationen',
+      title: 'Helfen Sie Ihrem Team, KI gut zu nutzen.',
+      accent: [4, 5, 6, 7],
+      paragraphs: [
+        'Menschen KI-Werkzeuge zu geben ist leicht. Ihnen zu helfen, diese Werkzeuge wirksam und verantwortungsvoll zu nutzen, braucht Übung.',
+        'Wir helfen Teams, Sicherheit aufzubauen, Abläufe zu verbessern und bewusstere Entscheidungen zu treffen.',
+      ],
+      offers: [
+        {
+          title: 'Gruppenschulungen und Workshops',
+          body: 'Praktische Sitzungen, zugeschnitten auf alltägliche Aufgaben und die Bedürfnisse des Teams.',
+        },
+        {
+          title: 'KI-Fähigkeiten und Abläufe',
+          body: 'Menschen helfen, nützliche Anwendungen zu finden, Prompts zu verbessern und Ergebnisse zu bewerten.',
+        },
+        {
+          title: 'Conscious-AI-Beratung',
+          body: 'Werkzeugwahl, Kosten, Ressourcenverbrauch und verantwortungsvolle Einführung verstehen.',
+        },
+        {
+          title: 'KI-Optimierung',
+          body: 'Unnötige Komplexität und Rechenleistung erkennen, bei gleichbleibender Qualität, Zuverlässigkeit und Sicherheit.',
+        },
+      ],
+      cta: 'Teamschulung besprechen',
+      note: 'Kostenloses Lernen für Einzelne. Praktische Schulung und Beratung für Teams.',
+    },
+    vision: {
+      kicker: 'Warum wir das tun',
+      title: 'Technologie soll uns voranbringen, mit Bedacht.',
+      accent: [4, 5],
+      paragraphs: [
+        'Bei Bullah Labs bauen wir digitale Produkte und helfen Menschen, bessere Technologieentscheidungen zu treffen.',
+        'Wir glauben, Fortschritt heißt, echte Probleme zu lösen, nicht mehr zu bauen um des Bauens willen.',
+        'Das heißt, den ökologischen Fußabdruck, die sozialen Folgen und die ethischen Implikationen von Technologie mitzudenken.',
+        'Unsere Vision: Technologie, die menschliche Fähigkeiten erweitert, ohne ihre Wirkung aus dem Blick zu verlieren.',
+      ],
+    },
+    notify: {
+      kicker: 'Auf dem Laufenden bleiben',
+      title: 'Erfahren Sie es als Erste.',
+      body: 'Die kostenlosen Lernmodule entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen Bescheid, sobald sie fertig sind.',
+      cta: 'Bescheid geben',
+      note: 'Eine E-Mail, sobald es so weit ist.',
+    },
+    comingSoon: {
+      kicker: 'Etwas Neues entsteht',
+      title: 'Bewusst lernen. In die Praxis bringen.',
+      accent: [2, 3, 4, 5],
+      body: 'Kostenloses Lernen ist erst der Anfang. Wir bauen ein neues Produkt, das mehr bewusste Technologie in den Alltag bringt. Bald mehr. Mit Absicht gebaut.',
+      cta: 'Auf dem Laufenden bleiben',
+    },
   },
   contactForm: {
     name: 'Vollständiger Name',
@@ -422,11 +482,11 @@ export const de: Dictionary = {
     service: 'Wofür interessieren Sie sich?',
     serviceOther: 'Etwas anderes',
     serviceOtherTagline:
-      'Eine Frage, eine Partnerschaft oder etwas, das hier nicht steht.',
+      'Ein Projekt, eine Frage, eine Partnerschaft oder etwas, das hier nicht steht.',
     interests: {
       course: {
         title: 'Der kostenlose Kurs',
-        description: 'Zugang zu den Conscious-AI-Videolektionen.',
+        description: 'Zugang zu den Conscious-AI-Lernmodulen.',
       },
       team: {
         title: 'Schulung für mein Team',
@@ -435,7 +495,7 @@ export const de: Dictionary = {
     },
     message: 'Ihre Nachricht',
     messagePlaceholder:
-      'Wie nutzen Sie oder Ihr Team KI heute, und worin möchten Sie besser werden?',
+      'Was bauen Sie, was möchten Sie verbessern, oder wo steht Technologie im Weg?',
     consentBefore:
       'Ich bin damit einverstanden, dass Bullah Labs diese Anfrage speichert und verarbeitet, um mir zu antworten, wie in der',
     consentLink: 'Datenschutzerklärung',
@@ -460,7 +520,7 @@ export const de: Dictionary = {
       message: {
         title: 'Erzählen Sie uns etwas mehr.',
         subtitle:
-          'Ihre Rolle, die KI-Werkzeuge, die Sie nutzen, und was Sie verbessern möchten.',
+          'Was Sie bauen, was Sie verbessern möchten oder wo Technologie im Weg steht.',
       },
       details: {
         title: 'Wohin dürfen wir antworten?',
@@ -482,15 +542,15 @@ export const de: Dictionary = {
     efficiencyKicker: 'So ist es optimiert',
     techniques: 'Was es schlank hält',
     industry: 'Branche',
-    problem: 'Das Problem',
-    approach: 'Unser Vorgehen',
+    problem: 'Die Herausforderung',
+    approach: 'Die Arbeit',
     architecture: 'Wie es gebaut ist',
     keyFeatures: 'Kernfunktionen',
     challengesKicker: 'Herausforderungen & Lösungen',
     challenge: 'Herausforderung',
     solution: 'Lösung',
-    resultsKicker: 'Ergebnisse',
-    resultsTitle: 'Was der Launch verändert hat.',
+    resultsKicker: 'Die Wirkung',
+    resultsTitle: 'Was leichter, besser oder wirksamer wurde.',
     gallery: 'Im Produkt',
     onThePhone: 'Auf dem Telefon',
     galleryTitle: 'Mehr als ein Screen.',
@@ -503,54 +563,50 @@ export const de: Dictionary = {
     previous: 'zurück',
     next: 'weiter',
     notFound: 'Projekt nicht gefunden',
-    ctaTitle: 'Soll Ihr Team so arbeiten?',
-    ctaAccent: [3, 4],
+    ctaTitle: 'Ein Problem, das sich zu lösen lohnt?',
+    ctaAccent: [4, 5, 6],
     ctaBody:
-      'Die Prinzipien hinter diesem Projekt sind die, die Conscious AI vermittelt. Sagen Sie uns, wie Ihr Team KI heute nutzt, und wir antworten innerhalb eines Werktags.',
+      'Erzählen Sie uns, was Sie bauen, was Sie verbessern wollen oder wo Technologie im Weg steht. Wir helfen Ihnen, einen praktischen nächsten Schritt zu finden.',
   },
   aboutPage: {
-    kicker: 'Über Bullah Labs',
-    title: 'Ein Unternehmen rund um gute KI-Nutzung.',
-    accent: [3, 4, 5],
+    kicker: 'Wer wir sind',
+    title:
+      'Wir bauen Technologie mit Absicht und glauben, dass Fortschritt Verantwortung bedeutet.',
+    accent: [8, 9, 10],
     description:
-      'Wir bringen nicht-technischen Teams bei, KI wirksam und verantwortungsvoll einzusetzen.',
+      'Bullah Labs ist ein Produkt- und Entwicklungsteam, das Ideen in nützliche digitale Produkte verwandelt. Wir verbinden durchdachte Technik mit einem bewussten Blick darauf, wie Technologie entworfen, gebaut und genutzt wird.',
     story: [
-      'Bullah Labs hat als Softwarestudio begonnen. Jahre des Produktbaus haben uns eine Regel gelehrt: das kleinste System einsetzen, das die Aufgabe zuverlässig erledigt.',
-      'Als KI in jedes Werkzeug einzog, sahen wir überall das Gegenteil: das stärkste Modell für jede Aufgabe, ganze Dokumente eingefügt, wo ein Absatz genügt hätte, Antworten neu erzeugt statt wiederverwendet. Also haben wir aus der Regel ein Programm gemacht. Conscious AI ist heute das ganze Unternehmen.',
+      'Wir glauben, dass Technologie echte Probleme lösen soll, statt Komplexität um ihrer selbst willen zu schaffen. Das heißt, über das hinauszuschauen, was ein Produkt kann, und zu fragen, was es tun sollte, welche Ressourcen es braucht und wie es Menschen und die Welt um uns herum beeinflusst.',
+      'Unsere Vision geht über das Bauen von Software oder die Einführung von KI hinaus. Wir wollen eine Zukunft mitgestalten, in der Technologie menschliche Fähigkeiten erweitert, ohne ihre ökologischen, sozialen und ethischen Folgen aus dem Blick zu verlieren.',
+      'Das beginnt mit Verstehen. Wir helfen Menschen und Organisationen, informierte Entscheidungen zu treffen, Technologie wirksam zu nutzen und zu erkennen, wann weniger mehr ist.',
+      'Für uns ist bessere Technologie nicht einfach leistungsfähiger. Sie ist nützlicher, durchdachter und verantwortungsvoller.',
     ],
     facts: [
       {
         label: 'Was wir tun',
         value:
-          'Conscious AI: ein kostenloser Videokurs und Schulungen für Teams',
+          'Digitale Produkte, entworfen, gebaut und verbessert, mit Beratung zum guten Umgang mit Technologie und KI',
       },
       {
         label: 'Für wen',
         value:
-          'Nicht-technische Wissensarbeitende und die Unternehmen, die sie beschäftigen',
+          'Teams, die ein neues Produkt bauen, ein bestehendes verbessern oder Technologieentscheidungen treffen',
       },
       {
         label: 'Wie',
         value:
-          'Praktisch, rollenbezogen, vorher und nachher gemessen, mit menschlicher Kontrolle, wo das Risiko es verlangt',
+          'Das Problem verstehen, den richtigen Ansatz wählen, bauen und lernen, mit Absicht verbessern',
       },
       {
         label: 'Wo',
         value: 'Islamabad und Fellbach, mit überlappenden Arbeitszeiten',
       },
     ],
-    principlesKicker: 'Grundsätze',
-    principlesTitle: 'Vier Regeln, die wir lehren und nach denen wir arbeiten.',
-    principlesAccent: [0, 1],
     whereKicker: 'Wo wir sind',
     whereTitle: 'Zwei Büros, ein Arbeitstag.',
     whereAccent: [3, 4],
     whereDescription:
       'Ein asiatisches Büro in Islamabad und ein europäisches in Fellbach. Schreiben Sie dem, das näher ist; es antwortet dasselbe Team.',
-    ctaTitle: 'Möchten Sie sehen, wo Ihr Team KI verschwendet?',
-    ctaAccent: [6, 7],
-    ctaBody:
-      'Sagen Sie uns, wie Ihr Team KI heute nutzt. Wir antworten innerhalb eines Werktags mit dem passenden Einstieg ins Programm.',
   },
   legal: {
     kicker: 'Rechtliches',
@@ -629,9 +685,9 @@ export const de: Dictionary = {
     kicker: 'Fehler 404',
     title: 'Diese Seite wurde nie gebaut.',
     accent: [4],
-    body: 'Die Adresse hat sich vielleicht geändert, oder der Link war falsch. Das Programm ist einen Klick entfernt.',
+    body: 'Die Adresse hat sich vielleicht geändert, oder der Link war falsch. Die Startseite ist einen Klick entfernt.',
     home: 'Zurück zur Startseite',
-    program: 'Zum Programm',
+    program: 'Conscious AI',
   },
   cookies: {
     label: 'Cookie-Einwilligung',
@@ -645,10 +701,10 @@ export const de: Dictionary = {
   },
   contact: {
     kicker: 'Kontakt',
-    title: 'Sagen Sie uns, wo KI helfen soll.',
-    accent: [3, 4, 5, 6],
+    title: 'Ein Problem, das sich zu lösen lohnt?',
+    accent: [4, 5, 6],
     description:
-      'Ein paar Sätze genügen. Sagen Sie uns, wie Sie oder Ihr Team KI heute nutzen. Wir antworten innerhalb eines Werktags.',
+      'Erzählen Sie uns, was Sie bauen, was Sie verbessern wollen oder wo Technologie im Weg steht. Wir helfen Ihnen, einen praktischen nächsten Schritt zu finden.',
     direct: 'So erreichen Sie uns',
     formNote:
       'Das Formular ist der schnellste Weg zu uns. Es kommt direkt bei uns an und wir beantworten jede Anfrage persönlich.',
@@ -665,34 +721,34 @@ export const de: Dictionary = {
     faqAccent: [4],
     home: {
       kicker: 'Kontakt',
-      title: 'Sagen Sie uns, wo KI helfen soll.',
-      accent: [3, 4, 5, 6],
+      title: 'Ein Problem, das sich zu lösen lohnt?',
+      accent: [4, 5, 6],
       description:
-        'Ein paar Sätze genügen. Sagen Sie uns, wie Sie oder Ihr Team KI heute nutzen. Wir antworten innerhalb eines Werktags.',
+        'Erzählen Sie uns, was Sie bauen, was Sie verbessern wollen oder wo Technologie im Weg steht. Wir helfen Ihnen, einen praktischen nächsten Schritt zu finden.',
     },
   },
   faq: {
     kicker: 'FAQ',
-    title: 'Klare Antworten, bevor Sie sich festlegen.',
-    description:
-      'Wie das Programm abläuft, was es kostet und wie wir mit den Teams dahinter arbeiten.',
+    title: 'Klare Antworten auf wichtige Fragen.',
+    description: 'Was wir tun, wie wir arbeiten und wo KI hineinpasst.',
     accent: [0, 1],
   },
   cta: {
     kicker: 'Sprechen wir',
-    title: 'Bereit, KI bewusst einzusetzen?',
-    accent: [2, 3, 4],
-    body: 'Erzählen Sie uns von Ihrem Team und wie es KI heute nutzt. Wir antworten innerhalb eines Werktags mit dem passenden Einstieg in Conscious AI.',
-    button: 'Kontakt aufnehmen',
+    title: 'Ein Problem, das sich zu lösen lohnt?',
+    accent: [4, 5, 6],
+    body: 'Erzählen Sie uns, was Sie bauen, was Sie verbessern wollen oder wo Technologie im Weg steht. Wir helfen Ihnen, einen praktischen nächsten Schritt zu finden.',
+    button: 'Erzählen Sie uns von Ihrem Projekt',
   },
   footer: {
-    pitch: 'KI-Befähigung für nicht-technische Wissensarbeit.',
-    quote: 'Kontakt aufnehmen',
-    program: 'Das Programm',
+    pitch:
+      'Wir bauen digitale Produkte und helfen Menschen, Technologie mit mehr Sorgfalt, Klarheit und Verantwortung zu nutzen.',
+    program: 'Conscious AI',
     company: 'Unternehmen',
     offices: 'Standorte',
     legal: 'Rechtliches',
     rights: 'Alle Rechte vorbehalten.',
     backToTop: 'Nach oben',
+    status: 'Online',
   },
 };

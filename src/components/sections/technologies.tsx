@@ -144,7 +144,7 @@ export function Technologies({ dict }: TechnologiesProps) {
     <section className='bl-rule bl-band-stone' data-rail={t.kicker}>
       <div className='bl-container pt-12 text-center sm:pt-14'>
         <Reveal>
-          <p className='bl-kicker'>{t.kicker}</p>
+          <p className='bl-kicker bl-kicker-numbered'>{t.kicker}</p>
         </Reveal>
       </div>
 

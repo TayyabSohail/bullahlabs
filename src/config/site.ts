@@ -22,9 +22,9 @@ export const siteConfig = {
   name: 'Bullah Labs',
   shortName: 'Bullah Labs',
   legalName: 'Bullah Labs',
-  tagline: 'DELIVER MORE WITH LESS',
+  tagline: 'Thoughtful technology. Practical impact.',
   description:
-    'Bullah Labs helps non-technical knowledge workers use AI effectively, build future-ready skills and reduce unnecessary AI usage, through the Conscious AI program.',
+    'Bullah Labs designs, builds and improves digital products with care for their real-world impact, and helps people use technology, including AI, with greater care, clarity and responsibility.',
   url: env.NEXT_PUBLIC_APP_URL,
   founded: 2024,
   /** Company inbox that receives enquiries. */
@@ -35,7 +35,7 @@ export const siteConfig = {
    */
   publicEmail: 'hello@bullahlabs.com' as string | null,
   responseTime: 'within one business day',
-  availability: 'Open for early access',
+  availability: 'Taking on new projects',
   locations: [
     {
       id: 'islamabad',

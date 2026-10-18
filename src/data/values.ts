@@ -1,46 +1,72 @@
 import type { Locale } from '@/i18n/config';
 
 export interface Value {
+  /** The rule, as a short sentence. */
   title: string;
+  /** One sentence on what it means in practice. */
   body: string;
 }
 
-/** The rules the program teaches and the company works by. Shown on /about. */
+/** The engineering principles. Shown on the homepage, /about, /services and /approach. */
 export const values: Value[] = [
   {
-    title: 'The smallest reliable system',
-    body: 'Use the minimum that reliably does the job. Rules and ordinary software before AI, a lighter model before a heavier one.',
+    title: 'Purpose before technology.',
+    body: 'Start with the problem, not the newest tool.',
   },
   {
-    title: 'People stay in the loop',
-    body: 'Efficiency never comes at the cost of quality, accuracy or safety. Where an error is expensive, a person checks before anything is used.',
+    title: 'The right tool for the task.',
+    body: 'Bigger, more complex systems are not automatically better.',
   },
   {
-    title: 'Measure before and after',
-    body: 'Record a baseline, change one thing, compare. We keep what the numbers support and drop what they do not.',
+    title: 'Efficiency is designed.',
+    body: 'Consider cost, latency, energy and complexity from the beginning.',
   },
   {
-    title: 'Write it down',
-    body: 'Every module ends in something written: a checklist, a template, a policy. What is documented can be reused, shared and improved.',
+    title: 'People matter.',
+    body: 'Technology should support human judgement, capability and well-being.',
+  },
+  {
+    title: 'Impact is part of the decision.',
+    body: 'Consider environmental, social and ethical consequences alongside performance.',
+  },
+  {
+    title: 'Use the minimum necessary computation.',
+    body: 'Meet the required standard of quality, reliability and safety without unnecessary work.',
+  },
+  {
+    title: 'Keep learning.',
+    body: 'Help people understand their tools and make better technology decisions over time.',
   },
 ];
 
 const valuesDe: Value[] = [
   {
-    title: 'Das kleinste zuverlässige System',
-    body: 'Das Minimum einsetzen, das die Aufgabe zuverlässig erledigt. Regeln und gewöhnliche Software vor KI, ein leichteres Modell vor einem schwereren.',
+    title: 'Zweck vor Technologie.',
+    body: 'Mit dem Problem beginnen, nicht mit dem neuesten Werkzeug.',
   },
   {
-    title: 'Menschen bleiben beteiligt',
-    body: 'Effizienz geht nie auf Kosten von Qualität, Genauigkeit oder Sicherheit. Wo ein Fehler teuer ist, prüft ein Mensch, bevor etwas verwendet wird.',
+    title: 'Das richtige Werkzeug für die Aufgabe.',
+    body: 'Größere, komplexere Systeme sind nicht automatisch besser.',
   },
   {
-    title: 'Vorher und nachher messen',
-    body: 'Ausgangswert festhalten, eine Sache ändern, vergleichen. Wir behalten, was die Zahlen stützen, und verwerfen den Rest.',
+    title: 'Effizienz wird entworfen.',
+    body: 'Kosten, Latenz, Energie und Komplexität von Anfang an mitdenken.',
   },
   {
-    title: 'Alles aufschreiben',
-    body: 'Jedes Modul endet mit etwas Schriftlichem: einer Checkliste, einer Vorlage, einer Richtlinie. Was dokumentiert ist, lässt sich wiederverwenden, teilen und verbessern.',
+    title: 'Menschen zählen.',
+    body: 'Technologie soll menschliches Urteil, Können und Wohlbefinden unterstützen.',
+  },
+  {
+    title: 'Wirkung ist Teil der Entscheidung.',
+    body: 'Ökologische, soziale und ethische Folgen neben der Leistung berücksichtigen.',
+  },
+  {
+    title: 'So wenig Rechenleistung wie nötig.',
+    body: 'Den geforderten Standard an Qualität, Zuverlässigkeit und Sicherheit erfüllen, ohne unnötige Arbeit.',
+  },
+  {
+    title: 'Weiter lernen.',
+    body: 'Menschen helfen, ihre Werkzeuge zu verstehen und mit der Zeit bessere Technologieentscheidungen zu treffen.',
   },
 ];
 

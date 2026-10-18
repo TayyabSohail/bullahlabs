@@ -10,12 +10,15 @@ export interface NavItem {
  * The primary links in the order the header shows them. The mobile menu and
  * the footer's Company column build on this same list, so the three never
  * drift apart. Home stays outside this list because it is handled explicitly
- * by each surface to preserve its exact-route active state.
+ * by each surface to preserve its exact-route active state, and Contact is
+ * the header's button rather than a link.
  */
 export function primaryNav(dict: Dictionary): NavItem[] {
   return [
-    { label: dict.nav.program, href: paths.program },
-    { label: dict.nav.work, href: paths.work },
     { label: dict.nav.about, href: paths.about },
+    { label: dict.nav.program, href: paths.program },
+    { label: dict.nav.services, href: paths.services },
+    { label: dict.nav.work, href: paths.work },
+    { label: dict.nav.approach, href: paths.approach },
   ];
 }
