@@ -67,7 +67,7 @@ export function HowItWorks({
                   transition: { duration: 0.7, ease },
                 },
               }}
-              className='bl-card bl-grid-surface group relative flex flex-col p-6 transition-shadow duration-300 hover:shadow-glow lg:p-7'
+              className='bl-card bl-grid-surface relative flex flex-col p-6 lg:p-7'
             >
               <motion.span
                 aria-hidden='true'
@@ -82,7 +82,7 @@ export function HowItWorks({
               />
               <span
                 aria-hidden='true'
-                className='bl-display pointer-events-none absolute -right-1 -top-2 select-none text-[5.5rem] leading-none text-brand/10 transition-colors duration-300 group-hover:text-brand/20 lg:text-[6rem]'
+                className='bl-display pointer-events-none absolute -right-1 -top-2 select-none text-[5.5rem] leading-none text-brand/10 lg:text-[6rem]'
               >
                 {String(index + 1).padStart(2, '0')}
               </span>

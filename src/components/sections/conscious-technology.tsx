@@ -38,7 +38,7 @@ export function ConsciousTechnology({
           {t.paragraphs.map((paragraph, index) => (
             <StaggerItem
               key={paragraph}
-              className='group relative flex flex-col bg-surface p-6 transition-colors duration-300 hover:bg-brand-soft/35 sm:p-8 lg:p-10'
+              className='relative flex flex-col bg-surface p-6 sm:p-8 lg:p-10'
             >
               <span className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-text'>
                 {'// '}

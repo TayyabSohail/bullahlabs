@@ -85,7 +85,7 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
           </div>
         </div>
 
-        <Reveal className='bl-card bl-spot mt-8 grid overflow-hidden sm:mt-14 lg:grid-cols-[1fr_0.75fr]'>
+        <Reveal className='bl-card mt-8 grid overflow-hidden sm:mt-14 lg:grid-cols-[1fr_0.75fr]'>
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}

@@ -63,9 +63,9 @@ export function Services({ dict, className, heading = true }: ServicesProps) {
           {services.map((service, index) => (
             <StaggerItem
               key={service.id}
-              className='group flex flex-col bg-surface p-6 transition-colors duration-300 hover:bg-brand-soft/35 sm:p-8'
+              className='flex flex-col bg-surface p-6 sm:p-8'
             >
-              <span className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors group-hover:text-brand-text'>
+              <span className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground'>
                 {String(index + 1).padStart(2, '0')}
               </span>
               <h3 className='bl-display mt-6 text-xl text-foreground lg:text-2xl'>
