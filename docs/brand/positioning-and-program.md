@@ -10,6 +10,17 @@ brief and the "AI Optimization Program" course structure.
 
 ## What changed
 
+> **Update, October 2026.** The site was revamped again with new copy:
+> Bullah Labs is now presented as a product and engineering team that
+> builds "technology with conscience", with Conscious AI as the free
+> learning program alongside it. `/services` and `/approach` are pages
+> again (seven services in `src/data/services.ts`, the four-step way of
+> working in the dictionaries), the engineering principles live in
+> `src/data/values.ts`, and the homepage FAQ is the six studio questions in
+> `src/data/faqs.ts`. Pricing and careers stay retired. The sections below
+> describe the earlier, program-only positioning and the course structure
+> and remain the reference for program content.
+
 Bullah Labs is no longer positioned as a client-services studio that builds
 MVPs. It is an **AI enablement company for non-technical knowledge workers**,
 with one product, the Conscious AI program. It no longer sells builds: there
