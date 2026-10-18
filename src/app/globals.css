@@ -61,9 +61,10 @@
     overflow-x: clip;
   }
 
+  /* Inverse selection, like a terminal highlight. */
   ::selection {
-    background: hsl(var(--brand));
-    color: hsl(var(--brand-foreground));
+    background: hsl(var(--ink));
+    color: hsl(var(--brand-2));
   }
 
   html.lenis,
@@ -921,9 +922,9 @@
 }
 
 /* Hero system map (effects/system-map.tsx): labelled isometric tiles on a
-   plate, wired together, with small cubes riding the wires. Strokes stay
-   one device pixel at any size. Tones: paper, mint (the apps), warm (the
-   model) and ink (the API hub); cubes add brand and warm. */
+   plate, wired together, with one cube (the task) riding the wires. Strokes
+   stay one device pixel at any size. Tones: paper (the task), ink (the
+   question), mint (the AI steps), warm (the check), brand (the result). */
 .bl-map polygon,
 .bl-map line,
 .bl-map rect {
@@ -933,6 +934,13 @@
 .bl-map {
   max-width: 100%;
   overflow: clip;
+  --bl-map-label: 11px;
+}
+/* Below sm the map is drawn at phone width, so the labels get a size up. */
+@media (max-width: 639.98px) {
+  .bl-map {
+    --bl-map-label: 12px;
+  }
 }
 .bl-map-vertical svg {
   max-height: 31rem;
@@ -1418,4 +1426,184 @@
 html.bl-no-cursor,
 html.bl-no-cursor * {
   cursor: none !important;
+}
+
+/* Hero map: the result tile is solid brand; the 'no AI' shortcut is dashed. */
+.bl-map-tile[data-tone='brand'] polygon {
+  stroke: hsl(var(--brand-strong) / 0.9);
+}
+.bl-map-tile[data-tone='brand'] .bl-map-top {
+  fill: hsl(var(--brand));
+}
+.bl-map-tile[data-tone='brand'] .bl-map-left {
+  fill: hsl(var(--brand-strong));
+}
+.bl-map-tile[data-tone='brand'] .bl-map-right {
+  fill: hsl(161 94% 24%);
+}
+.bl-map-tile[data-tone='brand'] .bl-map-label,
+.bl-map-tile[data-tone='ink'] .bl-map-label {
+  fill: #ffffff;
+}
+.bl-map-edge-dashed {
+  stroke-dasharray: 4 4;
+  stroke: hsl(var(--ink) / 0.3);
+}
+/* The route the task has taken so far, drawn in brand over the wire. */
+.bl-map-edge-lit {
+  fill: none;
+  stroke: hsl(var(--brand));
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+/* The tile the task is resting on gets a brand edge. */
+.bl-map-tile[data-active] .bl-map-top {
+  stroke: hsl(var(--brand-strong));
+  stroke-width: 1.5;
+}
+/* Tick rising over the check when a task passes it. */
+.bl-map-tick {
+  fill: none;
+  stroke: hsl(var(--brand-strong));
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* Ring spreading from the result when a task lands. */
+.bl-map-ring {
+  fill: none;
+  stroke: hsl(var(--brand));
+  stroke-width: 3;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bl-map-ring 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes bl-map-ring {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+/* Retro layer                                                                */
+/* Film grain and faint scanlines over everything, dot-grid paper on the     */
+/* stone bands, crosshair ticks on section rules, numbered kickers, hard     */
+/* offset shadows on buttons and linked cards, and a segmented progress bar. */
+/* ------------------------------------------------------------------------- */
+
+/* Grain: an SVG noise tile, multiplied in at low opacity. Scanlines: a 3px
+   repeat. Both sit above the page but below the cookie banner and intro. */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 52;
+  pointer-events: none;
+}
+body::before {
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+body::after {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    hsl(var(--ink) / 0.028) 3px 4px
+  );
+}
+
+/* Engineering paper: a dot grid under the stone bands. */
+.bl-band-stone {
+  background-image:
+    radial-gradient(hsl(var(--ink) / 0.1) 1px, transparent 1.2px),
+    radial-gradient(
+      60% 40% at 50% 0%,
+      hsl(var(--brand) / 0.06),
+      transparent 70%
+    );
+  background-size:
+    22px 22px,
+    100% 100%;
+  background-color: hsl(var(--surface-2) / 0.55);
+}
+
+/* Crosshair ticks where a section rule meets the page edges. */
+.bl-rule {
+  position: relative;
+}
+.bl-rule::before,
+.bl-rule::after {
+  content: '+';
+  position: absolute;
+  top: -0.62em;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  color: hsl(var(--ink) / 0.45);
+  pointer-events: none;
+}
+.bl-rule::before {
+  left: 0.75rem;
+}
+.bl-rule::after {
+  right: 0.75rem;
+}
+
+/* Section numbering: each tagged section counts up, and its heading kicker
+   reads [ 03 / CLIENT VOICES ]. */
+main {
+  counter-reset: bl-section;
+}
+main section[data-rail] {
+  counter-increment: bl-section;
+}
+main section[data-rail] .bl-kicker-numbered::before {
+  content: '[ ' counter(bl-section, decimal-leading-zero) ' /';
+}
+
+/* Hard offset shadows: buttons press, linked cards lift onto a solid shadow. */
+.bl-btn-primary,
+.bl-btn-ink,
+.bl-btn-secondary {
+  box-shadow: 3px 3px 0 0 hsl(var(--ink));
+}
+.bl-btn-ink {
+  box-shadow: 3px 3px 0 0 hsl(var(--brand));
+}
+.bl-btn-primary:hover,
+.bl-btn-ink:hover,
+.bl-btn-secondary:hover {
+  transform: translate(-1px, -1px);
+}
+.bl-btn-primary:hover,
+.bl-btn-secondary:hover {
+  box-shadow: 4px 4px 0 0 hsl(var(--ink));
+}
+.bl-btn-ink:hover {
+  box-shadow: 4px 4px 0 0 hsl(var(--brand));
+}
+.bl-btn-primary:active,
+.bl-btn-ink:active,
+.bl-btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 0 transparent;
+}
+.bl-card-link:hover {
+  box-shadow: 6px 6px 0 0 hsl(var(--ink));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    display: none;
+  }
 }

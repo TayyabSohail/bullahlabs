@@ -102,7 +102,7 @@ export function Header({ dict }: HeaderProps) {
               href={paths.contact}
               className='bl-btn bl-btn-primary inline-flex h-10 items-center px-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:px-5'
             >
-              {dict.nav.contact}
+              {dict.nav.cta}
             </Link>
           )}
           <MobileMenu dict={dict} onOpenChange={setMobileMenuOpen} />

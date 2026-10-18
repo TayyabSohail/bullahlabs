@@ -407,11 +407,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
             <p className='mt-4 text-base leading-relaxed text-foreground/80'>
               {lens.principle}
             </p>
-            <Link
-              href={paths.program}
-              className='bl-action mt-auto pt-8'
-            >
-              {dict.program.cta}
+            <Link href={paths.program} className='bl-action mt-auto pt-8'>
+              {dict.nav.program}
               <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
           </Reveal>

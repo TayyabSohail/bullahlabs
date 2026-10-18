@@ -1,8 +1,10 @@
 # Bullah Labs
 
-Company website for **Bullah Labs**: AI enablement for non-technical knowledge
-workers through the Conscious AI program, plus lean builds to the same
-principles. Offices in Islamabad, Pakistan and Fellbach, Germany.
+Company website for **Bullah Labs**: a product and engineering team that
+designs, builds and improves digital products with care for their real-world
+impact, and helps people use technology, including AI, with greater care
+through the free Conscious AI learning modules. Offices in Islamabad, Pakistan
+and Fellbach, Germany.
 
 Positioning, the program structure and the rules for describing projects are
 in [docs/brand/positioning-and-program.md](docs/brand/positioning-and-program.md).
@@ -62,10 +64,10 @@ Edit these; the pages update themselves.
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `src/config/site.ts`         | Company name, tagline, email, offices, founder, booking link                                                                                                                                                                                                              |
 | `src/data/projects.ts`       | Every case study: copy, cover image, metrics, stack. Drives `/work`, `/work/[slug]`, the homepage showcase, outcomes and sitemap                                                                                                                                          |
-| `src/data/program.ts`        | The three Conscious AI pillars, shown on the homepage                                                                                                                                                                                                                     |
+| `src/data/services.ts`       | The seven services, shown on the homepage and `/services`                                                                                                                                                                                                                 |
 | `src/data/lessons.ts`        | The course modules and lessons the player shows (German in `lessons.de.ts`). Set a lesson's `video` (`youtube`, `vimeo` or hosted `file`) to publish it; without one it is listed as coming soon. The full course off-site is linked when `NEXT_PUBLIC_COURSE_URL` is set |
-| `src/data/values.ts`         | The four principles on the about page                                                                                                                                                                                                                                     |
-| `src/data/faqs.ts`           | Questions, tagged `studio` (homepage) or `program` (program page)                                                                                                                                                                                                         |
+| `src/data/values.ts`         | The seven engineering principles (homepage, `/about`, `/services`, `/approach`)                                                                                                                                                                                           |
+| `src/data/faqs.ts`           | The questions answered on the homepage                                                                                                                                                                                                                                    |
 | `src/data/testimonials.ts`   | Client quotes attributed by role and company, linked to their case studies                                                                                                                                                                                                |
 | `src/app/legal/*/page.tsx`   | Privacy, Terms, Cookie policy, Imprint                                                                                                                                                                                                                                    |
 | `src/i18n/dictionaries/*.ts` | UI and marketing copy in English and German (nav, hero, sections, footer)                                                                                                                                                                                                 |

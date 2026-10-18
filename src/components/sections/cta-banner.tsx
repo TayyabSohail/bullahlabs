@@ -10,17 +10,30 @@ import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface CtaBannerProps {
   dict: Dictionary;
+  kicker?: string;
   title?: string;
   accentWords?: number[];
   body?: string;
+  /**
+   * Replaces the contact button and the booking link, for a closing block
+   * that asks for something other than a conversation (e.g. an email field).
+   */
+  children?: React.ReactNode;
 }
 
 /** Closing call to action: an ink panel with one large button. */
-export function CtaBanner({ dict, title, accentWords, body }: CtaBannerProps) {
+export function CtaBanner({
+  dict,
+  kicker,
+  title,
+  accentWords,
+  body,
+  children,
+}: CtaBannerProps) {
   const t = dict.cta;
 
   return (
-    <section className='bl-container pb-6 pt-10' data-rail={t.kicker}>
+    <section className='bl-container pb-6 pt-10' data-rail={kicker ?? t.kicker}>
       <div className='bl-card bl-card-ink bl-grid-surface relative px-6 py-16 text-center sm:px-12 sm:py-20 lg:py-24'>
         <div
           aria-hidden='true'
@@ -28,7 +41,9 @@ export function CtaBanner({ dict, title, accentWords, body }: CtaBannerProps) {
         />
         <div className='relative mx-auto max-w-3xl'>
           <Reveal>
-            <p className='bl-kicker justify-center text-white/60'>{t.kicker}</p>
+            <p className='bl-kicker bl-kicker-numbered justify-center text-white/60'>
+              {kicker ?? t.kicker}
+            </p>
           </Reveal>
           <TextReveal
             as='h2'
@@ -45,21 +60,25 @@ export function CtaBanner({ dict, title, accentWords, body }: CtaBannerProps) {
             delay={0.4}
             className='mt-10 flex flex-wrap items-center justify-center gap-3'
           >
-            <Link
-              href={paths.contact}
-              className='bl-btn bl-btn-primary inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]'
-            >
-              {t.button}
-              <span className='h-2.5 w-2.5 bg-white' />
-            </Link>
-            {siteConfig.calHandle ? (
-              <BookCallButton
-                calHandle={siteConfig.calHandle}
-                className='h-14 border border-white/25 px-5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:border-brand'
-              >
-                {dict.contact.book}
-              </BookCallButton>
-            ) : null}
+            {children ?? (
+              <>
+                <Link
+                  href={paths.contact}
+                  className='bl-btn bl-btn-primary inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]'
+                >
+                  {t.button}
+                  <span className='h-2.5 w-2.5 bg-white' />
+                </Link>
+                {siteConfig.calHandle ? (
+                  <BookCallButton
+                    calHandle={siteConfig.calHandle}
+                    className='h-14 border border-white/25 px-5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:border-brand'
+                  >
+                    {dict.contact.book}
+                  </BookCallButton>
+                ) : null}
+              </>
+            )}
           </Reveal>
         </div>
       </div>

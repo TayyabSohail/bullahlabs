@@ -1,54 +1,47 @@
-import { CourseVideos, Pillars } from '@/components/sections/conscious-ai';
+import { ConsciousAiIntro } from '@/components/sections/conscious-ai-intro';
+import { ConsciousTechnology } from '@/components/sections/conscious-technology';
 import { ContactSection } from '@/components/sections/contact-section';
 import { FaqSection } from '@/components/sections/faq';
 import { GlobalReach } from '@/components/sections/global-reach';
 import { Hero } from '@/components/sections/hero';
 import { HowItWorks } from '@/components/sections/how-it-works';
 import { Numbers } from '@/components/sections/numbers';
+import { Principles } from '@/components/sections/principles';
 import { ProjectsTeaser } from '@/components/sections/projects-teaser';
+import { Services } from '@/components/sections/services';
 import { Technologies } from '@/components/sections/technologies';
 import { Testimonials } from '@/components/sections/testimonials';
+import { WhoWeAre } from '@/components/sections/who-we-are';
 
 import { getFaqs } from '@/data/faqs';
 import { getDictionary } from '@/i18n/server';
 
 /**
- * The program first, then the proof behind it: the course player straight
- * after the hero, the figures and the work, the three pillars, the stack,
- * the two offices on the globe and how conscious use works, what clients
- * said, questions, and the form.
+ * The landing page, top to bottom: what we build and why, Conscious AI,
+ * why technology is never just technology, the figures, the work, the
+ * services, the stack, the two offices on the globe, who we are, how we
+ * work, what clients said, the engineering principles, questions, and the
+ * form.
  */
 export default async function HomePage() {
   const dict = await getDictionary();
-  // The program questions lead; two studio questions (how AI is used in
-  // what we build, and where the team is) round the list off.
-  const studio = getFaqs(dict.locale, 'studio');
-  const faqs = [
-    ...getFaqs(dict.locale, 'program').slice(0, 3),
-    ...studio.filter((_, index) => index === 1 || index === 4),
-  ];
 
   return (
     <>
       <Hero dict={dict} />
-      <CourseVideos
-        dict={dict}
-        kicker={dict.program.kicker}
-        title={dict.program.title}
-        accentWords={[...dict.program.accent]}
-        description={dict.program.description}
-        showProgramLink
-        className='bl-band-white'
-      />
+      <ConsciousAiIntro dict={dict} className='bl-band-stone' />
+      <ConsciousTechnology dict={dict} className='bl-band-white' />
       <Numbers dict={dict} />
       <ProjectsTeaser dict={dict} />
-      <Pillars dict={dict} />
+      <Services dict={dict} className='bl-band-stone' />
       <Technologies dict={dict} />
       <GlobalReach dict={dict} />
-      <HowItWorks dict={dict} />
-      <Testimonials dict={dict} />
+      <WhoWeAre dict={dict} className='bl-band-stone' />
+      <HowItWorks dict={dict} className='bl-band-white' />
+      <Testimonials dict={dict} className='bl-band-stone' />
+      <Principles dict={dict} className='bl-band-white' />
       <FaqSection
-        items={faqs}
+        items={getFaqs(dict.locale)}
         kicker={dict.faq.kicker}
         title={dict.faq.title}
         accentWords={[...dict.faq.accent]}

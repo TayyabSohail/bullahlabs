@@ -35,7 +35,7 @@ export default async function WorkPage() {
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: 'Home', href: paths.home },
+          { name: dict.nav.home, href: paths.home },
           { name: t.kicker, href: paths.work },
         ]}
       />

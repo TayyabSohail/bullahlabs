@@ -65,7 +65,7 @@ export function ProjectsTeaser({
           <div className='grid gap-9 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12'>
             <div className='flex max-w-xl flex-col lg:h-full lg:justify-self-start'>
               <Reveal>
-                <p className='bl-kicker'>{t.kicker}</p>
+                <p className='bl-kicker bl-kicker-numbered'>{t.kicker}</p>
               </Reveal>
               <TextReveal
                 as='h2'
@@ -73,10 +73,15 @@ export function ProjectsTeaser({
                 accentWords={[...t.accent]}
                 className='bl-display mt-5 text-display-lg text-foreground'
               />
-              <Reveal delay={0.2}>
-                <p className='mt-5 text-sm leading-relaxed text-muted-foreground md:text-base'>
-                  {t.body}
-                </p>
+              <Reveal delay={0.2} className='mt-5 space-y-4'>
+                {t.body.map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className='text-sm leading-relaxed text-muted-foreground md:text-base'
+                  >
+                    {paragraph}
+                  </p>
+                ))}
               </Reveal>
               <Reveal
                 delay={0.3}

@@ -6,23 +6,22 @@ import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { HowItWorks } from '@/components/sections/how-it-works';
 import { Locations } from '@/components/sections/locations';
+import { Principles } from '@/components/sections/principles';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 
 import { paths } from '@/constants/paths';
-import { getValues } from '@/data/values';
 import { getDictionary } from '@/i18n/server';
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'Who We Are',
   description:
-    'Bullah Labs teaches non-technical teams to use AI effectively and responsibly through the Conscious AI program. Offices in Islamabad and Fellbach.',
+    'Bullah Labs is a product and engineering team that builds technology with purpose and believes progress comes with responsibility. Offices in Islamabad and Fellbach.',
   alternates: { canonical: paths.about },
 };
 
 export default async function AboutPage() {
   const dict = await getDictionary();
   const t = dict.aboutPage;
-  const values = getValues(dict.locale);
   return (
     <>
       <BreadcrumbJsonLd
@@ -36,6 +35,7 @@ export default async function AboutPage() {
         title={t.title}
         accentWords={[...t.accent]}
         description={t.description}
+        size='lg'
       />
 
       <section className='bl-container grid gap-12 pb-16 lg:grid-cols-[1fr_1fr] lg:gap-20 lg:pb-24'>
@@ -62,34 +62,11 @@ export default async function AboutPage() {
         </Stagger>
       </section>
 
-      <section className='bl-section border-t border-line'>
-        <div className='bl-container'>
-          <SectionHeading
-            kicker={t.principlesKicker}
-            title={t.principlesTitle}
-            accentWords={[...t.principlesAccent]}
-          />
-          <Stagger className='mt-14 grid gap-px overflow-hidden rounded-none border border-line bg-line sm:grid-cols-2 lg:grid-cols-4'>
-            {values.map((value) => (
-              <StaggerItem
-                key={value.title}
-                className='flex flex-col bg-background p-7'
-              >
-                <h3 className='bl-display text-2xl text-foreground'>
-                  {value.title}
-                </h3>
-                <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
-                  {value.body}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
+      <Principles dict={dict} />
 
-      <HowItWorks dict={dict} />
+      <HowItWorks dict={dict} className='bl-band-white' />
 
-      <section className='bl-section'>
+      <section className='bl-section bl-rule bl-band-stone'>
         <div className='bl-container'>
           <SectionHeading
             kicker={t.whereKicker}
@@ -101,12 +78,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <CtaBanner
-        dict={dict}
-        title={t.ctaTitle}
-        accentWords={[...t.ctaAccent]}
-        body={t.ctaBody}
-      />
+      <CtaBanner dict={dict} />
     </>
   );
 }

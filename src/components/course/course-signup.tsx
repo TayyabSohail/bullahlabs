@@ -19,17 +19,33 @@ interface CourseSignupProps {
   source: string;
   /** `panel` is the full card with heading; `inline` is just the field. */
   variant?: 'panel' | 'inline';
+  /** For the inline field: the surface it sits on. */
+  tone?: 'light' | 'dark';
+  /** Button label, when the surrounding copy asks for a different verb. */
+  submitLabel?: string;
+  /** Panel heading overrides, for a page that frames the sign-up its own way. */
+  kicker?: string;
+  title?: string;
+  body?: string;
+  /** Hide the "training for a team" link under the panel. */
+  teamLink?: boolean;
   className?: string;
 }
 
 /**
- * "Tell me when a lesson is live": one email field. The address goes to
+ * "Tell me when the modules open": one email field. The address goes to
  * `course_signups` and the inbox; the thank-you replaces the form in place.
  */
 export function CourseSignup({
   dict,
   source,
   variant = 'panel',
+  tone = 'light',
+  submitLabel,
+  kicker,
+  title,
+  body,
+  teamLink = true,
   className,
 }: CourseSignupProps) {
   const t = dict.program.signup;
@@ -64,6 +80,8 @@ export function CourseSignup({
   };
 
   const inline = variant === 'inline';
+  // The panel is always ink; the inline field follows its surface.
+  const dark = !inline || tone === 'dark';
 
   if (done) {
     return (
@@ -72,14 +90,11 @@ export function CourseSignup({
         className={cn(
           'flex items-start gap-4',
           !inline && 'bl-card bl-card-ink p-6 text-white sm:p-8',
+          inline && dark && 'text-white',
           className,
         )}
       >
-        <span
-          className={cn(
-            'flex h-10 w-10 shrink-0 items-center justify-center bg-brand text-brand-foreground',
-          )}
-        >
+        <span className='flex h-10 w-10 shrink-0 items-center justify-center bg-brand text-brand-foreground'>
           <CheckCircle2 className='h-5 w-5' />
         </span>
         <div>
@@ -89,7 +104,7 @@ export function CourseSignup({
           <p
             className={cn(
               'mt-1.5 text-sm leading-relaxed',
-              inline ? 'text-muted-foreground' : 'text-white/65',
+              dark ? 'text-white/65' : 'text-muted-foreground',
             )}
           >
             {t.doneBody}
@@ -104,12 +119,7 @@ export function CourseSignup({
       <label htmlFor={`${id}-email`} className='sr-only'>
         {t.email}
       </label>
-      <div
-        className={cn(
-          'flex flex-col gap-2 sm:flex-row sm:items-stretch',
-          inline ? '' : '',
-        )}
-      >
+      <div className='flex flex-col gap-2 sm:flex-row sm:items-stretch'>
         <input
           id={`${id}-email`}
           type='email'
@@ -124,9 +134,9 @@ export function CourseSignup({
           aria-describedby={error ? `${id}-error` : `${id}-consent`}
           className={cn(
             'h-12 min-w-0 flex-1 border px-4 text-[15px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand/60',
-            inline
-              ? 'border-line bg-surface text-ink placeholder:text-muted-foreground'
-              : 'border-white/20 bg-white/[0.06] text-white placeholder:text-white/40',
+            dark
+              ? 'border-white/20 bg-white/[0.06] text-white placeholder:text-white/40'
+              : 'border-line bg-surface text-ink placeholder:text-muted-foreground',
             error && 'border-red-400',
           )}
         />
@@ -149,7 +159,7 @@ export function CourseSignup({
           ) : (
             <BellRing className='h-4 w-4' />
           )}
-          {t.submit}
+          {submitLabel ?? t.submit}
         </button>
       </div>
       {error ? (
@@ -161,7 +171,7 @@ export function CourseSignup({
           id={`${id}-consent`}
           className={cn(
             'mt-2.5 text-xs leading-relaxed',
-            inline ? 'text-muted-foreground' : 'text-white/55',
+            dark ? 'text-white/55' : 'text-muted-foreground',
           )}
         >
           {t.consentBefore}{' '}
@@ -169,7 +179,7 @@ export function CourseSignup({
             href={paths.legal.privacy}
             className={cn(
               'underline underline-offset-2',
-              inline ? 'hover:text-ink' : 'hover:text-white',
+              dark ? 'hover:text-white' : 'hover:text-ink',
             )}
           >
             {t.consentLink}
@@ -194,21 +204,23 @@ export function CourseSignup({
         className='pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand/25 blur-[80px]'
       />
       <div className='relative'>
-        <p className='bl-kicker text-white/60'>{t.kicker}</p>
+        <p className='bl-kicker text-white/60'>{kicker ?? t.kicker}</p>
         <h3 className='bl-display mt-4 text-2xl text-white sm:text-3xl'>
-          {t.title}
+          {title ?? t.title}
         </h3>
         <p className='mt-3 max-w-md text-sm leading-relaxed text-white/65'>
-          {t.body}
+          {body ?? t.body}
         </p>
         <div className='mt-6'>{field}</div>
-        <Link
-          href={`${paths.contact}?service=team`}
-          className='bl-action mt-5 text-brand-2 hover:text-white'
-        >
-          {t.teamLink}
-          <ArrowRight className='h-3.5 w-3.5' />
-        </Link>
+        {teamLink && (
+          <Link
+            href={`${paths.contact}?service=team`}
+            className='bl-action mt-5 text-brand-2 hover:text-white'
+          >
+            {t.teamLink}
+            <ArrowRight className='h-3.5 w-3.5' />
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -38,7 +38,10 @@ export function SectionHeading({
       <div>
         <Reveal>
           <p
-            className={cn('bl-kicker', align === 'center' && 'justify-center')}
+            className={cn(
+              'bl-kicker bl-kicker-numbered',
+              align === 'center' && 'justify-center',
+            )}
           >
             {kicker}
           </p>

@@ -31,7 +31,7 @@ export function Footer({ dict }: FooterProps) {
     { label: dict.nav.contact, href: paths.contact },
   ];
 
-  // The course when it is live, and the form to request access either way.
+  // The course when it is live, and the team-training enquiry either way.
   const programLinks = courseIsLive
     ? [
         { label: dict.program.watch, href: courseHref, external: true },
@@ -50,6 +50,25 @@ export function Footer({ dict }: FooterProps) {
         />
       </div>
       <div className='bl-container relative z-10'>
+        {/* Status strip: founded, offices, tagline, and a live dot. */}
+        <div className='flex flex-wrap items-center gap-x-6 gap-y-2 border-b py-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground'>
+          <span className='bl-kicker text-[10px]'>
+            Est. {siteConfig.founded}
+          </span>
+          <span className='bl-kicker text-[10px]'>
+            {siteConfig.locations.map((location) => location.city).join(' / ')}
+          </span>
+          <span className='bl-kicker hidden text-[10px] sm:inline-flex'>
+            {siteConfig.tagline}
+          </span>
+          <span className='ml-auto inline-flex items-center gap-2 text-foreground'>
+            <span
+              aria-hidden='true'
+              className='h-1.5 w-1.5 animate-pulse bg-brand'
+            />
+            {t.status}
+          </span>
+        </div>
         <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]'>
           <div>
             <Logo />
@@ -60,7 +79,7 @@ export function Footer({ dict }: FooterProps) {
               href={paths.contact}
               className='bl-btn bl-btn-primary mt-6 inline-flex h-11 items-center px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
             >
-              {t.quote}
+              {dict.nav.cta}
             </Link>
           </div>
 

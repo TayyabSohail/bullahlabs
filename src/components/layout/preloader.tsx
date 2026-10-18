@@ -3,19 +3,32 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+import { cn } from '@/lib/utils';
+
 const LETTERS = 'BULLAH LABS'.split('');
-const HINGE_LETTER_INDEX = LETTERS.length - 1;
-const DURATION_MS = 2300;
-const REDUCED_DURATION_MS = 600;
-const HOLD_MS = 250;
+const DURATION_MS = 3200;
+const REDUCED_DURATION_MS = 900;
+const HOLD_MS = 450;
 
 /* The blocky progress bar: filled cells, then empty ones. */
 const BAR_CELLS = 24;
 
+/* Status words under the bar, switched as the counter passes each mark. */
+const STATUS: [number, string][] = [
+  [0, 'Initialising'],
+  [35, 'Loading lessons'],
+  [70, 'Checking output'],
+  [100, 'Ready'],
+];
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
 /**
- * First-load intro: a black curtain with the wordmark hinging in letter by
- * letter above a blocky retro loader that fills cell by cell as a counter
- * runs to 100, then the curtain lifts.
+ * First-load intro: a black curtain with a faint engineering grid. The
+ * wordmark rises letter by letter inside
+ * four corner brackets that draw in around it, a blocky retro loader fills
+ * cell by cell as a counter runs to 100 with a status word beneath, the
+ * mark flashes brand green at 100, then the curtain lifts.
  *
  * The curtain is part of the server-rendered HTML, so the screen is dark from
  * the very first paint instead of flashing the page before the intro appears.
@@ -70,6 +83,11 @@ export function Preloader() {
     BAR_CELLS,
     Math.max(0, Math.round((progress / 100) * BAR_CELLS)),
   );
+  const done = progress === 100;
+  const status = STATUS.reduce(
+    (current, [at, word]) => (progress >= at ? word : current),
+    STATUS[0][1],
+  );
 
   return (
     <AnimatePresence
@@ -84,58 +102,76 @@ export function Preloader() {
           initial={{ y: 0, opacity: 1 }}
           exit={reduceMotion ? { opacity: 0 } : { y: '-100%' }}
           transition={{
-            duration: reduceMotion ? 0.3 : 0.9,
+            duration: reduceMotion ? 0.3 : 0.7,
             ease: [0.76, 0, 0.24, 1],
           }}
-          className='fixed inset-0 z-[75] flex flex-col items-center justify-center bg-black text-white'
+          className='fixed inset-0 z-[75] flex flex-col items-center justify-center overflow-hidden bg-black text-white'
           aria-hidden='true'
           data-preloader
         >
-          {/*
-           * Clip only the bottom edge: it masks the letters rising in, while
-           * the hinged last letter can swing past the sides without being cut.
-           */}
-          <div className='flex font-display text-[clamp(2.5rem,9vw,7rem)] font-bold tracking-[0.08em] [clip-path:inset(-100%_-100%_0_-100%)]'>
-            {LETTERS.map((letter, index) => {
-              const hangs = !reduceMotion && index === HINGE_LETTER_INDEX;
+          {/* Faint engineering grid, fading towards the edges. */}
+          <div className='pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,hsl(0_0%_100%/0.05)_1px,transparent_1px),linear-gradient(to_bottom,hsl(0_0%_100%/0.05)_1px,transparent_1px)] bg-[size:38px_38px] [mask-image:radial-gradient(60%_60%_at_50%_50%,black,transparent)]' />
 
-              return (
+          {/* Corner markers that draw in around the mark. */}
+          <div className='relative px-8 py-6 sm:px-12 sm:py-8'>
+            {(['tl', 'tr', 'bl', 'br'] as const).map((corner, index) => (
+              <motion.span
+                key={corner}
+                initial={
+                  reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0 }
+                }
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease, delay: 0.3 + index * 0.12 }}
+                className={cn(
+                  'absolute h-5 w-5 border-brand transition-colors duration-300',
+                  corner === 'tl' &&
+                    'left-0 top-0 origin-top-left border-l border-t',
+                  corner === 'tr' &&
+                    'right-0 top-0 origin-top-right border-r border-t',
+                  corner === 'bl' &&
+                    'bottom-0 left-0 origin-bottom-left border-b border-l',
+                  corner === 'br' &&
+                    'bottom-0 right-0 origin-bottom-right border-b border-r',
+                  done && 'border-white',
+                )}
+              />
+            ))}
+
+            {/* Wordmark: letters rise out of a clipped line, no hinge. */}
+            <div className='flex overflow-hidden pb-[0.06em] font-display text-[clamp(2.5rem,9vw,7rem)] font-bold leading-none tracking-[0.08em]'>
+              {LETTERS.map((letter, index) => (
                 <motion.span
                   key={index}
                   initial={
-                    reduceMotion
-                      ? { opacity: 0 }
-                      : { y: '85%', opacity: 0, rotate: 0 }
+                    reduceMotion ? { opacity: 0 } : { y: '90%', opacity: 0 }
                   }
-                  animate={
-                    hangs
-                      ? {
-                          y: ['85%', 0, 0, 0, 0],
-                          rotate: [0, 0, 0, -45, 0],
-                          opacity: [0, 1, 1, 1, 1],
-                        }
-                      : { y: 0, opacity: 1 }
-                  }
+                  animate={{ y: 0, opacity: 1 }}
                   transition={{
-                    duration: reduceMotion ? 0 : hangs ? 1.45 : 0.7,
-                    ease: [0.16, 1, 0.3, 1],
-                    delay: reduceMotion ? 0 : 0.1 + index * 0.06,
-                    ...(hangs && { times: [0, 0.25, 0.5, 0.78, 1] }),
+                    duration: reduceMotion ? 0 : 0.8,
+                    ease,
+                    delay: reduceMotion ? 0 : 0.2 + index * 0.08,
                   }}
-                  className={
-                    hangs
-                      ? 'inline-block origin-top text-white'
-                      : 'inline-block text-white'
-                  }
+                  className={cn(
+                    'inline-block transition-colors duration-200',
+                    done ? 'text-brand' : 'text-white',
+                  )}
                 >
                   {letter === ' ' ? ' ' : letter}
                 </motion.span>
-              );
-            })}
+              ))}
+            </div>
+
+            {/* Underline that fills with the count. */}
+            <div className='relative mt-3 h-px w-full bg-white/10'>
+              <span
+                className='absolute inset-y-0 left-0 bg-brand transition-[width] duration-100 ease-linear'
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
 
           {/* Blocky cell bar: filled blocks in brand, empty cells dimmed. */}
-          <div className='mt-8 flex w-[min(28rem,84vw)] items-center gap-3 font-mono text-[11px] tracking-[0.12em] sm:gap-4'>
+          <div className='mt-6 flex w-[min(28rem,84vw)] items-center gap-3 font-mono text-[11px] tracking-[0.12em] sm:gap-4'>
             <span className='text-white/75'>[</span>
             <span className='flex-1 overflow-hidden whitespace-nowrap text-center text-brand'>
               {'█'.repeat(filled)}
@@ -148,6 +184,24 @@ export function Preloader() {
               {String(progress).padStart(3, '0')}%
             </span>
           </div>
+
+          {/* Status word with a blinking block cursor. */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            className='mt-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/50'
+          >
+            <span className='inline-block h-1.5 w-1.5 bg-brand' />
+            <span className={cn(done && 'text-brand')}>{status}</span>
+            {!reduceMotion && (
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.9, repeat: Infinity, ease: 'linear' }}
+                className='inline-block h-3 w-1.5 bg-white/60'
+              />
+            )}
+          </motion.p>
         </motion.div>
       )}
     </AnimatePresence>
