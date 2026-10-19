@@ -139,7 +139,7 @@ export interface Project {
   /** Grouped stack, rendered on the case study. */
   techStack: TechGroup[];
   category: ProjectCategory;
-  capabilities: ProjectCapability[];
+  capabilities: ProjectCapability[];
   industry: string;
   year: string;
   /**
@@ -255,7 +255,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Marketplace',
-    capabilities: ['Full-Stack', 'Cloud & Automation'],
+    capabilities: ['Full-Stack', 'Cloud & Automation'],
     industry: 'Fintech / Real estate',
     year: '2025-2026',
     anonymised: true,
@@ -403,7 +403,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'SaaS',
-    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
+    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
     industry: 'Marketing technology',
     year: '2024-2025',
     anonymised: true,
@@ -538,7 +538,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Marketplace',
-    capabilities: ['Full-Stack', 'Cloud & Automation'],
+    capabilities: ['Full-Stack', 'Cloud & Automation'],
     industry: 'Property technology',
     year: '2024',
     anonymised: true,
@@ -667,7 +667,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Marketplace',
-    capabilities: ['Full-Stack', 'Cloud & Automation', 'AI'],
+    capabilities: ['Full-Stack', 'Cloud & Automation', 'AI'],
     industry: 'Ecommerce',
     year: '2024-2025',
     anonymised: true,
@@ -801,7 +801,7 @@ export const projects: Project[] = [
       { category: 'Scheduling', tools: ['pg_cron'] },
     ],
     category: 'SaaS',
-    capabilities: ['Cloud & Automation', 'Full-Stack'],
+    capabilities: ['Cloud & Automation', 'Full-Stack'],
     industry: 'HR technology',
     year: '2026',
     headline: { value: '0', label: 'manual payroll calculations' },
@@ -923,7 +923,7 @@ export const projects: Project[] = [
       { category: 'CMS', tools: ['Directus'] },
     ],
     category: 'Website',
-    capabilities: ['Web'],
+    capabilities: ['Web'],
     industry: 'Software agency',
     year: '2025',
     headline: { value: '30 days', label: 'from idea to shipped MVP' },
@@ -1051,7 +1051,7 @@ export const projects: Project[] = [
       { category: 'Architecture', tools: ['Multi-tenant Architecture'] },
     ],
     category: 'SaaS',
-    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
+    capabilities: ['AI', 'Cloud & Automation', 'Full-Stack'],
     industry: 'Real estate',
     year: '2025',
     headline: { value: '70%', label: 'less paperwork' },
@@ -1167,7 +1167,7 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['Claude (Anthropic)'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Cloud & Automation'],
+    capabilities: ['AI', 'Cloud & Automation'],
     industry: 'Audit and compliance',
     year: '2025',
     headline: { value: '2x', label: 'faster document review' },
@@ -1283,7 +1283,7 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['OpenAI Realtime API'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Full-Stack'],
+    capabilities: ['AI', 'Full-Stack'],
     industry: 'Recruitment',
     year: '2025',
     headline: { value: '30+', label: 'interviews completed' },
@@ -1402,7 +1402,7 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['RAG', 'LLM'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Cloud & Automation'],
+    capabilities: ['AI', 'Cloud & Automation'],
     industry: 'Ecommerce / Customer support',
     year: '2023-2024',
     headline: { value: '60%', label: 'faster shop setup' },
@@ -1518,7 +1518,7 @@ export const projects: Project[] = [
       { category: 'AI', tools: ['LangChain', 'OpenAI'] },
     ],
     category: 'AI',
-    capabilities: ['AI', 'Full-Stack'],
+    capabilities: ['AI', 'Full-Stack'],
     industry: 'Healthcare',
     year: '2024',
     headline: { value: '90%+', label: 'accurate movement checks' },
@@ -1630,7 +1630,7 @@ export const projects: Project[] = [
       { category: 'Styling', tools: ['TailwindCSS'] },
     ],
     category: 'Website',
-    capabilities: ['Web'],
+    capabilities: ['Web'],
     industry: 'Professional services',
     year: '2024',
     headline: { value: '40%', label: 'faster-loading pages' },
@@ -1755,7 +1755,7 @@ export const projects: Project[] = [
       { category: 'Auth & reports', tools: ['JWT', 'PDFKit'] },
     ],
     category: 'Mobile',
-    capabilities: ['Mobile', 'Full-Stack', 'AI', 'Cloud & Automation'],
+    capabilities: ['Mobile', 'Full-Stack', 'AI', 'Cloud & Automation'],
     industry: 'Banking / Compliance',
     year: '2025',
     headline: { value: '38', label: 'news sources screened daily' },
@@ -1900,7 +1900,7 @@ export const projects: Project[] = [
       { category: 'Analytics', tools: ['PostHog'] },
     ],
     category: 'Mobile',
-    capabilities: ['Mobile', 'Full-Stack', 'Cloud & Automation'],
+    capabilities: ['Mobile', 'Full-Stack', 'Cloud & Automation'],
     industry: 'Property technology',
     year: '2024',
     anonymised: true,
@@ -2016,7 +2016,7 @@ export const projects: Project[] = [
       { category: 'Hosting', tools: ['Vercel'] },
     ],
     category: 'Website',
-    capabilities: ['Web'],
+    capabilities: ['Web'],
     industry: 'Software engineering',
     year: '2025',
     notable: true,
@@ -2103,13 +2103,6 @@ export function getShowcaseProjects(): Project[] {
 }
 
 /** Lenses present in `list`, in display order. */
-export function getLenses(
-  list: readonly Project[] = projects,
-): EfficiencyLens[] {
-  const present = new Set(list.map((project) => project.efficiency.lens));
-  return LENS_ORDER.filter((lens) => present.has(lens));
-}
-
 /** Categories present in `list`, in display order. */
 export function getCategories(
   list: readonly Project[] = projects,

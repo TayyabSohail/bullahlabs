@@ -25,8 +25,8 @@ const AUTO_MS = 5000;
 
 /**
  * A compact featured-project showcase with the real product screens on
- * devices. Each slide names the product, says what it is and how it is
- * optimized, and links to the full case study on /work.
+ * devices. Each slide names the product and its category, says what it is
+ * and what makes it lean, and links to the full case study on /work.
  */
 export function ProjectsTeaser({
   dict,
@@ -145,10 +145,8 @@ export function ProjectsTeaser({
                             aria-hidden='true'
                             className='h-1.5 w-1.5 bg-brand'
                           />
-                          {
-                            dict.work.lenses[activeProject.efficiency.lens]
-                              .label
-                          }
+                          {dict.work.filters[activeProject.category] ??
+                            activeProject.category}
                         </p>
                         <h3 className='bl-display mt-2 min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
                           {activeProject.title}

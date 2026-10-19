@@ -1597,15 +1597,6 @@ textarea {
   box-shadow: inset 2px 2px 0 0 hsl(var(--ink) / 0.1);
 }
 
-/* Rubber stamp: double rule, tilted a hair. */
-.bl-stamp {
-  border: 2px solid hsl(var(--ink));
-  outline: 1px solid hsl(var(--ink));
-  outline-offset: 2px;
-  background: hsl(var(--surface));
-  transform: rotate(-1.5deg);
-}
-
 /* Project tiles: a touch of print cast on the mockups. */
 .bl-card-link img {
   filter: contrast(1.03) saturate(0.9) sepia(0.08);

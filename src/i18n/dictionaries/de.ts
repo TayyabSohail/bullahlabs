@@ -20,7 +20,6 @@ export const de: Dictionary = {
     top: 'Nach oben',
   },
   hero: {
-    badge: 'Digitale Produkte & Conscious AI',
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
     accent: [4, 5, 6],
     body: 'Wir bauen digitale Produkte, die echte Probleme lösen, schlank laufen und lange halten. Dieselbe Disziplin prägt, wie wir KI nutzen und wie wir es anderen beibringen.',
@@ -185,15 +184,11 @@ export const de: Dictionary = {
     kicker: 'Ausgewählte Projekte',
     title: 'Echte Produkte, echte Ergebnisse.',
     description:
-      'Produkte, die wir entworfen, gebaut oder verbessert haben, jeweils mit Problem, Arbeit und Ergebnis. Filtern Sie nach Art oder nach dem Effizienzprinzip, das im Vordergrund steht.',
+      'Produkte, die wir entworfen, gebaut oder verbessert haben, jeweils mit Problem, Arbeit und Ergebnis. Filtern Sie nach Art.',
     view: 'Fallstudie lesen',
     filterLabel: 'Projekte filtern',
     filters: {
       All: 'Alle',
-      'right-tool': 'Richtiges Werkzeug',
-      'lean-context': 'Nötiger Kontext',
-      'no-repeat': 'Nichts doppelt',
-      checked: 'Geprüft',
       SaaS: 'SaaS',
       Marketplace: 'Marktplätze',
       AI: 'KI',

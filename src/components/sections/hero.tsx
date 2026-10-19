@@ -31,13 +31,6 @@ export function Hero({ dict }: HeroProps) {
       />
 
       <div className='bl-container relative pb-12 pt-28 sm:pb-16 sm:pt-32'>
-        <Reveal>
-          <p className='bl-stamp inline-flex items-center gap-3 px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-ink'>
-            <span className='h-1.5 w-1.5 bg-brand' />
-            {t.badge}
-          </p>
-        </Reveal>
-
         {/* The title is two sentences on two lines: the habit, then the
             answer in the accent colour. It types in letter by letter once
             the preloader has lifted. */}
@@ -49,7 +42,7 @@ export function Hero({ dict }: HeroProps) {
           stagger={0.035}
           typingBounce
           delay={0.15}
-          className='bl-display mt-6 justify-start text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink sm:mt-7'
+          className='bl-display justify-start text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink'
         />
 
         <div className='mt-8 grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-14'>

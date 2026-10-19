@@ -19,7 +19,6 @@ export const en = {
     top: 'Back to top',
   },
   hero: {
-    badge: 'Digital products & Conscious AI',
     title: 'Technology that solves problems.\nBuilt with conscience.',
     /** Words (0-based, across both lines) in the accent colour: line two. */
     accent: [4, 5, 6],
@@ -204,15 +203,12 @@ export const en = {
     kicker: 'Selected work',
     title: 'Real products, real results.',
     description:
-      'Products we designed, built or improved, each with the problem, the work and what changed. Filter by type, or by the efficiency principle it leads with.',
+      'Products we designed, built or improved, each with the problem, the work and what changed. Filter by type.',
     view: 'Read the case study',
     filterLabel: 'Filter projects',
+    /** Project categories, as filter chips on /work and labels elsewhere. */
     filters: {
       All: 'All work',
-      'right-tool': 'Right tool',
-      'lean-context': 'Needed context',
-      'no-repeat': 'Nothing twice',
-      checked: 'Checked',
       SaaS: 'SaaS',
       Marketplace: 'Marketplaces',
       AI: 'AI',

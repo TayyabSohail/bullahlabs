@@ -120,17 +120,21 @@ export function Footer({ dict }: FooterProps) {
       </div>
 
       {/* The wordmark shares the footer canvas so the company name fades out
-          of the information above instead of starting a separate section. */}
-      <div className='relative z-10 mt-0 h-[18vw] max-h-[22rem] min-h-[4rem] w-full overflow-hidden sm:h-[34vw] sm:min-h-[10rem]'>
+          of the information above instead of starting a separate section.
+          The viewBox is sized to the ink of the uppercase display face at
+          this font size (caps rise 107 units above the baseline and the
+          round letters overshoot 2 below), so nothing is clipped at either
+          edge, and the SVG sits flush with the wrapper's bottom. */}
+      <div className='relative z-10 mt-0 hidden h-[34vw] max-h-[22rem] min-h-[10rem] w-full overflow-hidden sm:block'>
         <svg
           aria-hidden='true'
           viewBox='0 0 1000 112'
           preserveAspectRatio='xMidYMax meet'
-          className='pointer-events-none absolute inset-x-0 bottom-[-2px] block w-full select-none opacity-75 mix-blend-multiply [mask-image:linear-gradient(to_bottom,transparent_0%,black_22%,black_100%)]'
+          className='pointer-events-none absolute inset-x-0 bottom-0 block w-full select-none opacity-75 mix-blend-multiply [mask-image:linear-gradient(to_bottom,transparent_0%,black_22%,black_100%)]'
         >
           <text
             x='0'
-            y='110'
+            y='109'
             textLength='1000'
             lengthAdjust='spacingAndGlyphs'
             className='fill-ink/85 font-display font-bold uppercase'
@@ -140,6 +144,37 @@ export function Footer({ dict }: FooterProps) {
           </text>
         </svg>
       </div>
+
+      {/* On phones one line of eleven letters would be a forty-pixel strip
+          at the page's edge, so the two words stack at one size: the first
+          spans the width, the second sits under it. Same ink metrics as
+          above, scaled to the larger size, with two units of air at top
+          and bottom. */}
+      <svg
+        aria-hidden='true'
+        viewBox='0 0 1000 386'
+        preserveAspectRatio='xMinYMax meet'
+        className='pointer-events-none relative z-10 mt-8 block w-full select-none opacity-75 mix-blend-multiply [mask-image:linear-gradient(to_bottom,transparent_0%,black_18%,black_100%)] sm:hidden'
+      >
+        <text
+          x='0'
+          y='180'
+          textLength='1000'
+          lengthAdjust='spacingAndGlyphs'
+          className='fill-ink/85 font-display font-bold uppercase'
+          style={{ fontSize: 254 }}
+        >
+          Bullah
+        </text>
+        <text
+          x='0'
+          y='380'
+          className='fill-ink/85 font-display font-bold uppercase'
+          style={{ fontSize: 254 }}
+        >
+          Labs
+        </text>
+      </svg>
     </footer>
   );
 }
