@@ -31,13 +31,13 @@ export function ConsciousAiIntro({ dict, className }: ConsciousAiIntroProps) {
       <div className='bl-container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16'>
         <div className='min-w-0'>
           <Reveal>
-            <p className='bl-kicker bl-kicker-numbered'>{t.kicker}</p>
+            <p className='bl-kicker'>{t.kicker}</p>
           </Reveal>
           <TextReveal
             as='h2'
             text={t.title}
             accentWords={[...t.accent]}
-            className='bl-display mt-5 max-w-[20ch] text-display-md text-foreground'
+            className='bl-display mt-5 max-w-[20ch] text-display-lg text-foreground'
           />
           <Reveal delay={0.2} className='mt-7 max-w-2xl space-y-5'>
             {t.paragraphs.map((paragraph, index) => (

@@ -33,18 +33,15 @@ export function Principles({ dict, className }: PrinciplesProps) {
           description={t.description}
         />
         <Stagger stagger={0.08} className='mt-8 border-t sm:mt-14'>
-          {values.map((value, index) => (
+          {values.map((value) => (
             <StaggerItem
               key={value.title}
-              className='grid gap-2 border-b py-5 sm:grid-cols-[4rem_1fr] sm:gap-6 sm:py-6 lg:grid-cols-[4rem_1fr_1.3fr] lg:gap-10'
+              className='grid gap-2 border-b py-5 sm:py-6 lg:grid-cols-[1fr_1.3fr] lg:gap-10'
             >
-              <span className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:pt-1.5'>
-                {String(index + 1).padStart(2, '0')}
-              </span>
               <h3 className='bl-display text-xl text-foreground sm:text-2xl'>
                 {value.title}
               </h3>
-              <p className='text-base leading-relaxed text-muted-foreground sm:col-start-2 lg:col-start-3'>
+              <p className='text-base leading-relaxed text-muted-foreground'>
                 {value.body}
               </p>
             </StaggerItem>

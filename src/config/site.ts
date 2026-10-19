@@ -22,9 +22,9 @@ export const siteConfig = {
   name: 'Bullah Labs',
   shortName: 'Bullah Labs',
   legalName: 'Bullah Labs',
-  tagline: 'Thoughtful technology. Practical impact.',
+  tagline: 'Product and engineering studio',
   description:
-    'Bullah Labs designs, builds and improves digital products with care for their real-world impact, and helps people use technology, including AI, with greater care, clarity and responsibility.',
+    'Bullah Labs is a product and engineering studio in Stuttgart and Islamabad. We design, build and improve digital products that solve real problems, and help teams use technology, including AI, with care.',
   url: env.NEXT_PUBLIC_APP_URL,
   founded: 2024,
   /** Company inbox that receives enquiries. */

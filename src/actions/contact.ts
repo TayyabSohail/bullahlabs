@@ -14,6 +14,12 @@ import {
 } from '@/lib/server/mail';
 import { isRateLimited } from '@/lib/server/rate-limit';
 import { safeActionClient } from '@/lib/server/safe-action';
+import {
+  appendSheetRow,
+  isSheetsConfigured,
+  SHEET_TABS,
+  sheetTimestamp,
+} from '@/lib/server/sheets';
 import Logger from '@/utils/logger';
 
 import { siteConfig } from '@/config/site';
@@ -26,7 +32,8 @@ import { contactSchema, INTEREST_OPTIONS } from '@/schema/contact';
  *
  * 1. Email via Resend, when configured.
  * 2. Row in `contact_messages`, when Supabase is configured.
- * 3. Server log, always.
+ * 3. Row on the "Enquiries" tab of the Google Sheet, when configured.
+ * 4. Server log, always.
  */
 export const submitContact = safeActionClient
   .schema(contactSchema)
@@ -131,9 +138,29 @@ export const submitContact = safeActionClient
       else delivered = true;
     }
 
+    if (isSheetsConfigured) {
+      try {
+        await appendSheetRow(SHEET_TABS.enquiries, [
+          sheetTimestamp(),
+          parsedInput.name,
+          parsedInput.email,
+          parsedInput.company || '',
+          service,
+          parsedInput.message,
+          '', // Replied: filled in by hand
+        ]);
+        delivered = true;
+      } catch (error) {
+        Logger.error(
+          'Contact sheet append failed',
+          error instanceof Error ? error.message : String(error),
+        );
+      }
+    }
+
     if (mailError && delivered) {
-      // Stored in Supabase, but nothing reached the inbox. Nobody watches
-      // the table, so log the enquiry where it will actually be noticed.
+      // Stored in Supabase or the sheet, but nothing reached the inbox.
+      // Nobody watches those, so log the enquiry where it will be noticed.
       Logger.error(
         'Contact enquiry stored but NOT emailed - check Resend config\n' +
           summary,

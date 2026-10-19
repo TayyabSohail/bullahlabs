@@ -6,6 +6,12 @@ import { headers } from 'next/headers';
 import { isMailConfigured, sendInternalMail } from '@/lib/server/mail';
 import { isRateLimited } from '@/lib/server/rate-limit';
 import { safeActionClient } from '@/lib/server/safe-action';
+import {
+  appendSheetRow,
+  isSheetsConfigured,
+  SHEET_TABS,
+  sheetTimestamp,
+} from '@/lib/server/sheets';
 import Logger from '@/utils/logger';
 
 import { env, isSupabaseConfigured } from '@/env';
@@ -21,9 +27,10 @@ const UNIQUE_VIOLATION = '23505';
  *
  * 1. Row in `course_signups`, when Supabase is configured. A repeat
  *    signup is a success, not an error.
- * 2. Email to the inbox via Resend, when configured, so the signup is
+ * 2. Row on the "Course signups" tab of the Google Sheet, when configured.
+ * 3. Email to the inbox via Resend, when configured, so the signup is
  *    noticed even if nobody checks the table.
- * 3. Server log, always.
+ * 4. Server log, always.
  */
 export const joinCourseList = safeActionClient
   .schema(courseSignupSchema)
@@ -72,6 +79,23 @@ export const joinCourseList = safeActionClient
       } else Logger.error('course_signups insert failed', error.message);
     }
 
+    if (isSheetsConfigured && !alreadyOnList) {
+      try {
+        await appendSheetRow(SHEET_TABS.courseSignups, [
+          sheetTimestamp(),
+          email,
+          parsedInput.locale ?? '',
+          parsedInput.source ?? '',
+        ]);
+        stored = true;
+      } catch (error) {
+        Logger.error(
+          'Course signup sheet append failed',
+          error instanceof Error ? error.message : String(error),
+        );
+      }
+    }
+
     let mailed = false;
     if (isMailConfigured && !alreadyOnList) {
       try {
@@ -93,7 +117,7 @@ export const joinCourseList = safeActionClient
       // Nothing accepted it. Log so the address is not lost, and only claim
       // success when there is genuinely nothing configured yet (development).
       Logger.info('Course signup (undelivered)\n' + summary);
-      if (isMailConfigured || isSupabaseConfigured) {
+      if (isMailConfigured || isSupabaseConfigured || isSheetsConfigured) {
         throw new Error(
           'We could not save your email just now. Please try again in a moment.',
         );

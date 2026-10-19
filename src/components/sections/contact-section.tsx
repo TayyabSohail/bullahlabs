@@ -36,7 +36,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
                 as='h2'
                 text={t.title}
                 accentWords={[...t.accent]}
-                className='bl-display mt-4 text-display-md text-foreground'
+                className='bl-display mt-4 text-display-lg text-foreground'
               />
               <Reveal delay={0.2}>
                 <p className='mt-5 max-w-xl text-base leading-relaxed text-muted-foreground'>

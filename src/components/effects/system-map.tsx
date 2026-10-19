@@ -374,13 +374,7 @@ function LaneTitle({
 }) {
   return (
     <g className='bl-map-lane' data-tone={tone}>
-      <rect
-        x={x}
-        y={y - 4}
-        width={7}
-        height={7}
-        className='bl-map-lane-mark'
-      />
+      <rect x={x} y={y - 4} width={7} height={7} className='bl-map-lane-mark' />
       <text
         x={x + 13}
         y={y}
@@ -718,8 +712,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
     cost: usualFigures.cost - leanFigures.cost,
     co2: usualFigures.co2 - leanFigures.co2,
   };
-  const savedShare =
-    usualFigures.cost > 0 ? saved.cost / usualFigures.cost : 0;
+  const savedShare = usualFigures.cost > 0 ? saved.cost / usualFigures.cost : 0;
 
   // The panel: between the lanes' meters, spanning meters and figures.
   const panelW = PANEL_RIGHT - PANEL_X;
@@ -728,7 +721,6 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
   const PANEL_H = barY(LANE_B, 0) - 7 - PANEL_Y;
 
   const laneTop = LANE_A - 44;
-  const laneBottom = LANE_B - 44;
   const build = (i: number) => ({
     initial: reduce ? false : { opacity: 0, y: 10 },
     animate: ready ? { opacity: 1, y: 0 } : undefined,
@@ -790,7 +782,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
         <motion.g {...build(1)}>
           <LaneTitle
             x={ENTRY_X - 9}
-            y={laneBottom}
+            y={LANE_B}
             text={copy.lanes.conscious}
             tone='brand'
           />
@@ -945,7 +937,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
             className='bl-map-switch-arm'
             x1={JUNCTION_X}
             y1={LANE_A}
-            x2={JUNCTION_X + 22}
+            x2={JUNCTION_X + 15}
             y2={LANE_A}
             style={{ originX: 0, originY: 0.5 }}
             animate={{ rotate: scene.split ? 52 : 0 }}
@@ -975,7 +967,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
           <text
             className='bl-map-label bl-map-switch-label'
             x={JUNCTION_X + 11}
-            y={LANE_A + 21}
+            y={LANE_A + 26}
             textAnchor='end'
             dominantBaseline='central'
           >
@@ -984,7 +976,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
           <text
             className='bl-map-note'
             x={JUNCTION_X + 11}
-            y={LANE_A + 34}
+            y={LANE_A + 39}
             textAnchor='end'
             dominantBaseline='central'
           >
@@ -1012,13 +1004,13 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
           />
         </motion.g>
         <motion.g {...build(7)}>
-          {/* Minimal context: three cells above the rail that drop through
-              it into the lean model. */}
+          {/* Minimal context: three cells above the rail, their note above
+              them, that drop through the rail into the lean model. */}
           <text
             className='bl-map-note'
-            x={STOP.tool.x - 26}
-            y={SMALL_Y}
-            textAnchor='end'
+            x={STOP.tool.x}
+            y={SMALL_Y - 15}
+            textAnchor='middle'
             dominantBaseline='central'
           >
             {copy.nodes.minimalContext}

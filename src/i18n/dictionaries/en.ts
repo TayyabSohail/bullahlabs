@@ -3,11 +3,11 @@ import type { Locale } from '../config';
 export const en = {
   locale: 'en' as Locale,
   nav: {
-    about: 'Who We Are',
+    about: 'About',
     program: 'Conscious AI',
     services: 'Services',
-    work: 'Selected Work',
-    approach: 'Our Approach',
+    work: 'Work',
+    approach: 'Approach',
     contact: 'Contact',
     home: 'Home',
     cta: "Let's talk",
@@ -19,13 +19,13 @@ export const en = {
     top: 'Back to top',
   },
   hero: {
-    badge: 'Thoughtful technology. Practical impact.',
+    badge: 'Product & engineering studio',
     title: 'Technology that solves problems.\nBuilt with conscience.',
     /** Words (0-based, across both lines) in the accent colour: line two. */
     accent: [4, 5, 6],
-    body: 'We design, build and improve digital products with care for their real-world impact. From the systems we create to the AI we use, we focus on what is useful, what is responsible and what is worth building.',
+    body: 'We build digital products that solve real problems, run lean and hold up over time. The same discipline shapes how we use AI, and how we teach others to.',
     primary: 'Discuss your project',
-    secondary: 'See the projects',
+    secondary: 'See our work',
     /**
      * The living graphic beside the hero copy: Conscious AI shown as the
      * difference it makes, on one piece of work: a team's contract
@@ -82,37 +82,34 @@ export const en = {
   /** Homepage: the pressure to keep up with AI, and the free resources. */
   consciousAi: {
     kicker: 'Conscious AI',
-    title:
-      "AI is moving fast. You're expected to keep up. But where do you start?",
-    accent: [9, 10, 11, 12, 13],
+    title: 'AI is moving fast. Where do you start?',
+    accent: [4, 5, 6, 7],
     paragraphs: [
-      "New tools appear every day. You want to work smarter, build skills and stay relevant, but it's hard to know what to learn, which tools to trust or whether you're using AI well. You may also worry about its environmental and social impact.",
-      "You shouldn't have to choose between doing your job well and using AI responsibly.",
-      'We offer free resources and practical guidance to help you use AI with more confidence and less waste. Learn how to choose the right tool for the task, set up your AI workspace, write clearer prompts and avoid unnecessary usage.',
-      "You'll discover where AI genuinely helps, where it falls short, and how everyday choices affect time, cost, energy and water use. No technical background needed. No need to chase every new trend.",
+      "New tools every week. Pressure to work smarter. Little clarity on which tools to trust, what to learn or whether you're using AI well, and at what cost in time, money and energy.",
+      'Using AI well is a skill, not a subscription. We teach it, free.',
+      "Short, practical modules show you how to pick the right tool for the task, set up your AI workspace, write prompts that work first time and skip the AI you don't need. No technical background required.",
     ],
     closingKicker: 'Free resources',
-    closing:
-      'Work smarter with AI. Feel more confident. Make more conscious choices.',
-    cta: 'Explore free AI resources',
+    closing: 'Work smarter with AI. Waste less. Stay in control.',
+    cta: 'Explore Conscious AI',
     notifyNote:
-      "The free learning modules are in the making. Leave your email and we'll tell you when they open.",
+      "The free modules are in the making. Leave your email and we'll tell you the day they open.",
   },
   consciousTech: {
     kicker: 'Conscious technology',
     title: 'Technology is never just technology.',
     accent: [3, 4],
     paragraphs: [
-      'Every product shapes how people work, live and make decisions. Every system uses resources. Every technical choice has consequences.',
-      'We build technology with these consequences in mind, considering environmental impact, social responsibility and ethical questions from the start.',
-      'Better technology means more than making it work. It means understanding what it changes, what it consumes and who it affects.',
+      'Every product shapes how people work and decide. Every system consumes resources. Every technical choice has a consequence.',
+      'We weigh those consequences from the first sketch: cost, energy, maintainability and who it affects.',
+      'Better technology does more than work. It is understood, affordable to run and worth keeping.',
     ],
   },
   numbers: {
-    kicker: 'Proof and outcomes',
-    title: 'Built to deliver real outcomes.',
+    kicker: 'Track record',
+    title: 'Numbers that back it up.',
     description:
-      'We turn ideas into useful products, combining thoughtful engineering with a focus on lasting value.',
+      'Shipped products, long-term clients and a team that spans two continents.',
     items: [
       { value: '150+', label: 'Projects delivered' },
       { value: '40+', label: 'Clients on four continents' },
@@ -123,12 +120,12 @@ export const en = {
     kicker: 'Tools and technology',
     statement: 'Proven tools. Chosen with care, not by habit.',
     statementMuted:
-      'We use established technology that fits the problem, the team and the budget. Nothing is added because it is new or trending. Every tool has to earn its place, stay easy to understand and cost little in time, money and energy to run.',
+      'We pick established technology that fits the problem, the team and the budget. Nothing is added because it is trending. Every tool has to earn its place and stay cheap to run, in time, money and energy.',
     stackLabel: 'What we build with, in plain words',
     layers: [
       {
         label: 'Websites and web apps',
-        note: 'What people open in a browser. Fast, accessible and simple to keep up to date.',
+        note: 'What people open in a browser. Fast, accessible and easy to keep current.',
       },
       {
         label: 'Mobile apps',
@@ -140,11 +137,11 @@ export const en = {
       },
       {
         label: 'AI, used with care',
-        note: 'The models we build with and the assistants we teach people to use well. Only where it genuinely helps.',
+        note: 'The models we build with and the assistants we teach people to use. Only where it genuinely helps.',
       },
       {
         label: 'Automation',
-        note: 'Repetitive work that runs on its own, with a person checking what matters.',
+        note: 'Repetitive work that runs itself, with a person checking what matters.',
       },
       {
         label: 'Hosting and running',
@@ -157,7 +154,8 @@ export const en = {
     kicker: 'How we work',
     title: 'Clear thinking. Deliberate building.',
     accent: [2, 3],
-    description: 'From understanding the problem to improving what we built.',
+    description:
+      'Four steps, from the first conversation to a product that keeps improving.',
     stepLabel: 'Step',
     cta: 'Discuss your project',
     steps: [
@@ -165,25 +163,25 @@ export const en = {
         title: 'Understand the problem',
         when: 'Discover',
         summary:
-          'We learn what people need, what is getting in the way and what success should look like.',
+          'We learn what people need, what gets in the way and what success looks like, before anything is built.',
       },
       {
         title: 'Choose the right approach',
         when: 'Decide',
         summary:
-          'We evaluate possible solutions, including their complexity, costs, resource needs and consequences.',
+          'We compare options on complexity, cost, resource use and consequences, and pick the simplest that does the job.',
       },
       {
         title: 'Build and learn',
         when: 'Build',
         summary:
-          'We develop, test and refine the solution with regular feedback and clear priorities.',
+          'We ship in short cycles, test with real users and adjust priorities as we learn.',
       },
       {
         title: 'Improve with purpose',
         when: 'Improve',
         summary:
-          'We measure what matters and keep improving where it creates real value. Sometimes the right next step is to simplify, not add more.',
+          'We measure what matters and keep improving where it creates value. Sometimes that means simplifying, not adding.',
       },
     ],
   },
@@ -191,23 +189,22 @@ export const en = {
     kicker: 'Working worldwide',
     title: 'One team. Wherever the work happens.',
     description:
-      'We collaborate with teams across locations, combining clear communication with hands-on product and engineering work. Served from Stuttgart and from Islamabad, so whenever you work, someone on the team is online.',
+      'Clients on four continents, served from Stuttgart and Islamabad. Whenever your day starts, someone on the team is already online.',
     legend: 'Offices and client locations',
   },
   testimonials: {
     kicker: 'Client voices',
-    title: 'Good work, built together.',
-    accent: [2, 3],
+    title: 'Good work, in their words.',
+    accent: [2, 3, 4],
     caseStudy: 'View project',
     prev: 'Previous testimonial',
     next: 'Next testimonial',
   },
   work: {
     kicker: 'Selected work',
-    title: 'Every project should make a difference.',
+    title: 'Real products, real results.',
     description:
-      'We work on digital products and systems that solve real problems. That includes building new products, improving existing ones and helping teams make more informed technology decisions.',
-    all: 'All projects',
+      'Products we designed, built or improved, each with the problem, the work and what changed. Filter by type, or by the efficiency principle it leads with.',
     view: 'Read the case study',
     filterLabel: 'Filter projects',
     filters: {
@@ -250,10 +247,10 @@ export const en = {
     teaser: {
       kicker: 'Selected work',
       title: 'Every project should make a difference.',
-      accent: [4, 5, 6],
+      accent: [3, 4, 5],
       body: [
-        'We work on digital products and systems that solve real problems. That includes building new products, improving existing ones and helping teams make more informed technology decisions.',
-        'Our work also creates opportunities to share knowledge, helping people understand the tools they use, make better choices and recognise the wider impact of technology.',
+        'New products, rebuilt ones and systems that finally talk to each other. Each case study shows the problem, the work and what changed.',
+        'Clients range from early-stage startups to established companies on four continents.',
       ],
       cta: 'Browse all projects',
       listLabel: 'Featured projects',
@@ -262,25 +259,20 @@ export const en = {
   },
   services: {
     kicker: 'Services',
-    title: 'Thoughtful technology, from idea to improvement.',
-    accent: [2, 3, 4, 5, 6],
+    title: 'From first idea to a product that lasts.',
+    accent: [5, 6, 7],
     description:
-      'We bring product thinking, engineering and responsible technology choices together. We also help clients build the knowledge to make better decisions beyond a single project.',
-    promise:
-      'Product thinking, engineering and responsible technology choices, together.',
-    cta: 'Discuss your project',
+      "Seven ways we help, under one roof: product thinking, solid engineering and honest advice on where technology, including AI, pays off and where it doesn't.",
+    promise: 'Build it right the first time, or fix what already exists.',
+    cta: 'Start a conversation',
   },
   whoWeAre: {
     kicker: 'Who we are',
-    title:
-      'We build technology with purpose, and believe progress comes with responsibility.',
-    accent: [7, 8, 9, 10],
+    title: 'Engineers who ask why before how.',
+    accent: [3, 4, 5],
     paragraphs: [
-      'Bullah Labs is a product and engineering team helping turn ideas into useful digital products. We combine thoughtful engineering with a conscious approach to how technology is designed, built and used.',
-      'We believe technology should solve real problems, not create complexity for its own sake. That means looking beyond what a product can do and asking what it should do, what resources it requires, and how it affects people and the world around us.',
-      'Our vision goes beyond building software or adopting AI. We want to help shape a future where technology advances human capabilities without losing sight of its environmental, social and ethical consequences.',
-      'That starts with understanding. We help people and organisations make informed choices, use technology effectively and recognise when less is more.',
-      'For us, better technology is not simply more powerful. It is more useful, more thoughtful and more responsible.',
+      'Bullah Labs is a product and engineering studio in Stuttgart and Islamabad. We turn ideas into digital products people rely on, and help teams use technology, including AI, with care.',
+      'Good technology solves a real problem, uses no more than it needs and leaves people better off. That is the standard we build to, and the one we teach.',
     ],
     cta: 'More about us',
   },
@@ -288,7 +280,7 @@ export const en = {
     kicker: 'Engineering principles',
     title: "Build what matters. Avoid what doesn't.",
     accent: [3, 4, 5],
-    description: 'The rules behind every technical decision we make.',
+    description: 'Seven rules behind every technical decision we make.',
   },
   program: {
     watch: 'Watch the full course',
@@ -331,7 +323,7 @@ export const en = {
     signup: {
       kicker: 'Stay in the loop',
       title: 'Be first to know.',
-      body: "The free learning modules are in the making. Leave your email and we'll let you know when they're ready.",
+      body: "The free modules are in the making. Leave your email and we'll tell you the day they open.",
       email: 'Email address',
       placeholder: 'Your email address',
       submit: 'Notify me',
@@ -351,7 +343,7 @@ export const en = {
     title: 'Use AI with purpose.',
     accent: [2, 3],
     description:
-      'Free, practical learning modules to help you use AI confidently, work smarter and waste less.',
+      'Free, practical modules that teach you to get more from AI while using less of it. For people who work with AI, not people who build it.',
     heroCta: 'Tell me when it opens',
     principle: 'Practical skills. Conscious choices. No coding required.',
     course: {
@@ -364,46 +356,49 @@ export const en = {
       title: 'Everyone expects you to use AI. Few show you how.',
       accent: [6, 7, 8, 9],
       lines: [
-        'New tools. New trends. More pressure to keep up.',
+        'New tools every week, more pressure to keep up, and no clear way to tell what is worth your time.',
         "You shouldn't have to choose between doing your job well and using AI responsibly.",
       ],
     },
     approach: {
-      kicker: 'Use AI better',
+      kicker: 'Our answer',
       title: 'Not more AI. Better AI.',
       accent: [3, 4],
       lines: [
-        'Use AI when it helps. Choose the right model. Give clear instructions. Skip unnecessary steps.',
-        'Use what you need. Understand the impact. Keep human judgement in the loop.',
+        'Use AI only where it helps. Pick the right model. Give it clear instructions and only the context it needs.',
+        'Check the output. Know the cost. Keep your own judgement in the loop.',
       ],
     },
     modules: {
       kicker: 'Learn by doing',
-      title: 'Practical skills. Real work.',
+      title: 'Six habits. Real work.',
       accent: [2, 3],
       description:
-        'Free resources to help you build better AI habits, one task at a time.',
+        'Each module takes a task you already do and shows a better way to do it with AI.',
       habits: [
         {
           title: 'Set up once.',
-          body: 'Create reusable instructions for recurring tasks.',
+          body: 'Reusable instructions for the tasks you repeat.',
         },
         {
           title: 'Prompt clearly.',
-          body: 'Get better results with fewer follow-ups.',
+          body: 'Better results, fewer follow-ups.',
         },
-        { title: 'Choose wisely.', body: 'Match the model to the task.' },
         {
-          title: 'Keep context relevant.',
+          title: 'Choose wisely.',
+          body: 'Match the model to the task, not the hype.',
+        },
+        {
+          title: 'Keep context lean.',
           body: 'Give AI what it needs, not everything you have.',
         },
         {
           title: 'Think critically.',
-          body: 'Check outputs and know when not to use AI.',
+          body: 'Check outputs. Know when not to use AI at all.',
         },
         {
-          title: 'Understand the impact.',
-          body: 'Learn how everyday choices affect resource use.',
+          title: 'Know the impact.',
+          body: 'See how everyday choices affect time, cost, energy and water.',
         },
       ],
     },
@@ -412,7 +407,7 @@ export const en = {
       title: 'Curious about AI. No coding required.',
       accent: [3, 4, 5],
       paragraphs: [
-        'Whether you work in marketing, operations, finance, HR, sales or project management, learn skills you can put to use straight away.',
+        'Marketing, operations, finance, HR, sales, project management: if AI has landed on your desk, this is for you. Skills you can use the same day.',
       ],
       questions: [
         'Unsure where to start?',
@@ -423,28 +418,28 @@ export const en = {
       closing: 'Start with the work you already do.',
     },
     business: {
-      kicker: 'For teams and organisations',
+      kicker: 'For teams',
       title: 'Help your team use AI well.',
       accent: [4, 5],
       paragraphs: [
-        'Giving people AI tools is easy. Using them well takes practice. We help teams build confidence, improve workflows and make more conscious choices.',
+        'Handing out AI tools is easy. Using them well takes practice. We train teams on their real workflows, so the gains show up in the work, not just on the licence bill.',
       ],
       offers: [
         {
-          title: 'Group training and workshops',
-          body: 'Practical sessions tailored to everyday tasks and team needs.',
+          title: 'Training and workshops',
+          body: "Hands-on sessions built around your team's everyday tasks.",
         },
         {
-          title: 'AI skills and workflows',
-          body: 'Help people find useful applications, improve prompts and evaluate results.',
+          title: 'Skills and workflows',
+          body: 'Find the useful applications, improve prompts, judge results.',
         },
         {
           title: 'Conscious AI guidance',
-          body: 'Understand tool choices, costs, resource use and responsible adoption.',
+          body: 'Tool choices, costs, resource use and responsible adoption, explained.',
         },
         {
           title: 'AI optimisation',
-          body: 'Identify unnecessary complexity and computation while maintaining quality, reliability and safety.',
+          body: 'Cut unnecessary complexity and compute without losing quality or safety.',
         },
       ],
       cta: 'Discuss team training',
@@ -454,15 +449,15 @@ export const en = {
       title: 'Technology should move us forward, thoughtfully.',
       accent: [5],
       paragraphs: [
-        'We believe progress means solving real problems, not building more for its own sake.',
-        'Technology that advances human capabilities without losing sight of its impact.',
+        'Progress means solving real problems, not building more for its own sake.',
+        'We want technology that extends what people can do without losing sight of what it costs.',
       ],
     },
     comingSoon: {
       kicker: 'Something new is in the works',
       title: 'Learn consciously. Put it into practice.',
       accent: [2, 3, 4, 5],
-      body: "Free learning is just the beginning. We're building a new product to bring more conscious technology into everyday use. Leave your email and you'll hear about both.",
+      body: "The free course is only the start. We're building a product that brings Conscious AI into everyday work. Leave your email and you'll hear about both.",
       cta: 'Stay in the loop',
     },
   },
@@ -490,7 +485,7 @@ export const en = {
     },
     message: 'Your message',
     messagePlaceholder:
-      'What are you building, what do you want to improve, or where is technology getting in the way?',
+      'What are you building, what needs improving, or where is technology getting in the way?',
     consentBefore:
       'I agree that Bullah Labs may store and process this enquiry to respond to me, as described in the',
     consentLink: 'privacy policy',
@@ -500,7 +495,7 @@ export const en = {
     errorGeneric: 'Something went wrong. Please try again in a moment.',
     sentTitle: 'Message received.',
     sentBody:
-      'Thank you. We read every enquiry personally and reply {time}, straight to the address you gave us.',
+      'Thank you. A person reads every enquiry and replies {time}, straight to the address you gave us.',
     sentAgain: 'Send another',
     // Multi-step wizard
     stepLabel: 'Step {current} of {total}',
@@ -513,8 +508,7 @@ export const en = {
       },
       message: {
         title: 'Tell us a little more.',
-        subtitle:
-          'What you are building, what you want to improve or where technology is getting in the way.',
+        subtitle: 'A few lines are enough. We ask the rest when we reply.',
       },
       details: {
         title: 'Where do we send the reply?',
@@ -557,50 +551,48 @@ export const en = {
     previous: 'previous',
     next: 'next',
     notFound: 'Case study not found',
-    ctaTitle: 'Have a problem worth solving?',
-    ctaAccent: [2, 3, 4],
+    ctaTitle: 'Building something similar?',
+    ctaAccent: [1, 2],
     ctaBody:
-      "Tell us what you are building, what you want to improve or where technology is getting in the way. We'll help you find a practical next step.",
+      "Tell us where you are. We'll say plainly what we would do next, and whether we're the right team for it.",
   },
   aboutPage: {
-    kicker: 'Who we are',
+    kicker: 'About',
     title:
       'We build technology with purpose, and believe progress comes with responsibility.',
     accent: [7, 8, 9, 10],
     description:
-      'Bullah Labs is a product and engineering team helping turn ideas into useful digital products. We combine thoughtful engineering with a conscious approach to how technology is designed, built and used.',
+      'Bullah Labs is a product and engineering studio with offices in Stuttgart and Islamabad. We build digital products, and we help the people who use technology, including AI, use it well.',
     story: [
-      'We believe technology should solve real problems, not create complexity for its own sake. That means looking beyond what a product can do and asking what it should do, what resources it requires, and how it affects people and the world around us.',
-      'Our vision goes beyond building software or adopting AI. We want to help shape a future where technology advances human capabilities without losing sight of its environmental, social and ethical consequences.',
-      'That starts with understanding. We help people and organisations make informed choices, use technology effectively and recognise when less is more.',
-      'For us, better technology is not simply more powerful. It is more useful, more thoughtful and more responsible.',
+      'Too much technology is built to impress rather than to help. We ask a different set of questions first: what should this product do, what does it cost to run, and who does it affect?',
+      'That shapes everything we ship. Simpler systems. Fewer moving parts. AI only where it earns its place. Products that are cheap to keep and easy to hand over.',
+      'It also shapes what we teach. Through Conscious AI we help people and teams use AI with confidence and less waste, because the best technology decision is usually the one you understand.',
     ],
     facts: [
       {
         label: 'What we do',
         value:
-          'Digital products, designed, built and improved, with guidance on using technology and AI well',
+          'Digital products, designed, built and improved. Guidance on technology and AI.',
       },
       {
         label: 'Who for',
         value:
-          'Teams building a new product, improving an existing one or making technology decisions',
+          'Startups and established companies building something new, fixing something old or deciding what comes next',
       },
       {
-        label: 'How',
-        value:
-          'Understand the problem, choose the right approach, build and learn, improve with purpose',
+        label: 'Since',
+        value: '2024, with 150+ projects and clients on four continents',
       },
       {
         label: 'Where',
-        value: 'Islamabad and Stuttgart, with overlapping working hours',
+        value: 'Stuttgart and Islamabad, with overlapping working hours',
       },
     ],
     whereKicker: 'Where we are',
     whereTitle: 'Two offices, one working day.',
     whereAccent: [3, 4],
     whereDescription:
-      'An Asian office in Islamabad and a European office in Stuttgart. Write to whichever is closer; the same team answers.',
+      'A European office in Stuttgart and an Asian office in Islamabad. Write to whichever is closer. The same team answers.',
   },
   legal: {
     kicker: 'Legal',
@@ -695,31 +687,24 @@ export const en = {
   },
   contact: {
     kicker: 'Contact',
-    title: 'Have a problem worth solving?',
-    accent: [2, 3, 4],
+    title: "Let's talk about your project.",
+    accent: [3, 4],
     description:
-      "Tell us what you are building, what you want to improve or where technology is getting in the way. We'll help you find a practical next step.",
-    direct: 'How to reach us',
-    formNote:
-      'The form is the fastest way in. It comes straight to us and we answer every enquiry personally.',
+      'Write to us or book a 30-minute intro call. A person replies within one business day.',
     book: 'Book a 30-minute intro call',
-    callNote: 'Prefer a call? Mention it and we will send a booking link.',
     /** Two ways to start: write to us, or book a slot straight away. */
     choose: {
       formTab: 'Write to us',
       callTab: 'Book a call',
       callHint: '30-minute intro call',
     },
-    faqKicker: 'Before you write',
-    faqTitle: 'The questions we get most.',
-    faqAccent: [4],
     /** Closing section of the homepage: the same form, without leaving. */
     home: {
       kicker: 'Contact',
       title: 'Have a problem worth solving?',
       accent: [2, 3, 4],
       description:
-        "Tell us what you are building, what you want to improve or where technology is getting in the way. We'll help you find a practical next step.",
+        "Tell us what you're building, what needs improving or where technology is getting in the way. We'll suggest a practical next step.",
     },
   },
   faq: {
@@ -732,12 +717,12 @@ export const en = {
     kicker: "Let's talk",
     title: 'Have a problem worth solving?',
     accent: [2, 3, 4],
-    body: "Tell us what you are building, what you want to improve or where technology is getting in the way. We'll help you find a practical next step.",
+    body: "Tell us what you're building, what needs improving or where technology is getting in the way. We'll suggest a practical next step.",
     button: 'Tell us about your project',
   },
   footer: {
     pitch:
-      'We build digital products and help people use technology with greater care, clarity and responsibility.',
+      'A product and engineering studio in Stuttgart and Islamabad. We build digital products that last, and teach people to use AI well.',
     program: 'Conscious AI',
     company: 'Company',
     offices: 'Offices',

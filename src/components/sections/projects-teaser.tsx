@@ -65,7 +65,7 @@ export function ProjectsTeaser({
           <div className='grid gap-9 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12'>
             <div className='flex max-w-xl flex-col lg:h-full lg:justify-self-start'>
               <Reveal>
-                <p className='bl-kicker bl-kicker-numbered'>{t.kicker}</p>
+                <p className='bl-kicker'>{t.kicker}</p>
               </Reveal>
               <TextReveal
                 as='h2'

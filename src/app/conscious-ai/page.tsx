@@ -19,7 +19,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Conscious AI',
   description:
-    'Conscious AI: free, practical learning modules from Bullah Labs to help you use AI confidently, work smarter and reduce unnecessary waste. No coding required.',
+    'Conscious AI: free, practical modules from Bullah Labs to get more from AI while using less of it. No coding required. Team training available.',
   alternates: { canonical: paths.program },
 };
 

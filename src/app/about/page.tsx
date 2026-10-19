@@ -12,9 +12,9 @@ import { paths } from '@/constants/paths';
 import { getDictionary } from '@/i18n/server';
 
 export const metadata: Metadata = {
-  title: 'Who We Are',
+  title: 'About',
   description:
-    'Bullah Labs is a product and engineering team that builds technology with purpose and believes progress comes with responsibility. Offices in Islamabad and Stuttgart.',
+    'Bullah Labs is a product and engineering studio in Stuttgart and Islamabad. We build digital products with purpose and help teams use technology, including AI, well.',
   alternates: { canonical: paths.about },
 };
 

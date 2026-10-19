@@ -139,36 +139,37 @@ interface TechnologiesProps {
 }
 
 /**
- * Dimmed tool marquee, then a short statement that fills with ink as you
- * scroll, then the stack laid out by layer in hairline columns.
+ * Tool marquee, then a short statement that fills with ink as you scroll,
+ * then the stack laid out by layer in hairline columns. Every logo is drawn
+ * in ink: brand colours (yellows, pale greys) vanish on the cream paper.
  */
 export function Technologies({ dict }: TechnologiesProps) {
   const t = dict.technologies;
 
   return (
     <section className='bl-rule bl-band-stone' data-rail={t.kicker}>
-      <div className='bl-container pt-12 text-center sm:pt-14'>
+      <div className='bl-container pt-12 sm:pt-14'>
         <Reveal>
-          <p className='bl-kicker bl-kicker-numbered'>{t.kicker}</p>
+          <p className='bl-kicker'>{t.kicker}</p>
         </Reveal>
       </div>
 
       <div className='mt-6 border-b py-6 sm:mt-10 sm:py-8'>
         <Marquee duration={60}>
           {TOOLS.map((name) => {
-            const { icon: Icon, color } = getTechMeta(name);
+            const { icon: Icon } = getTechMeta(name);
             return (
               <span
                 key={name}
-                className='mx-9 inline-flex items-center gap-3 text-ink/35 transition-colors duration-500 hover:text-ink'
+                className='mx-6 inline-flex items-center gap-3 text-ink/70 transition-colors duration-500 hover:text-ink sm:mx-9'
               >
                 <Icon
-                  className='h-7 w-7'
-                  style={{
-                    color: color === 'currentColor' ? undefined : `${color}99`,
-                  }}
+                  aria-hidden='true'
+                  className='h-6 w-6 shrink-0 sm:h-7 sm:w-7'
                 />
-                <span className='bl-display text-2xl'>{name}</span>
+                <span className='bl-display whitespace-nowrap text-xl sm:text-2xl'>
+                  {name}
+                </span>
               </span>
             );
           })}
@@ -178,7 +179,7 @@ export function Technologies({ dict }: TechnologiesProps) {
       <div className='bl-container py-10 sm:py-14'>
         <ScrollHighlight
           text={t.statement}
-          className='bl-display max-w-3xl text-display-md text-ink'
+          className='bl-display max-w-4xl text-display-lg text-ink'
         />
         <Reveal delay={0.15}>
           <p className='mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
@@ -198,22 +199,19 @@ export function Technologies({ dict }: TechnologiesProps) {
               <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
                 {layer.note}
               </p>
-              <ul className='mt-4 flex flex-wrap gap-x-5 gap-y-2.5 border-t pt-4 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-x-4 sm:gap-y-3 sm:pt-6'>
+              <ul className='mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t pt-4 sm:mt-6 sm:pt-6'>
                 {LAYERS[index].map((name) => {
-                  const { icon: Icon, color } = getTechMeta(name);
+                  const { icon: Icon } = getTechMeta(name);
                   return (
                     <li
                       key={name}
-                      className='flex items-center gap-2.5 text-sm font-medium text-ink/80'
+                      className='flex min-w-0 items-center gap-2.5 text-sm font-medium text-ink/80'
                     >
                       <Icon
                         aria-hidden='true'
-                        className='h-4 w-4 shrink-0'
-                        style={{
-                          color: color === 'currentColor' ? undefined : color,
-                        }}
+                        className='h-4 w-4 shrink-0 text-ink'
                       />
-                      <span className='truncate'>{name}</span>
+                      <span className='min-w-0 truncate'>{name}</span>
                     </li>
                   );
                 })}

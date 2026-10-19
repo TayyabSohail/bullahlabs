@@ -40,13 +40,9 @@ export function ConsciousTechnology({
               key={paragraph}
               className='relative flex flex-col bg-surface p-6 sm:p-8 lg:p-10'
             >
-              <span className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-text'>
-                {'// '}
-                {String(index + 1).padStart(2, '0')}
-              </span>
               <p
                 className={cn(
-                  'mt-6 leading-snug text-foreground',
+                  'leading-snug text-foreground',
                   index === 0
                     ? 'bl-display text-2xl lg:text-3xl'
                     : 'text-lg font-medium lg:text-xl',

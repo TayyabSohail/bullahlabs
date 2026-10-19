@@ -4,11 +4,11 @@ import type { Dictionary } from './en';
 export const de: Dictionary = {
   locale: 'de',
   nav: {
-    about: 'Wer wir sind',
+    about: 'Über uns',
     program: 'Conscious AI',
     services: 'Leistungen',
     work: 'Projekte',
-    approach: 'Unser Ansatz',
+    approach: 'Ansatz',
     contact: 'Kontakt',
     home: 'Start',
     cta: 'Sprechen wir',
@@ -20,10 +20,10 @@ export const de: Dictionary = {
     top: 'Nach oben',
   },
   hero: {
-    badge: 'Durchdachte Technologie. Spürbare Wirkung.',
+    badge: 'Produkt- & Engineering-Studio',
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
     accent: [4, 5, 6],
-    body: 'Wir entwerfen, bauen und verbessern digitale Produkte mit Blick auf ihre Wirkung in der echten Welt. Von den Systemen, die wir bauen, bis zur KI, die wir nutzen, konzentrieren wir uns auf das, was nützlich ist, was verantwortbar ist und was es wert ist, gebaut zu werden.',
+    body: 'Wir bauen digitale Produkte, die echte Probleme lösen, schlank laufen und lange halten. Dieselbe Disziplin prägt, wie wir KI nutzen und wie wir es anderen beibringen.',
     primary: 'Projekt besprechen',
     secondary: 'Projekte ansehen',
     map: {
@@ -63,37 +63,35 @@ export const de: Dictionary = {
   },
   consciousAi: {
     kicker: 'Conscious AI',
-    title:
-      'KI entwickelt sich schnell. Sie sollen Schritt halten. Aber wo anfangen?',
-    accent: [8, 9, 10],
+    title: 'KI entwickelt sich schnell. Wo fangen Sie an?',
+    accent: [4, 5, 6, 7],
     paragraphs: [
-      'Jeden Tag erscheinen neue Werkzeuge. Sie wollen smarter arbeiten, Fähigkeiten aufbauen und relevant bleiben, aber es ist schwer zu wissen, was man lernen soll, welchen Werkzeugen man trauen kann oder ob man KI überhaupt gut nutzt. Vielleicht beschäftigen Sie auch ihre ökologischen und sozialen Folgen.',
-      'Sie sollten nicht wählen müssen zwischen guter Arbeit und einem verantwortungsvollen Umgang mit KI.',
-      'Wir bieten kostenlose Ressourcen und praktische Anleitung, damit Sie KI mit mehr Sicherheit und weniger Verschwendung nutzen. Lernen Sie, das richtige Werkzeug für die Aufgabe zu wählen, Ihren KI-Arbeitsplatz einzurichten, klarere Prompts zu schreiben und unnötige Nutzung zu vermeiden.',
-      'Sie erfahren, wo KI wirklich hilft, wo sie an Grenzen stößt und wie alltägliche Entscheidungen Zeit, Kosten, Energie- und Wasserverbrauch beeinflussen. Kein technischer Hintergrund nötig. Kein Hinterherlaufen hinter jedem Trend.',
+      'Jede Woche neue Werkzeuge. Druck, smarter zu arbeiten. Wenig Klarheit, welchen Werkzeugen man trauen kann, was man lernen soll oder ob man KI gut nutzt, und was das an Zeit, Geld und Energie kostet.',
+      'KI gut zu nutzen ist eine Fähigkeit, kein Abo. Wir vermitteln sie, kostenlos.',
+      'Kurze, praktische Module zeigen Ihnen, wie Sie das richtige Werkzeug für die Aufgabe wählen, Ihren KI-Arbeitsplatz einrichten, Prompts schreiben, die beim ersten Mal sitzen, und KI weglassen, wo Sie sie nicht brauchen. Kein technischer Hintergrund nötig.',
     ],
     closingKicker: 'Kostenlose Ressourcen',
     closing:
-      'Smarter mit KI arbeiten. Sicherer werden. Bewusstere Entscheidungen treffen.',
-    cta: 'Kostenlose KI-Ressourcen entdecken',
+      'Smarter mit KI arbeiten. Weniger verschwenden. Die Kontrolle behalten.',
+    cta: 'Conscious AI entdecken',
     notifyNote:
-      'Die kostenlosen Lernmodule entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen Bescheid, sobald sie offen sind.',
+      'Die kostenlosen Module entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen am Tag der Eröffnung Bescheid.',
   },
   consciousTech: {
     kicker: 'Bewusste Technologie',
     title: 'Technologie ist nie nur Technologie.',
     accent: [2, 3, 4],
     paragraphs: [
-      'Jedes Produkt prägt, wie Menschen arbeiten, leben und Entscheidungen treffen. Jedes System verbraucht Ressourcen. Jede technische Entscheidung hat Folgen.',
-      'Wir bauen Technologie mit diesen Folgen im Blick und denken Umweltwirkung, soziale Verantwortung und ethische Fragen von Anfang an mit.',
-      'Bessere Technologie heißt mehr, als dass sie funktioniert. Es heißt zu verstehen, was sie verändert, was sie verbraucht und wen sie betrifft.',
+      'Jedes Produkt prägt, wie Menschen arbeiten und entscheiden. Jedes System verbraucht Ressourcen. Jede technische Entscheidung hat eine Folge.',
+      'Wir wägen diese Folgen ab der ersten Skizze ab: Kosten, Energie, Wartbarkeit und wen es betrifft.',
+      'Bessere Technologie tut mehr, als zu funktionieren. Sie ist verständlich, bezahlbar im Betrieb und es wert, behalten zu werden.',
     ],
   },
   numbers: {
-    kicker: 'Belege und Ergebnisse',
-    title: 'Gebaut für echte Ergebnisse.',
+    kicker: 'Bilanz',
+    title: 'Zahlen, die es belegen.',
     description:
-      'Wir machen aus Ideen nützliche Produkte und verbinden durchdachte Technik mit dem Blick auf bleibenden Wert.',
+      'Ausgelieferte Produkte, langjährige Kunden und ein Team auf zwei Kontinenten.',
     items: [
       { value: '150+', label: 'Abgeschlossene Projekte' },
       { value: '40+', label: 'Kunden auf vier Kontinenten' },
@@ -104,7 +102,7 @@ export const de: Dictionary = {
     kicker: 'Werkzeuge und Technologie',
     statement: 'Bewährte Werkzeuge. Mit Bedacht gewählt, nicht aus Gewohnheit.',
     statementMuted:
-      'Wir setzen auf etablierte Technologie, die zu Problem, Team und Budget passt. Nichts kommt dazu, nur weil es neu oder im Trend ist. Jedes Werkzeug muss sich seinen Platz verdienen, verständlich bleiben und im Betrieb wenig Zeit, Geld und Energie kosten.',
+      'Wir wählen etablierte Technologie, die zu Problem, Team und Budget passt. Nichts kommt dazu, nur weil es im Trend ist. Jedes Werkzeug muss sich seinen Platz verdienen und im Betrieb wenig kosten, an Zeit, Geld und Energie.',
     stackLabel: 'Womit wir bauen, in einfachen Worten',
     layers: [
       {
@@ -138,7 +136,7 @@ export const de: Dictionary = {
     title: 'Klar denken. Bewusst bauen.',
     accent: [2, 3],
     description:
-      'Vom Verstehen des Problems bis zur Verbesserung dessen, was wir gebaut haben.',
+      'Vier Schritte, vom ersten Gespräch bis zum Produkt, das immer besser wird.',
     stepLabel: 'Schritt',
     cta: 'Projekt besprechen',
     steps: [
@@ -146,25 +144,25 @@ export const de: Dictionary = {
         title: 'Das Problem verstehen',
         when: 'Verstehen',
         summary:
-          'Wir lernen, was Menschen brauchen, was im Weg steht und wie Erfolg aussehen soll.',
+          'Wir lernen, was Menschen brauchen, was im Weg steht und wie Erfolg aussieht, bevor etwas gebaut wird.',
       },
       {
         title: 'Den richtigen Ansatz wählen',
         when: 'Entscheiden',
         summary:
-          'Wir bewerten mögliche Lösungen, einschließlich ihrer Komplexität, Kosten, Ressourcenbedarfe und Folgen.',
+          'Wir vergleichen Optionen nach Komplexität, Kosten, Ressourcenbedarf und Folgen und wählen die einfachste, die die Aufgabe erfüllt.',
       },
       {
         title: 'Bauen und lernen',
         when: 'Bauen',
         summary:
-          'Wir entwickeln, testen und verfeinern die Lösung mit regelmäßigem Feedback und klaren Prioritäten.',
+          'Wir liefern in kurzen Zyklen, testen mit echten Nutzern und passen Prioritäten an, während wir lernen.',
       },
       {
         title: 'Mit Absicht verbessern',
         when: 'Verbessern',
         summary:
-          'Wir messen, was zählt, und verbessern dort weiter, wo echter Wert entsteht. Manchmal ist der richtige nächste Schritt, zu vereinfachen statt mehr hinzuzufügen.',
+          'Wir messen, was zählt, und verbessern dort weiter, wo Wert entsteht. Manchmal heißt das vereinfachen statt ergänzen.',
       },
     ],
   },
@@ -172,23 +170,22 @@ export const de: Dictionary = {
     kicker: 'Weltweit im Einsatz',
     title: 'Ein Team. Wo immer die Arbeit stattfindet.',
     description:
-      'Wir arbeiten mit Teams an verschiedenen Standorten zusammen und verbinden klare Kommunikation mit praktischer Produkt- und Entwicklungsarbeit. Betreut aus Stuttgart und aus Islamabad, damit immer jemand aus dem Team online ist, wenn Sie arbeiten.',
+      'Kunden auf vier Kontinenten, betreut aus Stuttgart und Islamabad. Wann immer Ihr Tag beginnt, ist jemand aus dem Team schon online.',
     legend: 'Standorte und Kundenorte',
   },
   testimonials: {
     kicker: 'Kundenstimmen',
-    title: 'Gute Arbeit, gemeinsam gebaut.',
-    accent: [2, 3],
+    title: 'Gute Arbeit, in ihren Worten.',
+    accent: [2, 3, 4],
     caseStudy: 'Projekt ansehen',
     prev: 'Vorherige Stimme',
     next: 'Nächste Stimme',
   },
   work: {
     kicker: 'Ausgewählte Projekte',
-    title: 'Jedes Projekt soll einen Unterschied machen.',
+    title: 'Echte Produkte, echte Ergebnisse.',
     description:
-      'Wir arbeiten an digitalen Produkten und Systemen, die echte Probleme lösen. Dazu gehört, neue Produkte zu bauen, bestehende zu verbessern und Teams zu fundierteren Technologieentscheidungen zu verhelfen.',
-    all: 'Alle Projekte',
+      'Produkte, die wir entworfen, gebaut oder verbessert haben, jeweils mit Problem, Arbeit und Ergebnis. Filtern Sie nach Art oder nach dem Effizienzprinzip, das im Vordergrund steht.',
     view: 'Fallstudie lesen',
     filterLabel: 'Projekte filtern',
     filters: {
@@ -231,8 +228,8 @@ export const de: Dictionary = {
       title: 'Jedes Projekt soll einen Unterschied machen.',
       accent: [3, 4, 5],
       body: [
-        'Wir arbeiten an digitalen Produkten und Systemen, die echte Probleme lösen. Dazu gehört, neue Produkte zu bauen, bestehende zu verbessern und Teams zu fundierteren Technologieentscheidungen zu verhelfen.',
-        'Unsere Arbeit schafft auch Gelegenheiten, Wissen zu teilen: Menschen verstehen die Werkzeuge, die sie nutzen, treffen bessere Entscheidungen und erkennen die weitere Wirkung von Technologie.',
+        'Neue Produkte, neu gebaute und Systeme, die endlich miteinander sprechen. Jede Fallstudie zeigt das Problem, die Arbeit und was sich verändert hat.',
+        'Unsere Kunden reichen von jungen Start-ups bis zu etablierten Unternehmen auf vier Kontinenten.',
       ],
       cta: 'Alle Projekte ansehen',
       listLabel: 'Ausgewählte Projekte',
@@ -241,25 +238,20 @@ export const de: Dictionary = {
   },
   services: {
     kicker: 'Leistungen',
-    title: 'Durchdachte Technologie, von der Idee bis zur Verbesserung.',
-    accent: [2, 3, 4, 5, 6, 7],
+    title: 'Von der ersten Idee zum Produkt, das bleibt.',
+    accent: [5, 6, 7],
     description:
-      'Wir bringen Produktdenken, Technik und verantwortungsvolle Technologieentscheidungen zusammen. Und wir helfen Kundinnen und Kunden, das Wissen aufzubauen, um über ein einzelnes Projekt hinaus bessere Entscheidungen zu treffen.',
-    promise:
-      'Produktdenken, Technik und verantwortungsvolle Technologieentscheidungen, zusammen.',
-    cta: 'Projekt besprechen',
+      'Sieben Wege, wie wir helfen, aus einer Hand: Produktdenken, solide Technik und ehrlicher Rat, wo sich Technologie, auch KI, lohnt und wo nicht.',
+    promise: 'Gleich richtig bauen, oder reparieren, was schon da ist.',
+    cta: 'Gespräch beginnen',
   },
   whoWeAre: {
     kicker: 'Wer wir sind',
-    title:
-      'Wir bauen Technologie mit Absicht und glauben, dass Fortschritt Verantwortung bedeutet.',
-    accent: [8, 9, 10],
+    title: 'Ingenieure, die erst warum fragen, dann wie.',
+    accent: [3, 4, 5, 6],
     paragraphs: [
-      'Bullah Labs ist ein Produkt- und Entwicklungsteam, das Ideen in nützliche digitale Produkte verwandelt. Wir verbinden durchdachte Technik mit einem bewussten Blick darauf, wie Technologie entworfen, gebaut und genutzt wird.',
-      'Wir glauben, dass Technologie echte Probleme lösen soll, statt Komplexität um ihrer selbst willen zu schaffen. Das heißt, über das hinauszuschauen, was ein Produkt kann, und zu fragen, was es tun sollte, welche Ressourcen es braucht und wie es Menschen und die Welt um uns herum beeinflusst.',
-      'Unsere Vision geht über das Bauen von Software oder die Einführung von KI hinaus. Wir wollen eine Zukunft mitgestalten, in der Technologie menschliche Fähigkeiten erweitert, ohne ihre ökologischen, sozialen und ethischen Folgen aus dem Blick zu verlieren.',
-      'Das beginnt mit Verstehen. Wir helfen Menschen und Organisationen, informierte Entscheidungen zu treffen, Technologie wirksam zu nutzen und zu erkennen, wann weniger mehr ist.',
-      'Für uns ist bessere Technologie nicht einfach leistungsfähiger. Sie ist nützlicher, durchdachter und verantwortungsvoller.',
+      'Bullah Labs ist ein Produkt- und Engineering-Studio in Stuttgart und Islamabad. Wir verwandeln Ideen in digitale Produkte, auf die sich Menschen verlassen, und helfen Teams, Technologie, auch KI, mit Bedacht einzusetzen.',
+      'Gute Technologie löst ein echtes Problem, braucht nicht mehr als nötig und lässt Menschen besser zurück. Das ist der Maßstab, nach dem wir bauen, und der, den wir vermitteln.',
     ],
     cta: 'Mehr über uns',
   },
@@ -268,7 +260,7 @@ export const de: Dictionary = {
     title: 'Bauen, was zählt. Weglassen, was nicht zählt.',
     accent: [3, 4, 5, 6],
     description:
-      'Die Regeln hinter jeder technischen Entscheidung, die wir treffen.',
+      'Sieben Regeln hinter jeder technischen Entscheidung, die wir treffen.',
   },
   program: {
     watch: 'Ganzen Kurs ansehen',
@@ -309,7 +301,7 @@ export const de: Dictionary = {
     signup: {
       kicker: 'Auf dem Laufenden bleiben',
       title: 'Erfahren Sie es als Erste.',
-      body: 'Die kostenlosen Lernmodule entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen Bescheid, sobald sie fertig sind.',
+      body: 'Die kostenlosen Module entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen am Tag der Eröffnung Bescheid.',
       email: 'E-Mail-Adresse',
       placeholder: 'Ihre E-Mail-Adresse',
       submit: 'Bescheid geben',
@@ -330,7 +322,7 @@ export const de: Dictionary = {
     title: 'KI mit Absicht nutzen.',
     accent: [1, 2],
     description:
-      'Kostenlose, praktische Lernmodule, mit denen Sie KI sicher nutzen, smarter arbeiten und weniger verschwenden.',
+      'Kostenlose, praktische Module, mit denen Sie mehr aus KI herausholen und dabei weniger davon brauchen. Für Menschen, die mit KI arbeiten, nicht für die, die sie bauen.',
     heroCta: 'Bescheid geben, wenn es öffnet',
     principle:
       'Praktische Fähigkeiten. Bewusste Entscheidungen. Kein Programmieren nötig.',
@@ -344,49 +336,49 @@ export const de: Dictionary = {
       title: 'Alle erwarten, dass Sie KI nutzen. Wenige zeigen, wie.',
       accent: [6, 7, 8],
       lines: [
-        'Neue Werkzeuge. Neue Trends. Mehr Druck, Schritt zu halten.',
+        'Jede Woche neue Werkzeuge, mehr Druck, Schritt zu halten, und kein klarer Weg zu erkennen, was Ihre Zeit wert ist.',
         'Sie sollten nicht wählen müssen zwischen guter Arbeit und einem verantwortungsvollen Umgang mit KI.',
       ],
     },
     approach: {
-      kicker: 'KI besser nutzen',
+      kicker: 'Unsere Antwort',
       title: 'Nicht mehr KI. Bessere KI.',
       accent: [3, 4],
       lines: [
-        'KI nutzen, wenn sie hilft. Das richtige Modell wählen. Klare Anweisungen geben. Unnötige Schritte weglassen.',
-        'Nutzen, was Sie brauchen. Die Wirkung verstehen. Das menschliche Urteil im Spiel behalten.',
+        'KI nur nutzen, wo sie hilft. Das richtige Modell wählen. Klare Anweisungen geben und nur den Kontext, den sie braucht.',
+        'Das Ergebnis prüfen. Die Kosten kennen. Das eigene Urteil im Spiel behalten.',
       ],
     },
     modules: {
       kicker: 'Lernen durch Tun',
-      title: 'Praktische Fähigkeiten. Echte Arbeit.',
+      title: 'Sechs Gewohnheiten. Echte Arbeit.',
       accent: [2, 3],
       description:
-        'Kostenlose Ressourcen, mit denen Sie bessere KI-Gewohnheiten aufbauen, eine Aufgabe nach der anderen.',
+        'Jedes Modul nimmt eine Aufgabe, die Sie ohnehin erledigen, und zeigt einen besseren Weg, sie mit KI zu lösen.',
       habits: [
         {
           title: 'Einmal einrichten.',
-          body: 'Wiederverwendbare Anweisungen für wiederkehrende Aufgaben anlegen.',
+          body: 'Wiederverwendbare Anweisungen für Aufgaben, die sich wiederholen.',
         },
         {
           title: 'Klar prompten.',
-          body: 'Bessere Ergebnisse mit weniger Nachfragen.',
+          body: 'Bessere Ergebnisse, weniger Nachfragen.',
         },
         {
           title: 'Klug wählen.',
-          body: 'Das Modell zur Aufgabe passend wählen.',
+          body: 'Das Modell zur Aufgabe wählen, nicht zum Hype.',
         },
         {
-          title: 'Kontext relevant halten.',
+          title: 'Kontext schlank halten.',
           body: 'Der KI geben, was sie braucht, nicht alles, was Sie haben.',
         },
         {
           title: 'Kritisch denken.',
-          body: 'Ergebnisse prüfen und wissen, wann man KI nicht nutzt.',
+          body: 'Ergebnisse prüfen. Wissen, wann KI gar nicht nötig ist.',
         },
         {
-          title: 'Die Wirkung verstehen.',
-          body: 'Lernen, wie alltägliche Entscheidungen den Ressourcenverbrauch beeinflussen.',
+          title: 'Die Wirkung kennen.',
+          body: 'Sehen, wie alltägliche Entscheidungen Zeit, Kosten, Energie und Wasser beeinflussen.',
         },
       ],
     },
@@ -395,7 +387,7 @@ export const de: Dictionary = {
       title: 'Neugierig auf KI. Kein Programmieren nötig.',
       accent: [3, 4, 5],
       paragraphs: [
-        'Ob Sie in Marketing, Operations, Finanzen, HR, Vertrieb oder Projektmanagement arbeiten: Lernen Sie Fähigkeiten, die Sie sofort einsetzen können.',
+        'Marketing, Operations, Finanzen, HR, Vertrieb, Projektmanagement: Wenn KI auf Ihrem Schreibtisch gelandet ist, ist das hier für Sie. Fähigkeiten, die Sie noch am selben Tag einsetzen.',
       ],
       questions: [
         'Unsicher, wo Sie anfangen sollen?',
@@ -406,28 +398,28 @@ export const de: Dictionary = {
       closing: 'Beginnen Sie mit der Arbeit, die Sie ohnehin tun.',
     },
     business: {
-      kicker: 'Für Teams und Organisationen',
+      kicker: 'Für Teams',
       title: 'Helfen Sie Ihrem Team, KI gut zu nutzen.',
       accent: [4, 5, 6, 7],
       paragraphs: [
-        'Menschen KI-Werkzeuge zu geben ist leicht. Sie gut zu nutzen, braucht Übung. Wir helfen Teams, Sicherheit aufzubauen, Abläufe zu verbessern und bewusstere Entscheidungen zu treffen.',
+        'KI-Werkzeuge zu verteilen ist leicht. Sie gut zu nutzen, braucht Übung. Wir schulen Teams an ihren echten Abläufen, damit der Gewinn in der Arbeit sichtbar wird, nicht nur auf der Lizenzrechnung.',
       ],
       offers: [
         {
-          title: 'Gruppenschulungen und Workshops',
-          body: 'Praktische Sitzungen, zugeschnitten auf alltägliche Aufgaben und die Bedürfnisse des Teams.',
+          title: 'Schulungen und Workshops',
+          body: 'Praktische Sitzungen rund um die alltäglichen Aufgaben Ihres Teams.',
         },
         {
-          title: 'KI-Fähigkeiten und Abläufe',
-          body: 'Menschen helfen, nützliche Anwendungen zu finden, Prompts zu verbessern und Ergebnisse zu bewerten.',
+          title: 'Fähigkeiten und Abläufe',
+          body: 'Nützliche Anwendungen finden, Prompts verbessern, Ergebnisse beurteilen.',
         },
         {
           title: 'Conscious-AI-Beratung',
-          body: 'Werkzeugwahl, Kosten, Ressourcenverbrauch und verantwortungsvolle Einführung verstehen.',
+          body: 'Werkzeugwahl, Kosten, Ressourcenverbrauch und verantwortungsvolle Einführung, verständlich erklärt.',
         },
         {
           title: 'KI-Optimierung',
-          body: 'Unnötige Komplexität und Rechenleistung erkennen, bei gleichbleibender Qualität, Zuverlässigkeit und Sicherheit.',
+          body: 'Unnötige Komplexität und Rechenleistung streichen, ohne Qualität oder Sicherheit zu verlieren.',
         },
       ],
       cta: 'Teamschulung besprechen',
@@ -437,15 +429,15 @@ export const de: Dictionary = {
       title: 'Technologie soll uns voranbringen, mit Bedacht.',
       accent: [4, 5],
       paragraphs: [
-        'Wir glauben, Fortschritt heißt, echte Probleme zu lösen, nicht mehr zu bauen um des Bauens willen.',
-        'Technologie, die menschliche Fähigkeiten erweitert, ohne ihre Wirkung aus dem Blick zu verlieren.',
+        'Fortschritt heißt, echte Probleme zu lösen, nicht mehr zu bauen um des Bauens willen.',
+        'Wir wollen Technologie, die erweitert, was Menschen können, ohne aus dem Blick zu verlieren, was sie kostet.',
       ],
     },
     comingSoon: {
       kicker: 'Etwas Neues entsteht',
       title: 'Bewusst lernen. In die Praxis bringen.',
       accent: [2, 3, 4, 5],
-      body: 'Kostenloses Lernen ist erst der Anfang. Wir bauen ein neues Produkt, das mehr bewusste Technologie in den Alltag bringt. Hinterlassen Sie Ihre E-Mail, und Sie erfahren von beidem.',
+      body: 'Der kostenlose Kurs ist erst der Anfang. Wir bauen ein Produkt, das Conscious AI in den Arbeitsalltag bringt. Hinterlassen Sie Ihre E-Mail, und Sie erfahren von beidem.',
       cta: 'Auf dem Laufenden bleiben',
     },
   },
@@ -473,7 +465,7 @@ export const de: Dictionary = {
     },
     message: 'Ihre Nachricht',
     messagePlaceholder:
-      'Was bauen Sie, was möchten Sie verbessern, oder wo steht Technologie im Weg?',
+      'Was bauen Sie, was muss besser werden, oder wo steht Technologie im Weg?',
     consentBefore:
       'Ich bin damit einverstanden, dass Bullah Labs diese Anfrage speichert und verarbeitet, um mir zu antworten, wie in der',
     consentLink: 'Datenschutzerklärung',
@@ -484,7 +476,7 @@ export const de: Dictionary = {
       'Etwas ist schiefgelaufen. Bitte versuchen Sie es gleich noch einmal.',
     sentTitle: 'Nachricht erhalten.',
     sentBody:
-      'Vielen Dank. Wir lesen jede Anfrage persönlich und antworten {time}, direkt an die von Ihnen angegebene Adresse.',
+      'Vielen Dank. Ein Mensch liest jede Anfrage und antwortet {time}, direkt an die von Ihnen angegebene Adresse.',
     sentAgain: 'Weitere senden',
     // Mehrstufiges Formular
     stepLabel: 'Schritt {current} von {total}',
@@ -498,7 +490,7 @@ export const de: Dictionary = {
       message: {
         title: 'Erzählen Sie uns etwas mehr.',
         subtitle:
-          'Was Sie bauen, was Sie verbessern möchten oder wo Technologie im Weg steht.',
+          'Ein paar Zeilen genügen. Den Rest fragen wir in der Antwort.',
       },
       details: {
         title: 'Wohin dürfen wir antworten?',
@@ -542,55 +534,53 @@ export const de: Dictionary = {
     previous: 'zurück',
     next: 'weiter',
     notFound: 'Projekt nicht gefunden',
-    ctaTitle: 'Ein Problem, das sich zu lösen lohnt?',
-    ctaAccent: [4, 5, 6],
+    ctaTitle: 'Bauen Sie etwas Ähnliches?',
+    ctaAccent: [2, 3],
     ctaBody:
-      'Erzählen Sie uns, was Sie bauen, was Sie verbessern wollen oder wo Technologie im Weg steht. Wir helfen Ihnen, einen praktischen nächsten Schritt zu finden.',
+      'Erzählen Sie uns, wo Sie stehen. Wir sagen klar, was wir als Nächstes tun würden, und ob wir das richtige Team dafür sind.',
   },
   aboutPage: {
-    kicker: 'Wer wir sind',
+    kicker: 'Über uns',
     title:
       'Wir bauen Technologie mit Absicht und glauben, dass Fortschritt Verantwortung bedeutet.',
     accent: [8, 9, 10],
     description:
-      'Bullah Labs ist ein Produkt- und Entwicklungsteam, das Ideen in nützliche digitale Produkte verwandelt. Wir verbinden durchdachte Technik mit einem bewussten Blick darauf, wie Technologie entworfen, gebaut und genutzt wird.',
+      'Bullah Labs ist ein Produkt- und Engineering-Studio mit Büros in Stuttgart und Islamabad. Wir bauen digitale Produkte und helfen den Menschen, die Technologie, auch KI, nutzen, sie gut zu nutzen.',
     story: [
-      'Wir glauben, dass Technologie echte Probleme lösen soll, statt Komplexität um ihrer selbst willen zu schaffen. Das heißt, über das hinauszuschauen, was ein Produkt kann, und zu fragen, was es tun sollte, welche Ressourcen es braucht und wie es Menschen und die Welt um uns herum beeinflusst.',
-      'Unsere Vision geht über das Bauen von Software oder die Einführung von KI hinaus. Wir wollen eine Zukunft mitgestalten, in der Technologie menschliche Fähigkeiten erweitert, ohne ihre ökologischen, sozialen und ethischen Folgen aus dem Blick zu verlieren.',
-      'Das beginnt mit Verstehen. Wir helfen Menschen und Organisationen, informierte Entscheidungen zu treffen, Technologie wirksam zu nutzen und zu erkennen, wann weniger mehr ist.',
-      'Für uns ist bessere Technologie nicht einfach leistungsfähiger. Sie ist nützlicher, durchdachter und verantwortungsvoller.',
+      'Zu viel Technologie wird gebaut, um zu beeindrucken, nicht um zu helfen. Wir stellen zuerst andere Fragen: Was soll dieses Produkt tun, was kostet es im Betrieb, und wen betrifft es?',
+      'Das prägt alles, was wir ausliefern. Einfachere Systeme. Weniger bewegliche Teile. KI nur dort, wo sie sich lohnt. Produkte, die günstig zu halten und leicht zu übergeben sind.',
+      'Es prägt auch, was wir vermitteln. Mit Conscious AI helfen wir Menschen und Teams, KI mit Sicherheit und weniger Verschwendung zu nutzen, denn die beste Technologieentscheidung ist meist die, die man versteht.',
     ],
     facts: [
       {
         label: 'Was wir tun',
         value:
-          'Digitale Produkte, entworfen, gebaut und verbessert, mit Beratung zum guten Umgang mit Technologie und KI',
+          'Digitale Produkte, entworfen, gebaut und verbessert. Beratung zu Technologie und KI.',
       },
       {
         label: 'Für wen',
         value:
-          'Teams, die ein neues Produkt bauen, ein bestehendes verbessern oder Technologieentscheidungen treffen',
+          'Start-ups und etablierte Unternehmen, die etwas Neues bauen, etwas Altes reparieren oder entscheiden, was als Nächstes kommt',
       },
       {
-        label: 'Wie',
-        value:
-          'Das Problem verstehen, den richtigen Ansatz wählen, bauen und lernen, mit Absicht verbessern',
+        label: 'Seit',
+        value: '2024, mit über 150 Projekten und Kunden auf vier Kontinenten',
       },
       {
         label: 'Wo',
-        value: 'Islamabad und Stuttgart, mit überlappenden Arbeitszeiten',
+        value: 'Stuttgart und Islamabad, mit überlappenden Arbeitszeiten',
       },
     ],
     whereKicker: 'Wo wir sind',
     whereTitle: 'Zwei Büros, ein Arbeitstag.',
-    whereAccent: [3, 4],
+    whereAccent: [2, 3],
     whereDescription:
-      'Ein asiatisches Büro in Islamabad und ein europäisches in Stuttgart. Schreiben Sie dem, das näher ist; es antwortet dasselbe Team.',
+      'Ein europäisches Büro in Stuttgart und ein asiatisches in Islamabad. Schreiben Sie dem, das näher ist. Es antwortet dasselbe Team.',
   },
   legal: {
     kicker: 'Rechtliches',
     title: 'Die Formalitäten, verständlich formuliert.',
-    accent: [3, 4],
+    accent: [2, 3],
     description:
       'Alles, was den Betrieb dieser Website und die Zusammenarbeit mit Kundinnen und Kunden regelt, geschrieben zum Lesen und nicht zum Überfliegen. Fragen gehen direkt an einen Menschen, nicht an ein Formular.',
     reviewed: 'Alle Dokumente zuletzt geprüft am {date}',
@@ -680,30 +670,22 @@ export const de: Dictionary = {
   },
   contact: {
     kicker: 'Kontakt',
-    title: 'Ein Problem, das sich zu lösen lohnt?',
-    accent: [4, 5, 6],
+    title: 'Sprechen wir über Ihr Projekt.',
+    accent: [3, 4],
     description:
-      'Erzählen Sie uns, was Sie bauen, was Sie verbessern wollen oder wo Technologie im Weg steht. Wir helfen Ihnen, einen praktischen nächsten Schritt zu finden.',
-    direct: 'So erreichen Sie uns',
-    formNote:
-      'Das Formular ist der schnellste Weg zu uns. Es kommt direkt bei uns an und wir beantworten jede Anfrage persönlich.',
+      'Schreiben Sie uns oder buchen Sie ein 30-minütiges Erstgespräch. Ein Mensch antwortet innerhalb eines Werktags.',
     book: 'Ein 30-minütiges Kennenlerngespräch buchen',
-    callNote:
-      'Lieber telefonieren? Erwähnen Sie es und wir senden Ihnen einen Buchungslink.',
     choose: {
       formTab: 'Schreiben Sie uns',
       callTab: 'Gespräch buchen',
       callHint: '30-minütiges Erstgespräch',
     },
-    faqKicker: 'Bevor Sie schreiben',
-    faqTitle: 'Die Fragen, die wir am häufigsten hören.',
-    faqAccent: [4],
     home: {
       kicker: 'Kontakt',
       title: 'Ein Problem, das sich zu lösen lohnt?',
       accent: [4, 5, 6],
       description:
-        'Erzählen Sie uns, was Sie bauen, was Sie verbessern wollen oder wo Technologie im Weg steht. Wir helfen Ihnen, einen praktischen nächsten Schritt zu finden.',
+        'Erzählen Sie uns, was Sie bauen, was besser werden muss oder wo Technologie im Weg steht. Wir schlagen einen praktischen nächsten Schritt vor.',
     },
   },
   faq: {
@@ -716,12 +698,12 @@ export const de: Dictionary = {
     kicker: 'Sprechen wir',
     title: 'Ein Problem, das sich zu lösen lohnt?',
     accent: [4, 5, 6],
-    body: 'Erzählen Sie uns, was Sie bauen, was Sie verbessern wollen oder wo Technologie im Weg steht. Wir helfen Ihnen, einen praktischen nächsten Schritt zu finden.',
+    body: 'Erzählen Sie uns, was Sie bauen, was besser werden muss oder wo Technologie im Weg steht. Wir schlagen einen praktischen nächsten Schritt vor.',
     button: 'Erzählen Sie uns von Ihrem Projekt',
   },
   footer: {
     pitch:
-      'Wir bauen digitale Produkte und helfen Menschen, Technologie mit mehr Sorgfalt, Klarheit und Verantwortung zu nutzen.',
+      'Ein Produkt- und Engineering-Studio in Stuttgart und Islamabad. Wir bauen digitale Produkte, die bleiben, und bringen Menschen bei, KI gut zu nutzen.',
     program: 'Conscious AI',
     company: 'Unternehmen',
     offices: 'Standorte',

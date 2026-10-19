@@ -27,7 +27,7 @@ export function GlobalReach({ dict }: GlobalReachProps) {
           <TextReveal
             as='h2'
             text={t.title}
-            className='bl-display mt-5 max-w-[16ch] text-display-md text-ink'
+            className='bl-display mt-5 max-w-[16ch] text-display-lg text-ink'
           />
           <Reveal delay={0.2}>
             <p className='mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>

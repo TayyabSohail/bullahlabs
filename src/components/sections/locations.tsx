@@ -49,13 +49,13 @@ export function Locations({
     >
       <div>
         <Reveal>
-          <p className='bl-kicker bl-kicker-numbered'>{kicker}</p>
+          <p className='bl-kicker'>{kicker}</p>
         </Reveal>
         <TextReveal
           as='h2'
           text={title}
           accentWords={accentWords}
-          className='bl-display mt-5 max-w-[16ch] text-display-md text-foreground'
+          className='bl-display mt-5 max-w-[16ch] text-display-lg text-foreground'
         />
         <Reveal delay={0.15}>
           <p className='mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>

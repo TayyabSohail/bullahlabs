@@ -11,9 +11,9 @@ import { paths } from '@/constants/paths';
 import { getDictionary } from '@/i18n/server';
 
 export const metadata: Metadata = {
-  title: 'Our Approach',
+  title: 'Approach',
   description:
-    'How Bullah Labs works: understand the problem, choose the right approach, build and learn, improve with purpose. Clear thinking, deliberate building.',
+    'How Bullah Labs works: understand the problem, choose the right approach, build and learn, improve with purpose. Technology built with its consequences in mind.',
   alternates: { canonical: paths.approach },
 };
 

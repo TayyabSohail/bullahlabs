@@ -37,7 +37,7 @@ export function CtaBanner({
       <div className='bl-card bl-card-ink bl-grid-surface relative px-6 py-16 text-center sm:px-12 sm:py-20 lg:py-24'>
         <div className='relative mx-auto max-w-3xl'>
           <Reveal>
-            <p className='bl-kicker bl-kicker-numbered justify-center text-white/60'>
+            <p className='bl-kicker justify-center text-white/60'>
               {kicker ?? t.kicker}
             </p>
           </Reveal>

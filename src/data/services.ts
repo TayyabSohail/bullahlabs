@@ -21,37 +21,37 @@ export const services: Service[] = [
   {
     id: 'product-development',
     title: 'Digital Product Development',
-    body: 'Turn an idea into a product people can use. We support discovery, design, architecture and development, with a focus on real needs and long-term usefulness.',
+    body: 'From idea to a product people actually use. Discovery, design, architecture and development, focused on real needs and long-term value.',
   },
   {
     id: 'product-engineering',
     title: 'Product Engineering',
-    body: 'Build reliable software that can grow with the product. We make deliberate technical choices rather than adding complexity without a clear reason.',
+    body: 'Reliable software that grows with the product. Deliberate technical choices, no complexity without a reason.',
   },
   {
     id: 'ai-automation',
     title: 'AI and Automation',
-    body: 'Identify where AI can genuinely help. We help teams select suitable tools, design useful workflows and understand the limitations, costs and wider impacts of AI.',
+    body: 'AI where it genuinely helps, and nowhere else. We pick the tools, design the workflows and make the costs and limits clear.',
   },
   {
     id: 'systems-integrations',
     title: 'Systems and Integrations',
-    body: 'Connect tools and services so information flows more smoothly. We aim for systems that are understandable, maintainable and fit for purpose.',
+    body: 'Tools and services that finally talk to each other. Systems you can understand, maintain and hand over.',
   },
   {
     id: 'architecture-optimisation',
     title: 'Architecture and Optimisation',
-    body: 'Improve performance, latency, cost and complexity. We look for the simplest system that can meet the required standards of quality, reliability and safety.',
+    body: 'Faster, cheaper, simpler. We find the leanest system that still meets your bar for quality, reliability and safety.',
   },
   {
     id: 'education-guidance',
     title: 'Technology Education and Guidance',
-    body: 'Help people understand the technology they use and the decisions behind it. Through practical guidance and knowledge-sharing, we build confidence in choosing, applying and evaluating technology with care for its environmental, social and ethical effects.',
+    body: 'Confident technology decisions, made in-house. Practical guidance on choosing, applying and judging tools, AI included.',
   },
   {
     id: 'product-improvement',
     title: 'Product Improvement',
-    body: 'Make existing products more useful, efficient and sustainable to maintain. We identify what needs attention, what can be simplified and what may not need to be built at all.',
+    body: 'Make what you have more useful and cheaper to keep. We find what needs attention, what can be simplified and what should not be built at all.',
   },
 ];
 
@@ -60,37 +60,37 @@ const servicesDe: Service[] = [
   {
     id: 'product-development',
     title: 'Digitale Produktentwicklung',
-    body: 'Aus einer Idee wird ein Produkt, das Menschen nutzen können. Wir begleiten Analyse, Design, Architektur und Entwicklung, mit Blick auf echte Bedürfnisse und langfristigen Nutzen.',
+    body: 'Von der Idee zum Produkt, das Menschen wirklich nutzen. Analyse, Design, Architektur und Entwicklung, ausgerichtet auf echte Bedürfnisse und langfristigen Wert.',
   },
   {
     id: 'product-engineering',
     title: 'Product Engineering',
-    body: 'Zuverlässige Software, die mit dem Produkt wachsen kann. Wir treffen technische Entscheidungen bewusst, statt Komplexität ohne klaren Grund hinzuzufügen.',
+    body: 'Zuverlässige Software, die mit dem Produkt wächst. Bewusste technische Entscheidungen, keine Komplexität ohne Grund.',
   },
   {
     id: 'ai-automation',
     title: 'KI und Automatisierung',
-    body: 'Herausfinden, wo KI wirklich hilft. Wir unterstützen Teams dabei, passende Werkzeuge zu wählen, nützliche Abläufe zu gestalten und die Grenzen, Kosten und weiteren Auswirkungen von KI zu verstehen.',
+    body: 'KI dort, wo sie wirklich hilft, und sonst nirgends. Wir wählen die Werkzeuge, gestalten die Abläufe und machen Kosten und Grenzen klar.',
   },
   {
     id: 'systems-integrations',
     title: 'Systeme und Integrationen',
-    body: 'Werkzeuge und Dienste verbinden, damit Informationen reibungsloser fließen. Wir streben Systeme an, die verständlich, wartbar und zweckmäßig sind.',
+    body: 'Werkzeuge und Dienste, die endlich miteinander sprechen. Systeme, die Sie verstehen, warten und übergeben können.',
   },
   {
     id: 'architecture-optimisation',
     title: 'Architektur und Optimierung',
-    body: 'Leistung, Latenz, Kosten und Komplexität verbessern. Wir suchen das einfachste System, das die geforderten Standards an Qualität, Zuverlässigkeit und Sicherheit erfüllt.',
+    body: 'Schneller, günstiger, einfacher. Wir finden das schlankste System, das Ihre Anforderungen an Qualität, Zuverlässigkeit und Sicherheit noch erfüllt.',
   },
   {
     id: 'education-guidance',
     title: 'Technologiebildung und Beratung',
-    body: 'Menschen helfen, die Technologie zu verstehen, die sie nutzen, und die Entscheidungen dahinter. Mit praktischer Anleitung und geteiltem Wissen stärken wir die Sicherheit, Technologie auszuwählen, anzuwenden und zu bewerten, mit Blick auf ihre ökologischen, sozialen und ethischen Folgen.',
+    body: 'Sichere Technologieentscheidungen, im eigenen Haus. Praktische Anleitung zum Auswählen, Anwenden und Beurteilen von Werkzeugen, KI eingeschlossen.',
   },
   {
     id: 'product-improvement',
     title: 'Produktverbesserung',
-    body: 'Bestehende Produkte nützlicher, effizienter und nachhaltiger wartbar machen. Wir finden heraus, was Aufmerksamkeit braucht, was sich vereinfachen lässt und was vielleicht gar nicht gebaut werden muss.',
+    body: 'Was Sie haben, nützlicher und günstiger im Unterhalt machen. Wir finden, was Aufmerksamkeit braucht, was sich vereinfachen lässt und was gar nicht gebaut werden sollte.',
   },
 ];
 

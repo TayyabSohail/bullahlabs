@@ -38,10 +38,7 @@ export function SectionHeading({
       <div>
         <Reveal>
           <p
-            className={cn(
-              'bl-kicker bl-kicker-numbered',
-              align === 'center' && 'justify-center',
-            )}
+            className={cn('bl-kicker', align === 'center' && 'justify-center')}
           >
             {kicker}
           </p>
@@ -51,7 +48,7 @@ export function SectionHeading({
           text={title}
           accentWords={accentWords}
           className={cn(
-            'bl-display mt-5 text-display-md text-foreground',
+            'bl-display mt-5 text-display-lg text-foreground',
             align === 'center' && 'justify-center',
           )}
         />

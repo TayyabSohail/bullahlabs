@@ -29,13 +29,13 @@ export function WhoWeAre({ dict, className }: WhoWeAreProps) {
       <div className='bl-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20'>
         <div className='lg:sticky lg:top-32 lg:self-start'>
           <Reveal>
-            <p className='bl-kicker bl-kicker-numbered'>{t.kicker}</p>
+            <p className='bl-kicker'>{t.kicker}</p>
           </Reveal>
           <TextReveal
             as='h2'
             text={t.title}
             accentWords={[...t.accent]}
-            className='bl-display mt-5 max-w-[18ch] text-display-md text-foreground'
+            className='bl-display mt-5 max-w-[18ch] text-display-lg text-foreground'
           />
           <Reveal delay={0.3} className='mt-8 hidden lg:block'>
             <Link

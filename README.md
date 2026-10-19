@@ -46,6 +46,7 @@ All optional except `NEXT_PUBLIC_APP_URL`. See [`.env.example`](./.env.example).
 | `NEXT_PUBLIC_APP_URL`                                                                    | Canonical URLs, sitemap, Open Graph, structured data                                                           |
 | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`                               | Contact form delivery by email via Resend                                                                      |
 | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` | Contact form storage in `contact_messages` and lesson sign-ups in `course_signups` (see `supabase/migrations`) |
+| `GOOGLE_SHEETS_ID`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_SERVICE_ACCOUNT_KEY`         | Enquiries and course sign-ups appended as rows to a Google Sheet (tabs `Enquiries` and `Course signups`)       |
 | `NEXT_PUBLIC_CAL_LINK`                                                                   | "Book a call" link on the contact page (`user/event`)                                                          |
 | `NEXT_PUBLIC_COURSE_URL`                                                                 | Where the Conscious AI course is hosted; "Watch the course" links go there, or to the contact form while unset |
 | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST`                                    | Analytics, loaded only after cookie consent                                                                    |

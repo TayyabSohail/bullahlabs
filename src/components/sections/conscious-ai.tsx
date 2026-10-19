@@ -98,12 +98,12 @@ export function ProblemApproach({ dict, className }: SectionProps) {
     >
       <div className='bl-container grid gap-4 lg:grid-cols-2 lg:gap-5'>
         <Reveal className='bl-card bl-grid-surface flex flex-col p-6 sm:p-8 lg:p-10'>
-          <p className='bl-kicker bl-kicker-numbered'>{problem.kicker}</p>
+          <p className='bl-kicker'>{problem.kicker}</p>
           <TextReveal
             as='h2'
             text={problem.title}
             accentWords={[...problem.accent]}
-            className='bl-display mt-5 text-display-sm text-foreground sm:text-display-md'
+            className='bl-display mt-5 text-display-sm text-foreground sm:text-display-lg'
           />
           <div className='mt-7 space-y-4'>
             {problem.lines.map((line, index) => (
@@ -131,7 +131,7 @@ export function ProblemApproach({ dict, className }: SectionProps) {
             as='h2'
             text={approach.title}
             accentWords={[...approach.accent]}
-            className='bl-display relative mt-5 text-display-sm text-white sm:text-display-md [&_.bl-accent]:text-brand-2'
+            className='bl-display relative mt-5 text-display-sm text-white sm:text-display-lg [&_.bl-accent]:text-brand-2'
           />
           <div className='relative mt-7 space-y-4'>
             {approach.lines.map((line, index) => (
@@ -174,15 +174,12 @@ export function LearningHabits({ dict, className }: SectionProps) {
           stagger={0.08}
           className='mt-8 grid gap-px overflow-hidden border bg-line sm:mt-14 sm:grid-cols-2 lg:grid-cols-3'
         >
-          {t.habits.map((habit, index) => (
+          {t.habits.map((habit) => (
             <StaggerItem
               key={habit.title}
               className='group flex flex-col bg-surface p-6 transition-colors duration-300 hover:bg-brand-soft/35 sm:p-8'
             >
-              <span className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors group-hover:text-brand-text'>
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <h3 className='bl-display mt-6 text-2xl text-foreground'>
+              <h3 className='bl-display text-2xl text-foreground'>
                 {habit.title}
               </h3>
               <p className='mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base'>
@@ -208,13 +205,13 @@ export function WhoFor({ dict, className }: SectionProps) {
       <div className='bl-container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16'>
         <div>
           <Reveal>
-            <p className='bl-kicker bl-kicker-numbered'>{t.kicker}</p>
+            <p className='bl-kicker'>{t.kicker}</p>
           </Reveal>
           <TextReveal
             as='h2'
             text={t.title}
             accentWords={[...t.accent]}
-            className='bl-display mt-5 max-w-[18ch] text-display-md text-foreground'
+            className='bl-display mt-5 max-w-[18ch] text-display-lg text-foreground'
           />
           <Reveal delay={0.2} className='mt-7 max-w-xl space-y-4'>
             {t.paragraphs.map((paragraph) => (
@@ -273,15 +270,12 @@ export function ForBusiness({ dict, className }: SectionProps) {
           stagger={0.08}
           className='mt-8 grid gap-px overflow-hidden border bg-line sm:mt-14 sm:grid-cols-2 lg:grid-cols-4'
         >
-          {t.offers.map((offer, index) => (
+          {t.offers.map((offer) => (
             <StaggerItem
               key={offer.title}
               className='group flex flex-col bg-surface p-6 transition-colors duration-300 hover:bg-brand-soft/35 sm:p-8'
             >
-              <span className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors group-hover:text-brand-text'>
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <h3 className='bl-display mt-6 text-xl text-foreground lg:text-2xl'>
+              <h3 className='bl-display text-xl text-foreground lg:text-2xl'>
                 {offer.title}
               </h3>
               <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
@@ -316,13 +310,13 @@ export function Vision({ dict, className }: SectionProps) {
       <div className='bl-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20'>
         <div className='lg:sticky lg:top-32 lg:self-start'>
           <Reveal>
-            <p className='bl-kicker bl-kicker-numbered'>{t.kicker}</p>
+            <p className='bl-kicker'>{t.kicker}</p>
           </Reveal>
           <TextReveal
             as='h2'
             text={t.title}
             accentWords={[...t.accent]}
-            className='bl-display mt-5 max-w-[16ch] text-display-md text-foreground'
+            className='bl-display mt-5 max-w-[16ch] text-display-lg text-foreground'
           />
         </div>
         <Reveal delay={0.15} className='space-y-5'>

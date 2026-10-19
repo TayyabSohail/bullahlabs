@@ -15,11 +15,11 @@ export const values: Value[] = [
   },
   {
     title: 'The right tool for the task.',
-    body: 'Bigger, more complex systems are not automatically better.',
+    body: 'Bigger and more complex is not automatically better.',
   },
   {
     title: 'Efficiency is designed.',
-    body: 'Consider cost, latency, energy and complexity from the beginning.',
+    body: 'Cost, latency, energy and complexity are decided at the start, not patched at the end.',
   },
   {
     title: 'People matter.',
@@ -27,15 +27,15 @@ export const values: Value[] = [
   },
   {
     title: 'Impact is part of the decision.',
-    body: 'Consider environmental, social and ethical consequences alongside performance.',
+    body: 'Environmental, social and ethical consequences count alongside performance.',
   },
   {
     title: 'Use the minimum necessary computation.',
-    body: 'Meet the required standard of quality, reliability and safety without unnecessary work.',
+    body: 'Meet the standard for quality, reliability and safety without unnecessary work.',
   },
   {
     title: 'Keep learning.',
-    body: 'Help people understand their tools and make better technology decisions over time.',
+    body: 'Help people understand their tools and make better decisions over time.',
   },
 ];
 
@@ -46,11 +46,11 @@ const valuesDe: Value[] = [
   },
   {
     title: 'Das richtige Werkzeug für die Aufgabe.',
-    body: 'Größere, komplexere Systeme sind nicht automatisch besser.',
+    body: 'Größer und komplexer ist nicht automatisch besser.',
   },
   {
     title: 'Effizienz wird entworfen.',
-    body: 'Kosten, Latenz, Energie und Komplexität von Anfang an mitdenken.',
+    body: 'Kosten, Latenz, Energie und Komplexität werden am Anfang entschieden, nicht am Ende geflickt.',
   },
   {
     title: 'Menschen zählen.',
@@ -58,7 +58,7 @@ const valuesDe: Value[] = [
   },
   {
     title: 'Wirkung ist Teil der Entscheidung.',
-    body: 'Ökologische, soziale und ethische Folgen neben der Leistung berücksichtigen.',
+    body: 'Ökologische, soziale und ethische Folgen zählen neben der Leistung.',
   },
   {
     title: 'So wenig Rechenleistung wie nötig.',
@@ -66,7 +66,7 @@ const valuesDe: Value[] = [
   },
   {
     title: 'Weiter lernen.',
-    body: 'Menschen helfen, ihre Werkzeuge zu verstehen und mit der Zeit bessere Technologieentscheidungen zu treffen.',
+    body: 'Menschen helfen, ihre Werkzeuge zu verstehen und mit der Zeit bessere Entscheidungen zu treffen.',
   },
 ];
 

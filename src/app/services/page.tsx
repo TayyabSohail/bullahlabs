@@ -14,7 +14,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Services',
   description:
-    'Digital product development, product engineering, AI and automation, systems and integrations, architecture and optimisation, technology education, and product improvement.',
+    'Product development, engineering, AI and automation, integrations, architecture and optimisation, product improvement and technology guidance, from one team.',
   alternates: { canonical: paths.services },
 };
 
