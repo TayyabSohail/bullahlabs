@@ -31,7 +31,6 @@ export default function getMetadata(): Metadata {
     description: appConfig.description,
     applicationName: appConfig.title,
     robots: { index: true, follow: true },
-    manifest: '/manifest.webmanifest',
     icons: {
       icon: [
         { url: '/icon-64.png', type: 'image/png', sizes: '64x64' },
