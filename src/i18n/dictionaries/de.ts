@@ -20,7 +20,7 @@ export const de: Dictionary = {
     top: 'Nach oben',
   },
   hero: {
-    badge: 'Produkt- & Engineering-Studio',
+    badge: 'Digitale Produkte & Conscious AI',
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
     accent: [4, 5, 6],
     body: 'Wir bauen digitale Produkte, die echte Probleme lösen, schlank laufen und lange halten. Dieselbe Disziplin prägt, wie wir KI nutzen und wie wir es anderen beibringen.',

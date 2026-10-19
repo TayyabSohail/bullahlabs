@@ -19,7 +19,7 @@ export const en = {
     top: 'Back to top',
   },
   hero: {
-    badge: 'Product & engineering studio',
+    badge: 'Digital products & Conscious AI',
     title: 'Technology that solves problems.\nBuilt with conscience.',
     /** Words (0-based, across both lines) in the accent colour: line two. */
     accent: [4, 5, 6],
