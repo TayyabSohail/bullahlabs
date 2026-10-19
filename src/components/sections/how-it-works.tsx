@@ -37,7 +37,6 @@ export function HowItWorks({
     <section
       id='how-it-works'
       className={cn('bl-section bl-rule bl-band-stone', className)}
-      data-rail={t.kicker}
     >
       <div className='bl-container'>
         {heading && (

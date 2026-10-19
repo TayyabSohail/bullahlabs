@@ -21,10 +21,7 @@ export function Principles({ dict, className }: PrinciplesProps) {
   const values = getValues(dict.locale);
 
   return (
-    <section
-      className={cn('bl-section bl-rule bl-band-stone', className)}
-      data-rail={t.kicker}
-    >
+    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
       <div className='bl-container'>
         <SectionHeading
           kicker={t.kicker}

@@ -14,7 +14,7 @@ export function Numbers({ dict }: NumbersProps) {
   const t = dict.numbers;
 
   return (
-    <section className='bl-section bl-rule bl-band-stone' data-rail={t.kicker}>
+    <section className='bl-section bl-rule bl-band-stone'>
       <div className='bl-container'>
         <SectionHeading
           kicker={t.kicker}

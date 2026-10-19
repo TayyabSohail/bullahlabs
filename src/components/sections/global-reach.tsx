@@ -15,10 +15,7 @@ export function GlobalReach({ dict }: GlobalReachProps) {
   const t = dict.globalReach;
 
   return (
-    <section
-      className='bl-section bl-rule bl-band-stone overflow-hidden'
-      data-rail={t.kicker}
-    >
+    <section className='bl-section bl-rule bl-band-stone overflow-hidden'>
       <div className='bl-container grid items-center gap-8 sm:gap-12 lg:grid-cols-[1fr_0.95fr]'>
         <div>
           <Reveal>

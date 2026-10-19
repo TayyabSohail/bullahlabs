@@ -39,7 +39,7 @@ export function FaqSection({
   };
 
   return (
-    <section className={cn('bl-section', className)} data-rail={kicker}>
+    <section className={cn('bl-section', className)}>
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

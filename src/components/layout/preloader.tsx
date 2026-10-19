@@ -146,17 +146,23 @@ export function Preloader() {
             </div>
           </div>
 
-          {/* Blocky cell bar: filled blocks in brand, empty cells dimmed. */}
-          <div className='mt-6 flex w-[min(28rem,84vw)] items-center gap-3 font-mono text-[11px] tracking-[0.12em] sm:gap-4'>
-            <span className='text-white/75'>[</span>
-            <span className='flex-1 overflow-hidden whitespace-nowrap text-center text-brand'>
-              {'█'.repeat(filled)}
-              <span className='text-white/30'>
-                {'░'.repeat(BAR_CELLS - filled)}
+          {/* Blocky cell bar: filled blocks in brand, empty cells dimmed.
+              The counter has a fixed slot on the right and an empty slot of
+              the same width on the left, so the bar itself stays centred
+              under the wordmark instead of drifting left on phones. */}
+          <div className='mt-6 grid w-[min(28rem,84vw)] grid-cols-[2.75rem_1fr_2.75rem] items-center gap-3 font-mono text-[11px] tracking-[0.12em] sm:gap-4'>
+            <span aria-hidden='true' />
+            <span className='flex min-w-0 items-center justify-center gap-3 sm:gap-4'>
+              <span className='text-white/75'>[</span>
+              <span className='min-w-0 overflow-hidden whitespace-nowrap text-brand'>
+                {'█'.repeat(filled)}
+                <span className='text-white/30'>
+                  {'░'.repeat(BAR_CELLS - filled)}
+                </span>
               </span>
+              <span className='text-white/75'>]</span>
             </span>
-            <span className='text-white/75'>]</span>
-            <span className='w-12 text-right tabular-nums text-white/90'>
+            <span className='text-right tabular-nums text-white/90'>
               {String(progress).padStart(3, '0')}%
             </span>
           </div>

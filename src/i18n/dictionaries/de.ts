@@ -16,8 +16,6 @@ export const de: Dictionary = {
     menuOpen: 'Menü öffnen',
     menuClose: 'Menü schließen',
     language: 'Sprache',
-    next: 'Weiter',
-    top: 'Nach oben',
   },
   hero: {
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',

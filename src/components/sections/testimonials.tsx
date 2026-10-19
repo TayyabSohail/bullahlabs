@@ -68,7 +68,6 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
       role='tabpanel'
       aria-labelledby={`${sectionId}-title`}
       className={cn('bl-section bl-rule bl-band-stone', className)}
-      data-rail={t.kicker}
     >
       <div className='bl-container'>
         <div>

@@ -18,11 +18,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
   const t = dict.contact.home;
 
   return (
-    <section
-      id='contact'
-      data-rail={t.kicker}
-      className='bl-section bl-rule bl-band-stone'
-    >
+    <section id='contact' className='bl-section bl-rule bl-band-stone'>
       <div className='bl-container max-w-7xl'>
         <ContactChannels
           dict={dict}

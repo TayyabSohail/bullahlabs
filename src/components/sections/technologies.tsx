@@ -190,7 +190,7 @@ export function Technologies({ dict }: TechnologiesProps) {
   const t = dict.technologies;
 
   return (
-    <section className='bl-rule bl-band-stone' data-rail={t.kicker}>
+    <section className='bl-rule bl-band-stone'>
       <div className='bl-container pt-10 sm:pt-14'>
         <Reveal>
           <p className='bl-kicker'>{t.kicker}</p>

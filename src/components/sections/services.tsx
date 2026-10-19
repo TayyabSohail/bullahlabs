@@ -26,10 +26,7 @@ export function Services({ dict, className, heading = true }: ServicesProps) {
   const services = getServices(dict.locale);
 
   return (
-    <section
-      className={cn('bl-section bl-rule bl-band-stone', className)}
-      data-rail={t.kicker}
-    >
+    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
       <div className='bl-container'>
         {heading && (
           <SectionHeading
