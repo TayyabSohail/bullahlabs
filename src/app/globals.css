@@ -892,15 +892,8 @@
 .bl-map {
   max-width: 100%;
   overflow: clip;
-  --bl-map-label: 11px;
-  --bl-map-note: 9.5px;
-}
-/* Below sm the graphic is drawn at phone width, so the text gets a size up. */
-@media (max-width: 639.98px) {
-  .bl-map {
-    --bl-map-label: 12px;
-    --bl-map-note: 11px;
-  }
+  --bl-map-label: 12px;
+  --bl-map-note: 10px;
 }
 /* Below lg the graphic sits under the copy, so the stage breaks out of the
    container padding (mirroring .bl-container) to use the full screen width. */
@@ -918,9 +911,9 @@
 /* Type on the drawing: box labels, and small notes beside things. */
 .bl-map-label {
   font-family: var(--font-mono);
-  font-size: var(--bl-map-label, 11px);
+  font-size: var(--bl-map-label, 12px);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   fill: hsl(var(--ink));
 }

@@ -3,11 +3,10 @@ import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 import { ScrollHighlight } from '@/components/motion/scroll-highlight';
 
 import { getTechMeta } from '@/lib/tech-icons';
-import { cn } from '@/lib/utils';
 
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
-/** The dimmed marquee: a mix of what we build with and what we teach. */
+/** The marquee: a mix of what we build with and what we teach. */
 const TOOLS = [
   'Next.js',
   'React',
@@ -116,21 +115,64 @@ const LAYERS = [
 ];
 
 /**
- * Hairline borders for a grid that is 1 column by default, 2 from `sm`
- * and 3 from `lg`. Later breakpoints override the earlier ones.
+ * Brand colours that are too pale to read on cream paper (yellows, sky
+ * blues) get a deeper shade of the same hue. Everything else keeps its
+ * official colour.
  */
-function cellClasses(index: number) {
-  return cn(
-    'flex flex-col py-7 sm:py-9',
-    index > 0 && 'border-t',
-    // two columns
-    index < 2 ? 'sm:border-t-0' : 'sm:border-t',
-    index % 2 === 1 ? 'sm:border-l sm:pl-8 sm:pr-0' : 'sm:pl-0 sm:pr-8',
-    // three columns
-    index < 3 ? 'lg:border-t-0' : 'lg:border-t',
-    index % 3 === 0 && 'lg:border-l-0 lg:pl-0 lg:pr-8',
-    index % 3 === 1 && 'lg:border-l lg:px-8',
-    index % 3 === 2 && 'lg:border-l lg:pl-8 lg:pr-0',
+const PAPER_SAFE: Record<string, string> = {
+  React: '#0E8FB8',
+  'React Native': '#0E8FB8',
+  JavaScript: '#A88F00',
+  'Hugging Face': '#B98A00',
+  Firebase: '#D9890A',
+  'DHL API': '#B88E00',
+  Airtable: '#0E8FC9',
+  'Tailwind CSS': '#0E93C4',
+  TailwindCSS: '#0E93C4',
+  Capacitor: '#0E7FD0',
+  AWS: '#D9780A',
+  'AWS EC2': '#D9780A',
+  'AWS Lambda': '#D9780A',
+  Claude: '#B8743F',
+  'Claude (Anthropic)': '#B8743F',
+  Android: '#1FA85E',
+  Supabase: '#1FA062',
+  LangGraph: '#15976B',
+  Automation: '#C58A00',
+};
+
+/** The icon and the colour a tech is drawn in on this paper. */
+function paperMeta(name: string) {
+  const { icon, color } = getTechMeta(name);
+  const tint = PAPER_SAFE[name] ?? color;
+  return { icon, color: tint === 'currentColor' ? null : tint };
+}
+
+/**
+ * A small ruled tile with the logo in its brand colour on a wash of the same
+ * colour. Logos without a brand colour (Next.js, Vercel, Notion) stay in ink.
+ */
+function TechTile({ name, size = 'sm' }: { name: string; size?: 'sm' | 'lg' }) {
+  const { icon: Icon, color } = paperMeta(name);
+  const box = size === 'lg' ? 'h-10 w-10 sm:h-11 sm:w-11' : 'h-7 w-7';
+  const glyph = size === 'lg' ? 'h-5 w-5 sm:h-6 sm:w-6' : 'h-4 w-4';
+
+  return (
+    <span
+      aria-hidden='true'
+      className={`${box} inline-flex shrink-0 items-center justify-center border border-ink/15 bg-ink/[0.05] text-ink`}
+      style={
+        color
+          ? {
+              color,
+              backgroundColor: `color-mix(in srgb, ${color} 14%, transparent)`,
+              borderColor: `color-mix(in srgb, ${color} 45%, transparent)`,
+            }
+          : undefined
+      }
+    >
+      <Icon className={glyph} />
+    </span>
   );
 }
 
@@ -140,39 +182,34 @@ interface TechnologiesProps {
 
 /**
  * Tool marquee, then a short statement that fills with ink as you scroll,
- * then the stack laid out by layer in hairline columns. Every logo is drawn
- * in ink: brand colours (yellows, pale greys) vanish on the cream paper.
+ * then the stack laid out by layer. Each layer is a hairline cell whose
+ * heading, note and tool list sit on shared rows (CSS subgrid), so the rules
+ * run straight across the whole grid no matter how long a label wraps.
  */
 export function Technologies({ dict }: TechnologiesProps) {
   const t = dict.technologies;
 
   return (
     <section className='bl-rule bl-band-stone' data-rail={t.kicker}>
-      <div className='bl-container pt-12 sm:pt-14'>
+      <div className='bl-container pt-10 sm:pt-14'>
         <Reveal>
           <p className='bl-kicker'>{t.kicker}</p>
         </Reveal>
       </div>
 
-      <div className='mt-6 border-b py-6 sm:mt-10 sm:py-8'>
+      <div className='mt-6 border-y py-5 sm:mt-8 sm:py-7'>
         <Marquee duration={60}>
-          {TOOLS.map((name) => {
-            const { icon: Icon } = getTechMeta(name);
-            return (
-              <span
-                key={name}
-                className='mx-6 inline-flex items-center gap-3 text-ink/70 transition-colors duration-500 hover:text-ink sm:mx-9'
-              >
-                <Icon
-                  aria-hidden='true'
-                  className='h-6 w-6 shrink-0 sm:h-7 sm:w-7'
-                />
-                <span className='bl-display whitespace-nowrap text-xl sm:text-2xl'>
-                  {name}
-                </span>
+          {TOOLS.map((name) => (
+            <span
+              key={name}
+              className='mx-5 inline-flex items-center gap-3 text-ink/75 transition-colors duration-500 hover:text-ink sm:mx-8'
+            >
+              <TechTile name={name} size='lg' />
+              <span className='bl-display whitespace-nowrap text-xl sm:text-2xl'>
+                {name}
               </span>
-            );
-          })}
+            </span>
+          ))}
         </Marquee>
       </div>
 
@@ -190,31 +227,41 @@ export function Technologies({ dict }: TechnologiesProps) {
 
       <div className='bl-container pb-10 sm:pb-14'>
         <Reveal>
-          <p className='bl-kicker'>{t.stackLabel}</p>
+          <h2 className='bl-display text-2xl text-ink sm:text-3xl'>
+            {t.stackLabel}
+          </h2>
         </Reveal>
-        <Stagger className='mt-6 grid border-y sm:grid-cols-2 lg:grid-cols-3'>
+
+        <Stagger
+          stagger={0.07}
+          className='mt-6 grid gap-px border bg-line sm:mt-8 sm:grid-cols-2 lg:grid-cols-3'
+        >
           {t.layers.map((layer, index) => (
-            <StaggerItem key={layer.label} className={cellClasses(index)}>
-              <h3 className='bl-display text-2xl text-ink'>{layer.label}</h3>
+            <StaggerItem
+              key={layer.label}
+              className='grid grid-rows-[auto_auto_1fr] gap-0 bg-surface p-5 sm:row-span-3 sm:grid-rows-subgrid sm:p-7'
+            >
+              <div className='flex items-baseline justify-between gap-4'>
+                <h3 className='bl-display text-xl leading-tight text-ink sm:text-2xl'>
+                  {layer.label}
+                </h3>
+                <span className='shrink-0 font-mono text-[11px] font-semibold tracking-[0.18em] text-brand-text'>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </div>
               <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
                 {layer.note}
               </p>
-              <ul className='mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t pt-4 sm:mt-6 sm:pt-6'>
-                {LAYERS[index].map((name) => {
-                  const { icon: Icon } = getTechMeta(name);
-                  return (
-                    <li
-                      key={name}
-                      className='flex min-w-0 items-center gap-2.5 text-sm font-medium text-ink/80'
-                    >
-                      <Icon
-                        aria-hidden='true'
-                        className='h-4 w-4 shrink-0 text-ink'
-                      />
-                      <span className='min-w-0 truncate'>{name}</span>
-                    </li>
-                  );
-                })}
+              <ul className='mt-5 flex flex-wrap content-start gap-2 self-stretch border-t pt-5'>
+                {LAYERS[index].map((name) => (
+                  <li
+                    key={name}
+                    className='inline-flex max-w-full items-center gap-2 border border-ink/20 bg-surface py-1 pl-1 pr-3 text-[13px] font-medium text-ink/85'
+                  >
+                    <TechTile name={name} />
+                    <span className='truncate'>{name}</span>
+                  </li>
+                ))}
               </ul>
             </StaggerItem>
           ))}

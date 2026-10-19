@@ -94,27 +94,33 @@ interface SystemMapProps {
 /* ----------------------------------------------------------------------- */
 /* Layout                                                                   */
 
-const W = 640;
-const H = 372;
+const W = 768;
+const H = 344;
 /** The two lanes: the usual way on top, the conscious way below. */
 const LANE_A = 104;
 const LANE_B = 268;
 const ENTRY_X = 26;
-/** The switch where our part diverts the task down to the conscious lane. */
-const JUNCTION_X = 118;
-const CURVE_END_X = 196;
+/**
+ * The switch where our part diverts the task down to the conscious lane.
+ * Its label sits on the entry side, so the curve leaving it never crosses
+ * the words.
+ */
+const JUNCTION_X = 156;
+const CURVE_END_X = 230;
 /** The usual lane: the full context as a grid, the large model, rounds. */
-const FILE = { x: 206, y: LANE_A - 22, cols: 6, rows: 4, step: 12, size: 7 };
-const MODEL = { x: 296, y: LANE_A - 34, w: 118, h: 68 };
+const FILE = { x: 236, y: LANE_A - 22, cols: 6, rows: 4, step: 12, size: 7 };
+const MODEL = { x: 330, y: LANE_A - 34, w: 118, h: 68 };
 const ROUNDS = 5;
 /**
  * The conscious lane: three ruled stops hanging under the rail like
- * stations, so the task rides over them and never covers a label.
+ * stations, so the task rides over them and never covers a label. Each
+ * box is wide enough for its longest label in either language with room
+ * to spare, and the row keeps clear of the meters.
  */
 const STOP = {
-  decide: { x: 214, w: 72, h: 38 },
-  tool: { x: 308, w: 92, h: 38 },
-  check: { x: 400, w: 72, h: 38 },
+  decide: { x: 276, w: 88, h: 38 },
+  tool: { x: 390, w: 100, h: 38 },
+  check: { x: 506, w: 92, h: 38 },
 };
 const STOP_DROP = 12;
 const STOP_CY = LANE_B + STOP_DROP + STOP.decide.h / 2;
@@ -125,7 +131,7 @@ const SMALL_Y = LANE_B - 26;
  * a short figure beside it. The panel between the lanes' meters is the
  * saving, written out in full.
  */
-const BAR = { x: 440, w: 92, h: 8, gap: 6 };
+const BAR = { x: 570, w: 92, h: 8, gap: 6 };
 const FIGURE_X = BAR.x + BAR.w + 7;
 const METER_KEYS: (keyof MapFigures)[] = ['tokens', 'cost', 'co2'];
 /** Top of meter row i, relative to the lane: the three rows centre on it. */
@@ -143,8 +149,8 @@ const END_X = BAR.x - 18;
 /** The curve the task takes from the switch down to the conscious lane. */
 const CURVE = {
   p0: { x: JUNCTION_X, y: LANE_A },
-  p1: { x: JUNCTION_X + 58, y: LANE_A },
-  p2: { x: CURVE_END_X - 58, y: LANE_B },
+  p1: { x: JUNCTION_X + 54, y: LANE_A },
+  p2: { x: CURVE_END_X - 54, y: LANE_B },
   p3: { x: CURVE_END_X, y: LANE_B },
 };
 const CURVE_D = `M ${CURVE.p0.x} ${CURVE.p0.y} C ${CURVE.p1.x} ${CURVE.p1.y}, ${CURVE.p2.x} ${CURVE.p2.y}, ${CURVE.p3.x} ${CURVE.p3.y}`;
@@ -779,10 +785,11 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
             tone='ink'
           />
         </motion.g>
+        {/* The conscious title sits level with the row of stops. */}
         <motion.g {...build(1)}>
           <LaneTitle
             x={ENTRY_X - 9}
-            y={LANE_B}
+            y={STOP_CY}
             text={copy.lanes.conscious}
             tone='brand'
           />
@@ -964,10 +971,12 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
             width={6}
             height={6}
           />
+          {/* The label ends short of the switch on its entry side: the
+              curve leaves on the other side, so it never crosses the words. */}
           <text
             className='bl-map-label bl-map-switch-label'
-            x={JUNCTION_X + 11}
-            y={LANE_A + 26}
+            x={JUNCTION_X - 16}
+            y={LANE_A + 24}
             textAnchor='end'
             dominantBaseline='central'
           >
@@ -975,8 +984,8 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
           </text>
           <text
             className='bl-map-note'
-            x={JUNCTION_X + 11}
-            y={LANE_A + 39}
+            x={JUNCTION_X - 16}
+            y={LANE_A + 37}
             textAnchor='end'
             dominantBaseline='central'
           >
