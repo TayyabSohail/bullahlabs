@@ -76,10 +76,8 @@ export function MobileMenu({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            // Solid, not `bg-background/98`: the colour is defined as
-            // hsl(var(--background)) with no alpha slot, so Tailwind dropped
-            // the modifier and only the blur remained, showing the page
-            // through the menu.
+            // Keep this solid so the menu is a calm, uninterrupted surface
+            // over the page content.
             className='fixed inset-0 z-[65] flex h-[100dvh] flex-col bg-[hsl(var(--nav-sun))]'
             data-lenis-prevent
           >
