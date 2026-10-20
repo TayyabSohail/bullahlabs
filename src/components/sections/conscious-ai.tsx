@@ -249,7 +249,6 @@ export function ForBusiness({ dict, className }: SectionProps) {
           kicker={t.kicker}
           title={t.title}
           accentWords={[...t.accent]}
-          description={t.paragraphs.join(' ')}
         />
         <Stagger
           stagger={0.08}

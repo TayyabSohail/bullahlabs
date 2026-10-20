@@ -48,7 +48,7 @@ export default async function ConsciousAiPage() {
         accentWords={[...t.accent]}
         description={t.description}
       >
-        <div className='grid items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-16'>
+        <div className='grid items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-2'>
           <div>
             <CourseSignup
               dict={dict}
@@ -59,7 +59,7 @@ export default async function ConsciousAiPage() {
             />
           </div>
 
-          <div className='bl-card w-full min-w-0 max-w-[44rem] justify-self-center bg-surface p-2 sm:p-3 lg:justify-self-end'>
+          <div className='bl-card w-full min-w-0 max-w-[44rem] justify-self-center bg-surface p-2 sm:p-3 lg:justify-self-start'>
             <SystemMap copy={dict.hero.map} delay={0.5} />
           </div>
         </div>

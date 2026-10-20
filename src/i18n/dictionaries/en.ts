@@ -449,9 +449,6 @@ export const en = {
       kicker: 'For teams',
       title: 'Rolled out AI? Make it count.',
       accent: [3, 4, 5],
-      paragraphs: [
-        'Without guidance, you get guesswork, hidden use and polished-looking work someone else has to fix. We train teams on their real tasks, so the gains show up in the work, not just on the licence bill.',
-      ],
       offers: [
         {
           title: 'Training and workshops',
@@ -477,7 +474,6 @@ export const en = {
       title: 'Faster, sure. But towards what?',
       accent: [2, 3, 4],
       paragraphs: [
-        'Progress means solving real problems, not adding AI for its own sake.',
         'We believe technology should expand what people can achieve while respecting its impact on people, budgets and the environment. This means choosing efficient solutions and using only the computing power each task requires.',
       ],
     },
