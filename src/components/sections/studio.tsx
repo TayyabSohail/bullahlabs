@@ -1,4 +1,4 @@
-import { ArrowRight, Compass, GraduationCap, Hammer } from 'lucide-react';
+import { ArrowRight, Compass, GraduationCap, Hammer, RefreshCw, Scale, ScanSearch } from 'lucide-react';
 import Link from 'next/link';
 
 import { SectionHeading } from '@/components/common/section-heading';
@@ -28,10 +28,30 @@ export function Studio() {
     },
   ] as const;
   const process = [
-    ['Discover', 'We ask why before how, and whether software or AI belongs here at all.'],
-    ['Decide', 'The simplest option that will hold. Proven over trending, lean over large.'],
-    ['Build', 'We ship with the running costs in plain sight: time, money and energy.'],
-    ['Improve', 'We keep it useful and cheap to run, and remove what stopped earning its place.'],
+    {
+      title: 'Discover',
+      body: 'We ask why before how, and whether software or AI belongs here at all.',
+      Icon: ScanSearch,
+      tone: 'bg-brand-soft/60',
+    },
+    {
+      title: 'Decide',
+      body: 'The simplest option that will hold. Proven over trending, lean over large.',
+      Icon: Scale,
+      tone: 'bg-warm/10',
+    },
+    {
+      title: 'Build',
+      body: 'We ship with the running costs in plain sight: time, money and energy.',
+      Icon: Hammer,
+      tone: 'bg-surface-2/70',
+    },
+    {
+      title: 'Improve',
+      body: 'We keep it useful and cheap to run, and remove what stopped earning its place.',
+      Icon: RefreshCw,
+      tone: 'bg-brand-soft/30',
+    },
   ] as const;
 
   return (
@@ -45,20 +65,6 @@ export function Studio() {
           title='Built the way we use AI: only where it earns its place.'
           accentWords={[9, 10, 11]}
           description='Every tool, model and line of code in our work has to justify its cost in time, money and energy. Three ways in, one standard.'
-          aside={
-            <div className='flex flex-wrap items-center gap-4 md:justify-end'>
-              <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground'>
-                Want our services?
-              </p>
-              <Link
-                href={paths.services}
-                className='bl-btn bl-btn-primary inline-flex h-14 items-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] shadow-[0_14px_28px_-18px_hsl(var(--ink))]'
-              >
-                Visit services
-                <ArrowRight className='h-4 w-4' />
-              </Link>
-            </div>
-          }
         />
 
         {/* The offer: three ruled cards. */}
@@ -84,6 +90,17 @@ export function Studio() {
           ))}
         </div>
 
+        <div className='mt-6 flex flex-col gap-5 bg-ink px-6 py-7 text-white sm:flex-row sm:items-center sm:justify-between sm:px-8'>
+          <p className='bl-display text-2xl sm:text-3xl'>Want our services?</p>
+          <Link
+            href={paths.services}
+            className='bl-btn bl-btn-primary inline-flex h-14 w-full items-center justify-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:w-auto'
+          >
+            Visit services
+            <ArrowRight className='h-4 w-4' />
+          </Link>
+        </div>
+
         {/* The method: one ruled panel on the same hard shadow as the cards above. */}
         <div className='bl-card mt-16'>
           <div className='flex flex-col gap-2 border-b px-6 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:px-8'>
@@ -93,27 +110,33 @@ export function Studio() {
             </p>
           </div>
           <ol className='grid sm:grid-cols-2 lg:grid-cols-4'>
-            {process.map(([title, body], index) => (
+            {process.map(({ title, body, Icon, tone }, index) => (
               <li
                 key={title}
                 className={[
-                  'p-6 sm:p-8',
+                  'relative min-h-64 overflow-hidden p-6 sm:p-8',
                   index > 0 ? 'border-t' : '',
                   index % 2 === 1 ? 'sm:border-l sm:border-t-0' : '',
                   index === 2 ? 'sm:border-t' : '',
                   index > 0 ? 'lg:border-l lg:border-t-0' : '',
                 ].join(' ')}
               >
-                <span className='inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold tracking-[0.18em] text-brand-text'>
-                  <span aria-hidden='true' className='h-2 w-2 bg-brand' />
-                  0{index + 1}
-                </span>
-                <h3 className='bl-display mt-6 text-3xl text-foreground'>
+                <div className='relative flex items-center justify-between'>
+                  <span className='inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold tracking-[0.18em] text-brand-text'>
+                    <span aria-hidden='true' className='h-2 w-2 bg-brand' />
+                    0{index + 1}
+                  </span>
+                  <span className={`flex h-10 w-10 items-center justify-center border border-ink/15 ${tone} text-foreground`}>
+                    <Icon className='h-[18px] w-[18px]' strokeWidth={1.7} />
+                  </span>
+                </div>
+                <h3 className='bl-display relative mt-9 text-3xl text-foreground'>
                   {title}
                 </h3>
-                <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
+                <p className='relative mt-3 text-sm leading-relaxed text-muted-foreground'>
                   {body}
                 </p>
+                <span aria-hidden='true' className={`absolute inset-x-0 bottom-0 h-1 ${tone}`} />
               </li>
             ))}
           </ol>
