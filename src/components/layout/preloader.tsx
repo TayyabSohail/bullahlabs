@@ -162,7 +162,7 @@ export function Preloader() {
               </span>
               <span className='text-white/75'>]</span>
             </span>
-            <span className='text-right tabular-nums text-white/90'>
+            <span className='-translate-x-3 text-right tabular-nums text-white/90 sm:translate-x-0'>
               {String(progress).padStart(3, '0')}%
             </span>
           </div>

@@ -68,7 +68,7 @@ export function Problem({ dict }: ProblemProps) {
             </h3>
             <Link
               href={paths.program}
-              className='bl-btn bl-btn-primary mt-7 inline-flex h-14 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
+              className='bl-btn bl-btn-primary mx-auto mt-7 flex h-14 w-fit items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:mx-0'
             >
               {c.cta}
               <ArrowUpRight className='h-4 w-4' />

@@ -11,18 +11,21 @@ export function Studio() {
     {
       title: 'Build',
       body: 'New products from first sketch to launch. Web, mobile and the systems behind them. AI goes in only where it does a job, on the leanest model that does it, and stays out everywhere else.',
+      mobileBody: 'From first idea to launch. Lean, purposeful AI.',
       typical: 'New product · MVP · Platform',
       Icon: Hammer,
     },
     {
       title: 'Fix',
       body: 'Software that costs too much to run, or that nobody dares touch. We take out what is not needed, swap heavy services for lean ones and give the code a future. The running bill usually shrinks with it.',
+      mobileBody: 'Make costly, fragile software simple again.',
       typical: 'Rebuild · Rescue · Integration',
       Icon: Compass,
     },
     {
       title: 'Teach',
       body: 'Conscious AI for your team, on your real work. Which tool fits, how little it needs, when to skip it altogether, and how to check what it gives you before you trust it.',
+      mobileBody: 'Practical AI for your team and real work.',
       typical: 'Workshops · Team training · Free course',
       Icon: GraduationCap,
     },
@@ -31,24 +34,28 @@ export function Studio() {
     {
       title: 'Discover',
       body: 'We ask why before how, and whether software or AI belongs here at all.',
+      mobileBody: 'Start with the need, not the tool.',
       Icon: ScanSearch,
       tone: 'bg-brand-soft/60',
     },
     {
       title: 'Decide',
       body: 'The simplest option that will hold. Proven over trending, lean over large.',
+      mobileBody: 'Choose the simplest option that lasts.',
       Icon: Scale,
       tone: 'bg-warm/10',
     },
     {
       title: 'Build',
       body: 'We ship with the running costs in plain sight: time, money and energy.',
+      mobileBody: 'Ship with costs in plain sight.',
       Icon: Hammer,
       tone: 'bg-surface-2/70',
     },
     {
       title: 'Improve',
       body: 'We keep it useful and cheap to run, and remove what stopped earning its place.',
+      mobileBody: 'Keep what works. Remove what does not.',
       Icon: RefreshCw,
       tone: 'bg-brand-soft/30',
     },
@@ -69,7 +76,7 @@ export function Studio() {
 
         {/* The offer: three ruled cards. */}
         <div className='mt-12 grid gap-6 md:grid-cols-3'>
-          {services.map(({ title, body, typical, Icon }, index) => (
+          {services.map(({ title, body, mobileBody, typical, Icon }, index) => (
             <article key={title} className='bl-card flex flex-col p-7 sm:p-8'>
               <div className='flex items-center justify-between text-brand-text'>
                 <span className='font-mono text-[11px] font-semibold tracking-[0.18em]'>
@@ -80,7 +87,10 @@ export function Studio() {
               <h3 className='bl-display mt-8 text-4xl text-foreground sm:text-5xl'>
                 {title}
               </h3>
-              <p className='mt-4 text-base leading-relaxed text-muted-foreground'>
+              <p className='mt-4 text-base leading-relaxed text-muted-foreground md:hidden'>
+                {mobileBody}
+              </p>
+              <p className='mt-4 hidden text-base leading-relaxed text-muted-foreground md:block'>
                 {body}
               </p>
               <p className='mt-auto border-t border-line pt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-brand-text'>
@@ -99,11 +109,11 @@ export function Studio() {
             </p>
           </div>
           <ol className='grid sm:grid-cols-2 lg:grid-cols-4'>
-            {process.map(({ title, body, Icon, tone }, index) => (
+            {process.map(({ title, body, mobileBody, Icon, tone }, index) => (
               <li
                 key={title}
                 className={[
-                  'relative min-h-64 overflow-hidden p-6 sm:p-8',
+                  'relative min-h-0 overflow-hidden p-6 sm:min-h-64 sm:p-8',
                   index > 0 ? 'border-t' : '',
                   index % 2 === 1 ? 'sm:border-l sm:border-t-0' : '',
                   index === 2 ? 'sm:border-t' : '',
@@ -122,7 +132,10 @@ export function Studio() {
                 <h3 className='bl-display relative mt-9 text-3xl text-foreground'>
                   {title}
                 </h3>
-                <p className='relative mt-3 text-sm leading-relaxed text-muted-foreground'>
+                <p className='relative mt-3 text-sm leading-relaxed text-muted-foreground md:hidden'>
+                  {mobileBody}
+                </p>
+                <p className='relative mt-3 hidden text-sm leading-relaxed text-muted-foreground md:block'>
                   {body}
                 </p>
                 <span aria-hidden='true' className={`absolute inset-x-0 bottom-0 h-1 ${tone}`} />

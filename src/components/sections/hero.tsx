@@ -42,7 +42,7 @@ export function Hero({ dict }: HeroProps) {
           stagger={0.035}
           typingBounce
           delay={0.15}
-          className='bl-display justify-start text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink'
+          className='bl-display justify-center text-center text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink sm:justify-start sm:text-left'
         />
 
         <div className='mt-10 grid gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-24'>
@@ -55,7 +55,7 @@ export function Hero({ dict }: HeroProps) {
 
             <Reveal
               delay={0.85}
-              className='mt-8 flex w-full flex-col items-start gap-4 sm:flex-row sm:items-stretch'
+              className='mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:items-stretch'
             >
               {/* A shared fixed measure makes this CTA pair read as one
                   deliberate choice on every viewport. */}

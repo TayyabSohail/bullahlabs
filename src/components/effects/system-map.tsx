@@ -745,7 +745,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
       <svg
         aria-hidden='true'
         viewBox={`0 0 ${W} ${H}`}
-        className='block h-auto w-full overflow-visible'
+        className='block h-auto w-full overflow-hidden'
       >
         <defs>
           <pattern
