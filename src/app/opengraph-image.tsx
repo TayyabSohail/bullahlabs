@@ -51,7 +51,6 @@ export default async function OpenGraphImage() {
         />
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           {/* Satori renders plain img tags only; it accepts an ArrayBuffer src. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt=''
             src={mark as unknown as string}
