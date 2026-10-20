@@ -359,6 +359,10 @@ export const en = {
       email: 'Email address',
       placeholder: 'Your email address',
       submit: 'Notify me',
+      consentBefore:
+        'By signing up, you agree that we store your address for this update, as described in our',
+      consentLink: 'Privacy Policy',
+      consentAfter: '.',
       doneTitle: 'You are on the list.',
       alreadyTitle: 'You were already on the list.',
       doneBody: "One email when it's ready, nothing else.",
@@ -449,6 +453,9 @@ export const en = {
       kicker: 'For teams',
       title: 'Rolled out AI? Make it count.',
       accent: [3, 4, 5],
+      paragraphs: [
+        'Giving people AI tools is easy. Helping them use those tools well takes practice. We train teams around their real workflows, so the value shows up in the work, not just on the licence bill.',
+      ],
       offers: [
         {
           title: 'Training and workshops',
@@ -735,6 +742,7 @@ export const en = {
   faq: {
     kicker: 'FAQ',
     title: 'Straight answers to important questions.',
+    description: 'What we do, how we work, and where AI fits in.',
     accent: [0, 1],
   },
   cta: {
