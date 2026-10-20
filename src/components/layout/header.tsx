@@ -46,10 +46,10 @@ export function Header({ dict }: HeaderProps) {
         // so while the menu is open it has to sit above the cookie banner
         // (z-60) or the banner covers the menu's CTAs.
         mobileMenuOpen
-          ? 'z-[70] border-line bg-[hsl(var(--nav-sun))]'
+          ? 'z-[70] border-line bg-background'
           : scrolled
-            ? 'z-50 border-ink/80 bg-[hsl(var(--nav-sun))]'
-            : 'z-50 border-transparent bg-[hsl(var(--nav-sun)/0.88)] backdrop-blur-sm',
+            ? 'z-50 border-ink/80 bg-background'
+            : 'z-50 border-transparent bg-background/90 backdrop-blur-sm',
       )}
     >
       <div className='bl-container flex h-[4.25rem] items-center justify-between'>
