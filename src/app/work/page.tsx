@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { PageHero } from '@/components/common/page-hero';
 import { CtaBanner } from '@/components/sections/cta-banner';
+import { Testimonials } from '@/components/sections/testimonials';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 import { ProjectGrid } from '@/components/work/project-grid';
 
@@ -45,6 +46,7 @@ export default async function WorkPage() {
           countTemplate={t.count}
         />
       </section>
+      <Testimonials dict={dict} title='What people say.' />
       <CtaBanner dict={dict} />
     </>
   );

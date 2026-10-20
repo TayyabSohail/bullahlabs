@@ -6,6 +6,7 @@ import { HowItWorks } from '@/components/sections/how-it-works';
 import { Principles } from '@/components/sections/principles';
 import { Services } from '@/components/sections/services';
 import { Technologies } from '@/components/sections/technologies';
+import { Testimonials } from '@/components/sections/testimonials';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 
 import { paths } from '@/constants/paths';
@@ -42,6 +43,7 @@ export default async function ServicesPage() {
       <HowItWorks dict={dict} />
       <Technologies dict={dict} />
       <Principles dict={dict} className='bl-band-stone' />
+      <Testimonials dict={dict} title='What people say.' />
       <CtaBanner dict={dict} />
     </>
   );

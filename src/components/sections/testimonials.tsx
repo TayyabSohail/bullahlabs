@@ -20,6 +20,9 @@ import type { Dictionary } from '@/i18n/dictionaries/en';
 interface TestimonialsProps {
   dict: Dictionary;
   className?: string;
+  /** Use when the surrounding page already establishes the section context. */
+  heading?: boolean;
+  title?: string;
 }
 
 const AUTO_MS = 7000;
@@ -29,7 +32,12 @@ const ease = [0.16, 1, 0.3, 1] as const;
  * Light band. One quote at a time on the left, the product it is about on a
  * laptop on the right. Auto-advances, pauses on hover, draggable on touch.
  */
-export function Testimonials({ dict, className }: TestimonialsProps) {
+export function Testimonials({
+  dict,
+  className,
+  heading = true,
+  title,
+}: TestimonialsProps) {
   const t = dict.testimonials;
   const testimonials = getTestimonials(dict.locale);
   // Sizer uses both locales so the nav row stays put when the language changes.
@@ -70,29 +78,40 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
       className={cn('bl-section bl-rule bl-band-stone', className)}
     >
       <div className='bl-container'>
-        <div>
+        {heading ? (
           <div>
             <Reveal>
               <p className='bl-kicker'>{t.kicker}</p>
             </Reveal>
             <TextReveal
               as='h2'
-              text={t.title}
+              text={title ?? t.title}
               id={`${sectionId}-title`}
               className='bl-display mt-5 text-display-lg text-ink'
             />
           </div>
-        </div>
+        ) : (
+          <h2 id={`${sectionId}-title`} className='sr-only'>
+            {t.kicker}
+          </h2>
+        )}
 
-        <Reveal className='bl-card mt-8 grid overflow-hidden sm:mt-14 lg:grid-cols-[1fr_0.75fr]'>
+        <Reveal
+          className={cn(
+            'bl-card grid overflow-hidden lg:grid-cols-[1fr_0.75fr]',
+            heading ? 'mt-8 sm:mt-14' : 'mt-0',
+          )}
+        >
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
             className='contents'
           >
             {/* Quote */}
-            <div className='relative z-[2] flex flex-col bg-ink p-5 text-white sm:p-10 lg:p-12'>
-              <Quote className='h-8 w-8 text-brand-2' />
+            <div className='relative z-[2] flex flex-col bg-surface p-5 text-ink sm:p-10 lg:p-12'>
+              <span className='relative flex h-11 w-11 items-center justify-center border border-ink/20'>
+                <Quote className='h-5 w-5 text-brand-text' />
+              </span>
               {/* Sized to the tallest quote so the nav row below never moves */}
               <div className='relative mt-6 grid'>
                 {sizerQuotes.map((q, i) => (
@@ -132,22 +151,22 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
                     }}
                     className='absolute inset-0 cursor-grab active:cursor-grabbing'
                   >
-                    <p className='bl-display text-xl leading-[1.3] text-white sm:text-3xl'>
+                    <p className='bl-display text-xl leading-[1.3] text-ink sm:text-3xl'>
                       &ldquo;{item.quote}&rdquo;
                     </p>
                     <footer className='mt-6 flex flex-wrap items-center justify-between gap-4 sm:mt-8'>
                       <div>
-                        <p className='font-semibold text-white'>
+                        <p className='font-semibold text-ink'>
                           {item.author}
                         </p>
-                        <p className='text-sm text-white/55'>{item.company}</p>
+                        <p className='text-sm text-muted-foreground'>
                       </div>
                     </footer>
                   </motion.blockquote>
                 </AnimatePresence>
               </div>
 
-              <div className='mt-6 flex items-center justify-between border-t border-white/15 pt-5 sm:mt-10 sm:pt-6'>
+              <div className='mt-6 flex items-center justify-between border-t border-ink/15 pt-5 sm:mt-10 sm:pt-6'>
                 <div
                   className='flex gap-1.5'
                   role='tablist'
@@ -168,8 +187,8 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
                       className={cn(
                         'h-[3px] transition-all duration-500',
                         dot === index
-                          ? 'w-8 bg-brand'
-                          : 'w-3 bg-white/25 hover:bg-white/50',
+                          ? 'w-8 bg-brand-2'
+                          : 'w-3 bg-ink/25',
                       )}
                     />
                   ))}
@@ -179,7 +198,7 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
                     type='button'
                     onClick={() => go(-1)}
                     aria-label={t.prev}
-                    className='flex h-11 w-11 items-center justify-center border border-white/20 text-white transition-colors hover:border-brand hover:text-brand-2'
+                    className='flex h-11 w-11 items-center justify-center border border-ink/30 text-ink'
                   >
                     <ArrowLeft className='h-4 w-4' />
                   </button>
@@ -196,14 +215,7 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
             </div>
 
             {/* Product on a laptop */}
-            <div
-              className='bl-plate relative z-[2] flex flex-col justify-center border-t p-5 sm:min-h-[22rem] sm:p-8 lg:border-l lg:border-t-0'
-              style={
-                {
-                  '--plate-accent': `${project?.accent ?? '#10b981'}66`,
-                } as React.CSSProperties
-              }
-            >
+            <div className='relative z-[2] flex flex-col justify-center border-t border-ink/20 bg-surface-2/70 p-5 sm:min-h-[22rem] sm:p-8 lg:border-l lg:border-t-0'>
               <AnimatePresence mode='wait' initial={false}>
                 <motion.div
                   key={project?.slug ?? index}
@@ -222,9 +234,9 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
                           sizes='(min-width: 1024px) 34vw, 90vw'
                         />
                       </LaptopFrame>
-                      <div className='mt-6 flex items-end justify-between gap-4 text-white'>
+                      <div className='mt-6 flex items-end justify-between gap-4 text-foreground'>
                         <div>
-                          <p className='font-mono text-[9px] uppercase tracking-[0.2em] text-white/50'>
+                          <p className='font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground'>
                             {project.category} &middot; {project.year}
                           </p>
                           <p className='bl-display mt-1 text-xl'>
@@ -233,7 +245,7 @@ export function Testimonials({ dict, className }: TestimonialsProps) {
                         </div>
                         <Link
                           href={paths.caseStudy(project.slug)}
-                          className='bl-action text-brand-2 hover:text-white'
+                          className='bl-action text-brand-text'
                         >
                           {t.caseStudy} <ArrowUpRight className='h-3.5 w-3.5' />
                         </Link>
