@@ -178,6 +178,14 @@
     border-color: hsl(var(--ink));
   }
 
+  /* Prefer an installed Urdu Nastaliq font for Punjabi verse, then fall back
+     gracefully when the visitor's device does not include one. */
+  .urdu-khatati {
+    font-family:
+      'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Noto Naskh Arabic', serif;
+    font-weight: 600;
+  }
+
   /* Once frosted glass; now a solid card on the same hard shadow. */
   .bl-glass {
     @apply border bg-surface;
@@ -1188,8 +1196,6 @@
   stroke-width: 1.25;
   stroke-dasharray: 3 2;
 }
-
-
 /* Stems from the conscious rail down to each stop */
 .bl-map-stem {
   stroke: hsl(var(--ink) / 0.5);

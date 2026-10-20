@@ -41,9 +41,8 @@ interface ValueCardProps {
 }
 
 /**
- * One value: a ruled box on a hard shadow that lifts under the pointer.
- * The mark draws itself stroke by stroke as the card enters, and turns
- * emerald on hover with a hairline that grows along the foot.
+ * One value: a ruled box with a line-drawn mark that draws itself stroke by
+ * stroke as the card enters.
  */
 export function ValueCard({ title, body }: ValueCardProps) {
   const reduce = useReducedMotion();
@@ -54,15 +53,15 @@ export function ValueCard({ title, body }: ValueCardProps) {
     'bg-sky-500/10 text-sky-700 dark:text-sky-300',
     'bg-brand/10 text-brand-text',
   ];
-  const tone = tones[
-    ['Love', 'Acceptance', 'Courage', 'Responsibility'].indexOf(title)
-  ] ?? tones[0];
+  const tone =
+    tones[['Love', 'Acceptance', 'Courage', 'Responsibility'].indexOf(title)] ??
+    tones[0];
 
   return (
-    <StaggerItem className='bl-card bl-card-lift group relative isolate flex min-h-[17rem] flex-col overflow-hidden p-6 sm:p-7'>
+    <StaggerItem className='bl-card relative isolate flex min-h-[17rem] flex-col overflow-hidden p-6 sm:p-7'>
       <div className='flex items-start justify-between gap-4'>
         <span
-          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full transition-transform duration-500 ease-out group-hover:rotate-6 group-hover:scale-110 ${tone}`}
+          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${tone}`}
         >
           <svg
             viewBox='0 0 24 24'
@@ -97,18 +96,14 @@ export function ValueCard({ title, body }: ValueCardProps) {
       <p className='mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base'>
         {body}
       </p>
-      <span
-        aria-hidden='true'
-        className='mt-6 block h-px w-full origin-left scale-x-0 bg-brand transition-transform duration-500 ease-out group-hover:scale-x-100'
-      />
+      <span aria-hidden='true' className='mt-auto block h-px w-full bg-brand' />
     </StaggerItem>
   );
 }
 
 /**
- * The verse as a printed card: the Punjabi line wipes in right to left,
- * the transliteration rises word by word, then the translation fades in
- * underneath.
+ * The verse is presented as a focused quote card: original Punjabi, its
+ * transliteration, and a concise reading underneath.
  */
 export function VerseCard() {
   const reduce = useReducedMotion();
@@ -119,14 +114,19 @@ export function VerseCard() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={inView}
       transition={{ duration: 0.9, ease }}
-      className='bl-card flex flex-col p-6 sm:p-8'
+      className='bl-card relative flex min-h-[24rem] flex-col p-6 sm:p-8'
     >
       <p className='flex items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground'>
-        <span>Kafi · Bulleh Shah</span>
+        <span>Bulleh Shah</span>
         <span>Kasur, Punjab</span>
       </p>
-      {/* The verse sits in the middle of whatever height the row gives the card. */}
-      <div className='my-auto py-8'>
+      <div className='relative my-auto py-8 sm:py-10'>
+        <span
+          aria-hidden='true'
+          className='absolute -left-1 -top-2 font-serif text-8xl leading-none text-brand/20 sm:text-9xl'
+        >
+          “
+        </span>
         <motion.p
           lang='pa-Arab'
           dir='rtl'
@@ -134,7 +134,7 @@ export function VerseCard() {
           whileInView={{ clipPath: 'inset(0 0 0 0%)' }}
           viewport={inView}
           transition={{ duration: 1.4, ease, delay: 0.35 }}
-          className='text-right text-4xl leading-[1.7] text-foreground sm:text-5xl'
+          className='urdu-khatati relative text-right text-4xl leading-[1.9] text-foreground sm:text-5xl'
         >
           بلھیا کی جاناں میں کون
         </motion.p>
@@ -142,22 +142,9 @@ export function VerseCard() {
           as='p'
           text='Bulleya ki jaana main kaun.'
           delay={0.9}
-          className='bl-display mt-6 text-2xl text-foreground sm:text-3xl'
+          className='bl-display relative mt-6 text-2xl text-foreground sm:text-3xl'
         />
       </div>
-      {false && <motion.span
-        initial={reduce ? false : { opacity: 0, scale: 1.6, rotate: -16 }}
-        whileInView={{ opacity: 1, scale: 1, rotate: -6 }}
-        viewport={inView}
-        transition={{
-          duration: 0.45,
-          ease: [0.34, 1.56, 0.64, 1],
-          delay: 1.6,
-        }}
-        className='bl-stamp mb-6 self-end'
-      >
-        c. 1680 – 1757
-      </motion.span>}
       <motion.p
         initial={reduce ? false : { opacity: 0 }}
         whileInView={{ opacity: 1 }}
