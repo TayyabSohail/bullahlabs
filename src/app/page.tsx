@@ -3,6 +3,7 @@ import { ContactSection } from '@/components/sections/contact-section';
 import { FaqSection } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
 import { LocationsHome } from '@/components/sections/locations-home';
+import { OurDna } from '@/components/sections/our-dna';
 import { Problem } from '@/components/sections/problem';
 import { ProjectsTeaser } from '@/components/sections/projects-teaser';
 import { Studio } from '@/components/sections/studio';
@@ -23,6 +24,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero dict={dict} />
+      <OurDna />
       <Problem dict={dict} />
       <Studio />
       <Technologies dict={dict} carouselOnly />

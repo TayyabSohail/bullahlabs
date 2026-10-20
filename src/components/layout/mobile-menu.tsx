@@ -124,7 +124,6 @@ export function MobileMenu({
                             active && 'underline underline-offset-[6px]',
                           )}
                         >
-                          {item.featured ? <span aria-hidden='true' className='mr-3 inline-block h-2 w-2 rounded-full bg-brand align-middle' /> : null}
                           {item.label}
                         </span>
                       </Link>

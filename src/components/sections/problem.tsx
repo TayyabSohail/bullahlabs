@@ -41,12 +41,12 @@ export function Problem({ dict }: ProblemProps) {
               {pressure}
             </p>
           </Reveal>
-          <Reveal delay={0.25}>
-            <p className='mt-8 max-w-2xl border-l-2 border-brand pl-5 text-lg font-medium leading-snug text-foreground sm:text-xl'>
+          <Reveal delay={0.25} className='text-center sm:text-left'>
+            <p className='mt-8 max-w-2xl text-lg font-medium leading-snug text-foreground sm:border-l-2 sm:border-brand sm:pl-5 sm:text-xl'>
               {skill}
             </p>
           </Reveal>
-          <Reveal delay={0.35}>
+          <Reveal delay={0.35} className='text-center sm:text-left'>
             <Link
               href={paths.program}
               className='bl-btn bl-btn-primary mt-7 inline-flex h-12 items-center gap-2.5 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'

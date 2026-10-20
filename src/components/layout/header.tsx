@@ -74,7 +74,6 @@ export function Header({ dict }: HeaderProps) {
                     : 'bl-link font-medium text-muted-foreground hover:text-foreground',
                 )}
               >
-                {item.featured ? <span aria-hidden='true' className='h-1.5 w-1.5 rounded-full bg-brand' /> : null}
                 {item.label}
                 {/* The current page keeps a solid underline; other links get
                     the sliding bl-link one on hover. */}
