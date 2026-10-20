@@ -119,8 +119,6 @@ export const de: Dictionary = {
         eyebrow: 'Wasserverbrauch',
         title: '10–50 Prompts.',
         body: 'Diese GPT-3-Schätzung ist kein fester Preis pro Prompt. Sie hängt von Modell, Antwortlänge, Wetter, Kühlung und Stromnetz ab.',
-        globalValue: 'Bis zu 1,2 Billionen Flaschen',
-        globalLabel: 'Wasser könnten durch KI im Jahr 2027 verdunsten.',
       },
       sources: [
         {

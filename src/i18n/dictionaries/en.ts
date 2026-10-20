@@ -110,7 +110,7 @@ export const en = {
     /** Words (0-based, across both lines) in the accent colour: the reader. */
     accent: [7, 8],
     impact: {
-      kicker: 'The environmental cost, in plain English',
+      kicker: 'The environmental cost of AI',
       intro:
         'AI runs in data centres: buildings full of powerful computers that need electricity and cooling. AI is not the only thing they do, but it is the fastest-growing part.',
       stats: [
@@ -137,12 +137,10 @@ export const en = {
       sourceUrl:
         'https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary',
       water: {
-        value: '1 bottle',
+        value: '600 billion litres',
         eyebrow: 'Water used',
-        title: '10–50 prompts.',
+        title: 'That’s up to 1.2 trillion 500 ml bottles that could evaporate from AI in 2027.',
         body: 'This GPT-3 estimate is not a fixed price per prompt. It changes with the model, response length, weather, cooling system and electricity grid.',
-        globalValue: 'Up to 1.2 trillion bottles',
-        globalLabel: 'could evaporate from AI in 2027.',
       },
       sources: [
         {
@@ -160,19 +158,19 @@ export const en = {
       ],
       powerStats: [
         {
-          value: '1 in every 67',
-          eyebrow: 'Electricity used in 2024',
-          label: 'of global electricity.',
+          value: '1 in every 67 units',
+          eyebrow: 'Electricity used',
+          label: 'of electricity generated worldwide was used by data centres in 2024.',
         },
         {
-          value: 'More than Japan',
+          value: 'Japan’s annual use',
           eyebrow: 'Projected for 2030',
-          label: 'Japan’s yearly electricity use.',
+          label: 'AI-focused data centres could need this much electricity each year.',
         },
         {
-          value: 'Like 65 million cars',
-          eyebrow: 'CO₂ in 2035',
-          label: 'driving for one year.',
+          value: '65 million cars',
+          eyebrow: 'CO₂ emissions',
+          label: 'The same yearly emissions as all of them driving for one year.',
         },
       ],
     },

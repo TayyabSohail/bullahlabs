@@ -1,4 +1,4 @@
-import { ArrowUpRight, Droplets } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { CourseSignup } from '@/components/course/course-signup';
@@ -127,19 +127,6 @@ export function Problem({ dict }: ProblemProps) {
                   </p>
                 </article>
               ))}
-            </div>
-
-            <div className='mt-2 flex items-start gap-2 border border-foreground bg-[#d8f2e3] px-3 py-2'>
-              <Droplets
-                className='mt-0.5 h-4 w-4 shrink-0 text-brand-text'
-                aria-hidden='true'
-              />
-              <p className='text-xs leading-relaxed text-foreground'>
-                <span className='font-semibold'>
-                  {t.impact.water.globalValue}:
-                </span>{' '}
-                {t.impact.water.globalLabel}
-              </p>
             </div>
 
             <div className='mt-3 flex flex-wrap gap-x-4 gap-y-1 border-t border-foreground/25 pt-2'>
