@@ -2,10 +2,7 @@ import Image from 'next/image';
 
 import { Reveal, Stagger } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
-import {
-  ValueCard,
-  VerseCard,
-} from '@/components/sections/our-dna-cards';
+import { ValueCard, VerseCard } from '@/components/sections/our-dna-cards';
 
 const VALUES = [
   [
@@ -34,7 +31,7 @@ export function OurDna() {
   return (
     <section
       id='our-dna'
-      className='bl-section bl-rule bl-band-stone scroll-mt-24 overflow-hidden'
+      className='bl-section bl-rule bl-band-stone scroll-mt-24 overflow-hidden pt-28 sm:pt-44 lg:pt-52'
     >
       <div className='bl-container'>
         {/* Headline and the origin story. */}
@@ -61,11 +58,11 @@ export function OurDna() {
                 className='mt-0.5 h-[72px] w-[72px] shrink-0 object-contain sm:h-24 sm:w-24'
               />
               <p className='text-base leading-relaxed text-muted-foreground sm:text-lg'>
-              Bullah is a nod to Bulleh Shah (c. 1680–1757), the Punjabi Sufi
-              poet who preached love, mocked hypocrisy, and stood up to the
-              powerful. Born at the top of the social ladder, he chose a teacher
-              from a caste of gardeners. His family was scandalised. He wrote
-              poetry about it, and Punjab is still singing it.
+                Bullah is a nod to Bulleh Shah (c. 1680–1757), the Punjabi Sufi
+                poet who preached love, mocked hypocrisy, and stood up to the
+                powerful. Born at the top of the social ladder, he chose a
+                teacher from a caste of gardeners. His family was scandalised.
+                He wrote poetry about it, and Punjab is still singing it.
               </p>
             </div>
           </Reveal>
@@ -77,11 +74,7 @@ export function OurDna() {
           <div>
             <Stagger stagger={0.12} className='grid gap-5 sm:grid-cols-2'>
               {VALUES.map(([title, body]) => (
-                <ValueCard
-                  key={title}
-                  title={title}
-                  body={body}
-                />
+                <ValueCard key={title} title={title} body={body} />
               ))}
             </Stagger>
           </div>
