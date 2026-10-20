@@ -1,6 +1,3 @@
-import { ArrowUpRight } from 'lucide-react';
-import Link from 'next/link';
-
 import { Flag } from '@/components/brand/flags';
 import { Globe } from '@/components/effects/globe';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
@@ -9,16 +6,12 @@ import { TextReveal } from '@/components/motion/text-reveal';
 import { cn } from '@/lib/utils';
 
 import { siteConfig } from '@/config/site';
-import { paths } from '@/constants/paths';
-
 interface LocationsProps {
   kicker: string;
   title: string;
   /** Word indexes rendered in the serif accent style. */
   accentWords?: number[];
   description: string;
-  /** Label for the contact link. Defaults to English. */
-  contactLabel?: string;
   className?: string;
 }
 
@@ -37,7 +30,6 @@ export function Locations({
   title,
   accentWords,
   description,
-  contactLabel = 'Contact us',
   className,
 }: LocationsProps) {
   return (
@@ -67,7 +59,7 @@ export function Locations({
           {siteConfig.locations.map((location) => (
             <StaggerItem
               key={location.id}
-              className='group relative flex flex-col bg-background p-6 sm:p-7'
+              className='relative flex flex-col bg-background p-6 sm:p-7'
             >
               <p className='flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground'>
                 <Flag
@@ -81,20 +73,7 @@ export function Locations({
               </p>
               <p className='mt-1 text-sm text-muted-foreground'>
                 {location.country}
-                <span className='mx-2 text-line' aria-hidden='true'>
-                  /
-                </span>
-                <span className='font-mono text-[11px] uppercase tracking-[0.14em]'>
-                  {location.utc}
-                </span>
               </p>
-              <Link
-                href={paths.contact}
-                className='mt-6 inline-flex items-center gap-1.5 self-start border-t border-line pt-4 text-sm font-medium text-foreground transition-colors group-hover:text-brand-text'
-              >
-                {contactLabel}
-                <ArrowUpRight className='h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
-              </Link>
             </StaggerItem>
           ))}
         </Stagger>

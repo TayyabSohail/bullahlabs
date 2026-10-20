@@ -68,7 +68,7 @@ export function Header({ dict }: HeaderProps) {
                 // Lenis animates section links; Next's own jump would fight it.
                 aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'relative inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors',
+                  'relative inline-flex items-center gap-1.5 font-mono text-[12px] uppercase tracking-[0.18em] transition-colors',
                   active
                     ? 'font-bold text-foreground'
                     : 'bl-link font-medium text-muted-foreground hover:text-foreground',

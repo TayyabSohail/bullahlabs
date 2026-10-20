@@ -168,7 +168,7 @@ export function LearningHabits({ dict, className }: SectionProps) {
           {t.habits.map((habit) => (
             <StaggerItem
               key={habit.title}
-              className='group flex flex-col bg-surface p-6 transition-colors duration-300 hover:bg-brand-soft/35 sm:p-8'
+              className='flex flex-col bg-surface p-6 sm:p-8'
             >
               <h3 className='bl-display text-2xl text-foreground'>
                 {habit.title}

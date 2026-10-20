@@ -10,7 +10,7 @@ import { getCategories, getShowcaseProjectsLocalised } from '@/data/projects';
 import { getDictionary } from '@/i18n/server';
 
 export const metadata: Metadata = {
-  title: 'Projects',
+  title: 'Work',
   description:
     'Selected projects by Bullah Labs: web and mobile products, integrations and AI, each with the problem, the work and the result.',
   alternates: { canonical: paths.work },

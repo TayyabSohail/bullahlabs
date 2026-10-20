@@ -1,6 +1,9 @@
-import { Compass, GraduationCap, Hammer } from 'lucide-react';
+import { ArrowRight, Compass, GraduationCap, Hammer } from 'lucide-react';
+import Link from 'next/link';
 
 import { SectionHeading } from '@/components/common/section-heading';
+
+import { paths } from '@/constants/paths';
 
 /** The studio offer and the working method, in one chapter. The figures sit with the offices. */
 export function Studio() {
@@ -65,6 +68,16 @@ export function Studio() {
               </p>
             </article>
           ))}
+        </div>
+
+        <div className='mt-8 flex justify-end'>
+          <Link
+            href={paths.services}
+            className='bl-btn bl-btn-secondary inline-flex h-12 items-center gap-3 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
+          >
+            Explore all services
+            <ArrowRight className='h-4 w-4' />
+          </Link>
         </div>
 
         {/* The method: one ruled panel on the same hard shadow as the cards above. */}

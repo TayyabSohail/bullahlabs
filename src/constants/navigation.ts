@@ -15,9 +15,8 @@ export interface NavItem {
 export function primaryNav(dict: Dictionary): NavItem[] {
   return [
     { label: dict.nav.about, href: paths.about },
-    { label: dict.nav.services, href: paths.services },
-    { label: dict.nav.approach, href: paths.approach },
-    { label: dict.nav.work, href: paths.work },
     { label: dict.nav.program, href: paths.program, featured: true },
+    { label: dict.nav.work, href: paths.work },
+    { label: dict.nav.services, href: paths.services },
   ];
 }

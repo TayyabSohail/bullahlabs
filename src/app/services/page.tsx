@@ -32,7 +32,7 @@ export default async function ServicesPage() {
         ]}
       />
       <PageHero
-        kicker={t.kicker}
+        kicker={dict.nav.work}
         title={t.title}
         accentWords={[...t.accent]}
         description={t.description}

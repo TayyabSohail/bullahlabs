@@ -2,7 +2,7 @@ export const paths = {
   home: '/',
   work: '/work',
   caseStudy: (slug: string) => `/work/${slug}` as const,
-  about: '/about',
+  about: '/our-dna',
   services: '/services',
   approach: '/approach',
   program: '/conscious-ai',

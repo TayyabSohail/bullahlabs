@@ -59,7 +59,7 @@ export const modules: CourseModule[] = [
         id: 'decide-01',
         title: 'Does AI belong here?',
         summary:
-          'The one question to ask before any task goes to a chatbot, and the tasks a rule, a formula or a search serves better.',
+          'One question to ask before you open a chatbot. Plenty of jobs go faster with a formula, a template or a quick search.',
       },
       {
         id: 'decide-02',

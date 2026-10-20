@@ -302,6 +302,7 @@ export const de: Dictionary = {
     accent: [1, 2],
     description:
       'Kostenlose, praktische Module, mit denen Sie mehr aus KI herausholen und dabei weniger davon brauchen. Für Menschen, die mit KI arbeiten, nicht für die, die sie bauen.',
+    audience: 'Für Menschen, die mit KI arbeiten, nicht für die, die sie bauen.',
     heroCta: 'Bescheid geben, wenn es öffnet',
     principle:
       'Praktische Fähigkeiten. Bewusste Entscheidungen. Kein Programmieren nötig.',

@@ -3,7 +3,7 @@ import type { Locale } from '../config';
 export const en = {
   locale: 'en' as Locale,
   nav: {
-    about: 'About',
+    about: 'Our DNA',
     program: 'Conscious AI',
     services: 'Services',
     work: 'Work',
@@ -328,6 +328,7 @@ export const en = {
     accent: [2, 3, 4],
     description:
       'Everyone expects you to use AI. Few show you how. Free, practical lessons on when it helps, which tool fits, and what it really costs.',
+    audience: 'For people who work with AI, not people who build it.',
     heroCta: 'Tell me when it opens',
     principle: 'Practical skills. Conscious choices. No coding required.',
     course: {
@@ -391,7 +392,7 @@ export const en = {
       title: 'AI landed on your desk. Now what?',
       accent: [5, 6],
       paragraphs: [
-        'Marketing, operations, finance, HR, sales, project management: if AI has landed on your desk, this is for you. Skills you can use the same day.',
+        'Marketing, ops, finance, HR, sales, projects. If you’re expected to use AI and nobody showed you how, this is for you. Skills you can use the same day.',
       ],
       questions: [
         'Told to use AI, but not how?',
@@ -415,7 +416,7 @@ export const en = {
         },
         {
           title: 'Skills and workflows',
-          body: 'Find the useful applications, improve prompts, judge results.',
+          body: 'Find where AI helps. Prompt better. Judge the results.',
         },
         {
           title: 'Conscious AI guidance',
@@ -423,7 +424,7 @@ export const en = {
         },
         {
           title: 'AI optimisation',
-          body: 'Cut unnecessary complexity and compute without losing quality or safety.',
+          body: 'Cut wasted compute and complexity. Keep quality and safety.',
         },
       ],
       cta: 'Discuss team training',
@@ -541,7 +542,7 @@ export const en = {
       "Tell us where you are. We'll say plainly what we would do next, and whether we're the right team for it.",
   },
   aboutPage: {
-    kicker: 'About',
+    kicker: 'Our DNA',
     title:
       'We build technology with purpose, and believe progress comes with responsibility.',
     accent: [7, 8, 9, 10],

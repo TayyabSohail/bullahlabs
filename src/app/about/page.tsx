@@ -13,13 +13,13 @@ import { paths } from '@/constants/paths';
 import { getDictionary } from '@/i18n/server';
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'Our DNA',
   description:
     'Bullah Labs is a product and engineering studio in Stuttgart and Islamabad. We build digital products with purpose and help teams use technology, including AI, well.',
   alternates: { canonical: paths.about },
 };
 
-export default async function AboutPage() {
+export default async function OurDnaPage() {
   const dict = await getDictionary();
   const t = dict.aboutPage;
   return (
@@ -75,7 +75,6 @@ export default async function AboutPage() {
             title={t.whereTitle}
             accentWords={[...t.whereAccent]}
             description={t.whereDescription}
-            contactLabel={dict.nav.contact}
           />
         </div>
       </section>
