@@ -49,13 +49,13 @@ export function OurDna() {
         <div className='mt-8 grid gap-5 sm:mt-10 sm:gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10'>
           <VerseCard />
           <Reveal delay={0.2} className='flex'>
-            <div className='flex w-full flex-col justify-between border-y border-line py-6 sm:py-8 lg:py-10'>
-              <div>
+            <div className='flex w-full flex-col justify-center border-y border-line py-6 text-center sm:py-8 lg:py-10'>
+              <div className='mx-auto max-w-xl'>
                 <p className='bl-kicker'>What it means for us</p>
-                <h3 className='bl-display mt-4 max-w-[16ch] text-3xl text-foreground sm:text-4xl'>
+                <h3 className='bl-display mx-auto mt-4 max-w-[16ch] text-3xl text-foreground sm:text-4xl'>
                   Make progress work for people, not just systems.
                 </h3>
-                <p className='mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
+                <p className='mt-5 text-justify text-base leading-relaxed text-muted-foreground sm:text-lg'>
                   In that spirit, we build useful technology that gives people
                   more capability, lowers unnecessary cost and environmental
                   impact, and keeps human judgment where it matters.

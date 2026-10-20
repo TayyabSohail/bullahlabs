@@ -359,10 +359,6 @@ export const en = {
       email: 'Email address',
       placeholder: 'Your email address',
       submit: 'Notify me',
-      consentBefore:
-        'By signing up you agree that we store your address to send this notice, as described in the',
-      consentLink: 'privacy policy',
-      consentAfter: '.',
       doneTitle: 'You are on the list.',
       alreadyTitle: 'You were already on the list.',
       doneBody: "One email when it's ready, nothing else.",

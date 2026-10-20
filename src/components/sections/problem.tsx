@@ -46,20 +46,11 @@ export function Problem({ dict }: ProblemProps) {
               {skill}
             </p>
           </Reveal>
-          <Reveal delay={0.45} className='text-center sm:text-left'>
-            <Link
-              href={paths.program}
-              className='bl-btn bl-btn-primary mt-7 inline-flex h-12 items-center gap-2.5 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
-            >
-              {c.cta}
-              <ArrowUpRight className='h-3.5 w-3.5' />
-            </Link>
-          </Reveal>
         </div>
 
         <Reveal
           delay={0.2}
-          className='bl-card bl-card-ink bl-grid-surface relative min-w-0 self-start p-6 text-white sm:p-8'
+          className='bl-card bl-card-ink bl-grid-surface relative min-w-0 self-start p-6 text-white sm:p-8 lg:mt-8'
         >
           <div className='relative'>
             <p className='bl-kicker text-white/60'>{c.closingKicker}</p>
