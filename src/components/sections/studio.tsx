@@ -37,10 +37,12 @@ export function Studio() {
           kicker='Studio'
           title='Digital products built right.'
           accentWords={[2, 3]}
+          description='From first idea to better everyday work, we build technology that earns its place.'
+          descriptionPosition='below'
         />
 
         {/* The offer: three ruled cards. */}
-        <div className='mt-12 grid gap-6 md:grid-cols-3'>
+        <div className='mt-16 grid gap-6 md:grid-cols-3'>
           {services.map(({ title, body, typical, Icon }, index) => (
             <article key={title} className='bl-card flex flex-col p-7 sm:p-8'>
               <div className='flex items-center justify-between text-brand-text'>

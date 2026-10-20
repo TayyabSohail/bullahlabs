@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Contours } from '@/components/effects/contours';
 import { SystemMap } from '@/components/effects/system-map';
-import { LetterReveal } from '@/components/motion/letter-reveal';
+import { HeroTitle } from '@/components/motion/hero-title';
 import { Reveal } from '@/components/motion/reveal';
 
 import { paths } from '@/constants/paths';
@@ -31,17 +31,8 @@ export function Hero({ dict }: HeroProps) {
       />
 
       <div className='bl-container relative pb-28 pt-28 sm:pb-32 sm:pt-32 lg:pb-40 xl:pb-48'>
-        {/* The title is two sentences on two lines: what we build, then
-            how, in the accent colour. It types in letter by letter once
-            the preloader has lifted. */}
-        <LetterReveal
-          as='h1'
-          text={t.title}
-          accentWords={[...t.accent]}
-          afterPreloader
-          stagger={0.035}
-          typingBounce
-          delay={0.15}
+        <HeroTitle
+          title={t.title}
           className='bl-display justify-center text-center text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink sm:justify-start sm:text-left'
         />
 

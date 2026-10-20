@@ -49,7 +49,7 @@ export function Header({ dict }: HeaderProps) {
           ? 'z-[70] border-line bg-[hsl(var(--band-peach))]'
           : scrolled
             ? 'z-50 border-ink/80 bg-[hsl(var(--band-peach))]'
-            : 'z-50 border-transparent bg-[hsl(var(--band-peach)/0.9)] backdrop-blur-sm',
+            : 'z-50 border-transparent bg-transparent',
       )}
     >
       <div className='bl-container flex h-[4.25rem] items-center justify-between'>

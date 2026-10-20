@@ -22,7 +22,7 @@ export const siteConfig = {
   name: 'Bullah Labs',
   shortName: 'Bullah Labs',
   legalName: 'Bullah Labs',
-  tagline: 'Product and engineering studio',
+  tagline: 'Product and Engineering studio',
   description:
     'Bullah Labs is a product and engineering studio in Stuttgart and Islamabad. We design, build and improve digital products that solve real problems, and help teams use technology, including AI, with care.',
   url: env.NEXT_PUBLIC_APP_URL,

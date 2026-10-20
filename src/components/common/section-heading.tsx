@@ -9,6 +9,8 @@ interface SectionHeadingProps {
   /** Word indexes rendered in the serif accent style. */
   accentWords?: number[];
   description?: string;
+  /** Whether the description sits alongside or directly below the title. */
+  descriptionPosition?: 'aside' | 'below';
   /** Slot on the right of the description, e.g. a link. */
   aside?: React.ReactNode;
   align?: 'left' | 'center';
@@ -21,6 +23,7 @@ export function SectionHeading({
   title,
   accentWords,
   description,
+  descriptionPosition = 'aside',
   aside,
   align = 'left',
   className,
@@ -29,7 +32,9 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        'grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-end',
+        descriptionPosition === 'aside'
+          ? 'grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-end'
+          : 'block',
         align === 'center' &&
           'text-center md:grid-cols-1 md:justify-items-center',
         className,
@@ -57,7 +62,9 @@ export function SectionHeading({
         <Reveal
           delay={0.15}
           className={cn(
-            'flex flex-col gap-5 md:items-end',
+            'flex flex-col gap-5',
+            descriptionPosition === 'aside' && 'md:items-end',
+            descriptionPosition === 'below' && 'mt-5',
             align === 'center' && 'items-center md:items-center',
           )}
         >
@@ -65,7 +72,7 @@ export function SectionHeading({
             <p
               className={cn(
                 'max-w-md text-base leading-relaxed text-muted-foreground md:text-lg',
-                align === 'left' && 'md:text-right',
+                descriptionPosition === 'aside' && align === 'left' && 'md:text-right',
               )}
             >
               {description}

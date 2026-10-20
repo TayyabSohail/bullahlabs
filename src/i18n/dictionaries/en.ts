@@ -83,7 +83,7 @@ export const en = {
     accent: [4, 5, 6, 7],
     paragraphs: [
       "New tools every week. Pressure to work smarter. Little clarity on which tools to trust, what to learn or whether you're using AI well, and at what cost in time, money and energy.",
-      'Using AI well is a skill, not a subscription.',
+      'AI literacy is a skill, not a subscription.',
       "Short, practical modules show you how to pick the right tool for the task, set up your AI workspace, write prompts that work first time and skip the AI you don't need. No technical background required.",
     ],
     closingKicker: 'Free resources',
@@ -106,9 +106,9 @@ export const en = {
   /** The problem people arrive with, right after the hero. The body copy and the free-resources card come from `consciousAi`. */
   problem: {
     kicker: 'The problem',
-    title: 'AI is changing work.\nNo one showed you how.',
-    /** Words (0-based, across both lines) in the accent colour: the reader. */
-    accent: [7, 8],
+    title: 'Too many AIs.\nWhich ones actually matter?',
+    /** Words (0-based, across both lines) in the accent colour: the decision. */
+    accent: [3, 4, 5, 6],
     impact: {
       kicker: 'The environmental cost of AI',
       intro:
