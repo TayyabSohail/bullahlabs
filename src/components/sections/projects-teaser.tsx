@@ -71,7 +71,7 @@ export function ProjectsTeaser({
               />
               <Reveal
                 delay={0.3}
-                className='mt-7 max-sm:flex max-sm:justify-center sm:mt-9 lg:mt-auto lg:pt-10'
+                className='mt-7 max-sm:flex max-sm:justify-center sm:mt-9'
               >
                 <Link
                   href={paths.work}
