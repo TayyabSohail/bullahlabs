@@ -61,14 +61,14 @@ export function Hero({ dict }: HeroProps) {
                   deliberate choice on every viewport. */}
               <Link
                 href={paths.contact}
-                className='bl-btn bl-btn-ink inline-flex h-14 w-full max-w-[16rem] items-center justify-between gap-3 whitespace-nowrap px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]'
+                className='bl-btn bl-btn-ink inline-flex h-16 w-full max-w-[18rem] items-center justify-between gap-4 whitespace-nowrap px-7 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]'
               >
                 {t.primary}
                 <span className='h-2.5 w-2.5 shrink-0 bg-brand' />
               </Link>
               <Link
                 href={paths.program}
-                className='bl-btn bl-btn-secondary inline-flex h-14 w-full max-w-[16rem] items-center justify-between gap-3 whitespace-nowrap bg-surface px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]'
+                className='bl-btn bl-btn-secondary inline-flex h-16 w-full max-w-[18rem] items-center justify-between gap-4 whitespace-nowrap bg-surface px-7 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]'
               >
                 {t.secondary}
                 <ArrowRight className='h-4 w-4' />

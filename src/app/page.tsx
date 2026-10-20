@@ -37,7 +37,7 @@ export default async function HomePage() {
           title={dict.faq.title}
           accentWords={[...dict.faq.accent]}
           description={dict.faq.description}
-          className='bl-band-stone bl-rule'
+          className='bl-band-mint bl-rule'
         />
       </div>
     </>

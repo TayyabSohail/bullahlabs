@@ -1487,6 +1487,22 @@ body::after {
   background-color: hsl(var(--band-peach));
 }
 
+/* A light brand-tinted paper band for the FAQ: enough separation from the
+   surrounding sky and peach sections, without breaking the light theme. */
+.bl-band-mint {
+  background-image:
+    radial-gradient(hsl(var(--ink) / 0.16) 1px, transparent 1.2px),
+    radial-gradient(
+      60% 40% at 50% 0%,
+      hsl(var(--brand) / 0.1),
+      transparent 70%
+    );
+  background-size:
+    22px 22px,
+    100% 100%;
+  background-color: hsl(var(--brand-soft));
+}
+
 main > section.bl-band-stone:nth-of-type(odd) {
   background-color: hsl(var(--band-sky));
 }

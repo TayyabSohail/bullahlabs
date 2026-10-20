@@ -695,7 +695,6 @@ export const en = {
   faq: {
     kicker: 'FAQ',
     title: 'Straight answers to important questions.',
-    description: 'What we do, how we work and where AI fits.',
     accent: [0, 1],
   },
   cta: {

@@ -226,8 +226,9 @@ export function Technologies({ dict, carouselOnly = false }: TechnologiesProps) 
         </Reveal>
       </div>
 
-      {/* The strip sits on plain paper, not on the band, so the ink marks read as one row. */}
-      <div className='mt-6 border-y border-line/70 bg-ink/[0.03] py-6 sm:mt-8 sm:py-8'>
+      {/* The heading and tools share one paper surface; the carousel is not a
+          separate panel with its own fill or dividers. */}
+      <div className='mt-6 py-6 sm:mt-8 sm:py-8'>
         <Marquee duration={70}>
           {TOOLS.map((name) => (
             <TechMark key={name} name={name} />
