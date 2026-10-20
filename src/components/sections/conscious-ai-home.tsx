@@ -24,6 +24,13 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
           <p className='mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
             We teach it, free: how to choose the right tool, use it well, and leave it alone when a simpler answer is better. Teams get the same on their real work.
           </p>
+          <Link
+            href={paths.program}
+            className='bl-btn bl-btn-primary mx-auto mt-7 flex h-12 w-fit items-center gap-2.5 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:mx-0'
+          >
+            {dict.consciousAi.cta}
+            <ArrowUpRight className='h-3.5 w-3.5' />
+          </Link>
         </div>
 
         <div className='mt-10 grid gap-5 lg:grid-cols-2'>

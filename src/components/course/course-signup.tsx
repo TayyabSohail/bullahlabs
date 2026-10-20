@@ -132,8 +132,9 @@ export function CourseSignup({
           placeholder={t.placeholder}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${id}-error` : `${id}-consent`}
+          style={{ minHeight: '3.5rem' }}
           className={cn(
-            'h-12 min-w-0 flex-1 border px-4 text-[15px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand/60',
+            'min-w-0 flex-1 border px-4 text-[15px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand/60',
             dark
               ? 'border-white/20 bg-white/[0.06] text-white placeholder:text-white/40'
               : 'border-line bg-surface text-ink placeholder:text-muted-foreground',
@@ -152,7 +153,7 @@ export function CourseSignup({
         <button
           type='submit'
           disabled={isExecuting}
-          className='bl-btn bl-btn-primary inline-flex h-12 shrink-0 items-center justify-center gap-2.5 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] disabled:opacity-60 sm:w-40'
+          className='bl-btn bl-btn-primary inline-flex h-12 shrink-0 items-center justify-center gap-2.5 whitespace-nowrap px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] disabled:opacity-60 sm:w-auto'
         >
           {isExecuting ? (
             <Loader2 className='h-4 w-4 animate-spin' />
