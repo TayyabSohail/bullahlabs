@@ -23,7 +23,7 @@ const MARKERS = [
 const STATS = [
   ['150+', 'Projects delivered'],
   ['40+', 'Clients across five continents'],
-  ['2', 'Offices in Stuttgart and Islamabad'],
+  ['2', 'Time zones covered'],
 ] as const;
 
 /** The figures and the two offices in one ink band, after what we do and before Let's Talk. */

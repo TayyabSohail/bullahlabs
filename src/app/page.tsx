@@ -3,7 +3,6 @@ import { ContactSection } from '@/components/sections/contact-section';
 import { FaqSection } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
 import { LocationsHome } from '@/components/sections/locations-home';
-import { OurDna } from '@/components/sections/our-dna';
 import { Problem } from '@/components/sections/problem';
 import { ProjectsTeaser } from '@/components/sections/projects-teaser';
 import { Studio } from '@/components/sections/studio';
@@ -14,8 +13,9 @@ import { getDictionary } from '@/i18n/server';
 
 /**
  * The landing page, top to bottom: who we are, the problem people arrive
- * with, our values, how the studio works, a tool carousel, selected work,
- * Conscious AI, figures and locations, contact and FAQ.
+ * with, how the studio works, a tool carousel, selected work, a Conscious AI
+ * preview, figures and locations, contact and FAQ. Full company and program
+ * information live on their dedicated pages.
  */
 export default async function HomePage() {
   const dict = await getDictionary();
@@ -24,7 +24,6 @@ export default async function HomePage() {
     <>
       <Hero dict={dict} />
       <Problem dict={dict} />
-      <OurDna />
       <Studio />
       <Technologies dict={dict} carouselOnly />
       <ProjectsTeaser dict={dict} />

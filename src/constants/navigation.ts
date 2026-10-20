@@ -8,15 +8,16 @@ export interface NavItem {
 }
 
 /**
- * The primary links follow the landing-page story. The mobile menu and the
- * footer's Company column build on this same list, so the three never drift
- * apart. Contact is the header button rather than a navigation item.
+ * Primary navigation always leads to a standalone page. The mobile menu and
+ * footer share this list, so none of them silently turn into homepage anchors.
+ * Contact remains the header button rather than a navigation item.
  */
-export function primaryNav(_dict: Dictionary): NavItem[] {
+export function primaryNav(dict: Dictionary): NavItem[] {
   return [
-    { label: 'Our DNA', href: `${paths.home}#our-dna` },
-    { label: 'Studio', href: `${paths.home}#studio` },
-    { label: 'Projects', href: `${paths.home}#projects` },
-    { label: 'Conscious AI ↗', href: paths.program, featured: true },
+    { label: dict.nav.about, href: paths.about },
+    { label: dict.nav.services, href: paths.services },
+    { label: dict.nav.approach, href: paths.approach },
+    { label: dict.nav.work, href: paths.work },
+    { label: dict.nav.program, href: paths.program, featured: true },
   ];
 }

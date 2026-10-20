@@ -5,6 +5,7 @@ import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { HowItWorks } from '@/components/sections/how-it-works';
 import { Locations } from '@/components/sections/locations';
+import { OurDna } from '@/components/sections/our-dna';
 import { Principles } from '@/components/sections/principles';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 
@@ -60,6 +61,8 @@ export default async function AboutPage() {
           ))}
         </Stagger>
       </section>
+
+      <OurDna />
 
       <Principles dict={dict} />
 

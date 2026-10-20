@@ -382,7 +382,7 @@ export const en = {
         },
         {
           title: 'Know the impact.',
-          body: 'See how everyday choices affect time, cost, energy and water.',
+          body: 'Time, money, energy, water. See what each choice costs.',
         },
       ],
     },
