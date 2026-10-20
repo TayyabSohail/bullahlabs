@@ -63,7 +63,7 @@ export function MobileMenu({
         onClick={() => setOpen((isOpen) => !isOpen)}
         aria-label={open ? dict.nav.menuClose : dict.nav.menuOpen}
         aria-expanded={open}
-        className='relative z-[70] flex h-10 w-10 items-center justify-center border border-ink/20 bg-background shadow-sm'
+        className='relative z-[70] flex h-10 w-10 items-center justify-center border border-ink/20 bg-[hsl(var(--nav-sun))] shadow-sm'
       >
         {open ? <X className='h-4 w-4' /> : <Menu className='h-4 w-4' />}
       </button>
@@ -80,7 +80,7 @@ export function MobileMenu({
             // hsl(var(--background)) with no alpha slot, so Tailwind dropped
             // the modifier and only the blur remained, showing the page
             // through the menu.
-            className='fixed inset-0 z-[65] flex h-[100dvh] flex-col bg-background'
+            className='fixed inset-0 z-[65] flex h-[100dvh] flex-col bg-[hsl(var(--nav-sun))]'
             data-lenis-prevent
           >
             <div className='h-[4.25rem] shrink-0 border-b border-line/10' />
