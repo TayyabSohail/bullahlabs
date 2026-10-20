@@ -1,27 +1,21 @@
-import { ConsciousAiIntro } from '@/components/sections/conscious-ai-intro';
-import { ConsciousTechnology } from '@/components/sections/conscious-technology';
+import { ConsciousAiHome } from '@/components/sections/conscious-ai-home';
 import { ContactSection } from '@/components/sections/contact-section';
 import { FaqSection } from '@/components/sections/faq';
-import { GlobalReach } from '@/components/sections/global-reach';
 import { Hero } from '@/components/sections/hero';
-import { HowItWorks } from '@/components/sections/how-it-works';
-import { Numbers } from '@/components/sections/numbers';
-import { Principles } from '@/components/sections/principles';
+import { LocationsHome } from '@/components/sections/locations-home';
+import { OurDna } from '@/components/sections/our-dna';
+import { Problem } from '@/components/sections/problem';
 import { ProjectsTeaser } from '@/components/sections/projects-teaser';
-import { Services } from '@/components/sections/services';
+import { Studio } from '@/components/sections/studio';
 import { Technologies } from '@/components/sections/technologies';
-import { Testimonials } from '@/components/sections/testimonials';
-import { WhoWeAre } from '@/components/sections/who-we-are';
 
 import { getFaqs } from '@/data/faqs';
 import { getDictionary } from '@/i18n/server';
 
 /**
- * The landing page, top to bottom: what we build and why, Conscious AI,
- * why technology is never just technology, the figures, the work, the
- * services, the stack, the two offices on the globe, who we are, how we
- * work, what clients said, the engineering principles, questions, and the
- * form.
+ * The landing page, top to bottom: who we are, the problem people arrive
+ * with, our values, how the studio works, a tool carousel, selected work,
+ * Conscious AI, figures and locations, contact and FAQ.
  */
 export default async function HomePage() {
   const dict = await getDictionary();
@@ -29,26 +23,24 @@ export default async function HomePage() {
   return (
     <>
       <Hero dict={dict} />
-      <ConsciousAiIntro dict={dict} />
-      <ConsciousTechnology dict={dict} />
-      <Numbers dict={dict} />
+      <Problem dict={dict} />
+      <OurDna />
+      <Studio />
+      <Technologies dict={dict} carouselOnly />
       <ProjectsTeaser dict={dict} />
-      <Services dict={dict} />
-      <Technologies dict={dict} />
-      <GlobalReach dict={dict} />
-      <WhoWeAre dict={dict} />
-      <HowItWorks dict={dict} />
-      <Testimonials dict={dict} />
-      <Principles dict={dict} />
-      <FaqSection
-        items={getFaqs(dict.locale)}
-        kicker={dict.faq.kicker}
-        title={dict.faq.title}
-        accentWords={[...dict.faq.accent]}
-        description={dict.faq.description}
-        className='bl-band-stone bl-rule'
-      />
+      <ConsciousAiHome dict={dict} />
+      <LocationsHome />
       <ContactSection dict={dict} />
+      <div id='faq' className='scroll-mt-24'>
+        <FaqSection
+          items={getFaqs(dict.locale)}
+          kicker={dict.faq.kicker}
+          title={dict.faq.title}
+          accentWords={[...dict.faq.accent]}
+          description={dict.faq.description}
+          className='bl-band-stone bl-rule'
+        />
+      </div>
     </>
   );
 }

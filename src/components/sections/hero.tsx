@@ -14,10 +14,10 @@ interface HeroProps {
 }
 
 /**
- * Opening section: what the company does in one headline and one sentence,
- * two actions, and beside them the kind of product we build as a living
- * map: labelled tiles on a plate with requests and answers riding the
- * wires between them, and the model used only where it helps.
+ * Opening section: what we are, in one headline and a few lines, two ways
+ * in (the studio, the free course), and beside them Conscious AI as a
+ * living map: the same work sent down the usual lane and ours, with the
+ * cost meters filling beside each.
  */
 export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
@@ -31,8 +31,8 @@ export function Hero({ dict }: HeroProps) {
       />
 
       <div className='bl-container relative pb-12 pt-28 sm:pb-16 sm:pt-32'>
-        {/* The title is two sentences on two lines: the habit, then the
-            answer in the accent colour. It types in letter by letter once
+        {/* The title is two sentences on two lines: what we build, then
+            how, in the accent colour. It types in letter by letter once
             the preloader has lifted. */}
         <LetterReveal
           as='h1'
@@ -45,7 +45,7 @@ export function Hero({ dict }: HeroProps) {
           className='bl-display justify-start text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink'
         />
 
-        <div className='mt-8 grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-14'>
+        <div className='mt-10 grid gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-24'>
           <div className='min-w-0'>
             <Reveal delay={0.7}>
               <p className='max-w-xl text-lg leading-relaxed text-ink/70 sm:text-xl'>
@@ -55,18 +55,20 @@ export function Hero({ dict }: HeroProps) {
 
             <Reveal
               delay={0.85}
-              className='mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center'
+              className='mt-8 flex w-full flex-col items-start gap-4 sm:flex-row sm:items-stretch'
             >
+              {/* A shared fixed measure makes this CTA pair read as one
+                  deliberate choice on every viewport. */}
               <Link
                 href={paths.contact}
-                className='bl-btn bl-btn-ink inline-flex h-14 items-center justify-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
+                className='bl-btn bl-btn-ink inline-flex h-14 w-full max-w-[16rem] items-center justify-between gap-3 whitespace-nowrap px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]'
               >
                 {t.primary}
-                <span className='h-2.5 w-2.5 bg-brand' />
+                <span className='h-2.5 w-2.5 shrink-0 bg-brand' />
               </Link>
               <Link
-                href={paths.work}
-                className='bl-btn bl-btn-secondary inline-flex h-14 items-center justify-center gap-3 bg-surface px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
+                href={paths.program}
+                className='bl-btn bl-btn-secondary inline-flex h-14 w-full max-w-[16rem] items-center justify-between gap-3 whitespace-nowrap bg-surface px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]'
               >
                 {t.secondary}
                 <ArrowRight className='h-4 w-4' />
@@ -77,9 +79,11 @@ export function Hero({ dict }: HeroProps) {
           <Reveal
             delay={0.9}
             distance={16}
-            className='w-full min-w-0 max-w-[44rem] justify-self-center lg:-mt-10 lg:justify-self-end'
+            className='w-full min-w-0 max-w-[44rem] justify-self-center lg:mt-8 lg:justify-self-end'
           >
-            <SystemMap copy={t.map} delay={0.5} />
+            <div className='bl-card bg-surface p-2 sm:p-3'>
+              <SystemMap copy={t.map} delay={0.5} />
+            </div>
           </Reveal>
         </div>
       </div>

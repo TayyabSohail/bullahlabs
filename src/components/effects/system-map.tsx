@@ -47,8 +47,6 @@ export interface MapScenario {
 }
 
 export interface SystemMapCopy {
-  /** The line under the graphic; also the alt text. */
-  kicker: string;
   /** The two lanes. */
   lanes: { usual: string; conscious: string };
   /** Labels on the drawing; keep each box label under about twelve characters. */
@@ -732,7 +730,7 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
     animate: ready ? { opacity: 1, y: 0 } : undefined,
     transition: { duration: 0.5, ease, delay: ready ? i * 0.07 : 0 },
   });
-  const altText = `${copy.kicker} ${copy.lanes.usual}: ${copy.nodes.largeModel}, ${copy.nodes.fullContext}. ${copy.lanes.conscious}: ${copy.nodes.decide} ${copy.nodes.tool} ${copy.nodes.check}. ${copy.nodes.guide}.`;
+  const altText = `${copy.lanes.usual}: ${copy.nodes.largeModel}, ${copy.nodes.fullContext}. ${copy.lanes.conscious}: ${copy.nodes.decide} ${copy.nodes.tool} ${copy.nodes.check}. ${copy.nodes.guide}.`;
 
   /** Rows in the saving: each figure arrives its own way. */
   const rowY = { cost: PANEL_Y + 60, tokens: PANEL_Y + 80, co2: PANEL_Y + 100 };
@@ -1274,8 +1272,6 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
         </motion.g>
       </svg>
 
-      {/* One line under the drawing: what Conscious AI is. */}
-      <p className='bl-kicker mt-3 !tracking-[0.16em]'>{copy.kicker}</p>
     </div>
   );
 }

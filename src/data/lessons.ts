@@ -63,13 +63,13 @@ export const modules: CourseModule[] = [
       },
       {
         id: 'decide-02',
-        title: 'Pick the smallest tool that does the job',
+        title: 'Pick the right-sized tool',
         summary:
           'A light model for a draft, a heavy one only when the result is hard to check. Right-sizing is where most of the saving sits.',
       },
       {
         id: 'decide-03',
-        title: 'What a prompt costs',
+        title: 'What a prompt really costs',
         summary:
           'Where the time, the money and the computation go in one round with a model, so every extra round has to earn its place.',
       },

@@ -82,7 +82,7 @@ const plexMono = localFont({
 export const metadata: Metadata = getMetadata();
 
 export const viewport: Viewport = {
-  themeColor: '#f3eee1',
+  themeColor: '#ebf5fa',
   width: 'device-width',
   initialScale: 1,
 };

@@ -20,12 +20,10 @@ export const de: Dictionary = {
   hero: {
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
     accent: [4, 5, 6],
-    body: 'Wir bauen digitale Produkte, die echte Probleme lösen, schlank laufen und lange halten. Dieselbe Disziplin prägt, wie wir KI nutzen und wie wir es anderen beibringen.',
-    primary: 'Projekt besprechen',
-    secondary: 'Projekte ansehen',
+    body: 'Wir bauen digitale Produkte, die echte Probleme lösen, schlank laufen und lange halten. Dieselbe Disziplin prägt, wie wir KI einsetzen und wie wir es anderen beibringen.',
+    primary: 'Mit dem Studio arbeiten',
+    secondary: 'Zum kostenlosen Kurs',
     map: {
-      kicker:
-        'Conscious AI: KI nur, wo sie hilft, so wenig wie nötig, von Ihnen geprüft.',
       lanes: {
         usual: 'Der übliche Weg',
         conscious: 'Conscious AI',
@@ -64,7 +62,7 @@ export const de: Dictionary = {
     accent: [4, 5, 6, 7],
     paragraphs: [
       'Jede Woche neue Werkzeuge. Druck, smarter zu arbeiten. Wenig Klarheit, welchen Werkzeugen man trauen kann, was man lernen soll oder ob man KI gut nutzt, und was das an Zeit, Geld und Energie kostet.',
-      'KI gut zu nutzen ist eine Fähigkeit, kein Abo. Wir vermitteln sie, kostenlos.',
+      'KI gut zu nutzen ist eine Fähigkeit, kein Abo.',
       'Kurze, praktische Module zeigen Ihnen, wie Sie das richtige Werkzeug für die Aufgabe wählen, Ihren KI-Arbeitsplatz einrichten, Prompts schreiben, die beim ersten Mal sitzen, und KI weglassen, wo Sie sie nicht brauchen. Kein technischer Hintergrund nötig.',
     ],
     closingKicker: 'Kostenlose Ressourcen',
@@ -73,6 +71,7 @@ export const de: Dictionary = {
     cta: 'Conscious AI entdecken',
     notifyNote:
       'Die kostenlosen Module entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen am Tag der Eröffnung Bescheid.',
+    notify: 'Benachrichtigen',
   },
   consciousTech: {
     kicker: 'Bewusste Technologie',
@@ -84,23 +83,18 @@ export const de: Dictionary = {
       'Bessere Technologie tut mehr, als zu funktionieren. Sie ist verständlich, bezahlbar im Betrieb und es wert, behalten zu werden.',
     ],
   },
-  numbers: {
-    kicker: 'Bilanz',
-    title: 'Zahlen, die es belegen.',
-    description:
-      'Ausgelieferte Produkte, langjährige Kunden und ein Team auf zwei Kontinenten.',
-    items: [
-      { value: '150+', label: 'Abgeschlossene Projekte' },
-      { value: '40+', label: 'Kunden auf vier Kontinenten' },
-      { value: '2', label: 'Standorte, Deutschland und Pakistan' },
-    ],
+  problem: {
+    kicker: 'Das Problem',
+    title: 'KI verändert die Arbeit.\nNiemand hat Ihnen gezeigt, wie.',
+    accent: [6, 7, 8],
   },
   technologies: {
-    kicker: 'Werkzeuge und Technologie',
-    statement: 'Bewährte Werkzeuge. Mit Bedacht gewählt, nicht aus Gewohnheit.',
+    kicker: 'Unser Werkzeugkasten',
+    statement: 'Die richtige Technologie für die Aufgabe.',
     statementMuted:
-      'Wir wählen etablierte Technologie, die zu Problem, Team und Budget passt. Nichts kommt dazu, nur weil es im Trend ist. Jedes Werkzeug muss sich seinen Platz verdienen und im Betrieb wenig kosten, an Zeit, Geld und Energie.',
-    stackLabel: 'Womit wir bauen, in einfachen Worten',
+      'Wir wählen verlässliche Werkzeuge, die zu Ihrem Produkt, Team und Budget passen. Der Stack unten ist ein Ausgangspunkt, kein starres Rezept.',
+    stripLabel: 'Ausgewählte Werkzeuge',
+    stackLabel: 'So setzen wir Technologie ein',
     layers: [
       {
         label: 'Websites und Web-Apps',
@@ -163,13 +157,6 @@ export const de: Dictionary = {
       },
     ],
   },
-  globalReach: {
-    kicker: 'Weltweit im Einsatz',
-    title: 'Ein Team. Wo immer die Arbeit stattfindet.',
-    description:
-      'Kunden auf vier Kontinenten, betreut aus Stuttgart und Islamabad. Wann immer Ihr Tag beginnt, ist jemand aus dem Team schon online.',
-    legend: 'Standorte und Kundenorte',
-  },
   testimonials: {
     kicker: 'Kundenstimmen',
     title: 'Gute Arbeit, in ihren Worten.',
@@ -222,7 +209,6 @@ export const de: Dictionary = {
       accent: [3, 4, 5],
       body: [
         'Neue Produkte, neu gebaute und Systeme, die endlich miteinander sprechen. Jede Fallstudie zeigt das Problem, die Arbeit und was sich verändert hat.',
-        'Unsere Kunden reichen von jungen Start-ups bis zu etablierten Unternehmen auf vier Kontinenten.',
       ],
       cta: 'Alle Projekte ansehen',
       listLabel: 'Ausgewählte Projekte',
@@ -556,12 +542,13 @@ export const de: Dictionary = {
           'Start-ups und etablierte Unternehmen, die etwas Neues bauen, etwas Altes reparieren oder entscheiden, was als Nächstes kommt',
       },
       {
-        label: 'Seit',
-        value: '2024, mit über 150 Projekten und Kunden auf vier Kontinenten',
+        label: 'Reichweite',
+        value:
+          'Kunden auf fünf Kontinenten. Zwei Büros: Stuttgart und Islamabad.',
       },
       {
-        label: 'Wo',
-        value: 'Stuttgart und Islamabad, mit überlappenden Arbeitszeiten',
+        label: 'Seit',
+        value: '2024, mit über 150 abgeschlossenen Projekten',
       },
     ],
     whereKicker: 'Wo wir sind',

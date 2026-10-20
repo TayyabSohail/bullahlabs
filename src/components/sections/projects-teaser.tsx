@@ -55,7 +55,7 @@ export function ProjectsTeaser({
   };
 
   return (
-    <section id='work' className={cn('bl-section bl-rule', className)}>
+    <section id='projects' className={cn('bl-section bl-rule', className)}>
       <div className='bl-container'>
         <div className='relative overflow-hidden sm:p-8 lg:p-12'>
           <div className='grid gap-9 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12'>

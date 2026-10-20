@@ -18,11 +18,13 @@ export const en = {
   },
   hero: {
     title: 'Technology that solves problems.\nBuilt with conscience.',
-    /** Words (0-based, across both lines) in the accent colour: line two. */
+    /** Words (0-based, across both lines) in the accent colour: the second line. */
     accent: [4, 5, 6],
+    /** What we are, in two lines. The problem people arrive with is the next section. */
     body: 'We build digital products that solve real problems, run lean and hold up over time. The same discipline shapes how we use AI, and how we teach others to.',
-    primary: 'Discuss your project',
-    secondary: 'See our work',
+    /** Two ways in: the studio for organisations, the free course for people. */
+    primary: 'Work with the studio',
+    secondary: 'Take the free course',
     /**
      * The living graphic beside the hero copy: Conscious AI shown as the
      * difference it makes, on one piece of work: a team's contract
@@ -42,8 +44,6 @@ export const en = {
      * about a tenth of that.
      */
     map: {
-      kicker:
-        'Conscious AI: use it where it helps, as little as it needs, checked by you.',
       lanes: {
         usual: 'The usual way',
         conscious: 'Conscious AI',
@@ -83,7 +83,7 @@ export const en = {
     accent: [4, 5, 6, 7],
     paragraphs: [
       "New tools every week. Pressure to work smarter. Little clarity on which tools to trust, what to learn or whether you're using AI well, and at what cost in time, money and energy.",
-      'Using AI well is a skill, not a subscription. We teach it, free.',
+      'Using AI well is a skill, not a subscription.',
       "Short, practical modules show you how to pick the right tool for the task, set up your AI workspace, write prompts that work first time and skip the AI you don't need. No technical background required.",
     ],
     closingKicker: 'Free resources',
@@ -91,6 +91,7 @@ export const en = {
     cta: 'Explore Conscious AI',
     notifyNote:
       "The free modules are in the making. Leave your email and we'll tell you the day they open.",
+    notify: 'Notify me',
   },
   consciousTech: {
     kicker: 'Conscious technology',
@@ -102,23 +103,20 @@ export const en = {
       'Better technology does more than work. It is understood, affordable to run and worth keeping.',
     ],
   },
-  numbers: {
-    kicker: 'Track record',
-    title: 'Numbers that back it up.',
-    description:
-      'Shipped products, long-term clients and a team that spans two continents.',
-    items: [
-      { value: '150+', label: 'Projects delivered' },
-      { value: '40+', label: 'Clients on four continents' },
-      { value: '2', label: 'Offices, Germany and Pakistan' },
-    ],
+  /** The problem people arrive with, right after the hero. The body copy and the free-resources card come from `consciousAi`. */
+  problem: {
+    kicker: 'The problem',
+    title: 'AI is changing work.\nNo one showed you how.',
+    /** Words (0-based, across both lines) in the accent colour: the reader. */
+    accent: [7, 8],
   },
   technologies: {
-    kicker: 'Tools and technology',
-    statement: 'Proven tools. Chosen with care, not by habit.',
+    kicker: 'Our toolkit',
+    statement: 'The right technology for the work.',
     statementMuted:
-      'We pick established technology that fits the problem, the team and the budget. Nothing is added because it is trending. Every tool has to earn its place and stay cheap to run, in time, money and energy.',
-    stackLabel: 'What we build with, in plain words',
+      'We choose dependable tools that fit your product, your team and your budget. The stack below is a starting point, not a fixed recipe.',
+    stripLabel: 'Selected tools',
+    stackLabel: 'How we use technology',
     layers: [
       {
         label: 'Websites and web apps',
@@ -182,13 +180,6 @@ export const en = {
       },
     ],
   },
-  globalReach: {
-    kicker: 'Working worldwide',
-    title: 'One team. Wherever the work happens.',
-    description:
-      'Clients on four continents, served from Stuttgart and Islamabad. Whenever your day starts, someone on the team is already online.',
-    legend: 'Offices and client locations',
-  },
   testimonials: {
     kicker: 'Client voices',
     title: 'Good work, in their words.',
@@ -244,7 +235,6 @@ export const en = {
       accent: [3, 4, 5],
       body: [
         'New products, rebuilt ones and systems that finally talk to each other. Each case study shows the problem, the work and what changed.',
-        'Clients range from early-stage startups to established companies on four continents.',
       ],
       cta: 'Browse all projects',
       listLabel: 'Featured projects',
@@ -334,23 +324,23 @@ export const en = {
   },
   programPage: {
     kicker: 'Conscious AI',
-    title: 'Use AI with purpose.',
-    accent: [2, 3],
+    title: 'Use AI on your terms.',
+    accent: [2, 3, 4],
     description:
-      'Free, practical modules that teach you to get more from AI while using less of it. For people who work with AI, not people who build it.',
+      'Everyone expects you to use AI. Few show you how. Free, practical lessons on when it helps, which tool fits, and what it really costs.',
     heroCta: 'Tell me when it opens',
     principle: 'Practical skills. Conscious choices. No coding required.',
     course: {
       kicker: 'Coming soon',
       title: 'Better AI habits start here.',
-      accent: [0, 1, 2],
+      accent: [3, 4],
     },
     problem: {
       kicker: 'The problem',
-      title: 'Everyone expects you to use AI. Few show you how.',
-      accent: [6, 7, 8, 9],
+      title: 'Start with AI. Start where?',
+      accent: [3, 4],
       lines: [
-        'New tools every week, more pressure to keep up, and no clear way to tell what is worth your time.',
+        'New tools every week. Pressure to use them for everything. No word on which tool fits, or how to check what comes back. And a quiet worry about what it all costs.',
         "You shouldn't have to choose between doing your job well and using AI responsibly.",
       ],
     },
@@ -359,8 +349,8 @@ export const en = {
       title: 'Not more AI. Better AI.',
       accent: [3, 4],
       lines: [
-        'Use AI only where it helps. Pick the right model. Give it clear instructions and only the context it needs.',
-        'Check the output. Know the cost. Keep your own judgement in the loop.',
+        'Use it where it helps. Skip it where a formula or a search does the job. Pick the right tool and give it only what it needs.',
+        'Check the output. Know the cost. Keep your judgement in charge.',
       ],
     },
     modules: {
@@ -368,19 +358,19 @@ export const en = {
       title: 'Six habits. Real work.',
       accent: [2, 3],
       description:
-        'Each module takes a task you already do and shows a better way to do it with AI.',
+        'Every lesson starts with a task you already do.',
       habits: [
         {
           title: 'Set up once.',
-          body: 'Reusable instructions for the tasks you repeat.',
+          body: 'Save your instructions. Stop retyping them.',
         },
         {
           title: 'Prompt clearly.',
-          body: 'Better results, fewer follow-ups.',
+          body: 'Usable answers, fewer follow-ups.',
         },
         {
           title: 'Choose wisely.',
-          body: 'Match the model to the task, not the hype.',
+          body: 'Big model, small model, or no AI at all.',
         },
         {
           title: 'Keep context lean.',
@@ -388,7 +378,7 @@ export const en = {
         },
         {
           title: 'Think critically.',
-          body: 'Check outputs. Know when not to use AI at all.',
+          body: 'AI drafts. You decide. Keep your skills sharp.',
         },
         {
           title: 'Know the impact.',
@@ -398,25 +388,25 @@ export const en = {
     },
     whoFor: {
       kicker: 'Made for non-developers',
-      title: 'Curious about AI. No coding required.',
-      accent: [3, 4, 5],
+      title: 'AI landed on your desk. Now what?',
+      accent: [5, 6],
       paragraphs: [
         'Marketing, operations, finance, HR, sales, project management: if AI has landed on your desk, this is for you. Skills you can use the same day.',
       ],
       questions: [
-        'Unsure where to start?',
-        'Struggling to keep up?',
-        'Want better results with less effort?',
-        "Concerned about AI's impact?",
+        'Told to use AI, but not how?',
+        'Not sure which model to pick?',
+        'Worried it is dulling your skills?',
+        'Uneasy about what it costs the planet?',
       ],
       closing: 'Start with the work you already do.',
     },
     business: {
       kicker: 'For teams',
-      title: 'Help your team use AI well.',
-      accent: [4, 5],
+      title: 'Rolled out AI? Make it count.',
+      accent: [3, 4, 5],
       paragraphs: [
-        'Handing out AI tools is easy. Using them well takes practice. We train teams on their real workflows, so the gains show up in the work, not just on the licence bill.',
+        'Without guidance, you get guesswork, hidden use and polished-looking work someone else has to fix. We train teams on their real tasks, so the gains show up in the work, not just on the licence bill.',
       ],
       offers: [
         {
@@ -429,7 +419,7 @@ export const en = {
         },
         {
           title: 'Conscious AI guidance',
-          body: 'Tool choices, costs, resource use and responsible adoption, explained.',
+          body: 'Clear rules on tools, data, costs and resource use.',
         },
         {
           title: 'AI optimisation',
@@ -440,18 +430,18 @@ export const en = {
     },
     vision: {
       kicker: 'Why we do this',
-      title: 'Technology should move us forward, thoughtfully.',
-      accent: [5],
+      title: 'Faster, sure. But towards what?',
+      accent: [2, 3, 4],
       paragraphs: [
-        'Progress means solving real problems, not building more for its own sake.',
-        'We want technology that extends what people can do without losing sight of what it costs.',
+        'Progress means solving real problems, not adding AI for its own sake.',
+        'We want technology that extends what people can do, without losing sight of what it costs.',
       ],
     },
     comingSoon: {
       kicker: 'Something new is in the works',
-      title: 'Learn consciously. Put it into practice.',
-      accent: [2, 3, 4, 5],
-      body: "The free course is only the start. We're building a product that brings Conscious AI into everyday work. Leave your email and you'll hear about both.",
+      title: 'Learn it free. Put it to work.',
+      accent: [3, 4, 5, 6],
+      body: "The free course is step one. We're also building a product that brings Conscious AI into everyday work. Hear about both first.",
       cta: 'Stay in the loop',
     },
   },
@@ -574,12 +564,13 @@ export const en = {
           'Startups and established companies building something new, fixing something old or deciding what comes next',
       },
       {
-        label: 'Since',
-        value: '2024, with 150+ projects and clients on four continents',
+        label: 'Reach',
+        value:
+          'Clients across five continents. Two offices: Stuttgart and Islamabad.',
       },
       {
-        label: 'Where',
-        value: 'Stuttgart and Islamabad, with overlapping working hours',
+        label: 'Since',
+        value: '2024, with 150+ projects delivered',
       },
     ],
     whereKicker: 'Where we are',
@@ -694,11 +685,11 @@ export const en = {
     },
     /** Closing section of the homepage: the same form, without leaving. */
     home: {
-      kicker: 'Contact',
-      title: 'Have a problem worth solving?',
-      accent: [2, 3, 4],
+      kicker: "Let's talk",
+      title: 'Got a problem worth solving? Bring it.',
+      accent: [5, 6],
       description:
-        "Tell us what you're building, what needs improving or where technology is getting in the way. We'll suggest a practical next step.",
+        "Tell us what you're building, fixing, or losing sleep over. We reply within one business day, with a next step, not a sales deck.",
     },
   },
   faq: {
@@ -716,7 +707,7 @@ export const en = {
   },
   footer: {
     pitch:
-      'A product and engineering studio in Stuttgart and Islamabad. We build digital products that last, and teach people to use AI well.',
+      'Bullah Labs builds technology for hard problems, conscience included. Stuttgart and Islamabad.',
     program: 'Conscious AI',
     company: 'Company',
     offices: 'Offices',

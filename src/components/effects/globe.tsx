@@ -18,11 +18,12 @@ const DEFAULT_MARKERS: GlobeProps['markers'] = [
   { location: [42.36, -71.06], size: 0.025 }, // Boston
   { location: [51.5, -0.12], size: 0.025 }, // London
   { location: [25.2, 55.27], size: 0.025 }, // Dubai
+  { location: [-33.87, 151.21], size: 0.025 }, // Sydney
 ];
 
 /**
  * Dotted wireframe globe (cobe), light palette, slow spin, drag to rotate.
- * Markers show the two offices and client locations.
+ * Markers show the two offices and client locations across five continents.
  */
 export function Globe({ className, markers = DEFAULT_MARKERS }: GlobeProps) {
   const ref = useRef<HTMLCanvasElement>(null);
