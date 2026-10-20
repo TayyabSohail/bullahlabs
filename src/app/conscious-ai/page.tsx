@@ -18,10 +18,23 @@ import { paths } from '@/constants/paths';
 import { getDictionary } from '@/i18n/server';
 
 export const metadata: Metadata = {
-  title: 'Conscious AI',
+  title: 'Use AI on your terms.',
   description:
-    'Conscious AI: free, practical modules from Bullah Labs to get more from AI while using less of it. No coding required. Team training available.',
+    'Free, practical lessons on when AI helps, which tool fits, and what it really costs.',
   alternates: { canonical: paths.program },
+  openGraph: {
+    title: 'Use AI on your terms.',
+    description:
+      'Free, practical lessons on when AI helps, which tool fits, and what it really costs.',
+    url: paths.program,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Use AI on your terms.',
+    description:
+      'Free, practical lessons on when AI helps, which tool fits, and what it really costs.',
+  },
 };
 
 /**
