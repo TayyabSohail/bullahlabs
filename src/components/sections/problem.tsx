@@ -1,7 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
-import { CourseSignup } from '@/components/course/course-signup';
 import { Reveal } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
 import { Badge } from '@/components/ui/badge';
@@ -17,7 +16,7 @@ interface ProblemProps {
  * The problem people arrive with, right after the hero, and the free answer
  * to it. Left: the headline, the pressure in a few lines, then the one-line
  * answer, followed by a plain-language view of AI's environmental impact.
- * Right: the free-resources card with the way in and the notify-me field.
+ * Right: the free-resources card and its direct way in.
  */
 export function Problem({ dict }: ProblemProps) {
   const t = dict.problem;
@@ -74,19 +73,6 @@ export function Problem({ dict }: ProblemProps) {
               {c.cta}
               <ArrowUpRight className='h-4 w-4' />
             </Link>
-            <div className='mt-8 border-t border-white/15 pt-6'>
-              <p className='text-sm leading-relaxed text-white/65'>
-                {c.notifyNote}
-              </p>
-              <CourseSignup
-                dict={dict}
-                source='home:problem'
-                variant='inline'
-                tone='dark'
-                submitLabel={c.notify}
-                className='mt-5'
-              />
-            </div>
           </div>
         </Reveal>
         <Reveal delay={0.35} className='min-w-0 lg:col-span-2'>
@@ -129,23 +115,6 @@ export function Problem({ dict }: ProblemProps) {
               ))}
             </div>
 
-            <div className='mt-3 flex flex-wrap gap-x-4 gap-y-1 border-t border-foreground/25 pt-2'>
-              <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-muted-foreground'>
-                Research
-              </span>
-              {t.impact.sources.map((source) => (
-                <a
-                  key={source.url}
-                  href={source.url}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-brand-text underline decoration-brand/45 underline-offset-4 transition-colors hover:text-foreground'
-                >
-                  {source.label}{' '}
-                  <ArrowUpRight className='inline h-3 w-3' aria-hidden='true' />
-                </a>
-              ))}
-            </div>
           </div>
         </Reveal>
       </div>

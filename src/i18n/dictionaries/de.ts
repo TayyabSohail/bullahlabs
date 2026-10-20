@@ -120,20 +120,6 @@ export const de: Dictionary = {
         title: '10–50 Prompts.',
         body: 'Diese GPT-3-Schätzung ist kein fester Preis pro Prompt. Sie hängt von Modell, Antwortlänge, Wetter, Kühlung und Stromnetz ab.',
       },
-      sources: [
-        {
-          label: 'IEA — Energy and AI (2025)',
-          url: 'https://www.iea.org/reports/energy-and-ai/executive-summary',
-        },
-        {
-          label: 'Li et al. — Making AI Less “Thirsty” (2025)',
-          url: 'https://arxiv.org/html/2304.03271v5',
-        },
-        {
-          label: 'US EPA — Vergleich mit Auto-Emissionen',
-          url: 'https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle',
-        },
-      ],
       powerStats: [
         {
           value: '1 von 67',
@@ -272,9 +258,6 @@ export const de: Dictionary = {
       kicker: 'Ausgewählte Projekte',
       title: 'Jedes Projekt soll einen Unterschied machen.',
       accent: [3, 4, 5],
-      body: [
-        'Neue Produkte, neu gebaute und Systeme, die endlich miteinander sprechen. Jede Fallstudie zeigt das Problem, die Arbeit und was sich verändert hat.',
-      ],
       cta: 'Alle Projekte ansehen',
       listLabel: 'Ausgewählte Projekte',
       more: '{n} weitere auf der Projektseite',

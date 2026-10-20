@@ -14,94 +14,6 @@ const ease = [0.16, 1, 0.3, 1] as const;
 const inView = { once: true, margin: '0px 0px -10% 0px' } as const;
 
 /**
- * Line-drawn marks, one per value, each stroke drawn in on entry:
- * a heart, two circles that overlap, a planted flag, a pair of scales.
- */
-const MARKS: Record<string, string[]> = {
-  Love: [
-    'M12 20.5S4.5 15.9 4.5 10.5A4 4 0 0 1 12 8a4 4 0 0 1 7.5 2.5c0 5.4-7.5 10-7.5 10z',
-  ],
-  Acceptance: [
-    'M9 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10z',
-    'M15 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10z',
-  ],
-  Courage: ['M6 21V3', 'M6 4h12l-2.5 4 2.5 4H6'],
-  Responsibility: [
-    'M12 4v17',
-    'M7 21h10',
-    'M12 7 5 9.5M12 7l7 2.5',
-    'M5 9.5 2 16a3 3 0 0 0 6 0z',
-    'M19 9.5 16 16a3 3 0 0 0 6 0z',
-  ],
-};
-
-interface ValueCardProps {
-  title: string;
-  body: string;
-}
-
-/**
- * One value: a ruled box with a line-drawn mark that draws itself stroke by
- * stroke as the card enters.
- */
-export function ValueCard({ title, body }: ValueCardProps) {
-  const reduce = useReducedMotion();
-  const strokes = MARKS[title] ?? [];
-  const tones = [
-    'bg-rose-500/10 text-rose-700 dark:text-rose-300',
-    'bg-amber-400/15 text-amber-800 dark:text-amber-200',
-    'bg-sky-500/10 text-sky-700 dark:text-sky-300',
-    'bg-brand/10 text-brand-text',
-  ];
-  const tone =
-    tones[['Love', 'Acceptance', 'Courage', 'Responsibility'].indexOf(title)] ??
-    tones[0];
-
-  return (
-    <StaggerItem className='bl-card relative isolate flex min-h-[17rem] flex-col overflow-hidden p-6 sm:p-7'>
-      <div className='flex items-start justify-between gap-4'>
-        <span
-          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${tone}`}
-        >
-          <svg
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='currentColor'
-            strokeWidth='1.5'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            aria-hidden='true'
-            className='h-7 w-7'
-          >
-            {strokes.map((d, strokeIndex) => (
-              <motion.path
-                key={d}
-                d={d}
-                initial={reduce ? false : { pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={inView}
-                transition={{
-                  duration: 1,
-                  ease,
-                  delay: 0.3 + strokeIndex * 0.16,
-                }}
-              />
-            ))}
-          </svg>
-        </span>
-      </div>
-      <h3 className='bl-display mt-5 text-2xl text-foreground sm:text-3xl'>
-        {title}
-      </h3>
-      <p className='mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base'>
-        {body}
-      </p>
-      <span aria-hidden='true' className='mt-auto block h-px w-full bg-brand' />
-    </StaggerItem>
-  );
-}
-
-/**
  * The verse is presented as a focused quote card: original Punjabi, its
  * transliteration, and a concise reading underneath.
  */
@@ -114,13 +26,13 @@ export function VerseCard() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={inView}
       transition={{ duration: 0.9, ease }}
-      className='bl-card relative flex min-h-[24rem] flex-col p-6 sm:p-8'
+      className='bl-card relative flex min-h-[18rem] flex-col p-6 sm:min-h-[24rem] sm:p-8'
     >
       <p className='flex items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground'>
         <span>Bulleh Shah</span>
         <span>Kasur, Punjab</span>
       </p>
-      <div className='relative my-auto py-8 sm:py-10'>
+      <div className='relative my-auto py-5 sm:py-10'>
         <span
           aria-hidden='true'
           className='absolute -left-1 -top-2 font-serif text-8xl leading-none text-brand/20 sm:text-9xl'

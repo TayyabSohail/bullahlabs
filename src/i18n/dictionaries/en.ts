@@ -21,7 +21,7 @@ export const en = {
     /** Words (0-based, across both lines) in the accent colour: the second line. */
     accent: [4, 5, 6],
     /** What we are, in two lines. The problem people arrive with is the next section. */
-    body: 'We build digital products that solve real problems, run lean and hold up over time. The same discipline shapes how we use AI, and how we teach others to.',
+    body: 'We build digital products that solve real problems, run lean and last. We optimise AI for more value with less cost, energy and complexity, then teach teams to do the same.',
     /** Two ways in: the studio for organisations, the free course for people. */
     primary: 'Work with the studio',
     secondary: 'Take the free course',
@@ -142,20 +142,6 @@ export const en = {
         title: 'That’s up to 1.2 trillion 500 ml bottles that could evaporate from AI in 2027.',
         body: 'This GPT-3 estimate is not a fixed price per prompt. It changes with the model, response length, weather, cooling system and electricity grid.',
       },
-      sources: [
-        {
-          label: 'IEA — Energy and AI (2025)',
-          url: 'https://www.iea.org/reports/energy-and-ai/executive-summary',
-        },
-        {
-          label: 'Li et al. — Making AI Less “Thirsty” (2025)',
-          url: 'https://arxiv.org/html/2304.03271v5',
-        },
-        {
-          label: 'US EPA — Car emissions comparison',
-          url: 'https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle',
-        },
-      ],
       powerStats: [
         {
           value: '1 in every 67 units',
@@ -298,9 +284,6 @@ export const en = {
       kicker: 'Selected work',
       title: 'Every project should make a difference.',
       accent: [3, 4, 5],
-      body: [
-        'New products, rebuilt ones and systems that finally talk to each other. Each case study shows the problem, the work and what changed.',
-      ],
       cta: 'Browse all projects',
       listLabel: 'Featured projects',
       more: '{n} more on the projects page',
@@ -760,7 +743,6 @@ export const en = {
   faq: {
     kicker: 'FAQ',
     title: 'Straight answers to important questions.',
-    description: 'What we do, how we work, and where AI fits in.',
     accent: [0, 1],
   },
   cta: {

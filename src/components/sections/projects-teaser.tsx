@@ -69,16 +69,6 @@ export function ProjectsTeaser({
                 accentWords={[...t.accent]}
                 className='bl-display mt-5 text-display-lg text-foreground'
               />
-              <Reveal delay={0.2} className='mt-5 space-y-4'>
-                {t.body.map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    className='text-sm leading-relaxed text-muted-foreground md:text-base'
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </Reveal>
               <Reveal
                 delay={0.3}
                 className='mt-7 max-sm:flex max-sm:justify-center sm:mt-9 lg:mt-auto lg:pt-10'

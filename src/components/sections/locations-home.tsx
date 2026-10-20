@@ -29,22 +29,35 @@ const STATS = [
 /** The figures and the two offices in one ink band, after what we do and before Let's Talk. */
 export function LocationsHome() {
   return (
-    <section id='locations' className='bl-section bl-rule bl-band-ink scroll-mt-24'>
+    <section
+      id='locations'
+      className='bl-section bl-rule bl-band-ink scroll-mt-24'
+    >
       <div className='bl-container'>
         <div className='grid gap-8 sm:grid-cols-[minmax(0,1fr)_22rem] sm:items-center sm:gap-12'>
           <div className='lg:pl-12'>
             <p className='bl-kicker text-white/60'>Where we are</p>
-            <h2 className='bl-display mt-4 text-4xl text-white sm:text-5xl'>Two offices. One team.</h2>
-            <p className='mt-4 max-w-lg text-base leading-relaxed text-white/65'>Stuttgart and Islamabad, one team across two time zones. Whenever your day starts, someone is already online.</p>
+            <h2 className='bl-display mt-4 text-4xl text-white sm:text-5xl'>
+              Two offices. One team.
+            </h2>
             <div className='mt-7 flex flex-wrap gap-x-7 gap-y-3'>
               {siteConfig.locations.map((location) => (
-                <p key={location.id} className='flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-white'>
-                  <Flag countryCode={location.countryCode} className='h-3 w-[18px]' />
+                <p
+                  key={location.id}
+                  className='flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-white'
+                >
+                  <Flag
+                    countryCode={location.countryCode}
+                    className='h-3 w-[18px]'
+                  />
                   {location.city}
                 </p>
               ))}
             </div>
-            <Link href={paths.contact} className='bl-btn bl-btn-primary mt-8 inline-flex h-14 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'>
+            <Link
+              href={paths.contact}
+              className='bl-btn bl-btn-primary mt-8 inline-flex h-14 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
+            >
               Start a project <ArrowUpRight className='h-4 w-4' />
             </Link>
           </div>
