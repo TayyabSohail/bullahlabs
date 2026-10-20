@@ -22,8 +22,8 @@ const MARKERS = [
 
 const STATS = [
   ['150+', 'Projects delivered'],
-  ['40+', 'Clients across five continents'],
-  ['2', 'Time zones covered'],
+  ['40+', 'Clients served'],
+  ['5', 'Continents reached'],
 ] as const;
 
 /** The figures and the two offices in one ink band, after what we do and before Let's Talk. */
@@ -32,7 +32,7 @@ export function LocationsHome() {
     <section id='locations' className='bl-section bl-rule bl-band-ink scroll-mt-24'>
       <div className='bl-container'>
         <div className='grid gap-8 sm:grid-cols-[minmax(0,1fr)_22rem] sm:items-center sm:gap-12'>
-          <div>
+          <div className='lg:pl-12'>
             <p className='bl-kicker text-white/60'>Where we are</p>
             <h2 className='bl-display mt-4 text-4xl text-white sm:text-5xl'>Two offices. One team.</h2>
             <p className='mt-4 max-w-lg text-base leading-relaxed text-white/65'>Stuttgart and Islamabad, one team across two time zones. Whenever your day starts, someone is already online.</p>
@@ -60,8 +60,8 @@ export function LocationsHome() {
               key={label}
               className={
                 index === 0
-                  ? 'py-7 sm:py-8 sm:pr-8'
-                  : 'border-t border-white/15 py-7 sm:border-l sm:border-t-0 sm:px-8 sm:py-8'
+                  ? 'py-7 sm:py-8 sm:pr-8 lg:text-center'
+                  : 'border-t border-white/15 py-7 sm:border-l sm:border-t-0 sm:px-8 sm:py-8 lg:text-center'
               }
             >
               <p className='bl-display text-6xl leading-none text-white sm:text-7xl'>
