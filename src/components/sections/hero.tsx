@@ -30,7 +30,7 @@ export function Hero({ dict }: HeroProps) {
         className='pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background'
       />
 
-      <div className='bl-container relative pb-12 pt-28 sm:pb-16 sm:pt-32'>
+      <div className='bl-container relative pb-28 pt-28 sm:pb-32 sm:pt-32 lg:pb-40 xl:pb-48'>
         {/* The title is two sentences on two lines: what we build, then
             how, in the accent colour. It types in letter by letter once
             the preloader has lifted. */}
@@ -45,7 +45,7 @@ export function Hero({ dict }: HeroProps) {
           className='bl-display justify-center text-center text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink sm:justify-start sm:text-left'
         />
 
-        <div className='mt-10 grid gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-24'>
+        <div className='mt-10 grid gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-24 xl:gap-x-32'>
           <div className='min-w-0'>
             <Reveal delay={0.7}>
               <p className='max-w-xl text-lg leading-relaxed text-ink/70 sm:text-xl'>
@@ -79,7 +79,7 @@ export function Hero({ dict }: HeroProps) {
           <Reveal
             delay={0.9}
             distance={16}
-            className='w-full min-w-0 max-w-[44rem] justify-self-center lg:mt-8 lg:justify-self-end'
+            className='w-full min-w-0 max-w-[44rem] justify-self-center lg:mt-8 lg:justify-self-end xl:max-w-[48rem]'
           >
             <div className='bl-card bg-surface p-2 sm:p-3'>
               <SystemMap copy={t.map} delay={0.5} />

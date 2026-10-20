@@ -1,9 +1,10 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Droplets } from 'lucide-react';
 import Link from 'next/link';
 
 import { CourseSignup } from '@/components/course/course-signup';
 import { Reveal } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
+import { Badge } from '@/components/ui/badge';
 
 import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
@@ -15,8 +16,8 @@ interface ProblemProps {
 /**
  * The problem people arrive with, right after the hero, and the free answer
  * to it. Left: the headline, the pressure in a few lines, then the one-line
- * answer. Right: the free-resources card with the way in and the notify-me
- * field. No figures here; those sit with the offices.
+ * answer, followed by a plain-language view of AI's environmental impact.
+ * Right: the free-resources card with the way in and the notify-me field.
  */
 export function Problem({ dict }: ProblemProps) {
   const t = dict.problem;
@@ -25,7 +26,7 @@ export function Problem({ dict }: ProblemProps) {
 
   return (
     <section className='bl-section bl-rule bl-band-stone'>
-      <div className='bl-container grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(20rem,5fr)] lg:gap-16'>
+      <div className='bl-container grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(20rem,5fr)] lg:gap-x-16 lg:gap-y-8'>
         <div className='min-w-0'>
           <Reveal>
             <p className='bl-kicker'>{t.kicker}</p>
@@ -46,7 +47,7 @@ export function Problem({ dict }: ProblemProps) {
               {skill}
             </p>
           </Reveal>
-          <Reveal delay={0.35} className='text-center sm:text-left'>
+          <Reveal delay={0.45} className='text-center sm:text-left'>
             <Link
               href={paths.program}
               className='bl-btn bl-btn-primary mt-7 inline-flex h-12 items-center gap-2.5 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
@@ -85,6 +86,78 @@ export function Problem({ dict }: ProblemProps) {
                 submitLabel={c.notify}
                 className='mt-5'
               />
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.35} className='min-w-0 lg:col-span-2'>
+          <div className='border border-foreground bg-[#fffdf7] p-4 shadow-[5px_5px_0_hsl(var(--foreground))] sm:p-5'>
+            <div className='border-b-2 border-foreground pb-3'>
+              <Badge className='border border-foreground bg-[#f4cc67] px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground'>
+                Reality check
+              </Badge>
+              <h3 className='bl-display mt-2 text-2xl text-foreground sm:text-3xl'>
+                {t.impact.kicker}
+              </h3>
+            </div>
+
+            <div className='mt-3 grid grid-cols-2 gap-2 lg:grid-cols-4'>
+              {[
+                ...t.impact.powerStats,
+                {
+                  value: t.impact.water.value,
+                  eyebrow: t.impact.water.eyebrow,
+                  label: t.impact.water.title,
+                },
+              ].map((stat, index) => (
+                <article
+                  key={stat.value}
+                  className='relative border border-foreground bg-background p-3'
+                >
+                  <span className='absolute right-3 top-2 font-mono text-3xl font-semibold text-foreground/10'>
+                    0{index + 1}
+                  </span>
+                  <p className='max-w-[14ch] font-mono text-[10px] font-semibold uppercase leading-relaxed tracking-[0.12em] text-muted-foreground'>
+                    {stat.eyebrow}
+                  </p>
+                  <p className='bl-display mt-3 text-2xl text-foreground sm:text-3xl'>
+                    {stat.value}
+                  </p>
+                  <p className='mt-2 border-t border-foreground/20 pt-2 text-xs leading-relaxed text-foreground'>
+                    {stat.label}
+                  </p>
+                </article>
+              ))}
+            </div>
+
+            <div className='mt-2 flex items-start gap-2 border border-foreground bg-[#d8f2e3] px-3 py-2'>
+              <Droplets
+                className='mt-0.5 h-4 w-4 shrink-0 text-brand-text'
+                aria-hidden='true'
+              />
+              <p className='text-xs leading-relaxed text-foreground'>
+                <span className='font-semibold'>
+                  {t.impact.water.globalValue}:
+                </span>{' '}
+                {t.impact.water.globalLabel}
+              </p>
+            </div>
+
+            <div className='mt-3 flex flex-wrap gap-x-4 gap-y-1 border-t border-foreground/25 pt-2'>
+              <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-muted-foreground'>
+                Research
+              </span>
+              {t.impact.sources.map((source) => (
+                <a
+                  key={source.url}
+                  href={source.url}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-brand-text underline decoration-brand/45 underline-offset-4 transition-colors hover:text-foreground'
+                >
+                  {source.label}{' '}
+                  <ArrowUpRight className='inline h-3 w-3' aria-hidden='true' />
+                </a>
+              ))}
             </div>
           </div>
         </Reveal>

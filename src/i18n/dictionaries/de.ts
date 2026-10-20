@@ -87,6 +87,73 @@ export const de: Dictionary = {
     kicker: 'Das Problem',
     title: 'KI verändert die Arbeit.\nNiemand hat Ihnen gezeigt, wie.',
     accent: [6, 7, 8],
+    impact: {
+      kicker: 'Die Umweltkosten, einfach erklärt',
+      intro:
+        'KI läuft in Rechenzentren: Gebäuden voller leistungsstarker Computer, die Strom und Kühlung brauchen. KI ist nicht ihre einzige Aufgabe, aber der am schnellsten wachsende Teil.',
+      stats: [
+        {
+          value: '1,5 %',
+          eyebrow: 'Fakt',
+          label:
+            '2025 verbrauchten Rechenzentren 1,5 % des weltweiten Stroms – und KI ist der am schnellsten wachsende Grund dafür.',
+        },
+        {
+          value: '3 %',
+          eyebrow: 'Achtung',
+          label:
+            'Bis 2030 könnten sie so viel Strom verbrauchen wie Japan heute. Mehr Bedarf setzt Stromnetze zusätzlich unter Druck.',
+        },
+        {
+          value: '3×',
+          eyebrow: 'Achtung',
+          label:
+            'Der Stromverbrauch von KI-Rechenzentren soll sich bis 2030 verdreifachen – das kann mehr Verschmutzung bedeuten, wo Strom noch aus fossilen Brennstoffen kommt.',
+        },
+      ],
+      sourceLabel: 'Quelle: Internationale Energieagentur, 2026',
+      sourceUrl:
+        'https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary',
+      water: {
+        value: '1 Flasche',
+        eyebrow: 'Wasserverbrauch',
+        title: '10–50 Prompts.',
+        body: 'Diese GPT-3-Schätzung ist kein fester Preis pro Prompt. Sie hängt von Modell, Antwortlänge, Wetter, Kühlung und Stromnetz ab.',
+        globalValue: 'Bis zu 1,2 Billionen Flaschen',
+        globalLabel: 'Wasser könnten durch KI im Jahr 2027 verdunsten.',
+      },
+      sources: [
+        {
+          label: 'IEA — Energy and AI (2025)',
+          url: 'https://www.iea.org/reports/energy-and-ai/executive-summary',
+        },
+        {
+          label: 'Li et al. — Making AI Less “Thirsty” (2025)',
+          url: 'https://arxiv.org/html/2304.03271v5',
+        },
+        {
+          label: 'US EPA — Vergleich mit Auto-Emissionen',
+          url: 'https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle',
+        },
+      ],
+      powerStats: [
+        {
+          value: '1 von 67',
+          eyebrow: 'Stromverbrauch 2024',
+          label: 'des weltweiten Stroms.',
+        },
+        {
+          value: 'Mehr als Japan',
+          eyebrow: 'Prognose für 2030',
+          label: 'als Japans Stromverbrauch im Jahr.',
+        },
+        {
+          value: 'Wie 65 Millionen Autos',
+          eyebrow: 'CO₂ im Jahr 2035',
+          label: 'die ein Jahr lang fahren.',
+        },
+      ],
+    },
   },
   technologies: {
     kicker: 'Unser Werkzeugkasten',
@@ -302,7 +369,8 @@ export const de: Dictionary = {
     accent: [1, 2],
     description:
       'Kostenlose, praktische Module, mit denen Sie mehr aus KI herausholen und dabei weniger davon brauchen. Für Menschen, die mit KI arbeiten, nicht für die, die sie bauen.',
-    audience: 'Für Menschen, die mit KI arbeiten, nicht für die, die sie bauen.',
+    audience:
+      'Für Menschen, die mit KI arbeiten, nicht für die, die sie bauen.',
     heroCta: 'Bescheid geben, wenn es öffnet',
     principle:
       'Praktische Fähigkeiten. Bewusste Entscheidungen. Kein Programmieren nötig.',
@@ -410,7 +478,7 @@ export const de: Dictionary = {
       accent: [4, 5],
       paragraphs: [
         'Fortschritt heißt, echte Probleme zu lösen, nicht mehr zu bauen um des Bauens willen.',
-        'Wir wollen Technologie, die erweitert, was Menschen können, ohne aus dem Blick zu verlieren, was sie kostet.',
+        'Wir glauben, dass Technologie erweitern sollte, was Menschen erreichen können, und dabei ihre Auswirkungen auf Menschen, Budgets und die Umwelt berücksichtigen muss. Das heißt, effiziente Lösungen zu wählen und nur die Rechenleistung einzusetzen, die eine Aufgabe braucht.',
       ],
     },
     comingSoon: {

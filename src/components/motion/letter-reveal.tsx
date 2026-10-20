@@ -98,7 +98,7 @@ export function LetterReveal({
                 key={`${word}-${wordInLine}`}
                 aria-hidden='true'
                 className={cn(
-                  'mr-[0.28em] inline-flex pb-[0.06em] last:mr-0',
+                  '-mx-[0.08em] mr-[0.20em] inline-flex px-[0.08em] pb-[0.06em] last:mr-0',
                   wordHasHinge || typingBounce
                     ? 'overflow-visible'
                     : 'overflow-hidden',

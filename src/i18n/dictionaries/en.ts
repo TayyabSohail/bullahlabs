@@ -109,6 +109,73 @@ export const en = {
     title: 'AI is changing work.\nNo one showed you how.',
     /** Words (0-based, across both lines) in the accent colour: the reader. */
     accent: [7, 8],
+    impact: {
+      kicker: 'The environmental cost, in plain English',
+      intro:
+        'AI runs in data centres: buildings full of powerful computers that need electricity and cooling. AI is not the only thing they do, but it is the fastest-growing part.',
+      stats: [
+        {
+          value: '1.5%',
+          eyebrow: 'Fact',
+          label:
+            'In 2025, data centres used 1.5% of all the electricity in the world — and AI is the fastest-growing reason for it.',
+        },
+        {
+          value: '3%',
+          eyebrow: 'Alert',
+          label:
+            'By 2030, they could use as much electricity as Japan uses today. More demand puts extra pressure on power grids.',
+        },
+        {
+          value: '3×',
+          eyebrow: 'Alert',
+          label:
+            'Electricity use from AI-focused data centres is expected to triple by 2030 — which can mean more pollution where power still comes from fossil fuels.',
+        },
+      ],
+      sourceLabel: 'Source: International Energy Agency, 2026',
+      sourceUrl:
+        'https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary',
+      water: {
+        value: '1 bottle',
+        eyebrow: 'Water used',
+        title: '10–50 prompts.',
+        body: 'This GPT-3 estimate is not a fixed price per prompt. It changes with the model, response length, weather, cooling system and electricity grid.',
+        globalValue: 'Up to 1.2 trillion bottles',
+        globalLabel: 'could evaporate from AI in 2027.',
+      },
+      sources: [
+        {
+          label: 'IEA — Energy and AI (2025)',
+          url: 'https://www.iea.org/reports/energy-and-ai/executive-summary',
+        },
+        {
+          label: 'Li et al. — Making AI Less “Thirsty” (2025)',
+          url: 'https://arxiv.org/html/2304.03271v5',
+        },
+        {
+          label: 'US EPA — Car emissions comparison',
+          url: 'https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle',
+        },
+      ],
+      powerStats: [
+        {
+          value: '1 in every 67',
+          eyebrow: 'Electricity used in 2024',
+          label: 'of global electricity.',
+        },
+        {
+          value: 'More than Japan',
+          eyebrow: 'Projected for 2030',
+          label: 'Japan’s yearly electricity use.',
+        },
+        {
+          value: 'Like 65 million cars',
+          eyebrow: 'CO₂ in 2035',
+          label: 'driving for one year.',
+        },
+      ],
+    },
   },
   technologies: {
     kicker: 'Our toolkit',
@@ -358,8 +425,7 @@ export const en = {
       kicker: 'Learn by doing',
       title: 'Six habits. Real work.',
       accent: [2, 3],
-      description:
-        'Every lesson starts with a task you already do.',
+      description: 'Every lesson starts with a task you already do.',
       habits: [
         {
           title: 'Set up once.',
@@ -435,7 +501,7 @@ export const en = {
       accent: [2, 3, 4],
       paragraphs: [
         'Progress means solving real problems, not adding AI for its own sake.',
-        'We want technology that extends what people can do, without losing sight of what it costs.',
+        'We believe technology should expand what people can achieve while respecting its impact on people, budgets and the environment. This means choosing efficient solutions and using only the computing power each task requires.',
       ],
     },
     comingSoon: {

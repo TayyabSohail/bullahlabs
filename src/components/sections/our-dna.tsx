@@ -31,7 +31,7 @@ export function OurDna() {
   return (
     <section
       id='our-dna'
-      className='bl-section bl-rule bl-band-stone scroll-mt-24 overflow-hidden pt-28 sm:pt-44 lg:pt-52'
+      className='bl-section bl-rule bl-band-stone scroll-mt-24 overflow-hidden pt-16 sm:pt-24 lg:pt-28'
     >
       <div className='bl-container'>
         {/* Headline and the origin story. */}

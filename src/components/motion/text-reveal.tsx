@@ -57,7 +57,7 @@ export function TextReveal({
         <span
           key={`${word}-${index}`}
           aria-hidden='true'
-          className='mr-[0.24em] inline-block overflow-hidden pb-[0.08em] align-bottom'
+          className='-mx-[0.18em] mr-[0.16em] inline-block overflow-hidden px-[0.18em] pb-[0.12em] align-bottom'
         >
           <motion.span
             variants={{
