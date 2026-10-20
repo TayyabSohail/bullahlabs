@@ -42,7 +42,7 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
             <div className='mt-auto pt-7'>
               <Link
                 href={`${paths.contact}?service=team`}
-                className='bl-btn bl-btn-primary inline-flex h-12 items-center justify-center gap-2.5 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
+                className='bl-btn bl-btn-primary inline-flex h-12 w-40 items-center justify-center gap-2.5 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
               >
                 Talk to us <ArrowUpRight className='h-3.5 w-3.5' />
               </Link>

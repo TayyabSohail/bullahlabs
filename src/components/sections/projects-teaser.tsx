@@ -105,100 +105,105 @@ export function ProjectsTeaser({
               </Reveal>
               {activeProject && (
                 <>
-                  <div className='relative mt-3 aspect-[16/9] min-w-0 overflow-hidden border border-line bg-ink sm:mt-4'>
-                    <AnimatePresence mode='wait' initial={false}>
-                      <motion.div
-                        key={activeProject.slug}
-                        initial={{ opacity: 0, x: 24 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -24 }}
-                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                        className='absolute inset-0'
-                      >
+                  <div className='bl-card mt-3 sm:mt-4'>
+                    <div className='relative aspect-[16/9] min-w-0 overflow-hidden bg-ink'>
+                      <AnimatePresence mode='wait' initial={false}>
+                        <motion.div
+                          key={activeProject.slug}
+                          initial={{ opacity: 0, x: 24 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -24 }}
+                          transition={{
+                            duration: 0.45,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className='absolute inset-0'
+                        >
+                          <Link
+                            href={paths.caseStudy(activeProject.slug)}
+                            aria-label={`${activeProject.title}: ${activeProject.tagline}`}
+                            className='group block h-full min-w-0'
+                          >
+                            <ProjectMockup
+                              project={activeProject}
+                              priority={activeIndex === 0}
+                              className='aspect-auto h-full w-full'
+                              sizes='(min-width: 1024px) 43vw, 100vw'
+                            />
+                          </Link>
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
+                    <div className='border-t border-line p-4 sm:p-5'>
+                      <div className='flex flex-col gap-3'>
                         <Link
                           href={paths.caseStudy(activeProject.slug)}
-                          aria-label={`${activeProject.title}: ${activeProject.tagline}`}
-                          className='group block h-full min-w-0'
+                          className='group min-w-0'
                         >
-                          <ProjectMockup
-                            project={activeProject}
-                            priority={activeIndex === 0}
-                            className='aspect-auto h-full w-full'
-                            sizes='(min-width: 1024px) 43vw, 100vw'
-                          />
+                          <p className='inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+                            <span
+                              aria-hidden='true'
+                              className='h-1.5 w-1.5 bg-brand'
+                            />
+                            {dict.work.filters[activeProject.category] ??
+                              activeProject.category}
+                          </p>
+                          <h3 className='bl-display mt-2 min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
+                            {activeProject.title}
+                          </h3>
+                          <p className='mt-1.5 line-clamp-2 min-h-[2.75em] max-w-[52ch] text-sm leading-snug text-muted-foreground'>
+                            {activeProject.tagline}
+                          </p>
                         </Link>
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
-                  <div className='mt-3 border-t border-line pt-3 sm:mt-4 sm:pt-4'>
-                    <div className='flex flex-col gap-3'>
-                      <Link
-                        href={paths.caseStudy(activeProject.slug)}
-                        className='group min-w-0'
-                      >
-                        <p className='inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+                        <div className='flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between'>
+                          <div className='flex min-w-0 flex-1 items-baseline gap-3 border-l-2 border-brand px-4 py-1 sm:gap-4 sm:px-5 sm:py-1.5'>
+                            <span className='bl-display text-3xl leading-none text-brand-text sm:text-4xl'>
+                              {activeProject.headline.value}
+                            </span>
+                            <span className='max-w-[22ch] text-xs font-semibold leading-snug text-ink sm:text-sm'>
+                              {activeProject.headline.label}
+                            </span>
+                          </div>
+                          <div className='flex shrink-0 gap-2 sm:items-center'>
+                            <button
+                              type='button'
+                              onClick={() => move(-1)}
+                              aria-label='Previous featured project'
+                              className='flex h-10 w-10 items-center justify-center border border-line text-foreground transition-colors hover:border-brand hover:bg-brand-soft hover:text-brand-text'
+                            >
+                              <ArrowLeft className='h-4 w-4' />
+                            </button>
+                            <button
+                              type='button'
+                              onClick={() => move(1)}
+                              aria-label='Next featured project'
+                              className='flex h-10 w-10 items-center justify-center bg-ink text-white transition-colors hover:bg-brand'
+                            >
+                              <ArrowRight className='h-4 w-4' />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='mt-3 flex items-center gap-4 sm:mt-4'>
+                        <div
+                          className='relative h-1 min-w-0 flex-1 overflow-hidden bg-line'
+                          role='progressbar'
+                          aria-label='Featured project rotation progress'
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                        >
                           <span
-                            aria-hidden='true'
-                            className='h-1.5 w-1.5 bg-brand'
+                            key={activeProject.slug}
+                            className='absolute inset-y-0 left-0 w-0 animate-[bl-project-progress_5s_linear] bg-brand'
+                            style={{
+                              animationPlayState: paused ? 'paused' : 'running',
+                            }}
                           />
-                          {dict.work.filters[activeProject.category] ??
-                            activeProject.category}
-                        </p>
-                        <h3 className='bl-display mt-2 min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
-                          {activeProject.title}
-                        </h3>
-                        <p className='mt-1.5 line-clamp-2 min-h-[2.75em] max-w-[52ch] text-sm leading-snug text-muted-foreground'>
-                          {activeProject.tagline}
-                        </p>
-                      </Link>
-                      <div className='flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between'>
-                        <div className='flex min-w-0 flex-1 items-baseline gap-3 border-l-2 border-brand px-4 py-1 sm:gap-4 sm:px-5 sm:py-1.5'>
-                          <span className='bl-display text-3xl leading-none text-brand-text sm:text-4xl'>
-                            {activeProject.headline.value}
-                          </span>
-                          <span className='max-w-[22ch] text-xs font-semibold leading-snug text-ink sm:text-sm'>
-                            {activeProject.headline.label}
-                          </span>
                         </div>
-                        <div className='flex shrink-0 gap-2 sm:items-center'>
-                          <button
-                            type='button'
-                            onClick={() => move(-1)}
-                            aria-label='Previous featured project'
-                            className='flex h-10 w-10 items-center justify-center border border-line text-foreground transition-colors hover:border-brand hover:bg-brand-soft hover:text-brand-text'
-                          >
-                            <ArrowLeft className='h-4 w-4' />
-                          </button>
-                          <button
-                            type='button'
-                            onClick={() => move(1)}
-                            aria-label='Next featured project'
-                            className='flex h-10 w-10 items-center justify-center bg-ink text-white transition-colors hover:bg-brand'
-                          >
-                            <ArrowRight className='h-4 w-4' />
-                          </button>
-                        </div>
+                        <span className='shrink-0 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground'>
+                          Featured work
+                        </span>
                       </div>
-                    </div>
-                    <div className='mt-3 flex items-center gap-4 sm:mt-4'>
-                      <div
-                        className='relative h-1 min-w-0 flex-1 overflow-hidden bg-line'
-                        role='progressbar'
-                        aria-label='Featured project rotation progress'
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                      >
-                        <span
-                          key={activeProject.slug}
-                          className='absolute inset-y-0 left-0 w-0 animate-[bl-project-progress_5s_linear] bg-brand'
-                          style={{
-                            animationPlayState: paused ? 'paused' : 'running',
-                          }}
-                        />
-                      </div>
-                      <span className='shrink-0 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground'>
-                        Featured work
-                      </span>
                     </div>
                   </div>
                 </>

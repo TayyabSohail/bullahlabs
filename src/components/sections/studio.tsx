@@ -90,17 +90,6 @@ export function Studio() {
           ))}
         </div>
 
-        <div className='mt-6 flex flex-col gap-5 bg-ink px-6 py-7 text-white sm:flex-row sm:items-center sm:justify-between sm:px-8'>
-          <p className='bl-display text-2xl sm:text-3xl'>Want our services?</p>
-          <Link
-            href={paths.services}
-            className='bl-btn bl-btn-primary inline-flex h-14 w-full items-center justify-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:w-auto'
-          >
-            Visit services
-            <ArrowRight className='h-4 w-4' />
-          </Link>
-        </div>
-
         {/* The method: one ruled panel on the same hard shadow as the cards above. */}
         <div className='bl-card mt-16'>
           <div className='flex flex-col gap-2 border-b px-6 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:px-8'>
@@ -144,6 +133,17 @@ export function Studio() {
             Lean systems. No surprise bills. Nothing gets in because it is
             trending.
           </p>
+        </div>
+
+        <div className='mt-6 flex flex-col gap-5 bg-ink px-6 py-7 text-white sm:flex-row sm:items-center sm:justify-between sm:px-8'>
+          <p className='bl-display text-2xl sm:text-3xl'>Want our services?</p>
+          <Link
+            href={paths.services}
+            className='bl-btn bl-btn-primary inline-flex h-14 w-full items-center justify-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:w-auto'
+          >
+            Visit services
+            <ArrowRight className='h-4 w-4' />
+          </Link>
         </div>
       </div>
     </section>

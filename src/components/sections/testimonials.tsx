@@ -160,6 +160,8 @@ export function Testimonials({
                           {item.author}
                         </p>
                         <p className='text-sm text-muted-foreground'>
+                          {item.company}
+                        </p>
                       </div>
                     </footer>
                   </motion.blockquote>
