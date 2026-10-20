@@ -32,30 +32,30 @@ export function Studio() {
   ] as const;
   const process = [
     {
-      title: 'Discover',
-      body: 'We ask why before how, and whether software or AI belongs here at all.',
-      mobileBody: 'Start with the need, not the tool.',
+      title: 'Audit',
+      body: 'We trace where tokens, time and money go, and whether AI is needed in the first place.',
+      mobileBody: 'Find where tokens, time and money go.',
       Icon: ScanSearch,
       tone: 'bg-brand-soft/60',
     },
     {
-      title: 'Decide',
-      body: 'The simplest option that will hold. Proven over trending, lean over large.',
-      mobileBody: 'Choose the simplest option that lasts.',
+      title: 'Right-size',
+      body: 'We choose the smallest capable model, the right amount of context and the fewest useful steps.',
+      mobileBody: 'Use the smallest capable model and context.',
       Icon: Scale,
       tone: 'bg-warm/10',
     },
     {
-      title: 'Build',
-      body: 'We ship with the running costs in plain sight: time, money and energy.',
-      mobileBody: 'Ship with costs in plain sight.',
+      title: 'Build lean',
+      body: 'We design prompts, retrieval and workflows that use fewer tokens without compromising useful, reliable output.',
+      mobileBody: 'Use fewer tokens without losing useful output.',
       Icon: Hammer,
       tone: 'bg-surface-2/70',
     },
     {
-      title: 'Improve',
-      body: 'We keep it useful and cheap to run, and remove what stopped earning its place.',
-      mobileBody: 'Keep what works. Remove what does not.',
+      title: 'Measure',
+      body: 'We measure quality, cost and usage, then keep removing waste. Less unnecessary compute lowers cumulative environmental impact.',
+      mobileBody: 'Measure quality and cost. Keep removing waste.',
       Icon: RefreshCw,
       tone: 'bg-brand-soft/30',
     },
@@ -103,9 +103,9 @@ export function Studio() {
         {/* The method: one ruled panel on the same hard shadow as the cards above. */}
         <div className='bl-card mt-16'>
           <div className='flex flex-col gap-2 border-b px-6 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:px-8'>
-            <p className='bl-kicker'>How we work</p>
+            <p className='bl-kicker'>How we optimise AI</p>
             <p className='font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground'>
-              Four steps, every project
+              Four steps to AI that costs less to run
             </p>
           </div>
           <ol className='grid sm:grid-cols-2 lg:grid-cols-4'>
@@ -143,8 +143,7 @@ export function Studio() {
             ))}
           </ol>
           <p className='border-t px-6 py-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:px-8'>
-            Lean systems. No surprise bills. Nothing gets in because it is
-            trending.
+            Useful AI. Fewer tokens. Lower cost. Less unnecessary compute.
           </p>
         </div>
 

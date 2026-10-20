@@ -753,7 +753,7 @@ export const en = {
     /** Closing section of the homepage: the same form, without leaving. */
     home: {
       kicker: "Let's talk",
-      title: 'Got a problem worth solving? Bring it.',
+      title: 'Got a problem worth solving? Tell us.',
       accent: [5, 6],
       description:
         "Tell us what you're building, fixing, or losing sleep over. We reply within one business day, with a next step, not a sales deck.",

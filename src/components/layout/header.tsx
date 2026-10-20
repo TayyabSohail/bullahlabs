@@ -25,7 +25,9 @@ export function Header({ dict }: HeaderProps) {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const items = primaryNav(dict);
+  // The mobile menu supplies Home itself so shared navigation can stay focused
+  // on standalone sections. Desktop needs it alongside the primary links.
+  const items = [{ label: dict.nav.home, href: paths.home }, ...primaryNav(dict)];
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScrolled(latest > 12);
