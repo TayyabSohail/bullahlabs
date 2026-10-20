@@ -45,6 +45,20 @@ export function Studio() {
           title='Built the way we use AI: only where it earns its place.'
           accentWords={[9, 10, 11]}
           description='Every tool, model and line of code in our work has to justify its cost in time, money and energy. Three ways in, one standard.'
+          aside={
+            <div className='flex flex-wrap items-center gap-4 md:justify-end'>
+              <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground'>
+                Want our services?
+              </p>
+              <Link
+                href={paths.services}
+                className='bl-btn bl-btn-primary inline-flex h-14 items-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] shadow-[0_14px_28px_-18px_hsl(var(--ink))]'
+              >
+                Visit services
+                <ArrowRight className='h-4 w-4' />
+              </Link>
+            </div>
+          }
         />
 
         {/* The offer: three ruled cards. */}
@@ -68,16 +82,6 @@ export function Studio() {
               </p>
             </article>
           ))}
-        </div>
-
-        <div className='mt-8 flex justify-end'>
-          <Link
-            href={paths.services}
-            className='bl-btn bl-btn-secondary inline-flex h-12 items-center gap-3 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
-          >
-            Explore all services
-            <ArrowRight className='h-4 w-4' />
-          </Link>
         </div>
 
         {/* The method: one ruled panel on the same hard shadow as the cards above. */}
