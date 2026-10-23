@@ -47,7 +47,7 @@ export function Services({ dict, className, heading = true }: ServicesProps) {
   const services = getServices(dict.locale);
 
   return (
-    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
+    <section data-section='services' className={cn('bl-section bl-rule bl-band-stone', className)}>
       <div className='bl-container'>
         {heading && (
           <SectionHeading

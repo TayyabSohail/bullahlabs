@@ -23,7 +23,7 @@ export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
 
   return (
-    <section className='relative overflow-hidden border-b'>
+    <section data-section='hero' className='relative overflow-hidden border-b'>
       <Contours />
       <div
         aria-hidden='true'

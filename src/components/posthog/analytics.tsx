@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 
 import { env, isSupabaseConfigured } from '@/env';
 
+import CtaClicks from './cta-clicks';
 import IdentifyUser from './identify';
 import PageView from './page-view';
 
@@ -10,6 +11,7 @@ const PosthogAnalytics = () => {
   return (
     <>
       {isSupabaseConfigured && <IdentifyUser />}
+      <CtaClicks />
       <Suspense>
         <PageView />
       </Suspense>

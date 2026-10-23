@@ -5,10 +5,16 @@ import { CalendarDays } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 
+import { track } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
+
+import { PosthogEventKeys } from '@/constants/posthog-events';
 
 /** One namespace for every modal trigger, so the iframe is shared. */
 const NAMESPACE = 'bullahlabs-book';
+
+/** The modal is shared, so every button on the page shares one listener. */
+let bookingListenerAdded = false;
 
 /** Matches `--brand` in globals.css (emerald-500). */
 const BRAND = '#10b981';
@@ -54,6 +60,14 @@ export function BookCallButton({
       });
       // Fetch the booking page early so the modal opens without a blank wait.
       cal('preload', { calLink: calHandle });
+      if (!bookingListenerAdded) {
+        bookingListenerAdded = true;
+        cal('on', {
+          action: 'bookingSuccessfulV2',
+          callback: () =>
+            track(PosthogEventKeys.CALL_BOOKED, { surface: 'modal' }),
+        });
+      }
     })();
     return () => {
       cancelled = true;
@@ -62,6 +76,7 @@ export function BookCallButton({
 
   const open = async () => {
     onOpen?.();
+    track(PosthogEventKeys.BOOK_CALL_CLICKED);
     const cal = await getCalApi({ namespace: NAMESPACE });
     cal('modal', {
       calLink: calHandle,
@@ -72,6 +87,7 @@ export function BookCallButton({
   return (
     <button
       type='button'
+      data-cta='book-call'
       onClick={open}
       className={cn('inline-flex items-center gap-2', className)}
     >

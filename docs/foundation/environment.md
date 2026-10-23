@@ -23,7 +23,7 @@ Current schema highlights:
 - Client
   - `NEXT_PUBLIC_SUPABASE_URL: z.string().url()`
   - `NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string()`
-  - `NEXT_PUBLIC_POSTHOG_KEY: z.string().optional()`
+  - `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: z.string().optional()`
   - `NEXT_PUBLIC_POSTHOG_HOST: z.string().optional()`
   - `NEXT_PUBLIC_APP_URL: z.string()`
   - `NEXT_PUBLIC_APP_NAME: z.string()`
@@ -35,8 +35,8 @@ SUPABASE_SERVICE_ROLE_KEY="<service-role-key>"
 NEXT_PUBLIC_SUPABASE_URL="https://<project-id>.supabase.co"
 NEXT_PUBLIC_SUPABASE_ANON_KEY="<anon-key>"
 # Optional PostHog
-NEXT_PUBLIC_POSTHOG_KEY="<posthog-public-key>"
-NEXT_PUBLIC_POSTHOG_HOST="https://us.i.posthog.com"
+NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN="<posthog-project-token>"
+NEXT_PUBLIC_POSTHOG_HOST="https://eu.i.posthog.com"
 # App metadata
 NEXT_PUBLIC_APP_URL="https://app.example.com"
 NEXT_PUBLIC_APP_NAME="Example App"
@@ -51,7 +51,7 @@ NEXT_PUBLIC_APP_NAME="Example App"
 
 - PostHog
 
-  - `NEXT_PUBLIC_POSTHOG_KEY` and `NEXT_PUBLIC_POSTHOG_HOST` are optional. Analytics will only be initialized if these are present. Without them, analytics features remain disabled.
+  - `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` and `NEXT_PUBLIC_POSTHOG_HOST` are optional. Analytics will only be initialized if these are present. Without them, analytics features remain disabled.
 
 - App URL
 

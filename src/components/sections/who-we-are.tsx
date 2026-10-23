@@ -22,7 +22,10 @@ export function WhoWeAre({ dict, className }: WhoWeAreProps) {
   const t = dict.whoWeAre;
 
   return (
-    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
+    <section
+      data-section='who-we-are'
+      className={cn('bl-section bl-rule bl-band-stone', className)}
+    >
       <div className='bl-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20'>
         <div className='lg:sticky lg:top-32 lg:self-start'>
           <Reveal>

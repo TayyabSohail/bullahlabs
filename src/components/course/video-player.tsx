@@ -53,6 +53,11 @@ interface VideoPlayerProps {
   /** Shown top-left on the frame, e.g. "Module 01 / Lesson 02". */
   tag: string;
   labels: PlayerLabels;
+  /**
+   * Called whenever playback starts: each play or resume of a file, or the
+   * click that loads an embed (YouTube/Vimeo don't report play from inside).
+   */
+  onPlay?: () => void;
   /** Called once when a file lesson plays to its end. */
   onEnded?: () => void;
   /** Rendered over an unpublished lesson, under the note. */
@@ -91,7 +96,16 @@ interface IosVideoElement extends HTMLVideoElement {
  */
 export const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(
   function VideoPlayer(
-    { source, title, tag, labels, onEnded, placeholderAction, className },
+    {
+      source,
+      title,
+      tag,
+      labels,
+      onPlay,
+      onEnded,
+      placeholderAction,
+      className,
+    },
     ref,
   ) {
     const frameRef = useRef<HTMLDivElement>(null);
@@ -327,7 +341,10 @@ export const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(
             ) : (
               <button
                 type='button'
-                onClick={() => setEmbedLoaded(true)}
+                onClick={() => {
+                  setEmbedLoaded(true);
+                  onPlay?.();
+                }}
                 className='absolute inset-0 flex items-center justify-center bg-[radial-gradient(60%_60%_at_50%_50%,hsl(var(--brand)/0.18),transparent_70%)]'
                 aria-label={`${labels.loadEmbed}: ${title}`}
               >
@@ -373,6 +390,7 @@ export const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(
               onPlay={() => {
                 setPlaying(true);
                 wake();
+                onPlay?.();
               }}
               onPause={() => {
                 setPlaying(false);

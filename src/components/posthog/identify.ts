@@ -27,7 +27,6 @@ export default function Identify() {
         });
       } else if (event === 'SIGNED_OUT') {
         posthog.reset();
-        window.location.replace('/auth/sign-in');
       }
     });
 

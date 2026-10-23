@@ -6,7 +6,7 @@ import { paths } from '@/constants/paths';
 /** The compact, high-contrast entry point to the free Conscious AI course. */
 export function FreeResources() {
   return (
-    <section className='bl-container py-10 sm:py-14'>
+    <section data-section='free-resources' className='bl-container py-10 sm:py-14'>
       <div className='bl-card bl-card-ink bl-grid-surface relative max-w-3xl p-7 text-white sm:p-10'>
         <div className='relative'>
           <p className='bl-kicker text-white/60'>Free resources</p>

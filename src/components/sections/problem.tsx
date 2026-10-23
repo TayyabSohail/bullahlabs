@@ -24,7 +24,7 @@ export function Problem({ dict }: ProblemProps) {
   const [pressure, skill] = c.paragraphs;
 
   return (
-    <section className='bl-section bl-rule bl-band-stone'>
+    <section data-section='problem' className='bl-section bl-rule bl-band-stone'>
       <div className='bl-container grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(20rem,5fr)] lg:gap-x-16 lg:gap-y-8'>
         <div className='min-w-0'>
           <Reveal>

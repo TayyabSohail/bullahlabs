@@ -14,15 +14,17 @@ import { env } from '@/env';
  */
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    if (!env.NEXT_PUBLIC_POSTHOG_KEY) return;
+    if (!env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN) return;
 
     let initialised = false;
     const init = () => {
       if (initialised || readCookieConsent() !== 'accepted') return;
       initialised = true;
-      posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY!, {
+      posthog.init(env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN!, {
+        // Events go through the /ingest rewrite in next.config.ts, which
+        // points at the EU region; ui_host is the dashboard, for links.
         api_host: '/ingest',
-        ui_host: env.NEXT_PUBLIC_POSTHOG_HOST,
+        ui_host: 'https://eu.posthog.com',
         capture_pageview: false, // Disable automatic pageview capture, as we capture manually
         capture_pageleave: true,
         persistence: 'localStorage+cookie',

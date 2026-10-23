@@ -8,9 +8,11 @@ import { toast } from 'sonner';
 
 import { joinCourseList } from '@/actions/course-signup';
 
+import { track } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 import { paths } from '@/constants/paths';
+import { PosthogEventKeys } from '@/constants/posthog-events';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface CourseSignupProps {
@@ -56,6 +58,10 @@ export function CourseSignup({
 
   const { execute, isExecuting } = useAction(joinCourseList, {
     onSuccess: ({ data }) => {
+      track(PosthogEventKeys.COURSE_SIGNUP, {
+        source,
+        already_on_list: Boolean(data?.alreadyOnList),
+      });
       setDone({ alreadyOnList: Boolean(data?.alreadyOnList) });
       setEmail('');
     },

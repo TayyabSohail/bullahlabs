@@ -11,22 +11,22 @@ const nextConfig: NextConfig = {
       { source: '/careers', destination: '/about', permanent: false },
     ];
   },
+  // PostHog EU cloud, proxied through our own domain so ad blockers drop
+  // fewer events. The legal pages promise EU processing: keep these on eu.
   async rewrites() {
     return [
       {
         source: '/ingest/static/:path*',
-        destination: 'https://us-assets.i.posthog.com/static/:path*',
+        destination: 'https://eu-assets.i.posthog.com/static/:path*',
       },
       {
         source: '/ingest/:path*',
-        destination: 'https://us.i.posthog.com/:path*',
-      },
-      {
-        source: '/ingest/decide',
-        destination: 'https://us.i.posthog.com/decide',
+        destination: 'https://eu.i.posthog.com/:path*',
       },
     ];
   },
+  // PostHog API paths end in a slash; don't let Next redirect them away.
+  skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;

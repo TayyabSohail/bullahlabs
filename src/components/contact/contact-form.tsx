@@ -30,10 +30,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
+import { track } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
+import { PosthogEventKeys } from '@/constants/posthog-events';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 import {
   type ContactInput,
@@ -82,7 +84,10 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
   };
 
   const { execute, isExecuting } = useAction(submitContact, {
-    onSuccess: () => {
+    onSuccess: ({ input }) => {
+      track(PosthogEventKeys.CONTACT_FORM_SUBMITTED, {
+        interest: input.service,
+      });
       setSent(true);
       setStep(0);
       form.reset();

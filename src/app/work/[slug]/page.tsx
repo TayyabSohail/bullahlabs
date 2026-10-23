@@ -373,7 +373,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
       </section>
 
       {/* Stack + the principle it demonstrates */}
-      <section className='bl-container'>
+      <section data-section='stack' className='bl-container'>
         <div className='grid gap-4 lg:grid-cols-[1.2fr_0.8fr]'>
           <Reveal className='bl-card p-7 sm:p-9'>
             <p className='bl-kicker'>{t.stack}</p>

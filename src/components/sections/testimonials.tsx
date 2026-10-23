@@ -71,7 +71,7 @@ export function Testimonials({
   const sectionId = `testimonial-${index + 1}`;
 
   return (
-    <section
+    <section data-section='testimonials'
       id={sectionId}
       role='tabpanel'
       aria-labelledby={`${sectionId}-title`}
