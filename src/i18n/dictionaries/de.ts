@@ -336,9 +336,10 @@ export const de: Dictionary = {
         'Mit der Anmeldung stimmen Sie zu, dass wir Ihre Adresse für diesen Hinweis speichern, wie in der',
       consentLink: 'Datenschutzerklärung',
       consentAfter: ' beschrieben.',
-      doneTitle: 'Sie stehen auf der Liste.',
-      alreadyTitle: 'Sie standen schon auf der Liste.',
-      doneBody: 'Eine E-Mail, sobald es so weit ist, sonst nichts.',
+      doneTitle: 'Danke, Sie stehen auf der Warteliste.',
+      alreadyTitle: 'Sie stehen bereits auf der Warteliste.',
+      doneBody: 'Ihr Weg zu besseren KI-Gewohnheiten beginnt hier.',
+      doneClose: 'Schließen',
       errorGeneric:
         'Etwas ist schiefgelaufen. Bitte versuchen Sie es gleich noch einmal.',
       teamLink: 'Schulung für ein ganzes Team?',

@@ -1,12 +1,22 @@
 'use client';
 
-import { ArrowRight, BellRing, CheckCircle2, Loader2 } from 'lucide-react';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { ArrowRight, BellRing, Check, Loader2, X } from 'lucide-react';
 import Link from 'next/link';
 import { useAction } from 'next-safe-action/hooks';
 import { useId, useState } from 'react';
 import { toast } from 'sonner';
 
 import { joinCourseList } from '@/actions/course-signup';
+
+import {
+  Dialog,
+  DialogClose,
+  DialogDescription,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 import { track } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
@@ -36,7 +46,8 @@ interface CourseSignupProps {
 
 /**
  * "Tell me when the modules open": one email field. The address goes to
- * `course_signups` and the inbox; the thank-you replaces the form in place.
+ * `course_signups` and the inbox; the thank-you opens as a small modal over
+ * the page and the form stays put, cleared, underneath.
  */
 export function CourseSignup({
   dict,
@@ -89,36 +100,35 @@ export function CourseSignup({
   // The panel is always ink; the inline field follows its surface.
   const dark = !inline || tone === 'dark';
 
-  if (done) {
-    return (
-      <div
-        role='status'
-        className={cn(
-          'flex items-start gap-4',
-          !inline && 'bl-card bl-card-ink p-6 text-white sm:p-8',
-          inline && dark && 'text-white',
-          className,
-        )}
-      >
-        <span className='flex h-10 w-10 shrink-0 items-center justify-center bg-brand text-brand-foreground'>
-          <CheckCircle2 className='h-5 w-5' />
-        </span>
-        <div>
-          <p className='bl-display text-xl'>
-            {done.alreadyOnList ? t.alreadyTitle : t.doneTitle}
-          </p>
-          <p
-            className={cn(
-              'mt-1.5 text-sm leading-relaxed',
-              dark ? 'text-white/65' : 'text-muted-foreground',
-            )}
-          >
+  // Built from the dialog parts rather than DialogContent so the backdrop can
+  // stay light: DialogContent bakes in a near-black overlay.
+  const confirmation = (
+    <Dialog
+      open={done !== null}
+      onOpenChange={(open) => {
+        if (!open) setDone(null);
+      }}
+    >
+      <DialogPortal>
+        <DialogOverlay className='bg-ink/25 backdrop-blur-[2px]' />
+        <DialogPrimitive.Content className='bl-card bl-grid-surface fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2 px-7 pb-8 pt-9 text-center shadow-[4px_4px_0_0_hsl(var(--brand))] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:px-9'>
+          <span className='mx-auto flex h-12 w-12 items-center justify-center bg-brand text-brand-foreground'>
+            <Check className='h-6 w-6' strokeWidth={2.5} />
+          </span>
+          <DialogTitle className='bl-display mt-6 text-2xl leading-tight tracking-[-0.01em] text-ink'>
+            {done?.alreadyOnList ? t.alreadyTitle : t.doneTitle}
+          </DialogTitle>
+          <DialogDescription className='mt-3 text-[15px] leading-relaxed text-muted-foreground'>
             {t.doneBody}
-          </p>
-        </div>
-      </div>
-    );
-  }
+          </DialogDescription>
+          <DialogClose className='absolute right-4 top-4 p-1 text-ink/50 transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/60'>
+            <X className='h-4 w-4' />
+            <span className='sr-only'>{t.doneClose}</span>
+          </DialogClose>
+        </DialogPrimitive.Content>
+      </DialogPortal>
+    </Dialog>
+  );
 
   const field = (
     <form onSubmit={onSubmit} noValidate className='w-full'>
@@ -197,7 +207,14 @@ export function CourseSignup({
     </form>
   );
 
-  if (inline) return <div className={className}>{field}</div>;
+  if (inline) {
+    return (
+      <div className={className}>
+        {field}
+        {confirmation}
+      </div>
+    );
+  }
 
   return (
     <div
@@ -225,6 +242,7 @@ export function CourseSignup({
           </Link>
         )}
       </div>
+      {confirmation}
     </div>
   );
 }
