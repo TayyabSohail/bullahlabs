@@ -114,7 +114,7 @@ export const joinCourseList = safeActionClient
       }
 
       try {
-        // The AI snapshots tab has nine columns: Timestamp through UTM Campaign.
+        // The AI Snapshot tab has eight columns: Timestamp through Goal.
         // Keep this row aligned to those headers; locale belongs to the course
         // sign-up tab, not this assessment record.
         await appendSheetRow(SHEET_TABS.aiSnapshots, [
@@ -126,8 +126,11 @@ export const joinCourseList = safeActionClient
           parsedInput.assessment.confidence * 20,
           parsedInput.assessment.efficiency * 20,
           parsedInput.assessment.goal,
-          parsedInput.utmCampaign ?? '',
         ]);
+        // A snapshot is a successful submission in its own right. This keeps
+        // the result truthful if the general course-signup row has a problem
+        // but the snapshot row was safely written.
+        stored = true;
       } catch (error) {
         Logger.error(
           'AI snapshot sheet append failed',
