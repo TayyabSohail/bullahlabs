@@ -11,6 +11,8 @@ export const courseSignupSchema = z.object({
   locale: z.enum(['en', 'de']).optional(),
   /** Which page the form was on. */
   source: z.string().trim().max(80).optional(),
+  /** utm_campaign the visit arrived with, e.g. "sticker-01". */
+  campaign: z.string().trim().max(100).optional(),
   /** Honeypot: must stay empty. Bots fill every field. */
   website: z.string().max(0).optional().or(z.literal('')),
 });

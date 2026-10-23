@@ -55,6 +55,7 @@ export const joinCourseList = safeActionClient
       `Email: ${email}`,
       `Locale: ${parsedInput.locale ?? '-'}`,
       `Source: ${parsedInput.source ?? '-'}`,
+      `Campaign: ${parsedInput.campaign ?? '-'}`,
     ].join('\n');
 
     let stored = false;
@@ -86,6 +87,8 @@ export const joinCourseList = safeActionClient
           email,
           parsedInput.locale ?? '',
           parsedInput.source ?? '',
+          // Column E, "Campaign": the utm_campaign, e.g. sticker-01.
+          parsedInput.campaign ?? '',
         ]);
         stored = true;
       } catch (error) {

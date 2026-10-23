@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/dialog';
 
 import { track } from '@/lib/analytics';
+import { getCampaign } from '@/lib/campaign';
 import { cn } from '@/lib/utils';
 
 import { paths } from '@/constants/paths';
@@ -68,9 +69,10 @@ export function CourseSignup({
   const [error, setError] = useState<string | null>(null);
 
   const { execute, isExecuting } = useAction(joinCourseList, {
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data, input }) => {
       track(PosthogEventKeys.COURSE_SIGNUP, {
         source,
+        campaign: input.campaign,
         already_on_list: Boolean(data?.alreadyOnList),
       });
       setDone({ alreadyOnList: Boolean(data?.alreadyOnList) });
@@ -92,6 +94,7 @@ export function CourseSignup({
       email,
       locale: dict.locale,
       source,
+      campaign: getCampaign(),
       website: String(form.get('website') ?? ''),
     });
   };

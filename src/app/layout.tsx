@@ -7,6 +7,7 @@ import './globals.css';
 import { Cursor } from '@/components/effects/cursor';
 import { SpotlightEffect } from '@/components/effects/spotlight';
 import { Backdrop } from '@/components/layout/backdrop';
+import { CampaignCapture } from '@/components/layout/campaign-capture';
 import { CookieConsent } from '@/components/layout/cookie-consent';
 import { DynamicFavicon } from '@/components/layout/dynamic-favicon';
 import { Footer } from '@/components/layout/footer';
@@ -102,6 +103,7 @@ export default async function RootLayout({
         <AppProviders>
           <SmoothScroll>
             <PosthogAnalytics />
+            <CampaignCapture />
             <DynamicFavicon />
             <OrganizationJsonLd />
             <Toaster richColors position='bottom-center' />
