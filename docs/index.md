@@ -92,6 +92,8 @@ Read these documents in order. This file provides a brief overview and links to 
 
 - Positioning, the Conscious AI program and how projects are described
   - [docs/brand/positioning-and-program.md](./brand/positioning-and-program.md)
+- Responsible AI adoption rules for choosing, auditing and piloting workflows
+  - [docs/brand/responsible-ai-adoption-rulebook.md](./brand/responsible-ai-adoption-rulebook.md)
 
 ### Notes
 

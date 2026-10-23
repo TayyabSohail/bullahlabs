@@ -55,6 +55,16 @@ export const joinCourseList = safeActionClient
       `Email: ${email}`,
       `Locale: ${parsedInput.locale ?? '-'}`,
       `Source: ${parsedInput.source ?? '-'}`,
+      ...(parsedInput.assessment
+        ? [
+            `Role: ${parsedInput.assessment.role}`,
+            `Role other: ${parsedInput.assessment.roleOther ?? '-'}`,
+            `Frequency: ${parsedInput.assessment.frequency}`,
+            `Confidence: ${parsedInput.assessment.confidence}/5`,
+            `Efficiency: ${parsedInput.assessment.efficiency}/5`,
+            `Goal: ${parsedInput.assessment.goal}`,
+          ]
+        : []),
     ].join('\n');
 
     let stored = false;
@@ -91,6 +101,27 @@ export const joinCourseList = safeActionClient
       } catch (error) {
         Logger.error(
           'Course signup sheet append failed',
+          error instanceof Error ? error.message : String(error),
+        );
+      }
+    }
+
+    if (isSheetsConfigured && parsedInput.assessment) {
+      try {
+        await appendSheetRow(SHEET_TABS.aiSnapshots, [
+          sheetTimestamp(),
+          email,
+          parsedInput.locale ?? '',
+          parsedInput.assessment.role,
+          parsedInput.assessment.roleOther ?? '',
+          parsedInput.assessment.frequency,
+          parsedInput.assessment.confidence * 20,
+          parsedInput.assessment.efficiency * 20,
+          parsedInput.assessment.goal,
+        ]);
+      } catch (error) {
+        Logger.error(
+          'AI snapshot sheet append failed',
           error instanceof Error ? error.message : String(error),
         );
       }

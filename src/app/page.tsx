@@ -1,3 +1,4 @@
+import { CommunitySection } from '@/components/sections/community';
 import { ConsciousAiHome } from '@/components/sections/conscious-ai-home';
 import { ContactSection } from '@/components/sections/contact-section';
 import { FaqSection } from '@/components/sections/faq';
@@ -30,6 +31,7 @@ export default async function HomePage() {
       <Technologies dict={dict} carouselOnly />
       <ProjectsTeaser dict={dict} />
       <ConsciousAiHome dict={dict} />
+      <CommunitySection dict={dict} />
       <LocationsHome />
       <ContactSection dict={dict} />
       <div id='faq' className='scroll-mt-24'>
