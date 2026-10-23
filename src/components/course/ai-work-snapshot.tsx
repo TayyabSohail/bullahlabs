@@ -415,20 +415,35 @@ function ScoreCard({
       <motion.div
         aria-label={`${label}: ${value} out of 100`}
         className='mx-auto grid h-36 w-36 place-items-center rounded-full p-2 shadow-inner'
-        initial={reduceMotion ? false : { background: 'conic-gradient(hsl(var(--brand)) 0%, hsl(var(--muted)) 0% 100%)' }}
+        initial={
+          reduceMotion
+            ? false
+            : {
+                background:
+                  'conic-gradient(hsl(var(--brand)) 0%, hsl(var(--muted)) 0% 100%)',
+              }
+        }
         animate={{
           background: `conic-gradient(hsl(var(--brand)) ${value}%, hsl(var(--muted)) ${value}% 100%)`,
         }}
-        transition={{ duration: reduceMotion ? 0 : 0.9, delay: reduceMotion ? 0 : delay / 1000, ease: 'easeOut' }}
+        transition={{
+          duration: reduceMotion ? 0 : 0.9,
+          delay: reduceMotion ? 0 : delay / 1000,
+          ease: 'easeOut',
+        }}
       >
         <div className='grid h-full w-full place-items-center rounded-full bg-background'>
-          <span className='bl-display text-5xl text-foreground'>{displayValue}</span>
+          <span className='bl-display text-5xl text-foreground'>
+            {displayValue}
+          </span>
         </div>
       </motion.div>
       <p className='mt-4 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground'>
         {label}
       </p>
-      <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>{text}</p>
+      <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
+        {text}
+      </p>
     </div>
   );
 }
@@ -488,14 +503,26 @@ function Result({
             </p>
           </div>
         ) : (
-          <motion.div initial={reduceMotion ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35 }}
+          >
             <p className='font-mono text-xs font-semibold uppercase tracking-[0.14em] text-brand-text'>
               Your AI snapshot
             </p>
-            <h2 className='bl-display mt-4 text-4xl text-foreground sm:text-5xl'>{track}</h2>
+            <h2 className='bl-display mt-4 text-4xl text-foreground sm:text-5xl'>
+              {track}
+            </h2>
             <div className='mt-7 grid gap-5 sm:grid-cols-2'>
               {scores.map(({ label, value, text }, index) => (
-                <ScoreCard key={label} label={label} value={value} text={text} delay={index * 180} />
+                <ScoreCard
+                  key={label}
+                  label={label}
+                  value={value}
+                  text={text}
+                  delay={index * 180}
+                />
               ))}
             </div>
             <div className='mt-7 border-t border-line pt-5'>
@@ -701,9 +728,7 @@ export function AiWorkSnapshot() {
                 key={question.field}
                 className={cn(
                   'mt-6 grid gap-3 duration-500 animate-in fade-in slide-in-from-bottom-3',
-                  isWorkflowCards
-                    ? 'sm:grid-cols-2'
-                    : 'sm:grid-cols-2',
+                  isWorkflowCards ? 'sm:grid-cols-2' : 'sm:grid-cols-2',
                   !isWorkflowCards &&
                     question.options.length > 4 &&
                     'lg:grid-cols-3',
@@ -736,7 +761,7 @@ export function AiWorkSnapshot() {
                           ? 'min-h-16 p-2 text-center'
                           : isWorkflowCards
                             ? 'min-h-28 p-5'
-                          : 'min-h-24',
+                            : 'min-h-24',
                         active
                           ? 'border-brand bg-brand-soft/55 shadow-[5px_5px_0_hsl(var(--brand)_/_0.2)] ring-2 ring-brand/40'
                           : 'hover:border-brand/60 hover:bg-brand-soft/20 hover:shadow-[4px_4px_0_hsl(var(--brand)_/_0.16)]',
@@ -787,9 +812,7 @@ export function AiWorkSnapshot() {
                             : 'text-sm text-foreground',
                         )}
                       >
-                        {isScale
-                          ? option.value
-                          : option.label}
+                        {isScale ? option.value : option.label}
                       </span>
                       {isScale && (
                         <span className='mt-1 hidden text-[10px] text-muted-foreground sm:block'>
