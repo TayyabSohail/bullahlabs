@@ -9,6 +9,14 @@ import { toast } from 'sonner';
 
 import { joinCourseList } from '@/actions/course-signup';
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+
 import { cn } from '@/lib/utils';
 
 import { paths } from '@/constants/paths';
@@ -35,7 +43,7 @@ interface CourseSignupProps {
 
 /**
  * "Tell me when the modules open": one email field. The address goes to
- * `course_signups` and the inbox; the thank-you replaces the form in place.
+ * `course_signups` and the inbox; a confirmation dialog opens after success.
  */
 export function CourseSignup({
   dict,
@@ -85,37 +93,6 @@ export function CourseSignup({
   const inline = variant === 'inline';
   // The panel is always ink; the inline field follows its surface.
   const dark = !inline || tone === 'dark';
-
-  if (done) {
-    return (
-      <div
-        role='status'
-        className={cn(
-          'flex items-start gap-4',
-          !inline && 'bl-card bl-card-ink p-6 text-white sm:p-8',
-          inline && dark && 'text-white',
-          className,
-        )}
-      >
-        <span className='flex h-10 w-10 shrink-0 items-center justify-center bg-brand text-brand-foreground'>
-          <CheckCircle2 className='h-5 w-5' />
-        </span>
-        <div>
-          <p className='bl-display text-xl'>
-            {done.alreadyOnList ? t.alreadyTitle : t.doneTitle}
-          </p>
-          <p
-            className={cn(
-              'mt-1.5 text-sm leading-relaxed',
-              dark ? 'text-white/65' : 'text-muted-foreground',
-            )}
-          >
-            {t.doneBody}
-          </p>
-        </div>
-      </div>
-    );
-  }
 
   const field = (
     <form onSubmit={onSubmit} noValidate className='w-full'>
@@ -194,34 +171,66 @@ export function CourseSignup({
     </form>
   );
 
-  if (inline) return <div className={className}>{field}</div>;
+  const successDialog = (
+    <Dialog
+      open={done !== null}
+      onOpenChange={(open) => {
+        if (!open) setDone(null);
+      }}
+    >
+      <DialogContent className='bl-card max-w-md rounded-none border-ink bg-surface p-7 shadow-[4px_4px_0_0_hsl(var(--brand))] sm:rounded-none'>
+        <div className='flex h-12 w-12 items-center justify-center bg-brand text-brand-foreground'>
+          <CheckCircle2 className='h-6 w-6' />
+        </div>
+        <DialogHeader className='mt-6 text-left'>
+          <DialogTitle className='bl-display text-3xl text-ink'>
+            {done?.alreadyOnList ? t.alreadyTitle : t.doneTitle}
+          </DialogTitle>
+          <DialogDescription className='mt-3 text-base leading-relaxed text-muted-foreground'>
+            {t.doneBody}
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  );
+
+  if (inline)
+    return (
+      <>
+        <div className={className}>{field}</div>
+        {successDialog}
+      </>
+    );
 
   return (
-    <div
-      className={cn(
-        'bl-card bl-card-ink bl-grid-surface relative p-6 text-white sm:p-8',
-        className,
-      )}
-    >
-      <div className='relative'>
-        <p className='bl-kicker text-white/60'>{kicker ?? t.kicker}</p>
-        <h3 className='bl-display mt-4 text-2xl text-white sm:text-3xl'>
-          {title ?? t.title}
-        </h3>
-        <p className='mt-3 max-w-md text-sm leading-relaxed text-white/65'>
-          {body ?? t.body}
-        </p>
-        <div className='mt-6'>{field}</div>
-        {teamLink && (
-          <Link
-            href={`${paths.contact}?service=team`}
-            className='bl-action mt-5 text-brand-2 hover:text-white'
-          >
-            {t.teamLink}
-            <ArrowRight className='h-3.5 w-3.5' />
-          </Link>
+    <>
+      <div
+        className={cn(
+          'bl-card bl-card-ink bl-grid-surface relative p-6 text-white sm:p-8',
+          className,
         )}
+      >
+        <div className='relative'>
+          <p className='bl-kicker text-white/60'>{kicker ?? t.kicker}</p>
+          <h3 className='bl-display mt-4 text-2xl text-white sm:text-3xl'>
+            {title ?? t.title}
+          </h3>
+          <p className='mt-3 max-w-md text-sm leading-relaxed text-white/65'>
+            {body ?? t.body}
+          </p>
+          <div className='mt-6'>{field}</div>
+          {teamLink && (
+            <Link
+              href={`${paths.contact}?service=team`}
+              className='bl-action mt-5 text-brand-2 hover:text-white'
+            >
+              {t.teamLink}
+              <ArrowRight className='h-3.5 w-3.5' />
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
+      {successDialog}
+    </>
   );
 }

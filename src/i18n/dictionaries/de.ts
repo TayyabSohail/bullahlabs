@@ -385,24 +385,6 @@ export const de: Dictionary = {
         videoDescription:
           'Kurze, fokussierte Videos für bessere Entscheidungen vor, während und nach dem Einsatz von KI bei der Arbeit.',
         inProduction: 'In Produktion',
-        lessonCount: '9 kurze Lektionen',
-        curriculumLabel: 'Kursübersicht',
-        curriculumTitle: 'Ein klarer Weg zu besseren Gewohnheiten.',
-        modules: [
-          {
-            title: 'Vor dem Prompt entscheiden',
-            description: 'Erkennen, wann KI hilft und wann ein einfaches Werkzeug reicht.',
-          },
-          {
-            title: 'Zu einem guten Ergebnis kommen',
-            description: 'Klaren Kontext geben, gezielt fragen und unnötige Runden vermeiden.',
-          },
-          {
-            title: 'Prüfen, messen und weitergeben',
-            description: 'Das eigene Urteil behalten und die Gewohnheit verankern.',
-          },
-        ],
-        note: 'Der erste Kurs ist kostenlos und für Menschen gemacht, die mit KI arbeiten – nicht für die, die sie entwickeln.',
       },
     },
     problem: {

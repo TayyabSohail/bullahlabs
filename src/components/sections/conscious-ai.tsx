@@ -1,4 +1,4 @@
-import { ArrowUpRight, LockKeyhole, Play } from 'lucide-react';
+import { ArrowUpRight, Play } from 'lucide-react';
 import Link from 'next/link';
 
 import { SectionHeading } from '@/components/common/section-heading';
@@ -67,11 +67,7 @@ export function CourseSection({ dict, className }: SectionProps) {
 
         <Reveal className='mt-8 sm:mt-14'>
           <div className='grid overflow-hidden border border-line bg-line lg:grid-cols-[0.9fr_1.1fr]'>
-            <div className='relative isolate flex min-h-[25rem] flex-col overflow-hidden bg-ink p-6 text-white sm:min-h-[31rem] sm:p-8 lg:p-10'>
-              <div
-                aria-hidden='true'
-                className='absolute inset-0 -z-10 opacity-30 [background-image:linear-gradient(to_right,hsl(var(--brand)/0.26)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--brand)/0.26)_1px,transparent_1px)] [background-size:3rem_3rem]'
-              />
+            <div className='relative isolate flex min-h-[22rem] flex-col overflow-hidden bg-ink p-6 text-white sm:min-h-[27rem] sm:p-8 lg:p-10'>
               <div
                 aria-hidden='true'
                 className='absolute -right-20 top-16 -z-10 h-64 w-64 rounded-full border border-brand/40 shadow-[0_0_0_2.5rem_hsl(var(--brand)/0.06),0_0_0_5rem_hsl(var(--brand)/0.04)]'
@@ -84,71 +80,49 @@ export function CourseSection({ dict, className }: SectionProps) {
                 </span>
               </div>
 
-              <div className='my-auto py-10'>
-                <div className='flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-white/5 text-brand-2 shadow-[0_0_0_0.75rem_rgba(255,255,255,0.04)]'>
-                  <Play className='ml-1 h-5 w-5' fill='currentColor' />
+              <div className='my-auto py-8'>
+                <div className='relative aspect-video max-w-xl overflow-hidden border border-white/20 bg-black/30 shadow-[4px_4px_0_0_hsl(var(--brand)/0.45)]'>
+                  <div className='absolute inset-0 flex items-center justify-center'>
+                    <span className='flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-white/5 text-brand-2 backdrop-blur-sm'>
+                      <Play className='ml-1 h-5 w-5' fill='currentColor' />
+                    </span>
+                  </div>
+                  <span className='absolute bottom-4 left-4 border border-brand/70 bg-ink/80 px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
+                    {t.preview.status}
+                  </span>
+                  <div className='absolute bottom-4 right-4 w-24'>
+                    <div className='h-1 bg-white/25'>
+                      <div className='h-full w-1/4 bg-brand' />
+                    </div>
+                  </div>
                 </div>
                 <p className='mt-8 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-2'>
                   {t.preview.seriesLabel}
                 </p>
-                <h3 className='bl-display mt-3 max-w-sm text-3xl leading-tight text-white sm:text-4xl'>
-                  {t.preview.videoTitle}
-                </h3>
-                <p className='mt-4 max-w-md text-sm leading-relaxed text-white/65 sm:text-base'>
-                  {t.preview.videoDescription}
-                </p>
-                <CourseSignup
-                  dict={dict}
-                  source='conscious-ai:course-preview'
-                  variant='inline'
-                  tone='dark'
-                  className='mt-6 max-w-md'
-                />
               </div>
 
               <div className='border-t border-white/15 pt-5'>
                 <div className='flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em] text-white/55'>
                   <span>{t.preview.inProduction}</span>
-                  <span>{t.preview.lessonCount}</span>
-                </div>
-                <div className='mt-3 h-1 overflow-hidden bg-white/10'>
-                  <div className='h-full w-1/3 bg-brand' />
                 </div>
               </div>
             </div>
 
-            <div className='bg-surface p-6 sm:p-8 lg:p-10'>
-              <div className='flex flex-wrap items-start justify-between gap-4 border-b border-line pb-6'>
-                <div>
-                  <p className='bl-kicker'>{t.preview.curriculumLabel}</p>
-                  <h3 className='bl-display mt-4 text-2xl text-ink sm:text-3xl'>
-                    {t.preview.curriculumTitle}
-                  </h3>
-                </div>
-                <div className='inline-flex items-center gap-2 border border-line bg-surface-2 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground'>
-                  <LockKeyhole className='h-3.5 w-3.5 text-brand-text' />
-                  {t.preview.status}
-                </div>
-              </div>
-
-              <div className='mt-2 divide-y divide-line'>
-                {t.preview.modules.map((module, index) => (
-                  <div key={module.title} className='flex items-center gap-4 py-5 sm:gap-6'>
-                    <span className='flex h-9 w-9 shrink-0 items-center justify-center border border-line bg-surface-2 font-mono text-[11px] font-semibold text-brand-text'>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <div className='min-w-0 flex-1'>
-                      <p className='text-sm font-semibold text-ink sm:text-base'>{module.title}</p>
-                      <p className='mt-1 text-sm leading-relaxed text-muted-foreground'>{module.description}</p>
-                    </div>
-                    <LockKeyhole className='h-4 w-4 shrink-0 text-muted-foreground/60' />
-                  </div>
-                ))}
-              </div>
-
-              <p className='mt-6 border-l-2 border-brand bg-brand-soft/35 px-4 py-3 text-sm leading-relaxed text-foreground'>
-                {t.preview.note}
+            <div className='flex flex-col justify-center bg-surface p-6 sm:p-8 lg:p-10'>
+              <p className='bl-kicker'>{t.preview.status}</p>
+              <h3 className='bl-display mt-4 max-w-xl text-3xl leading-tight text-ink sm:text-4xl'>
+                {t.preview.videoTitle}
+              </h3>
+              <p className='mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                {t.preview.videoDescription}
               </p>
+              <CourseSignup
+                dict={dict}
+                source='conscious-ai:course-preview'
+                variant='inline'
+                tone='light'
+                className='mt-8 max-w-xl'
+              />
             </div>
           </div>
         </Reveal>

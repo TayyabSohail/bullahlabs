@@ -409,24 +409,6 @@ export const en = {
         videoDescription:
           'Short, focused videos for better decisions before, during and after you use AI at work.',
         inProduction: 'Now in production',
-        lessonCount: '9 short lessons',
-        curriculumLabel: 'Course outline',
-        curriculumTitle: 'A clear path to better habits.',
-        modules: [
-          {
-            title: 'Decide before you prompt',
-            description: 'Know when AI helps, and when a simpler tool is enough.',
-          },
-          {
-            title: 'Get to a useful result',
-            description: 'Give clear context, ask well and avoid wasted rounds.',
-          },
-          {
-            title: 'Check, measure and share',
-            description: 'Keep judgement in charge and make the habit stick.',
-          },
-        ],
-        note: 'The first course will be free and made for people who work with AI, not people who build it.',
       },
     },
     problem: {
