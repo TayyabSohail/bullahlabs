@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
 import { Controller, useForm } from 'react-hook-form';
 import { useEffect, useId, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import * as z from 'zod';
 
 import { cn } from '@/lib/utils';
@@ -79,7 +79,7 @@ const questions: Array<{
   note: string;
   title: string;
   options: Array<{ value: string; label: string; detail?: string }>;
-  kind?: 'scale';
+  kind?: 'scale' | 'workflowCards';
 }> = [
   {
     field: 'role',
@@ -136,14 +136,37 @@ const questions: Array<{
     field: 'efficiency',
     rail: 'Your workflow',
     note: '04',
-    title: 'How often do you avoid extra rounds or re-pasting context?',
-    kind: 'scale',
+    title: 'When you use AI, how smooth is the workflow?',
+    // Keep this scale deliberately different from confidence above: people
+    // should make a fresh choice about workflow friction, not feel as though
+    // they are adjusting the same slider twice.
+    kind: 'workflowCards',
     options: [
-      { value: '1', label: 'Rarely' },
-      { value: '2', label: 'Sometimes' },
-      { value: '3', label: 'Often' },
-      { value: '4', label: 'Usually' },
-      { value: '5', label: 'Almost always' },
+      {
+        value: '1',
+        label: 'I keep re-explaining',
+        detail: 'The same context has to be pasted or clarified again.',
+      },
+      {
+        value: '2',
+        label: 'I often restart',
+        detail: 'Useful work gets lost across several attempts.',
+      },
+      {
+        value: '3',
+        label: 'It depends on the task',
+        detail: 'Some jobs flow; others still need a few rounds.',
+      },
+      {
+        value: '4',
+        label: 'Mostly one clear pass',
+        detail: 'I usually get to a useful result without much repetition.',
+      },
+      {
+        value: '5',
+        label: 'My context carries through',
+        detail: 'The workflow feels clear, connected and easy to continue.',
+      },
     ],
   },
   {
@@ -272,7 +295,7 @@ function EmailGate({
     onSuccess: onComplete,
     onError: () =>
       signup.setError('email', {
-        message: 'We could not save your email. Please try again.',
+        message: 'We could not process your email. Please try again.',
       }),
   });
   const enrol = (data: z.infer<typeof emailSchema>) => {
@@ -325,7 +348,7 @@ function EmailGate({
             disabled={!signup.formState.isValid || isExecuting}
             className='bl-btn bl-btn-primary inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[10px] font-semibold uppercase tracking-[0.14em] disabled:opacity-45'
           >
-            {isExecuting ? 'Saving...' : 'Reveal my snapshot'}{' '}
+            {isExecuting ? 'Calculating your results...' : 'Reveal my snapshot'}{' '}
             <ArrowRight className='h-4 w-4' />
           </button>
         </form>
@@ -335,8 +358,8 @@ function EmailGate({
           </p>
         )}
         <p className='mt-3 max-w-xl text-xs leading-relaxed text-muted-foreground'>
-          Your email and snapshot are saved together so we can make the course
-          more relevant.
+          We’ll use your answers to personalise your snapshot and send the
+          lessons when they open.
         </p>
         <div className='mt-5 flex flex-wrap items-center justify-between gap-4'>
           <button
@@ -352,6 +375,64 @@ function EmailGate({
   );
 }
 
+function ScoreCard({
+  label,
+  value,
+  text,
+  delay,
+}: {
+  label: string;
+  value: number;
+  text: string;
+  delay: number;
+}) {
+  const reduceMotion = useReducedMotion();
+  const [displayValue, setDisplayValue] = useState(reduceMotion ? value : 0);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    let frame = 0;
+    let startTime: number | undefined;
+    const timeout = window.setTimeout(() => {
+      const animate = (time: number) => {
+        startTime ??= time;
+        const progress = Math.min((time - startTime) / 900, 1);
+        setDisplayValue(Math.round(value * (1 - (1 - progress) ** 3)));
+        if (progress < 1) frame = window.requestAnimationFrame(animate);
+      };
+      frame = window.requestAnimationFrame(animate);
+    }, delay);
+
+    return () => {
+      window.clearTimeout(timeout);
+      window.cancelAnimationFrame(frame);
+    };
+  }, [delay, reduceMotion, value]);
+
+  return (
+    <div className='rounded-3xl border border-line bg-background p-5 text-center shadow-[0_14px_30px_hsl(var(--ink)_/_0.06)]'>
+      <motion.div
+        aria-label={`${label}: ${value} out of 100`}
+        className='mx-auto grid h-36 w-36 place-items-center rounded-full p-2 shadow-inner'
+        initial={reduceMotion ? false : { background: 'conic-gradient(hsl(var(--brand)) 0%, hsl(var(--muted)) 0% 100%)' }}
+        animate={{
+          background: `conic-gradient(hsl(var(--brand)) ${value}%, hsl(var(--muted)) ${value}% 100%)`,
+        }}
+        transition={{ duration: reduceMotion ? 0 : 0.9, delay: reduceMotion ? 0 : delay / 1000, ease: 'easeOut' }}
+      >
+        <div className='grid h-full w-full place-items-center rounded-full bg-background'>
+          <span className='bl-display text-5xl text-foreground'>{displayValue}</span>
+        </div>
+      </motion.div>
+      <p className='mt-4 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground'>
+        {label}
+      </p>
+      <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>{text}</p>
+    </div>
+  );
+}
+
 function Result({
   values,
   restart,
@@ -359,6 +440,8 @@ function Result({
   values: SnapshotValues;
   restart: () => void;
 }) {
+  const reduceMotion = useReducedMotion();
+  const [isCalculating, setIsCalculating] = useState(!reduceMotion);
   const track = roleTracks[values.role] ?? 'AI Practitioner';
   const scores = [
     {
@@ -379,57 +462,53 @@ function Result({
     },
   ];
 
+  useEffect(() => {
+    if (reduceMotion) return;
+    const timeout = window.setTimeout(() => setIsCalculating(false), 1300);
+    return () => window.clearTimeout(timeout);
+  }, [reduceMotion]);
+
   return (
     <div className='bl-card mx-auto w-full max-w-5xl overflow-hidden lg:grid lg:grid-cols-[0.3fr_0.7fr]'>
       <Rail step={questions.length} />
       <div className='bg-surface p-5 sm:p-7'>
-        <p className='font-mono text-xs font-semibold uppercase tracking-[0.14em] text-brand-text'>
-          Your AI snapshot
-        </p>
-        <h2 className='bl-display mt-4 text-4xl text-foreground sm:text-5xl'>
-          {track}
-        </h2>
-        <div className='mt-7 grid gap-5 sm:grid-cols-2'>
-          {scores.map(({ label, value, text }) => (
-            <div
-              key={label}
-              className='rounded-3xl border border-line bg-background p-5 text-center shadow-[0_14px_30px_hsl(var(--ink)_/_0.06)]'
-            >
-              <div
-                aria-label={`${label}: ${value} out of 100`}
-                className='mx-auto grid h-36 w-36 place-items-center rounded-full p-2 shadow-inner'
-                style={{
-                  background: `conic-gradient(hsl(var(--brand)) ${value}%, hsl(var(--muted)) ${value}% 100%)`,
-                }}
-              >
-                <div className='grid h-full w-full place-items-center rounded-full bg-background'>
-                  <span className='bl-display text-5xl text-foreground'>
-                    {value}
-                  </span>
-                </div>
-              </div>
-              <p className='mt-4 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground'>
-                {label}
-              </p>
-              <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
-                {text}
-              </p>
+        {isCalculating ? (
+          <div className='flex min-h-[390px] flex-col items-center justify-center text-center'>
+            <motion.div
+              aria-hidden='true'
+              className='h-20 w-20 rounded-full border-[5px] border-brand/15 border-t-brand'
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, ease: 'linear', repeat: Infinity }}
+            />
+            <p className='mt-7 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-brand-text'>
+              Calculating results
+            </p>
+            <p className='mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground'>
+              Turning your answers into a practical AI work profile.
+            </p>
+          </div>
+        ) : (
+          <motion.div initial={reduceMotion ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
+            <p className='font-mono text-xs font-semibold uppercase tracking-[0.14em] text-brand-text'>
+              Your AI snapshot
+            </p>
+            <h2 className='bl-display mt-4 text-4xl text-foreground sm:text-5xl'>{track}</h2>
+            <div className='mt-7 grid gap-5 sm:grid-cols-2'>
+              {scores.map(({ label, value, text }, index) => (
+                <ScoreCard key={label} label={label} value={value} text={text} delay={index * 180} />
+              ))}
             </div>
-          ))}
-        </div>
-        <div className='mt-7 border-t border-line pt-5'>
-          <p className='flex items-center gap-2 text-sm font-medium text-foreground'>
-            <Check className='h-4 w-4 text-brand-text' /> Your snapshot has been
-            saved.
-          </p>
-          <button
-            type='button'
-            onClick={restart}
-            className='mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'
-          >
-            <RotateCcw className='h-3.5 w-3.5' /> Start again
-          </button>
-        </div>
+            <div className='mt-7 border-t border-line pt-5'>
+              <button
+                type='button'
+                onClick={restart}
+                className='inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'
+              >
+                <RotateCcw className='h-3.5 w-3.5' /> Start again
+              </button>
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
@@ -546,6 +625,8 @@ export function AiWorkSnapshot() {
           name={question.field}
           control={form.control}
           render={({ field, fieldState }) => {
+            const isScale = question.kind === 'scale';
+            const isWorkflowCards = question.kind === 'workflowCards';
             if (question.kind === 'scale') {
               const selected = Math.min(
                 5,
@@ -620,8 +701,12 @@ export function AiWorkSnapshot() {
                 key={question.field}
                 className={cn(
                   'mt-6 grid gap-3 duration-500 animate-in fade-in slide-in-from-bottom-3',
-                  question.kind === 'scale' ? 'grid-cols-5' : 'sm:grid-cols-2',
-                  question.options.length > 4 && 'lg:grid-cols-3',
+                  isWorkflowCards
+                    ? 'sm:grid-cols-2'
+                    : 'sm:grid-cols-2',
+                  !isWorkflowCards &&
+                    question.options.length > 4 &&
+                    'lg:grid-cols-3',
                 )}
               >
                 {question.options.map((option) => {
@@ -640,15 +725,17 @@ export function AiWorkSnapshot() {
                       whileTap={{ scale: 0.97 }}
                       onClick={() =>
                         field.onChange(
-                          question.kind === 'scale'
+                          isScale || isWorkflowCards
                             ? Number(option.value)
                             : option.value,
                         )
                       }
                       className={cn(
                         'group relative overflow-hidden border border-line bg-background p-4 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60',
-                        question.kind === 'scale'
+                        isScale
                           ? 'min-h-16 p-2 text-center'
+                          : isWorkflowCards
+                            ? 'min-h-28 p-5'
                           : 'min-h-24',
                         active
                           ? 'border-brand bg-brand-soft/55 shadow-[5px_5px_0_hsl(var(--brand)_/_0.2)] ring-2 ring-brand/40'
@@ -662,7 +749,7 @@ export function AiWorkSnapshot() {
                           active ? 'bg-brand/25' : 'group-hover:bg-brand/10',
                         )}
                       />
-                      {question.kind !== 'scale' && (
+                      {!isScale && !isWorkflowCards && (
                         <span
                           className={cn(
                             'mb-3 flex h-8 w-8 items-center justify-center',
@@ -680,19 +767,31 @@ export function AiWorkSnapshot() {
                           )}
                         </span>
                       )}
+                      {isWorkflowCards && (
+                        <span
+                          className={cn(
+                            'mb-4 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[10px] font-semibold',
+                            active
+                              ? 'bg-brand text-brand-foreground'
+                              : 'bg-muted text-muted-foreground',
+                          )}
+                        >
+                          0{option.value}
+                        </span>
+                      )}
                       <span
                         className={cn(
                           'block font-semibold leading-tight',
-                          question.kind === 'scale'
+                          isScale
                             ? 'text-sm text-foreground'
                             : 'text-sm text-foreground',
                         )}
                       >
-                        {question.kind === 'scale'
+                        {isScale
                           ? option.value
                           : option.label}
                       </span>
-                      {question.kind === 'scale' && (
+                      {isScale && (
                         <span className='mt-1 hidden text-[10px] text-muted-foreground sm:block'>
                           {option.label}
                         </span>
