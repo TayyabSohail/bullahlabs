@@ -51,8 +51,9 @@ const sectionsEn: LegalSection[] = [
         <ul>
           <li>
             <strong>Contact enquiries.</strong> Name, email address, company
-            (optional), the program tier you select, and your message. We also record the IP address the enquiry came from, to
-            protect the form from abuse.
+            (optional), the program tier you select, and your message. We also
+            record the IP address the enquiry came from, to protect the form
+            from abuse.
           </li>
           <li>
             <strong>Server logs.</strong> Our hosting provider records standard
@@ -61,9 +62,11 @@ const sectionsEn: LegalSection[] = [
             then deleted.
           </li>
           <li>
-            <strong>Analytics, only with consent.</strong> If you accept
-            analytics cookies, we use PostHog to understand which pages are
-            useful. We do not use advertising trackers or sell data.
+            <strong>Analytics.</strong> We use PostHog to understand which pages
+            are useful. Without your consent it stores nothing on your device
+            and every visit stays anonymous; only if you accept analytics
+            cookies does it remember your browser between visits. We do not use
+            advertising trackers or sell data.
           </li>
           <li>
             <strong>Preferences.</strong> Your theme choice and cookie decision
@@ -123,8 +126,8 @@ const sectionsEn: LegalSection[] = [
             submissions, where enabled.
           </li>
           <li>
-            <strong>PostHog</strong> (EU cloud) for analytics, only after
-            consent.
+            <strong>PostHog</strong> (EU cloud) for analytics; cookies only
+            after consent.
           </li>
           <li>
             <strong>Cal.com</strong> if you book a call through a link we
@@ -230,7 +233,6 @@ const sectionsEn: LegalSection[] = [
   },
 ];
 
-
 const sectionsDe: LegalSection[] = [
   {
     id: 'controller',
@@ -267,8 +269,8 @@ const sectionsDe: LegalSection[] = [
           <li>
             <strong>Kontaktanfragen.</strong> Name, E-Mail-Adresse, Unternehmen
             (optional), die von Ihnen gewählte Programmstufe sowie Ihre
-            Nachricht. Zudem erfassen wir die IP-Adresse, von der die
-            Anfrage kam, um das Formular vor Missbrauch zu schützen.
+            Nachricht. Zudem erfassen wir die IP-Adresse, von der die Anfrage
+            kam, um das Formular vor Missbrauch zu schützen.
           </li>
           <li>
             <strong>Serverprotokolle.</strong> Unser Hosting-Anbieter erfasst
@@ -277,10 +279,12 @@ const sectionsDe: LegalSection[] = [
             kurz aufbewahrt und dann gelöscht.
           </li>
           <li>
-            <strong>Analyse, nur mit Einwilligung.</strong> Wenn Sie
-            Analyse-Cookies akzeptieren, nutzen wir PostHog, um zu verstehen,
-            welche Seiten nützlich sind. Wir setzen keine Werbetracker ein und
-            verkaufen keine Daten.
+            <strong>Analyse.</strong> Wir nutzen PostHog, um zu verstehen,
+            welche Seiten nützlich sind. Ohne Ihre Einwilligung wird nichts auf
+            Ihrem Gerät gespeichert und jeder Besuch bleibt anonym; nur wenn Sie
+            Analyse-Cookies akzeptieren, wird Ihr Browser über Besuche hinweg
+            wiedererkannt. Wir setzen keine Werbetracker ein und verkaufen keine
+            Daten.
           </li>
           <li>
             <strong>Präferenzen.</strong> Ihre Wahl des Erscheinungsbildes und
@@ -345,8 +349,8 @@ const sectionsDe: LegalSection[] = [
             Kontaktanfragen, soweit aktiviert.
           </li>
           <li>
-            <strong>PostHog</strong> (EU-Cloud) für die Analyse, nur nach
-            Einwilligung.
+            <strong>PostHog</strong> (EU-Cloud) für die Analyse; Cookies nur
+            nach Einwilligung.
           </li>
           <li>
             <strong>Cal.com</strong>, wenn Sie über einen von uns
@@ -412,10 +416,10 @@ const sectionsDe: LegalSection[] = [
         <p>
           Schreiben Sie uns über unser{' '}
           <Link href={paths.contact}>Kontaktformular</Link>. Wir antworten
-          innerhalb eines Monats. Ihnen steht zudem das Recht zu, sich
-          bei einer Aufsichtsbehörde zu beschweren; für unser deutsches Büro ist
-          das der Landesbeauftragte für den Datenschutz und die
-          Informationsfreiheit Baden-Württemberg.
+          innerhalb eines Monats. Ihnen steht zudem das Recht zu, sich bei einer
+          Aufsichtsbehörde zu beschweren; für unser deutsches Büro ist das der
+          Landesbeauftragte für den Datenschutz und die Informationsfreiheit
+          Baden-Württemberg.
         </p>
       </>
     ),

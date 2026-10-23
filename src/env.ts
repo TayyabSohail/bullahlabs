@@ -8,7 +8,7 @@ import { z } from 'zod';
  * - RESEND_API_KEY + CONTACT_TO_EMAIL  -> contact form delivers by email
  * - NEXT_PUBLIC_SUPABASE_*             -> contact form is also stored in DB
  * - GOOGLE_SHEETS_ID + GOOGLE_SERVICE_ACCOUNT_* -> submissions append to a Google Sheet
- * - NEXT_PUBLIC_POSTHOG_*              -> analytics (after cookie consent)
+ * - NEXT_PUBLIC_POSTHOG_*              -> analytics (cookies only after consent)
  * - NEXT_PUBLIC_CAL_LINK               -> "Book a call" links to Cal.com
  * - NEXT_PUBLIC_COURSE_URL             -> "Watch the course" links to the course
  */
