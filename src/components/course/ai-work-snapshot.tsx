@@ -1,10 +1,17 @@
 'use client';
 
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema';
-import { ArrowLeft, ArrowRight, Check, RotateCcw } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  CheckCircle2,
+  RotateCcw,
+} from 'lucide-react';
 import { useAction } from 'next-safe-action/hooks';
 import { useSearchParams } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
+import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
 import { Controller, useForm } from 'react-hook-form';
 import { useEffect, useId, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
@@ -21,7 +28,7 @@ const snapshotSchema = z
     roleOther: z.string().trim().max(120),
     frequency: z.string().min(1, 'Choose the answer that feels closest.'),
     confidence: z.coerce.number().min(1).max(5),
-    efficiency: z.coerce.number().min(1).max(5),
+    efficiency: z.coerce.number().min(1).max(4),
     goal: z.string().min(1, 'Choose the answer that feels closest.'),
   })
   .superRefine((data, context) => {
@@ -78,7 +85,12 @@ const questions: Array<{
   rail: string;
   note: string;
   title: string;
-  options: Array<{ value: string; label: string; detail?: string }>;
+  options: Array<{
+    value: string;
+    label: string;
+    detail?: string;
+    emoji?: string;
+  }>;
   kind?: 'scale' | 'workflowCards';
 }> = [
   {
@@ -146,26 +158,25 @@ const questions: Array<{
         value: '1',
         label: 'I keep re-explaining',
         detail: 'The same context has to be pasted or clarified again.',
+        emoji: '🔁',
       },
       {
         value: '2',
         label: 'I often restart',
         detail: 'Useful work gets lost across several attempts.',
+        emoji: '↩️',
       },
       {
         value: '3',
-        label: 'It depends on the task',
-        detail: 'Some jobs flow; others still need a few rounds.',
+        label: 'Mostly one clear pass',
+        detail: 'I usually get to a useful result without much repetition.',
+        emoji: '✅',
       },
       {
         value: '4',
-        label: 'Mostly one clear pass',
-        detail: 'I usually get to a useful result without much repetition.',
-      },
-      {
-        value: '5',
         label: 'My context carries through',
         detail: 'The workflow feels clear, connected and easy to continue.',
+        emoji: '✨',
       },
     ],
   },
@@ -469,7 +480,7 @@ function Result({
     },
     {
       label: 'Efficiency',
-      value: values.efficiency * 20,
+      value: values.efficiency * 25,
       text:
         values.efficiency >= 4
           ? 'Your workflow is already fairly lean.'
@@ -526,13 +537,54 @@ function Result({
               ))}
             </div>
             <div className='mt-7 border-t border-line pt-5'>
-              <button
-                type='button'
-                onClick={restart}
-                className='inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'
+              <div
+                role='status'
+                className='flex items-start gap-3 rounded-2xl bg-brand-soft/35 p-4'
               >
-                <RotateCcw className='h-3.5 w-3.5' /> Start again
-              </button>
+                <span className='flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-brand-foreground'>
+                  <CheckCircle2 className='h-5 w-5' />
+                </span>
+                <div>
+                  <p className='font-semibold text-foreground'>
+                    Your AI course is coming.
+                  </p>
+                  <p className='mt-1 text-sm leading-relaxed text-muted-foreground'>
+                    Better results. Smoother workflows. We&apos;ll email you
+                    when it launches.
+                  </p>
+                </div>
+              </div>
+              <a
+                href='#community'
+                className='group mt-5 flex w-full items-center gap-3 rounded-2xl border border-line bg-background px-4 py-3.5 text-left transition-all hover:border-brand/60 hover:bg-brand-soft/25 hover:shadow-[4px_4px_0_hsl(var(--brand)_/_0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 sm:w-auto'
+              >
+                <span className='flex -space-x-2' aria-hidden='true'>
+                  <span className='flex h-9 w-9 items-center justify-center rounded-full border-2 border-background bg-[#ff4500] text-white'>
+                    <FaRedditAlien className='h-5 w-5' />
+                  </span>
+                  <span className='flex h-9 w-9 items-center justify-center rounded-full border-2 border-background bg-[#5865f2] text-white'>
+                    <FaDiscord className='h-5 w-5' />
+                  </span>
+                </span>
+                <span className='flex-1'>
+                  <span className='block text-sm font-semibold text-foreground'>
+                    Explore our community
+                  </span>
+                  <span className='mt-0.5 block text-xs text-muted-foreground'>
+                    Join the conversation on Reddit and Discord
+                  </span>
+                </span>
+                <ArrowRight className='h-5 w-5 text-brand-text transition-transform group-hover:translate-x-1' />
+              </a>
+              <div className='mt-6 border-t border-line pt-4'>
+                <button
+                  type='button'
+                  onClick={restart}
+                  className='inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground'
+                >
+                  <RotateCcw className='h-3.5 w-3.5' /> Start again
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
@@ -545,6 +597,7 @@ function Result({
 export function AiWorkSnapshot() {
   const formId = useId();
   const [step, setStep] = useState(0);
+  const [started, setStarted] = useState(false);
   const [emailGate, setEmailGate] = useState(false);
   const [complete, setComplete] = useState(false);
   const posthog = usePostHog();
@@ -598,7 +651,7 @@ export function AiWorkSnapshot() {
       frequency: values.frequency,
       goal: values.goal,
       confidence_score: values.confidence * 20,
-      efficiency_score: values.efficiency * 20,
+      efficiency_score: values.efficiency * 25,
       utm_campaign: searchParams.get('utm_campaign')?.trim() || undefined,
     });
     setEmailGate(false);
@@ -608,6 +661,7 @@ export function AiWorkSnapshot() {
   const restart = () => {
     form.reset();
     setStep(0);
+    setStarted(false);
     setEmailGate(false);
     setComplete(false);
   };
@@ -621,6 +675,43 @@ export function AiWorkSnapshot() {
         onComplete={revealSnapshot}
         restart={restart}
       />
+    );
+
+  if (!started)
+    return (
+      <div className='bl-card mx-auto w-full max-w-3xl overflow-hidden bg-surface'>
+        <div className='relative flex min-h-[340px] flex-col items-center justify-center overflow-hidden p-6 text-center sm:min-h-[390px] sm:p-10'>
+          <span
+            aria-hidden='true'
+            className='absolute -left-20 -top-24 h-64 w-64 rounded-full bg-brand/15 blur-3xl'
+          />
+          <span
+            aria-hidden='true'
+            className='absolute -bottom-28 -right-20 h-72 w-72 rounded-full bg-brand-2/10 blur-3xl'
+          />
+          <div className='relative inline-flex w-fit items-center gap-2 border border-brand/30 bg-brand-soft/35 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+            <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-brand' />
+            Your AI work stats
+          </div>
+          <h2 className='bl-display relative mt-5 max-w-lg text-4xl leading-[1.02] text-foreground sm:text-5xl'>
+            What&apos;s your AI work score?
+          </h2>
+          <p className='relative mt-4 text-sm text-muted-foreground sm:text-base'>
+            Five quick taps reveal your Confidence and Workflow scores.
+          </p>
+          <div className='relative mt-8'>
+            <motion.button
+              type='button'
+              onClick={() => setStarted(true)}
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.97 }}
+              className='bl-btn bl-btn-primary inline-flex h-14 items-center gap-3 px-8 text-base font-semibold shadow-[6px_6px_0_hsl(var(--brand)_/_0.34)]'
+            >
+              Reveal my scores <ArrowRight className='h-5 w-5' />
+            </motion.button>
+          </div>
+        </div>
+      </div>
     );
 
   return (
@@ -795,13 +886,14 @@ export function AiWorkSnapshot() {
                       {isWorkflowCards && (
                         <span
                           className={cn(
-                            'mb-4 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[10px] font-semibold',
+                            'mb-4 flex h-9 w-9 items-center justify-center rounded-full text-lg',
                             active
                               ? 'bg-brand text-brand-foreground'
                               : 'bg-muted text-muted-foreground',
                           )}
                         >
-                          0{option.value}
+                          <span aria-hidden='true'>{option.emoji}</span>
+                          <span className='sr-only'>Option {option.value}</span>
                         </span>
                       )}
                       <span

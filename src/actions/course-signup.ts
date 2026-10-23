@@ -62,7 +62,7 @@ export const joinCourseList = safeActionClient
             `Role other: ${parsedInput.assessment.roleOther ?? '-'}`,
             `Frequency: ${parsedInput.assessment.frequency}`,
             `Confidence: ${parsedInput.assessment.confidence}/5`,
-            `Efficiency: ${parsedInput.assessment.efficiency}/5`,
+            `Efficiency: ${parsedInput.assessment.efficiency}/4`,
             `Goal: ${parsedInput.assessment.goal}`,
           ]
         : []),
@@ -124,7 +124,7 @@ export const joinCourseList = safeActionClient
           parsedInput.assessment.roleOther ?? '',
           parsedInput.assessment.frequency,
           parsedInput.assessment.confidence * 20,
-          parsedInput.assessment.efficiency * 20,
+          parsedInput.assessment.efficiency * 25,
           parsedInput.assessment.goal,
         ]);
         // A snapshot is a successful submission in its own right. This keeps

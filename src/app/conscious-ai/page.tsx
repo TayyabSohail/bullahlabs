@@ -58,10 +58,10 @@ export default async function ConsciousAiPage() {
       />
       <PageHero
         kicker={t.kicker}
-        title='Find a better way to work with AI.'
-        accentWords={[4, 5, 6, 7]}
+        title='See how AI can work better for you.'
+        accentWords={[3, 4, 5, 6]}
         size='lg'
-        className='max-w-6xl'
+        className='max-w-6xl pt-24 sm:pt-28 lg:pt-32'
       >
         <AiWorkSnapshot />
       </PageHero>

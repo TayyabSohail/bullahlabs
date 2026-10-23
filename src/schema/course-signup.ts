@@ -5,7 +5,7 @@ const aiSnapshotSchema = z.object({
   roleOther: z.string().trim().max(120).optional(),
   frequency: z.string().trim().min(1).max(40),
   confidence: z.number().int().min(1).max(5),
-  efficiency: z.number().int().min(1).max(5),
+  efficiency: z.number().int().min(1).max(4),
   goal: z.string().trim().min(1).max(80),
 });
 
