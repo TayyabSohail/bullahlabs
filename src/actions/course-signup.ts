@@ -55,6 +55,7 @@ export const joinCourseList = safeActionClient
       `Email: ${email}`,
       `Locale: ${parsedInput.locale ?? '-'}`,
       `Source: ${parsedInput.source ?? '-'}`,
+      `UTM campaign: ${parsedInput.utmCampaign ?? '-'}`,
       ...(parsedInput.assessment
         ? [
             `Role: ${parsedInput.assessment.role}`,
@@ -96,6 +97,7 @@ export const joinCourseList = safeActionClient
           email,
           parsedInput.locale ?? '',
           parsedInput.source ?? '',
+          parsedInput.utmCampaign ?? '',
         ]);
         stored = true;
       } catch (error) {
@@ -112,7 +114,7 @@ export const joinCourseList = safeActionClient
       }
 
       try {
-        // The AI snapshots tab has eight columns: Timestamp through Goal.
+        // The AI snapshots tab has nine columns: Timestamp through UTM Campaign.
         // Keep this row aligned to those headers; locale belongs to the course
         // sign-up tab, not this assessment record.
         await appendSheetRow(SHEET_TABS.aiSnapshots, [
@@ -124,6 +126,7 @@ export const joinCourseList = safeActionClient
           parsedInput.assessment.confidence * 20,
           parsedInput.assessment.efficiency * 20,
           parsedInput.assessment.goal,
+          parsedInput.utmCampaign ?? '',
         ]);
       } catch (error) {
         Logger.error(

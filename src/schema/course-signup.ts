@@ -20,6 +20,8 @@ export const courseSignupSchema = z.object({
   locale: z.enum(['en', 'de']).optional(),
   /** Which page the form was on. */
   source: z.string().trim().max(80).optional(),
+  /** Campaign that brought the visitor here, when present in the URL. */
+  utmCampaign: z.string().trim().max(120).optional(),
   /** Optional assessment data, stored on its own Google Sheet tab. */
   assessment: aiSnapshotSchema.optional(),
   /** Honeypot: must stay empty. Bots fill every field. */

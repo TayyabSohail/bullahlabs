@@ -3,6 +3,7 @@
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema';
 import { ArrowLeft, ArrowRight, Check, RotateCcw } from 'lucide-react';
 import { useAction } from 'next-safe-action/hooks';
+import { useSearchParams } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
 import { Controller, useForm } from 'react-hook-form';
 import { useEffect, useId, useState } from 'react';
@@ -261,6 +262,7 @@ function EmailGate({
   restart: () => void;
 }) {
   const signupId = useId();
+  const searchParams = useSearchParams();
   const signup = useForm<z.infer<typeof emailSchema>>({
     resolver: standardSchemaResolver(emailSchema),
     mode: 'onChange',
@@ -282,6 +284,7 @@ function EmailGate({
     execute({
       email: result.data.email,
       source: 'conscious-ai:snapshot',
+      utmCampaign: searchParams.get('utm_campaign')?.trim() || undefined,
       assessment: values,
       website: '',
     });
@@ -439,6 +442,7 @@ export function AiWorkSnapshot() {
   const [emailGate, setEmailGate] = useState(false);
   const [complete, setComplete] = useState(false);
   const posthog = usePostHog();
+  const searchParams = useSearchParams();
   const form = useForm<SnapshotValues>({
     resolver: standardSchemaResolver(snapshotSchema),
     mode: 'onChange',
@@ -482,12 +486,14 @@ export function AiWorkSnapshot() {
   const revealSnapshot = () => {
     const values = form.getValues();
     posthog?.capture(PosthogEventKeys.AI_SNAPSHOT_COMPLETED, {
+      source: 'conscious-ai:snapshot',
       role: values.role,
       role_track: roleTracks[values.role] ?? 'AI Practitioner',
       frequency: values.frequency,
       goal: values.goal,
       confidence_score: values.confidence * 20,
       efficiency_score: values.efficiency * 20,
+      utm_campaign: searchParams.get('utm_campaign')?.trim() || undefined,
     });
     setEmailGate(false);
     setComplete(true);

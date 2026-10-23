@@ -2,6 +2,7 @@
 
 import { ArrowRight, BellRing, CheckCircle2, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useAction } from 'next-safe-action/hooks';
 import { useId, useState } from 'react';
 import { toast } from 'sonner';
@@ -50,6 +51,7 @@ export function CourseSignup({
 }: CourseSignupProps) {
   const t = dict.program.signup;
   const id = useId();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [done, setDone] = useState<null | { alreadyOnList: boolean }>(null);
   const [error, setError] = useState<string | null>(null);
@@ -75,6 +77,7 @@ export function CourseSignup({
       email,
       locale: dict.locale,
       source,
+      utmCampaign: searchParams.get('utm_campaign')?.trim() || undefined,
       website: String(form.get('website') ?? ''),
     });
   };
