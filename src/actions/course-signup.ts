@@ -106,12 +106,18 @@ export const joinCourseList = safeActionClient
       }
     }
 
-    if (isSheetsConfigured && parsedInput.assessment) {
+    if (parsedInput.assessment) {
+      if (!isSheetsConfigured) {
+        throw new Error('AI snapshot storage is not configured.');
+      }
+
       try {
+        // The AI snapshots tab has eight columns: Timestamp through Goal.
+        // Keep this row aligned to those headers; locale belongs to the course
+        // sign-up tab, not this assessment record.
         await appendSheetRow(SHEET_TABS.aiSnapshots, [
           sheetTimestamp(),
           email,
-          parsedInput.locale ?? '',
           parsedInput.assessment.role,
           parsedInput.assessment.roleOther ?? '',
           parsedInput.assessment.frequency,
@@ -123,6 +129,9 @@ export const joinCourseList = safeActionClient
         Logger.error(
           'AI snapshot sheet append failed',
           error instanceof Error ? error.message : String(error),
+        );
+        throw new Error(
+          'We could not save your AI snapshot. Please try again in a moment.',
         );
       }
     }

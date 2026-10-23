@@ -16,7 +16,7 @@ export const isSheetsConfigured = Boolean(
 /** Tab names in the sheet. Must match the tabs exactly, or the append fails. */
 export const SHEET_TABS = {
   courseSignups: 'Course signups',
-  aiSnapshots: 'AI snapshots',
+  aiSnapshots: 'AI Snapshot',
   enquiries: 'Enquiries',
 } as const;
 
