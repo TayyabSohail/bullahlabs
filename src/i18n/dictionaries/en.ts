@@ -408,6 +408,7 @@ export const en = {
         videoTitle: 'Learn to use AI with more care and less waste.',
         videoDescription:
           'Short, focused videos for better decisions before, during and after you use AI at work.',
+        waitlistCta: 'Join the waitlist',
         inProduction: 'Now in production',
       },
     },

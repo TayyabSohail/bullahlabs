@@ -1,4 +1,4 @@
-import { ArrowUpRight, Play } from 'lucide-react';
+import { ArrowUpRight, Maximize2, Play, Volume2 } from 'lucide-react';
 import Link from 'next/link';
 
 import { SectionHeading } from '@/components/common/section-heading';
@@ -81,18 +81,27 @@ export function CourseSection({ dict, className }: SectionProps) {
               </div>
 
               <div className='my-auto py-8'>
-                <div className='relative aspect-video max-w-xl overflow-hidden border border-white/20 bg-black/30 shadow-[4px_4px_0_0_hsl(var(--brand)/0.45)]'>
+                <div className='relative aspect-video max-w-xl overflow-hidden border border-white/20 bg-[radial-gradient(circle_at_center,hsl(var(--brand)/0.18),transparent_58%),hsl(var(--ink))] shadow-[4px_4px_0_0_hsl(var(--brand)/0.45)]'>
                   <div className='absolute inset-0 flex items-center justify-center'>
                     <span className='flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-white/5 text-brand-2 backdrop-blur-sm'>
                       <Play className='ml-1 h-5 w-5' fill='currentColor' />
                     </span>
                   </div>
-                  <span className='absolute bottom-4 left-4 border border-brand/70 bg-ink/80 px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
+                  <span className='absolute left-4 top-4 border border-brand/70 bg-ink/80 px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
                     {t.preview.status}
                   </span>
-                  <div className='absolute bottom-4 right-4 w-24'>
+                  <div className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-4 pb-4 pt-12'>
                     <div className='h-1 bg-white/25'>
-                      <div className='h-full w-1/4 bg-brand' />
+                      <div className='h-full w-[18%] bg-brand' />
+                    </div>
+                    <div className='mt-3 flex items-center gap-3 text-white/70'>
+                      <Play className='ml-px h-3.5 w-3.5 fill-current' />
+                      <span className='font-mono text-[10px] tabular-nums'>
+                        00:00 / --:--
+                      </span>
+                      <span className='flex-1' />
+                      <Volume2 className='h-3.5 w-3.5' />
+                      <Maximize2 className='h-3.5 w-3.5' />
                     </div>
                   </div>
                 </div>
@@ -121,6 +130,7 @@ export function CourseSection({ dict, className }: SectionProps) {
                 source='conscious-ai:course-preview'
                 variant='inline'
                 tone='light'
+                submitLabel={t.preview.waitlistCta}
                 className='mt-8 max-w-xl'
               />
             </div>
@@ -300,15 +310,13 @@ export function ForBusiness({ dict, className }: SectionProps) {
           kicker={t.kicker}
           title={t.title}
           accentWords={[...t.accent]}
+          description={t.paragraphs[0]}
         />
-        <Stagger
-          stagger={0.08}
-          className='mt-8 grid gap-px overflow-hidden border bg-line sm:mt-14 sm:grid-cols-2 lg:grid-cols-4'
-        >
+        <div className='mt-8 grid gap-px overflow-hidden border border-line bg-line sm:mt-14 sm:grid-cols-2 lg:grid-cols-4'>
           {t.offers.map((offer) => (
-            <StaggerItem
+            <div
               key={offer.title}
-              className='group flex flex-col bg-surface p-6 transition-colors duration-300 hover:bg-brand-soft/35 sm:p-8'
+              className='flex flex-col bg-surface p-6 sm:p-8'
             >
               <h3 className='bl-display text-xl text-foreground lg:text-2xl'>
                 {offer.title}
@@ -316,9 +324,9 @@ export function ForBusiness({ dict, className }: SectionProps) {
               <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
                 {offer.body}
               </p>
-            </StaggerItem>
+            </div>
           ))}
-        </Stagger>
+        </div>
         <Reveal className='mt-8 border-t pt-6 sm:mt-10 sm:pt-8'>
           <Link
             href={`${paths.contact}?service=team`}

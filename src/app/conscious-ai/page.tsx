@@ -7,7 +7,6 @@ import { CommunitySection } from '@/components/sections/community';
 import {
   CourseSection,
   ForBusiness,
-  LearningHabits,
   ProblemApproach,
   Vision,
   WhoFor,
@@ -68,7 +67,6 @@ export default async function ConsciousAiPage() {
 
       <CourseSection dict={dict} />
       <ProblemApproach dict={dict} />
-      <LearningHabits dict={dict} />
       <WhoFor dict={dict} />
       <ForBusiness dict={dict} />
       <Vision dict={dict} />

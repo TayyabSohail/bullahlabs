@@ -384,6 +384,7 @@ export const de: Dictionary = {
         videoTitle: 'KI bewusster nutzen und weniger verschwenden.',
         videoDescription:
           'Kurze, fokussierte Videos für bessere Entscheidungen vor, während und nach dem Einsatz von KI bei der Arbeit.',
+        waitlistCta: 'Zur Warteliste',
         inProduction: 'In Produktion',
       },
     },
