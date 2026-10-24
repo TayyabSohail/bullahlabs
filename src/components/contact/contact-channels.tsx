@@ -1,13 +1,24 @@
 'use client';
 
 import { CalendarDays, PenLine } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 
-import { CalEmbed } from '@/components/contact/cal-embed';
 import { ContactForm } from '@/components/contact/contact-form';
 
 import type { Dictionary } from '@/i18n/dictionaries/en';
+
+// The Cal.com widget pulls in its own runtime and external booking assets.
+// Keep it out of the default contact-form path, then load it only when a
+// visitor explicitly selects the call option.
+const CalEmbed = dynamic(
+  () => import('@/components/contact/cal-embed').then((module) => module.CalEmbed),
+  {
+    ssr: false,
+    loading: () => <div className='min-h-[38rem] w-full' aria-busy='true' />,
+  },
+);
 
 interface ContactChannelsProps {
   dict: Dictionary;

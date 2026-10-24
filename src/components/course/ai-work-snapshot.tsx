@@ -20,6 +20,7 @@ import * as z from 'zod';
 import { cn } from '@/lib/utils';
 
 import { joinCourseList } from '@/actions/course-signup';
+import { siteConfig } from '@/config/site';
 import { PosthogEventKeys } from '@/constants/posthog-events';
 
 const snapshotSchema = z
@@ -212,7 +213,7 @@ const questions: Array<{
 
 function Rail({ step }: { step: number }) {
   return (
-    <aside className='bl-card-ink relative px-5 py-6 sm:px-7 sm:py-8'>
+    <aside className='bl-card-ink relative hidden px-5 py-3 sm:px-7 sm:py-8 lg:block'>
       <span
         aria-hidden='true'
         className='absolute -right-16 -top-16 h-48 w-48 animate-pulse rounded-full bg-brand/30 blur-3xl'
@@ -225,16 +226,16 @@ function Rail({ step }: { step: number }) {
         <span className='mr-2 inline-block h-1.5 w-1.5 animate-ping rounded-full bg-brand' />{' '}
         Conscious AI
       </p>
-      <h2 className='bl-display relative mt-4 max-w-[9ch] text-3xl leading-[1.05] text-white'>
+      <h2 className='bl-display relative mt-4 hidden max-w-[9ch] text-3xl leading-[1.05] text-white sm:block'>
         Work smarter. Stay in charge.
       </h2>
-      <p className='relative mt-4 max-w-xs text-xs leading-relaxed text-white/65'>
+      <p className='relative mt-4 hidden max-w-xs text-xs leading-relaxed text-white/65 sm:block'>
         A quick look at the habits that can make AI work better for you.
       </p>
-      <div className='relative mt-6 inline-flex border border-white/15 bg-white/[0.06] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60'>
+      <div className='relative mt-4 hidden border border-white/15 bg-white/[0.06] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60 sm:inline-flex sm:mt-6'>
         Building your signal profile
       </div>
-      <ol className='relative mt-6 space-y-1'>
+      <ol className='relative mt-2 flex gap-1 sm:mt-6 sm:block sm:space-y-1'>
         {questions.map((question, index) => {
           const done = index < step;
           const active = index === step;
@@ -242,14 +243,14 @@ function Rail({ step }: { step: number }) {
             <li
               key={question.field}
               className={cn(
-                'relative flex gap-3 px-2 py-2 transition-all duration-300',
-                active && '-translate-x-1 bg-white/[0.08]',
+                'relative flex flex-1 gap-3 px-1 py-1 transition-all duration-300 sm:px-2 sm:py-2',
+                active && 'bg-white/[0.08] sm:-translate-x-1',
               )}
             >
               {index < questions.length - 1 && (
                 <span
                   className={cn(
-                    'absolute left-[17px] top-8 h-[calc(100%-10px)] w-px',
+                    'absolute left-[17px] top-8 hidden h-[calc(100%-10px)] w-px sm:block',
                     done ? 'bg-brand' : 'bg-white/20',
                   )}
                 />
@@ -268,7 +269,7 @@ function Rail({ step }: { step: number }) {
               </span>
               <span
                 className={cn(
-                  'pt-0.5 text-xs',
+                  'sr-only pt-0.5 text-xs sm:not-sr-only',
                   active
                     ? 'font-semibold text-white'
                     : done
@@ -282,6 +283,64 @@ function Rail({ step }: { step: number }) {
           );
         })}
       </ol>
+    </aside>
+  );
+}
+
+function MobileRail({ step }: { step: number }) {
+  const progress = (step / (questions.length - 1)) * 100;
+
+  return (
+    <aside className='bl-card-ink px-4 py-3.5 lg:hidden'>
+      <div className='flex items-center justify-between gap-4'>
+        <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-2'>
+          Your progress
+        </p>
+        <p className='font-mono text-[10px] uppercase tracking-[0.12em] text-white/55'>
+          Step {step + 1} of {questions.length}
+        </p>
+      </div>
+      <ol
+        aria-label={`Step ${step + 1} of ${questions.length}`}
+        className='relative mx-auto mt-3 flex w-full max-w-xs justify-between'
+      >
+        <li
+          aria-hidden='true'
+          className='absolute left-3.5 right-3.5 top-3.5 h-0.5 bg-white/20'
+        >
+          <span
+            className='block h-full bg-brand transition-[width] duration-500'
+            style={{ width: `${progress}%` }}
+          />
+        </li>
+        {questions.map((question, index) => {
+          const done = index < step;
+          const active = index === step;
+          return (
+            <li
+              key={question.field}
+              className='relative z-10 flex h-7 w-7 items-center justify-center'
+            >
+              <span
+                aria-current={active ? 'step' : undefined}
+                className={cn(
+                  'flex h-7 w-7 items-center justify-center rounded-full border font-mono text-[10px] font-semibold transition-colors',
+                  active
+                    ? 'border-brand bg-brand text-brand-foreground ring-4 ring-brand/20'
+                    : done
+                      ? 'border-brand bg-brand text-brand-foreground'
+                      : 'border-white/30 bg-[#1d1a17] text-white/55',
+                )}
+              >
+                {done ? <Check className='h-3.5 w-3.5' /> : index + 1}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+      <p className='mt-3 text-center text-xs font-medium text-white/75'>
+        {questions[step].rail}
+      </p>
     </aside>
   );
 }
@@ -352,12 +411,12 @@ function EmailGate({
             placeholder='Your email address'
             disabled={isExecuting}
             {...signup.register('email')}
-            className='h-12 min-w-0 flex-1 rounded-full border border-line bg-background px-5 text-sm outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20'
+            className='!h-14 min-h-14 w-full min-w-0 flex-1 rounded-2xl border-2 border-line bg-background px-5 text-base outline-none transition-colors placeholder:text-muted-foreground/75 focus:border-brand focus:ring-2 focus:ring-brand/20'
           />
           <button
             type='submit'
             disabled={!signup.formState.isValid || isExecuting}
-            className='bl-btn bl-btn-primary inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[10px] font-semibold uppercase tracking-[0.14em] disabled:opacity-45'
+            className='bl-btn bl-btn-primary inline-flex h-14 items-center justify-center gap-2 rounded-full px-6 text-[10px] font-semibold uppercase tracking-[0.14em] disabled:opacity-45'
           >
             {isExecuting ? 'Calculating your results...' : 'Reveal my snapshot'}{' '}
             <ArrowRight className='h-4 w-4' />
@@ -368,10 +427,6 @@ function EmailGate({
             {signup.formState.errors.email.message}
           </p>
         )}
-        <p className='mt-3 max-w-xl text-xs leading-relaxed text-muted-foreground'>
-          We’ll use your answers to personalise your snapshot and send the
-          lessons when they open.
-        </p>
         <div className='mt-5 flex flex-wrap items-center justify-between gap-4'>
           <button
             type='button'
@@ -422,10 +477,10 @@ function ScoreCard({
   }, [delay, reduceMotion, value]);
 
   return (
-    <div className='rounded-3xl border border-line bg-background p-5 text-center shadow-[0_14px_30px_hsl(var(--ink)_/_0.06)]'>
+    <div className='rounded-2xl border border-line bg-background p-3 text-center shadow-[0_14px_30px_hsl(var(--ink)_/_0.06)] sm:rounded-3xl sm:p-5'>
       <motion.div
         aria-label={`${label}: ${value} out of 100`}
-        className='mx-auto grid h-36 w-36 place-items-center rounded-full p-2 shadow-inner'
+        className='mx-auto grid h-24 w-24 place-items-center rounded-full p-2 shadow-inner sm:h-36 sm:w-36'
         initial={
           reduceMotion
             ? false
@@ -444,15 +499,15 @@ function ScoreCard({
         }}
       >
         <div className='grid h-full w-full place-items-center rounded-full bg-background'>
-          <span className='bl-display text-5xl text-foreground'>
+          <span className='bl-display text-3xl text-foreground sm:text-5xl'>
             {displayValue}
           </span>
         </div>
       </motion.div>
-      <p className='mt-4 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground'>
+      <p className='mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground sm:mt-4'>
         {label}
       </p>
-      <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
+      <p className='mt-1 text-xs leading-relaxed text-muted-foreground sm:mt-2 sm:text-sm'>
         {text}
       </p>
     </div>
@@ -497,9 +552,9 @@ function Result({
   return (
     <div className='bl-card mx-auto w-full max-w-5xl overflow-hidden lg:grid lg:grid-cols-[0.3fr_0.7fr]'>
       <Rail step={questions.length} />
-      <div className='bg-surface p-5 sm:p-7'>
+      <div className='bg-surface p-4 sm:p-7'>
         {isCalculating ? (
-          <div className='flex min-h-[390px] flex-col items-center justify-center text-center'>
+          <div className='flex min-h-[320px] flex-col items-center justify-center text-center sm:min-h-[390px]'>
             <motion.div
               aria-hidden='true'
               className='h-20 w-20 rounded-full border-[5px] border-brand/15 border-t-brand'
@@ -515,17 +570,17 @@ function Result({
           </div>
         ) : (
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            initial={reduceMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
           >
             <p className='font-mono text-xs font-semibold uppercase tracking-[0.14em] text-brand-text'>
               Your AI snapshot
             </p>
-            <h2 className='bl-display mt-4 text-4xl text-foreground sm:text-5xl'>
+            <h2 className='bl-display mt-3 text-3xl text-foreground sm:mt-4 sm:text-5xl'>
               {track}
             </h2>
-            <div className='mt-7 grid gap-5 sm:grid-cols-2'>
+            <div className='mt-5 grid grid-cols-2 gap-3 sm:mt-7 sm:gap-5'>
               {scores.map(({ label, value, text }, index) => (
                 <ScoreCard
                   key={label}
@@ -536,7 +591,7 @@ function Result({
                 />
               ))}
             </div>
-            <div className='mt-7 border-t border-line pt-5'>
+            <div className='mt-5 border-t border-line pt-4 sm:mt-7 sm:pt-5'>
               <div
                 role='status'
                 className='flex items-start gap-3 rounded-2xl bg-brand-soft/35 p-4'
@@ -554,28 +609,65 @@ function Result({
                   </p>
                 </div>
               </div>
-              <a
-                href='#community'
-                className='group mt-5 flex w-full items-center gap-3 rounded-2xl border border-line bg-background px-4 py-3.5 text-left transition-all hover:border-brand/60 hover:bg-brand-soft/25 hover:shadow-[4px_4px_0_hsl(var(--brand)_/_0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 sm:w-auto'
-              >
-                <span className='flex -space-x-2' aria-hidden='true'>
-                  <span className='flex h-9 w-9 items-center justify-center rounded-full border-2 border-background bg-[#ff4500] text-white'>
-                    <FaRedditAlien className='h-5 w-5' />
-                  </span>
-                  <span className='flex h-9 w-9 items-center justify-center rounded-full border-2 border-background bg-[#5865f2] text-white'>
-                    <FaDiscord className='h-5 w-5' />
-                  </span>
-                </span>
-                <span className='flex-1'>
-                  <span className='block text-sm font-semibold text-foreground'>
-                    Explore our community
-                  </span>
-                  <span className='mt-0.5 block text-xs text-muted-foreground'>
-                    Join the conversation on Reddit and Discord
-                  </span>
-                </span>
-                <ArrowRight className='h-5 w-5 text-brand-text transition-transform group-hover:translate-x-1' />
-              </a>
+              <div className='mt-5'>
+                <p className='text-sm font-semibold text-foreground'>
+                  Join the community
+                </p>
+                <div className='mt-3 grid grid-cols-2 gap-2 sm:gap-4'>
+                  <a
+                    href={siteConfig.community.reddit}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='bl-card group flex min-h-32 flex-col justify-between border-[#ff4500] bg-[#fff7f2] p-2.5 shadow-[3px_3px_0_0_#ff4500] transition-colors hover:bg-[#fff0e8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 sm:min-h-48 sm:p-5 sm:shadow-[4px_4px_0_0_#ff4500]'
+                  >
+                    <span>
+                      <span className='flex items-center justify-between gap-3'>
+                        <span className='flex h-8 w-8 items-center justify-center rounded-full bg-[#ff4500] text-white sm:h-10 sm:w-10'>
+                          <FaRedditAlien className='h-5 w-5 sm:h-6 sm:w-6' />
+                        </span>
+                        <span className='border border-[#ff4500]/25 bg-[#ff4500]/10 px-1.5 py-1 font-mono text-[8px] font-semibold uppercase tracking-[0.08em] text-[#b93400] sm:px-2 sm:text-[9px] sm:tracking-[0.12em]'>
+                          r/BullahLabs
+                        </span>
+                      </span>
+                      <span className='bl-display mt-2 block text-lg text-foreground sm:mt-5 sm:text-2xl'>
+                        Reddit
+                      </span>
+                      <span className='mt-2 hidden text-sm leading-relaxed text-muted-foreground sm:block'>
+                        Share ideas and join the conversation.
+                      </span>
+                    </span>
+                    <span className='mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-[#c93a00] sm:mt-5 sm:gap-2 sm:text-sm'>
+                      Visit <ArrowRight className='h-3.5 w-3.5 sm:h-4 sm:w-4' />
+                    </span>
+                  </a>
+                  <a
+                    href={siteConfig.community.discord}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='bl-card group flex min-h-32 flex-col justify-between border-[#5865f2] bg-[#f5f5ff] p-2.5 shadow-[3px_3px_0_0_#5865f2] transition-colors hover:bg-[#eeeeff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 sm:min-h-48 sm:p-5 sm:shadow-[4px_4px_0_0_#5865f2]'
+                  >
+                    <span>
+                      <span className='flex items-center justify-between gap-3'>
+                        <span className='flex h-8 w-8 items-center justify-center rounded-full bg-[#5865f2] text-white sm:h-10 sm:w-10'>
+                          <FaDiscord className='h-5 w-5 sm:h-6 sm:w-6' />
+                        </span>
+                        <span className='border border-[#5865f2]/25 bg-[#5865f2]/10 px-1.5 py-1 font-mono text-[8px] font-semibold uppercase tracking-[0.08em] text-[#3f48b7] sm:px-2 sm:text-[9px] sm:tracking-[0.12em]'>
+                          Bullah Labs
+                        </span>
+                      </span>
+                      <span className='bl-display mt-2 block text-lg text-foreground sm:mt-5 sm:text-2xl'>
+                        Discord
+                      </span>
+                      <span className='mt-2 hidden text-sm leading-relaxed text-muted-foreground sm:block'>
+                        Meet others building better AI habits.
+                      </span>
+                    </span>
+                    <span className='mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-[#4651ca] sm:mt-5 sm:gap-2 sm:text-sm'>
+                      Join <ArrowRight className='h-3.5 w-3.5 sm:h-4 sm:w-4' />
+                    </span>
+                  </a>
+                </div>
+              </div>
               <div className='mt-6 border-t border-line pt-4'>
                 <button
                   type='button'
@@ -717,26 +809,27 @@ export function AiWorkSnapshot() {
   return (
     <div className='bl-card mx-auto w-full max-w-5xl overflow-hidden lg:grid lg:grid-cols-[0.3fr_0.7fr]'>
       <Rail step={step} />
+      <MobileRail step={step} />
       <form
         id={formId}
         onSubmit={(event) => {
           event.preventDefault();
           void next();
         }}
-        className='flex flex-col bg-surface p-5 sm:p-7'
+        className='flex flex-col bg-surface p-4 sm:p-7'
       >
         <div className='flex items-start justify-between gap-5'>
           <div>
-            <div className='inline-flex items-center gap-2 border border-brand/30 bg-brand-soft/35 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+            <div className='hidden items-center gap-2 border border-brand/30 bg-brand-soft/35 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text lg:inline-flex'>
               <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-brand' />{' '}
               Live AI profile
             </div>
-            <h2 className='bl-display mt-4 max-w-2xl text-3xl leading-tight text-foreground sm:text-4xl'>
+            <h2 className='bl-display max-w-2xl text-2xl leading-tight text-foreground lg:mt-4 lg:text-4xl'>
               {question.title}
             </h2>
           </div>
-          <span className='flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand via-brand to-brand-2 font-mono text-[10px] font-semibold text-brand-foreground shadow-[0_0_0_5px_hsl(var(--brand)_/_0.12)]'>
-            {question.note}
+          <span className='hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand via-brand to-brand-2 font-mono text-[10px] font-semibold text-brand-foreground shadow-[0_0_0_5px_hsl(var(--brand)_/_0.12)] lg:flex'>
+            <span>{question.note}</span>
           </span>
         </div>
         <Controller
@@ -818,11 +911,11 @@ export function AiWorkSnapshot() {
               <div
                 key={question.field}
                 className={cn(
-                  'mt-6 grid gap-3 duration-500 animate-in fade-in slide-in-from-bottom-3',
+                  'mt-4 grid grid-cols-2 gap-2 duration-500 animate-in fade-in slide-in-from-bottom-3 sm:mt-6 sm:gap-3',
                   isWorkflowCards ? 'sm:grid-cols-2' : 'sm:grid-cols-2',
                   !isWorkflowCards &&
                     question.options.length > 4 &&
-                    'lg:grid-cols-3',
+                    'grid-cols-3 lg:grid-cols-3',
                 )}
               >
                 {question.options.map((option) => {
@@ -847,12 +940,12 @@ export function AiWorkSnapshot() {
                         )
                       }
                       className={cn(
-                        'group relative overflow-hidden border border-line bg-background p-4 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60',
+                        'group relative overflow-hidden border border-line bg-background p-2.5 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 sm:p-4',
                         isScale
                           ? 'min-h-16 p-2 text-center'
                           : isWorkflowCards
-                            ? 'min-h-28 p-5'
-                            : 'min-h-24',
+                            ? 'min-h-[5.25rem] sm:min-h-28 sm:p-5'
+                            : 'min-h-[5.25rem] sm:min-h-24',
                         active
                           ? 'border-brand bg-brand-soft/55 shadow-[5px_5px_0_hsl(var(--brand)_/_0.2)] ring-2 ring-brand/40'
                           : 'hover:border-brand/60 hover:bg-brand-soft/20 hover:shadow-[4px_4px_0_hsl(var(--brand)_/_0.16)]',
@@ -868,7 +961,7 @@ export function AiWorkSnapshot() {
                       {!isScale && !isWorkflowCards && (
                         <span
                           className={cn(
-                            'mb-3 flex h-8 w-8 items-center justify-center',
+                            'mb-2 flex h-7 w-7 items-center justify-center text-sm sm:mb-3 sm:h-8 sm:w-8',
                             active
                               ? 'bg-gradient-to-br from-brand to-brand-2 text-brand-foreground shadow-lg'
                               : 'bg-muted text-muted-foreground group-hover:bg-brand-soft group-hover:text-brand-text',
@@ -886,7 +979,7 @@ export function AiWorkSnapshot() {
                       {isWorkflowCards && (
                         <span
                           className={cn(
-                            'mb-4 flex h-9 w-9 items-center justify-center rounded-full text-lg',
+                            'mb-2 flex h-7 w-7 items-center justify-center rounded-full text-sm sm:mb-4 sm:h-9 sm:w-9 sm:text-lg',
                             active
                               ? 'bg-brand text-brand-foreground'
                               : 'bg-muted text-muted-foreground',
@@ -898,7 +991,7 @@ export function AiWorkSnapshot() {
                       )}
                       <span
                         className={cn(
-                          'block font-semibold leading-tight',
+                          'block text-xs font-semibold leading-tight sm:text-sm',
                           isScale
                             ? 'text-sm text-foreground'
                             : 'text-sm text-foreground',
@@ -912,7 +1005,7 @@ export function AiWorkSnapshot() {
                         </span>
                       )}
                       {option.detail && (
-                        <span className='mt-2 block text-xs leading-relaxed text-muted-foreground'>
+                        <span className='mt-2 hidden text-xs leading-relaxed text-muted-foreground sm:block'>
                           {option.detail}
                         </span>
                       )}
@@ -961,7 +1054,7 @@ export function AiWorkSnapshot() {
             );
           }}
         />
-        <div className='mt-6 flex items-center justify-between gap-5 border-t border-line pt-5'>
+        <div className='sticky bottom-0 z-10 -mx-4 mt-4 flex items-center justify-between gap-5 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur lg:static lg:mx-0 lg:mt-6 lg:bg-transparent lg:px-0 lg:pt-5 lg:backdrop-blur-none'>
           {step > 0 ? (
             <button
               type='button'

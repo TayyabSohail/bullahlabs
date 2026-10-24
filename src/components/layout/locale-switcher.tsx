@@ -17,7 +17,7 @@ interface LocaleSwitcherProps {
   className?: string;
 }
 
-const FLAG_FOR: Record<Locale, string> = { en: 'GB', de: 'DE' };
+const FLAG_FOR: Record<Locale, string> = { en: 'US', de: 'DE' };
 const NAME_FOR: Record<Locale, string> = { en: 'English', de: 'Deutsch' };
 
 /** Two flags. The active one is framed; the other is dimmed until hover. */
