@@ -35,6 +35,7 @@ export function HowItWorks({
 
   return (
     <section
+      data-section='how-it-works'
       id='how-it-works'
       className={cn('bl-section bl-rule bl-band-stone', className)}
     >

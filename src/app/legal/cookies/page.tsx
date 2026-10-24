@@ -54,20 +54,26 @@ const sectionsEn: LegalSection[] = [
   },
   {
     id: 'analytics',
-    title: 'Analytics, with your consent',
+    title: 'Analytics',
     body: (
       <>
         <p>
-          If you click &ldquo;Accept&rdquo; on the cookie banner, we load
-          PostHog analytics. It sets a first-party cookie and local storage
-          entry (prefixed <strong>ph_</strong>) containing a random identifier
-          so that repeat visits are counted once. It records pages viewed,
-          referring site, device type and approximate country. It does not
-          record what you type into forms.
+          We use PostHog analytics to see which pages are useful. It records
+          pages viewed, buttons clicked, referring site, campaign links, device
+          type and approximate country. It does not record what you type into
+          forms. Data is processed by PostHog in the EU.
         </p>
         <p>
-          The identifier is kept for up to 12 months. Data is processed by
-          PostHog in the EU. If you decline, nothing from PostHog is loaded.
+          Until you decide, or if you decline, PostHog stores nothing on your
+          device: no cookie, no local storage. Each page load counts as a new,
+          anonymous visitor.
+        </p>
+        <p>
+          If you click &ldquo;Accept&rdquo; on the cookie banner, PostHog also
+          sets a first-party cookie and local storage entry (prefixed{' '}
+          <strong>ph_</strong>) containing a random identifier, so that repeat
+          visits are counted once. The identifier is kept for up to 12 months.
+          Declining later removes it.
         </p>
       </>
     ),
@@ -145,22 +151,28 @@ const sectionsDe: LegalSection[] = [
   },
   {
     id: 'analytics',
-    title: 'Analyse, mit Ihrer Einwilligung',
+    title: 'Analyse',
     body: (
       <>
         <p>
-          Wenn Sie im Cookie-Banner auf &bdquo;Akzeptieren&ldquo; klicken, laden
-          wir die Analyse von PostHog. Sie setzt ein Erstanbieter-Cookie und
-          einen Local-Storage-Eintrag (mit dem Präfix <strong>ph_</strong>) mit
-          einer zufälligen Kennung, damit wiederholte Besuche nur einmal gezählt
-          werden. Erfasst werden aufgerufene Seiten, verweisende Website,
-          Gerätetyp und ungefähres Land. Was Sie in Formulare eintippen, wird
-          nicht erfasst.
+          Wir nutzen die Analyse von PostHog, um zu sehen, welche Seiten
+          nützlich sind. Erfasst werden aufgerufene Seiten, geklickte
+          Schaltflächen, verweisende Website, Kampagnen-Links, Gerätetyp und
+          ungefähres Land. Was Sie in Formulare eintippen, wird nicht erfasst.
+          Die Daten werden von PostHog in der EU verarbeitet.
         </p>
         <p>
-          Die Kennung wird bis zu 12 Monate aufbewahrt. Die Daten werden von
-          PostHog in der EU verarbeitet. Wenn Sie ablehnen, wird nichts von
-          PostHog geladen.
+          Solange Sie nicht entschieden haben oder wenn Sie ablehnen, speichert
+          PostHog nichts auf Ihrem Gerät: kein Cookie, kein Local Storage. Jeder
+          Seitenaufruf zählt als neuer, anonymer Besuch.
+        </p>
+        <p>
+          Wenn Sie im Cookie-Banner auf &bdquo;Akzeptieren&ldquo; klicken, setzt
+          PostHog zusätzlich ein Erstanbieter-Cookie und einen
+          Local-Storage-Eintrag (mit dem Präfix <strong>ph_</strong>) mit einer
+          zufälligen Kennung, damit wiederholte Besuche nur einmal gezählt
+          werden. Die Kennung wird bis zu 12 Monate aufbewahrt. Ein späteres
+          Ablehnen entfernt sie.
         </p>
       </>
     ),

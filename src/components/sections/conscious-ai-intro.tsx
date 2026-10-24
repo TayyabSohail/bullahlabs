@@ -24,7 +24,10 @@ export function ConsciousAiIntro({ dict, className }: ConsciousAiIntroProps) {
   const t = dict.consciousAi;
 
   return (
-    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
+    <section
+      data-section='conscious-ai-intro'
+      className={cn('bl-section bl-rule bl-band-stone', className)}
+    >
       <div className='bl-container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16'>
         <div className='min-w-0'>
           <Reveal>

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 import { Logo } from '@/components/brand/logo';
+import { CommunityLinks } from '@/components/layout/community-links';
 import { LocaleSwitcher } from '@/components/layout/locale-switcher';
 import { MobileMenu } from '@/components/layout/mobile-menu';
 
@@ -27,7 +28,10 @@ export function Header({ dict }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // The mobile menu supplies Home itself so shared navigation can stay focused
   // on standalone sections. Desktop needs it alongside the primary links.
-  const items = [{ label: dict.nav.home, href: paths.home }, ...primaryNav(dict)];
+  const items = [
+    { label: dict.nav.home, href: paths.home },
+    ...primaryNav(dict),
+  ];
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScrolled(latest > 12);
@@ -91,11 +95,10 @@ export function Header({ dict }: HeaderProps) {
         </nav>
 
         <div className='flex shrink-0 items-center gap-3'>
-          <LocaleSwitcher
-            current={dict.locale}
-            label={dict.nav.language}
-            className='hidden sm:inline-flex'
-          />
+          {/* Desktop only; the mobile menu carries them below lg. The
+              actions come first (community, then the CTA) and the language
+              setting sits last, a rule apart. */}
+          <CommunityLinks dict={dict} className='hidden lg:flex' />
           {/* Shown at every width so phones get a CTA beside the hamburger,
               not only the icon. Dropped on the contact page itself, where it
               would only point at the form already on screen. */}
@@ -107,6 +110,12 @@ export function Header({ dict }: HeaderProps) {
               {dict.nav.cta}
             </Link>
           )}
+          <span aria-hidden className='hidden h-6 w-px bg-ink/15 lg:block' />
+          <LocaleSwitcher
+            current={dict.locale}
+            label={dict.nav.language}
+            className='hidden sm:inline-flex'
+          />
           <MobileMenu dict={dict} onOpenChange={setMobileMenuOpen} />
         </div>
       </div>

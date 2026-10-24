@@ -49,7 +49,10 @@ export function CourseSection({ dict, className }: SectionProps) {
   const t = dict.programPage.course;
 
   return (
-    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
+    <section
+      data-section='course'
+      className={cn('bl-section bl-rule bl-band-stone', className)}
+    >
       <div className='bl-container'>
         <SectionHeading
           kicker={t.kicker}
@@ -150,7 +153,10 @@ export function ProblemApproach({ dict, className }: SectionProps) {
   const approach = dict.programPage.approach;
 
   return (
-    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
+    <section
+      data-section='problem-approach'
+      className={cn('bl-section bl-rule bl-band-stone', className)}
+    >
       <div className='bl-container grid gap-4 lg:grid-cols-2 lg:gap-5'>
         <Reveal className='bl-card bl-grid-surface flex flex-col p-6 sm:p-8 lg:p-10'>
           <p className='bl-kicker'>{problem.kicker}</p>
@@ -214,7 +220,10 @@ export function LearningHabits({ dict, className }: SectionProps) {
   const t = dict.programPage.modules;
 
   return (
-    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
+    <section
+      data-section='learning-habits'
+      className={cn('bl-section bl-rule bl-band-stone', className)}
+    >
       <div className='bl-container'>
         <SectionHeading
           kicker={t.kicker}
@@ -250,7 +259,10 @@ export function WhoFor({ dict, className }: SectionProps) {
   const t = dict.programPage.whoFor;
 
   return (
-    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
+    <section
+      data-section='who-for'
+      className={cn('bl-section bl-rule bl-band-stone', className)}
+    >
       <div className='bl-container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16'>
         <div>
           <Reveal>
@@ -304,7 +316,10 @@ export function ForBusiness({ dict, className }: SectionProps) {
   const t = dict.programPage.business;
 
   return (
-    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
+    <section
+      data-section='for-business'
+      className={cn('bl-section bl-rule bl-band-stone', className)}
+    >
       <div className='bl-container'>
         <SectionHeading
           kicker={t.kicker}
@@ -346,7 +361,10 @@ export function Vision({ dict, className }: SectionProps) {
   const t = dict.programPage.vision;
 
   return (
-    <section className={cn('bl-section bl-rule bl-band-stone', className)}>
+    <section
+      data-section='vision'
+      className={cn('bl-section bl-rule bl-band-stone', className)}
+    >
       <div className='bl-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20'>
         <div className='lg:sticky lg:top-32 lg:self-start'>
           <Reveal>

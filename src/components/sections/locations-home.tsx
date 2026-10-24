@@ -30,6 +30,7 @@ const STATS = [
 export function LocationsHome() {
   return (
     <section
+      data-section='locations'
       id='locations'
       className='bl-section bl-rule bl-band-ink scroll-mt-24'
     >

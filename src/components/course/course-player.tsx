@@ -19,8 +19,10 @@ import {
   type VideoPlayerHandle,
 } from '@/components/course/video-player';
 
+import { track } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
+import { PosthogEventKeys } from '@/constants/posthog-events';
 import {
   type Course,
   type CourseModule,
@@ -115,6 +117,14 @@ export function CoursePlayer({
   const [watched, setWatched] = useState<string[]>([]);
   const playerRef = useRef<VideoPlayerHandle>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const started = useRef(new Set<string>());
+
+  const lessonProps = (entry: LessonEntry) => ({
+    course: course?.id,
+    module: entry.module.id,
+    lesson: entry.lesson.id,
+    lesson_title: entry.lesson.title,
+  });
 
   useEffect(() => {
     setWatched(readWatched());
@@ -211,7 +221,16 @@ export function CoursePlayer({
           title={active.lesson.title}
           tag={tag}
           labels={labels}
-          onEnded={() => markWatched(active.lesson.id)}
+          onPlay={() => {
+            // Resuming after a pause fires play again; count a lesson once.
+            if (started.current.has(active.lesson.id)) return;
+            started.current.add(active.lesson.id);
+            track(PosthogEventKeys.LESSON_STARTED, lessonProps(active));
+          }}
+          onEnded={() => {
+            markWatched(active.lesson.id);
+            track(PosthogEventKeys.LESSON_COMPLETED, lessonProps(active));
+          }}
           placeholderAction={placeholderAction}
           className='border-b'
         />

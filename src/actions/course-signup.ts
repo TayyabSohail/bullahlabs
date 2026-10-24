@@ -97,6 +97,7 @@ export const joinCourseList = safeActionClient
           email,
           parsedInput.locale ?? '',
           parsedInput.source ?? '',
+          // Column E, "UTM Campaign": the utm_campaign, e.g. sticker-01.
           parsedInput.utmCampaign ?? '',
         ]);
         stored = true;

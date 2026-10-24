@@ -1,8 +1,8 @@
 'use client';
 
-import { ArrowRight, BellRing, CheckCircle2, Loader2 } from 'lucide-react';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { ArrowRight, BellRing, Check, Loader2, X } from 'lucide-react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { useAction } from 'next-safe-action/hooks';
 import { useId, useState } from 'react';
 import { toast } from 'sonner';
@@ -11,15 +11,19 @@ import { joinCourseList } from '@/actions/course-signup';
 
 import {
   Dialog,
-  DialogContent,
+  DialogClose,
   DialogDescription,
-  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
   DialogTitle,
 } from '@/components/ui/dialog';
 
+import { track } from '@/lib/analytics';
+import { getCampaign } from '@/lib/campaign';
 import { cn } from '@/lib/utils';
 
 import { paths } from '@/constants/paths';
+import { PosthogEventKeys } from '@/constants/posthog-events';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface CourseSignupProps {
@@ -43,7 +47,8 @@ interface CourseSignupProps {
 
 /**
  * "Tell me when the modules open": one email field. The address goes to
- * `course_signups` and the inbox; a confirmation dialog opens after success.
+ * `course_signups` and the inbox; the thank-you opens as a small modal over
+ * the page and the form stays put, cleared, underneath.
  */
 export function CourseSignup({
   dict,
@@ -59,13 +64,17 @@ export function CourseSignup({
 }: CourseSignupProps) {
   const t = dict.program.signup;
   const id = useId();
-  const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [done, setDone] = useState<null | { alreadyOnList: boolean }>(null);
   const [error, setError] = useState<string | null>(null);
 
   const { execute, isExecuting } = useAction(joinCourseList, {
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data, input }) => {
+      track(PosthogEventKeys.COURSE_SIGNUP, {
+        source,
+        campaign: input.utmCampaign,
+        already_on_list: Boolean(data?.alreadyOnList),
+      });
       setDone({ alreadyOnList: Boolean(data?.alreadyOnList) });
       setEmail('');
     },
@@ -85,7 +94,8 @@ export function CourseSignup({
       email,
       locale: dict.locale,
       source,
-      utmCampaign: searchParams.get('utm_campaign')?.trim() || undefined,
+      // The landing URL's utm_campaign, remembered across pages.
+      utmCampaign: getCampaign(),
       website: String(form.get('website') ?? ''),
     });
   };
@@ -93,6 +103,36 @@ export function CourseSignup({
   const inline = variant === 'inline';
   // The panel is always ink; the inline field follows its surface.
   const dark = !inline || tone === 'dark';
+
+  // Built from the dialog parts rather than DialogContent so the backdrop can
+  // stay light: DialogContent bakes in a near-black overlay.
+  const confirmation = (
+    <Dialog
+      open={done !== null}
+      onOpenChange={(open) => {
+        if (!open) setDone(null);
+      }}
+    >
+      <DialogPortal>
+        <DialogOverlay className='bg-ink/25 backdrop-blur-[2px]' />
+        <DialogPrimitive.Content className='bl-card bl-grid-surface fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2 px-7 pb-8 pt-9 text-center shadow-[4px_4px_0_0_hsl(var(--brand))] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:px-9'>
+          <span className='mx-auto flex h-12 w-12 items-center justify-center bg-brand text-brand-foreground'>
+            <Check className='h-6 w-6' strokeWidth={2.5} />
+          </span>
+          <DialogTitle className='bl-display mt-6 text-2xl leading-tight tracking-[-0.01em] text-ink'>
+            {done?.alreadyOnList ? t.alreadyTitle : t.doneTitle}
+          </DialogTitle>
+          <DialogDescription className='mt-3 text-[15px] leading-relaxed text-muted-foreground'>
+            {t.doneBody}
+          </DialogDescription>
+          <DialogClose className='absolute right-4 top-4 p-1 text-ink/50 transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/60'>
+            <X className='h-4 w-4' />
+            <span className='sr-only'>{t.doneClose}</span>
+          </DialogClose>
+        </DialogPrimitive.Content>
+      </DialogPortal>
+    </Dialog>
+  );
 
   const field = (
     <form onSubmit={onSubmit} noValidate className='w-full'>
@@ -171,66 +211,42 @@ export function CourseSignup({
     </form>
   );
 
-  const successDialog = (
-    <Dialog
-      open={done !== null}
-      onOpenChange={(open) => {
-        if (!open) setDone(null);
-      }}
-    >
-      <DialogContent className='bl-card max-w-md rounded-none border-ink bg-surface p-7 shadow-[4px_4px_0_0_hsl(var(--brand))] sm:rounded-none'>
-        <div className='flex h-12 w-12 items-center justify-center bg-brand text-brand-foreground'>
-          <CheckCircle2 className='h-6 w-6' />
-        </div>
-        <DialogHeader className='mt-6 text-left'>
-          <DialogTitle className='bl-display text-3xl text-ink'>
-            {done?.alreadyOnList ? t.alreadyTitle : t.doneTitle}
-          </DialogTitle>
-          <DialogDescription className='mt-3 text-base leading-relaxed text-muted-foreground'>
-            {t.doneBody}
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
-  );
-
-  if (inline)
+  if (inline) {
     return (
-      <>
-        <div className={className}>{field}</div>
-        {successDialog}
-      </>
+      <div className={className}>
+        {field}
+        {confirmation}
+      </div>
     );
+  }
 
   return (
-    <>
-      <div
-        className={cn(
-          'bl-card bl-card-ink bl-grid-surface relative p-6 text-white sm:p-8',
-          className,
+    <div
+      className={cn(
+        'bl-card bl-card-ink bl-grid-surface relative p-6 text-white sm:p-8',
+        className,
+      )}
+    >
+      <div className='relative'>
+        <p className='bl-kicker text-white/60'>{kicker ?? t.kicker}</p>
+        <h3 className='bl-display mt-4 text-2xl text-white sm:text-3xl'>
+          {title ?? t.title}
+        </h3>
+        <p className='mt-3 max-w-md text-sm leading-relaxed text-white/65'>
+          {body ?? t.body}
+        </p>
+        <div className='mt-6'>{field}</div>
+        {teamLink && (
+          <Link
+            href={`${paths.contact}?service=team`}
+            className='bl-action mt-5 text-brand-2 hover:text-white'
+          >
+            {t.teamLink}
+            <ArrowRight className='h-3.5 w-3.5' />
+          </Link>
         )}
-      >
-        <div className='relative'>
-          <p className='bl-kicker text-white/60'>{kicker ?? t.kicker}</p>
-          <h3 className='bl-display mt-4 text-2xl text-white sm:text-3xl'>
-            {title ?? t.title}
-          </h3>
-          <p className='mt-3 max-w-md text-sm leading-relaxed text-white/65'>
-            {body ?? t.body}
-          </p>
-          <div className='mt-6'>{field}</div>
-          {teamLink && (
-            <Link
-              href={`${paths.contact}?service=team`}
-              className='bl-action mt-5 text-brand-2 hover:text-white'
-            >
-              {t.teamLink}
-              <ArrowRight className='h-3.5 w-3.5' />
-            </Link>
-          )}
-        </div>
       </div>
-      {successDialog}
-    </>
+      {confirmation}
+    </div>
   );
 }

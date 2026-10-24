@@ -8,7 +8,7 @@ import { z } from 'zod';
  * - RESEND_API_KEY + CONTACT_TO_EMAIL  -> contact form delivers by email
  * - NEXT_PUBLIC_SUPABASE_*             -> contact form is also stored in DB
  * - GOOGLE_SHEETS_ID + GOOGLE_SERVICE_ACCOUNT_* -> submissions append to a Google Sheet
- * - NEXT_PUBLIC_POSTHOG_*              -> analytics (after cookie consent)
+ * - NEXT_PUBLIC_POSTHOG_*              -> analytics (cookies only after consent)
  * - NEXT_PUBLIC_CAL_LINK               -> "Book a call" links to Cal.com
  * - NEXT_PUBLIC_COURSE_URL             -> "Watch the course" links to the course
  */
@@ -25,7 +25,7 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional(),
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().optional(),
-    NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
+    NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: z.string().optional(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().optional(),
     NEXT_PUBLIC_CAL_LINK: z.string().optional(),
     NEXT_PUBLIC_COURSE_URL: z.string().url().optional(),
@@ -47,7 +47,8 @@ export const env = createEnv({
     GOOGLE_SERVICE_ACCOUNT_EMAIL: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     GOOGLE_SERVICE_ACCOUNT_KEY: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
     // PostHog variables
-    NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+    NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN:
+      process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN,
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     // Booking
     NEXT_PUBLIC_CAL_LINK: process.env.NEXT_PUBLIC_CAL_LINK,

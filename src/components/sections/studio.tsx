@@ -29,6 +29,7 @@ export function Studio() {
   ] as const;
   return (
     <section
+      data-section='studio'
       id='studio'
       className='bl-section bl-rule bl-band-stone scroll-mt-24'
     >
