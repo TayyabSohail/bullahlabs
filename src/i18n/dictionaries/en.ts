@@ -15,6 +15,7 @@ export const en = {
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
     language: 'Language',
+    community: 'Community',
   },
   hero: {
     title: 'Technology that solves problems.\nBuilt with conscience.',

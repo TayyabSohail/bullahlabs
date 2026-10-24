@@ -79,8 +79,8 @@ export const siteConfig = {
   courseUrl: env.NEXT_PUBLIC_COURSE_URL ?? null,
   /** Public community spaces, used by the community sections and footer. */
   community: {
-    reddit: 'https://www.reddit.com/r/bullahlabs/',
-    discord: 'https://discord.gg/bullahlabs',
+    reddit: 'https://www.reddit.com/r/AI_Conscious',
+    discord: 'https://discord.gg/fHq9vun76',
   },
   footerNav: {
     legal: [

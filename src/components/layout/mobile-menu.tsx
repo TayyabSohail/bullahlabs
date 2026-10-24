@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { CommunityLinks } from '@/components/layout/community-links';
 import { LocaleSwitcher } from '@/components/layout/locale-switcher';
 
 import { cn } from '@/lib/utils';
@@ -130,6 +131,19 @@ export function MobileMenu({
                 );
               })}
             </nav>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, ease, delay: 0.35 }}
+              className='bl-container flex shrink-0 items-center justify-between border-t border-line/10 py-5'
+            >
+              <span className='font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground'>
+                {dict.nav.community}
+              </span>
+              <CommunityLinks dict={dict} />
+            </motion.div>
 
             {/* The header only shows the language switcher from `sm` up, so
                 on phones this is the one place to change language. */}

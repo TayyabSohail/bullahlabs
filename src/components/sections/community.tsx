@@ -9,22 +9,18 @@ const communities = [
     key: 'reddit',
     icon: FaRedditAlien,
     href: siteConfig.community.reddit,
-    handle: 'r/BullahLabs',
     cardClassName:
       'border-[#ff4500] bg-[#fff7f2] shadow-[4px_4px_0_0_#ff4500] hover:bg-[#fff0e8]',
     iconClassName: 'bg-[#ff4500] text-white',
-    handleClassName: 'border-[#ff4500]/25 bg-[#ff4500]/10 text-[#b93400]',
     actionClassName: 'text-[#c93a00] group-hover:text-[#8f2900]',
   },
   {
     key: 'discord',
     icon: FaDiscord,
     href: siteConfig.community.discord,
-    handle: 'Bullah Labs server',
     cardClassName:
       'border-[#5865f2] bg-[#f5f5ff] shadow-[4px_4px_0_0_#5865f2] hover:bg-[#eeeeff]',
     iconClassName: 'bg-[#5865f2] text-white',
-    handleClassName: 'border-[#5865f2]/25 bg-[#5865f2]/10 text-[#3f48b7]',
     actionClassName: 'text-[#4651ca] group-hover:text-[#303993]',
   },
 ] as const;
@@ -54,10 +50,8 @@ export function CommunitySection({ dict }: { dict: Dictionary }) {
               key,
               href,
               icon: Icon,
-              handle,
               cardClassName,
               iconClassName,
-              handleClassName,
               actionClassName,
             }) => {
               const community = t.links[key];
@@ -71,18 +65,11 @@ export function CommunitySection({ dict }: { dict: Dictionary }) {
                   className={`bl-card bl-card-link group flex min-h-60 flex-col justify-between p-6 sm:p-8 ${cardClassName}`}
                 >
                   <div>
-                    <div className='flex items-center justify-between gap-4'>
-                      <span
-                        className={`inline-flex h-12 w-12 items-center justify-center rounded-full ${iconClassName}`}
-                      >
-                        <Icon className='h-7 w-7' aria-hidden='true' />
-                      </span>
-                      <span
-                        className={`border px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] ${handleClassName}`}
-                      >
-                        {handle}
-                      </span>
-                    </div>
+                    <span
+                      className={`inline-flex h-12 w-12 items-center justify-center rounded-full ${iconClassName}`}
+                    >
+                      <Icon className='h-7 w-7' aria-hidden='true' />
+                    </span>
                     <h3 className='bl-display mt-8 text-3xl text-foreground'>
                       {community.label}
                     </h3>
