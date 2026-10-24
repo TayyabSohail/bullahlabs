@@ -72,7 +72,7 @@ export function CourseSignup({
     onSuccess: ({ data, input }) => {
       track(PosthogEventKeys.COURSE_SIGNUP, {
         source,
-        campaign: input.campaign,
+        campaign: input.utmCampaign,
         already_on_list: Boolean(data?.alreadyOnList),
       });
       setDone({ alreadyOnList: Boolean(data?.alreadyOnList) });
@@ -94,7 +94,8 @@ export function CourseSignup({
       email,
       locale: dict.locale,
       source,
-      campaign: getCampaign(),
+      // The landing URL's utm_campaign, remembered across pages.
+      utmCampaign: getCampaign(),
       website: String(form.get('website') ?? ''),
     });
   };

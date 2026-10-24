@@ -39,19 +39,45 @@ export function FlagDE({ className }: FlagProps) {
   );
 }
 
-/** Flag of the United Kingdom, simplified. Used for the English switch. */
-export function FlagGB({ className }: FlagProps) {
+/** Flag of the United States, used for the English switch. */
+export function FlagUS({ className }: FlagProps) {
   return (
     <svg
       viewBox='0 0 36 24'
       aria-hidden='true'
       className={cn('h-4 w-6 rounded-[2px] shadow-sm', className)}
     >
-      <rect width='36' height='24' fill='#012169' />
-      <path d='M0 0L36 24M36 0L0 24' stroke='#ffffff' strokeWidth='4.5' />
-      <path d='M0 0L36 24M36 0L0 24' stroke='#C8102E' strokeWidth='2' />
-      <path d='M18 0V24M0 12H36' stroke='#ffffff' strokeWidth='7' />
-      <path d='M18 0V24M0 12H36' stroke='#C8102E' strokeWidth='4' />
+      <rect width='36' height='24' fill='#ffffff' />
+      <path
+        d='M0 0H36V1.85H0ZM0 3.69H36V5.54H0ZM0 7.38H36V9.23H0ZM0 11.08H36V12.92H0ZM0 14.77H36V16.62H0ZM0 18.46H36V20.31H0ZM0 22.15H36V24H0Z'
+        fill='#B22234'
+      />
+      <rect width='16.2' height='12.92' fill='#3C3B6E' />
+      <g fill='#ffffff'>
+        <circle cx='2.3' cy='2' r='.65' />
+        <circle cx='5.1' cy='2' r='.65' />
+        <circle cx='7.9' cy='2' r='.65' />
+        <circle cx='10.7' cy='2' r='.65' />
+        <circle cx='13.5' cy='2' r='.65' />
+        <circle cx='3.7' cy='4.15' r='.65' />
+        <circle cx='6.5' cy='4.15' r='.65' />
+        <circle cx='9.3' cy='4.15' r='.65' />
+        <circle cx='12.1' cy='4.15' r='.65' />
+        <circle cx='2.3' cy='6.3' r='.65' />
+        <circle cx='5.1' cy='6.3' r='.65' />
+        <circle cx='7.9' cy='6.3' r='.65' />
+        <circle cx='10.7' cy='6.3' r='.65' />
+        <circle cx='13.5' cy='6.3' r='.65' />
+        <circle cx='3.7' cy='8.45' r='.65' />
+        <circle cx='6.5' cy='8.45' r='.65' />
+        <circle cx='9.3' cy='8.45' r='.65' />
+        <circle cx='12.1' cy='8.45' r='.65' />
+        <circle cx='2.3' cy='10.6' r='.65' />
+        <circle cx='5.1' cy='10.6' r='.65' />
+        <circle cx='7.9' cy='10.6' r='.65' />
+        <circle cx='10.7' cy='10.6' r='.65' />
+        <circle cx='13.5' cy='10.6' r='.65' />
+      </g>
     </svg>
   );
 }
@@ -62,6 +88,6 @@ export function Flag({
 }: FlagProps & { countryCode: string }) {
   if (countryCode === 'PK') return <FlagPK className={className} />;
   if (countryCode === 'DE') return <FlagDE className={className} />;
-  if (countryCode === 'GB') return <FlagGB className={className} />;
+  if (countryCode === 'US') return <FlagUS className={className} />;
   return null;
 }

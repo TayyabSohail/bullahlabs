@@ -55,7 +55,17 @@ export const joinCourseList = safeActionClient
       `Email: ${email}`,
       `Locale: ${parsedInput.locale ?? '-'}`,
       `Source: ${parsedInput.source ?? '-'}`,
-      `Campaign: ${parsedInput.campaign ?? '-'}`,
+      `UTM campaign: ${parsedInput.utmCampaign ?? '-'}`,
+      ...(parsedInput.assessment
+        ? [
+            `Role: ${parsedInput.assessment.role}`,
+            `Role other: ${parsedInput.assessment.roleOther ?? '-'}`,
+            `Frequency: ${parsedInput.assessment.frequency}`,
+            `Confidence: ${parsedInput.assessment.confidence}/5`,
+            `Efficiency: ${parsedInput.assessment.efficiency}/4`,
+            `Goal: ${parsedInput.assessment.goal}`,
+          ]
+        : []),
     ].join('\n');
 
     let stored = false;
@@ -87,14 +97,48 @@ export const joinCourseList = safeActionClient
           email,
           parsedInput.locale ?? '',
           parsedInput.source ?? '',
-          // Column E, "Campaign": the utm_campaign, e.g. sticker-01.
-          parsedInput.campaign ?? '',
+          // Column E, "UTM Campaign": the utm_campaign, e.g. sticker-01.
+          parsedInput.utmCampaign ?? '',
         ]);
         stored = true;
       } catch (error) {
         Logger.error(
           'Course signup sheet append failed',
           error instanceof Error ? error.message : String(error),
+        );
+      }
+    }
+
+    if (parsedInput.assessment) {
+      if (!isSheetsConfigured) {
+        throw new Error('AI snapshot storage is not configured.');
+      }
+
+      try {
+        // The AI Snapshot tab has eight columns: Timestamp through Goal.
+        // Keep this row aligned to those headers; locale belongs to the course
+        // sign-up tab, not this assessment record.
+        await appendSheetRow(SHEET_TABS.aiSnapshots, [
+          sheetTimestamp(),
+          email,
+          parsedInput.assessment.role,
+          parsedInput.assessment.roleOther ?? '',
+          parsedInput.assessment.frequency,
+          parsedInput.assessment.confidence * 20,
+          parsedInput.assessment.efficiency * 25,
+          parsedInput.assessment.goal,
+        ]);
+        // A snapshot is a successful submission in its own right. This keeps
+        // the result truthful if the general course-signup row has a problem
+        // but the snapshot row was safely written.
+        stored = true;
+      } catch (error) {
+        Logger.error(
+          'AI snapshot sheet append failed',
+          error instanceof Error ? error.message : String(error),
+        );
+        throw new Error(
+          'We could not save your AI snapshot. Please try again in a moment.',
         );
       }
     }

@@ -1,8 +1,8 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Maximize2, Play, Volume2 } from 'lucide-react';
 import Link from 'next/link';
 
 import { SectionHeading } from '@/components/common/section-heading';
-import { CoursePlayer } from '@/components/course/course-player';
+import { CourseSignup } from '@/components/course/course-signup';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
 
@@ -10,7 +10,6 @@ import { cn } from '@/lib/utils';
 
 import { courseHref, courseIsLive } from '@/constants/course';
 import { paths } from '@/constants/paths';
-import { getCourses } from '@/data/lessons';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface SectionProps {
@@ -45,15 +44,9 @@ export function CourseLink({
   );
 }
 
-/**
- * The courses as a player: the current lesson in a 16:9 frame and a
- * searchable course / module / lesson list beside it. A lesson plays here as soon as its `video`
- * is set in `src/data/lessons.ts`; until then the frame says so. The
- * sign-up lives in the hero and the closing banner, not in the frame.
- */
+/** A considered launch preview until the first Conscious AI course opens. */
 export function CourseSection({ dict, className }: SectionProps) {
   const t = dict.programPage.course;
-  const courses = getCourses(dict.locale);
 
   return (
     <section
@@ -76,7 +69,75 @@ export function CourseSection({ dict, className }: SectionProps) {
         />
 
         <Reveal className='mt-8 sm:mt-14'>
-          <CoursePlayer courses={courses} labels={dict.program.player} />
+          <div className='grid overflow-hidden border border-line bg-line lg:grid-cols-[0.9fr_1.1fr]'>
+            <div className='relative isolate flex min-h-[22rem] flex-col overflow-hidden bg-ink p-6 text-white sm:min-h-[27rem] sm:p-8 lg:p-10'>
+              <div
+                aria-hidden='true'
+                className='absolute -right-20 top-16 -z-10 h-64 w-64 rounded-full border border-brand/40 shadow-[0_0_0_2.5rem_hsl(var(--brand)/0.06),0_0_0_5rem_hsl(var(--brand)/0.04)]'
+              />
+
+              <div className='flex items-center justify-between gap-4 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]'>
+                <span className='text-white/60'>{t.preview.videoLabel}</span>
+                <span className='border border-brand/60 bg-brand/10 px-2.5 py-1 text-brand-2'>
+                  {t.preview.status}
+                </span>
+              </div>
+
+              <div className='my-auto py-8'>
+                <div className='relative aspect-video max-w-xl overflow-hidden border border-white/20 bg-[radial-gradient(circle_at_center,hsl(var(--brand)/0.18),transparent_58%),hsl(var(--ink))] shadow-[4px_4px_0_0_hsl(var(--brand)/0.45)]'>
+                  <div className='absolute inset-0 flex items-center justify-center'>
+                    <span className='flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-white/5 text-brand-2 backdrop-blur-sm'>
+                      <Play className='ml-1 h-5 w-5' fill='currentColor' />
+                    </span>
+                  </div>
+                  <span className='absolute left-4 top-4 border border-brand/70 bg-ink/80 px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
+                    {t.preview.status}
+                  </span>
+                  <div className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-4 pb-4 pt-12'>
+                    <div className='h-1 bg-white/25'>
+                      <div className='h-full w-[18%] bg-brand' />
+                    </div>
+                    <div className='mt-3 flex items-center gap-3 text-white/70'>
+                      <Play className='ml-px h-3.5 w-3.5 fill-current' />
+                      <span className='font-mono text-[10px] tabular-nums'>
+                        00:00 / --:--
+                      </span>
+                      <span className='flex-1' />
+                      <Volume2 className='h-3.5 w-3.5' />
+                      <Maximize2 className='h-3.5 w-3.5' />
+                    </div>
+                  </div>
+                </div>
+                <p className='mt-8 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-2'>
+                  {t.preview.seriesLabel}
+                </p>
+              </div>
+
+              <div className='border-t border-white/15 pt-5'>
+                <div className='flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em] text-white/55'>
+                  <span>{t.preview.inProduction}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-col justify-center bg-surface p-6 sm:p-8 lg:p-10'>
+              <p className='bl-kicker'>{t.preview.status}</p>
+              <h3 className='bl-display mt-4 max-w-xl text-3xl leading-tight text-ink sm:text-4xl'>
+                {t.preview.videoTitle}
+              </h3>
+              <p className='mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                {t.preview.videoDescription}
+              </p>
+              <CourseSignup
+                dict={dict}
+                source='conscious-ai:course-preview'
+                variant='inline'
+                tone='light'
+                submitLabel={t.preview.waitlistCta}
+                className='mt-8 max-w-xl'
+              />
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -264,15 +325,13 @@ export function ForBusiness({ dict, className }: SectionProps) {
           kicker={t.kicker}
           title={t.title}
           accentWords={[...t.accent]}
+          description={t.paragraphs[0]}
         />
-        <Stagger
-          stagger={0.08}
-          className='mt-8 grid gap-px overflow-hidden border bg-line sm:mt-14 sm:grid-cols-2 lg:grid-cols-4'
-        >
+        <div className='mt-8 grid gap-px overflow-hidden border border-line bg-line sm:mt-14 sm:grid-cols-2 lg:grid-cols-4'>
           {t.offers.map((offer) => (
-            <StaggerItem
+            <div
               key={offer.title}
-              className='group flex flex-col bg-surface p-6 transition-colors duration-300 hover:bg-brand-soft/35 sm:p-8'
+              className='flex flex-col bg-surface p-6 sm:p-8'
             >
               <h3 className='bl-display text-xl text-foreground lg:text-2xl'>
                 {offer.title}
@@ -280,9 +339,9 @@ export function ForBusiness({ dict, className }: SectionProps) {
               <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
                 {offer.body}
               </p>
-            </StaggerItem>
+            </div>
           ))}
-        </Stagger>
+        </div>
         <Reveal className='mt-8 border-t pt-6 sm:mt-10 sm:pt-8'>
           <Link
             href={`${paths.contact}?service=team`}

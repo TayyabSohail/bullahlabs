@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
 
 import { Flag } from '@/components/brand/flags';
 import { Logo } from '@/components/brand/logo';
@@ -50,7 +51,7 @@ export function Footer({ dict }: FooterProps) {
         />
       </div>
       <div className='bl-container relative z-10'>
-        <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]'>
+        <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]'>
           <div>
             <Logo />
             <p className='mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground'>
@@ -97,6 +98,23 @@ export function Footer({ dict }: FooterProps) {
                 </p>
               </div>
             ))}
+          </FooterColumn>
+
+          <FooterColumn title={t.community}>
+            <FooterSocialLink
+              href={siteConfig.community.reddit}
+              icon={FaRedditAlien}
+              iconClassName='text-[#ff4500]'
+            >
+              Reddit
+            </FooterSocialLink>
+            <FooterSocialLink
+              href={siteConfig.community.discord}
+              icon={FaDiscord}
+              iconClassName='text-[#5865f2]'
+            >
+              Discord
+            </FooterSocialLink>
           </FooterColumn>
         </div>
 
@@ -146,6 +164,30 @@ export function Footer({ dict }: FooterProps) {
         </svg>
       </div>
     </footer>
+  );
+}
+
+function FooterSocialLink({
+  href,
+  icon: Icon,
+  iconClassName,
+  children,
+}: {
+  href: string;
+  icon: React.ComponentType<{ className?: string; 'aria-hidden'?: boolean }>;
+  iconClassName: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target='_blank'
+      rel='noreferrer'
+      className='bl-link flex w-fit items-center gap-2 text-foreground/80 transition-colors hover:text-foreground'
+    >
+      <Icon className={`h-4 w-4 ${iconClassName}`} aria-hidden />
+      {children}
+    </a>
   );
 }
 

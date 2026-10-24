@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 
 import { PageHero } from '@/components/common/page-hero';
+import { AiWorkSnapshot } from '@/components/course/ai-work-snapshot';
 import { CourseSignup } from '@/components/course/course-signup';
-import { SystemMap } from '@/components/effects/system-map';
+import { CommunitySection } from '@/components/sections/community';
 import {
   CourseSection,
   ForBusiness,
-  LearningHabits,
   ProblemApproach,
   Vision,
   WhoFor,
@@ -57,33 +57,20 @@ export default async function ConsciousAiPage() {
       />
       <PageHero
         kicker={t.kicker}
-        title={t.title}
-        accentWords={[...t.accent]}
-        description={t.description}
+        title='See how AI can work better for you.'
+        accentWords={[3, 4, 5, 6]}
+        size='lg'
+        className='max-w-6xl pt-24 sm:pt-28 lg:pt-32'
       >
-        <div className='grid items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-2'>
-          <div>
-            <CourseSignup
-              dict={dict}
-              source='conscious-ai:hero'
-              variant='inline'
-              submitLabel={t.heroCta}
-              className='max-w-xl'
-            />
-          </div>
-
-          <div className='bl-card w-full min-w-0 max-w-[44rem] justify-self-center bg-surface p-2 sm:p-3 lg:justify-self-start'>
-            <SystemMap copy={dict.hero.map} delay={0.5} />
-          </div>
-        </div>
+        <AiWorkSnapshot />
       </PageHero>
 
       <CourseSection dict={dict} />
       <ProblemApproach dict={dict} />
-      <LearningHabits dict={dict} />
       <WhoFor dict={dict} />
       <ForBusiness dict={dict} />
       <Vision dict={dict} />
+      <CommunitySection dict={dict} />
 
       <CtaBanner
         dict={dict}

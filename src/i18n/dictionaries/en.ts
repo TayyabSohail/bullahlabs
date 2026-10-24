@@ -93,6 +93,24 @@ export const en = {
       "The free modules are in the making. Leave your email and we'll tell you the day they open.",
     notify: 'Notify me',
   },
+  community: {
+    kicker: 'Join our community',
+    title: 'Better AI decisions are better together.',
+    description:
+      'Meet people who want to use AI thoughtfully, share what works and keep the human judgement in the work.',
+    links: {
+      reddit: {
+        label: 'Reddit',
+        description: 'Join the discussion, share practical questions and learn from the wider community.',
+        cta: 'Join the subreddit',
+      },
+      discord: {
+        label: 'Discord',
+        description: 'Take part in focused conversations, new resources and community updates.',
+        cta: 'Join the server',
+      },
+    },
+  },
   consciousTech: {
     kicker: 'Conscious technology',
     title: 'Technology is never just technology.',
@@ -384,6 +402,16 @@ export const en = {
       kicker: 'Coming soon',
       title: 'Better AI habits start here.',
       accent: [3, 4],
+      preview: {
+        videoLabel: 'Videos',
+        status: 'Coming soon',
+        seriesLabel: 'A practical learning series',
+        videoTitle: 'Learn to use AI with more care and less waste.',
+        videoDescription:
+          'Short, focused videos for better decisions before, during and after you use AI at work.',
+        waitlistCta: 'Join the waitlist',
+        inProduction: 'Now in production',
+      },
     },
     problem: {
       kicker: 'The problem',
@@ -759,6 +787,7 @@ export const en = {
     program: 'Conscious AI',
     company: 'Company',
     offices: 'Offices',
+    community: 'Community',
     legal: 'Legal',
     rights: 'All rights reserved.',
     backToTop: 'Back to top',

@@ -73,6 +73,24 @@ export const de: Dictionary = {
       'Die kostenlosen Module entstehen gerade. Hinterlassen Sie Ihre E-Mail, und wir sagen Ihnen am Tag der Eröffnung Bescheid.',
     notify: 'Benachrichtigen',
   },
+  community: {
+    kicker: 'Teil unserer Community werden',
+    title: 'Bessere KI-Entscheidungen entstehen gemeinsam.',
+    description:
+      'Treffen Sie Menschen, die KI bewusst einsetzen, Erfahrungen teilen und menschliches Urteilsvermögen in den Mittelpunkt stellen.',
+    links: {
+      reddit: {
+        label: 'Reddit',
+        description: 'Diskutieren Sie praktische Fragen und lernen Sie von der breiteren Community.',
+        cta: 'Zum Subreddit',
+      },
+      discord: {
+        label: 'Discord',
+        description: 'Nehmen Sie an fokussierten GesprÃ¤chen, neuen Ressourcen und Community-Updates teil.',
+        cta: 'Zum Server',
+      },
+    },
+  },
   consciousTech: {
     kicker: 'Bewusste Technologie',
     title: 'Technologie ist nie nur Technologie.',
@@ -360,6 +378,16 @@ export const de: Dictionary = {
       kicker: 'Demnächst',
       title: 'Bessere KI-Gewohnheiten beginnen hier.',
       accent: [0, 1],
+      preview: {
+        videoLabel: 'Videos',
+        status: 'Demnächst',
+        seriesLabel: 'Eine praxisnahe Lernreihe',
+        videoTitle: 'KI bewusster nutzen und weniger verschwenden.',
+        videoDescription:
+          'Kurze, fokussierte Videos für bessere Entscheidungen vor, während und nach dem Einsatz von KI bei der Arbeit.',
+        waitlistCta: 'Zur Warteliste',
+        inProduction: 'In Produktion',
+      },
     },
     problem: {
       kicker: 'Das Problem',
@@ -738,6 +766,7 @@ export const de: Dictionary = {
     program: 'Conscious AI',
     company: 'Unternehmen',
     offices: 'Standorte',
+    community: 'Community',
     legal: 'Rechtliches',
     rights: 'Alle Rechte vorbehalten.',
     backToTop: 'Nach oben',

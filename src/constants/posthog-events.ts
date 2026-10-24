@@ -9,4 +9,5 @@ export const PosthogEventKeys = {
   CALL_BOOKED: 'call_booked',
   LESSON_STARTED: 'lesson_started',
   LESSON_COMPLETED: 'lesson_completed',
+  AI_SNAPSHOT_COMPLETED: 'ai_snapshot_completed',
 } as const;

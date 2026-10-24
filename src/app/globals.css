@@ -1498,11 +1498,7 @@ body::after {
 .bl-band-mint {
   background-image:
     radial-gradient(hsl(var(--ink) / 0.16) 1px, transparent 1.2px),
-    radial-gradient(
-      60% 40% at 50% 0%,
-      hsl(var(--brand) / 0.1),
-      transparent 70%
-    );
+    radial-gradient(60% 40% at 50% 0%, hsl(var(--brand) / 0.1), transparent 70%);
   background-size:
     22px 22px,
     100% 100%;
@@ -1677,6 +1673,42 @@ textarea {
   border-radius: 9999px;
   border: 1px solid hsl(var(--brand));
   animation: bl-pulse-ring 1.8s ease-out infinite;
+}
+
+/* Snapshot assessment: a stable, touch-friendly range control. */
+.bl-snapshot-slider {
+  height: 6px;
+  cursor: pointer;
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+}
+.bl-snapshot-slider::-webkit-slider-thumb {
+  width: 22px;
+  height: 22px;
+  cursor: grab;
+  appearance: none;
+  border: 2px solid hsl(var(--ink));
+  border-radius: 9999px;
+  background: hsl(var(--background));
+  box-shadow: 2px 2px 0 hsl(var(--ink));
+}
+.bl-snapshot-slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+.bl-snapshot-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  cursor: grab;
+  border: 2px solid hsl(var(--ink));
+  border-radius: 9999px;
+  background: hsl(var(--background));
+  box-shadow: 2px 2px 0 hsl(var(--ink));
+}
+.bl-snapshot-slider:focus-visible {
+  outline: 2px solid hsl(var(--brand));
+  outline-offset: 5px;
 }
 
 @media (prefers-reduced-motion: reduce) {

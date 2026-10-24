@@ -77,6 +77,11 @@ export const siteConfig = {
    * Null until it is set; the site then sends people to the contact form.
    */
   courseUrl: env.NEXT_PUBLIC_COURSE_URL ?? null,
+  /** Public community spaces, used by the community sections and footer. */
+  community: {
+    reddit: 'https://www.reddit.com/r/bullahlabs/',
+    discord: 'https://discord.gg/bullahlabs',
+  },
   footerNav: {
     legal: [
       { label: 'Privacy Policy', href: paths.legal.privacy },

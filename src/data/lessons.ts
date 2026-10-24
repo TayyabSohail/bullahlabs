@@ -131,7 +131,7 @@ export const modules: CourseModule[] = [
 export const courses: Course[] = [
   {
     id: 'conscious-ai',
-    title: 'Conscious AI',
+    title: 'Coming Soon',
     tagline: 'Less AI, better AI: the free course.',
     modules,
   },
