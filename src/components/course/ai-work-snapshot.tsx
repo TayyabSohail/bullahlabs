@@ -7,7 +7,6 @@ import {
   BarChart3,
   Check,
   CheckCircle2,
-  ChevronsUpDown,
   RotateCcw,
 } from 'lucide-react';
 import { useAction } from 'next-safe-action/hooks';
@@ -22,41 +21,22 @@ import * as z from 'zod';
 import { cn } from '@/lib/utils';
 
 import { joinCourseList } from '@/actions/course-signup';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { siteConfig } from '@/config/site';
 import { PosthogEventKeys } from '@/constants/posthog-events';
-import { Button } from '@/components/ui/button';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@/components/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
 
-const snapshotSchema = z
-  .object({
-    role: z.string().min(1, 'Choose the field closest to your work.'),
-    roleOther: z.string().trim().max(120),
-    frequency: z.string().min(1, 'Choose the answer that feels closest.'),
-    confidence: z.coerce.number().min(1).max(5),
-    efficiency: z.coerce.number().min(1).max(4),
-    goal: z.string().min(1, 'Choose the answer that feels closest.'),
-  })
-  .superRefine((data, context) => {
-    if (data.role === 'other' && data.roleOther.length < 2) {
-      context.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['roleOther'],
-        message: 'Tell us a little about your field.',
-      });
-    }
-  });
+const snapshotSchema = z.object({
+  role: z.string().min(1, 'Choose the field closest to your work.'),
+  frequency: z.string().min(1, 'Choose the answer that feels closest.'),
+  confidence: z.coerce.number().min(1).max(5),
+  efficiency: z.coerce.number().min(1).max(4),
+  goal: z.string().min(1, 'Choose the answer that feels closest.'),
+});
 
 const emailSchema = z.object({
   email: z.string().trim().email('Please enter a valid email address').max(200),
@@ -125,16 +105,16 @@ const questions: Array<{
     field: 'role',
     rail: 'Your work',
     note: '01',
-    title: 'What corner of the work world are you in?',
+    title: 'Which role is closest to yours?',
     options: [
       { value: 'operations', label: 'Operations & Admin' },
       { value: 'sales', label: 'Sales & Support' },
       { value: 'marketing', label: 'Marketing & Content' },
       { value: 'hr', label: 'HR & Recruiting' },
-      { value: 'research', label: 'Research & Analysis' },
       { value: 'education', label: 'Student or Teacher' },
-      { value: 'freelance', label: 'Freelancer or Small Business' },
       { value: 'technical', label: 'Developer or Technical' },
+      { value: 'research', label: 'Research & Analysis' },
+      { value: 'freelance', label: 'Freelancer or Small Business' },
       { value: 'product', label: 'Product & Design' },
       { value: 'finance', label: 'Finance & Accounting' },
       { value: 'legal', label: 'Legal & Compliance' },
@@ -146,7 +126,7 @@ const questions: Array<{
       { value: 'government', label: 'Public Service' },
       { value: 'founder', label: 'Founder & Leadership' },
       { value: 'creator', label: 'Creative & Media' },
-      { value: 'other', label: 'Other' },
+      { value: 'other', label: 'Something else' },
     ],
   },
   {
@@ -651,7 +631,8 @@ export function AiWorkSnapshot() {
   const [started, setStarted] = useState(false);
   const [emailGate, setEmailGate] = useState(false);
   const [complete, setComplete] = useState(false);
-  const [rolePickerOpen, setRolePickerOpen] = useState(false);
+  const [roleCatalogOpen, setRoleCatalogOpen] = useState(false);
+  const [roleSearch, setRoleSearch] = useState('');
   const posthog = usePostHog();
   const searchParams = useSearchParams();
   const form = useForm<SnapshotValues>({
@@ -659,7 +640,6 @@ export function AiWorkSnapshot() {
     mode: 'onChange',
     defaultValues: {
       role: '',
-      roleOther: '',
       frequency: '',
       confidence: 3,
       efficiency: 3,
@@ -678,9 +658,7 @@ export function AiWorkSnapshot() {
   }, [form, question.field]);
 
   const next = async () => {
-    const valid = await form.trigger(
-      question.field === 'role' ? ['role', 'roleOther'] : question.field,
-    );
+    const valid = await form.trigger(question.field);
     if (!valid) return;
     if (step < questions.length - 1) {
       setStep((current) => current + 1);
@@ -716,6 +694,8 @@ export function AiWorkSnapshot() {
     setStarted(false);
     setEmailGate(false);
     setComplete(false);
+    setRoleCatalogOpen(false);
+    setRoleSearch('');
   };
 
   if (complete) return <Result values={form.getValues()} restart={restart} />;
@@ -777,7 +757,7 @@ export function AiWorkSnapshot() {
             onClick={() => setStarted(true)}
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.98 }}
-            className='bl-btn bl-btn-primary mt-8 inline-flex h-14 w-fit items-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.15em] shadow-[5px_5px_0_hsl(var(--ink)_/_0.75)]'
+            className='bl-btn bl-btn-primary mx-auto mt-8 inline-flex h-14 w-fit items-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.15em] shadow-[5px_5px_0_hsl(var(--ink)_/_0.75)] sm:mx-0'
           >
             Hit me with the truth <ArrowRight className='h-4 w-4' />
           </motion.button>
@@ -944,125 +924,18 @@ export function AiWorkSnapshot() {
                 </div>
               );
             }
-            if (question.field === 'role') {
-              const selectedRole = question.options.find(
-                (option) => option.value === field.value,
+            const visibleOptions =
+              question.field === 'role'
+                ? question.options.slice(0, 6)
+                : question.options;
+            const selectedRole = question.options.find(
+              (option) => option.value === field.value,
+            );
+            const extraRoles = question.options
+              .slice(6)
+              .filter((option) =>
+                option.label.toLowerCase().includes(roleSearch.toLowerCase()),
               );
-
-              return (
-                <div className='mt-6 max-w-2xl duration-500 animate-in fade-in slide-in-from-bottom-3'>
-                  <Popover
-                    open={rolePickerOpen}
-                    onOpenChange={setRolePickerOpen}
-                  >
-                    <PopoverTrigger asChild>
-                      <Button
-                        type='button'
-                        variant='ghost'
-                        size='xl'
-                        role='combobox'
-                        aria-expanded={rolePickerOpen}
-                        aria-invalid={fieldState.invalid}
-                        className='group h-16 w-full justify-between border-2 border-ink bg-[hsl(var(--band-peach))] px-5 text-left normal-case tracking-normal shadow-[4px_4px_0_hsl(var(--brand))] hover:bg-brand-soft'
-                      >
-                        <span className='flex min-w-0 flex-col items-start gap-1'>
-                          <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-brand-text'>
-                            Role rolodex
-                          </span>
-                          <span className='truncate text-sm font-semibold normal-case tracking-normal text-foreground'>
-                            {selectedRole?.label ?? 'Find your role'}
-                          </span>
-                        </span>
-                        <ChevronsUpDown className='ml-3 h-4 w-4 shrink-0 text-brand-text transition-transform group-data-[state=open]:rotate-180' />
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent
-                      disablePortal
-                      align='start'
-                      className='w-[--radix-popover-trigger-width] border-2 border-ink bg-[hsl(var(--band-peach))] p-0 shadow-[6px_6px_0_hsl(var(--brand))]'
-                    >
-                      <Command className='bg-transparent'>
-                        <CommandInput
-                          placeholder='Search the rolodex...'
-                          className='h-14 font-mono text-sm'
-                        />
-                        <CommandList>
-                          <CommandEmpty>
-                            Not in the rolodex? Pick Other and name your lane.
-                          </CommandEmpty>
-                          <CommandGroup className='max-h-72 overflow-y-auto p-2'>
-                            {question.options.map((option, index) => (
-                              <CommandItem
-                                key={option.value}
-                                value={option.label}
-                                className='cursor-pointer border-b border-ink/10 py-3 font-medium data-[selected=true]:bg-brand-soft data-[selected=true]:text-foreground'
-                                onSelect={() => {
-                                  field.onChange(option.value);
-                                  setRolePickerOpen(false);
-                                }}
-                              >
-                                <Check
-                                  className={cn(
-                                    'mr-2 h-4 w-4 text-brand-text',
-                                    selectedRole?.value === option.value
-                                      ? 'opacity-100'
-                                      : 'opacity-0',
-                                  )}
-                                />
-                                {option.label}
-                                <span className='ml-auto font-mono text-[9px] font-semibold tracking-[0.12em] text-muted-foreground'>
-                                  {String(index + 1).padStart(2, '0')}
-                                </span>
-                              </CommandItem>
-                            ))}
-                          </CommandGroup>
-                        </CommandList>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
-                  <p className='mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground'>
-                    Type a job title, a department, or just the vibe.
-                  </p>
-                  {fieldState.error && (
-                    <p className='mt-3 text-sm font-medium text-red-600'>
-                      {fieldState.error.message}
-                    </p>
-                  )}
-                  {String(field.value) === 'other' && (
-                    <div className='mt-4 border border-brand/30 bg-brand-soft/25 p-4'>
-                      <label
-                        htmlFor={`${formId}-role-other`}
-                        className='text-sm font-semibold text-foreground'
-                      >
-                        What field are you in?
-                      </label>
-                      <Controller
-                        name='roleOther'
-                        control={form.control}
-                        render={({
-                          field: otherField,
-                          fieldState: otherState,
-                        }) => (
-                          <>
-                            <input
-                              id={`${formId}-role-other`}
-                              {...otherField}
-                              placeholder='e.g. Legal, healthcare, design...'
-                              className='mt-3 h-11 w-full border border-line bg-surface px-4 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20'
-                            />
-                            {otherState.error && (
-                              <p className='mt-2 text-sm font-medium text-red-600'>
-                                {otherState.error.message}
-                              </p>
-                            )}
-                          </>
-                        )}
-                      />
-                    </div>
-                  )}
-                </div>
-              );
-            }
             return (
               <div
                 key={question.field}
@@ -1070,11 +943,11 @@ export function AiWorkSnapshot() {
                   'mt-4 grid grid-cols-2 gap-2 duration-500 animate-in fade-in slide-in-from-bottom-3 sm:mt-6 sm:gap-3',
                   isWorkflowCards ? 'sm:grid-cols-2' : 'sm:grid-cols-2',
                   !isWorkflowCards &&
-                    question.options.length > 4 &&
+                    visibleOptions.length > 4 &&
                     'grid-cols-3 lg:grid-cols-3',
                 )}
               >
-                {question.options.map((option) => {
+                {visibleOptions.map((option) => {
                   const active = String(field.value) === option.value;
                   return (
                     <motion.button
@@ -1084,7 +957,7 @@ export function AiWorkSnapshot() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{
                         duration: 0.32,
-                        delay: question.options.indexOf(option) * 0.055,
+                        delay: visibleOptions.indexOf(option) * 0.055,
                       }}
                       whileHover={{ y: -6, rotate: active ? 0 : -0.4 }}
                       whileTap={{ scale: 0.97 }}
@@ -1168,6 +1041,98 @@ export function AiWorkSnapshot() {
                     </motion.button>
                   );
                 })}
+                {question.field === 'role' && (
+                  <>
+                    {selectedRole &&
+                      !visibleOptions.some(
+                        (option) => option.value === selectedRole.value,
+                      ) && (
+                        <div className='col-span-full flex items-center justify-between gap-4 border-2 border-brand bg-brand-soft/30 px-4 py-3 shadow-[3px_3px_0_hsl(var(--brand))]'>
+                          <span>
+                            <span className='block font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+                              Your role
+                            </span>
+                            <span className='mt-1 block text-sm font-semibold text-foreground'>
+                              {selectedRole.label}
+                            </span>
+                          </span>
+                          <button
+                            type='button'
+                            onClick={() => setRoleCatalogOpen(true)}
+                            className='font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-text hover:text-foreground'
+                          >
+                            Change
+                          </button>
+                        </div>
+                      )}
+                    <button
+                      type='button'
+                      onClick={() => {
+                        setRoleSearch('');
+                        setRoleCatalogOpen(true);
+                      }}
+                      className='col-span-full mt-2 border border-dashed border-ink/45 bg-surface px-4 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-text transition-colors hover:border-brand hover:bg-brand-soft/35'
+                    >
+                      More roles, please (
+                      {question.options.length - visibleOptions.length} more)
+                    </button>
+                    <Dialog
+                      open={roleCatalogOpen}
+                      onOpenChange={setRoleCatalogOpen}
+                    >
+                      <DialogContent className='inset-x-0 bottom-0 top-auto max-h-[82svh] max-w-none translate-x-0 translate-y-0 overflow-y-auto border-2 border-ink bg-ink p-5 text-white shadow-[0_-6px_0_hsl(var(--brand))] sm:bottom-auto sm:left-[50%] sm:top-[50%] sm:max-h-[85vh] sm:max-w-3xl sm:translate-x-[-50%] sm:translate-y-[-50%] sm:p-8 sm:shadow-[8px_8px_0_hsl(var(--brand))]'>
+                        <span className='mx-auto mb-5 block h-1 w-12 bg-white/30 sm:hidden' />
+                        <DialogTitle className='bl-display pr-10 text-3xl text-white sm:text-4xl'>
+                          Find your role.
+                        </DialogTitle>
+                        <DialogDescription className='max-w-xl text-sm leading-relaxed text-white/65'>
+                          Pick the closest match. This is only to make the next
+                          questions more useful.
+                        </DialogDescription>
+                        <input
+                          value={roleSearch}
+                          onChange={(event) =>
+                            setRoleSearch(event.target.value)
+                          }
+                          placeholder='Search roles...'
+                          autoFocus
+                          className='h-12 w-full border border-white/30 bg-white/10 px-4 text-sm text-white outline-none placeholder:text-white/45 focus:border-brand focus:ring-2 focus:ring-brand/30'
+                        />
+                        <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'>
+                          {extraRoles.map((option) => {
+                            const active = String(field.value) === option.value;
+                            return (
+                              <button
+                                key={option.value}
+                                type='button'
+                                onClick={() => {
+                                  field.onChange(option.value);
+                                  setRoleCatalogOpen(false);
+                                }}
+                                className={cn(
+                                  'flex min-h-14 items-center justify-between border p-4 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60',
+                                  active
+                                    ? 'border-brand bg-brand-soft text-foreground'
+                                    : 'border-white/25 bg-white/5 text-white hover:border-brand hover:bg-brand/15',
+                                )}
+                              >
+                                {option.label}
+                                {active && (
+                                  <Check className='h-4 w-4 text-brand-2' />
+                                )}
+                              </button>
+                            );
+                          })}
+                          {extraRoles.length === 0 && (
+                            <p className='col-span-full py-6 text-center text-sm text-white/60'>
+                              Nothing there yet. Try a broader word.
+                            </p>
+                          )}
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </>
+                )}
                 {fieldState.error && (
                   <p className='col-span-full text-sm font-medium text-red-600'>
                     {fieldState.error.message}
