@@ -7,6 +7,7 @@ import {
   BarChart3,
   Check,
   CheckCircle2,
+  ChevronsUpDown,
   RotateCcw,
 } from 'lucide-react';
 import { useAction } from 'next-safe-action/hooks';
@@ -23,6 +24,20 @@ import { cn } from '@/lib/utils';
 import { joinCourseList } from '@/actions/course-signup';
 import { siteConfig } from '@/config/site';
 import { PosthogEventKeys } from '@/constants/posthog-events';
+import { Button } from '@/components/ui/button';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 const snapshotSchema = z
   .object({
@@ -59,6 +74,17 @@ const roleTracks: Record<string, string> = {
   education: 'Students & Educators',
   freelance: 'Freelancers & Small Business',
   technical: 'AI Builder',
+  product: 'Product & Design',
+  finance: 'Finance & Accounting',
+  legal: 'Legal & Compliance',
+  healthcare: 'Healthcare & Care',
+  consulting: 'Consulting & Client Services',
+  logistics: 'Logistics & Supply Chain',
+  hospitality: 'Hospitality & Events',
+  nonprofit: 'Nonprofit & Community',
+  government: 'Public Service',
+  founder: 'Founder & Leadership',
+  creator: 'Creative & Media',
   other: 'AI Practitioner',
 };
 
@@ -99,7 +125,7 @@ const questions: Array<{
     field: 'role',
     rail: 'Your work',
     note: '01',
-    title: 'Which field is closest to your work?',
+    title: 'What corner of the work world are you in?',
     options: [
       { value: 'operations', label: 'Operations & Admin' },
       { value: 'sales', label: 'Sales & Support' },
@@ -109,6 +135,17 @@ const questions: Array<{
       { value: 'education', label: 'Student or Teacher' },
       { value: 'freelance', label: 'Freelancer or Small Business' },
       { value: 'technical', label: 'Developer or Technical' },
+      { value: 'product', label: 'Product & Design' },
+      { value: 'finance', label: 'Finance & Accounting' },
+      { value: 'legal', label: 'Legal & Compliance' },
+      { value: 'healthcare', label: 'Healthcare & Care' },
+      { value: 'consulting', label: 'Consulting & Client Services' },
+      { value: 'logistics', label: 'Logistics & Supply Chain' },
+      { value: 'hospitality', label: 'Hospitality & Events' },
+      { value: 'nonprofit', label: 'Nonprofit & Community' },
+      { value: 'government', label: 'Public Service' },
+      { value: 'founder', label: 'Founder & Leadership' },
+      { value: 'creator', label: 'Creative & Media' },
       { value: 'other', label: 'Other' },
     ],
   },
@@ -614,6 +651,7 @@ export function AiWorkSnapshot() {
   const [started, setStarted] = useState(false);
   const [emailGate, setEmailGate] = useState(false);
   const [complete, setComplete] = useState(false);
+  const [rolePickerOpen, setRolePickerOpen] = useState(false);
   const posthog = usePostHog();
   const searchParams = useSearchParams();
   const form = useForm<SnapshotValues>({
@@ -906,6 +944,125 @@ export function AiWorkSnapshot() {
                 </div>
               );
             }
+            if (question.field === 'role') {
+              const selectedRole = question.options.find(
+                (option) => option.value === field.value,
+              );
+
+              return (
+                <div className='mt-6 max-w-2xl duration-500 animate-in fade-in slide-in-from-bottom-3'>
+                  <Popover
+                    open={rolePickerOpen}
+                    onOpenChange={setRolePickerOpen}
+                  >
+                    <PopoverTrigger asChild>
+                      <Button
+                        type='button'
+                        variant='ghost'
+                        size='xl'
+                        role='combobox'
+                        aria-expanded={rolePickerOpen}
+                        aria-invalid={fieldState.invalid}
+                        className='group h-16 w-full justify-between border-2 border-ink bg-[hsl(var(--band-peach))] px-5 text-left normal-case tracking-normal shadow-[4px_4px_0_hsl(var(--brand))] hover:bg-brand-soft'
+                      >
+                        <span className='flex min-w-0 flex-col items-start gap-1'>
+                          <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-brand-text'>
+                            Role rolodex
+                          </span>
+                          <span className='truncate text-sm font-semibold normal-case tracking-normal text-foreground'>
+                            {selectedRole?.label ?? 'Find your role'}
+                          </span>
+                        </span>
+                        <ChevronsUpDown className='ml-3 h-4 w-4 shrink-0 text-brand-text transition-transform group-data-[state=open]:rotate-180' />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      disablePortal
+                      align='start'
+                      className='w-[--radix-popover-trigger-width] border-2 border-ink bg-[hsl(var(--band-peach))] p-0 shadow-[6px_6px_0_hsl(var(--brand))]'
+                    >
+                      <Command className='bg-transparent'>
+                        <CommandInput
+                          placeholder='Search the rolodex...'
+                          className='h-14 font-mono text-sm'
+                        />
+                        <CommandList>
+                          <CommandEmpty>
+                            Not in the rolodex? Pick Other and name your lane.
+                          </CommandEmpty>
+                          <CommandGroup className='max-h-72 overflow-y-auto p-2'>
+                            {question.options.map((option, index) => (
+                              <CommandItem
+                                key={option.value}
+                                value={option.label}
+                                className='cursor-pointer border-b border-ink/10 py-3 font-medium data-[selected=true]:bg-brand-soft data-[selected=true]:text-foreground'
+                                onSelect={() => {
+                                  field.onChange(option.value);
+                                  setRolePickerOpen(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    'mr-2 h-4 w-4 text-brand-text',
+                                    selectedRole?.value === option.value
+                                      ? 'opacity-100'
+                                      : 'opacity-0',
+                                  )}
+                                />
+                                {option.label}
+                                <span className='ml-auto font-mono text-[9px] font-semibold tracking-[0.12em] text-muted-foreground'>
+                                  {String(index + 1).padStart(2, '0')}
+                                </span>
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </CommandList>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                  <p className='mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground'>
+                    Type a job title, a department, or just the vibe.
+                  </p>
+                  {fieldState.error && (
+                    <p className='mt-3 text-sm font-medium text-red-600'>
+                      {fieldState.error.message}
+                    </p>
+                  )}
+                  {String(field.value) === 'other' && (
+                    <div className='mt-4 border border-brand/30 bg-brand-soft/25 p-4'>
+                      <label
+                        htmlFor={`${formId}-role-other`}
+                        className='text-sm font-semibold text-foreground'
+                      >
+                        What field are you in?
+                      </label>
+                      <Controller
+                        name='roleOther'
+                        control={form.control}
+                        render={({
+                          field: otherField,
+                          fieldState: otherState,
+                        }) => (
+                          <>
+                            <input
+                              id={`${formId}-role-other`}
+                              {...otherField}
+                              placeholder='e.g. Legal, healthcare, design...'
+                              className='mt-3 h-11 w-full border border-line bg-surface px-4 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20'
+                            />
+                            {otherState.error && (
+                              <p className='mt-2 text-sm font-medium text-red-600'>
+                                {otherState.error.message}
+                              </p>
+                            )}
+                          </>
+                        )}
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            }
             return (
               <div
                 key={question.field}
@@ -1011,39 +1168,6 @@ export function AiWorkSnapshot() {
                     </motion.button>
                   );
                 })}
-                {question.field === 'role' &&
-                  String(field.value) === 'other' && (
-                    <div className='col-span-full border border-brand/30 bg-brand-soft/25 p-4'>
-                      <label
-                        htmlFor={`${formId}-role-other`}
-                        className='text-sm font-semibold text-foreground'
-                      >
-                        What field are you in?
-                      </label>
-                      <Controller
-                        name='roleOther'
-                        control={form.control}
-                        render={({
-                          field: otherField,
-                          fieldState: otherState,
-                        }) => (
-                          <>
-                            <input
-                              id={`${formId}-role-other`}
-                              {...otherField}
-                              placeholder='e.g. Legal, healthcare, design...'
-                              className='mt-3 h-11 w-full border border-line bg-surface px-4 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20'
-                            />
-                            {otherState.error && (
-                              <p className='mt-2 text-sm font-medium text-red-600'>
-                                {otherState.error.message}
-                              </p>
-                            )}
-                          </>
-                        )}
-                      />
-                    </div>
-                  )}
                 {fieldState.error && (
                   <p className='col-span-full text-sm font-medium text-red-600'>
                     {fieldState.error.message}

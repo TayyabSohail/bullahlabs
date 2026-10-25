@@ -48,6 +48,12 @@ const sectionsEn: LegalSection[] = [
             <strong>theme</strong> (local storage): remembers your light or dark
             mode choice. Kept until you clear site data.
           </li>
+          <li>
+            <strong>bl-course-waitlist</strong> (cookie): remembers that this
+            browser has joined the course waitlist, so we do not ask for the
+            same email again. It contains no email address and expires after 12
+            months.
+          </li>
         </ul>
       </>
     ),
@@ -144,6 +150,12 @@ const sectionsDe: LegalSection[] = [
           <li>
             <strong>theme</strong> (Local Storage): merkt sich Ihre Wahl von
             hellem oder dunklem Modus. Bleibt, bis Sie die Websitedaten löschen.
+          </li>
+          <li>
+            <strong>bl-course-waitlist</strong> (Cookie): merkt sich, dass
+            dieser Browser der Kurs-Warteliste beigetreten ist, damit wir nicht
+            noch einmal nach derselben E-Mail-Adresse fragen. Er enthält keine
+            E-Mail-Adresse und läuft nach 12 Monaten ab.
           </li>
         </ul>
       </>

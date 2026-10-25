@@ -4,7 +4,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { ArrowRight, BellRing, Check, Loader2, X } from 'lucide-react';
 import Link from 'next/link';
 import { useAction } from 'next-safe-action/hooks';
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { toast } from 'sonner';
 
 import { joinCourseList } from '@/actions/course-signup';
@@ -20,6 +20,10 @@ import {
 
 import { track } from '@/lib/analytics';
 import { getCampaign } from '@/lib/campaign';
+import {
+  hasJoinedCourseWaitlist,
+  markCourseWaitlistJoined,
+} from '@/lib/course-waitlist-cookie';
 import { cn } from '@/lib/utils';
 
 import { paths } from '@/constants/paths';
@@ -67,6 +71,11 @@ export function CourseSignup({
   const [email, setEmail] = useState('');
   const [done, setDone] = useState<null | { alreadyOnList: boolean }>(null);
   const [error, setError] = useState<string | null>(null);
+  const [alreadyJoined, setAlreadyJoined] = useState(false);
+
+  useEffect(() => {
+    setAlreadyJoined(hasJoinedCourseWaitlist());
+  }, []);
 
   const { execute, isExecuting } = useAction(joinCourseList, {
     onSuccess: ({ data, input }) => {
@@ -75,6 +84,8 @@ export function CourseSignup({
         campaign: input.utmCampaign,
         already_on_list: Boolean(data?.alreadyOnList),
       });
+      markCourseWaitlistJoined();
+      setAlreadyJoined(true);
       setDone({ alreadyOnList: Boolean(data?.alreadyOnList) });
       setEmail('');
     },
@@ -134,7 +145,19 @@ export function CourseSignup({
     </Dialog>
   );
 
-  const field = (
+  const field = alreadyJoined ? (
+    <p
+      role='status'
+      className={cn(
+        'flex min-h-14 items-center justify-center border px-4 text-center font-mono text-[10px] font-semibold uppercase tracking-[0.14em]',
+        dark
+          ? 'border-brand/60 bg-brand/10 text-brand-2'
+          : 'border-brand/60 bg-brand-soft/40 text-brand-text',
+      )}
+    >
+      U R ALREADY ON WAITLIST
+    </p>
+  ) : (
     <form onSubmit={onSubmit} noValidate className='w-full'>
       <label htmlFor={`${id}-email`} className='sr-only'>
         {t.email}
