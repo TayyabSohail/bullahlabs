@@ -787,7 +787,7 @@ export function AiWorkSnapshot() {
           <p className='relative mt-5 max-w-md text-sm leading-relaxed text-white/70 sm:text-base'>
             Five quick choices. One score worth knowing.
           </p>
-          <div className='relative mt-6 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55'>
+          <div className='relative mt-6 hidden flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55'>
             <span>01 · five taps</span>
             <span>02 · two minutes</span>
             <span>03 · made for you</span>
@@ -805,15 +805,15 @@ export function AiWorkSnapshot() {
         <div className='relative flex min-h-[300px] items-center bg-surface p-5 sm:p-8'>
           <div className='w-full border border-ink bg-background p-5 shadow-[4px_4px_0_0_hsl(var(--ink)/0.85)]'>
             <div className='flex items-center justify-between border-b border-ink/15 pb-4 font-mono text-[10px] uppercase tracking-[0.16em]'>
-              <span className='text-muted-foreground'>Preview</span>
-              <span className='text-brand-text'>Your signals</span>
+              <span className='text-muted-foreground'>Your score</span>
+              <span className='text-brand-text'>Preview</span>
             </div>
             <div className='mt-5 space-y-5'>
               {[
-                ['AI confidence', '72%'],
-                ['Workflow clarity', '58%'],
-                ['Human in charge', '84%'],
-              ].map(([label, value], index) => (
+                ['Confidence', '?'],
+                ['Workflow', '?'],
+                ['Judgement', '?'],
+              ].map(([label, value]) => (
                 <div key={label}>
                   <div className='flex items-center justify-between text-sm font-medium text-foreground'>
                     <span>{label}</span>
@@ -822,16 +822,13 @@ export function AiWorkSnapshot() {
                     </span>
                   </div>
                   <div className='mt-2 h-2 overflow-hidden bg-ink/10'>
-                    <span
-                      className='block h-full bg-brand'
-                      style={{ width: `${[72, 58, 84][index]}%` }}
-                    />
+                    <span className='block h-full w-2/3 bg-brand/70' />
                   </div>
                 </div>
               ))}
             </div>
             <p className='mt-6 border-t border-ink/15 pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground'>
-              Your result starts with one honest answer.
+              Your answers reveal the rest.
             </p>
           </div>
         </div>
