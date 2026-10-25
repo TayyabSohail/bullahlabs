@@ -87,6 +87,12 @@
   .lenis.lenis-stopped {
     overflow: hidden;
   }
+
+  /* This is set by a before-paint session check for returning visitors. It
+     prevents the server-rendered curtain from flashing while React unmounts it. */
+  html[data-preloader-complete='true'] [data-preloader] {
+    display: none;
+  }
 }
 
 /* ------------------------------------------------------------------------- */

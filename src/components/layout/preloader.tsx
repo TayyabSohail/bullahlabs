@@ -27,7 +27,10 @@ const ease = [0.16, 1, 0.3, 1] as const;
  * does not make visitors wait through the animation again.
  */
 export function Preloader() {
-  const [visible, setVisible] = useState(false);
+  // Render the curtain on the server and during the first client paint. Starting
+  // from `false` here made the homepage briefly visible before this effect could
+  // turn the preloader on.
+  const [visible, setVisible] = useState(true);
   const [started, setStarted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import { Toaster } from 'sonner';
 
 import './globals.css';
@@ -100,6 +101,13 @@ export default async function RootLayout({
       <body
         className={`${plexSans.variable} ${fraunces.variable} ${plexMono.variable} font-sans`}
       >
+        <Script id='preloader-session-check' strategy='beforeInteractive'>
+          {`try {
+            if (sessionStorage.getItem('bullahlabs:home-preloader-seen') === 'true') {
+              document.documentElement.dataset.preloaderComplete = 'true';
+            }
+          } catch {}`}
+        </Script>
         <AppProviders>
           <SmoothScroll>
             <PosthogAnalytics />

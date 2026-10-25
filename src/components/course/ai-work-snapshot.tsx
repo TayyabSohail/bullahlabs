@@ -59,6 +59,16 @@ const roleTracks: Record<string, string> = {
   government: 'Public Service',
   founder: 'Founder & Leadership',
   creator: 'Creative & Media',
+  developer: 'AI Builder',
+  data: 'Research & Analysis',
+  designer: 'Product & Design',
+  project_manager: 'Operations & Admin',
+  customer_success: 'Sales & Customer Support',
+  recruiter: 'HR & Recruiting',
+  accountant: 'Finance & Accounting',
+  writer: 'Creative & Media',
+  manager: 'Founder & Leadership',
+  analyst: 'Research & Analysis',
   other: 'AI Practitioner',
 };
 
@@ -109,6 +119,16 @@ const questions: Array<{
       { value: 'technical', label: 'Developer or Technical' },
       { value: 'research', label: 'Research & Analysis' },
       { value: 'freelance', label: 'Freelancer or Small Business' },
+      { value: 'developer', label: 'Software Developer or Engineer' },
+      { value: 'data', label: 'Data or AI Specialist' },
+      { value: 'designer', label: 'Designer or UX Researcher' },
+      { value: 'project_manager', label: 'Project or Program Manager' },
+      { value: 'customer_success', label: 'Customer Success or Account Manager' },
+      { value: 'recruiter', label: 'Recruiter or Talent Specialist' },
+      { value: 'accountant', label: 'Accountant or Bookkeeper' },
+      { value: 'writer', label: 'Writer, Editor, or Copywriter' },
+      { value: 'manager', label: 'Manager, Director, or Executive' },
+      { value: 'analyst', label: 'Business or Data Analyst' },
       { value: 'product', label: 'Product & Design' },
       { value: 'finance', label: 'Finance & Accounting' },
       { value: 'legal', label: 'Legal & Compliance' },
@@ -183,7 +203,7 @@ const questions: Array<{
         value: '3',
         label: 'Mostly one clear pass',
         detail: 'I usually get to a useful result without much repetition.',
-        emoji: '✅',
+        emoji: '→',
       },
       {
         value: '4',
@@ -430,12 +450,12 @@ function EmailGate({
               disabled={isExecuting}
               aria-invalid={Boolean(emailForm.formState.errors.email)}
               {...emailForm.register('email')}
-              className='h-14 min-w-0 flex-1 border-2 border-ink bg-background px-4 text-base outline-none placeholder:text-muted-foreground focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:opacity-60'
+              className='!h-[72px] min-w-0 flex-1 border-2 border-ink bg-background px-4 text-base outline-none placeholder:text-muted-foreground focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:opacity-60 sm:!h-14'
             />
             <button
               type='submit'
               disabled={!emailForm.formState.isValid || isExecuting}
-              className='h-14 border-2 border-ink bg-brand px-6 font-mono text-xs font-black uppercase tracking-[0.12em] text-brand-foreground shadow-[3px_3px_0_0_hsl(var(--ink))] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50'
+              className='!h-[72px] border-2 border-ink bg-brand px-6 font-mono text-xs font-black uppercase tracking-[0.12em] text-brand-foreground shadow-[3px_3px_0_0_hsl(var(--ink))] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50 sm:!h-14'
             >
               {isExecuting ? 'Preparing...' : 'Show results'}
             </button>
@@ -692,6 +712,7 @@ export function AiWorkSnapshot() {
   const [complete, setComplete] = useState(false);
   const [roleCatalogOpen, setRoleCatalogOpen] = useState(false);
   const [roleSearch, setRoleSearch] = useState('');
+  const [efficiencyChosen, setEfficiencyChosen] = useState(false);
   const posthog = usePostHog();
   const searchParams = useSearchParams();
   const form = useForm<SnapshotValues>({
@@ -701,17 +722,13 @@ export function AiWorkSnapshot() {
       role: '',
       frequency: '',
       confidence: 3,
-      efficiency: 3,
       goal: '',
     },
   });
   const question = questions[step];
 
   useEffect(() => {
-    if (
-      (question.field === 'confidence' || question.field === 'efficiency') &&
-      !form.getValues(question.field)
-    ) {
+    if (question.field === 'confidence' && !form.getValues(question.field)) {
       form.setValue(question.field, 3, { shouldValidate: true });
     }
   }, [form, question.field]);
@@ -755,6 +772,7 @@ export function AiWorkSnapshot() {
     setComplete(false);
     setRoleCatalogOpen(false);
     setRoleSearch('');
+    setEfficiencyChosen(false);
   };
 
   if (complete) return <Result values={form.getValues()} restart={restart} />;
@@ -978,11 +996,36 @@ export function AiWorkSnapshot() {
             const selectedRole = question.options.find(
               (option) => option.value === field.value,
             );
-            const extraRoles = question.options
-              .slice(6)
-              .filter((option) =>
-                option.label.toLowerCase().includes(roleSearch.toLowerCase()),
-              );
+            const normalizedRoleSearch = roleSearch.trim().toLowerCase();
+            const extraRoles = (normalizedRoleSearch
+              ? question.options
+              : question.options.slice(6)
+            )
+              .filter(
+                (option) =>
+                  !normalizedRoleSearch ||
+                  option.label.toLowerCase().includes(normalizedRoleSearch),
+              )
+              .sort((first, second) => {
+                if (!normalizedRoleSearch) return 0;
+
+                const matchRank = (label: string) => {
+                  const normalizedLabel = label.toLowerCase();
+
+                  if (normalizedLabel === normalizedRoleSearch) return 0;
+                  if (normalizedLabel.startsWith(normalizedRoleSearch)) return 1;
+                  if (
+                    normalizedLabel
+                      .split(/[^a-z0-9]+/)
+                      .some((word) => word.startsWith(normalizedRoleSearch))
+                  ) {
+                    return 2;
+                  }
+                  return 3;
+                };
+
+                return matchRank(first.label) - matchRank(second.label);
+              });
             return (
               <div
                 key={question.field}
@@ -995,7 +1038,9 @@ export function AiWorkSnapshot() {
                 )}
               >
                 {visibleOptions.map((option) => {
-                  const active = String(field.value) === option.value;
+                  const active =
+                    String(field.value) === option.value &&
+                    (!isWorkflowCards || efficiencyChosen);
                   return (
                     <motion.button
                       key={option.value}
@@ -1008,13 +1053,14 @@ export function AiWorkSnapshot() {
                       }}
                       whileHover={{ y: -6, rotate: active ? 0 : -0.4 }}
                       whileTap={{ scale: 0.97 }}
-                      onClick={() =>
+                      onClick={() => {
+                        if (isWorkflowCards) setEfficiencyChosen(true);
                         field.onChange(
                           isScale || isWorkflowCards
                             ? Number(option.value)
                             : option.value,
-                        )
-                      }
+                        );
+                      }}
                       className={cn(
                         'group relative overflow-hidden border border-line bg-background p-2.5 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 sm:p-4',
                         isScale
@@ -1061,7 +1107,11 @@ export function AiWorkSnapshot() {
                               : 'bg-muted text-muted-foreground',
                           )}
                         >
-                          <span aria-hidden='true'>{option.emoji}</span>
+                          {active ? (
+                            <Check className='h-4 w-4' />
+                          ) : (
+                            <span aria-hidden='true'>{option.emoji}</span>
+                          )}
                           <span className='sr-only'>Option {option.value}</span>
                         </span>
                       )}
@@ -1148,7 +1198,7 @@ export function AiWorkSnapshot() {
                           placeholder='Search roles...'
                           className='h-12 w-full border border-white/30 bg-white/10 px-4 text-sm text-white outline-none placeholder:text-white/45 focus:border-brand focus:ring-2 focus:ring-brand/30'
                         />
-                        <div className='grid min-h-0 grid-cols-1 gap-2 overflow-y-auto overscroll-contain pr-1 md:grid-cols-2 md:overflow-visible md:pr-0'>
+                        <div className='grid min-h-0 grid-cols-1 content-start gap-2 overflow-y-auto overscroll-contain pr-1 md:grid-cols-2 md:overflow-visible md:pr-0'>
                           {extraRoles.map((option) => {
                             const active = String(field.value) === option.value;
                             return (
@@ -1207,7 +1257,9 @@ export function AiWorkSnapshot() {
           <button
             type='submit'
             disabled={
-              !form.watch(question.field) || form.formState.isSubmitting
+              !form.watch(question.field) ||
+              (question.field === 'efficiency' && !efficiencyChosen) ||
+              form.formState.isSubmitting
             }
             className='bl-btn bl-btn-ink inline-flex h-11 items-center gap-3 px-5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-45'
           >
