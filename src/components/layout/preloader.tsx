@@ -9,7 +9,6 @@ const LETTERS = 'BULLAH LABS'.split('');
 const DURATION_MS = 1800;
 const REDUCED_DURATION_MS = 600;
 const HOLD_MS = 300;
-const HOME_PRELOADER_SESSION_KEY = 'bullahlabs:home-preloader-seen';
 
 /* The blocky progress bar: filled cells, then empty ones. */
 const BAR_CELLS = 24;
@@ -22,9 +21,9 @@ const ease = [0.16, 1, 0.3, 1] as const;
  * cell by cell as a counter runs to 100, the mark flashes brand green at 100,
  * then the curtain lifts.
  *
- * It is deliberately reserved for the first visit to home in a browser
- * session. Every other route stays immediately usable, and returning home
- * does not make visitors wait through the animation again.
+ * It runs whenever the homepage is loaded directly or refreshed. Client-side
+ * navigation between routes remains immediate because this component belongs
+ * only to the homepage route.
  */
 export function Preloader() {
   // Render the curtain on the server and during the first client paint. Starting
@@ -37,15 +36,12 @@ export function Preloader() {
 
   useEffect(() => {
     const isHome = window.location.pathname === '/';
-    const hasSeenPreloader =
-      window.sessionStorage.getItem(HOME_PRELOADER_SESSION_KEY) === 'true';
 
-    if (!isHome || hasSeenPreloader) {
+    if (!isHome) {
       document.documentElement.dataset.preloaderComplete = 'true';
       return;
     }
 
-    window.sessionStorage.setItem(HOME_PRELOADER_SESSION_KEY, 'true');
     setVisible(true);
     setStarted(true);
   }, []);
@@ -129,13 +125,13 @@ export function Preloader() {
                 className={cn(
                   'absolute h-5 w-5 border-brand transition-colors duration-300',
                   corner === 'tl' &&
-                    'left-0 top-0 origin-top-left border-l border-t',
+                    'left-0 top-0 origin-top-left border-l border-t max-[380px]:left-4',
                   corner === 'tr' &&
-                    'right-0 top-0 origin-top-right border-r border-t',
+                    'right-0 top-0 origin-top-right border-r border-t max-[380px]:right-4',
                   corner === 'bl' &&
-                    'bottom-0 left-0 origin-bottom-left border-b border-l',
+                    'bottom-0 left-0 origin-bottom-left border-b border-l max-[380px]:left-4',
                   corner === 'br' &&
-                    'bottom-0 right-0 origin-bottom-right border-b border-r',
+                    'bottom-0 right-0 origin-bottom-right border-b border-r max-[380px]:right-4',
                   done && 'border-white',
                 )}
               />
@@ -157,10 +153,11 @@ export function Preloader() {
                   }}
                   className={cn(
                     'inline-block transition-colors duration-200',
+                    letter === ' ' && 'w-[0.2em] flex-none sm:w-[0.38em]',
                     done ? 'text-brand' : 'text-white',
                   )}
                 >
-                  {letter === ' ' ? ' ' : letter}
+                  {letter === ' ' ? null : letter}
                 </motion.span>
               ))}
             </div>
