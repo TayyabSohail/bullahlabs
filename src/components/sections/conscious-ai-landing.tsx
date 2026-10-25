@@ -9,18 +9,18 @@ import { paths } from '@/constants/paths';
 export function ConsciousAiHero() {
   return (
     <section className='bg-ink text-white'>
-      <div className='bl-container relative overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-40'>
+      <div className='bl-container relative overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-36 lg:pb-28 lg:pt-40'>
         <div
           aria-hidden='true'
           className='absolute -right-24 top-8 h-72 w-72 rounded-full border border-brand/20 shadow-[0_0_0_5rem_hsl(var(--brand)/0.035),0_0_0_10rem_hsl(var(--brand)/0.02)]'
         />
-        <div className='relative max-w-3xl'>
+        <div className='relative max-w-5xl'>
           <p className='inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-2 before:h-px before:w-7 before:bg-brand'>
             Conscious AI
           </p>
           <h1 className='bl-display mt-6 text-display-xl leading-[0.94] text-white'>
-            Not more AI.{' '}
-            <span className='bl-accent text-brand-2'>Better AI.</span>
+            <span className='block'>Not more AI.</span>
+            <span className='bl-accent mt-1 block text-brand-2'>Better AI.</span>
           </h1>
           <p className='mt-5 max-w-lg text-sm leading-relaxed text-white/70 sm:text-base'>
             Use it with purpose. Keep your judgement.

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { Reveal } from '@/components/motion/reveal';
@@ -14,16 +14,10 @@ export const metadata: Metadata = {
   description:
     'Practical AI training, workflow audits and guidance for teams that want more value with less waste.',
   alternates: { canonical: paths.teams },
-  openGraph: {
-    title: 'Conscious AI for Teams | Bullah Labs',
-    description:
-      'Make AI useful in the work your team actually does — with less cost, waste and uncertainty.',
-    url: paths.teams,
-  },
 };
 
 const familiar = [
-  ['AI everywhere.', 'Half the team quietly wonders if they’re next.'],
+  ['AI everywhere.', "Half the team quietly wonders if they're next."],
   ['Which model for what?', 'Shrugs all round.'],
   ['The AI bill grows.', 'The results, not so much.'],
   ['Your sustainability report', 'has an AI-shaped hole.'],
@@ -41,16 +35,19 @@ const offers = [
     'First steps',
     'Workshops',
     'Turn AI anxiety into confidence, on your real tasks. Which tool when, and how to check it.',
+    'Book a workshop',
   ],
   [
     'First steps',
     'Guidance',
-    'Shared rules for tools, data, cost and carbon. So “use AI” finally comes with instructions.',
+    'Shared rules for tools, data, cost and carbon. So using AI finally comes with instructions.',
+    'Ask about guidance',
   ],
   [
     'For grown-ups',
     'Audit & optimise',
     'AI that fits your workflow. We map the workflow, find wasted compute and cut it. Measured before and after.',
+    'Start an audit',
   ],
 ];
 
@@ -80,6 +77,10 @@ function ContactButton({
   );
 }
 
+function BookingButton() {
+  return <ContactButton>Talk through your workflow</ContactButton>;
+}
+
 export default async function ConsciousAiTeamsPage() {
   const dict = await getDictionary();
 
@@ -93,44 +94,27 @@ export default async function ConsciousAiTeamsPage() {
         ]}
       />
 
-      <section className='bl-container grid min-h-[42rem] items-center gap-10 pb-16 pt-32 sm:pt-40 lg:grid-cols-[1.18fr_0.82fr] lg:gap-16 lg:pt-48'>
-        <div>
+      <section className='bl-band-ink border-b border-ink'>
+        <div className='bl-container min-h-[31rem] pb-16 pt-32 sm:min-h-[34rem] sm:pt-40 lg:min-h-[38rem] lg:pb-20 lg:pt-48'>
           <Reveal>
-            <p className='bl-kicker'>Conscious AI for teams</p>
+            <p className='bl-kicker text-white/65'>Conscious AI for teams</p>
           </Reveal>
           <TextReveal
             as='h1'
             text='Your team uses AI. Is it paying off?'
-            accentWords={[5, 6, 7]}
-            className='bl-display mt-5 max-w-[13ch] text-display-xl text-foreground'
+            accentWords={[6, 7]}
+            className='bl-display mt-8 max-w-[17ch] text-display-lg text-white sm:text-display-xl [&_.bl-accent]:text-brand-2'
           />
           <Reveal delay={0.2}>
-            <p className='mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
+            <p className='mt-7 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg'>
               We cut wasted compute from your AI. Off the bill. Off the
               footprint. Never off the quality.
             </p>
-            <div className='mt-8 flex flex-wrap gap-4'>
-              <ContactButton>Book a time with us</ContactButton>
-              <ContactButton tone='secondary'>
-                Talk to real humans
-              </ContactButton>
+            <div className='mt-9 flex justify-center sm:justify-start'>
+              <BookingButton />
             </div>
           </Reveal>
         </div>
-        <Reveal
-          delay={0.35}
-          className='bl-card-ink ml-auto w-full max-w-md p-7 sm:p-9'
-        >
-          <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-2'>
-            Our big question
-          </p>
-          <p className='bl-display mt-6 max-w-[16ch] text-3xl leading-[0.95] text-white'>
-            Is this the smallest AI that reliably gets the job done?
-          </p>
-          <p className='mt-6 text-sm leading-relaxed text-white/65'>
-            Quality first. Then we trim the fat, and the watts.
-          </p>
-        </Reveal>
       </section>
 
       <section className='bl-section bl-rule bl-band-stone'>
@@ -193,15 +177,13 @@ export default async function ConsciousAiTeamsPage() {
             className='bl-display mt-5 text-display-lg'
           />
           <div className='mt-9 grid gap-5 lg:grid-cols-3'>
-            {offers.map(([tag, title, body], index) => (
+            {offers.map(([tag, title, body, cta], index) => (
               <Reveal
                 key={title}
-                className={
-                  index === 2 ? 'bl-card-ink p-6 sm:p-8' : 'bl-card p-6 sm:p-8'
-                }
+                className={`flex min-h-80 flex-col ${index === 2 ? 'bl-card-ink' : 'bl-card'} p-6 sm:p-8`}
               >
                 <p
-                  className={`inline-block border px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.15em] ${index === 2 ? 'border-brand/70 text-brand-2' : 'border-ink/40 text-muted-foreground'}`}
+                  className={`inline-block w-fit border px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.15em] ${index === 2 ? 'border-brand/70 text-brand-2' : 'border-ink/40 text-muted-foreground'}`}
                 >
                   {tag}
                 </p>
@@ -217,9 +199,9 @@ export default async function ConsciousAiTeamsPage() {
                 </p>
                 <Link
                   href={`${paths.contact}?service=team`}
-                  className={`bl-action mt-8 ${index === 2 ? 'text-brand-2' : ''}`}
+                  className={`bl-action mt-auto pt-8 ${index === 2 ? 'text-brand-2 hover:text-brand-2' : ''}`}
                 >
-                  Format & price <ArrowUpRight className='h-3.5 w-3.5' />
+                  {cta} <ArrowUpRight className='h-3.5 w-3.5' />
                 </Link>
               </Reveal>
             ))}
@@ -260,98 +242,61 @@ export default async function ConsciousAiTeamsPage() {
 
       <section className='bl-section bl-rule bl-band-stone'>
         <div className='bl-container'>
-          <div className='grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end'>
+          <div className='grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end'>
             <div>
-              <p className='bl-kicker'>In development · product</p>
+              <p className='bl-kicker'>What changes</p>
               <TextReveal
                 as='h2'
-                text='Conscious AI.'
-                className='bl-display mt-5 text-display-lg'
-              />
-              <p className='bl-display mt-1 text-2xl italic text-brand-text'>
-                A fitness tracker for your team’s AI habits, footprint included.
-              </p>
-            </div>
-            <Link
-              href={paths.program}
-              className='bl-btn bl-btn-primary inline-flex h-11 items-center px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.18em]'
-            >
-              Get early access
-            </Link>
-          </div>
-          <p className='mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground'>
-            See which AI gets used for what, what it costs in money and energy,
-            and where a smaller tool could do the job.
-          </p>
-          <div className='mt-9 grid gap-5 md:grid-cols-3'>
-            {['Usage by task', 'Both bills', 'Right-size tips'].map(
-              (label, index) => (
-                <div key={label} className='bl-card aspect-[1.5] p-4'>
-                  <div className='flex gap-1'>
-                    <i className='h-1.5 w-1.5 rounded-full bg-ink/30' />
-                    <i className='h-1.5 w-1.5 rounded-full bg-ink/30' />
-                    <i className='h-1.5 w-1.5 rounded-full bg-ink/30' />
-                  </div>
-                  <div className='mt-5 flex h-[calc(100%-1.5rem)] items-center justify-center border border-dashed border-ink/25 bg-[repeating-linear-gradient(45deg,transparent,transparent_5px,hsl(var(--ink)/0.04)_5px,hsl(var(--ink)/0.04)_8px)]'>
-                    <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-muted-foreground'>
-                      {index === 0
-                        ? 'See usage'
-                        : index === 1
-                          ? 'See cost'
-                          : 'See fixes'}
-                    </span>
-                  </div>
-                  <p className='mt-2 font-mono text-[9px] font-semibold uppercase tracking-[0.12em]'>
-                    {label}
-                  </p>
-                </div>
-              ),
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className='bl-section bl-rule bg-background'>
-        <div className='bl-container'>
-          <div className='grid gap-8 lg:grid-cols-[0.7fr_1.3fr]'>
-            <div>
-              <p className='bl-kicker'>Your data</p>
-              <TextReveal
-                as='h2'
-                text='Your data stays your business.'
-                accentWords={[2, 3, 4]}
+                text='Useful AI, with a plan behind it.'
+                accentWords={[2, 3, 4, 5, 6]}
                 className='bl-display mt-5 max-w-[12ch] text-display-lg'
               />
             </div>
-            <div className='grid gap-4 sm:grid-cols-3'>
-              {[
-                'Data minimisation',
-                'Retention & deletion',
-                'Confidentiality',
-              ].map((item) => (
-                <div
-                  key={item}
-                  className='border-t border-ink pt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground'
-                >
-                  <Check className='mb-3 h-4 w-4 text-brand-text' />
-                  {item}
-                </div>
-              ))}
-            </div>
+            <p className='max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
+              You leave with decisions your team can use tomorrow - not another
+              dashboard to maintain.
+            </p>
           </div>
+          <div className='mt-10 grid gap-5 md:grid-cols-3'>
+            {[
+              [
+                'A shared way of working',
+                'Clear choices on tools, prompting, checking work and when not to use AI.',
+              ],
+              [
+                'A smaller, smarter stack',
+                'The models and steps that earn their place - and the expensive clutter that does not.',
+              ],
+              [
+                'A written next-step plan',
+                'Prioritised improvements, owners and a realistic way to measure the result.',
+              ],
+            ].map(([title, body]) => (
+              <Reveal key={title} className='bl-card p-6 sm:p-8'>
+                <h3 className='bl-display text-2xl'>{title}</h3>
+                <p className='mt-4 text-sm leading-relaxed text-muted-foreground'>
+                  {body}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+          <p className='mt-8 border-l-2 border-brand pl-5 text-sm leading-relaxed text-muted-foreground'>
+            We use the minimum access needed to understand a workflow. Your data
+            stays your business.
+          </p>
           <Reveal className='bl-card-ink mt-12 flex min-h-72 flex-col items-center justify-center p-8 text-center'>
-            <Sparkles className='h-6 w-6 text-brand-2' />
-            <h2 className='bl-display mt-6 max-w-[13ch] text-display-lg text-white'>
+            <h2 className='bl-display max-w-[13ch] text-display-lg text-white'>
               Bring one workflow.{' '}
               <span className='bl-accent text-brand-2'>
-                We’ll bring the scissors.
+                We'll bring the scissors.
               </span>
             </h2>
-            <div className='mt-8 flex flex-wrap justify-center gap-4'>
-              <ContactButton>Book a time with us</ContactButton>
-              <ContactButton tone='secondary'>
-                Talk to real humans
-              </ContactButton>
+            <p className='mt-5 max-w-md text-sm leading-relaxed text-white/65'>
+              Start with one honest conversation. We'll tell you whether a
+              workshop, guidance or an audit is the right next move.
+            </p>
+            <div className='mt-8'>
+              <BookingButton />
             </div>
           </Reveal>
         </div>

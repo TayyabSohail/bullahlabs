@@ -689,6 +689,7 @@ function Result({
 /** Mirrors the supplied assessment reference: an anchored left rail and a calm question workspace. */
 export function AiWorkSnapshot() {
   const formId = useId();
+  const reduceMotion = useReducedMotion();
   const [step, setStep] = useState(0);
   const [started, setStarted] = useState(false);
   const [emailGate, setEmailGate] = useState(false);
@@ -772,8 +773,8 @@ export function AiWorkSnapshot() {
 
   if (!started)
     return (
-      <div className='bl-card mx-auto grid w-full max-w-5xl overflow-hidden lg:grid-cols-[1.05fr_0.95fr]'>
-        <div className='relative overflow-hidden bg-ink p-6 text-white sm:p-8 lg:p-10'>
+      <div className='bl-card mx-auto grid w-full max-w-5xl overflow-hidden lg:grid-cols-[0.72fr_1.28fr]'>
+        <div className='relative overflow-hidden bg-ink p-7 text-white sm:p-10 lg:p-12'>
           <span
             aria-hidden='true'
             className='absolute -left-24 -top-20 h-64 w-64 rounded-full border border-brand/30 shadow-[0_0_0_3rem_hsl(var(--brand)/0.06),0_0_0_6rem_hsl(var(--brand)/0.03)]'
@@ -781,12 +782,16 @@ export function AiWorkSnapshot() {
           <div className='relative inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-2'>
             <BarChart3 className='h-3.5 w-3.5' /> Your AI scoreboard
           </div>
-          <h2 className='bl-display relative mt-6 max-w-md text-4xl leading-[0.98] text-white sm:text-5xl'>
-            How&apos;s your AI working?
+          <h2 className='bl-display relative mt-6 max-w-sm text-4xl leading-[0.94] text-white sm:text-5xl'>
+            Your AI work, scored.
           </h2>
-          <p className='relative mt-5 max-w-md text-sm leading-relaxed text-white/70 sm:text-base'>
-            Five quick choices. One score worth knowing.
+          <p className='relative mt-5 max-w-xs text-sm leading-relaxed text-white/65'>
+            Two minutes. Two signals. A clearer next move.
           </p>
+          <div className='relative mt-7 flex flex-wrap gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-white/75'>
+            <span className='border border-white/25 px-3 py-2'>Confidence</span>
+            <span className='border border-white/25 px-3 py-2'>Efficiency</span>
+          </div>
           <div className='relative mt-6 hidden flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55'>
             <span>01 · five taps</span>
             <span>02 · two minutes</span>
@@ -795,42 +800,90 @@ export function AiWorkSnapshot() {
           <motion.button
             type='button'
             onClick={() => setStarted(true)}
-            whileHover={{ y: -2 }}
+            whileHover={{ y: -3 }}
             whileTap={{ scale: 0.98 }}
-            className='bl-btn bl-btn-primary relative mt-8 inline-flex h-12 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.15em] shadow-[5px_5px_0_hsl(var(--brand)_/_0.38)]'
+            className='hidden'
           >
-            Show me my score <ArrowRight className='h-4 w-4' />
+            Start my AI check <ArrowRight className='h-4 w-4' />
           </motion.button>
         </div>
-        <div className='relative flex min-h-[300px] items-center bg-surface p-5 sm:p-8'>
-          <div className='w-full border border-ink bg-background p-5 shadow-[4px_4px_0_0_hsl(var(--ink)/0.85)]'>
-            <div className='flex items-center justify-between border-b border-ink/15 pb-4 font-mono text-[10px] uppercase tracking-[0.16em]'>
+        <div className='flex flex-col justify-center bg-surface p-7 sm:p-10 lg:p-12'>
+          <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-text'>
+            A quick reality check
+          </p>
+          <h2 className='bl-display mt-5 max-w-xl text-4xl leading-[0.98] text-foreground sm:text-5xl'>
+            Are you using AI well, or just using more of it?
+          </h2>
+          <p className='mt-5 max-w-lg text-base leading-relaxed text-muted-foreground'>
+            Find your Confidence and Efficiency score in five quick answers.
+          </p>
+          <motion.button
+            type='button'
+            onClick={() => setStarted(true)}
+            whileHover={{ y: -3 }}
+            whileTap={{ scale: 0.98 }}
+            className='bl-btn bl-btn-primary mt-8 inline-flex h-14 w-fit items-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.15em] shadow-[5px_5px_0_hsl(var(--ink)_/_0.75)]'
+          >
+            Take the 2-minute check <ArrowRight className='h-4 w-4' />
+          </motion.button>
+        </div>
+        <div className='hidden'>
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className='relative w-full overflow-hidden border border-ink bg-background p-5 shadow-[5px_5px_0_0_hsl(var(--ink)/0.85)]'
+          >
+            <div
+              aria-hidden='true'
+              className='absolute -right-9 -top-9 h-28 w-28 rounded-full border border-brand/40'
+            />
+            <div className='relative flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em]'>
               <span className='text-muted-foreground'>Your score</span>
-              <span className='text-brand-text'>Preview</span>
+              <span className='flex h-2 w-2 rounded-full bg-brand motion-safe:animate-pulse' />
             </div>
-            <div className='mt-5 space-y-5'>
-              {[
-                ['Confidence', '?'],
-                ['Workflow', '?'],
-                ['Judgement', '?'],
-              ].map(([label, value]) => (
+            <div className='relative mt-6 flex items-end gap-3 border-b border-ink/15 pb-5'>
+              <motion.span
+                animate={reduceMotion ? undefined : { y: [0, -4, 0] }}
+                transition={{
+                  duration: 2.2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className='bl-display text-7xl leading-none text-brand-text'
+              >
+                ?
+              </motion.span>
+              <span className='pb-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground'>
+                waiting for you
+              </span>
+            </div>
+            <div className='relative mt-5 space-y-4'>
+              {['Confidence', 'Workflow', 'Judgement'].map((label, index) => (
                 <div key={label}>
-                  <div className='flex items-center justify-between text-sm font-medium text-foreground'>
+                  <div className='flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.12em] text-foreground'>
                     <span>{label}</span>
-                    <span className='font-mono text-xs text-brand-text'>
-                      {value}
-                    </span>
+                    <span className='text-brand-text'>?</span>
                   </div>
-                  <div className='mt-2 h-2 overflow-hidden bg-ink/10'>
-                    <span className='block h-full w-2/3 bg-brand/70' />
+                  <div className='mt-2 h-1.5 overflow-hidden bg-ink/10'>
+                    <motion.span
+                      animate={
+                        reduceMotion
+                          ? { width: '62%' }
+                          : { width: ['28%', '82%', '48%', '68%'] }
+                      }
+                      transition={{
+                        duration: 3.4 + index * 0.45,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      }}
+                      className='block h-full bg-brand'
+                    />
                   </div>
                 </div>
               ))}
             </div>
-            <p className='mt-6 border-t border-ink/15 pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground'>
-              Your answers reveal the rest.
-            </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     );

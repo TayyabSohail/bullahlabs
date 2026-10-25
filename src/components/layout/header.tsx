@@ -51,7 +51,7 @@ export function Header({ dict }: HeaderProps) {
         // (z-60) or the banner covers the menu's CTAs.
         mobileMenuOpen
           ? 'z-[70] border-line bg-[hsl(var(--band-peach))]'
-          : scrolled || pathname === paths.program
+          : scrolled || pathname.startsWith(paths.program)
             ? 'z-50 border-ink/80 bg-[hsl(var(--band-peach))]'
             : 'z-50 border-transparent bg-transparent',
       )}
