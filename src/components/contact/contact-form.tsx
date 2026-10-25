@@ -6,6 +6,7 @@ import {
   Check,
   CheckCircle2,
   GraduationCap,
+  Hammer,
   type LucideIcon,
   MessageCircle,
   Users,
@@ -49,6 +50,7 @@ const FIELD =
 const MESSAGE_MAX = 4000;
 
 const INTEREST_ICONS: Record<InterestValue, LucideIcon> = {
+  project: Hammer,
   course: GraduationCap,
   team: Users,
   other: MessageCircle,
@@ -178,14 +180,10 @@ export function ContactForm({ dict, defaultService }: ContactFormProps) {
                               selected={field.value === option.value}
                               onSelect={() => field.onChange(option.value)}
                               icon={INTEREST_ICONS[option.value]}
-                              title={copy.title}
-                              description={copy.description}
-                              // Five options: the last one spans the row.
-                              className={
-                                option.value === 'other'
-                                  ? 'sm:col-span-2'
-                                  : undefined
-                              }
+                              // Keep the form usable if an older locale bundle is
+                              // temporarily served during a deployment.
+                              title={copy?.title ?? option.label}
+                              description={copy?.description ?? ''}
                             />
                           );
                         })}

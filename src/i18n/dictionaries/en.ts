@@ -97,6 +97,7 @@ export const en = {
   community: {
     kicker: 'Join our community',
     mobileJoin: 'Join community',
+    dockOpen: 'Join the conversation',
     title: 'Better AI decisions are better together.',
     description:
       'Meet people who want to use AI thoughtfully, share what works and keep the human judgement in the work.',
@@ -534,8 +535,12 @@ export const en = {
     service: 'What are you interested in?',
     serviceOther: 'Something else',
     serviceOtherTagline:
-      'A project, a question, a partnership or anything not listed.',
+      'A question, a partnership or anything not listed.',
     interests: {
+      project: {
+        title: 'Start a project',
+        description: 'A new product, a rebuild or technology that needs to work better.',
+      },
       course: {
         title: 'The free course',
         description: 'Access to the Conscious AI learning modules.',

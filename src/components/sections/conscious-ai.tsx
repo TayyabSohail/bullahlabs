@@ -50,6 +50,7 @@ export function CourseSection({ dict, className }: SectionProps) {
 
   return (
     <section
+      id='course'
       data-section='course'
       className={cn('bl-section bl-rule bl-band-stone', className)}
     >

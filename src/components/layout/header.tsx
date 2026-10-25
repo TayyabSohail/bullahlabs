@@ -20,7 +20,7 @@ interface HeaderProps {
   dict: Dictionary;
 }
 
-/** Full-width bar: wordmark left, mono nav right, filled CONTACT button. */
+/** Full-width bar with a viewport-centred desktop navigation. */
 export function Header({ dict }: HeaderProps) {
   const pathname = usePathname();
   const { scrollY } = useScroll();
@@ -56,14 +56,14 @@ export function Header({ dict }: HeaderProps) {
             : 'z-50 border-transparent bg-transparent',
       )}
     >
-      <div className='bl-container flex h-[4.25rem] items-center justify-between'>
+      <div className='bl-container grid h-[4.25rem] grid-cols-[minmax(0,1fr)_auto] items-center lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]'>
         <Logo priority />
 
         {/* The links, flags and CTA need the width of `lg`; below that the
             hamburger takes over. */}
         <nav
           aria-label='Primary'
-          className='hidden items-center gap-6 lg:flex xl:gap-8'
+          className='hidden items-center gap-7 lg:flex xl:gap-9'
         >
           {items.map((item) => {
             const active = isActive(item.href);
@@ -74,27 +74,26 @@ export function Header({ dict }: HeaderProps) {
                 // Lenis animates section links; Next's own jump would fight it.
                 aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'relative inline-flex items-center gap-1.5 font-mono text-[12px] uppercase tracking-[0.18em] transition-colors',
+                  'group relative inline-flex items-center font-mono text-[11px] uppercase tracking-[0.16em] transition-colors duration-300',
                   active
-                    ? 'font-bold text-foreground'
-                    : 'bl-link font-medium text-muted-foreground hover:text-foreground',
+                    ? 'font-semibold text-foreground'
+                    : 'font-medium text-muted-foreground hover:text-foreground',
                 )}
               >
                 {item.label}
-                {/* The current page keeps a solid underline; other links get
-                    the sliding bl-link one on hover. */}
-                {active && (
-                  <span
-                    aria-hidden
-                    className='absolute -bottom-1.5 left-0 h-[2px] w-full bg-foreground'
-                  />
-                )}
+                <span
+                  aria-hidden
+                  className={cn(
+                    'absolute -bottom-2 left-0 h-px bg-brand transition-[width] duration-300',
+                    active ? 'w-full' : 'w-0 group-hover:w-full',
+                  )}
+                />
               </Link>
             );
           })}
         </nav>
 
-        <div className='flex shrink-0 items-center gap-3'>
+        <div className='flex shrink-0 items-center justify-self-end gap-3'>
           {/* Desktop only; the mobile menu carries them below lg. The
               actions come first (community, then the CTA) and the language
               setting sits last, a rule apart. */}

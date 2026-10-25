@@ -38,14 +38,14 @@ export function Hero({ dict }: HeroProps) {
 
         <div className='mt-10 grid gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-24 xl:gap-x-32'>
           <div className='min-w-0'>
-            <Reveal delay={0.7}>
+            <Reveal delay={0.1}>
               <p className='max-w-xl text-lg leading-relaxed text-ink/70 sm:text-xl'>
                 {t.body}
               </p>
             </Reveal>
 
             <Reveal
-              delay={0.85}
+              delay={0.18}
               className='mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:items-stretch'
             >
               {/* A shared fixed measure makes this CTA pair read as one
@@ -68,12 +68,12 @@ export function Hero({ dict }: HeroProps) {
           </div>
 
           <Reveal
-            delay={0.9}
+            delay={0.24}
             distance={16}
             className='w-full min-w-0 max-w-[44rem] justify-self-center lg:mt-8 lg:justify-self-end xl:max-w-[48rem]'
           >
             <div className='bl-card bg-surface p-2 sm:p-3'>
-              <SystemMap copy={t.map} delay={0.5} />
+              <SystemMap copy={t.map} />
             </div>
           </Reveal>
         </div>

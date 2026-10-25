@@ -287,24 +287,6 @@ function Count({
 const sleep = (ms: number) =>
   new Promise<void>((resolve) => window.setTimeout(resolve, ms));
 
-/**
- * Resolves once the first-load preloader has lifted its curtain (it keeps
- * `lenis-stopped` on the root element while it runs), or immediately when
- * no preloader is active.
- */
-function waitForCurtain(): Promise<void> {
-  const root = document.documentElement;
-  if (!root.classList.contains('lenis-stopped')) return Promise.resolve();
-  return new Promise((resolve) => {
-    const observer = new MutationObserver(() => {
-      if (root.classList.contains('lenis-stopped')) return;
-      observer.disconnect();
-      resolve();
-    });
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
-  });
-}
-
 type Tone = 'paper' | 'ink' | 'brand' | 'warm';
 
 /** A ruled box on a hard shadow, the site's own box style, centred on (cx, cy). */
@@ -506,10 +488,10 @@ const RESET: Scene = {
  * move. When the task is done, the panel between the two lanes' meters
  * shows the saving: the share saved, then money counting up and landing
  * with a beat, tokens rolling up, and carbon wiped in. The kicker sits under the
- * drawing. The drawing builds after the preloader and only
+ * drawing. The drawing builds immediately and only
  * runs while it is on screen. Reduced motion shows the finished picture.
  */
-export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
+export function SystemMap({ copy, delay = 0, className }: SystemMapProps) {
   const reduce = useReducedMotion() === true;
   const uid = useId().replace(/:/g, '');
   const rootRef = useRef<HTMLDivElement>(null);
@@ -665,7 +647,6 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
     };
 
     (async () => {
-      await waitForCurtain();
       await sleep(delay * 1000);
       if (cancelled) return;
       setReady(true);
@@ -1271,7 +1252,6 @@ export function SystemMap({ copy, delay = 0.5, className }: SystemMapProps) {
           />
         </motion.g>
       </svg>
-
     </div>
   );
 }

@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
 /**
- * What the enquiry is about: the course, training for a team, or something
- * else. A link such as /contact?service=team opens the form with that option
- * already chosen. The field is still called `service` because that is the
- * column it is stored in.
+ * What the enquiry is about. A link such as /contact?service=team opens the
+ * form with that option already chosen. The field is still called `service`
+ * because that is the column it is stored in.
  */
 export const INTEREST_OPTIONS = [
-  { value: 'course', label: 'The free course' },
+  { value: 'project', label: 'Start a project' },
   { value: 'team', label: 'Training for a team' },
   { value: 'other', label: 'Something else' },
+  { value: 'course', label: 'The free course' },
 ] as const;
 
 export type InterestValue = (typeof INTEREST_OPTIONS)[number]['value'];

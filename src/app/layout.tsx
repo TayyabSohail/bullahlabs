@@ -13,7 +13,6 @@ import { CommunityDock } from '@/components/layout/community-dock';
 import { DynamicFavicon } from '@/components/layout/dynamic-favicon';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
-import { Preloader } from '@/components/layout/preloader';
 import { ScrollProgress } from '@/components/layout/scroll-progress';
 import { SmoothScroll } from '@/components/layout/smooth-scroll';
 import PosthogAnalytics from '@/components/posthog/analytics';
@@ -108,7 +107,6 @@ export default async function RootLayout({
             <DynamicFavicon />
             <OrganizationJsonLd />
             <Toaster richColors position='bottom-center' />
-            <Preloader />
             <ScrollProgress />
             <Backdrop />
             <SpotlightEffect />

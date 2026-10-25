@@ -32,12 +32,6 @@ export function ConsciousAiHero() {
             >
               Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
-            <a
-              href='#community'
-              className='bl-btn inline-flex h-11 items-center gap-2 border border-white/70 px-4 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-brand hover:bg-brand hover:text-ink'
-            >
-              Join our community
-            </a>
           </div>
         </div>
       </div>

@@ -77,6 +77,7 @@ export const de: Dictionary = {
   community: {
     kicker: 'Teil unserer Community werden',
     mobileJoin: 'Community beitreten',
+    dockOpen: 'GesprÃ¤ch beginnen',
     title: 'Bessere KI-Entscheidungen entstehen gemeinsam.',
     description:
       'Treffen Sie Menschen, die KI bewusst einsetzen, Erfahrungen teilen und menschliches Urteilsvermögen in den Mittelpunkt stellen.',
@@ -512,8 +513,13 @@ export const de: Dictionary = {
     service: 'Wofür interessieren Sie sich?',
     serviceOther: 'Etwas anderes',
     serviceOtherTagline:
-      'Ein Projekt, eine Frage, eine Partnerschaft oder etwas, das hier nicht steht.',
+      'Eine Frage, eine Partnerschaft oder etwas, das hier nicht steht.',
     interests: {
+      project: {
+        title: 'Ein Projekt starten',
+        description:
+          'Ein neues Produkt, ein Neustart oder Technologie, die besser funktionieren soll.',
+      },
       course: {
         title: 'Der kostenlose Kurs',
         description: 'Zugang zu den Conscious-AI-Lernmodulen.',
