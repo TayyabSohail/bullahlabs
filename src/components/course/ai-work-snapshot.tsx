@@ -446,16 +446,17 @@ function EmailGate({
               id={`${formId}-email`}
               type='email'
               autoComplete='email'
-              placeholder='you@email.com'
+              placeholder='Your email address'
               disabled={isExecuting}
               aria-invalid={Boolean(emailForm.formState.errors.email)}
               {...emailForm.register('email')}
-              className='!h-[72px] min-w-0 flex-1 border-2 border-ink bg-background px-4 text-base outline-none placeholder:text-muted-foreground focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:opacity-60 sm:!h-14'
+              style={{ minHeight: '3.5rem' }}
+              className='min-w-0 flex-1 border border-line bg-surface px-4 text-[15px] text-ink outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-brand/60 disabled:opacity-60'
             />
             <button
               type='submit'
               disabled={!emailForm.formState.isValid || isExecuting}
-              className='!h-[72px] border-2 border-ink bg-brand px-6 font-mono text-xs font-black uppercase tracking-[0.12em] text-brand-foreground shadow-[3px_3px_0_0_hsl(var(--ink))] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50 sm:!h-14'
+              className='h-14 border-2 border-ink bg-brand px-6 font-mono text-xs font-black uppercase tracking-[0.12em] text-brand-foreground shadow-[3px_3px_0_0_hsl(var(--ink))] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50'
             >
               {isExecuting ? 'Preparing...' : 'Show results'}
             </button>

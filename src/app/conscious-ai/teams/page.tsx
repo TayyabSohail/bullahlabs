@@ -154,11 +154,11 @@ export default async function ConsciousAiTeamsPage() {
                 key={number}
                 className='border-b border-r border-ink/40 bg-surface p-5 last:border-b-0 sm:p-6 lg:border-b-0'
               >
-                <div className='flex items-baseline gap-3 sm:block'>
+                <div>
                   <span className='shrink-0 font-mono text-[10px] font-semibold tracking-[0.16em] text-brand-text'>
                     {number}
                   </span>
-                  <h3 className='bl-display text-2xl sm:mt-4'>{title}</h3>
+                  <h3 className='bl-display mt-4 text-2xl'>{title}</h3>
                 </div>
                 <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
                   {body}

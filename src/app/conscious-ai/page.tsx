@@ -51,7 +51,7 @@ export default async function ConsciousAiPage() {
         ]}
       />
       <ConsciousAiHero />
-      <section id='ai-profile' className='bl-section bl-rule bg-background'>
+      <section id='ai-profile' className='bl-section bl-rule bg-secondary'>
         <div className='bl-container'>
           <AiWorkSnapshot />
         </div>
