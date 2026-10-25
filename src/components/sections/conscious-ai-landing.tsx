@@ -14,8 +14,8 @@ export function ConsciousAiHero() {
           aria-hidden='true'
           className='absolute -right-24 top-8 h-72 w-72 rounded-full border border-brand/20 shadow-[0_0_0_5rem_hsl(var(--brand)/0.035),0_0_0_10rem_hsl(var(--brand)/0.02)]'
         />
-        <div className='relative max-w-5xl'>
-          <p className='inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-2 before:h-px before:w-7 before:bg-brand'>
+        <div className='relative mx-auto max-w-5xl text-center sm:mx-0 sm:text-left'>
+          <p className='bl-kicker text-brand-2'>
             Conscious AI
           </p>
           <h1 className='bl-display mt-6 text-display-xl leading-[0.94] text-white'>
@@ -25,7 +25,7 @@ export function ConsciousAiHero() {
           <p className='mt-5 max-w-lg text-sm leading-relaxed text-white/70 sm:text-base'>
             Use it with purpose. Keep your judgement.
           </p>
-          <div className='mt-8 flex flex-wrap gap-3'>
+          <div className='mt-8 flex flex-wrap justify-center gap-3 sm:justify-start'>
             <Link
               href={`${paths.contact}?service=team`}
               className='bl-btn bl-btn-primary inline-flex h-11 items-center gap-2 px-4 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'

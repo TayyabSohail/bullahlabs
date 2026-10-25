@@ -109,7 +109,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </Reveal>
 
         <div className='mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end'>
-          <div>
+          <div className='text-center lg:text-left'>
             <Reveal>
               <p className='bl-kicker'>
                 {project.client} &middot; {project.industry}
@@ -119,14 +119,17 @@ export default async function CaseStudyPage({ params }: PageProps) {
               as='h1'
               text={project.title}
               delay={0.1}
-              className='bl-display mt-6 text-display-lg text-foreground'
+              className='bl-display mt-6 justify-center text-display-lg text-foreground lg:justify-start'
             />
             <Reveal delay={0.35}>
-              <p className='mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl'>
+              <p className='mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground sm:text-xl lg:mx-0'>
                 {project.summary}
               </p>
             </Reveal>
-            <Reveal delay={0.45} className='mt-8 flex flex-wrap gap-3'>
+            <Reveal
+              delay={0.45}
+              className='mt-8 flex flex-wrap justify-center gap-3 lg:justify-start'
+            >
               <span className='inline-flex h-12 items-center rounded-full border border-line px-5 text-sm text-muted-foreground'>
                 {project.anonymised ? t.anonymised : t.private}
               </span>

@@ -95,7 +95,7 @@ export default async function ConsciousAiTeamsPage() {
       />
 
       <section className='bl-band-ink border-b border-ink'>
-        <div className='bl-container min-h-[31rem] pb-16 pt-32 sm:min-h-[34rem] sm:pt-40 lg:min-h-[38rem] lg:pb-20 lg:pt-48'>
+        <div className='bl-container min-h-[31rem] pb-16 pt-32 text-center sm:min-h-[34rem] sm:pt-40 sm:text-left lg:min-h-[38rem] lg:pb-20 lg:pt-48'>
           <Reveal>
             <p className='bl-kicker text-white/65'>Conscious AI for teams</p>
           </Reveal>
@@ -103,10 +103,10 @@ export default async function ConsciousAiTeamsPage() {
             as='h1'
             text='Your team uses AI. Is it paying off?'
             accentWords={[6, 7]}
-            className='bl-display mt-8 max-w-[17ch] text-display-lg text-white sm:text-display-xl [&_.bl-accent]:text-brand-2'
+            className='bl-display mx-auto mt-8 max-w-[17ch] justify-center text-display-lg text-white sm:mx-0 sm:justify-start sm:text-display-xl [&_.bl-accent]:text-brand-2'
           />
           <Reveal delay={0.2}>
-            <p className='mt-7 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg'>
+            <p className='mx-auto mt-7 max-w-xl text-base leading-relaxed text-white/70 sm:mx-0 sm:text-lg'>
               We cut wasted compute from your AI. Off the bill. Off the
               footprint. Never off the quality.
             </p>
@@ -152,12 +152,14 @@ export default async function ConsciousAiTeamsPage() {
             {workflow.map(([number, title, body]) => (
               <div
                 key={number}
-                className='border-b border-r border-ink/40 bg-surface p-6 last:border-b-0 lg:border-b-0'
+                className='border-b border-r border-ink/40 bg-surface p-5 last:border-b-0 sm:p-6 lg:border-b-0'
               >
-                <span className='font-mono text-[10px] font-semibold tracking-[0.16em] text-brand-text'>
-                  {number}
-                </span>
-                <h3 className='bl-display mt-4 text-2xl'>{title}</h3>
+                <div className='flex items-baseline gap-3 sm:block'>
+                  <span className='shrink-0 font-mono text-[10px] font-semibold tracking-[0.16em] text-brand-text'>
+                    {number}
+                  </span>
+                  <h3 className='bl-display text-2xl sm:mt-4'>{title}</h3>
+                </div>
                 <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
                   {body}
                 </p>
@@ -180,7 +182,7 @@ export default async function ConsciousAiTeamsPage() {
             {offers.map(([tag, title, body, cta], index) => (
               <Reveal
                 key={title}
-                className={`flex min-h-80 flex-col ${index === 2 ? 'bl-card-ink' : 'bl-card'} p-6 sm:p-8`}
+                className={`flex min-h-0 flex-col ${index === 2 ? 'bl-card-ink' : 'bl-card'} p-5 sm:min-h-80 sm:p-8`}
               >
                 <p
                   className={`inline-block w-fit border px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.15em] ${index === 2 ? 'border-brand/70 text-brand-2' : 'border-ink/40 text-muted-foreground'}`}
@@ -188,18 +190,18 @@ export default async function ConsciousAiTeamsPage() {
                   {tag}
                 </p>
                 <h3
-                  className={`bl-display mt-5 text-3xl ${index === 2 ? 'text-white' : ''}`}
+                  className={`bl-display mt-3 text-3xl sm:mt-5 ${index === 2 ? 'text-white' : ''}`}
                 >
                   {title}
                 </h3>
                 <p
-                  className={`mt-3 text-sm leading-relaxed ${index === 2 ? 'text-white/70' : 'text-muted-foreground'}`}
+                  className={`mt-2 text-sm leading-relaxed sm:mt-3 ${index === 2 ? 'text-white/70' : 'text-muted-foreground'}`}
                 >
                   {body}
                 </p>
                 <Link
                   href={`${paths.contact}?service=team`}
-                  className={`bl-action mt-auto pt-8 ${index === 2 ? 'text-brand-2 hover:text-brand-2' : ''}`}
+                  className={`bl-action mt-6 sm:mt-auto sm:pt-8 ${index === 2 ? 'text-brand-2 hover:text-brand-2' : ''}`}
                 >
                   {cta} <ArrowUpRight className='h-3.5 w-3.5' />
                 </Link>

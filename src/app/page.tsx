@@ -1,4 +1,5 @@
 import { CommunitySection } from '@/components/sections/community';
+import { Preloader } from '@/components/layout/preloader';
 import { ConsciousAiHome } from '@/components/sections/conscious-ai-home';
 import { ContactSection } from '@/components/sections/contact-section';
 import { FaqSection } from '@/components/sections/faq';
@@ -24,6 +25,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <Preloader />
       <Hero dict={dict} />
       <OurDna />
       <Problem dict={dict} />

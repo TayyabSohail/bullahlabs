@@ -37,9 +37,9 @@ export function Hero({ dict }: HeroProps) {
         />
 
         <div className='mt-10 grid gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-24 xl:gap-x-32'>
-          <div className='min-w-0'>
+          <div className='min-w-0 text-center sm:text-left'>
             <Reveal delay={0.1}>
-              <p className='max-w-xl text-lg leading-relaxed text-ink/70 sm:text-xl'>
+              <p className='mx-auto max-w-xl text-lg leading-relaxed text-ink/70 sm:mx-0 sm:text-xl'>
                 {t.body}
               </p>
             </Reveal>

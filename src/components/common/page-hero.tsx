@@ -27,7 +27,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        'bl-container pb-10 pt-28 sm:pb-12 sm:pt-44 lg:pb-16 lg:pt-52',
+        'bl-container pb-10 pt-28 text-center sm:pb-12 sm:pt-44 sm:text-left lg:pb-16 lg:pt-52',
         className,
       )}
     >
@@ -40,7 +40,7 @@ export function PageHero({
         accentWords={accentWords}
         delay={0.1}
         className={cn(
-          'bl-display mt-6 text-foreground',
+          'bl-display mx-auto mt-6 justify-center text-foreground sm:mx-0 sm:justify-start',
           size === 'xl'
             ? 'max-w-[14ch] text-display-xl'
             : 'max-w-[18ch] text-display-lg',
@@ -48,13 +48,13 @@ export function PageHero({
       />
       {description && (
         <Reveal delay={0.4}>
-          <p className='mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:mt-7 sm:text-lg lg:text-xl'>
+          <p className='mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:mx-0 sm:mt-7 sm:text-lg lg:text-xl'>
             {description}
           </p>
         </Reveal>
       )}
       {children && (
-        <Reveal delay={0.5} className='mt-9'>
+        <Reveal delay={0.5} className='mt-9 flex justify-center sm:block'>
           {children}
         </Reveal>
       )}

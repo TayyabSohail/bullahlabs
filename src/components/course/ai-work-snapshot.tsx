@@ -1,13 +1,7 @@
 'use client';
 
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema';
-import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  Radar,
-  RotateCcw,
-} from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Radar, RotateCcw } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useAction } from 'next-safe-action/hooks';
 import { usePostHog } from 'posthog-js/react';
@@ -22,11 +16,11 @@ import { joinCourseList } from '@/actions/course-signup';
 import { paths } from '@/constants/paths';
 
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { siteConfig } from '@/config/site';
 import { PosthogEventKeys } from '@/constants/posthog-events';
 
@@ -383,7 +377,10 @@ function EmailGate({
     onSuccess: onComplete,
     onError: ({ error }) => {
       emailForm.setError('email', {
-        message: error.validationErrors?.fieldErrors?.email?.[0] ?? error.serverError ?? 'Could not save your email. Try again.',
+        message:
+          error.validationErrors?.fieldErrors?.email?.[0] ??
+          error.serverError ??
+          'Could not save your email. Try again.',
       });
     },
   });
@@ -408,11 +405,23 @@ function EmailGate({
       <Rail step={questions.length - 1} />
       <div className='flex min-h-[360px] items-center bg-surface p-5 sm:p-10'>
         <div className='w-full max-w-lg'>
-          <p className='font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-brand-text'>Your results are ready</p>
-          <h2 className='bl-display mt-4 text-4xl leading-[0.95] text-foreground sm:text-5xl'>Add your email.</h2>
-          <p className='mt-4 text-sm leading-relaxed text-muted-foreground'>We’ll prepare your results and send the course update there too.</p>
-          <form id={formId} onSubmit={emailForm.handleSubmit(submit)} className='mt-7 flex flex-col gap-3 sm:flex-row'>
-            <label className='sr-only' htmlFor={`${formId}-email`}>Email address</label>
+          <p className='font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-brand-text'>
+            Your results are ready
+          </p>
+          <h2 className='bl-display mt-4 text-4xl leading-[0.95] text-foreground sm:text-5xl'>
+            Add your email.
+          </h2>
+          <p className='mt-4 text-sm leading-relaxed text-muted-foreground'>
+            We’ll prepare your results and send the course update there too.
+          </p>
+          <form
+            id={formId}
+            onSubmit={emailForm.handleSubmit(submit)}
+            className='mt-7 flex flex-col gap-3 sm:flex-row'
+          >
+            <label className='sr-only' htmlFor={`${formId}-email`}>
+              Email address
+            </label>
             <input
               id={`${formId}-email`}
               type='email'
@@ -423,12 +432,24 @@ function EmailGate({
               {...emailForm.register('email')}
               className='h-14 min-w-0 flex-1 border-2 border-ink bg-background px-4 text-base outline-none placeholder:text-muted-foreground focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:opacity-60'
             />
-            <button type='submit' disabled={!emailForm.formState.isValid || isExecuting} className='h-14 border-2 border-ink bg-brand px-6 font-mono text-xs font-black uppercase tracking-[0.12em] text-brand-foreground shadow-[3px_3px_0_0_hsl(var(--ink))] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50'>
+            <button
+              type='submit'
+              disabled={!emailForm.formState.isValid || isExecuting}
+              className='h-14 border-2 border-ink bg-brand px-6 font-mono text-xs font-black uppercase tracking-[0.12em] text-brand-foreground shadow-[3px_3px_0_0_hsl(var(--ink))] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50'
+            >
               {isExecuting ? 'Preparing...' : 'Show results'}
             </button>
           </form>
-          {emailForm.formState.errors.email && <p className='mt-2 text-sm text-red-600'>{emailForm.formState.errors.email.message}</p>}
-          <button type='button' onClick={restart} className='mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'>
+          {emailForm.formState.errors.email && (
+            <p className='mt-2 text-sm text-red-600'>
+              {emailForm.formState.errors.email.message}
+            </p>
+          )}
+          <button
+            type='button'
+            onClick={restart}
+            className='mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'
+          >
             <RotateCcw className='h-3.5 w-3.5' /> Start again
           </button>
         </div>
@@ -488,8 +509,13 @@ function Result({
         {isCalculating ? (
           <div className='flex min-h-[340px] items-center justify-center bg-surface p-6 text-center sm:min-h-[390px]'>
             <div>
-              <span className='mx-auto flex h-12 w-12 items-center justify-center rounded-full border-2 border-brand border-t-transparent motion-safe:animate-spin' aria-hidden />
-              <p className='bl-display mt-6 text-3xl text-foreground sm:text-4xl'>Preparing your results.</p>
+              <span
+                className='mx-auto flex h-12 w-12 items-center justify-center rounded-full border-2 border-brand border-t-transparent motion-safe:animate-spin'
+                aria-hidden
+              />
+              <p className='bl-display mt-6 text-3xl text-foreground sm:text-4xl'>
+                Preparing your results.
+              </p>
             </div>
           </div>
         ) : (
@@ -516,17 +542,27 @@ function Result({
                 href={`${paths.contact}?service=team`}
                 className='group flex items-center justify-between gap-4 border-2 border-ink bg-ink px-4 py-3 text-white transition-colors hover:bg-ink/90'
               >
-                <span className='text-sm font-semibold'>Need help putting AI to work?</span>
-                <span className='inline-flex shrink-0 items-center font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-brand-2'>Work with us <ArrowRight className='ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5' /></span>
+                <span className='text-sm font-semibold'>
+                  Need help putting AI to work?
+                </span>
+                <span className='inline-flex shrink-0 items-center font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-brand-2'>
+                  Work with us{' '}
+                  <ArrowRight className='ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5' />
+                </span>
               </a>
               <a
                 href='#course'
                 className='group flex items-center justify-between gap-4 border border-line bg-background px-4 py-3 transition-colors hover:bg-brand-soft/35'
               >
                 <span>
-                  <span className='text-sm font-semibold text-foreground'>Free course launching soon.</span>
+                  <span className='text-sm font-semibold text-foreground'>
+                    Free course launching soon.
+                  </span>
                 </span>
-                <span className='inline-flex shrink-0 items-center font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-brand-text'>See the course <ArrowRight className='ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5' /></span>
+                <span className='inline-flex shrink-0 items-center font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-brand-text'>
+                  See the course{' '}
+                  <ArrowRight className='ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5' />
+                </span>
               </a>
             </div>
             <div className='mt-4 border-t border-line pt-4'>
@@ -602,8 +638,19 @@ function ScoreCard({
   return (
     <div className='border-2 border-ink bg-background p-3 text-center shadow-[3px_3px_0_0_hsl(var(--brand)/.7)] sm:p-4'>
       <div className='relative mx-auto grid h-24 w-24 place-items-center sm:h-28 sm:w-28'>
-        <svg viewBox='0 0 100 100' className='h-full w-full -rotate-90' aria-hidden>
-          <circle cx='50' cy='50' r={radius} fill='none' stroke='hsl(var(--line))' strokeWidth='7' />
+        <svg
+          viewBox='0 0 100 100'
+          className='h-full w-full -rotate-90'
+          aria-hidden
+        >
+          <circle
+            cx='50'
+            cy='50'
+            r={radius}
+            fill='none'
+            stroke='hsl(var(--line))'
+            strokeWidth='7'
+          />
           <motion.circle
             cx='50'
             cy='50'
@@ -620,7 +667,8 @@ function ScoreCard({
         </svg>
         <div className='absolute inset-0 grid place-items-center'>
           <p className='bl-display text-3xl leading-none text-foreground sm:text-4xl'>
-            {score}<span className='ml-0.5 text-sm text-muted-foreground'>%</span>
+            {score}
+            <span className='ml-0.5 text-sm text-muted-foreground'>%</span>
           </p>
         </div>
       </div>
@@ -729,7 +777,10 @@ export function AiWorkSnapshot() {
             className='absolute -left-24 -top-20 h-64 w-64 rounded-full border border-brand/30 shadow-[0_0_0_3rem_hsl(var(--brand)/0.06),0_0_0_6rem_hsl(var(--brand)/0.03)]'
           />
           <span className='relative flex h-14 w-14 items-center justify-center rounded-full border-2 border-brand bg-brand/10 text-brand-2 shadow-[0_0_0_7px_hsl(var(--brand)/0.10),3px_3px_0_0_hsl(var(--brand-2))] transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110'>
-            <span aria-hidden='true' className='absolute inset-1 rounded-full border border-dashed border-brand/60 transition-transform duration-700 group-hover:rotate-180' />
+            <span
+              aria-hidden='true'
+              className='absolute inset-1 rounded-full border border-dashed border-brand/60 transition-transform duration-700 group-hover:rotate-180'
+            />
             <Radar className='relative h-7 w-7' aria-hidden />
           </span>
           <h2 className='bl-display relative mt-7 max-w-sm text-5xl leading-[0.94] text-white sm:text-6xl'>
@@ -1072,29 +1123,32 @@ export function AiWorkSnapshot() {
                       More roles, please (
                       {question.options.length - visibleOptions.length} more)
                     </button>
-                    <Dialog
+                    <Sheet
                       open={roleCatalogOpen}
                       onOpenChange={setRoleCatalogOpen}
                     >
-                      <DialogContent className='inset-x-0 bottom-0 top-auto max-h-[82svh] max-w-none translate-x-0 translate-y-0 overflow-y-auto border-2 border-ink bg-ink p-5 text-white shadow-[0_-6px_0_hsl(var(--brand))] sm:bottom-auto sm:left-[50%] sm:top-[50%] sm:max-h-[85vh] sm:max-w-3xl sm:translate-x-[-50%] sm:translate-y-[-50%] sm:p-8 sm:shadow-[8px_8px_0_hsl(var(--brand))]'>
+                      <SheetContent
+                        side='bottom'
+                        onOpenAutoFocus={(event) => event.preventDefault()}
+                        className='grid h-[min(72svh,36rem)] max-h-[72svh] grid-rows-[auto_auto_auto_auto_minmax(0,1fr)] overflow-hidden border-2 border-ink bg-ink p-5 text-white shadow-[0_-6px_0_hsl(var(--brand))] ease-out data-[state=closed]:duration-500 data-[state=open]:duration-1000 sm:bottom-auto sm:left-[50%] sm:right-auto sm:top-[50%] sm:h-auto sm:max-h-[85vh] sm:max-w-3xl sm:translate-x-[-50%] sm:translate-y-[-50%] sm:grid-rows-none sm:overflow-y-auto sm:p-8 sm:shadow-[8px_8px_0_hsl(var(--brand))]'
+                      >
                         <span className='mx-auto mb-5 block h-1 w-12 bg-white/30 sm:hidden' />
-                        <DialogTitle className='bl-display pr-10 text-3xl text-white sm:text-4xl'>
+                        <SheetTitle className='bl-display pr-10 text-3xl text-white sm:text-4xl'>
                           Find your role.
-                        </DialogTitle>
-                        <DialogDescription className='max-w-xl text-sm leading-relaxed text-white/65'>
+                        </SheetTitle>
+                        <SheetDescription className='max-w-xl text-sm leading-relaxed text-white/65'>
                           Pick the closest match. This is only to make the next
                           questions more useful.
-                        </DialogDescription>
+                        </SheetDescription>
                         <input
                           value={roleSearch}
                           onChange={(event) =>
                             setRoleSearch(event.target.value)
                           }
                           placeholder='Search roles...'
-                          autoFocus
                           className='h-12 w-full border border-white/30 bg-white/10 px-4 text-sm text-white outline-none placeholder:text-white/45 focus:border-brand focus:ring-2 focus:ring-brand/30'
                         />
-                        <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'>
+                        <div className='grid min-h-0 grid-cols-1 gap-2 overflow-y-auto overscroll-contain pr-1 sm:grid-cols-2 sm:overflow-visible sm:pr-0'>
                           {extraRoles.map((option) => {
                             const active = String(field.value) === option.value;
                             return (
@@ -1125,8 +1179,8 @@ export function AiWorkSnapshot() {
                             </p>
                           )}
                         </div>
-                      </DialogContent>
-                    </Dialog>
+                      </SheetContent>
+                    </Sheet>
                   </>
                 )}
                 {fieldState.error && (
