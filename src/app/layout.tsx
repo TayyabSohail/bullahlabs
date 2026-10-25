@@ -9,6 +9,7 @@ import { SpotlightEffect } from '@/components/effects/spotlight';
 import { Backdrop } from '@/components/layout/backdrop';
 import { CampaignCapture } from '@/components/layout/campaign-capture';
 import { CookieConsent } from '@/components/layout/cookie-consent';
+import { CommunityDock } from '@/components/layout/community-dock';
 import { DynamicFavicon } from '@/components/layout/dynamic-favicon';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
@@ -117,6 +118,7 @@ export default async function RootLayout({
               {children}
             </main>
             <Footer dict={dict} />
+            <CommunityDock dict={dict} />
             <CookieConsent dict={dict} />
           </SmoothScroll>
         </AppProviders>

@@ -344,7 +344,7 @@ export function ForBusiness({ dict, className }: SectionProps) {
         </div>
         <Reveal className='mt-8 border-t pt-6 sm:mt-10 sm:pt-8'>
           <Link
-            href={`${paths.contact}?service=team`}
+            href={paths.teams}
             className='bl-btn bl-btn-ink inline-flex h-14 items-center justify-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]'
           >
             {t.cta}

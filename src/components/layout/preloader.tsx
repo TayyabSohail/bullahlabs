@@ -9,6 +9,7 @@ const LETTERS = 'BULLAH LABS'.split('');
 const DURATION_MS = 1800;
 const REDUCED_DURATION_MS = 600;
 const HOLD_MS = 300;
+const HOME_PRELOADER_SESSION_KEY = 'bullahlabs:home-preloader-seen';
 
 /* The blocky progress bar: filled cells, then empty ones. */
 const BAR_CELLS = 24;
@@ -21,18 +22,34 @@ const ease = [0.16, 1, 0.3, 1] as const;
  * cell by cell as a counter runs to 100, the mark flashes brand green at 100,
  * then the curtain lifts.
  *
- * The curtain is part of the server-rendered HTML, so the screen is dark from
- * the very first paint instead of flashing the page before the intro appears.
- * It runs on every full page load; client-side route changes never remount
- * the root layout, so navigating within the site does not replay it. Users
- * who prefer reduced motion get a shorter, fade-only version.
+ * It is deliberately reserved for the first visit to home in a browser
+ * session. Every other route stays immediately usable, and returning home
+ * does not make visitors wait through the animation again.
  */
 export function Preloader() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const [started, setStarted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
+    const isHome = window.location.pathname === '/';
+    const hasSeenPreloader =
+      window.sessionStorage.getItem(HOME_PRELOADER_SESSION_KEY) === 'true';
+
+    if (!isHome || hasSeenPreloader) {
+      document.documentElement.dataset.preloaderComplete = 'true';
+      return;
+    }
+
+    window.sessionStorage.setItem(HOME_PRELOADER_SESSION_KEY, 'true');
+    setVisible(true);
+    setStarted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!started) return;
+
     const reduce = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
@@ -56,10 +73,10 @@ export function Preloader() {
       cancelAnimationFrame(frame);
       document.documentElement.classList.remove('lenis-stopped');
     };
-  }, []);
+  }, [started]);
 
   useEffect(() => {
-    if (progress !== 100) return;
+    if (!started || progress !== 100) return;
 
     // The loader must paint its complete state before the exit transition starts.
     const timer = window.setTimeout(() => {
@@ -68,7 +85,7 @@ export function Preloader() {
     }, HOLD_MS);
 
     return () => window.clearTimeout(timer);
-  }, [progress]);
+  }, [progress, started]);
 
   const filled = Math.min(
     BAR_CELLS,
