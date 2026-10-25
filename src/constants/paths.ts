@@ -6,6 +6,7 @@ export const paths = {
   services: '/services',
   approach: '/approach',
   program: '/conscious-ai',
+  teams: '/conscious-ai/teams',
   contact: '/contact',
   legal: {
     index: '/legal',

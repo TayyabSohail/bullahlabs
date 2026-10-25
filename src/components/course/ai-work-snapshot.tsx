@@ -4,6 +4,7 @@ import { standardSchemaResolver } from '@hookform/resolvers/standard-schema';
 import {
   ArrowLeft,
   ArrowRight,
+  BarChart3,
   Check,
   CheckCircle2,
   RotateCcw,
@@ -232,7 +233,7 @@ function Rail({ step }: { step: number }) {
       <p className='relative mt-4 hidden max-w-xs text-xs leading-relaxed text-white/65 sm:block'>
         A quick look at the habits that can make AI work better for you.
       </p>
-      <div className='relative mt-4 hidden border border-white/15 bg-white/[0.06] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60 sm:inline-flex sm:mt-6'>
+      <div className='relative mt-4 hidden border border-white/15 bg-white/[0.06] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60 sm:mt-6 sm:inline-flex'>
         Building your signal profile
       </div>
       <ol className='relative mt-2 flex gap-1 sm:mt-6 sm:block sm:space-y-1'>
@@ -771,36 +772,68 @@ export function AiWorkSnapshot() {
 
   if (!started)
     return (
-      <div className='bl-card mx-auto w-full max-w-3xl overflow-hidden bg-surface'>
-        <div className='relative flex min-h-[340px] flex-col items-center justify-center overflow-hidden p-6 text-center sm:min-h-[390px] sm:p-10'>
+      <div className='bl-card mx-auto grid w-full max-w-5xl overflow-hidden lg:grid-cols-[1.05fr_0.95fr]'>
+        <div className='relative overflow-hidden bg-ink p-6 text-white sm:p-8 lg:p-10'>
           <span
             aria-hidden='true'
-            className='absolute -left-20 -top-24 h-64 w-64 rounded-full bg-brand/15 blur-3xl'
+            className='absolute -left-24 -top-20 h-64 w-64 rounded-full border border-brand/30 shadow-[0_0_0_3rem_hsl(var(--brand)/0.06),0_0_0_6rem_hsl(var(--brand)/0.03)]'
           />
-          <span
-            aria-hidden='true'
-            className='absolute -bottom-28 -right-20 h-72 w-72 rounded-full bg-brand-2/10 blur-3xl'
-          />
-          <div className='relative inline-flex w-fit items-center gap-2 border border-brand/30 bg-brand-soft/35 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
-            <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-brand' />
-            Your AI work stats
+          <div className='relative inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-2'>
+            <BarChart3 className='h-3.5 w-3.5' /> Your AI scoreboard
           </div>
-          <h2 className='bl-display relative mt-5 max-w-lg text-4xl leading-[1.02] text-foreground sm:text-5xl'>
-            What&apos;s your AI work score?
+          <h2 className='bl-display relative mt-6 max-w-md text-4xl leading-[0.98] text-white sm:text-5xl'>
+            Is AI helping your work, or just giving you more tabs?
           </h2>
-          <p className='relative mt-4 text-sm text-muted-foreground sm:text-base'>
-            Five quick taps reveal your Confidence and Workflow scores.
+          <p className='relative mt-5 max-w-md text-sm leading-relaxed text-white/70 sm:text-base'>
+            Five quick choices build your personal scorecard: where your AI
+            habits are strong, where they leak time, and what to try next.
           </p>
-          <div className='relative mt-8'>
-            <motion.button
-              type='button'
-              onClick={() => setStarted(true)}
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.97 }}
-              className='bl-btn bl-btn-primary inline-flex h-14 items-center gap-3 px-8 text-base font-semibold shadow-[6px_6px_0_hsl(var(--brand)_/_0.34)]'
-            >
-              Reveal my scores <ArrowRight className='h-5 w-5' />
-            </motion.button>
+          <div className='relative mt-8 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55'>
+            <span>01 · five taps</span>
+            <span>02 · two minutes</span>
+            <span>03 · made for you</span>
+          </div>
+          <motion.button
+            type='button'
+            onClick={() => setStarted(true)}
+            whileHover={{ y: -3 }}
+            whileTap={{ scale: 0.98 }}
+            className='bl-btn bl-btn-primary relative mt-8 inline-flex h-12 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.15em] shadow-[5px_5px_0_hsl(var(--brand)_/_0.38)]'
+          >
+            Build my scoreboard <ArrowRight className='h-4 w-4' />
+          </motion.button>
+        </div>
+        <div className='relative flex min-h-[300px] items-center bg-surface p-5 sm:p-8'>
+          <div className='w-full border border-ink bg-background p-5 shadow-[4px_4px_0_0_hsl(var(--ink)/0.85)]'>
+            <div className='flex items-center justify-between border-b border-ink/15 pb-4 font-mono text-[10px] uppercase tracking-[0.16em]'>
+              <span className='text-muted-foreground'>Preview</span>
+              <span className='text-brand-text'>Your signals</span>
+            </div>
+            <div className='mt-5 space-y-5'>
+              {[
+                ['AI confidence', '72%'],
+                ['Workflow clarity', '58%'],
+                ['Human in charge', '84%'],
+              ].map(([label, value], index) => (
+                <div key={label}>
+                  <div className='flex items-center justify-between text-sm font-medium text-foreground'>
+                    <span>{label}</span>
+                    <span className='font-mono text-xs text-brand-text'>
+                      {value}
+                    </span>
+                  </div>
+                  <div className='mt-2 h-2 overflow-hidden bg-ink/10'>
+                    <span
+                      className='block h-full bg-brand'
+                      style={{ width: `${[72, 58, 84][index]}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className='mt-6 border-t border-ink/15 pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground'>
+              Your result starts with one honest answer.
+            </p>
           </div>
         </div>
       </div>
