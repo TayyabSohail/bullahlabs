@@ -442,79 +442,6 @@ function EmailGate({
   );
 }
 
-function ScoreCard({
-  label,
-  value,
-  text,
-  delay,
-}: {
-  label: string;
-  value: number;
-  text: string;
-  delay: number;
-}) {
-  const reduceMotion = useReducedMotion();
-  const [displayValue, setDisplayValue] = useState(reduceMotion ? value : 0);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-
-    let frame = 0;
-    let startTime: number | undefined;
-    const timeout = window.setTimeout(() => {
-      const animate = (time: number) => {
-        startTime ??= time;
-        const progress = Math.min((time - startTime) / 900, 1);
-        setDisplayValue(Math.round(value * (1 - (1 - progress) ** 3)));
-        if (progress < 1) frame = window.requestAnimationFrame(animate);
-      };
-      frame = window.requestAnimationFrame(animate);
-    }, delay);
-
-    return () => {
-      window.clearTimeout(timeout);
-      window.cancelAnimationFrame(frame);
-    };
-  }, [delay, reduceMotion, value]);
-
-  return (
-    <div className='rounded-2xl border border-line bg-background p-3 text-center shadow-[0_14px_30px_hsl(var(--ink)_/_0.06)] sm:rounded-3xl sm:p-5'>
-      <motion.div
-        aria-label={`${label}: ${value} out of 100`}
-        className='mx-auto grid h-24 w-24 place-items-center rounded-full p-2 shadow-inner sm:h-36 sm:w-36'
-        initial={
-          reduceMotion
-            ? false
-            : {
-                background:
-                  'conic-gradient(hsl(var(--brand)) 0%, hsl(var(--muted)) 0% 100%)',
-              }
-        }
-        animate={{
-          background: `conic-gradient(hsl(var(--brand)) ${value}%, hsl(var(--muted)) ${value}% 100%)`,
-        }}
-        transition={{
-          duration: reduceMotion ? 0 : 0.9,
-          delay: reduceMotion ? 0 : delay / 1000,
-          ease: 'easeOut',
-        }}
-      >
-        <div className='grid h-full w-full place-items-center rounded-full bg-background'>
-          <span className='bl-display text-3xl text-foreground sm:text-5xl'>
-            {displayValue}
-          </span>
-        </div>
-      </motion.div>
-      <p className='mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground sm:mt-4'>
-        {label}
-      </p>
-      <p className='mt-1 text-xs leading-relaxed text-muted-foreground sm:mt-2 sm:text-sm'>
-        {text}
-      </p>
-    </div>
-  );
-}
-
 function Result({
   values,
   restart,
@@ -525,24 +452,17 @@ function Result({
   const reduceMotion = useReducedMotion();
   const [isCalculating, setIsCalculating] = useState(!reduceMotion);
   const track = roleTracks[values.role] ?? 'AI Practitioner';
-  const scores = [
+  const nextMove =
     {
-      label: 'Confidence',
-      value: values.confidence * 20,
-      text:
-        values.confidence >= 4
-          ? 'You usually reach useful answers.'
-          : 'Clearer context will improve your results.',
-    },
-    {
-      label: 'Efficiency',
-      value: values.efficiency * 25,
-      text:
-        values.efficiency >= 4
-          ? 'Your workflow is already fairly lean.'
-          : 'Reusable setup can remove extra rounds.',
-    },
-  ];
+      output:
+        'Start with one repeatable prompt for the work you do most often. Add the context and quality checks that make a first draft useful.',
+      choice:
+        'Pick one recurring task and decide whether AI is the right tool before reaching for it. A simpler tool may be faster and clearer.',
+      system:
+        'Turn one successful use into a small repeatable workflow: the right context, the right tool and a clear human check at the end.',
+      team: 'Choose one shared workflow and agree on the tools, data and quality checks before everyone creates their own workaround.',
+    }[values.goal] ??
+    'Choose one recurring task, try a smaller tool first, and check the result before it leaves your hands.';
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -581,16 +501,16 @@ function Result({
             <h2 className='bl-display mt-3 text-3xl text-foreground sm:mt-4 sm:text-5xl'>
               {track}
             </h2>
-            <div className='mt-5 grid grid-cols-2 gap-3 sm:mt-7 sm:gap-5'>
-              {scores.map(({ label, value, text }, index) => (
-                <ScoreCard
-                  key={label}
-                  label={label}
-                  value={value}
-                  text={text}
-                  delay={index * 180}
-                />
-              ))}
+            <div className='mt-5 border-l-2 border-brand bg-brand-soft/25 p-5 sm:mt-7 sm:p-6'>
+              <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+                Your practical next move
+              </p>
+              <p className='bl-display mt-3 text-2xl text-foreground sm:text-3xl'>
+                Make one workflow easier before adding another tool.
+              </p>
+              <p className='mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                {nextMove}
+              </p>
             </div>
             <div className='mt-5 border-t border-line pt-4 sm:mt-7 sm:pt-5'>
               <div
@@ -786,12 +706,8 @@ export function AiWorkSnapshot() {
             Your AI work, scored.
           </h2>
           <p className='relative mt-5 max-w-xs text-sm leading-relaxed text-white/65'>
-            Two minutes. Two signals. A clearer next move.
+            Five quick questions. One clearer next move.
           </p>
-          <div className='relative mt-7 flex flex-wrap gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-white/75'>
-            <span className='border border-white/25 px-3 py-2'>Confidence</span>
-            <span className='border border-white/25 px-3 py-2'>Efficiency</span>
-          </div>
           <div className='relative mt-6 hidden flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55'>
             <span>01 · five taps</span>
             <span>02 · two minutes</span>
@@ -815,7 +731,8 @@ export function AiWorkSnapshot() {
             Are you using AI well, or just using more of it?
           </h2>
           <p className='mt-5 max-w-lg text-base leading-relaxed text-muted-foreground'>
-            Find your Confidence and Efficiency score in five quick answers.
+            Answer five quick questions and leave with one useful next move for
+            your real work.
           </p>
           <motion.button
             type='button'
@@ -824,7 +741,7 @@ export function AiWorkSnapshot() {
             whileTap={{ scale: 0.98 }}
             className='bl-btn bl-btn-primary mt-8 inline-flex h-14 w-fit items-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.15em] shadow-[5px_5px_0_hsl(var(--ink)_/_0.75)]'
           >
-            Take the 2-minute check <ArrowRight className='h-4 w-4' />
+            Hit me with the truth <ArrowRight className='h-4 w-4' />
           </motion.button>
         </div>
         <div className='hidden'>
