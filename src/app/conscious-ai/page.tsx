@@ -51,12 +51,12 @@ export default async function ConsciousAiPage() {
         ]}
       />
       <ConsciousAiHero />
-      <ConsciousAiPrinciples />
       <section id='ai-profile' className='bl-section bl-rule bg-background'>
         <div className='bl-container'>
           <AiWorkSnapshot />
         </div>
       </section>
+      <ConsciousAiPrinciples />
       <CourseSection dict={dict} />
       <ForBusiness dict={dict} />
       <Vision dict={dict} />

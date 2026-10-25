@@ -782,13 +782,12 @@ export function AiWorkSnapshot() {
             <BarChart3 className='h-3.5 w-3.5' /> Your AI scoreboard
           </div>
           <h2 className='bl-display relative mt-6 max-w-md text-4xl leading-[0.98] text-white sm:text-5xl'>
-            Is AI helping your work, or just giving you more tabs?
+            How&apos;s your AI working?
           </h2>
           <p className='relative mt-5 max-w-md text-sm leading-relaxed text-white/70 sm:text-base'>
-            Five quick choices build your personal scorecard: where your AI
-            habits are strong, where they leak time, and what to try next.
+            Five quick choices. One score worth knowing.
           </p>
-          <div className='relative mt-8 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55'>
+          <div className='relative mt-6 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55'>
             <span>01 · five taps</span>
             <span>02 · two minutes</span>
             <span>03 · made for you</span>
@@ -796,11 +795,11 @@ export function AiWorkSnapshot() {
           <motion.button
             type='button'
             onClick={() => setStarted(true)}
-            whileHover={{ y: -3 }}
+            whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
             className='bl-btn bl-btn-primary relative mt-8 inline-flex h-12 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.15em] shadow-[5px_5px_0_hsl(var(--brand)_/_0.38)]'
           >
-            Build my scoreboard <ArrowRight className='h-4 w-4' />
+            Show me my score <ArrowRight className='h-4 w-4' />
           </motion.button>
         </div>
         <div className='relative flex min-h-[300px] items-center bg-surface p-5 sm:p-8'>
