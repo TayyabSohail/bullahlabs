@@ -96,6 +96,7 @@ export const en = {
   },
   community: {
     kicker: 'Join our community',
+    mobileJoin: 'Join community',
     title: 'Better AI decisions are better together.',
     description:
       'Meet people who want to use AI thoughtfully, share what works and keep the human judgement in the work.',

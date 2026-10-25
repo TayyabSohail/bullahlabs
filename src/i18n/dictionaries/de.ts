@@ -76,6 +76,7 @@ export const de: Dictionary = {
   },
   community: {
     kicker: 'Teil unserer Community werden',
+    mobileJoin: 'Community beitreten',
     title: 'Bessere KI-Entscheidungen entstehen gemeinsam.',
     description:
       'Treffen Sie Menschen, die KI bewusst einsetzen, Erfahrungen teilen und menschliches Urteilsvermögen in den Mittelpunkt stellen.',

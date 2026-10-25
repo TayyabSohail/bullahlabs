@@ -1,7 +1,6 @@
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
-import { AiWorkSnapshot } from '@/components/course/ai-work-snapshot';
 import { TextReveal } from '@/components/motion/text-reveal';
 
 import { paths } from '@/constants/paths';
@@ -10,51 +9,35 @@ import { paths } from '@/constants/paths';
 export function ConsciousAiHero() {
   return (
     <section className='bg-ink text-white'>
-      <div className='bl-container relative overflow-hidden pb-14 pt-28 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-40'>
+      <div className='bl-container relative overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-40'>
         <div
           aria-hidden='true'
           className='absolute -right-24 top-8 h-72 w-72 rounded-full border border-brand/20 shadow-[0_0_0_5rem_hsl(var(--brand)/0.035),0_0_0_10rem_hsl(var(--brand)/0.02)]'
         />
-        <div
-          aria-hidden='true'
-          className='pointer-events-none absolute inset-x-0 bottom-0 h-24 opacity-20 [background:repeating-linear-gradient(to_bottom,transparent_0,transparent_3px,hsl(0_0%_100%/0.18)_4px)]'
-        />
-        <div className='relative grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-12'>
-          <div>
-            <p className='inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-2 before:h-px before:w-7 before:bg-brand'>
-              Conscious AI
-            </p>
-            <h1 className='bl-display mt-6 max-w-3xl text-display-xl leading-[0.94] text-white'>
-              Not more AI.{' '}
-              <span className='bl-accent text-brand-2'>Better AI.</span>
-            </h1>
-            <p className='mt-6 max-w-xl text-sm leading-relaxed text-white/70 sm:text-base'>
-              Use it where it helps. Skip it where a formula or a search does
-              the job. Pick the right tool and give it only what it needs.
-            </p>
-            <div className='mt-8 flex flex-wrap gap-3'>
-              <Link
-                href={`${paths.contact}?service=team`}
-                className='bl-btn bl-btn-primary inline-flex h-11 items-center gap-2 px-4 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'
-              >
-                Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
-              </Link>
-              <a
-                href='#community'
-                className='bl-btn inline-flex h-11 items-center gap-2 border border-white/70 px-4 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-brand hover:bg-brand hover:text-ink'
-              >
-                Join our community
-              </a>
-            </div>
-            <a
-              href='#principles'
-              className='mt-12 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-white/55 transition-colors hover:text-white'
+        <div className='relative max-w-3xl'>
+          <p className='inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-2 before:h-px before:w-7 before:bg-brand'>
+            Conscious AI
+          </p>
+          <h1 className='bl-display mt-6 text-display-xl leading-[0.94] text-white'>
+            Not more AI.{' '}
+            <span className='bl-accent text-brand-2'>Better AI.</span>
+          </h1>
+          <p className='mt-5 max-w-lg text-sm leading-relaxed text-white/70 sm:text-base'>
+            Use it with purpose. Keep your judgement.
+          </p>
+          <div className='mt-8 flex flex-wrap gap-3'>
+            <Link
+              href={`${paths.contact}?service=team`}
+              className='bl-btn bl-btn-primary inline-flex h-11 items-center gap-2 px-4 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'
             >
-              <ArrowDown className='h-3.5 w-3.5' /> See the principles
+              Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
+            </Link>
+            <a
+              href='#community'
+              className='bl-btn inline-flex h-11 items-center gap-2 border border-white/70 px-4 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-brand hover:bg-brand hover:text-ink'
+            >
+              Join our community
             </a>
-          </div>
-          <div id='ai-profile' className='scroll-mt-24'>
-            <AiWorkSnapshot />
           </div>
         </div>
       </div>
