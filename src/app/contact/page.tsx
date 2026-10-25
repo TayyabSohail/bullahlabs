@@ -45,12 +45,12 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           defaultService={service}
           calLink={siteConfig.calLink}
           header={
-            <header className='mx-auto max-w-2xl text-center sm:mx-0 sm:text-left'>
+            <header className='mx-auto max-w-2xl text-center md:mx-0 md:text-left'>
               <p className='bl-kicker'>{t.kicker}</p>
               <h1 className='bl-display mt-4 text-display-md text-foreground sm:text-display-lg'>
                 {t.title}
               </h1>
-              <p className='mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:mx-0'>
+              <p className='mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:mx-0'>
                 {t.description}
               </p>
             </header>

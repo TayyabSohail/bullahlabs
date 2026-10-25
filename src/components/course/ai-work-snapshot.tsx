@@ -1130,10 +1130,10 @@ export function AiWorkSnapshot() {
                       <SheetContent
                         side='bottom'
                         onOpenAutoFocus={(event) => event.preventDefault()}
-                        className='grid h-[min(72svh,36rem)] max-h-[72svh] grid-rows-[auto_auto_auto_auto_minmax(0,1fr)] overflow-hidden border-2 border-ink bg-ink p-5 text-white shadow-[0_-6px_0_hsl(var(--brand))] ease-out data-[state=closed]:duration-500 data-[state=open]:duration-1000 sm:bottom-auto sm:left-[50%] sm:right-auto sm:top-[50%] sm:h-auto sm:max-h-[85vh] sm:max-w-3xl sm:translate-x-[-50%] sm:translate-y-[-50%] sm:grid-rows-none sm:overflow-y-auto sm:p-8 sm:shadow-[8px_8px_0_hsl(var(--brand))]'
+                        className='grid h-[min(72svh,36rem)] max-h-[72svh] grid-rows-[auto_auto_auto_auto_minmax(0,1fr)] overflow-hidden border-2 border-ink bg-ink p-5 text-white shadow-[0_-6px_0_hsl(var(--brand))] data-[state=closed]:ease-in data-[state=closed]:duration-1000 data-[state=open]:ease-out data-[state=open]:duration-1000 md:bottom-auto md:left-[50%] md:right-auto md:top-[50%] md:h-auto md:w-[min(92vw,72rem)] md:max-h-[85vh] md:max-w-none md:translate-x-[-50%] md:translate-y-[-50%] md:grid-rows-none md:overflow-y-auto md:p-10 md:shadow-[10px_10px_0_hsl(var(--brand))] md:data-[state=closed]:duration-300 md:data-[state=open]:duration-500 md:data-[state=closed]:ease-out md:data-[state=open]:ease-out md:data-[state=closed]:zoom-out-95 md:data-[state=open]:zoom-in-95 md:data-[state=closed]:slide-out-to-bottom-0 md:data-[state=closed]:slide-out-to-left-1/2 md:data-[state=closed]:slide-out-to-top-[48%] md:data-[state=open]:slide-in-from-bottom-0 md:data-[state=open]:slide-in-from-left-1/2 md:data-[state=open]:slide-in-from-top-[48%]'
                       >
-                        <span className='mx-auto mb-5 block h-1 w-12 bg-white/30 sm:hidden' />
-                        <SheetTitle className='bl-display pr-10 text-3xl text-white sm:text-4xl'>
+                        <span className='mx-auto mb-5 block h-1 w-14 bg-white/30 md:hidden' />
+                        <SheetTitle className='bl-display pr-10 text-3xl text-white md:text-4xl'>
                           Find your role.
                         </SheetTitle>
                         <SheetDescription className='max-w-xl text-sm leading-relaxed text-white/65'>
@@ -1148,7 +1148,7 @@ export function AiWorkSnapshot() {
                           placeholder='Search roles...'
                           className='h-12 w-full border border-white/30 bg-white/10 px-4 text-sm text-white outline-none placeholder:text-white/45 focus:border-brand focus:ring-2 focus:ring-brand/30'
                         />
-                        <div className='grid min-h-0 grid-cols-1 gap-2 overflow-y-auto overscroll-contain pr-1 sm:grid-cols-2 sm:overflow-visible sm:pr-0'>
+                        <div className='grid min-h-0 grid-cols-1 gap-2 overflow-y-auto overscroll-contain pr-1 md:grid-cols-2 md:overflow-visible md:pr-0'>
                           {extraRoles.map((option) => {
                             const active = String(field.value) === option.value;
                             return (

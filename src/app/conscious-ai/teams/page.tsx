@@ -95,7 +95,7 @@ export default async function ConsciousAiTeamsPage() {
       />
 
       <section className='bl-band-ink border-b border-ink'>
-        <div className='bl-container min-h-[31rem] pb-16 pt-32 text-center sm:min-h-[34rem] sm:pt-40 sm:text-left lg:min-h-[38rem] lg:pb-20 lg:pt-48'>
+        <div className='bl-container min-h-[31rem] pb-16 pt-32 text-center sm:min-h-[34rem] sm:pt-40 md:text-left lg:min-h-[38rem] lg:pb-20 lg:pt-48'>
           <Reveal>
             <p className='bl-kicker text-white/65'>Conscious AI for teams</p>
           </Reveal>
@@ -103,14 +103,14 @@ export default async function ConsciousAiTeamsPage() {
             as='h1'
             text='Your team uses AI. Is it paying off?'
             accentWords={[6, 7]}
-            className='bl-display mx-auto mt-8 max-w-[17ch] justify-center text-display-lg text-white sm:mx-0 sm:justify-start sm:text-display-xl [&_.bl-accent]:text-brand-2'
+            className='bl-display mx-auto mt-8 max-w-[17ch] justify-center text-display-lg text-white sm:text-display-xl md:mx-0 md:justify-start [&_.bl-accent]:text-brand-2'
           />
           <Reveal delay={0.2}>
-            <p className='mx-auto mt-7 max-w-xl text-base leading-relaxed text-white/70 sm:mx-0 sm:text-lg'>
+            <p className='mx-auto mt-7 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg md:mx-0'>
               We cut wasted compute from your AI. Off the bill. Off the
               footprint. Never off the quality.
             </p>
-            <div className='mt-9 flex justify-center sm:justify-start'>
+            <div className='mt-9 flex justify-center md:justify-start'>
               <BookingButton />
             </div>
           </Reveal>
