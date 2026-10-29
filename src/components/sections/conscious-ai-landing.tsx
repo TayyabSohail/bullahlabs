@@ -3,11 +3,14 @@ import {
   ArrowRight,
   ArrowUpRight,
   GraduationCap,
+  Plus,
+  RotateCcw,
   Users,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { TalkToHumansButton } from '@/components/community/talk-to-humans';
 import { BookCallButton } from '@/components/contact/book-call-button';
 import { Reveal } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
@@ -176,13 +179,10 @@ export function ConsciousAiHero() {
             >
               Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
-            <a
-              href='#community'
-              className='bl-btn bl-btn-secondary inline-flex h-12 items-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'
-            >
+            <TalkToHumansButton className='bl-btn bl-btn-secondary h-12 gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'>
               <Users className='h-3.5 w-3.5' aria-hidden='true' />
               Talk to real humans
-            </a>
+            </TalkToHumansButton>
           </Reveal>
           <Reveal delay={0.4}>
             <a href='#ai-profile' className='bl-action mt-8 inline-flex'>
@@ -333,6 +333,7 @@ const instructors: Instructor[] = [
 /** One instructor: portrait, role, short bio and a fold-out with the facts. */
 function InstructorCard({
   name,
+  firstName,
   role,
   tagline,
   bio,
@@ -384,18 +385,27 @@ function InstructorCard({
         {bio}
       </p>
 
-      <dl className='mt-5 grid gap-3 border-t border-ink/20 pt-4'>
-        {facts.map(([label, body]) => (
-          <div key={label}>
-            <dt className='font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-brand-text'>
-              {label}
-            </dt>
-            <dd className='mt-1 text-sm font-semibold leading-snug text-foreground'>
-              {body}
-            </dd>
-          </div>
-        ))}
-      </dl>
+      <details className='group mt-5 border-t border-ink/20 pt-4'>
+        <summary className='bl-action cursor-pointer list-none [&::-webkit-details-marker]:hidden'>
+          More about {firstName}
+          <Plus
+            className='h-3.5 w-3.5 transition-transform duration-200 group-open:rotate-45'
+            aria-hidden='true'
+          />
+        </summary>
+        <dl className='mt-4 grid gap-3'>
+          {facts.map(([label, body]) => (
+            <div key={label}>
+              <dt className='font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-brand-text'>
+                {label}
+              </dt>
+              <dd className='mt-1 text-sm font-semibold leading-snug text-foreground'>
+                {body}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </details>
     </Reveal>
   );
 }
@@ -413,7 +423,7 @@ export function CourseInstructor() {
         accentWords={[4]}
         className='bl-display mt-4 text-3xl text-foreground sm:text-4xl'
       />
-      <div className='mt-7 grid gap-6 md:grid-cols-2'>
+      <div className='mt-7 grid gap-6 md:grid-cols-2 md:items-start'>
         {instructors.map((instructor) => (
           <InstructorCard key={instructor.name} {...instructor} />
         ))}
@@ -531,7 +541,13 @@ const teamOffers = [
   ],
 ];
 
-const teamSteps = ['Audit', 'Plan', 'Fix & train', 'Repeat'];
+/** The engagement, in order; the last step points back to the first. */
+const teamSteps = [
+  ['Audit', 'Map one workflow. Measure it, footprint included.'],
+  ['Plan', 'Rank the fixes by impact and risk.'],
+  ['Fix & train', 'Big wins first. Quality checked.'],
+  ['Repeat', 'Next workflow, please.'],
+];
 
 /** The bridge to the teams page, kept short: three ways in, one strip of how it runs. */
 export function ForTeamsBridge() {
@@ -586,35 +602,69 @@ export function ForTeamsBridge() {
 
         <Reveal
           delay={0.1}
-          className='bl-card bl-card-ink mt-4 flex flex-col gap-5 p-5 text-white lg:flex-row lg:items-center lg:justify-between'
+          className='bl-card bl-card-ink mt-4 p-6 text-white sm:p-8'
         >
-          <ol className='flex flex-wrap items-center gap-x-5 gap-y-2'>
-            <li className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
-              How it goes
-            </li>
-            {teamSteps.map((title, index) => (
-              <li key={title} className='flex items-center gap-2'>
-                <span className='flex h-6 w-6 items-center justify-center border border-brand/70 font-mono text-[10px] font-semibold text-brand-2'>
-                  {index + 1}
+          <p className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
+            How it goes
+          </p>
+          <ol className='mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8'>
+            {teamSteps.map(([title, body], index) => (
+              <li key={title} className='relative lg:pr-9'>
+                <span className='flex items-center gap-3'>
+                  <span className='flex h-9 w-9 shrink-0 items-center justify-center bg-brand font-mono text-sm font-bold text-ink'>
+                    {index + 1}
+                  </span>
+                  <span className='bl-display text-2xl text-white'>
+                    {title}
+                  </span>
                 </span>
-                <span className='bl-display text-base text-white'>{title}</span>
+                <p className='mt-3 text-sm leading-relaxed text-white/65'>
+                  {body}
+                </p>
+                {index < teamSteps.length - 1 ? (
+                  <ArrowRight
+                    className='absolute right-0 top-2 hidden h-5 w-5 text-brand-2 lg:block'
+                    aria-hidden='true'
+                  />
+                ) : (
+                  <RotateCcw
+                    className='absolute right-0 top-2 hidden h-5 w-5 text-brand-2 lg:block'
+                    aria-label='then the next workflow'
+                  />
+                )}
               </li>
             ))}
           </ol>
-          <div className='flex flex-wrap gap-3'>
+          <div className='mt-8 flex flex-wrap gap-3 border-t border-white/15 pt-6'>
             <Link
               href={teamHref}
-              className='bl-btn bl-btn-primary inline-flex h-11 items-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'
+              className='bl-btn bl-btn-primary inline-flex h-12 items-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'
             >
               Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
-            <Link
-              href={`${paths.teams}#how`}
-              className='inline-flex h-11 items-center gap-2 border border-white/25 px-4 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-brand'
-            >
-              How we work with teams <ArrowRight className='h-3.5 w-3.5' />
-            </Link>
           </div>
+        </Reveal>
+
+        <Reveal delay={0.15} className='mt-4'>
+          <Link
+            href={paths.teams}
+            className='bl-card bl-card-link group flex items-center justify-between gap-5 p-5 sm:p-6'
+          >
+            <span className='min-w-0'>
+              <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-muted-foreground'>
+                The full page
+              </span>
+              <span className='bl-display mt-1.5 block text-2xl text-foreground sm:text-3xl'>
+                How we work with teams
+              </span>
+              <span className='mt-1.5 block text-sm leading-relaxed text-muted-foreground'>
+                Workshops, guidance and audits, explained on one page.
+              </span>
+            </span>
+            <span className='flex h-12 w-12 shrink-0 items-center justify-center border border-ink bg-brand text-ink shadow-[3px_3px_0_0_hsl(var(--ink))] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5'>
+              <ArrowUpRight className='h-5 w-5' aria-hidden='true' />
+            </span>
+          </Link>
         </Reveal>
       </div>
     </section>
@@ -709,13 +759,10 @@ export function ConsciousAiClosing({ dict }: { dict: Dictionary }) {
           <ArrowUpRight className='h-4 w-4' aria-hidden='true' />
         </Link>
       )}
-      <a
-        href='#community'
-        className='inline-flex h-14 items-center gap-2 border border-white/25 px-5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:border-brand'
-      >
+      <TalkToHumansButton className='h-14 gap-2 border border-white/25 px-5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:border-brand'>
         <Users className='h-4 w-4' aria-hidden='true' />
         Talk to real humans
-      </a>
+      </TalkToHumansButton>
     </CtaBanner>
   );
 }

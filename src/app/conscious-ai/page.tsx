@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { SectionHeading } from '@/components/common/section-heading';
 import { AiWorkSnapshot } from '@/components/course/ai-work-snapshot';
-import { SpoilerTyper } from '@/components/course/spoiler-typer';
+import { SpoilerPlate } from '@/components/course/spoiler-plate';
 import { CommunitySection } from '@/components/sections/community';
 import { CourseSection } from '@/components/sections/conscious-ai';
 import {
@@ -64,7 +64,7 @@ export default async function ConsciousAiPage() {
             title='Feeling like AI will replace you?'
             accentWords={[4, 5]}
             description='Five quick steps to find out.'
-            aside={<SpoilerTyper />}
+            aside={<SpoilerPlate />}
           />
           <div className='mt-8 sm:mt-12'>
             <AiWorkSnapshot />

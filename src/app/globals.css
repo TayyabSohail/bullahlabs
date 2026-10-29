@@ -1551,19 +1551,12 @@ main > section.bl-band-stone.bl-band-peach {
   }
 }
 
-/* A terminal cursor: hard on/off blink, no fade. */
-.bl-blink {
-  animation: bl-blink 1s steps(2, start) infinite;
-}
-@keyframes bl-blink {
-  to {
-    visibility: hidden;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .bl-blink {
-    animation: none;
-  }
+/* Radix dialogs pad the body by the scrollbar width while they lock scroll,
+   but the gutter above is already reserved, so the page would jump right by
+   that width every time a popup opens. Cancel the compensation. */
+html body[data-scroll-locked] {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* Crosshair ticks where a section rule meets the page edges. */
