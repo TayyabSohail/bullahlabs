@@ -240,6 +240,8 @@
     color: hsl(var(--primary-foreground));
     border-color: hsl(var(--ink));
   }
+  /* The primary drains downward on hover (the fill retreats to the bottom
+     edge); the ink button drains the other way, upward to its top edge. */
   .bl-btn-primary {
     border: 1px solid hsl(var(--brand));
     color: hsl(var(--brand-foreground));
@@ -256,7 +258,7 @@
     border: 1px solid hsl(var(--ink));
     color: hsl(var(--primary-foreground));
     background-image: linear-gradient(hsl(var(--ink)), hsl(var(--ink)));
-    background-position: bottom;
+    background-position: top;
     background-size: 100% 100%;
   }
   .bl-btn-ink:hover {

@@ -1,5 +1,4 @@
 import {
-  ArrowDown,
   ArrowRight,
   ArrowUpRight,
   GraduationCap,
@@ -179,16 +178,10 @@ export function ConsciousAiHero() {
             >
               Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
-            <TalkToHumansButton className='bl-btn bl-btn-secondary h-12 gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'>
+            <TalkToHumansButton className='bl-btn bl-btn-ink h-12 gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'>
               <Users className='h-3.5 w-3.5' aria-hidden='true' />
               Talk to real humans
             </TalkToHumansButton>
-          </Reveal>
-          <Reveal delay={0.4}>
-            <a href='#ai-profile' className='bl-action mt-8 inline-flex'>
-              <ArrowDown className='h-3.5 w-3.5' aria-hidden='true' />
-              Start here
-            </a>
           </Reveal>
         </div>
         <PlanetReceipt />
@@ -760,7 +753,7 @@ export function ConsciousAiClosing({ dict }: { dict: Dictionary }) {
           <ArrowUpRight className='h-4 w-4' aria-hidden='true' />
         </Link>
       )}
-      <TalkToHumansButton className='h-14 gap-2 border border-white/25 px-5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:border-brand'>
+      <TalkToHumansButton className='bl-btn bl-btn-secondary h-14 gap-3 bg-surface px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]'>
         <Users className='h-4 w-4' aria-hidden='true' />
         Talk to real humans
       </TalkToHumansButton>
