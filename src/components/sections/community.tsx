@@ -26,11 +26,17 @@ const communities = [
 ] as const;
 
 /** A shared invitation to continue the Conscious AI conversation off-site. */
-export function CommunitySection({ dict }: { dict: Dictionary }) {
+export function CommunitySection({
+  dict,
+  className = 'bg-background',
+}: {
+  dict: Dictionary;
+  className?: string;
+}) {
   const t = dict.community;
 
   return (
-    <section id='community' className='bl-section bl-rule bg-background'>
+    <section id='community' className={`bl-section bl-rule ${className}`}>
       <div className='bl-container'>
         <div className='grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-end'>
           <div className='max-w-xl'>

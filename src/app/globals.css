@@ -87,7 +87,6 @@
   .lenis.lenis-stopped {
     overflow: hidden;
   }
-
 }
 
 /* ------------------------------------------------------------------------- */
@@ -1508,6 +1507,63 @@ body::after {
 
 main > section.bl-band-stone:nth-of-type(odd) {
   background-color: hsl(var(--band-sky));
+}
+
+/* A section that must be peach whatever its position in the page. */
+main > section.bl-band-stone.bl-band-peach {
+  background-color: hsl(var(--band-peach));
+}
+
+/* The Conscious AI hero's till receipt: a sawtooth tear along the bottom,
+   and a rubber stamp that slams in once the rows have printed. */
+.bl-receipt {
+  overflow: visible;
+}
+.bl-receipt-edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 10px;
+  background:
+    linear-gradient(-45deg, transparent 7px, hsl(var(--surface)) 0) 0 0 / 14px
+      100% repeat-x,
+    linear-gradient(45deg, transparent 7px, hsl(var(--surface)) 0) 7px 0 / 14px
+      100% repeat-x;
+  filter: drop-shadow(4px 4px 0 hsl(var(--ink) / 0.9));
+}
+.bl-stamp-in {
+  animation: bl-stamp-in 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3) 1.2s both;
+}
+@keyframes bl-stamp-in {
+  from {
+    opacity: 0;
+    transform: rotate(12deg) scale(1.8);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(12deg) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bl-stamp-in {
+    animation: none;
+  }
+}
+
+/* A terminal cursor: hard on/off blink, no fade. */
+.bl-blink {
+  animation: bl-blink 1s steps(2, start) infinite;
+}
+@keyframes bl-blink {
+  to {
+    visibility: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bl-blink {
+    animation: none;
+  }
 }
 
 /* Crosshair ticks where a section rule meets the page edges. */

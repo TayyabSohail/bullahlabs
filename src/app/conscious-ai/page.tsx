@@ -1,18 +1,19 @@
 import type { Metadata } from 'next';
 
+import { SectionHeading } from '@/components/common/section-heading';
 import { AiWorkSnapshot } from '@/components/course/ai-work-snapshot';
-import { CourseSignup } from '@/components/course/course-signup';
+import { SpoilerTyper } from '@/components/course/spoiler-typer';
 import { CommunitySection } from '@/components/sections/community';
+import { CourseSection } from '@/components/sections/conscious-ai';
 import {
-  CourseSection,
-  ForBusiness,
-  Vision,
-} from '@/components/sections/conscious-ai';
-import {
+  ConsciousAiClosing,
+  ConsciousAiFaq,
   ConsciousAiHero,
   ConsciousAiPrinciples,
+  CourseInstructor,
+  ForTeamsBridge,
+  OurRoots,
 } from '@/components/sections/conscious-ai-landing';
-import { CtaBanner } from '@/components/sections/cta-banner';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 
 import { paths } from '@/constants/paths';
@@ -38,9 +39,13 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * The page runs in the order of the Conscious AI page map: hero, problem,
+ * the fix, the live AI profile, the course and its instructor, our roots,
+ * the bridge to teams, FAQs, community, then the closing CTAs.
+ */
 export default async function ConsciousAiPage() {
   const dict = await getDictionary();
-  const t = dict.programPage;
 
   return (
     <>
@@ -51,32 +56,29 @@ export default async function ConsciousAiPage() {
         ]}
       />
       <ConsciousAiHero />
-      <section id='ai-profile' className='bl-section bl-rule bg-secondary'>
+      <ConsciousAiPrinciples />
+      <section id='ai-profile' className='bl-section bl-rule bl-band-mint'>
         <div className='bl-container'>
-          <AiWorkSnapshot />
+          <SectionHeading
+            kicker='Start here · Live'
+            title='Feeling like AI will replace you?'
+            accentWords={[4, 5]}
+            description='Five quick steps to find out.'
+            aside={<SpoilerTyper />}
+          />
+          <div className='mt-8 sm:mt-12'>
+            <AiWorkSnapshot />
+          </div>
         </div>
       </section>
-      <ConsciousAiPrinciples />
-      <CourseSection dict={dict} />
-      <ForBusiness dict={dict} />
-      <Vision dict={dict} />
-      <CommunitySection dict={dict} />
-      <CtaBanner
-        dict={dict}
-        kicker={t.comingSoon.kicker}
-        title={t.comingSoon.title}
-        accentWords={[...t.comingSoon.accent]}
-        body={t.comingSoon.body}
-      >
-        <CourseSignup
-          dict={dict}
-          source='conscious-ai:coming-soon'
-          variant='inline'
-          tone='dark'
-          submitLabel={t.comingSoon.cta}
-          className='w-full max-w-xl text-left'
-        />
-      </CtaBanner>
+      <CourseSection dict={dict}>
+        <CourseInstructor />
+      </CourseSection>
+      <OurRoots />
+      <ForTeamsBridge />
+      <ConsciousAiFaq />
+      <CommunitySection dict={dict} className='bl-band-stone bl-band-peach' />
+      <ConsciousAiClosing dict={dict} />
     </>
   );
 }

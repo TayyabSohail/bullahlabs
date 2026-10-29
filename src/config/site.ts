@@ -2,14 +2,21 @@ import { paths } from '@/constants/paths';
 import { env } from '@/env';
 
 /**
- * Asccepts "username" or "username/event-slug" only. Rejects API keys
- * (cal_live_..., cal_test_...), and tolerates a pasted full cal.com URL.
+ * Accepts "username", "username/event-slug" or "team/team-slug/event-slug".
+ * Rejects API keys (cal_live_..., cal_test_...), and tolerates a pasted full
+ * cal.com URL.
+ *
+ * The team form is the one that puts both hosts on the booking page and the
+ * booking on both Google Calendars (a Cal.com "collective" event), so it has
+ * to pass; the old one-slash rule silently hid the button for it.
  */
 function parseCalHandle(value: string | undefined) {
   if (!value) return null;
   const handle = value.trim().replace(/^https?:\/\/(www\.)?cal\.com\//i, '');
   if (/^cal_(live|test)_/i.test(handle)) return null;
-  return /^[a-z0-9._-]+(\/[a-z0-9._-]+)?$/i.test(handle) ? handle : null;
+  const personal = /^[a-z0-9._-]+(\/[a-z0-9._-]+)?$/i;
+  const team = /^team\/[a-z0-9._-]+\/[a-z0-9._-]+$/i;
+  return personal.test(handle) || team.test(handle) ? handle : null;
 }
 
 const calHandle = parseCalHandle(env.NEXT_PUBLIC_CAL_LINK);

@@ -45,7 +45,11 @@ export function CourseLink({
 }
 
 /** A considered launch preview until the first Conscious AI course opens. */
-export function CourseSection({ dict, className }: SectionProps) {
+export function CourseSection({
+  dict,
+  className,
+  children,
+}: SectionProps & { children?: React.ReactNode }) {
   const t = dict.programPage.course;
 
   return (
@@ -140,6 +144,7 @@ export function CourseSection({ dict, className }: SectionProps) {
             </div>
           </div>
         </Reveal>
+        {children}
       </div>
     </section>
   );

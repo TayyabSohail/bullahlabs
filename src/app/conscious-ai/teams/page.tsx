@@ -51,6 +51,9 @@ const offers = [
   ],
 ];
 
+/** Anchors the Conscious AI page's team offers link to, one per card. */
+const offerIds = ['workshops', 'guidance', 'audits'];
+
 const waste = [
   ['A lorry delivering a letter', 'Oversized model'],
   ['A filing cabinet at every meeting', 'Too much context'],
@@ -139,7 +142,7 @@ export default async function ConsciousAiTeamsPage() {
         </div>
       </section>
 
-      <section className='bl-section bl-rule bg-background'>
+      <section id='how' className='bl-section bl-rule bg-background'>
         <div className='bl-container'>
           <p className='bl-kicker'>How we work</p>
           <TextReveal
@@ -169,7 +172,7 @@ export default async function ConsciousAiTeamsPage() {
         </div>
       </section>
 
-      <section className='bl-section bl-rule bl-band-stone'>
+      <section id='services' className='bl-section bl-rule bl-band-stone'>
         <div className='bl-container'>
           <p className='bl-kicker'>Any size</p>
           <TextReveal
@@ -182,7 +185,8 @@ export default async function ConsciousAiTeamsPage() {
             {offers.map(([tag, title, body, cta], index) => (
               <Reveal
                 key={title}
-                className={`flex min-h-0 flex-col ${index === 2 ? 'bl-card-ink' : 'bl-card'} p-5 sm:min-h-80 sm:p-8`}
+                id={offerIds[index]}
+                className={`flex min-h-0 scroll-mt-28 flex-col ${index === 2 ? 'bl-card-ink' : 'bl-card'} p-5 sm:min-h-80 sm:p-8`}
               >
                 <p
                   className={`inline-block w-fit border px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.15em] ${index === 2 ? 'border-brand/70 text-brand-2' : 'border-ink/40 text-muted-foreground'}`}
