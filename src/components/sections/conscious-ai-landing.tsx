@@ -648,11 +648,11 @@ export function ForTeamsBridge() {
         <Reveal delay={0.15} className='mt-4'>
           <Link
             href={paths.teams}
-            className='bl-card bl-card-link group flex items-center justify-between gap-5 p-5 sm:p-6'
+            className='bl-card bl-card-link group flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6'
           >
             <span className='min-w-0'>
-              <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-muted-foreground'>
-                The full page
+              <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+                Tap to explore
               </span>
               <span className='bl-display mt-1.5 block text-2xl text-foreground sm:text-3xl'>
                 How we work with teams
@@ -661,8 +661,9 @@ export function ForTeamsBridge() {
                 Workshops, guidance and audits, explained on one page.
               </span>
             </span>
-            <span className='flex h-12 w-12 shrink-0 items-center justify-center border border-ink bg-brand text-ink shadow-[3px_3px_0_0_hsl(var(--ink))] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5'>
-              <ArrowUpRight className='h-5 w-5' aria-hidden='true' />
+            <span className='bl-btn bl-btn-primary inline-flex h-12 w-fit shrink-0 items-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] transition-transform group-hover:-translate-y-0.5'>
+              Explore the teams page
+              <ArrowUpRight className='h-3.5 w-3.5' aria-hidden='true' />
             </span>
           </Link>
         </Reveal>
