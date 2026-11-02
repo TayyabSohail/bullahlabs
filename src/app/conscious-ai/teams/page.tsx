@@ -71,7 +71,7 @@ function ContactButton({
 }) {
   return (
     <Link
-      href={`${paths.contact}?service=team`}
+      href={paths.contact}
       className={`bl-btn ${tone === 'primary' ? 'bl-btn-primary' : 'bl-btn-secondary'} inline-flex h-12 items-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.18em]`}
     >
       {children}
@@ -204,7 +204,7 @@ export default async function ConsciousAiTeamsPage() {
                   {body}
                 </p>
                 <Link
-                  href={`${paths.contact}?service=team`}
+                  href={paths.contact}
                   className={`bl-action mt-6 sm:mt-auto sm:pt-8 ${index === 2 ? 'text-brand-2 hover:text-brand-2' : ''}`}
                 >
                   {cta} <ArrowUpRight className='h-3.5 w-3.5' />

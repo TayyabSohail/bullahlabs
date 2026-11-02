@@ -1,7 +1,7 @@
-import { CommunitySection } from '@/components/sections/community';
 import { Preloader } from '@/components/layout/preloader';
+import { CommunitySection } from '@/components/sections/community';
 import { ConsciousAiHome } from '@/components/sections/conscious-ai-home';
-import { ContactSection } from '@/components/sections/contact-section';
+import { CtaBanner } from '@/components/sections/cta-banner';
 import { FaqSection } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
 import { LocationsHome } from '@/components/sections/locations-home';
@@ -17,8 +17,9 @@ import { getDictionary } from '@/i18n/server';
 /**
  * The landing page, top to bottom: who we are, the problem people arrive
  * with, how the studio works, a tool carousel, selected work, a Conscious AI
- * preview, figures and locations, contact and FAQ. Full company and program
- * information live on their dedicated pages.
+ * preview, figures and locations, FAQ, then the closing call to action that
+ * leads to the contact page, as every other page ends. Full company and
+ * program information live on their dedicated pages.
  */
 export default async function HomePage() {
   const dict = await getDictionary();
@@ -35,7 +36,6 @@ export default async function HomePage() {
       <ConsciousAiHome dict={dict} />
       <CommunitySection dict={dict} />
       <LocationsHome />
-      <ContactSection dict={dict} />
       <div id='faq' className='scroll-mt-24'>
         <FaqSection
           items={getFaqs(dict.locale)}
@@ -46,6 +46,7 @@ export default async function HomePage() {
           className='bl-band-mint bl-rule'
         />
       </div>
+      <CtaBanner dict={dict} />
     </>
   );
 }

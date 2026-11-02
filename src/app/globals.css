@@ -88,11 +88,14 @@
     overflow: hidden;
   }
 
-  /* No scrollbar beside the first-load curtain. Pure CSS so it holds from the
-     server paint until the preloader leaves the DOM, before Lenis has added
-     its class. The gutter stays reserved, so nothing shifts when it lifts. */
+  /* No scrollbar, and no reserved gutter, beside the first-load curtain. Pure
+     CSS so it holds from the server paint, before Lenis has added its class,
+     and it stays until the curtain has fully slid away and left the DOM. The
+     gutter alone would still paint as a 14px track strip next to the black
+     curtain, so it goes too. */
   html:has([data-preloader]) {
     overflow: hidden;
+    scrollbar-gutter: auto;
   }
 }
 
@@ -190,6 +193,15 @@
   .urdu-khatati {
     font-family:
       'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Noto Naskh Arabic', serif;
+    font-weight: 600;
+  }
+
+  /* Gurmukhi for the same verse: Noto first, then the fonts Windows, macOS
+     and Android ship with, so the script never falls back to tofu. */
+  .gurmukhi-lipi {
+    font-family:
+      'Noto Serif Gurmukhi', 'Noto Sans Gurmukhi', 'Raavi', 'Gurmukhi MN',
+      'Gurmukhi Sangam MN', 'Lohit Gurmukhi', sans-serif;
     font-weight: 600;
   }
 

@@ -9,11 +9,12 @@ import {
   ConsciousAiClosing,
   ConsciousAiFaq,
   ConsciousAiHero,
+  ConsciousAiNextSteps,
   ConsciousAiPrinciples,
-  CourseInstructor,
   ForTeamsBridge,
   OurRoots,
 } from '@/components/sections/conscious-ai-landing';
+import { ConsciousAiNumbers } from '@/components/sections/conscious-ai-numbers';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 
 import { paths } from '@/constants/paths';
@@ -40,9 +41,11 @@ export const metadata: Metadata = {
 };
 
 /**
- * The page runs in the order of the Conscious AI page map: hero, problem,
- * the fix, the live AI profile, the course and its instructor, our roots,
- * the bridge to teams, FAQs, community, then the closing CTAs.
+ * The page runs in the order of the Conscious AI page map: hero, the problem
+ * and the fix in one ledger, two cards pointing to services and upskilling,
+ * the numbers, the live AI profile, the
+ * course and its instructor, our roots, the bridge to teams, FAQs, community,
+ * then the closing CTAs.
  */
 export default async function ConsciousAiPage() {
   const dict = await getDictionary();
@@ -57,10 +60,12 @@ export default async function ConsciousAiPage() {
       />
       <ConsciousAiHero />
       <ConsciousAiPrinciples />
+      <ConsciousAiNextSteps />
+      <ConsciousAiNumbers />
       <section id='ai-profile' className='bl-section bl-rule bl-band-mint'>
         <div className='bl-container'>
           <SectionHeading
-            kicker='Start here · Live'
+            kicker='Try it · Live'
             title='Feeling like AI will replace you?'
             accentWords={[4, 5]}
             description='Five quick steps to find out.'
@@ -71,9 +76,7 @@ export default async function ConsciousAiPage() {
           </div>
         </div>
       </section>
-      <CourseSection dict={dict}>
-        <CourseInstructor />
-      </CourseSection>
+      <CourseSection dict={dict} />
       <OurRoots />
       <ForTeamsBridge />
       <ConsciousAiFaq />

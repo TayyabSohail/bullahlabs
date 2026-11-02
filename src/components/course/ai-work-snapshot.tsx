@@ -560,7 +560,7 @@ function Result({
             </div>
             <div className='mt-4 space-y-2'>
               <a
-                href={`${paths.contact}?service=team`}
+                href={paths.contact}
                 className='group flex items-center justify-between gap-4 border-2 border-ink bg-ink px-4 py-3 text-white transition-colors hover:bg-ink/90'
               >
                 <span className='text-sm font-semibold'>

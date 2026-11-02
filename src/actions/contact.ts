@@ -24,7 +24,14 @@ import Logger from '@/utils/logger';
 
 import { siteConfig } from '@/config/site';
 import { env, isSupabaseConfigured } from '@/env';
-import { contactSchema, INTEREST_OPTIONS } from '@/schema/contact';
+import {
+  composeContactBrief,
+  CONTACT_GOALS,
+  CONTACT_SERVICE,
+  CONTACT_TEAM_SIZES,
+  CONTACT_TOOLS,
+  contactSchema,
+} from '@/schema/contact';
 
 /**
  * Handles the contact form. Delivery is layered so the form always
@@ -53,9 +60,9 @@ export const submitContact = safeActionClient
       );
     }
 
-    const service =
-      INTEREST_OPTIONS.find((option) => option.value === parsedInput.service)
-        ?.label ?? parsedInput.service;
+    const service = CONTACT_SERVICE.label;
+    const brief = composeContactBrief(parsedInput);
+    const notes = parsedInput.message?.trim() || '';
 
     const summary = [
       `Name: ${parsedInput.name}`,
@@ -63,7 +70,7 @@ export const submitContact = safeActionClient
       `Company: ${parsedInput.company || '-'}`,
       `Interest: ${service}`,
       '',
-      parsedInput.message,
+      brief,
     ].join('\n');
 
     let delivered = false;
@@ -74,7 +81,18 @@ export const submitContact = safeActionClient
         await sendInternalMail({
           subject: `New enquiry: ${parsedInput.name} (${service})`,
           text: summary,
-          html: renderEnquiryHtml({ ...parsedInput, service }),
+          html: renderEnquiryHtml({
+            name: parsedInput.name,
+            email: parsedInput.email,
+            company: parsedInput.company,
+            service,
+            facts: [
+              ['Tool', CONTACT_TOOLS[parsedInput.tool]],
+              ['Team', CONTACT_TEAM_SIZES[parsedInput.teamSize]],
+              ['Focus', CONTACT_GOALS[parsedInput.goal]],
+            ],
+            message: notes,
+          }),
           replyTo: parsedInput.email,
         });
         delivered = true;
@@ -93,12 +111,12 @@ export const submitContact = safeActionClient
               `every enquiry and you will hear back ${siteConfig.responseTime}.`,
               '',
               'What you sent:',
-              parsedInput.message,
+              brief,
             ].join('\n'),
             html: renderAcknowledgementHtml({
               name: parsedInput.name,
               service,
-              message: parsedInput.message,
+              message: brief,
               responseTime: siteConfig.responseTime,
             }),
           });
@@ -128,10 +146,10 @@ export const submitContact = safeActionClient
         name: parsedInput.name,
         email: parsedInput.email,
         company: parsedInput.company || null,
-        service: parsedInput.service,
+        service: CONTACT_SERVICE.value,
         // The form no longer asks for a budget, but the column is NOT NULL.
         budget: 'n/a',
-        message: parsedInput.message,
+        message: brief,
         ip,
       });
       if (error) Logger.error('contact_messages insert failed', error.message);
@@ -146,7 +164,7 @@ export const submitContact = safeActionClient
           parsedInput.email,
           parsedInput.company || '',
           service,
-          parsedInput.message,
+          brief,
           '', // Replied: filled in by hand
         ]);
         delivered = true;

@@ -39,7 +39,7 @@ function plate(size, { ring = false } = {}) {
     : '';
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}">
   <rect width="${size}" height="${size}" fill="${PLATE}"/>
-  <g transform="translate(${inset} ${inset}) scale(${inner / 100})"><path fill="${MARK}" d="${pathData}"/></g>
+  <g transform="translate(${inset} ${inset}) scale(${inner / 100})"><path fill="${MARK}" fill-rule="evenodd" d="${pathData}"/></g>
   ${ringRect}
 </svg>`;
   return sharp(Buffer.from(svg), { density: 300 }).resize(size, size);

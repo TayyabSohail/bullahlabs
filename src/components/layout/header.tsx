@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 import { Logo } from '@/components/brand/logo';
+import { LetsTalkButton } from '@/components/contact/lets-talk-button';
 import { CommunityLinks } from '@/components/layout/community-links';
 import { LocaleSwitcher } from '@/components/layout/locale-switcher';
 import { MobileMenu } from '@/components/layout/mobile-menu';
@@ -26,11 +27,13 @@ export function Header({ dict }: HeaderProps) {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // The mobile menu supplies Home itself so shared navigation can stay focused
-  // on standalone sections. Desktop needs it alongside the primary links.
+  // The mobile menu supplies Home and Contact itself so shared navigation
+  // can stay focused on standalone sections. Desktop needs them alongside
+  // the primary links.
   const items = [
     { label: dict.nav.home, href: paths.home },
     ...primaryNav(dict),
+    { label: dict.nav.contact, href: paths.contact },
   ];
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -93,21 +96,20 @@ export function Header({ dict }: HeaderProps) {
           })}
         </nav>
 
-        <div className='flex shrink-0 items-center justify-self-end gap-3'>
+        <div className='flex shrink-0 items-center gap-3 justify-self-end'>
           {/* Desktop only; the mobile menu carries them below lg. The
               actions come first (community, then the CTA) and the language
               setting sits last, a rule apart. */}
           <CommunityLinks dict={dict} className='hidden lg:flex' />
           {/* Shown at every width so phones get a CTA beside the hamburger,
-              not only the icon. Dropped on the contact page itself, where it
-              would only point at the form already on screen. */}
+              not only the icon. Opens the booking calendar in a modal; the
+              Contact link in the nav is the way to the page and its form.
+              Dropped on the contact page itself, where the calendar is
+              already on screen. */}
           {!isActive(paths.contact) && (
-            <Link
-              href={paths.contact}
-              className='bl-btn bl-btn-primary inline-flex h-10 items-center px-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:px-5'
-            >
+            <LetsTalkButton className='bl-btn bl-btn-primary inline-flex h-10 items-center px-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:px-5'>
               {dict.nav.cta}
-            </Link>
+            </LetsTalkButton>
           )}
           <span aria-hidden className='hidden h-6 w-px bg-ink/15 lg:block' />
           <LocaleSwitcher
