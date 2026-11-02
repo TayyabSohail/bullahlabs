@@ -58,20 +58,18 @@ export default async function OpenGraphImage() {
             height={64}
             style={{ borderRadius: 14 }}
           />
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: 30, fontWeight: 700, letterSpacing: -1 }}>
-              Bullah
-            </span>
-            <span
-              style={{
-                fontSize: 14,
-                letterSpacing: 5,
-                textTransform: 'uppercase',
-                color: '#9a9a9a',
-              }}
-            >
-              Labs
-            </span>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              fontSize: 30,
+              fontWeight: 700,
+              letterSpacing: -1,
+              lineHeight: 1,
+            }}
+          >
+            <span>Bullah</span>
+            <span>Labs</span>
           </div>
         </div>
 

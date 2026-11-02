@@ -46,7 +46,7 @@ export function Hero({ dict }: HeroProps) {
 
             <Reveal
               delay={0.18}
-              className='mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:items-stretch'
+              className='mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:items-stretch sm:justify-center lg:justify-start'
             >
               {/* A shared fixed measure makes this CTA pair read as one
                   deliberate choice on every viewport. */}

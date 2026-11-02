@@ -1,14 +1,8 @@
-import {
-  ArrowRight,
-  ArrowUpRight,
-  GraduationCap,
-  Plus,
-  RotateCcw,
-  Users,
-} from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Plus, RotateCcw, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { HarvardShield } from '@/components/brand/harvard-shield';
 import { TalkToHumansButton } from '@/components/community/talk-to-humans';
 import { BookCallButton } from '@/components/contact/book-call-button';
 import { Reveal } from '@/components/motion/reveal';
@@ -65,22 +59,25 @@ function ReceiptBlock({
 }) {
   const conscious = tone === 'conscious';
   return (
-    <Reveal delay={delay} className='border-t border-dashed border-ink/40 pt-3'>
-      <div className='flex items-baseline justify-between gap-3'>
+    <Reveal
+      delay={delay}
+      className='border-t border-dashed border-ink/40 pt-2.5 sm:pt-3'
+    >
+      <div className='flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3'>
         <span
           className={`shrink-0 whitespace-nowrap font-mono text-[10px] font-semibold uppercase tracking-[0.18em] ${conscious ? 'text-brand-text' : 'text-muted-foreground'}`}
         >
           {label}
         </span>
-        <span className='min-w-0 truncate font-mono text-[10px] text-muted-foreground'>
+        <span className='min-w-0 font-mono text-[10px] text-muted-foreground sm:truncate'>
           {route}
         </span>
       </div>
-      <dl className='mt-2 space-y-1'>
+      <dl className='mt-1.5 space-y-0.5 sm:mt-2 sm:space-y-1'>
         {rows.map(([key, value]) => (
           <div
             key={key}
-            className='flex items-baseline gap-2 font-mono text-[12px] sm:text-[13px]'
+            className='flex items-baseline gap-2 font-mono text-[11px] sm:text-[13px]'
           >
             <dt className='text-muted-foreground'>{key}</dt>
             <span
@@ -102,9 +99,9 @@ function ReceiptBlock({
 /** A till receipt for one year of AI, the usual way and ours. */
 function PlanetReceipt() {
   return (
-    <div className='relative mx-auto w-full max-w-sm lg:mr-0'>
+    <div className='relative mx-auto w-full max-w-[17.5rem] sm:max-w-sm md:mr-0'>
       <div className='bl-card bl-receipt rotate-[-1.5deg] bg-surface'>
-        <div className='flex items-center justify-between gap-3 border-b border-ink px-4 py-2.5'>
+        <div className='flex items-center justify-between gap-3 border-b border-ink px-3 py-2 sm:px-4 sm:py-2.5'>
           <span className='flex items-center gap-1.5' aria-hidden='true'>
             <span className='h-2 w-2 rounded-full border border-ink' />
             <span className='h-2 w-2 rounded-full border border-ink' />
@@ -114,10 +111,12 @@ function PlanetReceipt() {
             Receipt · the planet's tab
           </span>
         </div>
-        <div className='space-y-4 px-5 pb-6 pt-5'>
+        <div className='space-y-3 px-4 pb-5 pt-4 sm:space-y-4 sm:px-5 sm:pb-6 sm:pt-5'>
           <Reveal>
-            <p className='bl-display text-xl text-foreground'>{receipt.task}</p>
-            <p className='mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground'>
+            <p className='bl-display text-base text-foreground sm:text-xl md:text-lg lg:text-xl'>
+              {receipt.task}
+            </p>
+            <p className='mt-1 font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground sm:text-[10px] sm:tracking-[0.16em]'>
               Paid by: the planet · Settled by: you
             </p>
           </Reveal>
@@ -130,18 +129,26 @@ function PlanetReceipt() {
             <span className='font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground'>
               Saved
             </span>
-            <span className='bl-display text-3xl text-brand-text'>
+            <span className='bl-display text-2xl text-brand-text sm:text-3xl'>
               {receipt.saved}
             </span>
           </Reveal>
         </div>
         <div aria-hidden='true' className='bl-receipt-edge' />
       </div>
+      {/* The stamp wears the SPOILER plate: a skewed ink bar with a diagonal
+          stripe texture, white bold type, the key word lit in green, on a
+          hard green shadow. The rotation lives on the wrapper so the
+          stamp-in animation does not overwrite the skew. */}
       <span
         aria-hidden='true'
-        className='bl-stamp-in absolute -right-3 -top-4 rotate-[12deg] border-2 border-brand bg-background/80 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-brand-text shadow-[3px_3px_0_0_hsl(var(--brand))] sm:-right-6'
+        className='bl-stamp-in absolute -right-3 -top-5 rotate-[12deg] sm:-right-6'
       >
-        Better AI
+        <span className='inline-block -skew-x-6 bg-ink bg-[repeating-linear-gradient(45deg,transparent_0_6px,hsl(0_0%_100%/0.07)_6px_8px)] px-3 py-1.5 shadow-[3px_3px_0_0_hsl(var(--brand))]'>
+          <span className='inline-block skew-x-6 font-display text-lg font-bold leading-none text-white sm:text-xl'>
+            Better <span className='bl-accent text-brand-2'>AI</span>
+          </span>
+        </span>
       </span>
     </div>
   );
@@ -154,7 +161,7 @@ function PlanetReceipt() {
 export function ConsciousAiHero() {
   return (
     <section className='bl-grid-surface relative overflow-hidden border-b border-line bg-background'>
-      <div className='bl-container grid gap-12 pb-16 pt-28 sm:pt-36 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center lg:gap-16 lg:pb-24 lg:pt-40'>
+      <div className='bl-container grid gap-10 pb-16 pt-28 sm:pt-36 md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] md:items-center md:gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pb-24 lg:pt-40'>
         <div className='min-w-0'>
           <Reveal>
             <p className='bl-kicker'>Conscious AI · Our vision</p>
@@ -171,14 +178,17 @@ export function ConsciousAiHero() {
               counts, not just for token maxing.
             </p>
           </Reveal>
-          <Reveal delay={0.3} className='mt-8 flex flex-wrap gap-3'>
+          <Reveal
+            delay={0.3}
+            className='mt-8 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center md:justify-start'
+          >
             <Link
               href={teamHref}
-              className='bl-btn bl-btn-primary inline-flex h-12 items-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'
+              className='bl-btn bl-btn-primary inline-flex h-12 w-full max-w-[16rem] items-center justify-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] sm:w-auto sm:max-w-none'
             >
               Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
-            <TalkToHumansButton className='bl-btn bl-btn-ink h-12 gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'>
+            <TalkToHumansButton className='bl-btn bl-btn-ink h-12 w-full max-w-[16rem] justify-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] sm:w-auto sm:max-w-none'>
               <Users className='h-3.5 w-3.5' aria-hidden='true' />
               Talk to real humans
             </TalkToHumansButton>
@@ -301,26 +311,6 @@ const instructors: Instructor[] = [
       ],
     ],
   },
-  {
-    name: 'Umer Sohail',
-    firstName: 'Umer',
-    role: 'Instructor & Product Advisor',
-    tagline: 'Picks problems worth solving.',
-    bio: "Umer has spent 10+ years in tech, building and marketing B2B SaaS products. A mechanical engineer with a management master's from TUM, he picks problems worth solving, without creating new ones.",
-    image: '/images/umer-sohail.jpg',
-    focus: 'object-[center_30%]',
-    school: 'Technical University of Munich',
-    facts: [
-      [
-        'Before Bullah Labs',
-        '10+ years in B2B SaaS product development and marketing',
-      ],
-      [
-        'Education',
-        'BSc Mechanical Engineering · MSc Management, Technical University of Munich',
-      ],
-    ],
-  },
 ];
 
 /** One instructor: portrait, role, short bio and a fold-out with the facts. */
@@ -336,63 +326,64 @@ function InstructorCard({
   facts,
 }: Instructor) {
   return (
-    <Reveal className='bl-card flex flex-col p-5 sm:p-6'>
-      <div className='flex flex-wrap items-center gap-5'>
-        <Image
-          src={image}
-          alt={`Portrait of ${name}`}
-          width={800}
-          height={960}
-          sizes='96px'
-          className={`h-24 w-24 shrink-0 border border-ink object-cover shadow-[3px_3px_0_0_hsl(var(--brand))] ${focus}`}
-        />
-        <div className='min-w-0 flex-1 basis-48'>
-          <span className='inline-block bg-ink px-2 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white'>
+    <Reveal className='bl-card w-full p-5 sm:p-8 lg:p-10'>
+      <div className='grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12'>
+        {/* Portrait: a square on phones, a tall plate beside the text on desktop. */}
+        <div className='flex justify-center lg:block'>
+          <Image
+            src={image}
+            alt={`Portrait of ${name}`}
+            width={800}
+            height={960}
+            sizes='(min-width: 1024px) 240px, (min-width: 640px) 160px, 128px'
+            className={`h-32 w-32 border border-ink object-cover shadow-[4px_4px_0_0_hsl(var(--brand))] sm:h-40 sm:w-40 lg:aspect-[5/6] lg:h-auto lg:w-full ${focus}`}
+          />
+        </div>
+
+        <div className='min-w-0 text-center lg:text-left'>
+          <span className='inline-block bg-ink px-2.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white sm:text-[11px]'>
             {role}
           </span>
-          <h3 className='bl-display mt-3 text-2xl text-foreground sm:text-3xl'>
+          <h3 className='bl-display mt-4 text-3xl text-foreground sm:text-4xl lg:text-[2.75rem]'>
             {name}
           </h3>
-          <p className='bl-accent font-display text-lg text-brand-text'>
+          <p className='bl-accent mt-1 font-display text-xl text-brand-text sm:text-2xl'>
             {tagline}
+          </p>
+
+          <div className='mt-6 flex items-center gap-4 border border-ink bg-brand-soft/60 px-4 py-3.5 text-left shadow-[3px_3px_0_0_hsl(var(--ink))] sm:gap-5 sm:px-5 sm:py-4'>
+            <HarvardShield className='h-14 w-auto shrink-0 sm:h-16' />
+            <span className='min-w-0'>
+              <span className='block font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground sm:text-[11px]'>
+                Alumnus
+              </span>
+              <span className='mt-0.5 block font-display text-xl font-semibold leading-tight text-foreground sm:text-2xl'>
+                {school}
+              </span>
+            </span>
+          </div>
+
+          <p className='mt-6 text-base leading-relaxed text-foreground/80 sm:text-lg'>
+            {bio}
           </p>
         </div>
       </div>
 
-      <div className='mt-5 flex items-center gap-3 border border-ink bg-brand-soft/60 px-4 py-3 shadow-[3px_3px_0_0_hsl(var(--ink))]'>
-        <GraduationCap
-          className='h-6 w-6 shrink-0 text-brand-text'
-          aria-hidden='true'
-        />
-        <span className='min-w-0'>
-          <span className='block font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground'>
-            Alumnus
-          </span>
-          <span className='block font-display text-lg font-semibold leading-tight text-foreground'>
-            {school}
-          </span>
-        </span>
-      </div>
-
-      <p className='mt-5 text-sm leading-relaxed text-muted-foreground sm:text-[15px]'>
-        {bio}
-      </p>
-
-      <details className='group mt-5 border-t border-ink/20 pt-4'>
-        <summary className='bl-action cursor-pointer list-none [&::-webkit-details-marker]:hidden'>
+      <details className='group mt-7 border-t border-ink/20 pt-5 text-center lg:mt-8 lg:text-left'>
+        <summary className='bl-action cursor-pointer list-none text-xs sm:text-[13px] [&::-webkit-details-marker]:hidden'>
           More about {firstName}
           <Plus
-            className='h-3.5 w-3.5 transition-transform duration-200 group-open:rotate-45'
+            className='h-4 w-4 transition-transform duration-200 group-open:rotate-45'
             aria-hidden='true'
           />
         </summary>
-        <dl className='mt-4 grid gap-3'>
+        <dl className='mt-5 grid gap-5 text-left sm:grid-cols-3 sm:gap-8'>
           {facts.map(([label, body]) => (
-            <div key={label}>
-              <dt className='font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-brand-text'>
+            <div key={label} className='sm:border-l sm:border-ink/20 sm:pl-4'>
+              <dt className='font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-brand-text sm:text-[11px]'>
                 {label}
               </dt>
-              <dd className='mt-1 text-sm font-semibold leading-snug text-foreground'>
+              <dd className='mt-1.5 text-[15px] font-semibold leading-snug text-foreground sm:text-base'>
                 {body}
               </dd>
             </div>
@@ -406,17 +397,17 @@ function InstructorCard({
 /** Who teaches the course: a heading of its own, then one card per instructor. */
 export function CourseInstructor() {
   return (
-    <div className='mt-10 border-t border-ink/20 pt-8 sm:mt-14 sm:pt-10'>
+    <div className='mt-10 border-t border-ink/20 pt-8 text-center sm:mt-14 sm:pt-10'>
       <Reveal>
-        <p className='bl-kicker'>Your instructors</p>
+        <p className='bl-kicker'>Your instructor</p>
       </Reveal>
       <TextReveal
         as='h3'
-        text='A teacher and a builder.'
-        accentWords={[4]}
-        className='bl-display mt-4 text-3xl text-foreground sm:text-4xl'
+        text='Taught by a teacher of teachers.'
+        accentWords={[5]}
+        className='bl-display mx-auto mt-4 max-w-2xl text-3xl text-foreground sm:text-4xl'
       />
-      <div className='mt-7 grid gap-6 md:grid-cols-2 md:items-start'>
+      <div className='mx-auto mt-8 grid w-full max-w-4xl gap-6 text-left sm:mt-10'>
         {instructors.map((instructor) => (
           <InstructorCard key={instructor.name} {...instructor} />
         ))}

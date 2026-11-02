@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 
+import { Logo } from '@/components/brand/logo';
 import { ContactForm } from '@/components/contact/contact-form';
 
 import type { Dictionary } from '@/i18n/dictionaries/en';
@@ -101,6 +102,18 @@ export function ContactChannels({
           id='contact-calendar'
           className='mt-8 overflow-hidden border border-line bg-ink'
         >
+          {/* The brand sheet's green-on-black colourway: the panel is the one
+              dark surface on the page, so the green mark lives here. */}
+          <div className='flex items-center justify-between gap-4 border-b border-card/15 px-5 py-4 sm:px-6'>
+            <Logo
+              linked={false}
+              markClassName='text-brand'
+              wordmarkClassName='text-card'
+            />
+            <span className='font-mono text-[11px] uppercase tracking-[0.18em] text-card/70'>
+              {t.callTab}
+            </span>
+          </div>
           <CalEmbed calLink={calLink} />
         </div>
       ) : (

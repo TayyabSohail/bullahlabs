@@ -87,6 +87,13 @@
   .lenis.lenis-stopped {
     overflow: hidden;
   }
+
+  /* No scrollbar beside the first-load curtain. Pure CSS so it holds from the
+     server paint until the preloader leaves the DOM, before Lenis has added
+     its class. The gutter stays reserved, so nothing shifts when it lifts. */
+  html:has([data-preloader]) {
+    overflow: hidden;
+  }
 }
 
 /* ------------------------------------------------------------------------- */

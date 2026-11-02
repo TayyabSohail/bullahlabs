@@ -83,7 +83,7 @@ Edit these; the pages update themselves.
 
 ### Brand
 
-- Source artwork: `public/brand/logo.jpg`. Run `node scripts/build-brand-assets.mjs` after replacing it to regenerate the square mark and every icon.
+- Source artwork: `public/brand/logo-mark.svg` (the whirling dervish mark, 100x100 viewBox, `currentColor` fill). Run `node scripts/build-brand-assets.mjs` after replacing it to regenerate the plated mark and every icon.
 - Logo mark and wordmark: `src/components/brand/logo.tsx`
 - Favicon frames (rotate every 10 s, plain and ringed): `src/components/brand/favicon-frames.ts`
 - Static icons and Open Graph image: `public/icon*.png`, `src/app/opengraph-image.tsx`
