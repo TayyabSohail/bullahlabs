@@ -102,12 +102,12 @@ export function ContactChannels({
           id='contact-calendar'
           className='mt-8 overflow-hidden border border-line bg-ink'
         >
-          {/* The brand sheet's green-on-black colourway: the panel is the one
-              dark surface on the page, so the green mark lives here. */}
+          {/* One colour for the whole lockup, matching the white-on-ink
+              favicon the Cal.com embed shows just below. */}
           <div className='flex items-center justify-between gap-4 border-b border-card/15 px-5 py-4 sm:px-6'>
             <Logo
               linked={false}
-              markClassName='text-brand'
+              markClassName='text-card'
               wordmarkClassName='text-card'
             />
             <span className='font-mono text-[11px] uppercase tracking-[0.18em] text-card/70'>
