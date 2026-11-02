@@ -17,7 +17,11 @@ interface ProjectCardProps {
   actionLabel?: string;
 }
 
-const VISIBLE_TECH = 4;
+/**
+ * Three chips plus a "+N" fit one row at every card width, so the chip row,
+ * and with it the footer, sits at the same height on every tile.
+ */
+const VISIBLE_TECH = 3;
 
 /**
  * Portfolio-style project tile: the product on devices, category chip,
@@ -40,7 +44,7 @@ export function ProjectCard({
       aria-label={`${project.title}: ${project.tagline}`}
       data-cursor='view'
       className={cn(
-        'bl-card bl-card-link group relative isolate block min-w-0 max-w-full',
+        'bl-card bl-card-link group relative isolate flex min-w-0 max-w-full flex-col',
         className,
       )}
     >
@@ -58,21 +62,24 @@ export function ProjectCard({
         </span>
       </div>
 
-      <div className='relative p-5 sm:p-6'>
-        <h3 className='bl-display text-2xl text-ink transition-colors duration-300 group-hover:text-brand-text'>
+      <div className='relative flex flex-1 flex-col p-5 sm:p-6'>
+        <h3 className='bl-display line-clamp-1 text-2xl text-ink transition-colors duration-300 group-hover:text-brand-text'>
           {project.title}
         </h3>
-        <p className='mt-2 text-[15px] leading-snug text-ink/80 sm:text-base sm:leading-snug'>
+        {/* Clamped to two lines and grows to fill the row, so the chip row
+            and footer line up across cards of one grid row. */}
+        <p className='mt-2 line-clamp-2 min-h-[2.5em] flex-1 text-[15px] leading-snug text-ink/80 sm:text-base sm:leading-snug'>
           {project.tagline}
         </p>
 
-        <ul className='mt-5 flex flex-wrap items-center gap-1.5 border-t pt-5'>
+        <ul className='mt-5 flex flex-nowrap items-center gap-1.5 overflow-hidden border-t pt-5'>
           {visibleTech.map((tech) => {
             const { icon: Icon, color } = getTechMeta(tech);
             return (
               <li
                 key={tech}
-                className='inline-flex items-center gap-1.5 border border-ink/10 bg-surface-2 px-2 py-1 text-xs text-ink/70 transition group-hover:text-ink'
+                title={tech}
+                className='inline-flex min-w-0 items-center gap-1.5 border border-ink/10 bg-surface-2 px-2 py-1 text-xs text-ink/70 transition group-hover:text-ink'
               >
                 <Icon
                   aria-hidden='true'
@@ -81,12 +88,15 @@ export function ProjectCard({
                     color: color === 'currentColor' ? undefined : color,
                   }}
                 />
-                {tech}
+                <span className='truncate'>{tech}</span>
               </li>
             );
           })}
           {overflow > 0 && (
-            <li className='inline-flex items-center border border-ink/10 bg-surface-2 px-2 py-1 text-xs text-ink/70'>
+            <li
+              title={project.tech.slice(VISIBLE_TECH).join(', ')}
+              className='inline-flex shrink-0 items-center border border-ink/10 bg-surface-2 px-2 py-1 text-xs text-ink/70'
+            >
               +{overflow}
             </li>
           )}

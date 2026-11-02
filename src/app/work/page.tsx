@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { PageHero } from '@/components/common/page-hero';
+import { SectionHeading } from '@/components/common/section-heading';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { ServicesTeaser } from '@/components/sections/services-teaser';
 import { Testimonials } from '@/components/sections/testimonials';
@@ -39,6 +40,13 @@ export default async function WorkPage() {
       />
       <ServicesTeaser dict={dict} />
       <section className='bl-container pb-10'>
+        <SectionHeading
+          kicker={t.grid.kicker}
+          title={t.grid.title}
+          accentWords={[...t.grid.accent]}
+          align='center'
+          className='mb-8 sm:mb-10'
+        />
         <ProjectGrid
           projects={showcase}
           categories={getCategories(showcase)}

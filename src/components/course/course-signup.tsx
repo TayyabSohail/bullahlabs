@@ -46,6 +46,8 @@ interface CourseSignupProps {
   body?: string;
   /** Hide the "training for a team" link under the panel. */
   teamLink?: boolean;
+  /** Hide the privacy line under the field (the footer links the policy). */
+  consent?: boolean;
   className?: string;
 }
 
@@ -64,6 +66,7 @@ export function CourseSignup({
   title,
   body,
   teamLink = true,
+  consent = true,
   className,
 }: CourseSignupProps) {
   const t = dict.program.signup;
@@ -174,7 +177,9 @@ export function CourseSignup({
           onChange={(event) => setEmail(event.target.value)}
           placeholder={t.placeholder}
           aria-invalid={error ? true : undefined}
-          aria-describedby={error ? `${id}-error` : `${id}-consent`}
+          aria-describedby={
+            error ? `${id}-error` : consent ? `${id}-consent` : undefined
+          }
           style={{ minHeight: '3.5rem' }}
           className={cn(
             'min-w-0 flex-1 border px-4 text-[15px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand/60',
@@ -210,7 +215,7 @@ export function CourseSignup({
         <p id={`${id}-error`} className='mt-2 text-xs text-red-400'>
           {error}
         </p>
-      ) : (
+      ) : consent ? (
         <p
           id={`${id}-consent`}
           className={cn(
@@ -230,7 +235,7 @@ export function CourseSignup({
           </Link>
           {t.consentAfter}
         </p>
-      )}
+      ) : null}
     </form>
   );
 
@@ -261,7 +266,7 @@ export function CourseSignup({
         <div className='mt-6'>{field}</div>
         {teamLink && (
           <Link
-            href={`${paths.contact}?service=team`}
+            href={paths.contact}
             className='bl-action mt-5 text-brand-2 hover:text-white'
           >
             {t.teamLink}

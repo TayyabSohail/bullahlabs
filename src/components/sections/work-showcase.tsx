@@ -8,7 +8,10 @@ import { ProjectCard } from '@/components/work/project-card';
 import { cn } from '@/lib/utils';
 
 import { paths } from '@/constants/paths';
-import { getShowcaseProjectsLocalised } from '@/data/projects';
+import {
+  getShowcaseProjectsByCategory,
+  getShowcaseProjectsLocalised,
+} from '@/data/projects';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface WorkShowcaseProps {
@@ -19,9 +22,10 @@ interface WorkShowcaseProps {
 }
 
 /**
- * "View our work" on the services page: three case studies as the proof
- * behind the services, each linking to its own page, plus a link to all of
- * them. The mirror of ServicesTeaser on /work.
+ * "View our work" on the services page: three case studies of three
+ * different product types as the proof behind the services, each linking
+ * to its own page, then a "view more" strip that takes the visitor to
+ * /work. The mirror of ServicesTeaser on /work.
  */
 export function WorkShowcase({
   dict,
@@ -29,7 +33,9 @@ export function WorkShowcase({
   count = 3,
 }: WorkShowcaseProps) {
   const t = dict.work.showcase;
-  const projects = getShowcaseProjectsLocalised(dict.locale).slice(0, count);
+  const all = getShowcaseProjectsLocalised(dict.locale);
+  const projects = getShowcaseProjectsByCategory(count, all);
+  const remaining = all.length - projects.length;
 
   return (
     <section
@@ -42,15 +48,6 @@ export function WorkShowcase({
           title={t.title}
           accentWords={[...t.accent]}
           description={t.description}
-          aside={
-            <Link
-              href={paths.work}
-              className='bl-btn bl-btn-primary inline-flex h-12 items-center gap-3 whitespace-nowrap px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
-            >
-              {t.cta}
-              <ArrowUpRight className='h-4 w-4' />
-            </Link>
-          }
         />
 
         <Stagger
@@ -75,6 +72,28 @@ export function WorkShowcase({
             </StaggerItem>
           ))}
         </Stagger>
+
+        {/* The "view more" row: the whole strip is the link to /work. */}
+        <Link
+          href={paths.work}
+          data-cursor='view'
+          className='bl-card bl-card-link group mt-6 flex items-center justify-between gap-4 px-5 py-4 sm:mt-8 sm:px-6'
+        >
+          <span className='min-w-0'>
+            <span className='block font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink transition-colors duration-300 group-hover:text-brand-text'>
+              {t.cta}
+            </span>
+            <span className='mt-1 block text-sm leading-snug text-muted-foreground'>
+              {t.more.replace('{n}', String(remaining))}
+            </span>
+          </span>
+          <span className='flex h-11 w-11 shrink-0 items-center justify-center bg-ink text-white transition-colors duration-300 group-hover:bg-brand'>
+            <ArrowUpRight
+              aria-hidden='true'
+              className='h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5'
+            />
+          </span>
+        </Link>
       </div>
     </section>
   );

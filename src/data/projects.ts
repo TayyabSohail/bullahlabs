@@ -2102,7 +2102,25 @@ export function getShowcaseProjects(): Project[] {
     );
 }
 
-/** Lenses present in `list`, in display order. */
+/**
+ * The first `count` projects of distinct categories, in showcase order, so a
+ * short row shows the range of what gets built rather than three of a kind.
+ */
+export function getShowcaseProjectsByCategory(
+  count: number,
+  list: readonly Project[] = getShowcaseProjects(),
+): Project[] {
+  const picked: Project[] = [];
+  const seen = new Set<ProjectCategory>();
+  for (const project of list) {
+    if (seen.has(project.category)) continue;
+    seen.add(project.category);
+    picked.push(project);
+    if (picked.length === count) break;
+  }
+  return picked;
+}
+
 /** Categories present in `list`, in display order. */
 export function getCategories(
   list: readonly Project[] = projects,

@@ -272,6 +272,12 @@ export const en = {
     description:
       'Products we designed, built or improved, each with the problem, the work and what changed. Filter by type.',
     view: 'Read the case study',
+    /** Heading over the filterable project grid on /work. */
+    grid: {
+      kicker: 'Our work',
+      title: 'Projects we have shipped.',
+      accent: [1, 2],
+    },
     filterLabel: 'Filter projects',
     /** Project categories, as filter chips on /work and labels elsewhere. */
     filters: {
@@ -323,8 +329,9 @@ export const en = {
       title: 'Real products, built this way.',
       accent: [2, 3, 4],
       description:
-        'Three recent projects, each with the problem, the work and what changed. The rest are on the work page.',
+        'Three products of three kinds, each with the problem, the work and what changed. The rest are on the work page.',
       cta: 'View all work',
+      more: '{n} more case studies, with filters by product type.',
     },
   },
   services: {

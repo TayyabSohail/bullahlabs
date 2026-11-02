@@ -245,6 +245,11 @@ export const de: Dictionary = {
     description:
       'Produkte, die wir entworfen, gebaut oder verbessert haben, jeweils mit Problem, Arbeit und Ergebnis. Filtern Sie nach Art.',
     view: 'Fallstudie lesen',
+    grid: {
+      kicker: 'Unsere Arbeit',
+      title: 'Projekte, die wir geliefert haben.',
+      accent: [1, 2],
+    },
     filterLabel: 'Projekte filtern',
     filters: {
       All: 'Alle',
@@ -291,8 +296,9 @@ export const de: Dictionary = {
       title: 'Echte Produkte, so gebaut.',
       accent: [2, 3],
       description:
-        'Drei aktuelle Projekte, jeweils mit Problem, Arbeit und Ergebnis. Alle weiteren auf der Projektseite.',
+        'Drei Produkte, drei Arten, jeweils mit Problem, Arbeit und Ergebnis. Alle weiteren auf der Projektseite.',
       cta: 'Alle Projekte ansehen',
+      more: '{n} weitere Fallstudien, filterbar nach Produktart.',
     },
   },
   services: {
