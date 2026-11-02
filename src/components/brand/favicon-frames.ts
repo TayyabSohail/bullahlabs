@@ -1,5 +1,5 @@
 /**
- * Two favicon frames: the mark on its own, and the mark with a brand-colour
+ * Two favicon frames: the white mark on ink, and the same with a brand-colour
  * ring. `DynamicFavicon` flips the tab icon between them. Both are 64 px PNGs
  * rendered from public/brand/logo-mark.svg by `scripts/build-brand-assets.mjs`.
  */
