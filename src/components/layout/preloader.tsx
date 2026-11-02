@@ -80,7 +80,9 @@ export function Preloader() {
     // The loader must paint its complete state before the exit transition starts.
     const timer = window.setTimeout(() => {
       setVisible(false);
-      document.documentElement.classList.remove('lenis-stopped');
+      // The scrollbar stays hidden through the exit: globals.css keeps the
+      // page locked for as long as the curtain is in the DOM, and the Lenis
+      // lock is released once the curtain has gone (see onExitComplete).
     }, HOLD_MS);
 
     return () => window.clearTimeout(timer);
@@ -95,6 +97,7 @@ export function Preloader() {
   return (
     <AnimatePresence
       onExitComplete={() => {
+        document.documentElement.classList.remove('lenis-stopped');
         document.documentElement.dataset.preloaderComplete = 'true';
         window.dispatchEvent(new Event('bullahlabs:preloader-complete'));
       }}

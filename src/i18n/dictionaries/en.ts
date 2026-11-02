@@ -104,12 +104,14 @@ export const en = {
     links: {
       reddit: {
         label: 'Reddit',
-        description: 'Join the discussion, share practical questions and learn from the wider community.',
+        description:
+          'Join the discussion, share practical questions and learn from the wider community.',
         cta: 'Join the subreddit',
       },
       discord: {
         label: 'Discord',
-        description: 'Take part in focused conversations, new resources and community updates.',
+        description:
+          'Take part in focused conversations, new resources and community updates.',
         cta: 'Join the server',
       },
     },
@@ -160,24 +162,28 @@ export const en = {
       water: {
         value: '600 billion litres',
         eyebrow: 'Water used',
-        title: 'That’s up to 1.2 trillion 500 ml bottles that could evaporate from AI in 2027.',
+        title:
+          'That’s up to 1.2 trillion 500 ml bottles that could evaporate from AI in 2027.',
         body: 'This GPT-3 estimate is not a fixed price per prompt. It changes with the model, response length, weather, cooling system and electricity grid.',
       },
       powerStats: [
         {
           value: '1 in every 67 units',
           eyebrow: 'Electricity used',
-          label: 'of electricity generated worldwide was used by data centres in 2024.',
+          label:
+            'of electricity generated worldwide was used by data centres in 2024.',
         },
         {
           value: 'Japan’s annual use',
           eyebrow: 'Projected for 2030',
-          label: 'AI-focused data centres could need this much electricity each year.',
+          label:
+            'AI-focused data centres could need this much electricity each year.',
         },
         {
           value: '65 million cars',
           eyebrow: 'CO₂ emissions',
-          label: 'The same yearly emissions as all of them driving for one year.',
+          label:
+            'The same yearly emissions as all of them driving for one year.',
         },
       ],
     },
@@ -306,8 +312,19 @@ export const en = {
       title: 'Every project should make a difference.',
       accent: [3, 4, 5],
       cta: 'Browse all projects',
+      /** Secondary link to /services next to the projects link. */
+      servicesCta: 'Explore our services',
       listLabel: 'Featured projects',
       more: '{n} more on the projects page',
+    },
+    /** "View our work" section on /services: three case studies and a link to all of them. */
+    showcase: {
+      kicker: 'View our work',
+      title: 'Real products, built this way.',
+      accent: [2, 3, 4],
+      description:
+        'Three recent projects, each with the problem, the work and what changed. The rest are on the work page.',
+      cta: 'View all work',
     },
   },
   services: {
@@ -318,6 +335,15 @@ export const en = {
       "Seven ways we help, under one roof: product thinking, solid engineering and honest advice on where technology, including AI, pays off and where it doesn't.",
     promise: 'Build it right the first time, or fix what already exists.',
     cta: 'Start a conversation',
+    /** "View our services" section on /work: the seven services and a link to the page. */
+    teaser: {
+      kicker: 'View our services',
+      title: 'Seven ways we can help.',
+      accent: [3, 4, 5],
+      description:
+        'Every project here drew on one or more of these. Pick the one that fits, or let us help you choose.',
+      cta: 'View all services',
+    },
   },
   whoWeAre: {
     kicker: 'Who we are',
@@ -391,6 +417,19 @@ export const en = {
       errorGeneric: 'Something went wrong. Please try again in a moment.',
       teamLink: 'Training for a whole team?',
     },
+    /** The free-course card in the page corner, above the community dock. */
+    popup: {
+      pill: 'Free course',
+      pillHint: 'Join the waitlist',
+      open: 'Open the free course card',
+      minimise: 'Minimise',
+      tag: 'Free · Coming soon',
+      kicker: 'Free course',
+      title: 'Use AI on your terms.',
+      body: 'Short lessons on when AI helps, which tool fits and what it really costs.',
+      taughtBy: 'Taught by',
+      cta: 'Join the waitlist',
+    },
   },
   programPage: {
     kicker: 'Conscious AI',
@@ -402,18 +441,18 @@ export const en = {
     heroCta: 'Tell me when it opens',
     principle: 'Practical skills. Conscious choices. No coding required.',
     course: {
-      kicker: 'Coming soon',
+      kicker: 'Join the waitlist',
       title: 'Better AI habits start here.',
       accent: [3, 4],
       preview: {
-        videoLabel: 'Videos',
-        status: 'Coming soon',
-        seriesLabel: 'A practical learning series',
-        videoTitle: 'Learn to use AI with more care and less waste.',
-        videoDescription:
-          'Short, focused videos for better decisions before, during and after you use AI at work.',
+        instructorLabel: 'Your instructor',
+        alumnus: 'Alumnus',
+        moreAbout: 'More about {name}',
+        title: 'Learn to use AI with more care and less waste.',
+        audience: 'For people who work with AI, not people who build it.',
+        /** What the course is, as three short chips. Shared with the corner card. */
+        points: ['Free', 'No coding', 'Built on real tasks'],
         waitlistCta: 'Join the waitlist',
-        inProduction: 'Now in production',
       },
     },
     problem: {
@@ -529,30 +568,43 @@ export const en = {
     namePlaceholder: 'Jane Doe',
     email: 'Work email',
     emailPlaceholder: 'jane@company.com',
-    company: 'Company',
     optional: 'optional',
-    companyPlaceholder: 'Company or team name',
-    service: 'What are you interested in?',
-    serviceOther: 'Something else',
-    serviceOtherTagline:
-      'A question, a partnership or anything not listed.',
-    interests: {
-      project: {
-        title: 'Start a project',
-        description: 'A new product, a rebuild or technology that needs to work better.',
-      },
-      course: {
-        title: 'The free course',
-        description: 'Access to the Conscious AI learning modules.',
-      },
-      team: {
-        title: 'Training for my team',
-        description: 'Conscious AI for a whole team or organisation.',
+    /** Placeholder shown in each of the three selects before a pick. */
+    pick: 'Pick one',
+    /** The three picks; keys mirror CONTACT_TOOLS / CONTACT_TEAM_SIZES / CONTACT_GOALS. */
+    tools: {
+      label: 'Main AI tool',
+      options: {
+        chatgpt: 'ChatGPT',
+        claude: 'Claude',
+        copilot: 'Copilot',
+        gemini: 'Gemini',
+        api: 'Own build / API',
+        other: 'Other or not sure',
       },
     },
-    message: 'Your message',
+    teamSize: {
+      label: 'People using it',
+      options: {
+        '1-10': '1 to 10',
+        '11-50': '11 to 50',
+        '51-200': '51 to 200',
+        '200+': 'More than 200',
+      },
+    },
+    goals: {
+      label: 'Improve first',
+      options: {
+        cost: 'Monthly cost',
+        quality: 'Quality of output',
+        privacy: 'Data and privacy',
+        adoption: 'Adoption and speed',
+        carbon: 'Energy and carbon',
+      },
+    },
+    message: 'Anything else?',
     messagePlaceholder:
-      'What are you building, what needs improving, or where is technology getting in the way?',
+      'Rough monthly spend, a workflow that hurts, a deadline.',
     consentBefore:
       'I agree that Bullah Labs may store and process this enquiry to respond to me, as described in the',
     consentLink: 'privacy policy',
@@ -564,26 +616,6 @@ export const en = {
     sentBody:
       'Thank you. A person reads every enquiry and replies {time}, straight to the address you gave us.',
     sentAgain: 'Send another',
-    // Multi-step wizard
-    stepLabel: 'Step {current} of {total}',
-    next: 'Continue',
-    back: 'Back',
-    steps: {
-      service: {
-        title: 'Where would you like to start?',
-        subtitle: 'Pick the closest match.',
-      },
-      message: {
-        title: 'Tell us a little more.',
-        subtitle: 'A few lines are enough. We ask the rest when we reply.',
-      },
-      details: {
-        title: 'Where do we send the reply?',
-        subtitle: 'Last step. We only use this to answer your enquiry.',
-      },
-    },
-    charactersLeft: '{count} characters left',
-    minChars: 'At least 20 characters',
   },
   workPage: {
     back: 'All projects',
@@ -758,9 +790,9 @@ export const en = {
     title: "Let's talk about your project.",
     accent: [3, 4],
     description:
-      'Write to us or book a 30-minute intro call. A person replies within one business day.',
+      'Book a 30-minute intro call or write to us. A person replies within one business day.',
     book: 'Book a 30-minute intro call',
-    /** Two ways to start: write to us, or book a slot straight away. */
+    /** Two ways to start: book a slot straight away, or write to us. */
     choose: {
       formTab: 'Write to us',
       callTab: 'Book a call',

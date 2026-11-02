@@ -9,7 +9,8 @@ export interface NavItem {
 /**
  * Primary navigation always leads to a standalone page. The mobile menu and
  * footer share this list, so none of them silently turn into homepage anchors.
- * Contact remains the header button rather than a navigation item.
+ * Contact is appended by the header, mobile menu and footer themselves, so it
+ * always sits last; the header's "Let's talk" button opens the booking modal.
  */
 export function primaryNav(dict: Dictionary): NavItem[] {
   return [

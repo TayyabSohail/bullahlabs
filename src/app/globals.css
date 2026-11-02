@@ -192,17 +192,24 @@
      gracefully when the visitor's device does not include one. */
   .urdu-khatati {
     font-family:
-      'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Noto Naskh Arabic', serif;
-    font-weight: 600;
+      var(--font-urdu), 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq',
+      'Urdu Typesetting', 'Noto Naskh Arabic', serif;
+    /* Nastaliq hangs below the baseline and stacks words diagonally, so it
+       needs a regular weight and roomy lines or it reads as a smudge. */
+    font-weight: 400;
+    line-height: 2.2;
+    text-wrap: balance;
   }
 
   /* Gurmukhi for the same verse: Noto first, then the fonts Windows, macOS
      and Android ship with, so the script never falls back to tofu. */
   .gurmukhi-lipi {
     font-family:
-      'Noto Serif Gurmukhi', 'Noto Sans Gurmukhi', 'Raavi', 'Gurmukhi MN',
-      'Gurmukhi Sangam MN', 'Lohit Gurmukhi', sans-serif;
-    font-weight: 600;
+      var(--font-gurmukhi), 'Noto Serif Gurmukhi', 'Noto Sans Gurmukhi',
+      'Raavi', 'Gurmukhi MN', 'Gurmukhi Sangam MN', 'Lohit Gurmukhi', sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+    text-wrap: balance;
   }
 
   /* Once frosted glass; now a solid card on the same hard shadow. */

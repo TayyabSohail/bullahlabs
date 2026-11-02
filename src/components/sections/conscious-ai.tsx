@@ -1,8 +1,15 @@
-import { ArrowUpRight, Maximize2, Play, Volume2 } from 'lucide-react';
+import { ArrowUpRight, Plus } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
+import { HarvardShield } from '@/components/brand/harvard-shield';
 import { SectionHeading } from '@/components/common/section-heading';
 import { CourseSignup } from '@/components/course/course-signup';
+import {
+  Fold,
+  FoldPanel,
+  FoldTrigger,
+} from '@/components/course/instructor-fold';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
 
@@ -10,6 +17,7 @@ import { cn } from '@/lib/utils';
 
 import { courseHref, courseIsLive } from '@/constants/course';
 import { paths } from '@/constants/paths';
+import { leadInstructor as instructor } from '@/data/instructors';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface SectionProps {
@@ -44,7 +52,7 @@ export function CourseLink({
   );
 }
 
-/** A considered launch preview until the first Conscious AI course opens. */
+/** The course before it opens: who teaches it, what it is, and the waitlist. */
 export function CourseSection({
   dict,
   className,
@@ -74,75 +82,122 @@ export function CourseSection({
         />
 
         <Reveal className='mt-8 sm:mt-14'>
-          <div className='grid overflow-hidden border border-line bg-line lg:grid-cols-[0.9fr_1.1fr]'>
-            <div className='relative isolate flex min-h-[22rem] flex-col overflow-hidden bg-ink p-6 text-white sm:min-h-[27rem] sm:p-8 lg:p-10'>
-              <div
-                aria-hidden='true'
-                className='absolute -right-20 top-16 -z-10 h-64 w-64 rounded-full border border-brand/40 shadow-[0_0_0_2.5rem_hsl(var(--brand)/0.06),0_0_0_5rem_hsl(var(--brand)/0.04)]'
-              />
+          {/* The fold's trigger sits in the plate and its panel is a row of
+              its own under both columns, so opening it moves nothing else. */}
+          <Fold>
+            <div className='grid overflow-hidden border border-line bg-line lg:grid-cols-[0.9fr_1.1fr]'>
+              {/* Who teaches it: portrait, name, one line, the rest folded. */}
+              <div className='relative isolate order-1 flex flex-col overflow-hidden bg-ink p-6 text-white sm:p-8 lg:p-10'>
+                <div
+                  aria-hidden='true'
+                  className='absolute -right-20 top-16 -z-10 h-64 w-64 rounded-full border border-brand/40 shadow-[0_0_0_2.5rem_hsl(var(--brand)/0.06),0_0_0_5rem_hsl(var(--brand)/0.04)]'
+                />
 
-              <div className='flex items-center justify-between gap-4 font-mono text-[10px] font-semibold uppercase tracking-[0.2em]'>
-                <span className='text-white/60'>{t.preview.videoLabel}</span>
-                <span className='border border-brand/60 bg-brand/10 px-2.5 py-1 text-brand-2'>
-                  {t.preview.status}
-                </span>
-              </div>
-
-              <div className='my-auto py-8'>
-                <div className='relative aspect-video max-w-xl overflow-hidden border border-white/20 bg-[radial-gradient(circle_at_center,hsl(var(--brand)/0.18),transparent_58%),hsl(var(--ink))] shadow-[4px_4px_0_0_hsl(var(--brand)/0.45)]'>
-                  <div className='absolute inset-0 flex items-center justify-center'>
-                    <span className='flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-white/5 text-brand-2 backdrop-blur-sm'>
-                      <Play className='ml-1 h-5 w-5' fill='currentColor' />
-                    </span>
-                  </div>
-                  <span className='absolute left-4 top-4 border border-brand/70 bg-ink/80 px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
-                    {t.preview.status}
-                  </span>
-                  <div className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-4 pb-4 pt-12'>
-                    <div className='h-1 bg-white/25'>
-                      <div className='h-full w-[18%] bg-brand' />
-                    </div>
-                    <div className='mt-3 flex items-center gap-3 text-white/70'>
-                      <Play className='ml-px h-3.5 w-3.5 fill-current' />
-                      <span className='font-mono text-[10px] tabular-nums'>
-                        00:00 / --:--
-                      </span>
-                      <span className='flex-1' />
-                      <Volume2 className='h-3.5 w-3.5' />
-                      <Maximize2 className='h-3.5 w-3.5' />
-                    </div>
-                  </div>
-                </div>
-                <p className='mt-8 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-2'>
-                  {t.preview.seriesLabel}
+                <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60'>
+                  {t.preview.instructorLabel}
                 </p>
-              </div>
 
-              <div className='border-t border-white/15 pt-5'>
-                <div className='flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em] text-white/55'>
-                  <span>{t.preview.inProduction}</span>
+                <div className='mt-7 flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-7'>
+                  <Image
+                    src={instructor.image}
+                    alt={`Portrait of ${instructor.name}`}
+                    width={800}
+                    height={960}
+                    sizes='(min-width: 640px) 176px, 128px'
+                    className={cn(
+                      'h-32 w-32 shrink-0 border border-white/30 object-cover shadow-[4px_4px_0_0_hsl(var(--brand))] sm:h-52 sm:w-44',
+                      instructor.focus,
+                    )}
+                  />
+                  <div className='min-w-0'>
+                    <span className='inline-block border border-white/25 bg-white/[0.06] px-2.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white/80'>
+                      {instructor.role}
+                    </span>
+                    <h3 className='bl-display mt-4 text-3xl text-white sm:text-4xl'>
+                      {instructor.name}
+                    </h3>
+                    <p className='bl-accent mt-1 font-display text-xl text-brand-2 sm:text-2xl'>
+                      {instructor.tagline}
+                    </p>
+                    <p className='mt-4 flex items-center gap-2.5 text-sm text-white/75'>
+                      <HarvardShield className='h-6 w-auto shrink-0' />
+                      <span className='min-w-0 leading-tight'>
+                        <span className='block font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white/50'>
+                          {t.preview.alumnus}
+                        </span>
+                        {instructor.school}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+
+                <p className='mt-6 max-w-md text-sm leading-relaxed text-white/70 sm:text-base'>
+                  {instructor.bio}
+                </p>
+
+                <div className='mt-5 border-t border-white/15 pt-4'>
+                  <FoldTrigger className='bl-action text-[11px] text-brand-2 hover:text-white'>
+                    {t.preview.moreAbout.replace(
+                      '{name}',
+                      instructor.firstName,
+                    )}
+                    <Plus
+                      className='h-3.5 w-3.5 transition-transform duration-200 group-data-[open]/fold:rotate-45'
+                      aria-hidden='true'
+                    />
+                  </FoldTrigger>
                 </div>
               </div>
-            </div>
 
-            <div className='flex flex-col justify-center bg-surface p-6 sm:p-8 lg:p-10'>
-              <p className='bl-kicker'>{t.preview.status}</p>
-              <h3 className='bl-display mt-4 max-w-xl text-3xl leading-tight text-ink sm:text-4xl'>
-                {t.preview.videoTitle}
-              </h3>
-              <p className='mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base'>
-                {t.preview.videoDescription}
-              </p>
-              <CourseSignup
-                dict={dict}
-                source='conscious-ai:course-preview'
-                variant='inline'
-                tone='light'
-                submitLabel={t.preview.waitlistCta}
-                className='mt-8 max-w-xl'
-              />
+              {/* What it is, in a line and three chips, then the waitlist. */}
+              <div className='order-3 flex flex-col justify-center bg-surface p-6 sm:p-8 lg:p-10'>
+                <ul className='flex flex-wrap gap-2'>
+                  {t.preview.points.map((point) => (
+                    <li
+                      key={point}
+                      className='border border-ink/25 bg-brand-soft/40 px-2.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-ink'
+                    >
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+                <h3 className='bl-display mt-6 max-w-xl text-3xl leading-tight text-ink sm:text-4xl'>
+                  {t.preview.title}
+                </h3>
+                <p className='mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                  {t.preview.audience}
+                </p>
+                <CourseSignup
+                  dict={dict}
+                  source='conscious-ai:course-preview'
+                  variant='inline'
+                  tone='light'
+                  submitLabel={t.preview.waitlistCta}
+                  className='mt-8 max-w-xl'
+                />
+              </div>
+
+              {/* The instructor's longer story, in three columns across the
+                whole card on desktop; on phones it follows the plate. */}
+              <FoldPanel className='order-2 bg-ink text-white lg:order-3 lg:col-span-2'>
+                <dl className='grid gap-5 border-t border-white/15 p-6 sm:grid-cols-3 sm:gap-8 sm:p-8 lg:px-10 lg:py-8'>
+                  {instructor.facts.map(([label, body]) => (
+                    <div
+                      key={label}
+                      className='sm:border-l sm:border-white/15 sm:pl-5'
+                    >
+                      <dt className='font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-brand-2'>
+                        {label}
+                      </dt>
+                      <dd className='mt-1.5 max-w-sm text-sm leading-snug text-white/80'>
+                        {body}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </FoldPanel>
             </div>
-          </div>
+          </Fold>
         </Reveal>
         {children}
       </div>

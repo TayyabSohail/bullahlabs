@@ -1,0 +1,325 @@
+'use client';
+
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
+
+import { SectionHeading } from '@/components/common/section-heading';
+import { Reveal } from '@/components/motion/reveal';
+
+import { cn } from '@/lib/utils';
+
+interface Card {
+  topic: string;
+  figure: string;
+  body: string;
+  source?: { name: string; href: string };
+}
+
+const ey2025 = {
+  name: 'EY Work Reimagined Survey, 2025',
+  href: 'https://www.ey.com/en_gl/newsroom/2025/11/ey-survey-reveals-companies-are-missing-out-on-up-to-40-percent-of-ai-productivity-gains-due-to-gaps-in-talent-strategy',
+};
+
+/** Third-party figures, one per card, a line of copy each. */
+const cards: Card[] = [
+  {
+    topic: 'Training pays off',
+    figure: '14 hours',
+    body: 'a week gained by staff with 81+ hours of AI training a year.',
+    source: ey2025,
+  },
+  {
+    topic: 'Training pays off',
+    figure: 'Up to 19x',
+    body: 'more likely to say AI makes them productive, once trained.',
+    source: {
+      name: 'Slack Workforce Index, 2024',
+      href: 'https://slack.com/blog/news/the-workforce-index-june-2024',
+    },
+  },
+  {
+    topic: 'What slop costs',
+    figure: 'Nearly 40%',
+    body: 'of the time AI saves goes on fixing bad output.',
+    source: {
+      name: 'Workday, 2026',
+      href: 'https://newsroom.workday.com/2026-01-14-New-Workday-Research-Companies-Are-Leaving-AI-Gains-on-the-Table',
+    },
+  },
+  {
+    topic: 'What slop costs',
+    figure: '~2 hours',
+    body: 'to deal with each piece of sloppy AI work a colleague hands over.',
+    source: {
+      name: 'BetterUp & Stanford, 2025',
+      href: 'https://www.betterup.com/blog/hidden-costs-workslop',
+    },
+  },
+  {
+    topic: 'KPIs we track',
+    figure: '7 KPIs',
+    body: 'before and after: hours saved, AI spend per task, tokens, do-overs, licenses, output quality, AI fluency.',
+  },
+  {
+    topic: 'KPIs we track · example',
+    figure: '≈ €4,700',
+    body: 'a month lost to rework in a 12-person team, at €45 an hour.',
+  },
+  {
+    topic: 'Smarter set-up',
+    figure: '90%+',
+    body: 'less spent on repeated instructions, with prompt caching.',
+    source: {
+      name: 'Anthropic pricing, 2026',
+      href: 'https://platform.claude.com/docs/en/build-with-claude/prompt-caching',
+    },
+  },
+  {
+    topic: 'Smarter set-up',
+    figure: '85%+',
+    body: 'cheaper when easy jobs go to a smaller model, at 95% of the quality.',
+    source: {
+      name: 'UC Berkeley, RouteLLM, 2024',
+      href: 'https://sky.cs.berkeley.edu/project/routellm/',
+    },
+  },
+  {
+    topic: 'People, not models',
+    figure: '70%',
+    body: 'of AI problems are about people and process, not algorithms.',
+    source: {
+      name: 'BCG, 2024',
+      href: 'https://www.bcg.com/press/24october2024-ai-adoption-in-2024-74-of-companies-struggle-to-achieve-and-scale-value',
+    },
+  },
+  {
+    topic: 'People, not models',
+    figure: '12%',
+    body: 'of staff get enough AI training.',
+    source: ey2025,
+  },
+  {
+    topic: 'Hidden footprint',
+    figure: '2x',
+    body: 'data-centre electricity by 2030. More than Japan uses today.',
+    source: {
+      name: 'IEA, Energy and AI, 2025',
+      href: 'https://www.iea.org/reports/energy-and-ai/executive-summary',
+    },
+  },
+  {
+    topic: 'Hidden footprint',
+    figure: '4–6x Denmark',
+    body: "the water AI is projected to withdraw in 2027, against Denmark's yearly total.",
+    source: {
+      name: 'Li et al., UC Riverside, 2025',
+      href: 'https://arxiv.org/abs/2304.03271',
+    },
+  },
+  {
+    topic: 'Hidden footprint · the fix',
+    figure: 'Up to 90%',
+    body: 'less energy on repetitive tasks, with small models and shorter prompts.',
+    source: {
+      name: 'UNESCO & UCL, 2025',
+      href: 'https://www.ucl.ac.uk/news/2025/jul/practical-changes-could-reduce-ai-energy-demand-90',
+    },
+  },
+];
+
+/** How long each card stays up before the next one slides in. */
+const DWELL_MS = 6000;
+const ease = [0.16, 1, 0.3, 1] as const;
+
+/**
+ * The numbers: one figure at a time in a ruled card that advances on its
+ * own, a story-style progress strip across the top, arrows to step through
+ * by hand. Pauses while hovered, focused or off-screen, and never
+ * auto-advances for readers who prefer reduced motion.
+ */
+export function ConsciousAiNumbers({ className }: { className?: string }) {
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [held, setHeld] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  // Bumped whenever the timer restarts, so the meter restarts too.
+  const [cycle, setCycle] = useState(0);
+  const reduce = Boolean(useReducedMotion());
+  const count = cards.length;
+  const card = cards[index];
+  const paused = held || hidden || reduce;
+
+  const go = useCallback(
+    (next: number, dir?: number) => {
+      const target = (next + count) % count;
+      setDirection(dir ?? (target > index ? 1 : -1));
+      setIndex(target);
+      setCycle((c) => c + 1);
+    },
+    [count, index],
+  );
+
+  useEffect(() => {
+    const onVisibility = () => setHidden(document.hidden);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = window.setTimeout(() => go(index + 1, 1), DWELL_MS);
+    return () => window.clearTimeout(timer);
+  }, [paused, index, cycle, go]);
+
+  // Restart the clock when the reader lets go, so meter and timer agree.
+  const release = () => {
+    setHeld(false);
+    setCycle((c) => c + 1);
+  };
+
+  return (
+    <section
+      id='numbers'
+      data-section='numbers'
+      className={cn('bl-section bl-rule bl-band-stone', className)}
+    >
+      <style>{`@keyframes bl-numbers-fill { from { transform: scaleX(0) } to { transform: scaleX(1) } }`}</style>
+      <div className='bl-container'>
+        <SectionHeading
+          kicker='The numbers'
+          title='Less time lost. Fewer tokens wasted. Smaller bill, smaller footprint.'
+          accentWords={[6, 7, 8, 9]}
+          descriptionPosition='below'
+          className='max-w-6xl'
+        />
+
+        <Reveal className='mt-8 sm:mt-10'>
+          <div
+            className='bl-card'
+            onMouseEnter={() => setHeld(true)}
+            onMouseLeave={release}
+            onFocusCapture={() => setHeld(true)}
+            onBlurCapture={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) release();
+            }}
+          >
+            {/* Meter: one ruled cell per card, the current one filling, and
+                the counter beside it. */}
+            <div className='flex items-center gap-4 border-b border-ink/85 px-4 py-3 sm:px-5 sm:py-4'>
+              <div className='flex flex-1 gap-1 sm:gap-1.5' aria-hidden='true'>
+                {cards.map((item, i) => (
+                  <button
+                    key={item.figure + i}
+                    type='button'
+                    tabIndex={-1}
+                    onClick={() => go(i)}
+                    className='group h-5 flex-1 cursor-pointer'
+                  >
+                    <span className='block h-2.5 w-full border border-ink/70 bg-background transition-colors group-hover:border-ink sm:h-3'>
+                      {i < index && (
+                        <span className='block h-full w-full bg-ink' />
+                      )}
+                      {i === index && (
+                        <span
+                          key={cycle}
+                          className='block h-full w-full origin-left bg-brand'
+                          style={{
+                            animation: reduce
+                              ? 'none'
+                              : `bl-numbers-fill ${DWELL_MS}ms linear forwards`,
+                            animationPlayState: paused ? 'paused' : 'running',
+                            transform: reduce ? 'scaleX(1)' : undefined,
+                          }}
+                        />
+                      )}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <p className='shrink-0 font-mono text-sm font-semibold tracking-[0.16em] text-foreground'>
+                {String(index + 1).padStart(2, '0')}
+                <span className='text-muted-foreground'>
+                  {' / '}
+                  {String(count).padStart(2, '0')}
+                </span>
+              </p>
+            </div>
+
+            {/* The card: figure on the left, what it means on the right. */}
+            <div className='relative grid min-h-[16rem] overflow-hidden sm:min-h-[18rem]'>
+              <AnimatePresence mode='wait' initial={false}>
+                <motion.div
+                  key={index}
+                  aria-live='polite'
+                  initial={reduce ? false : { opacity: 0, x: 32 * direction }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={reduce ? {} : { opacity: 0, x: -32 * direction }}
+                  transition={{ duration: 0.4, ease }}
+                  className='grid divide-y divide-ink/20 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:divide-x md:divide-y-0'
+                >
+                  <div className='flex flex-col gap-6 p-6 sm:p-8'>
+                    <p className='self-start bg-ink px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white sm:text-[11px]'>
+                      {card.topic}
+                    </p>
+                    <p className='bl-display my-auto text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[0.95] text-foreground'>
+                      {card.figure}
+                    </p>
+                  </div>
+                  <div className='flex flex-col justify-center gap-5 p-6 sm:p-8'>
+                    <p className='font-display text-2xl leading-tight text-foreground sm:text-3xl lg:text-[2.25rem]'>
+                      {card.body}
+                    </p>
+                    {card.source ? (
+                      <a
+                        href={card.source.href}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='inline-flex items-center gap-1.5 self-start font-mono text-xs text-muted-foreground underline decoration-ink/40 underline-offset-4 transition-colors hover:text-brand-text hover:decoration-brand'
+                      >
+                        Source: {card.source.name}
+                        <ArrowUpRight
+                          className='h-3.5 w-3.5'
+                          aria-hidden='true'
+                        />
+                      </a>
+                    ) : (
+                      <p className='font-mono text-xs text-muted-foreground'>
+                        Our own worked example.
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Footer: note and arrows */}
+            <div className='flex items-center justify-between gap-4 border-t border-ink/85 px-4 py-3 sm:px-5'>
+              <p className='text-xs text-muted-foreground sm:text-sm'>
+                Third-party data, not our client results.
+              </p>
+              <div className='flex items-center gap-2'>
+                <button
+                  type='button'
+                  onClick={() => go(index - 1, -1)}
+                  aria-label='Previous figure'
+                  className='bl-btn bl-btn-secondary inline-flex h-11 w-11 items-center justify-center'
+                >
+                  <ArrowLeft className='h-4 w-4' aria-hidden='true' />
+                </button>
+                <button
+                  type='button'
+                  onClick={() => go(index + 1, 1)}
+                  aria-label='Next figure'
+                  className='bl-btn bl-btn-primary inline-flex h-11 w-11 items-center justify-center'
+                >
+                  <ArrowRight className='h-4 w-4' aria-hidden='true' />
+                </button>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

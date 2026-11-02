@@ -10,23 +10,18 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Talk to Bullah Labs about a new product, an existing one or AI for your team. Write to us or book a 30-minute call. We reply within one business day.',
+    'Talk to Bullah Labs about optimising how your team uses AI. Book a 30-minute call or write to us. We reply within one business day.',
   alternates: { canonical: paths.contact },
 };
-
-interface ContactPageProps {
-  searchParams: Promise<{ service?: string }>;
-}
 
 /**
  * Deliberately the quietest page on the site.
  *
  * No hero, no FAQ, no locations, no CTA banner. Someone who reaches this
  * page has already been sold; everything else is now in the way. What remains
- * is the form, and the calendar for people who would rather just talk.
+ * is the calendar, and the form for people who would rather write.
  */
-export default async function ContactPage({ searchParams }: ContactPageProps) {
-  const { service } = await searchParams;
+export default async function ContactPage() {
   const dict = await getDictionary();
   const t = dict.contact;
 
@@ -42,7 +37,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <section className='bl-container max-w-7xl pb-16 pt-28 sm:pt-44 lg:pb-24 lg:pt-52'>
         <ContactChannels
           dict={dict}
-          defaultService={service}
           calLink={siteConfig.calLink}
           header={
             <header className='mx-auto max-w-2xl text-center md:mx-0 md:text-left'>

@@ -84,12 +84,14 @@ export const de: Dictionary = {
     links: {
       reddit: {
         label: 'Reddit',
-        description: 'Diskutieren Sie praktische Fragen und lernen Sie von der breiteren Community.',
+        description:
+          'Diskutieren Sie praktische Fragen und lernen Sie von der breiteren Community.',
         cta: 'Zum Subreddit',
       },
       discord: {
         label: 'Discord',
-        description: 'Nehmen Sie an fokussierten GesprÃ¤chen, neuen Ressourcen und Community-Updates teil.',
+        description:
+          'Nehmen Sie an fokussierten GesprÃ¤chen, neuen Ressourcen und Community-Updates teil.',
         cta: 'Zum Server',
       },
     },
@@ -280,8 +282,17 @@ export const de: Dictionary = {
       title: 'Jedes Projekt soll einen Unterschied machen.',
       accent: [3, 4, 5],
       cta: 'Alle Projekte ansehen',
+      servicesCta: 'Unsere Leistungen entdecken',
       listLabel: 'Ausgewählte Projekte',
       more: '{n} weitere auf der Projektseite',
+    },
+    showcase: {
+      kicker: 'Unsere Arbeit',
+      title: 'Echte Produkte, so gebaut.',
+      accent: [2, 3],
+      description:
+        'Drei aktuelle Projekte, jeweils mit Problem, Arbeit und Ergebnis. Alle weiteren auf der Projektseite.',
+      cta: 'Alle Projekte ansehen',
     },
   },
   services: {
@@ -292,6 +303,14 @@ export const de: Dictionary = {
       'Sieben Wege, wie wir helfen, aus einer Hand: Produktdenken, solide Technik und ehrlicher Rat, wo sich Technologie, auch KI, lohnt und wo nicht.',
     promise: 'Gleich richtig bauen, oder reparieren, was schon da ist.',
     cta: 'Gespräch beginnen',
+    teaser: {
+      kicker: 'Unsere Leistungen',
+      title: 'Sieben Wege, wie wir helfen.',
+      accent: [3, 4, 5],
+      description:
+        'Jedes Projekt hier baute auf einer oder mehreren davon auf. Wählen Sie die passende, oder wir helfen bei der Wahl.',
+      cta: 'Alle Leistungen ansehen',
+    },
   },
   whoWeAre: {
     kicker: 'Wer wir sind',
@@ -365,6 +384,18 @@ export const de: Dictionary = {
         'Etwas ist schiefgelaufen. Bitte versuchen Sie es gleich noch einmal.',
       teamLink: 'Schulung für ein ganzes Team?',
     },
+    popup: {
+      pill: 'Gratis-Kurs',
+      pillHint: 'Zur Warteliste',
+      open: 'Karte zum kostenlosen Kurs öffnen',
+      minimise: 'Verkleinern',
+      tag: 'Gratis · Demnächst',
+      kicker: 'Gratis-Kurs',
+      title: 'KI zu Ihren Bedingungen nutzen.',
+      body: 'Kurze Lektionen dazu, wann KI hilft, welches Werkzeug passt und was es wirklich kostet.',
+      taughtBy: 'Unterrichtet von',
+      cta: 'Zur Warteliste',
+    },
   },
   programPage: {
     kicker: 'Conscious AI',
@@ -378,18 +409,18 @@ export const de: Dictionary = {
     principle:
       'Praktische Fähigkeiten. Bewusste Entscheidungen. Kein Programmieren nötig.',
     course: {
-      kicker: 'Demnächst',
+      kicker: 'Zur Warteliste',
       title: 'Bessere KI-Gewohnheiten beginnen hier.',
       accent: [0, 1],
       preview: {
-        videoLabel: 'Videos',
-        status: 'Demnächst',
-        seriesLabel: 'Eine praxisnahe Lernreihe',
-        videoTitle: 'KI bewusster nutzen und weniger verschwenden.',
-        videoDescription:
-          'Kurze, fokussierte Videos für bessere Entscheidungen vor, während und nach dem Einsatz von KI bei der Arbeit.',
+        instructorLabel: 'Ihr Dozent',
+        alumnus: 'Alumnus',
+        moreAbout: 'Mehr über {name}',
+        title: 'KI bewusster nutzen und weniger verschwenden.',
+        audience:
+          'Für Menschen, die mit KI arbeiten, nicht für die, die sie bauen.',
+        points: ['Kostenlos', 'Kein Programmieren', 'An echten Aufgaben'],
         waitlistCta: 'Zur Warteliste',
-        inProduction: 'In Produktion',
       },
     },
     problem: {
@@ -507,31 +538,41 @@ export const de: Dictionary = {
     namePlaceholder: 'Erika Mustermann',
     email: 'Geschäftliche E-Mail',
     emailPlaceholder: 'erika@unternehmen.de',
-    company: 'Unternehmen',
     optional: 'optional',
-    companyPlaceholder: 'Unternehmens- oder Teamname',
-    service: 'Wofür interessieren Sie sich?',
-    serviceOther: 'Etwas anderes',
-    serviceOtherTagline:
-      'Eine Frage, eine Partnerschaft oder etwas, das hier nicht steht.',
-    interests: {
-      project: {
-        title: 'Ein Projekt starten',
-        description:
-          'Ein neues Produkt, ein Neustart oder Technologie, die besser funktionieren soll.',
-      },
-      course: {
-        title: 'Der kostenlose Kurs',
-        description: 'Zugang zu den Conscious-AI-Lernmodulen.',
-      },
-      team: {
-        title: 'Schulung für mein Team',
-        description: 'Conscious AI für ein ganzes Team oder Unternehmen.',
+    pick: 'Bitte wählen',
+    tools: {
+      label: 'Wichtigstes KI-Tool',
+      options: {
+        chatgpt: 'ChatGPT',
+        claude: 'Claude',
+        copilot: 'Copilot',
+        gemini: 'Gemini',
+        api: 'Eigenbau / API',
+        other: 'Andere oder unsicher',
       },
     },
-    message: 'Ihre Nachricht',
+    teamSize: {
+      label: 'Nutzende Personen',
+      options: {
+        '1-10': '1 bis 10',
+        '11-50': '11 bis 50',
+        '51-200': '51 bis 200',
+        '200+': 'Mehr als 200',
+      },
+    },
+    goals: {
+      label: 'Zuerst verbessern',
+      options: {
+        cost: 'Monatliche Kosten',
+        quality: 'Qualität der Ergebnisse',
+        privacy: 'Daten und Datenschutz',
+        adoption: 'Einführung und Tempo',
+        carbon: 'Energie und CO₂',
+      },
+    },
+    message: 'Noch etwas?',
     messagePlaceholder:
-      'Was bauen Sie, was muss besser werden, oder wo steht Technologie im Weg?',
+      'Ungefähre monatliche Ausgaben, ein Ablauf, der schmerzt, eine Frist.',
     consentBefore:
       'Ich bin damit einverstanden, dass Bullah Labs diese Anfrage speichert und verarbeitet, um mir zu antworten, wie in der',
     consentLink: 'Datenschutzerklärung',
@@ -544,28 +585,6 @@ export const de: Dictionary = {
     sentBody:
       'Vielen Dank. Ein Mensch liest jede Anfrage und antwortet {time}, direkt an die von Ihnen angegebene Adresse.',
     sentAgain: 'Weitere senden',
-    // Mehrstufiges Formular
-    stepLabel: 'Schritt {current} von {total}',
-    next: 'Weiter',
-    back: 'Zurück',
-    steps: {
-      service: {
-        title: 'Wo möchten Sie anfangen?',
-        subtitle: 'Wählen Sie das Passendste.',
-      },
-      message: {
-        title: 'Erzählen Sie uns etwas mehr.',
-        subtitle:
-          'Ein paar Zeilen genügen. Den Rest fragen wir in der Antwort.',
-      },
-      details: {
-        title: 'Wohin dürfen wir antworten?',
-        subtitle:
-          'Letzter Schritt. Wir nutzen das nur für die Antwort auf Ihre Anfrage.',
-      },
-    },
-    charactersLeft: 'Noch {count} Zeichen',
-    minChars: 'Mindestens 20 Zeichen',
   },
   workPage: {
     back: 'Alle Projekte',
@@ -740,7 +759,7 @@ export const de: Dictionary = {
     title: 'Sprechen wir über Ihr Projekt.',
     accent: [3, 4],
     description:
-      'Schreiben Sie uns oder buchen Sie ein 30-minütiges Erstgespräch. Ein Mensch antwortet innerhalb eines Werktags.',
+      'Buchen Sie ein 30-minütiges Erstgespräch oder schreiben Sie uns. Ein Mensch antwortet innerhalb eines Werktags.',
     book: 'Ein 30-minütiges Kennenlerngespräch buchen',
     choose: {
       formTab: 'Schreiben Sie uns',

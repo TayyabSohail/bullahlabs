@@ -7,6 +7,7 @@ import { Principles } from '@/components/sections/principles';
 import { Services } from '@/components/sections/services';
 import { Technologies } from '@/components/sections/technologies';
 import { Testimonials } from '@/components/sections/testimonials';
+import { WorkShowcase } from '@/components/sections/work-showcase';
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
 
 import { paths } from '@/constants/paths';
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   alternates: { canonical: paths.services },
 };
 
-/** What we do: the seven services, how we work, the stack, the principles. */
+/** What we do: the seven services, how we work, the stack, the principles, three case studies. */
 export default async function ServicesPage() {
   const dict = await getDictionary();
   const t = dict.services;
@@ -33,7 +34,7 @@ export default async function ServicesPage() {
         ]}
       />
       <PageHero
-        kicker={dict.nav.work}
+        kicker={t.kicker}
         title={t.title}
         accentWords={[...t.accent]}
         description={t.description}
@@ -43,6 +44,7 @@ export default async function ServicesPage() {
       <HowItWorks dict={dict} />
       <Technologies dict={dict} />
       <Principles dict={dict} className='bl-band-stone' />
+      <WorkShowcase dict={dict} />
       <Testimonials dict={dict} title='What people say.' />
       <CtaBanner dict={dict} />
     </>

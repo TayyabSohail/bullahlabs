@@ -1,32 +1,67 @@
 import { z } from 'zod';
 
 /**
- * What the enquiry is about. A link such as /contact?service=team opens the
- * form with that option already chosen. The field is still called `service`
- * because that is the column it is stored in.
+ * The one thing the form is about. There is no picker any more: every
+ * enquiry is an AI optimisation enquiry. The value is what the
+ * `contact_messages.service` column stores; the label is what people read
+ * in the inbox and on the sheet.
  */
-export const INTEREST_OPTIONS = [
-  { value: 'project', label: 'Start a project' },
-  { value: 'team', label: 'Training for a team' },
-  { value: 'other', label: 'Something else' },
-  { value: 'course', label: 'The free course' },
-] as const;
+export const CONTACT_SERVICE = {
+  value: 'ai-optimisation',
+  label: 'AI optimisation',
+} as const;
 
-export type InterestValue = (typeof INTEREST_OPTIONS)[number]['value'];
+/**
+ * The three quick picks that replace the old free-text brief, one answer
+ * each so the form stays three short selects. Keys are
+ * what gets stored; the English labels here are for the inbox and the
+ * sheet. What the visitor reads comes from the dictionary, keyed the same.
+ */
+export const CONTACT_TOOLS = {
+  chatgpt: 'ChatGPT',
+  claude: 'Claude',
+  copilot: 'Copilot',
+  gemini: 'Gemini',
+  api: 'Own build / API',
+  other: 'Other or not sure',
+} as const;
 
-/** The course: where "request access" links point. */
-export const DEFAULT_INTEREST: InterestValue = 'course';
+export const CONTACT_TEAM_SIZES = {
+  '1-10': '1 to 10 people',
+  '11-50': '11 to 50 people',
+  '51-200': '51 to 200 people',
+  '200+': 'More than 200 people',
+} as const;
 
-const interestValues = INTEREST_OPTIONS.map((option) => option.value) as [
-  InterestValue,
-  ...InterestValue[],
+export const CONTACT_GOALS = {
+  cost: 'Monthly cost',
+  quality: 'Quality of output',
+  privacy: 'Data and privacy',
+  adoption: 'Adoption and speed',
+  carbon: 'Energy and carbon',
+} as const;
+
+export type ContactTool = keyof typeof CONTACT_TOOLS;
+export type ContactTeamSize = keyof typeof CONTACT_TEAM_SIZES;
+export type ContactGoal = keyof typeof CONTACT_GOALS;
+
+const toolKeys = Object.keys(CONTACT_TOOLS) as [ContactTool, ...ContactTool[]];
+const sizeKeys = Object.keys(CONTACT_TEAM_SIZES) as [
+  ContactTeamSize,
+  ...ContactTeamSize[],
 ];
-
-export function isInterestValue(value: unknown): value is InterestValue {
-  return interestValues.includes(value as InterestValue);
-}
+const goalKeys = Object.keys(CONTACT_GOALS) as [ContactGoal, ...ContactGoal[]];
 
 export const contactSchema = z.object({
+  tool: z.enum(toolKeys, {
+    errorMap: () => ({ message: 'Pick your main tool' }),
+  }),
+  teamSize: z.enum(sizeKeys, {
+    errorMap: () => ({ message: 'Pick a team size' }),
+  }),
+  goal: z.enum(goalKeys, {
+    errorMap: () => ({ message: 'Pick what should improve first' }),
+  }),
   name: z
     .string({ message: 'Your name is required' })
     .trim()
@@ -38,12 +73,13 @@ export const contactSchema = z.object({
     .email('Please enter a valid email address')
     .max(200),
   company: z.string().trim().max(120).optional().or(z.literal('')),
-  service: z.enum(interestValues, { message: 'Pick the closest match' }),
+  /** Optional notes. The picks above carry the brief on their own. */
   message: z
-    .string({ message: 'Tell us a little about how you use AI' })
+    .string()
     .trim()
-    .min(20, 'A couple of sentences help us reply usefully')
-    .max(4000, 'Please keep it under 4,000 characters'),
+    .max(4000, 'Please keep it under 4,000 characters')
+    .optional()
+    .or(z.literal('')),
   consent: z.literal(true, {
     errorMap: () => ({ message: 'Please accept the privacy policy' }),
   }),
@@ -54,13 +90,16 @@ export const contactSchema = z.object({
 export type ContactInput = z.infer<typeof contactSchema>;
 
 /**
- * Fields validated at each step of the wizard, so "Next" can block on the
- * current step only. Keep in sync with the steps rendered in ContactForm.
+ * The enquiry as one block of text, for the inbox, the sheet and the
+ * `message` column. The picks come first so a reply can be drafted without
+ * reading further; the visitor's own notes, if any, follow.
  */
-export const CONTACT_STEP_FIELDS = [
-  ['service'],
-  ['message'],
-  ['name', 'email', 'company', 'consent'],
-] as const satisfies ReadonlyArray<ReadonlyArray<keyof ContactInput>>;
-
-export const CONTACT_STEP_COUNT = CONTACT_STEP_FIELDS.length;
+export function composeContactBrief(input: ContactInput) {
+  const lines = [
+    `Tool: ${CONTACT_TOOLS[input.tool]}`,
+    `Team: ${CONTACT_TEAM_SIZES[input.teamSize]}`,
+    `Focus: ${CONTACT_GOALS[input.goal]}`,
+  ];
+  const notes = input.message?.trim();
+  return notes ? `${lines.join('\n')}\n\n${notes}` : lines.join('\n');
+}

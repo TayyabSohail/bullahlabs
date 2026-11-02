@@ -11,7 +11,6 @@ import {
   ConsciousAiHero,
   ConsciousAiNextSteps,
   ConsciousAiPrinciples,
-  ForTeamsBridge,
   OurRoots,
 } from '@/components/sections/conscious-ai-landing';
 import { ConsciousAiNumbers } from '@/components/sections/conscious-ai-numbers';
@@ -42,10 +41,9 @@ export const metadata: Metadata = {
 
 /**
  * The page runs in the order of the Conscious AI page map: hero, the problem
- * and the fix in one ledger, two cards pointing to services and upskilling,
- * the numbers, the live AI profile, the
- * course and its instructor, our roots, the bridge to teams, FAQs, community,
- * then the closing CTAs.
+ * and the fix in one ledger, where next (teams and business first, services
+ * second), the numbers, the live AI profile, the course and its instructor,
+ * our roots, FAQs, community, then the closing CTAs.
  */
 export default async function ConsciousAiPage() {
   const dict = await getDictionary();
@@ -78,7 +76,6 @@ export default async function ConsciousAiPage() {
       </section>
       <CourseSection dict={dict} />
       <OurRoots />
-      <ForTeamsBridge />
       <ConsciousAiFaq />
       <CommunitySection dict={dict} className='bl-band-stone bl-band-peach' />
       <ConsciousAiClosing dict={dict} />

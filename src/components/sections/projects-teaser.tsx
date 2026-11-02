@@ -71,14 +71,21 @@ export function ProjectsTeaser({
               />
               <Reveal
                 delay={0.3}
-                className='mt-7 max-sm:flex max-sm:justify-center sm:mt-9'
+                className='mt-7 flex flex-col items-center gap-4 sm:mt-9 sm:flex-row sm:items-stretch sm:justify-start'
               >
                 <Link
                   href={paths.work}
-                  className='bl-btn bl-btn-primary inline-flex h-16 items-center gap-3 px-8 font-mono text-xs font-semibold uppercase tracking-[0.22em] shadow-[0_16px_30px_-18px_hsl(var(--brand-strong))]'
+                  className='bl-btn bl-btn-primary inline-flex h-16 items-center justify-between gap-3 whitespace-nowrap px-8 font-mono text-xs font-semibold uppercase tracking-[0.22em] shadow-[0_16px_30px_-18px_hsl(var(--brand-strong))] max-sm:w-full max-sm:max-w-[18rem]'
                 >
                   {t.cta}
                   <ArrowUpRight className='h-4 w-4' />
+                </Link>
+                <Link
+                  href={paths.services}
+                  className='bl-btn bl-btn-secondary inline-flex h-16 items-center justify-between gap-3 whitespace-nowrap bg-surface px-8 font-mono text-xs font-semibold uppercase tracking-[0.22em] max-sm:w-full max-sm:max-w-[18rem]'
+                >
+                  {t.servicesCta}
+                  <ArrowRight className='h-4 w-4' />
                 </Link>
               </Reveal>
             </div>

@@ -1,9 +1,8 @@
-import { ArrowRight, ArrowUpRight, Plus, RotateCcw, Users } from 'lucide-react';
+import { ArrowUpRight, Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { HarvardShield } from '@/components/brand/harvard-shield';
-import { TalkToHumansButton } from '@/components/community/talk-to-humans';
 import { BookCallButton } from '@/components/contact/book-call-button';
 import { Reveal } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
@@ -13,9 +12,10 @@ import { FaqSection } from '@/components/sections/faq';
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
 import type { Faq } from '@/data/faqs';
+import { type Instructor, instructors } from '@/data/instructors';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
-const teamHref = `${paths.contact}?service=team`;
+const teamHref = paths.contact;
 
 /**
  * The planet's tab, printed. The same example as the home hero's map:
@@ -155,7 +155,7 @@ function PlanetReceipt() {
 }
 
 /**
- * The opening: the essence in one headline, the tagline, both calls to
+ * The opening: the essence in one headline, the tagline, one call to
  * action, and the planet's tab printed beside them.
  */
 export function ConsciousAiHero() {
@@ -164,16 +164,25 @@ export function ConsciousAiHero() {
       <div className='bl-container grid gap-10 pb-16 pt-28 sm:pt-36 md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] md:items-center md:gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pb-24 lg:pt-40'>
         <div className='min-w-0'>
           <Reveal>
-            <p className='bl-kicker'>Conscious AI · Our vision</p>
+            <p className='bl-kicker'>Our vision</p>
           </Reveal>
+          {/* The page's name is the headline: one line, as large as the
+              column allows, with "AI" in the emerald italic accent. */}
           <TextReveal
             as='h1'
+            text='Conscious AI'
+            accentWords={[1]}
+            className='bl-display mt-5 text-[clamp(3.5rem,12.5vw,8.5rem)] leading-[0.9] tracking-[-0.035em] text-ink md:text-[7.4vw] lg:text-[clamp(5rem,8.2vw,8.5rem)]'
+          />
+          <TextReveal
+            as='p'
             text='Not more AI. Better AI.'
             accentWords={[3, 4]}
-            className='bl-display mt-6 max-w-[10ch] text-[clamp(2.9rem,7.2vw,6.5rem)] leading-[0.95] tracking-[-0.02em] text-ink'
+            delay={0.25}
+            className='bl-display mt-5 text-[clamp(1.6rem,3.2vw,2.75rem)] leading-[1.05] text-foreground'
           />
-          <Reveal delay={0.2}>
-            <p className='mt-7 max-w-lg text-lg leading-snug text-foreground sm:text-xl'>
+          <Reveal delay={0.35}>
+            <p className='mt-6 max-w-lg text-lg leading-snug text-foreground sm:text-xl'>
               AI isn't free. The planet's picking up the tab. Use it where it
               counts, not just for token maxing.
             </p>
@@ -188,10 +197,6 @@ export function ConsciousAiHero() {
             >
               Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
-            <TalkToHumansButton className='bl-btn bl-btn-ink h-12 w-full max-w-[16rem] justify-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] sm:w-auto sm:max-w-none'>
-              <Users className='h-3.5 w-3.5' aria-hidden='true' />
-              Talk to real humans
-            </TalkToHumansButton>
           </Reveal>
         </div>
         <PlanetReceipt />
@@ -200,11 +205,27 @@ export function ConsciousAiHero() {
   );
 }
 
+/* Cells of the problem-and-fix ledger. Both columns live in one grid, so
+   the classes are shared too: the same padding, type and number gutter on
+   each side, and a static row-start lookup so Tailwind sees every class. */
+const CELL_HEAD =
+  'border-b px-5 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.22em]';
+const CELL_ROW =
+  'grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-4 border-b px-5 py-5 sm:grid-cols-[2.5rem_minmax(0,1fr)]';
+const CELL_NUMBER =
+  'pt-1.5 font-mono text-[10px] font-semibold tracking-[0.18em]';
+const ROW_START = ['md:row-start-2', 'md:row-start-3', 'md:row-start-4'];
+
 export function ConsciousAiPrinciples() {
   const principles = [
-    ['FOMO, weekly.', 'A new model every Monday. Homework every Tuesday.'],
-    ['Faster. Cheaper. You?', 'The boss just discovered AI. Awkward.'],
     [
+      '01',
+      'FOMO, weekly.',
+      'A new model every Monday. Homework every Tuesday.',
+    ],
+    ['02', 'Faster. Cheaper. You?', 'The boss just discovered AI. Awkward.'],
+    [
+      '03',
       'Hot and thirsty.',
       'Data centres guzzle power and water. You never see the receipt.',
     ],
@@ -215,103 +236,86 @@ export function ConsciousAiPrinciples() {
     ['03', 'Stay the expert', 'AI drafts. You decide.'],
   ];
 
+  /* The problem and the fix share one section: a two-column ledger, the
+     three complaints on the left and the three moves that answer them on
+     the right, so neither half takes a page of its own. */
   return (
-    <>
-      <section id='principles' className='bl-section bl-rule bl-band-stone'>
-        <div className='bl-container'>
-          <p className='bl-kicker'>The problem</p>
-          <TextReveal
-            as='h2'
-            text='Everyone says use AI. Nobody says how.'
-            accentWords={[2, 3]}
-            className='bl-display mt-5 max-w-3xl text-display-lg text-foreground'
-          />
-          <div className='mt-8 grid gap-3 md:grid-cols-3'>
-            {principles.map(([title, body]) => (
-              <article key={title} className='bl-card p-5'>
+    <section id='principles' className='bl-section bl-rule bl-band-stone'>
+      <div className='bl-container'>
+        <div className='grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-end'>
+          <div>
+            <p className='bl-kicker'>The problem, and the fix</p>
+            <TextReveal
+              as='h2'
+              text='Everyone says use AI. Nobody says how.'
+              accentWords={[2, 3]}
+              className='bl-display mt-5 max-w-3xl text-display-lg text-foreground'
+            />
+          </div>
+          <Reveal delay={0.15}>
+            <p className='font-display text-2xl text-foreground sm:text-3xl md:text-right'>
+              We panic-prompt.{' '}
+              <span className='bl-accent text-brand-text'>
+                The planet pays.
+              </span>
+            </p>
+          </Reveal>
+        </div>
+
+        {/* One grid for both columns, every cell placed explicitly, so each
+            complaint sits level with the move that answers it at any width.
+            On phones the DOM order stacks the problems, then the moves. */}
+        <div className='mt-8 grid border border-ink bg-surface md:grid-cols-2'>
+          <p
+            className={`${CELL_HEAD} border-ink/20 text-muted-foreground md:col-start-1 md:row-start-1 md:border-r md:border-r-ink`}
+          >
+            The problem
+          </p>
+          {principles.map(([number, title, body], index) => (
+            <article
+              key={number}
+              className={`${CELL_ROW} ${ROW_START[index]} border-ink/20 md:col-start-1 md:border-r md:border-r-ink ${
+                index === principles.length - 1
+                  ? 'border-b-ink md:border-b-0'
+                  : ''
+              }`}
+            >
+              <p className={`${CELL_NUMBER} text-muted-foreground`}>{number}</p>
+              <div className='min-w-0'>
                 <h3 className='bl-display text-xl text-foreground'>{title}</h3>
-                <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
+                <p className='mt-1 text-sm leading-relaxed text-muted-foreground'>
                   {body}
                 </p>
-              </article>
-            ))}
-          </div>
-          <p className='bl-card-ink mt-5 border-brand px-6 py-6 text-center font-display text-2xl text-white sm:text-3xl'>
-            We panic-prompt.{' '}
-            <span className='bl-accent text-brand-2'>The planet pays.</span>
+              </div>
+            </article>
+          ))}
+
+          <p
+            className={`${CELL_HEAD} border-white/15 bg-ink text-brand md:col-start-2 md:row-start-1`}
+          >
+            The fix · Better AI, in three moves
           </p>
-        </div>
-      </section>
-      <section className='bl-section bl-rule bg-background'>
-        <div className='bl-container'>
-          <p className='bl-kicker'>The fix</p>
-          <TextReveal
-            as='h2'
-            text='Better AI, in three moves.'
-            accentWords={[2, 3, 4]}
-            className='bl-display mt-5 text-display-lg text-foreground'
-          />
-          <div className='mt-8 grid border border-ink bg-surface md:grid-cols-3'>
-            {moves.map(([number, title, body]) => (
-              <article
-                key={number}
-                className='border-b border-ink/20 p-6 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0'
-              >
-                <p className='font-mono text-[10px] font-semibold tracking-[0.18em] text-brand-text'>
-                  {number}
+          {moves.map(([number, title, body], index) => (
+            <article
+              key={number}
+              className={`${CELL_ROW} ${ROW_START[index]} border-white/15 bg-ink text-white md:col-start-2 ${
+                index === moves.length - 1 ? 'border-b-0' : ''
+              }`}
+            >
+              <p className={`${CELL_NUMBER} text-brand`}>{number}</p>
+              <div className='min-w-0'>
+                <h3 className='bl-display text-xl'>{title}</h3>
+                <p className='mt-1 text-sm leading-relaxed text-white/70'>
+                  {body}
                 </p>
-                <h3 className='bl-display mt-3 text-2xl text-foreground'>
-                  {title}
-                </h3>
-                <p className='mt-2 text-sm text-muted-foreground'>{body}</p>
-              </article>
-            ))}
-          </div>
+              </div>
+            </article>
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
-
-type Instructor = {
-  name: string;
-  firstName: string;
-  role: string;
-  tagline: string;
-  bio: string;
-  image: string;
-  /** Where the portrait is cropped to, as an object-position class. */
-  focus: string;
-  school: string;
-  facts: [label: string, body: string][];
-};
-
-const instructors: Instructor[] = [
-  {
-    name: 'M. Umair Khan',
-    firstName: 'Umair',
-    role: 'Lead Instructor & Learning Advisor',
-    tagline: 'Teacher of teachers.',
-    bio: "Harvard-trained, Fulbright scholar, teacher of teachers. Umair co-founded ed-tech startup Quva and has worked in Pakistan's education sector since 2016. He makes sure our Conscious AI lessons actually stick.",
-    image: '/images/umair-khan.jpg',
-    focus: 'object-[center_18%]',
-    school: 'Harvard Graduate School of Education',
-    facts: [
-      [
-        'Before Bullah Labs',
-        'Co-founded Quva (2018), ed-tech for teacher training; designed maths-pedagogy courses for teacher education in Pakistan',
-      ],
-      [
-        'Education',
-        "Master's in International Education Policy, Harvard Graduate School of Education · Mechanical engineer by training",
-      ],
-      [
-        'Off the clock',
-        'Calligraphy, poetry and classical music. Zero GPUs involved.',
-      ],
-    ],
-  },
-];
 
 /** One instructor: portrait, role, short bio and a fold-out with the facts. */
 function InstructorCard({
@@ -457,27 +461,40 @@ export function OurRoots() {
             </Reveal>
           </div>
           <Reveal delay={0.15}>
-            <figure className='flex flex-wrap items-center gap-6 border border-white/30 p-6 shadow-[4px_4px_0_0_hsl(var(--brand))]'>
-              <Image
-                src='/images/bulleh-shah-portrait.webp'
-                alt='Illustrated portrait of Bulleh Shah'
-                width={320}
-                height={320}
-                sizes='(max-width: 640px) 96px, 128px'
-                className='h-24 w-24 shrink-0 object-contain sm:h-32 sm:w-32'
-              />
-              <div className='min-w-0 flex-1 basis-56'>
-                <blockquote className='bl-accent font-display text-xl leading-snug text-white sm:text-2xl'>
-                  “Parh parh ilm hazaar kitaabaan, kade apne aap nu parhiya
-                  nai.”
-                </blockquote>
-                <p className='mt-3 text-sm leading-relaxed text-white/65'>
-                  Read a thousand books, yet never read yourself.
-                </p>
-                <figcaption className='mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-white/50'>
-                  Bulleh Shah · 1680–1757
+            <figure className='border border-white/30 p-6 shadow-[4px_4px_0_0_hsl(var(--brand))] sm:p-8'>
+              <div className='flex items-center gap-5'>
+                <Image
+                  src='/images/bulleh-shah-portrait.webp'
+                  alt='Illustrated portrait of Bulleh Shah'
+                  width={320}
+                  height={320}
+                  sizes='(max-width: 640px) 72px, 96px'
+                  className='h-[72px] w-[72px] shrink-0 object-contain sm:h-24 sm:w-24'
+                />
+                <figcaption className='font-mono text-[10px] font-semibold uppercase leading-relaxed tracking-[0.14em] text-white/60'>
+                  Bulleh Shah
+                  <br />
+                  <span className='text-white/40'>1680–1757</span>
                 </figcaption>
               </div>
+              <blockquote className='mt-6 border-t border-white/20 pt-6'>
+                <p
+                  lang='pa-Arab'
+                  dir='rtl'
+                  className='urdu-khatati text-right text-xl text-white sm:text-2xl'
+                >
+                  پڑھ پڑھ علم ہزار کتاباں، کدے اپنے آپ نوں پڑھیا نئیں
+                </p>
+                <p
+                  lang='pa-Guru'
+                  className='gurmukhi-lipi mt-5 text-lg text-white/80 sm:text-xl'
+                >
+                  ਪੜ੍ਹ ਪੜ੍ਹ ਇਲਮ ਹਜ਼ਾਰ ਕਿਤਾਬਾਂ, ਕਦੇ ਆਪਣੇ ਆਪ ਨੂੰ ਪੜ੍ਹਿਆ ਨਈਂ
+                </p>
+              </blockquote>
+              <p className='bl-accent mt-6 font-display text-lg leading-snug text-white/85 sm:text-xl'>
+                Read a thousand books, yet never read yourself.
+              </p>
             </figure>
           </Reveal>
         </div>
@@ -495,162 +512,6 @@ export function OurRoots() {
             </article>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-/** Each offer links to its own card on the teams page. */
-const teamOffers = [
-  [
-    '01',
-    'For every team',
-    'Workshops',
-    'Turn AI anxiety into AI confidence, on your real tasks.',
-    `${paths.teams}#workshops`,
-  ],
-  [
-    '02',
-    'For leadership',
-    'Guidance',
-    'Shared rules for tools, data, cost and carbon.',
-    `${paths.teams}#guidance`,
-  ],
-  [
-    '03',
-    'For product & tech',
-    'Audits',
-    'We find the wasted compute in one workflow. Then we cut it.',
-    `${paths.teams}#audits`,
-  ],
-];
-
-/** The engagement, in order; the last step points back to the first. */
-const teamSteps = [
-  ['Audit', 'Map one workflow. Measure it, footprint included.'],
-  ['Plan', 'Rank the fixes by impact and risk.'],
-  ['Fix & train', 'Big wins first. Quality checked.'],
-  ['Repeat', 'Next workflow, please.'],
-];
-
-/** The bridge to the teams page, kept short: three ways in, one strip of how it runs. */
-export function ForTeamsBridge() {
-  return (
-    <section id='teams' className='bl-section bl-rule bg-background'>
-      <div className='bl-container'>
-        <div className='grid gap-4 md:grid-cols-[1fr_auto] md:items-end'>
-          <div>
-            <Reveal>
-              <p className='bl-kicker'>For teams &amp; businesses</p>
-            </Reveal>
-            <TextReveal
-              as='h2'
-              text='Rolled out AI? Make it count.'
-              accentWords={[3, 4, 5]}
-              className='bl-display mt-4 text-3xl text-foreground sm:text-4xl lg:text-5xl'
-            />
-          </div>
-          <Reveal delay={0.15}>
-            <p className='max-w-sm text-sm leading-relaxed text-muted-foreground sm:text-base md:text-right'>
-              Anxious teams. Growing AI bills. A footprint nobody's measuring.
-              We tackle all three.
-            </p>
-          </Reveal>
-        </div>
-
-        <Reveal className='bl-card mt-6 grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0'>
-          {teamOffers.map(([number, tag, title, body, href]) => (
-            <Link
-              key={title}
-              href={href}
-              className='group flex flex-col gap-2 p-5 transition-colors hover:bg-brand-soft/40'
-            >
-              <span className='flex items-center justify-between gap-3'>
-                <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.15em] text-muted-foreground'>
-                  {number} · {tag}
-                </span>
-                <ArrowUpRight
-                  className='h-4 w-4 shrink-0 text-brand-text transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5'
-                  aria-hidden='true'
-                />
-              </span>
-              <span className='bl-display text-xl text-foreground sm:text-2xl'>
-                {title}
-              </span>
-              <span className='text-sm leading-relaxed text-muted-foreground'>
-                {body}
-              </span>
-            </Link>
-          ))}
-        </Reveal>
-
-        <Reveal
-          delay={0.1}
-          className='bl-card bl-card-ink mt-4 p-6 text-white sm:p-8'
-        >
-          <p className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
-            How it goes
-          </p>
-          <ol className='mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8'>
-            {teamSteps.map(([title, body], index) => (
-              <li key={title} className='relative lg:pr-9'>
-                <span className='flex items-center gap-3'>
-                  <span className='flex h-9 w-9 shrink-0 items-center justify-center bg-brand font-mono text-sm font-bold text-ink'>
-                    {index + 1}
-                  </span>
-                  <span className='bl-display text-2xl text-white'>
-                    {title}
-                  </span>
-                </span>
-                <p className='mt-3 text-sm leading-relaxed text-white/65'>
-                  {body}
-                </p>
-                {index < teamSteps.length - 1 ? (
-                  <ArrowRight
-                    className='absolute right-0 top-2 hidden h-5 w-5 text-brand-2 lg:block'
-                    aria-hidden='true'
-                  />
-                ) : (
-                  <RotateCcw
-                    className='absolute right-0 top-2 hidden h-5 w-5 text-brand-2 lg:block'
-                    aria-label='then the next workflow'
-                  />
-                )}
-              </li>
-            ))}
-          </ol>
-          <div className='mt-8 flex flex-wrap gap-3 border-t border-white/15 pt-6'>
-            <Link
-              href={teamHref}
-              className='bl-btn bl-btn-primary inline-flex h-12 items-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]'
-            >
-              Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
-            </Link>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.15} className='mt-4'>
-          <Link
-            href={paths.teams}
-            className='bl-card bl-card-link group flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6'
-          >
-            <span className='min-w-0'>
-              <span className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
-                Tap to explore
-              </span>
-              <span className='bl-display mt-1.5 block text-2xl text-foreground sm:text-3xl'>
-                How we work with teams
-              </span>
-              <span className='mt-1.5 block text-sm leading-relaxed text-muted-foreground'>
-                Workshops, guidance and audits, explained on one page.
-              </span>
-            </span>
-            <span className='bl-btn bl-btn-primary inline-flex h-12 w-fit shrink-0 items-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] transition-transform group-hover:-translate-y-0.5'>
-              Explore the teams page
-              <ArrowUpRight className='h-3.5 w-3.5' aria-hidden='true' />
-            </span>
-          </Link>
-        </Reveal>
       </div>
     </section>
   );
@@ -744,10 +605,230 @@ export function ConsciousAiClosing({ dict }: { dict: Dictionary }) {
           <ArrowUpRight className='h-4 w-4' aria-hidden='true' />
         </Link>
       )}
-      <TalkToHumansButton className='bl-btn bl-btn-secondary h-14 gap-3 bg-surface px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]'>
-        <Users className='h-4 w-4' aria-hidden='true' />
-        Talk to real humans
-      </TalkToHumansButton>
     </CtaBanner>
+  );
+}
+
+/** Three ways in for teams; each links to its own card on the teams page. */
+const teamOffers = [
+  [
+    '01',
+    'Workshops',
+    'Turn AI anxiety into AI confidence, on your real tasks.',
+    `${paths.teams}#workshops`,
+  ],
+  [
+    '02',
+    'Guidance',
+    'Shared rules for tools, data, cost and carbon.',
+    `${paths.teams}#guidance`,
+  ],
+  [
+    '03',
+    'Audits',
+    'We find the wasted compute in one workflow. Then we cut it.',
+    `${paths.teams}#audits`,
+  ],
+] as const;
+
+/** Three ways in for people who build: each row leads to /services. */
+const buildOffers = [
+  [
+    '01',
+    'Product development',
+    'From a rough idea to a product people pay for.',
+    paths.services,
+  ],
+  [
+    '02',
+    'Engineering',
+    'Web, mobile and backend, built to last and to be measured.',
+    paths.services,
+  ],
+  [
+    '03',
+    'AI automation & integrations',
+    'The boring work, automated. Only where it actually pays.',
+    paths.services,
+  ],
+] as const;
+
+type Offer = (typeof teamOffers)[number] | (typeof buildOffers)[number];
+
+/** One shared button measure so the two cards' actions line up. */
+const nextStepButton =
+  'bl-btn inline-flex h-11 items-center gap-2 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em]';
+
+const inkGhostButton = `${nextStepButton} border border-white/45 text-white hover:border-white hover:bg-white/10`;
+
+/**
+ * One offer per row: number, title and a half-line of body on the same
+ * baseline, so three rows read as a list rather than three paragraphs.
+ */
+function OfferRows({
+  offers,
+  ink,
+}: {
+  offers: readonly Offer[];
+  ink: boolean;
+}) {
+  return (
+    <ul
+      className={
+        ink
+          ? 'mt-6 divide-y divide-white/15 border-y border-white/15'
+          : 'mt-6 divide-y divide-ink/15 border-y border-ink/15'
+      }
+    >
+      {offers.map(([number, title, body, href]) => (
+        <li key={title}>
+          <Link
+            href={href}
+            className={`group grid grid-cols-[2rem_1fr_auto] items-baseline gap-x-3 py-3.5 transition-colors ${
+              ink ? 'hover:bg-white/5' : 'hover:bg-brand-soft'
+            }`}
+          >
+            <span
+              className={`font-mono text-[10px] font-semibold ${
+                ink ? 'text-brand-2' : 'text-brand-text'
+              }`}
+            >
+              {number}
+            </span>
+            <span className='min-w-0'>
+              <span
+                className={`bl-display mr-2 text-lg sm:text-xl ${
+                  ink ? 'text-white' : 'text-foreground'
+                }`}
+              >
+                {title}
+              </span>
+              <span
+                className={`text-sm leading-relaxed ${
+                  ink ? 'text-white/65' : 'text-muted-foreground'
+                }`}
+              >
+                {body}
+              </span>
+            </span>
+            <ArrowUpRight
+              className={`h-4 w-4 shrink-0 self-center transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${
+                ink ? 'text-brand-2' : 'text-brand-text'
+              }`}
+              aria-hidden='true'
+            />
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * Two doors out of the Conscious AI page, built on the same skeleton: kicker,
+ * title, one line of body, three offer rows, then the same pair of buttons.
+ * Teams and business leads on ink; Services is the lighter second card.
+ */
+export function ConsciousAiNextSteps() {
+  const bookCall = (className: string) =>
+    siteConfig.calHandle ? (
+      <BookCallButton
+        calHandle={siteConfig.calHandle}
+        hideIcon
+        className={className}
+      >
+        Book a time
+      </BookCallButton>
+    ) : (
+      <Link href={teamHref} className={className}>
+        Book a time
+      </Link>
+    );
+
+  return (
+    <section id='next-steps' className='bl-section bl-rule bl-band-stone'>
+      <div className='bl-container'>
+        <div className='grid gap-4 md:grid-cols-[1fr_auto] md:items-end'>
+          <div>
+            <Reveal>
+              <p className='bl-kicker'>Where next</p>
+            </Reveal>
+            <TextReveal
+              as='h2'
+              text='Two ways we can help.'
+              accentWords={[0, 1]}
+              className='bl-display mt-4 text-3xl text-foreground sm:text-4xl lg:text-5xl'
+            />
+          </div>
+          <Reveal delay={0.15}>
+            <p className='max-w-sm text-sm leading-relaxed text-muted-foreground sm:text-base md:text-right'>
+              Get your team using AI well, or build something with us. Most
+              people start with the first.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className='mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2'>
+          <Reveal>
+            <article
+              id='teams'
+              className='bl-card bl-card-ink flex h-full flex-col p-6 text-white sm:p-7'
+            >
+              <p className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
+                01 · For teams &amp; businesses
+              </p>
+              <h3 className='bl-display mt-4 text-2xl text-white sm:text-3xl'>
+                Get your team using AI well
+              </h3>
+              <p className='mt-3 text-sm leading-relaxed text-white/70 sm:text-base'>
+                Anxious staff, a growing bill, a footprint nobody measures. We
+                fix all three on your real tasks and show you the numbers.
+              </p>
+
+              <OfferRows offers={teamOffers} ink />
+
+              <div className='mt-auto flex flex-wrap gap-3 pt-6'>
+                <Link
+                  href={paths.teams}
+                  className={`${nextStepButton} bl-btn-primary`}
+                >
+                  How we work with teams
+                  <ArrowUpRight className='h-3.5 w-3.5' aria-hidden='true' />
+                </Link>
+                {bookCall(inkGhostButton)}
+              </div>
+            </article>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <article className='bl-card flex h-full flex-col p-6 sm:p-7'>
+              <p className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+                02 · For your product
+              </p>
+              <h3 className='bl-display mt-4 text-2xl text-foreground sm:text-3xl'>
+                Build something with us
+              </h3>
+              <p className='mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                Need something built instead? A small senior team, lean by
+                default, honest about what it costs and what it burns.
+              </p>
+
+              <OfferRows offers={buildOffers} ink={false} />
+
+              <div className='mt-auto flex flex-wrap gap-3 pt-6'>
+                <Link
+                  href={paths.services}
+                  className={`${nextStepButton} bl-btn-ink`}
+                >
+                  See what we build
+                  <ArrowUpRight className='h-3.5 w-3.5' aria-hidden='true' />
+                </Link>
+                {bookCall(`${nextStepButton} bl-btn-secondary`)}
+              </div>
+            </article>
+          </Reveal>
+        </div>
+      </div>
+    </section>
   );
 }

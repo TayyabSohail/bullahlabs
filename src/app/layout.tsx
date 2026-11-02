@@ -80,6 +80,28 @@ const plexMono = localFont({
   display: 'swap',
 });
 
+/* Bulleh Shah's verse on /conscious-ai. Only the Arabic and Gurmukhi
+   slices are shipped and neither is preloaded: the files are fetched the
+   first time a page actually sets the script. Regular weight only, so no
+   browser ever synthesises a bold Nastaliq. */
+const nastaliq = localFont({
+  variable: '--font-urdu',
+  src: './fonts/NotoNastaliqUrdu-Regular-arabic.woff2',
+  weight: '400',
+  style: 'normal',
+  display: 'swap',
+  preload: false,
+});
+
+const gurmukhi = localFont({
+  variable: '--font-gurmukhi',
+  src: './fonts/NotoSerifGurmukhi-Regular-gurmukhi.woff2',
+  weight: '400',
+  style: 'normal',
+  display: 'swap',
+  preload: false,
+});
+
 export const metadata: Metadata = getMetadata();
 
 export const viewport: Viewport = {
@@ -98,7 +120,7 @@ export default async function RootLayout({
   return (
     <html lang={dict.locale}>
       <body
-        className={`${plexSans.variable} ${fraunces.variable} ${plexMono.variable} font-sans`}
+        className={`${plexSans.variable} ${fraunces.variable} ${plexMono.variable} ${nastaliq.variable} ${gurmukhi.variable} font-sans`}
       >
         <AppProviders>
           <SmoothScroll>

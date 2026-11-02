@@ -3,6 +3,7 @@ import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
 
 import { Flag } from '@/components/brand/flags';
 import { Logo } from '@/components/brand/logo';
+import { LetsTalkButton } from '@/components/contact/lets-talk-button';
 import { Silk } from '@/components/effects/silk';
 import { BackToTop } from '@/components/layout/back-to-top';
 
@@ -57,12 +58,10 @@ export function Footer({ dict }: FooterProps) {
             <p className='mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground'>
               {t.pitch}
             </p>
-            <Link
-              href={paths.contact}
-              className='bl-btn bl-btn-primary mt-6 inline-flex h-11 items-center px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
-            >
+            {/* Same as the header: the calendar in a modal, not a page. */}
+            <LetsTalkButton className='bl-btn bl-btn-primary mt-6 inline-flex h-11 items-center px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'>
               {dict.nav.cta}
-            </Link>
+            </LetsTalkButton>
           </div>
 
           <FooterColumn title={t.program}>

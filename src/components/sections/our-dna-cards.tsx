@@ -6,7 +6,6 @@ import { useLocalTime } from '@/hooks/use-local-time';
 
 import { Flag } from '@/components/brand/flags';
 import { StaggerItem } from '@/components/motion/reveal';
-import { TextReveal } from '@/components/motion/text-reveal';
 
 import type { SiteLocation } from '@/config/site';
 
@@ -14,8 +13,9 @@ const ease = [0.16, 1, 0.3, 1] as const;
 const inView = { once: true, margin: '0px 0px -10% 0px' } as const;
 
 /**
- * The verse is presented as a focused quote card: original Punjabi, its
- * transliteration, and a concise reading underneath.
+ * The verse is presented as a focused quote card: the original Punjabi in
+ * Urdu (Shahmukhi) and Gurmukhi script, one above the other, with the
+ * English reading underneath.
  */
 export function VerseCard() {
   const reduce = useReducedMotion();
@@ -50,12 +50,16 @@ export function VerseCard() {
         >
           بلھیا کی جاناں میں کون
         </motion.p>
-        <TextReveal
-          as='p'
-          text='Bulleya ki jaana main kaun.'
-          delay={0.9}
-          className='bl-display relative mt-6 text-2xl text-foreground sm:text-3xl'
-        />
+        <motion.p
+          lang='pa-Guru'
+          initial={reduce ? false : { clipPath: 'inset(0 100% 0 0)' }}
+          whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
+          viewport={inView}
+          transition={{ duration: 1.4, ease, delay: 0.7 }}
+          className='gurmukhi-lipi relative mt-4 text-3xl leading-[1.5] text-foreground sm:text-4xl'
+        >
+          ਬੁੱਲ੍ਹਿਆ ਕੀ ਜਾਣਾਂ ਮੈਂ ਕੌਣ
+        </motion.p>
       </div>
       <motion.p
         initial={reduce ? false : { opacity: 0 }}
@@ -64,11 +68,13 @@ export function VerseCard() {
         transition={{ duration: 0.8, ease, delay: 1.3 }}
         className='border-t border-line pt-5 text-sm leading-relaxed text-muted-foreground sm:text-base'
       >
-        <span className='text-foreground'>
+        <span className='bl-display block text-xl text-foreground sm:text-2xl'>
           “Bulleh, what do I know of who I am?”
-        </span>{' '}
-        A refusal to be boxed in by religion, caste, or anyone else’s
-        expectations.
+        </span>
+        <span className='mt-3 block'>
+          A refusal to be boxed in by religion, caste, or anyone else’s
+          expectations.
+        </span>
       </motion.p>
     </motion.div>
   );
@@ -95,7 +101,7 @@ export function OfficeCard({ location }: OfficeCardProps) {
         </p>
         <p className='inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground'>
           <span className='bl-status-dot' data-open={open} aria-hidden='true' />
-          {local ? (open ? 'Office hours' : 'After hours') : ' '}
+          {local ? (open ? 'Office hours' : 'After hours') : ' '}
         </p>
       </div>
       <div className='mt-4 flex items-baseline justify-between gap-4'>

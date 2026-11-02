@@ -84,10 +84,6 @@ export default {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-        'bl-pulse-ring': {
-          '0%': { transform: 'scale(0.9)', opacity: '0.8' },
-          '100%': { transform: 'scale(2.2)', opacity: '0' },
-        },
         'bl-float': {
           '0%, 100%': { transform: 'translate3d(0, 0, 0)' },
           '50%': { transform: 'translate3d(0, -10px, 0)' },
@@ -95,14 +91,25 @@ export default {
         'bl-spin-slow': {
           to: { transform: 'rotate(360deg)' },
         },
+        // A highlight that sweeps across a control, then rests.
+        'bl-shine': {
+          '0%': { transform: 'translateX(-180%) skewX(-18deg)' },
+          '28%, 100%': { transform: 'translateX(420%) skewX(-18deg)' },
+        },
+        // Two quick hops, then a long rest.
+        'bl-nudge': {
+          '0%, 14%, 100%': { transform: 'translateY(0)' },
+          '4%, 11%': { transform: 'translateY(-4px)' },
+          '7%': { transform: 'translateY(1px)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'pulse-ring':
-          'bl-pulse-ring 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite',
         float: 'bl-float 7s ease-in-out infinite',
         'spin-slow': 'bl-spin-slow 24s linear infinite',
+        shine: 'bl-shine 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+        nudge: 'bl-nudge 5s ease-in-out infinite',
       },
       fontFamily: {
         sans: 'var(--font-sans)',

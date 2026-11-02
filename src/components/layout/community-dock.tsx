@@ -8,7 +8,10 @@ import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
 import { siteConfig } from '@/config/site';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
-/** A single horizontal control that opens into its social destinations. */
+/**
+ * A single horizontal control that opens into its social destinations. It
+ * sits inside the CornerDock, which fixes it to the bottom-right corner.
+ */
 export function CommunityDock({ dict }: { dict: Dictionary }) {
   const [open, setOpen] = useState(true);
   const dockRef = useRef<HTMLDivElement>(null);
@@ -31,21 +34,22 @@ export function CommunityDock({ dict }: { dict: Dictionary }) {
   }, []);
 
   return (
-    <div
-      ref={dockRef}
-      className='fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 z-40 sm:bottom-6 sm:right-6'
-    >
-      <div className='flex h-12 items-center overflow-hidden rounded-full border border-ink bg-ink text-white shadow-[3px_3px_0_hsl(var(--brand))]'>
+    <div ref={dockRef} className='relative w-full shrink-0'>
+      <div className='flex h-12 w-full items-center overflow-hidden rounded-full border border-ink bg-ink text-white shadow-[3px_3px_0_hsl(var(--brand))]'>
         <button
           type='button'
           onClick={() => setOpen((current) => !current)}
           aria-label={open ? 'Close community menu' : t.mobileJoin}
           aria-expanded={open}
           data-cta='community-dock'
-          className='flex h-full shrink-0 items-center gap-2 px-3 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand'
+          className='flex h-full min-w-0 flex-1 items-center justify-center gap-2 px-3 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand'
         >
-          {open ? <X className='h-4 w-4' aria-hidden /> : <SocialMarks />}
-          <span className='font-mono text-[10px] font-bold uppercase tracking-[0.12em]'>
+          {open ? (
+            <X className='h-4 w-4 shrink-0' aria-hidden />
+          ) : (
+            <SocialMarks />
+          )}
+          <span className='truncate font-mono text-[10px] font-bold uppercase tracking-[0.12em]'>
             {open ? t.dockOpen : 'Community'}
           </span>
         </button>
@@ -57,7 +61,7 @@ export function CommunityDock({ dict }: { dict: Dictionary }) {
               animate={{ width: 96 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className='flex h-full items-center overflow-hidden border-l border-white/20'
+              className='flex h-full shrink-0 items-center overflow-hidden border-l border-white/20'
             >
               <SocialLink
                 href={siteConfig.community.reddit}

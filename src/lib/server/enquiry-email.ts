@@ -14,6 +14,9 @@ interface EnquiryEmailInput {
   company?: string;
   /** Human-readable label, not the raw slug. */
   service: string;
+  /** Extra label/value rows under Interest: the visitor's quick picks. */
+  facts?: [string, string][];
+  /** Free-text notes; may be empty now that the picks carry the brief. */
   message: string;
 }
 
@@ -26,6 +29,7 @@ export function renderEnquiryHtml({
   email,
   company,
   service,
+  facts = [],
   message,
 }: EnquiryEmailInput) {
   const rows: [string, string][] = [
@@ -33,6 +37,7 @@ export function renderEnquiryHtml({
     ['Email', email],
     ['Company', company || '—'],
     ['Interest', service],
+    ...facts,
   ];
 
   const rowsHtml = rows
@@ -45,7 +50,9 @@ export function renderEnquiryHtml({
     )
     .join('');
 
-  const messageHtml = escapeHtml(message).replace(/\n/g, '<br />');
+  const messageHtml = message.trim()
+    ? escapeHtml(message).replace(/\n/g, '<br />')
+    : '<span style="color:#6b7280;">No extra notes.</span>';
 
   return `<!doctype html>
 <html>
@@ -64,7 +71,7 @@ export function renderEnquiryHtml({
       </tr>
       <tr>
         <td style="padding:0 28px 28px;">
-          <p style="margin:0 0 8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b7280;">Message</p>
+          <p style="margin:0 0 8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b7280;">Notes</p>
           <div style="padding:16px;background:#fafaf9;border:1px solid #e7e5e4;color:#111827;font-size:14px;line-height:1.65;">${messageHtml}</div>
           <p style="margin:20px 0 0;font-size:13px;color:#6b7280;">Reply directly to this email to answer ${escapeHtml(name)}.</p>
         </td>

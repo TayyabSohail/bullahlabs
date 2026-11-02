@@ -10,7 +10,7 @@ const communities = [
     icon: FaRedditAlien,
     href: siteConfig.community.reddit,
     cardClassName:
-      'border-[#ff4500] bg-[#fff7f2] shadow-[4px_4px_0_0_#ff4500] hover:bg-[#fff0e8]',
+      'border-[#ff4500] bg-card shadow-[4px_4px_0_0_#ff4500] hover:bg-[#fff3ec]',
     iconClassName: 'bg-[#ff4500] text-white',
     actionClassName: 'text-[#c93a00] group-hover:text-[#8f2900]',
   },
@@ -19,7 +19,7 @@ const communities = [
     icon: FaDiscord,
     href: siteConfig.community.discord,
     cardClassName:
-      'border-[#5865f2] bg-[#f5f5ff] shadow-[4px_4px_0_0_#5865f2] hover:bg-[#eeeeff]',
+      'border-[#5865f2] bg-card shadow-[4px_4px_0_0_#5865f2] hover:bg-[#f1f1ff]',
     iconClassName: 'bg-[#5865f2] text-white',
     actionClassName: 'text-[#4651ca] group-hover:text-[#303993]',
   },

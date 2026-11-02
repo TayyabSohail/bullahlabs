@@ -1,10 +1,8 @@
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
-import { DEFAULT_INTEREST } from '@/schema/contact';
 
-/** Contact form, with the course already chosen. */
-export const requestAccessHref =
-  `${paths.contact}?service=${DEFAULT_INTEREST}` as const;
+/** The contact page; the form has no course option any more. */
+export const requestAccessHref = paths.contact;
 
 /** True once NEXT_PUBLIC_COURSE_URL is set and the course can be opened. */
 export const courseIsLive = siteConfig.courseUrl !== null;
