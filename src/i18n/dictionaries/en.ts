@@ -21,6 +21,7 @@ export const en = {
   nav: {
     about: 'Our DNA',
     program: 'Conscious AI',
+    upskilling: 'Upskilling',
     services: 'Services',
     work: 'Work',
     approach: 'Approach',
@@ -45,7 +46,7 @@ export const en = {
     primary: 'Explore Conscious AI',
     /**
      * The three ways in under the buttons, three ruled cards, each one link:
-     * course (/conscious-ai), team training (/conscious-ai/teams), services
+     * course (/conscious-ai), team training (/upskilling), services
      * (/services). Order is fixed by the hero's STEP_PATHS. Kicker under
      * about 20 characters, title under about 20, body one or two lines.
      */
@@ -1341,6 +1342,297 @@ export const en = {
         accent: "We'll bring the scissors.",
         body: "Start with one honest conversation. We'll tell you whether a workshop, guidance or an audit is the right next move.",
       },
+    },
+  },
+  /** The Upskilling page (/upskilling), top to bottom. */
+  upskillingPage: {
+    breadcrumb: 'Upskilling',
+    hero: {
+      kicker: 'AI upskilling',
+      title: "Your AI bill is growing. Your team's output isn't.",
+      accent: [5, 6, 7, 8],
+      body: 'Most teams got AI tools, not the skills to use them. We make your team AI-fluent and cut the bill.',
+      primaryCta: 'Upskill your team',
+      secondaryCta: 'Get a free workflow audit',
+    },
+    familiar: {
+      kicker: 'Sound familiar?',
+      items: [
+        'The AI bill keeps climbing.',
+        'What’s safe to paste into AI?',
+        'Teams using AI inefficiently.',
+        'People fear being replaced.',
+      ],
+    },
+    trainings: {
+      kicker: 'Conscious AI trainings',
+      title: 'Your team is expected to use AI. Nobody showed them how.',
+      accent: [7, 8, 9, 10],
+      lead: "Hands-on AI training on your team's real work.",
+      points: [
+        'For marketing, HR, finance, operations, legal, and compliance',
+        'Less guessing, lower AI bills',
+        'More done, better results',
+      ],
+      cta: 'Make your team AI-fluent',
+      how: 'How it works',
+      /** Title, body; one cell each in the two-by-two grid. */
+      benefits: [
+        [
+          'Get more done',
+          'AI handles first drafts, meeting notes, and research. Your team makes the calls, instead of cleaning up AI slop.',
+        ],
+        [
+          'Spend less on AI',
+          'Not every task needs the biggest model. AI-fluent teams waste less and pay less.',
+        ],
+        [
+          'Stay compliant',
+          'Know what never goes into an AI tool, and which tools are safe.',
+        ],
+        ['Lead your industry', 'Stop catching up. Start setting the pace.'],
+      ],
+    },
+    learns: {
+      kicker: 'Your team learns',
+      step: 'Step',
+      repeat: 'Repeat',
+      steps: [
+        ['Ask first', "When a task doesn't need AI at all"],
+        [
+          'Pick the right tool',
+          'When a simple script beats AI, like merging spreadsheets',
+        ],
+        ['Use AI well', 'Better, faster results with AI agents and skills'],
+        ['Share safely', 'What to share, and what stays secret'],
+        [
+          'Check and improve',
+          'Catch AI slop before it goes out, then fix the workflow',
+        ],
+      ],
+    },
+    planet: {
+      kicker: 'Profit and planet',
+      title: 'Less waste. Smaller footprint.',
+      accent: [2, 3],
+      body: "Every prompt your team doesn't waste saves:",
+      chips: ['Energy', 'Cooling water', 'CO₂'],
+    },
+    security: {
+      kicker: 'Data security · Compliance',
+      title: 'Company data stays in.',
+      accent: [2, 3],
+      body: 'One pasted contract can break your data policy. Your team learns where the line is.',
+      items: [
+        'What never goes into public AI tools',
+        'Which tools are safe, with the right settings',
+        'Your data policy as simple team rules',
+      ],
+      note: 'Supports your policies. Not legal advice.',
+    },
+    bill: {
+      kicker: 'Conscious AI · For teams',
+      title: "Your team's AI bill, itemized.",
+      accent: [4],
+      body: 'Rolled out AI? Make it count. We find the inefficiencies, then train your team to fix them.',
+      steps: [
+        'Free workflow audit',
+        'Hands-on training',
+        'Before-and-after numbers',
+      ],
+      primaryCta: 'Make your team AI-fluent',
+      receipt: {
+        title: 'Receipt',
+        payer: 'Paid by: your budget and the planet',
+        caption: 'Illustrative team AI costs, before and after training',
+        item: 'Item',
+        before: 'Before',
+        after: 'After',
+        /** Item, before, after. */
+        rows: [
+          ['Biggest model for every task', '€€€', '€'],
+          ["AI doing a script's job", '€€', '€0'],
+          ['Fixing sloppy AI work', '€€€', '€'],
+          ['Licenses nobody uses', '€€', '€0'],
+          ['Energy, water, and CO₂', 'More', 'Less'],
+        ],
+        totalLabel: 'Total',
+        total: 'Smaller. On both bills.',
+        /** The sign-off: the lead words, then the words lit in green. */
+        stamp: ['Not More,', 'Better AI'],
+        note: 'Illustrative. Your real numbers come from the free audit.',
+      },
+    },
+    pricing: {
+      kicker: 'Free audit · Pricing',
+      title: 'Clear prices. No surprise bills.',
+      accent: [2, 3, 4],
+      aside: 'Per team, not per seat. No meter running.',
+      recommended: 'Recommended',
+      from: 'From',
+      note: 'Prices excl. VAT. Remote, or on-site near Stuttgart.',
+      audit: {
+        kicker: 'Free audit',
+        price: '€0',
+        title: 'Where does your AI budget go? Find out for free.',
+        accent: [6, 7, 8, 9],
+        body: 'One workflow, checked for free. No strings.',
+        items: [
+          'Where the money goes',
+          'What a script or smaller model can do',
+          'How AI-fluent your team is',
+          'A fix list, ranked by savings',
+        ],
+        cta: 'Get a free workflow audit',
+      },
+      plans: [
+        {
+          name: 'Workshop',
+          from: false,
+          price: '€1,490',
+          lead: 'One team, one half-day.',
+          items: [
+            'Up to 12 people',
+            'Built on your real tasks',
+            'Team AI playbook',
+          ],
+          cta: 'Book the workshop',
+          recommended: false,
+        },
+        {
+          name: 'Team program',
+          from: false,
+          price: '€4,900',
+          lead: 'Train the team. Fix one workflow.',
+          items: [
+            'Full day, up to 12 people',
+            'One workflow fixed',
+            'A shared prompt library for the team',
+            'Email support for 30 days',
+            'Follow-ups and before-and-after numbers',
+          ],
+          cta: 'Start the program',
+          recommended: true,
+        },
+        {
+          name: 'Company rollout',
+          from: true,
+          price: '€12,900',
+          lead: 'Several teams, one way of working.',
+          items: [
+            'Up to four teams',
+            'A session for managers',
+            'An AI go-to person in every team',
+            'AI policy, data rules, and approved tools',
+            'A check of licenses and AI spend',
+            'Up to three workflows fixed',
+            'Three months of check-ins and reports',
+          ],
+          cta: 'Plan your rollout',
+          recommended: false,
+        },
+      ],
+    },
+    testimonials: {
+      title: 'What clients say.',
+    },
+    course: {
+      kicker: 'Free course',
+      title: 'Not ready to book? Start with a free, self-paced course.',
+      accent: [4, 5, 6, 7, 8, 9],
+      body: 'Short videos on AI literacy: use AI well, waste less, and keep data safe.',
+      label: 'Work email',
+      submit: 'Get the free course',
+      note: 'Free, forever. Just your email.',
+    },
+    dna: {
+      kicker: 'Our DNA',
+      title: 'Old wisdom. Modern tools.',
+      accent: [2, 3],
+      body: 'Values from the Sufi poet Bulleh Shah. One team in Stuttgart and Islamabad.',
+      cta: 'Read our DNA',
+      values: [
+        [
+          'Purpose before technology.',
+          'Start with the problem, not the latest tool.',
+        ],
+        [
+          'Right-size everything.',
+          'The smallest tool that does the job without compromising on the results.',
+        ],
+        ['People first.', 'Tools serve people, not the other way round.'],
+        ['Impact counts.', 'Planet and people matter, not just speed.'],
+      ],
+    },
+    services: {
+      lead: 'Need software built, not training?',
+      accent: 'We do that too.',
+      cta: 'See our services',
+    },
+    faq: {
+      kicker: 'FAQ',
+      title: 'Fair questions. Straight answers.',
+      accent: [2, 3],
+      items: [
+        {
+          question: "We don't know where to start. Is that OK?",
+          answer:
+            "That's normal. We start from your team's real tasks. No tech background needed.",
+        },
+        {
+          question: 'How do we pick the right AI tool?',
+          answer:
+            "That's the core of the training: when you need no AI, a simple script, a small model, or a big one. We work with the tools you already have, from any provider.",
+        },
+        {
+          question: 'Will AI replace our people?',
+          answer:
+            'We train people to use AI with judgment, not to hand their work over. The decisions stay with them.',
+        },
+        {
+          question: 'Everything AI gives us needs fixing. Can training help?',
+          answer:
+            "That's AI slop, and it eats the time AI saves. Your team learns to give AI the right context, check the output against an agreed bar, and stop passing half-finished work to a colleague.",
+        },
+        {
+          question: 'Can we trust AI tools with our data?',
+          answer:
+            "We can't vouch for any provider. We teach what never goes into public tools and which settings to switch on. In the audit, we ask only for what we need, anonymized where possible.",
+        },
+        {
+          question: 'Does training help with compliance?',
+          answer:
+            "It helps your team follow your data and AI rules day to day. It's not legal advice: check your obligations, including the EU AI Act, with your lawyer.",
+        },
+        {
+          question: 'Should we run AI on our own machines?',
+          answer:
+            "Sometimes. It can help with privacy and cost, but a laptop isn't always more energy-efficient than a data center. We compare before we recommend.",
+        },
+        {
+          question: 'What happens in the free audit?',
+          answer:
+            'You pick one workflow. We check usage, licenses, and output, then send a fix list ranked by savings. Free, no strings.',
+        },
+        {
+          question: 'How do you measure results?',
+          answer:
+            'Before and after: time per task, AI spend, do-overs, quality, and team confidence. We agree the measures up front.',
+        },
+        {
+          question: 'Where does the environment come in?',
+          answer:
+            'Every AI request uses electricity and cooling water. Smaller models, shorter answers, and simple scripts can cut both, and your bill. We show our assumptions, not false precision.',
+        },
+      ],
+    },
+    closing: {
+      kicker: "Let's talk",
+      title: 'Stop overpaying for AI. Start with a free audit.',
+      accent: [4, 5, 6, 7, 8],
+      body: 'One workflow, one call, a clear fix list.',
+      primaryCta: 'Get a free workflow audit',
+      secondaryCta: 'Upskill your team',
     },
   },
   /** The live AI profile quiz on /conscious-ai: five questions, an email gate, the result. */

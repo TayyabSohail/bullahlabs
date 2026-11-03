@@ -149,7 +149,7 @@ export function TeamsOfferCard({
       kicker={t.kicker}
       title={t.title}
       offers={t.rows}
-      href={paths.teams}
+      href={paths.upskilling}
       cta={t.cta}
       ink={ink}
       className={className}

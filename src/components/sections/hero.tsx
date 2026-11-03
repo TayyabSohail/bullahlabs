@@ -16,11 +16,11 @@ interface HeroProps {
 /**
  * Where each of the three cells under the buttons leads, in dictionary
  * order: the course section on the Conscious AI page (its `CourseSection`
- * carries id "course"), team training, services.
+ * carries id "course"), team training (the Upskilling page), services.
  */
 const STEP_PATHS = [
   `${paths.program}#course`,
-  paths.teams,
+  paths.upskilling,
   paths.services,
 ] as const;
 

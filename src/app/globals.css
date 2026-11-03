@@ -1545,6 +1545,11 @@ main > section.bl-band-stone.bl-band-peach {
   background-color: hsl(var(--band-peach));
 }
 
+/* A section that must be sky whatever its position in the page. */
+main > section.bl-band-stone.bl-band-sky {
+  background-color: hsl(var(--band-sky));
+}
+
 /* The till receipt in the home and Conscious AI heroes: a sawtooth tear along the bottom,
    and a rubber stamp that slams in once the rows have printed. */
 .bl-receipt {

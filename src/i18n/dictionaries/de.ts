@@ -8,6 +8,7 @@ export const de: Dictionary = {
   nav: {
     about: 'Über uns',
     program: 'Conscious AI',
+    upskilling: 'Weiterbildung',
     services: 'Leistungen',
     work: 'Projekte',
     approach: 'Ansatz',
@@ -1295,6 +1296,306 @@ export const de: Dictionary = {
         accent: 'Wir bringen die Schere.',
         body: 'Beginnen Sie mit einem ehrlichen Gespräch. Wir sagen Ihnen, ob ein Workshop, Leitlinien oder ein Audit der richtige nächste Schritt ist.',
       },
+    },
+  },
+  upskillingPage: {
+    breadcrumb: 'Weiterbildung',
+    hero: {
+      kicker: 'KI-Weiterbildung',
+      title: 'Ihre KI-Rechnung wächst. Die Leistung Ihres Teams nicht.',
+      accent: [3, 4, 5, 6, 7],
+      body: 'Die meisten Teams haben KI-Tools bekommen, nicht die Fähigkeiten dafür. Wir machen Ihr Team KI-kompetent und senken die Rechnung.',
+      primaryCta: 'Team weiterbilden',
+      secondaryCta: 'Kostenloser Workflow-Audit',
+    },
+    familiar: {
+      kicker: 'Kommt Ihnen bekannt vor?',
+      items: [
+        'Die KI-Rechnung steigt und steigt.',
+        'Was darf man in KI einfügen?',
+        'Teams nutzen KI ineffizient.',
+        'Die Angst, ersetzt zu werden.',
+      ],
+    },
+    trainings: {
+      kicker: 'Conscious AI Trainings',
+      title: 'Von Ihrem Team wird KI erwartet. Gezeigt hat es ihm niemand.',
+      accent: [6, 7, 8, 9, 10],
+      lead: 'Praxisnahes KI-Training an den echten Aufgaben Ihres Teams.',
+      points: [
+        'Für Marketing, HR, Finanzen, Operations, Recht und Compliance',
+        'Weniger Raten, niedrigere KI-Kosten',
+        'Mehr geschafft, bessere Ergebnisse',
+      ],
+      cta: 'Team KI-kompetent machen',
+      how: "So funktioniert's",
+      benefits: [
+        [
+          'Mehr schaffen',
+          'KI übernimmt erste Entwürfe, Protokolle und Recherche. Ihr Team trifft die Entscheidungen, statt KI-Murks aufzuräumen.',
+        ],
+        [
+          'Weniger für KI ausgeben',
+          'Nicht jede Aufgabe braucht das größte Modell. KI-kompetente Teams verschwenden weniger und zahlen weniger.',
+        ],
+        [
+          'Compliant bleiben',
+          'Wissen, was nie in ein KI-Tool gehört und welche Tools sicher sind.',
+        ],
+        [
+          'Ihre Branche anführen',
+          'Nicht mehr hinterherlaufen. Das Tempo selbst vorgeben.',
+        ],
+      ],
+    },
+    learns: {
+      kicker: 'Ihr Team lernt',
+      step: 'Schritt',
+      repeat: 'Wiederholen',
+      steps: [
+        ['Erst fragen', 'Wann eine Aufgabe gar keine KI braucht'],
+        [
+          'Das richtige Tool wählen',
+          'Wann ein einfaches Skript KI schlägt, etwa beim Zusammenführen von Tabellen',
+        ],
+        [
+          'KI gut nutzen',
+          'Bessere, schnellere Ergebnisse mit KI-Agenten und Skills',
+        ],
+        ['Sicher teilen', 'Was man teilt und was geheim bleibt'],
+        [
+          'Prüfen und verbessern',
+          'KI-Murks abfangen, bevor er rausgeht, dann den Workflow verbessern',
+        ],
+      ],
+    },
+    planet: {
+      kicker: 'Profit und Planet',
+      title: 'Weniger Verschwendung. Kleinerer Fußabdruck.',
+      accent: [2, 3],
+      body: 'Jeder Prompt, den Ihr Team nicht verschwendet, spart:',
+      chips: ['Energie', 'Kühlwasser', 'CO₂'],
+    },
+    security: {
+      kicker: 'Datensicherheit · Compliance',
+      title: 'Firmendaten bleiben drin.',
+      accent: [2, 3],
+      body: 'Ein eingefügter Vertrag kann Ihre Datenrichtlinie verletzen. Ihr Team lernt, wo die Grenze liegt.',
+      items: [
+        'Was nie in öffentliche KI-Tools gehört',
+        'Welche Tools sicher sind, mit den richtigen Einstellungen',
+        'Ihre Datenrichtlinie als einfache Teamregeln',
+      ],
+      note: 'Unterstützt Ihre Richtlinien. Keine Rechtsberatung.',
+    },
+    bill: {
+      kicker: 'Conscious AI · Für Teams',
+      title: 'Die KI-Rechnung Ihres Teams, aufgeschlüsselt.',
+      accent: [4],
+      body: 'KI eingeführt? Dann soll sie sich lohnen. Wir finden die Ineffizienzen und schulen Ihr Team, sie zu beheben.',
+      steps: [
+        'Kostenloser Workflow-Audit',
+        'Praxisnahes Training',
+        'Zahlen vorher und nachher',
+      ],
+      primaryCta: 'Team KI-kompetent machen',
+      receipt: {
+        title: 'Beleg',
+        payer: 'Bezahlt von: Ihrem Budget und dem Planeten',
+        caption: 'Beispielhafte KI-Kosten eines Teams, vor und nach dem Training',
+        item: 'Posten',
+        before: 'Vorher',
+        after: 'Nachher',
+        rows: [
+          ['Größtes Modell für jede Aufgabe', '€€€', '€'],
+          ['KI erledigt den Job eines Skripts', '€€', '€0'],
+          ['Schlampige KI-Arbeit nachbessern', '€€€', '€'],
+          ['Lizenzen, die niemand nutzt', '€€', '€0'],
+          ['Energie, Wasser und CO₂', 'Mehr', 'Weniger'],
+        ],
+        totalLabel: 'Summe',
+        total: 'Kleiner. Auf beiden Rechnungen.',
+        stamp: ['Nicht mehr,', 'bessere KI'],
+        note: 'Beispielhaft. Ihre echten Zahlen liefert der kostenlose Audit.',
+      },
+    },
+    pricing: {
+      kicker: 'Kostenloser Audit · Preise',
+      title: 'Klare Preise. Keine Überraschungen.',
+      accent: [2, 3],
+      aside: 'Pro Team, nicht pro Platz. Kein Taxameter.',
+      recommended: 'Empfohlen',
+      from: 'Ab',
+      note: 'Preise zzgl. MwSt. Remote oder vor Ort im Raum Stuttgart.',
+      audit: {
+        kicker: 'Kostenloser Audit',
+        price: '0 €',
+        title: 'Wohin fließt Ihr KI-Budget? Finden Sie es kostenlos heraus.',
+        accent: [4, 5, 6, 7, 8],
+        body: 'Ein Workflow, kostenlos geprüft. Ohne Haken.',
+        items: [
+          'Wohin das Geld fließt',
+          'Was ein Skript oder kleineres Modell leisten kann',
+          'Wie KI-kompetent Ihr Team ist',
+          'Eine Maßnahmenliste, nach Einsparung sortiert',
+        ],
+        cta: 'Kostenloser Workflow-Audit',
+      },
+      plans: [
+        {
+          name: 'Workshop',
+          from: false,
+          price: '1.490 €',
+          lead: 'Ein Team, ein halber Tag.',
+          items: [
+            'Bis zu 12 Personen',
+            'Aufgebaut auf Ihren echten Aufgaben',
+            'KI-Playbook fürs Team',
+          ],
+          cta: 'Workshop buchen',
+          recommended: false,
+        },
+        {
+          name: 'Teamprogramm',
+          from: false,
+          price: '4.900 €',
+          lead: 'Das Team schulen. Einen Workflow verbessern.',
+          items: [
+            'Ganzer Tag, bis zu 12 Personen',
+            'Ein Workflow verbessert',
+            'Eine gemeinsame Prompt-Bibliothek fürs Team',
+            'E-Mail-Support für 30 Tage',
+            'Follow-ups und Zahlen vorher und nachher',
+          ],
+          cta: 'Programm starten',
+          recommended: true,
+        },
+        {
+          name: 'Unternehmensweit',
+          from: true,
+          price: '12.900 €',
+          lead: 'Mehrere Teams, eine Arbeitsweise.',
+          items: [
+            'Bis zu vier Teams',
+            'Eine Session für Führungskräfte',
+            'Eine KI-Ansprechperson in jedem Team',
+            'KI-Richtlinie, Datenregeln und freigegebene Tools',
+            'Ein Check von Lizenzen und KI-Ausgaben',
+            'Bis zu drei Workflows verbessert',
+            'Drei Monate Check-ins und Berichte',
+          ],
+          cta: 'Rollout planen',
+          recommended: false,
+        },
+      ],
+    },
+    testimonials: {
+      title: 'Was Kunden sagen.',
+    },
+    course: {
+      kicker: 'Kostenloser Kurs',
+      title: 'Noch nicht bereit zu buchen? Starten Sie mit einem kostenlosen Kurs im eigenen Tempo.',
+      accent: [5, 6, 7, 8, 9, 10, 11, 12, 13],
+      body: 'Kurze Videos zur KI-Kompetenz: KI gut nutzen, weniger verschwenden und Daten schützen.',
+      label: 'Geschäftliche E-Mail',
+      submit: 'Kurs kostenlos erhalten',
+      note: 'Kostenlos, für immer. Nur Ihre E-Mail.',
+    },
+    dna: {
+      kicker: 'Unsere DNA',
+      title: 'Alte Weisheit. Moderne Werkzeuge.',
+      accent: [2, 3],
+      body: 'Werte des Sufi-Dichters Bulleh Shah. Ein Team in Stuttgart und Islamabad.',
+      cta: 'Unsere DNA lesen',
+      values: [
+        [
+          'Zweck vor Technologie.',
+          'Mit dem Problem beginnen, nicht mit dem neuesten Werkzeug.',
+        ],
+        [
+          'Alles in der richtigen Größe.',
+          'Das kleinste Werkzeug, das die Aufgabe erfüllt, ohne Abstriche beim Ergebnis.',
+        ],
+        [
+          'Menschen zuerst.',
+          'Werkzeuge dienen Menschen, nicht umgekehrt.',
+        ],
+        [
+          'Wirkung zählt.',
+          'Planet und Menschen zählen, nicht nur Tempo.',
+        ],
+      ],
+    },
+    services: {
+      lead: 'Sie brauchen Software, kein Training?',
+      accent: 'Das machen wir auch.',
+      cta: 'Unsere Leistungen',
+    },
+    faq: {
+      kicker: 'FAQ',
+      title: 'Faire Fragen. Klare Antworten.',
+      accent: [2, 3],
+      items: [
+        {
+          question: 'Wir wissen nicht, wo wir anfangen sollen. Ist das okay?',
+          answer:
+            'Das ist normal. Wir starten mit den echten Aufgaben Ihres Teams. Kein technisches Vorwissen nötig.',
+        },
+        {
+          question: 'Wie wählen wir das richtige KI-Tool?',
+          answer:
+            'Das ist der Kern des Trainings: wann Sie keine KI brauchen, ein einfaches Skript, ein kleines Modell oder ein großes. Wir arbeiten mit den Tools, die Sie schon haben, von jedem Anbieter.',
+        },
+        {
+          question: 'Wird KI unsere Leute ersetzen?',
+          answer:
+            'Wir schulen Menschen darin, KI mit Urteilsvermögen zu nutzen, nicht ihre Arbeit abzugeben. Die Entscheidungen bleiben bei ihnen.',
+        },
+        {
+          question:
+            'Alles, was die KI liefert, muss nachgebessert werden. Hilft Training?',
+          answer:
+            'Das ist KI-Murks, und er frisst die Zeit, die KI spart. Ihr Team lernt, der KI den richtigen Kontext zu geben, das Ergebnis an einem vereinbarten Maßstab zu prüfen und keine halbfertige Arbeit an Kollegen weiterzureichen.',
+        },
+        {
+          question: 'Können wir KI-Tools unsere Daten anvertrauen?',
+          answer:
+            'Für keinen Anbieter können wir bürgen. Wir zeigen, was nie in öffentliche Tools gehört und welche Einstellungen Sie aktivieren sollten. Im Audit fragen wir nur nach dem Nötigen, wo möglich anonymisiert.',
+        },
+        {
+          question: 'Hilft Training bei der Compliance?',
+          answer:
+            'Es hilft Ihrem Team, Ihre Daten- und KI-Regeln im Alltag einzuhalten. Es ist keine Rechtsberatung: Prüfen Sie Ihre Pflichten, auch nach dem EU AI Act, mit Ihrer Rechtsberatung.',
+        },
+        {
+          question: 'Sollten wir KI auf eigenen Rechnern betreiben?',
+          answer:
+            'Manchmal. Das kann bei Datenschutz und Kosten helfen, aber ein Laptop ist nicht immer energieeffizienter als ein Rechenzentrum. Wir vergleichen, bevor wir etwas empfehlen.',
+        },
+        {
+          question: 'Was passiert im kostenlosen Audit?',
+          answer:
+            'Sie wählen einen Workflow. Wir prüfen Nutzung, Lizenzen und Ergebnisse und schicken eine Maßnahmenliste, nach Einsparung sortiert. Kostenlos, ohne Haken.',
+        },
+        {
+          question: 'Wie messen Sie Ergebnisse?',
+          answer:
+            'Vorher und nachher: Zeit pro Aufgabe, KI-Ausgaben, Nacharbeit, Qualität und Sicherheit im Team. Die Kennzahlen vereinbaren wir vorab.',
+        },
+        {
+          question: 'Wo kommt die Umwelt ins Spiel?',
+          answer:
+            'Jede KI-Anfrage verbraucht Strom und Kühlwasser. Kleinere Modelle, kürzere Antworten und einfache Skripte senken beides, und Ihre Rechnung. Wir legen unsere Annahmen offen, statt falsche Genauigkeit vorzutäuschen.',
+        },
+      ],
+    },
+    closing: {
+      kicker: 'Sprechen wir',
+      title: 'Zahlen Sie nicht zu viel für KI. Starten Sie mit einem kostenlosen Audit.',
+      accent: [7, 8, 9, 10, 11, 12],
+      body: 'Ein Workflow, ein Gespräch, eine klare Maßnahmenliste.',
+      primaryCta: 'Kostenloser Workflow-Audit',
+      secondaryCta: 'Team weiterbilden',
     },
   },
   snapshot: {

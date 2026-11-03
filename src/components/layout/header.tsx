@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 import { Logo } from '@/components/brand/logo';
 import { LetsTalkButton } from '@/components/contact/lets-talk-button';
-import { CommunityLinks } from '@/components/layout/community-links';
 import { LocaleSwitcher } from '@/components/layout/locale-switcher';
 import { MobileMenu } from '@/components/layout/mobile-menu';
 
@@ -54,7 +53,9 @@ export function Header({ dict }: HeaderProps) {
         // (z-60) or the banner covers the menu's CTAs.
         mobileMenuOpen
           ? 'z-[70] border-line bg-[hsl(var(--band-peach))]'
-          : scrolled || pathname.startsWith(paths.program)
+          : scrolled ||
+              pathname.startsWith(paths.program) ||
+              pathname.startsWith(paths.upskilling)
             ? 'z-50 border-ink/80 bg-[hsl(var(--band-peach))]'
             : 'z-50 border-transparent bg-transparent',
       )}
@@ -97,10 +98,9 @@ export function Header({ dict }: HeaderProps) {
         </nav>
 
         <div className='flex shrink-0 items-center gap-3 justify-self-end'>
-          {/* Desktop only; the mobile menu carries them below lg. The
-              actions come first (community, then the CTA) and the language
-              setting sits last, a rule apart. */}
-          <CommunityLinks dict={dict} className='hidden lg:flex' />
+          {/* The CTA comes first and the language setting sits last, a
+              rule apart. Community links live in the mobile menu and the
+              footer, not the bar. */}
           {/* Shown at every width so phones get a CTA beside the hamburger,
               not only the icon. Opens the booking calendar in a modal; the
               Contact link in the nav is the way to the page and its form.

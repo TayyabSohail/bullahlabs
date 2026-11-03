@@ -265,7 +265,7 @@ export function FreeCoursePopup({ dict }: { dict: Dictionary }) {
               tone='light'
               submitLabel={t.cta}
               consent={false}
-              className='mt-4 [&_form>div]:!flex-col [&_form_button]:w-full'
+              className='mt-4 [&_form>div]:!flex-col [&_form_button]:!h-14 [&_form_button]:w-full [&_input[type=email]]:!h-11 [&_input[type=email]]:!min-h-11'
             />
           </div>
         </motion.div>

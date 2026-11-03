@@ -55,6 +55,13 @@ export function ContactChannels({
   const [sent, setSent] = useState(false);
   const lenis = useLenis();
 
+  // `?channel=form` (paths.contactForm) opens straight on the form, for
+  // buttons that ask people to write rather than book.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('channel') === 'form') setChannel('form');
+  }, []);
+
   // A sent enquiry clears the whole page: heading, picker and form go, and
   // one thank-you stands in their place at the top of the viewport.
   const handleSent = () => setSent(true);
