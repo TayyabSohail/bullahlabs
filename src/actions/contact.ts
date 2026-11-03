@@ -47,7 +47,10 @@ export const submitContact = safeActionClient
   .schema(contactSchema)
   .action(async ({ parsedInput }) => {
     // Honeypot filled: pretend success, drop silently.
-    if (parsedInput.website) return { delivered: true };
+    if (parsedInput.trap) {
+      Logger.info('Contact enquiry dropped: honeypot filled');
+      return { delivered: true };
+    }
 
     const headerStore = await headers();
     const ip =

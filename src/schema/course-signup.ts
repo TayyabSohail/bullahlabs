@@ -25,7 +25,8 @@ export const courseSignupSchema = z.object({
   /** Optional assessment data, stored on its own Google Sheet tab. */
   assessment: aiSnapshotSchema.optional(),
   /** Honeypot: must stay empty. Bots fill every field. */
-  website: z.string().max(0).optional().or(z.literal('')),
+  /** Honeypot. Not validated: a filled trap is dropped quietly server-side. */
+  trap: z.string().optional(),
 });
 
 export type CourseSignupInput = z.infer<typeof courseSignupSchema>;

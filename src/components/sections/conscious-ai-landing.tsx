@@ -8,52 +8,52 @@ import { Reveal } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { FaqSection } from '@/components/sections/faq';
-import {
-  buildOffers,
-  OfferCard,
-  TeamsOfferCard,
-} from '@/components/sections/offer-card';
+import { OfferCard, TeamsOfferCard } from '@/components/sections/offer-card';
 import { PlanetReceipt } from '@/components/sections/planet-receipt';
 
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
-import type { Faq } from '@/data/faqs';
-import { type Instructor, instructors } from '@/data/instructors';
+import { getInstructors, type Instructor } from '@/data/instructors';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 const teamHref = paths.contact;
+
+interface SectionProps {
+  dict: Dictionary;
+}
 
 /**
  * The opening: the essence in one headline, the tagline, one call to
  * action, and the planet's tab printed beside them.
  */
-export function ConsciousAiHero() {
+export function ConsciousAiHero({ dict }: SectionProps) {
+  const t = dict.consciousAiPage.hero;
+
   return (
     <section className='bl-grid-surface relative overflow-hidden border-b border-line bg-background'>
       <div className='bl-container grid gap-10 pb-16 pt-28 sm:pt-36 md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] md:items-center md:gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pb-24 lg:pt-40'>
         <div className='min-w-0'>
           <Reveal>
-            <p className='bl-kicker'>Our vision</p>
+            <p className='bl-kicker'>{t.kicker}</p>
           </Reveal>
           {/* The page's name is the headline: one line, as large as the
               column allows, with "AI" in the emerald italic accent. */}
           <TextReveal
             as='h1'
-            text='Conscious AI'
-            accentWords={[1]}
+            text={t.title}
+            accentWords={[...t.titleAccent]}
             className='bl-display mt-5 text-[clamp(3.5rem,12.5vw,8.5rem)] leading-[0.9] tracking-[-0.035em] text-ink md:text-[7.4vw] lg:text-[clamp(5rem,8.2vw,8.5rem)]'
           />
           <TextReveal
             as='p'
-            text='Not more AI. Better AI.'
-            accentWords={[3, 4]}
+            text={t.tagline}
+            accentWords={[...t.taglineAccent]}
             delay={0.25}
             className='bl-display mt-5 text-[clamp(1.6rem,3.2vw,2.75rem)] leading-[1.05] text-foreground'
           />
           <Reveal delay={0.35}>
             <p className='mt-6 max-w-lg text-lg leading-snug text-foreground sm:text-xl'>
-              AI isn't free. The planet's picking up the tab. Use it where it
-              counts, not just for token maxing.
+              {t.body}
             </p>
           </Reveal>
           <Reveal
@@ -64,11 +64,11 @@ export function ConsciousAiHero() {
               href={teamHref}
               className='bl-btn bl-btn-primary inline-flex h-12 w-full max-w-[16rem] items-center justify-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] sm:w-auto sm:max-w-none'
             >
-              Book a time with us <ArrowUpRight className='h-3.5 w-3.5' />
+              {t.cta} <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
           </Reveal>
         </div>
-        <PlanetReceipt className='md:mr-0' />
+        <PlanetReceipt copy={dict.hero.receipt} className='md:mr-0' />
       </div>
     </section>
   );
@@ -85,25 +85,10 @@ const CELL_NUMBER =
   'pt-1.5 font-mono text-[10px] font-semibold tracking-[0.18em]';
 const ROW_START = ['md:row-start-2', 'md:row-start-3', 'md:row-start-4'];
 
-export function ConsciousAiPrinciples() {
-  const principles = [
-    [
-      '01',
-      'FOMO, weekly.',
-      'A new model every Monday. Homework every Tuesday.',
-    ],
-    ['02', 'Faster. Cheaper. You?', 'The boss just discovered AI. Awkward.'],
-    [
-      '03',
-      'Hot and thirsty.',
-      'Data centres guzzle power and water. You never see the receipt.',
-    ],
-  ];
-  const moves = [
-    ['01', 'Use it on purpose', 'If a formula can do it, let it.'],
-    ['02', 'Pick the right size', 'Smaller model, smaller footprint.'],
-    ['03', 'Stay the expert', 'AI drafts. You decide.'],
-  ];
+export function ConsciousAiPrinciples({ dict }: SectionProps) {
+  const t = dict.consciousAiPage.principles;
+  const principles = t.problems;
+  const moves = t.moves;
 
   /* The problem and the fix share one section: a two-column ledger, the
      three complaints on the left and the three moves that answer them on
@@ -113,20 +98,18 @@ export function ConsciousAiPrinciples() {
       <div className='bl-container'>
         <div className='grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-end'>
           <div>
-            <p className='bl-kicker'>The problem, and the fix</p>
+            <p className='bl-kicker'>{t.kicker}</p>
             <TextReveal
               as='h2'
-              text='Everyone says use AI. Nobody says how.'
-              accentWords={[2, 3]}
+              text={t.title}
+              accentWords={[...t.accent]}
               className='bl-display mt-5 max-w-3xl text-display-lg text-foreground'
             />
           </div>
           <Reveal delay={0.15}>
             <p className='font-display text-2xl text-foreground sm:text-3xl md:text-right'>
-              We panic-prompt.{' '}
-              <span className='bl-accent text-brand-text'>
-                The planet pays.
-              </span>
+              {t.asideLead}{' '}
+              <span className='bl-accent text-brand-text'>{t.asideAccent}</span>
             </p>
           </Reveal>
         </div>
@@ -138,7 +121,7 @@ export function ConsciousAiPrinciples() {
           <p
             className={`${CELL_HEAD} border-ink/20 text-muted-foreground md:col-start-1 md:row-start-1 md:border-r md:border-r-ink`}
           >
-            The problem
+            {t.problemHead}
           </p>
           {principles.map(([number, title, body], index) => (
             <article
@@ -162,7 +145,7 @@ export function ConsciousAiPrinciples() {
           <p
             className={`${CELL_HEAD} border-white/15 bg-ink text-brand md:col-start-2 md:row-start-1`}
           >
-            The fix · Better AI, in three moves
+            {t.fixHead}
           </p>
           {moves.map(([number, title, body], index) => (
             <article
@@ -186,18 +169,18 @@ export function ConsciousAiPrinciples() {
   );
 }
 
+type InstructorLabels = Dictionary['consciousAiPage']['instructor'];
+
 /** One instructor: portrait, role, short bio and a fold-out with the facts. */
 function InstructorCard({
-  name,
-  firstName,
-  role,
-  tagline,
-  bio,
-  image,
-  focus,
-  school,
-  facts,
-}: Instructor) {
+  instructor,
+  labels,
+}: {
+  instructor: Instructor;
+  labels: InstructorLabels;
+}) {
+  const { name, firstName, role, tagline, bio, image, focus, school, facts } =
+    instructor;
   return (
     <Reveal className='bl-card w-full p-5 sm:p-8 lg:p-10'>
       <div className='grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12'>
@@ -205,7 +188,7 @@ function InstructorCard({
         <div className='flex justify-center lg:block'>
           <Image
             src={image}
-            alt={`Portrait of ${name}`}
+            alt={labels.portraitAlt.replace('{name}', name)}
             width={800}
             height={960}
             sizes='(min-width: 1024px) 240px, (min-width: 640px) 160px, 128px'
@@ -228,7 +211,7 @@ function InstructorCard({
             <HarvardShield className='h-14 w-auto shrink-0 sm:h-16' />
             <span className='min-w-0'>
               <span className='block font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground sm:text-[11px]'>
-                Alumnus
+                {labels.alumnus}
               </span>
               <span className='mt-0.5 block font-display text-xl font-bold leading-tight text-foreground sm:text-2xl'>
                 {school}
@@ -244,7 +227,7 @@ function InstructorCard({
 
       <details className='group mt-7 border-t border-ink/20 pt-5 text-center lg:mt-8 lg:text-left'>
         <summary className='bl-action cursor-pointer list-none text-xs sm:text-[13px] [&::-webkit-details-marker]:hidden'>
-          More about {firstName}
+          {labels.moreAbout.replace('{name}', firstName)}
           <Plus
             className='h-4 w-4 transition-transform duration-200 group-open:rotate-45'
             aria-hidden='true'
@@ -268,60 +251,62 @@ function InstructorCard({
 }
 
 /** Who teaches the course: a heading of its own, then one card per instructor. */
-export function CourseInstructor() {
+export function CourseInstructor({ dict }: SectionProps) {
+  const t = dict.consciousAiPage.instructor;
   return (
     <div className='mt-10 border-t border-ink/20 pt-8 text-center sm:mt-14 sm:pt-10'>
       <Reveal>
-        <p className='bl-kicker'>Your instructor</p>
+        <p className='bl-kicker'>{t.kicker}</p>
       </Reveal>
       <TextReveal
         as='h3'
-        text='Taught by a teacher of teachers.'
-        accentWords={[5]}
+        text={t.title}
+        accentWords={[...t.accent]}
         className='bl-display mx-auto mt-4 max-w-2xl text-3xl text-foreground sm:text-4xl'
       />
       <div className='mx-auto mt-8 grid w-full max-w-4xl gap-6 text-left sm:mt-10'>
-        {instructors.map((instructor) => (
-          <InstructorCard key={instructor.name} {...instructor} />
+        {getInstructors(dict.locale).map((instructor) => (
+          <InstructorCard
+            key={instructor.name}
+            instructor={instructor}
+            labels={t}
+          />
         ))}
       </div>
     </div>
   );
 }
 
-const values = [
-  ['01', 'Question the crowd.', "Popular isn't proof."],
-  ['02', 'Substance over shiny.', "What matters beats what's new."],
-  ['03', 'Hard problems first.', 'Tech for what actually needs fixing.'],
-];
-
-/** Where the name comes from: Bulleh Shah, and the three values we keep. */
-export function OurRoots() {
+/**
+ * Where the name comes from: Bulleh Shah, and the three values we keep.
+ * The verse stays in its own scripts in every language; only the reading
+ * under it follows the dictionary.
+ */
+export function OurRoots({ dict }: SectionProps) {
+  const t = dict.consciousAiPage.roots;
   return (
     <section id='roots' className='bl-section bl-rule bl-band-ink text-white'>
       <div className='bl-container'>
         <div className='grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16'>
           <div>
             <Reveal>
-              <p className='bl-kicker text-brand-2'>Our roots</p>
+              <p className='bl-kicker text-brand-2'>{t.kicker}</p>
             </Reveal>
             <TextReveal
               as='h2'
-              text='Ignoring the hype since the 1700s.'
-              accentWords={[3, 4, 5]}
+              text={t.title}
+              accentWords={[...t.accent]}
               className='bl-display mt-5 max-w-[14ch] text-display-lg text-white [&_.bl-accent]:text-brand-2'
             />
             <Reveal delay={0.2}>
               <p className='mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg'>
-                Bulleh Shah, the Punjabi Sufi poet, refused to follow the crowd.
-                He questioned what everyone repeated and chose what mattered
-                over what was in fashion. We're doing the same with AI.
+                {t.body}
               </p>
               <Link
                 href={paths.about}
                 className='bl-btn bl-btn-primary mt-8 inline-flex h-12 items-center gap-3 px-6 font-mono text-[10px] font-semibold uppercase tracking-[0.18em]'
               >
-                Read our DNA
+                {t.cta}
                 <span
                   className='h-2 w-2 shrink-0 bg-white'
                   aria-hidden='true'
@@ -334,16 +319,16 @@ export function OurRoots() {
               <div className='flex items-center gap-5'>
                 <Image
                   src='/images/bulleh-shah-portrait.webp'
-                  alt='Illustrated portrait of Bulleh Shah'
+                  alt={t.portraitAlt}
                   width={320}
                   height={320}
                   sizes='(max-width: 640px) 72px, 96px'
                   className='h-[72px] w-[72px] shrink-0 object-contain sm:h-24 sm:w-24'
                 />
                 <figcaption className='font-mono text-[10px] font-semibold uppercase leading-relaxed tracking-[0.14em] text-white/60'>
-                  Bulleh Shah
+                  {t.name}
                   <br />
-                  <span className='text-white/40'>1680–1757</span>
+                  <span className='text-white/40'>{t.years}</span>
                 </figcaption>
               </div>
               <blockquote className='mt-6 border-t border-white/20 pt-6'>
@@ -362,13 +347,13 @@ export function OurRoots() {
                 </p>
               </blockquote>
               <p className='bl-accent mt-6 font-display text-lg leading-snug text-white/85 sm:text-xl'>
-                Read a thousand books, yet never read yourself.
+                {t.translation}
               </p>
             </figure>
           </Reveal>
         </div>
         <div className='mt-10 grid border border-white/30 md:grid-cols-3'>
-          {values.map(([number, title, body]) => (
+          {t.values.map(([number, title, body]) => (
             <article
               key={number}
               className='border-b border-white/20 p-6 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0'
@@ -386,60 +371,34 @@ export function OurRoots() {
   );
 }
 
-const consciousAiFaqs: Faq[] = [
-  {
-    question: 'Is this an anti-AI thing?',
-    answer:
-      'No. We use AI every day and we build with it. Conscious AI means using it on purpose: the right tool for the task, only the context it needs, and a person who checks the result. That gives better work for less money and energy.',
-  },
-  {
-    question: 'Will AI replace me?',
-    answer:
-      'AI replaces tasks much faster than it replaces people. The person at risk is the one who pastes in a prompt and trusts whatever comes back. Learn when AI helps, which tool fits and how to check the output, and you become the person your team relies on.',
-  },
-  {
-    question: 'Can one prompt really hurt the planet?',
-    answer:
-      'A single prompt costs very little. The problem is scale and habit: billions of prompts a day, often sent to the largest model with far more context than the task needs. A smaller model, a tighter prompt, or no AI at all where a search does the job cuts that footprint many times over.',
-  },
-  {
-    question: 'Do I need to be technical?',
-    answer:
-      'No. This is made for people in marketing, HR, finance, operations, sales and teaching, not for developers. Everything is shown on everyday work: emails, summaries, spreadsheets, research and planning.',
-  },
-  {
-    question: 'What does it cost?',
-    answer:
-      'The AI profile, the course and the community are free. For teams, workshops, guidance and audits are scoped to your team and priced per engagement. Book a time and we will tell you what fits before anything starts.',
-  },
-];
-
 /** Five quick answers, in the page's own voice. Kept short so the block fits one screen. */
-export function ConsciousAiFaq() {
+export function ConsciousAiFaq({ dict }: SectionProps) {
+  const t = dict.consciousAiPage.faq;
   return (
     <FaqSection
-      items={consciousAiFaqs}
-      kicker='FAQs'
-      title='Ask away. No prompt engineering needed.'
-      accentWords={[2, 3, 4, 5]}
-      description='Still stuck? Ask a real human in the community below.'
+      items={[...t.items]}
+      kicker={t.kicker}
+      title={t.title}
+      accentWords={[...t.accent]}
+      description={t.description}
       className='bl-rule bl-band-mint'
     />
   );
 }
 
 /** The closing panel: book a time, or talk to the humans. */
-export function ConsciousAiClosing({ dict }: { dict: Dictionary }) {
+export function ConsciousAiClosing({ dict }: SectionProps) {
+  const t = dict.consciousAiPage.closing;
   const buttonClassName =
     'inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]';
 
   return (
     <CtaBanner
       dict={dict}
-      kicker='Conscious AI'
-      title='Less FOMO. Fewer watts.'
-      accentWords={[2, 3]}
-      body='Bring a question, a workflow or a worry. A real person answers, within a business day.'
+      kicker={t.kicker}
+      title={t.title}
+      accentWords={[...t.accent]}
+      body={t.body}
     >
       {siteConfig.calHandle ? (
         <BookCallButton
@@ -447,7 +406,7 @@ export function ConsciousAiClosing({ dict }: { dict: Dictionary }) {
           hideIcon
           className={`bl-btn bl-btn-primary ${buttonClassName}`}
         >
-          Book a time with us
+          {t.cta}
           <ArrowUpRight className='h-4 w-4' aria-hidden='true' />
         </BookCallButton>
       ) : (
@@ -455,7 +414,7 @@ export function ConsciousAiClosing({ dict }: { dict: Dictionary }) {
           href={teamHref}
           className={`bl-btn bl-btn-primary ${buttonClassName}`}
         >
-          Book a time with us
+          {t.cta}
           <ArrowUpRight className='h-4 w-4' aria-hidden='true' />
         </Link>
       )}
@@ -468,33 +427,34 @@ export function ConsciousAiClosing({ dict }: { dict: Dictionary }) {
  * title, three short offer rows, then one button. No blurbs: the rows say it.
  * Teams and business leads on ink; Services is the lighter second card.
  */
-export function ConsciousAiNextSteps() {
+export function ConsciousAiNextSteps({ dict }: SectionProps) {
+  const t = dict.consciousAiPage.nextSteps;
   return (
     <section id='next-steps' className='bl-section bl-rule bl-band-stone'>
       <div className='bl-container'>
         <Reveal>
-          <p className='bl-kicker'>Where next</p>
+          <p className='bl-kicker'>{t.kicker}</p>
         </Reveal>
         <TextReveal
           as='h2'
-          text='Two ways we can help.'
-          accentWords={[0, 1]}
+          text={t.title}
+          accentWords={[...t.accent]}
           className='bl-display mt-4 text-3xl text-foreground sm:text-4xl lg:text-5xl'
         />
 
         <div className='mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2'>
           <Reveal>
-            <TeamsOfferCard id='teams' number='01' ink />
+            <TeamsOfferCard dict={dict} id='teams' number='01' ink />
           </Reveal>
 
           <Reveal delay={0.1}>
             <OfferCard
               number='02'
-              kicker='For your product'
-              title='Build something with us'
-              offers={buildOffers}
+              kicker={t.build.kicker}
+              title={t.build.title}
+              offers={dict.offers.build}
               href={paths.services}
-              cta='See what we build'
+              cta={t.build.cta}
             />
           </Reveal>
         </div>

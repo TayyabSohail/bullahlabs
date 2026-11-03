@@ -4,22 +4,10 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 import { paths } from '@/constants/paths';
+import type { Dictionary } from '@/i18n/dictionaries/en';
 
-type Offer = readonly [number: string, title: string, body: string];
-
-/** Three ways in for teams. */
-export const teamOffers: readonly Offer[] = [
-  ['01', 'Workshops', 'AI confidence, on your real tasks.'],
-  ['02', 'Guidance', 'One set of rules for tools, cost and carbon.'],
-  ['03', 'Audits', 'Find the waste in one workflow. Cut it.'],
-];
-
-/** Three ways in for people who build. */
-export const buildOffers: readonly Offer[] = [
-  ['01', 'Product development', 'Rough idea to paying product.'],
-  ['02', 'Engineering', 'Web, mobile, backend. Built to last.'],
-  ['03', 'AI automation & integrations', 'The boring work, automated.'],
-];
+/** One row: number, title, a half-line of body. The copy lives in `dict.offers`. */
+type Offer = readonly string[];
 
 /** One shared button measure (the course signup row's 3rem) so sibling cards' actions line up. */
 const offerButton =
@@ -145,20 +133,24 @@ export function OfferCard({
 
 /** The teams door, as it appears on the Conscious AI page and the home page. */
 export function TeamsOfferCard({
+  dict,
   id,
   number,
   ink = false,
   className,
-}: Pick<OfferCardProps, 'id' | 'number' | 'ink' | 'className'>) {
+}: Pick<OfferCardProps, 'id' | 'number' | 'ink' | 'className'> & {
+  dict: Dictionary;
+}) {
+  const t = dict.offers.teams;
   return (
     <OfferCard
       id={id}
       number={number}
-      kicker='For teams & businesses'
-      title='Get your team using AI well'
-      offers={teamOffers}
+      kicker={t.kicker}
+      title={t.title}
+      offers={t.rows}
       href={paths.teams}
-      cta='How we work with teams'
+      cta={t.cta}
       ink={ink}
       className={className}
     />

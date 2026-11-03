@@ -110,7 +110,7 @@ export function CourseSignup({
       source,
       // The landing URL's utm_campaign, remembered across pages.
       utmCampaign: getCampaign(),
-      website: String(form.get('website') ?? ''),
+      trap: String(form.get('trap') ?? ''),
     });
   };
 
@@ -191,7 +191,7 @@ export function CourseSignup({
         {/* Honeypot */}
         <input
           type='text'
-          name='website'
+          name='trap'
           tabIndex={-1}
           autoComplete='off'
           aria-hidden='true'

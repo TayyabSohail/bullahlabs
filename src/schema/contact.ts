@@ -80,8 +80,14 @@ export const contactSchema = z.object({
     .max(4000, 'Please keep it under 4,000 characters')
     .optional()
     .or(z.literal('')),
-  /** Honeypot: must stay empty. Bots fill every field. */
-  website: z.string().max(0).optional().or(z.literal('')),
+  /**
+   * Honeypot. Bots fill every field; people never see it. It is NOT
+   * validated here on purpose: a filled trap must never block a human with
+   * a validation error (Chrome autofilled a field named "website" from a
+   * saved address profile and the form jumped to it, off-screen, at the top
+   * of the page). The server drops a filled trap quietly instead.
+   */
+  trap: z.string().optional(),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

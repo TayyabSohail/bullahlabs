@@ -36,7 +36,7 @@ export const joinCourseList = safeActionClient
   .schema(courseSignupSchema)
   .action(async ({ parsedInput }) => {
     // Honeypot filled: pretend success, drop silently.
-    if (parsedInput.website) return { joined: true };
+    if (parsedInput.trap) return { joined: true };
 
     const headerStore = await headers();
     const ip =

@@ -74,7 +74,7 @@ export function ContactForm({ dict }: ContactFormProps) {
       email: '',
       company: '',
       message: '',
-      website: '',
+      trap: '',
     },
   });
 
@@ -110,12 +110,12 @@ export function ContactForm({ dict }: ContactFormProps) {
         noValidate
       >
         <div aria-hidden='true' className='absolute -left-[9999px] top-0'>
-          <label htmlFor='contact-website'>Website</label>
+          <label htmlFor='contact-trap'>Leave this field empty</label>
           <input
-            id='contact-website'
+            id='contact-trap'
             tabIndex={-1}
             autoComplete='off'
-            {...form.register('website')}
+            {...form.register('trap')}
           />
         </div>
 
