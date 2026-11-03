@@ -1,9 +1,9 @@
 'use client';
 
+import { useLenis } from 'lenis/react';
 import { ArrowUpRight, CalendarDays, Check, PenLine } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useLenis } from 'lenis/react';
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 
