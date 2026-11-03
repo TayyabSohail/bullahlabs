@@ -26,8 +26,14 @@ export const en = {
     /** What we are, in two lines. The problem people arrive with is the next section. */
     body: 'We build digital products that solve real problems, run lean and last. We make AI do more with less cost, energy and complexity, in what we build and in how your team works.',
     /** Two ways in: the studio for building, Conscious AI for using AI well. */
-    primary: 'Work with the studio',
+    primary: 'Start a project',
     secondary: 'Explore Conscious AI',
+    /** Three figures on one rule under the buttons; the same ones the numbers band prints. */
+    proof: [
+      ['150+', 'Projects delivered'],
+      ['40+', 'Clients served'],
+      ['5', 'Continents reached'],
+    ],
     /**
      * The bill beside the hero copy: one piece of work, a team's contract
      * summaries over a year, printed the usual way and ours. Same example
@@ -655,10 +661,6 @@ export const en = {
     message: 'Anything else?',
     messagePlaceholder:
       'Rough monthly spend, a workflow that hurts, a deadline.',
-    consentBefore:
-      'I agree that Bullah Labs may store and process this enquiry to respond to me, as described in the',
-    consentLink: 'privacy policy',
-    consentAfter: '.',
     submit: 'Send enquiry',
     replyNote: 'We reply {time}.',
     errorGeneric: 'Something went wrong. Please try again in a moment.',
@@ -860,7 +862,6 @@ export const en = {
   faq: {
     kicker: 'FAQ',
     title: 'Straight answers to important questions.',
-    description: 'What we do, how we work, and where AI fits in.',
     accent: [0, 1],
   },
   cta: {

@@ -24,8 +24,13 @@ export const de: Dictionary = {
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
     accent: [4, 5, 6],
     body: 'Wir bauen digitale Produkte, die echte Probleme lösen, schlank laufen und lange halten. Wir holen aus KI mehr heraus, mit weniger Kosten, Energie und Komplexität: in dem, was wir bauen, und in der Arbeit Ihres Teams.',
-    primary: 'Mit dem Studio arbeiten',
+    primary: 'Projekt starten',
     secondary: 'Conscious AI entdecken',
+    proof: [
+      ['150+', 'Projekte geliefert'],
+      ['40+', 'Kunden betreut'],
+      ['5', 'Kontinente erreicht'],
+    ],
     receipt: {
       header: 'Quittung · die Rechnung des Planeten',
       task: 'Vertragszusammenfassungen · ein Team · ein Jahr',
@@ -616,10 +621,6 @@ export const de: Dictionary = {
     message: 'Noch etwas?',
     messagePlaceholder:
       'Ungefähre monatliche Ausgaben, ein Ablauf, der schmerzt, eine Frist.',
-    consentBefore:
-      'Ich bin damit einverstanden, dass Bullah Labs diese Anfrage speichert und verarbeitet, um mir zu antworten, wie in der',
-    consentLink: 'Datenschutzerklärung',
-    consentAfter: ' beschrieben.',
     submit: 'Anfrage senden',
     replyNote: 'Wir antworten {time}. Keine Newsletter, keine Kampagnen.',
     errorGeneric:

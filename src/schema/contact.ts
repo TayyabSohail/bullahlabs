@@ -80,9 +80,6 @@ export const contactSchema = z.object({
     .max(4000, 'Please keep it under 4,000 characters')
     .optional()
     .or(z.literal('')),
-  consent: z.literal(true, {
-    errorMap: () => ({ message: 'Please accept the privacy policy' }),
-  }),
   /** Honeypot: must stay empty. Bots fill every field. */
   website: z.string().max(0).optional().or(z.literal('')),
 });

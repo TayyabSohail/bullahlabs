@@ -2,7 +2,6 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
-import Link from 'next/link';
 import { useAction } from 'next-safe-action/hooks';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -12,7 +11,6 @@ import { submitContact } from '@/actions/contact';
 
 import { PickRow } from '@/components/contact/pick-row';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
   FormControl,
@@ -27,7 +25,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { track } from '@/lib/analytics';
 
 import { siteConfig } from '@/config/site';
-import { paths } from '@/constants/paths';
 import { PosthogEventKeys } from '@/constants/posthog-events';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 import {
@@ -77,7 +74,6 @@ export function ContactForm({ dict }: ContactFormProps) {
       email: '',
       company: '',
       message: '',
-      consent: undefined,
       website: '',
     },
   });
@@ -228,37 +224,6 @@ export function ContactForm({ dict }: ContactFormProps) {
               />
             </div>
           </section>
-
-          <FormField
-            control={form.control}
-            name='consent'
-            render={({ field }) => (
-              <FormItem>
-                <div className='flex items-start gap-3'>
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value === true}
-                      onCheckedChange={(checked) =>
-                        field.onChange(checked === true ? true : undefined)
-                      }
-                      className='mt-0.5 h-5 w-5 rounded-none border-white/30 data-[state=checked]:border-brand data-[state=checked]:bg-brand data-[state=checked]:text-brand-foreground'
-                    />
-                  </FormControl>
-                  <FormLabel className='text-sm font-normal leading-relaxed text-white/70'>
-                    {t.consentBefore}{' '}
-                    <Link
-                      href={paths.legal.privacy}
-                      className='text-white underline underline-offset-4'
-                    >
-                      {t.consentLink}
-                    </Link>
-                    {t.consentAfter}
-                  </FormLabel>
-                </div>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
 
           <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
             <p className='text-xs text-white/60'>{replyNote}</p>
