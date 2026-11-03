@@ -18,7 +18,7 @@ import { hasJoinedCourseWaitlist } from '@/lib/course-waitlist-cookie';
 import { cn } from '@/lib/utils';
 
 import { paths } from '@/constants/paths';
-import { leadInstructor as instructor } from '@/data/instructors';
+import { getLeadInstructor } from '@/data/instructors';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 /**
@@ -49,6 +49,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
  */
 export function FreeCoursePopup({ dict }: { dict: Dictionary }) {
   const t = dict.program.popup;
+  const instructor = getLeadInstructor(dict.locale);
   const pathname = usePathname();
   const [stage, setStage] = useState<Stage>('pending');
   const reduce = useReducedMotion();
@@ -194,7 +195,10 @@ export function FreeCoursePopup({ dict }: { dict: Dictionary }) {
           <aside className='relative isolate h-56 shrink-0 overflow-hidden bg-ink text-white sm:h-64'>
             <Image
               src={instructor.image}
-              alt={`Portrait of ${instructor.name}`}
+              alt={dict.consciousAiPage.instructor.portraitAlt.replace(
+                '{name}',
+                instructor.name,
+              )}
               fill
               sizes='416px'
               className='object-cover object-[center_22%]'

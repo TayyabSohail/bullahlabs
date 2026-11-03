@@ -28,7 +28,7 @@ export default async function OurDnaPage() {
           { name: dict.nav.about, href: paths.about },
         ]}
       />
-      <OurDna />
+      <OurDna dict={dict} />
 
       <Principles dict={dict} />
 

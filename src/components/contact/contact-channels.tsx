@@ -1,13 +1,16 @@
 'use client';
 
-import { CalendarDays, PenLine } from 'lucide-react';
+import { ArrowUpRight, CalendarDays, Check, PenLine } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 
 import { Logo } from '@/components/brand/logo';
 import { ContactForm } from '@/components/contact/contact-form';
 
+import { siteConfig } from '@/config/site';
+import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 // The Cal.com widget pulls in its own runtime and external booking assets.
@@ -47,13 +50,25 @@ export function ContactChannels({
 }: ContactChannelsProps) {
   const t = dict.contact.choose;
   const [channel, setChannel] = useState<'form' | 'calendar'>('calendar');
+  const [sent, setSent] = useState(false);
+
+  // A sent enquiry clears the whole page: heading, picker and form go, and
+  // one thank-you stands in their place at the top of the viewport.
+  const handleSent = () => {
+    setSent(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (sent) {
+    return <ThankYou dict={dict} />;
+  }
 
   // Without a booking link there is nothing to choose between.
   if (!calLink) {
     return (
       <>
         {header}
-        <ContactForm dict={dict} />
+        <ContactForm dict={dict} onSent={handleSent} />
       </>
     );
   }
@@ -113,9 +128,41 @@ export function ContactChannels({
         </div>
       ) : (
         <div id='contact-form' className='mt-6'>
-          <ContactForm dict={dict} />
+          <ContactForm dict={dict} onSent={handleSent} />
         </div>
       )}
+    </div>
+  );
+}
+
+/**
+ * What the page becomes once an enquiry is in: one calm card, a thank-you,
+ * the promise of a reply, and a way back. Nothing else to do here.
+ */
+function ThankYou({ dict }: { dict: Dictionary }) {
+  const t = dict.contactForm;
+  return (
+    <div
+      role='status'
+      aria-live='polite'
+      className='bl-card mx-auto flex max-w-2xl flex-col items-center px-6 py-14 text-center sm:px-10 sm:py-20'
+    >
+      <span className='flex h-14 w-14 items-center justify-center rounded-full bg-brand text-brand-foreground'>
+        <Check className='h-7 w-7' strokeWidth={2.5} />
+      </span>
+      <h1 className='bl-display mt-7 text-display-md text-foreground sm:text-display-lg'>
+        {t.sentTitle}
+      </h1>
+      <p className='mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg'>
+        {t.sentBody.replace('{time}', siteConfig.responseTime)}
+      </p>
+      <Link
+        href={paths.home}
+        className='bl-btn bl-btn-primary mt-9 inline-flex h-12 items-center justify-center gap-2.5 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
+      >
+        {t.sentHome}
+        <ArrowUpRight className='h-3.5 w-3.5' />
+      </Link>
     </div>
   );
 }

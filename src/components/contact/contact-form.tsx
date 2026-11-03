@@ -1,9 +1,9 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useAction } from 'next-safe-action/hooks';
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -34,9 +34,9 @@ import {
   CONTACT_TOOLS,
   type ContactGoal,
   type ContactInput,
-  contactSchema,
   type ContactTeamSize,
   type ContactTool,
+  createContactSchema,
 } from '@/schema/contact';
 
 /* Text fields share the pickers' language: a ruled box on the ink card,
@@ -51,21 +51,24 @@ const GOAL_KEYS = Object.keys(CONTACT_GOALS) as ContactGoal[];
 
 interface ContactFormProps {
   dict: Dictionary;
+  /** Called once the enquiry is accepted; the parent swaps the page for a thank-you. */
+  onSent: () => void;
 }
 
 /**
  * One step and nothing decorative. The page heading above the card already
  * says what this is and what comes back, so the card holds only what we
- * need to reply: three ruled rows of answers, a name and an email, an
- * optional note, the consent line and the button. The rows replaced a set
- * of dropdowns, which hid the answers; here every answer is in view and
- * the three picks take three clicks.
+ * need to reply: three numbered questions with their answers in view, a
+ * name and an email, an optional note and the button. On success the form
+ * does not reset or re-render itself; it hands off to the parent and
+ * unmounts, so nothing flickers on the way out.
  */
-export function ContactForm({ dict }: ContactFormProps) {
-  const [sent, setSent] = useState(false);
+export function ContactForm({ dict, onSent }: ContactFormProps) {
   const t = dict.contactForm;
+  // The schema carries the visitor's language, so field errors match the labels.
+  const schema = useMemo(() => createContactSchema(t.errors), [t.errors]);
   const form = useForm<ContactInput>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       tool: undefined,
       teamSize: undefined,

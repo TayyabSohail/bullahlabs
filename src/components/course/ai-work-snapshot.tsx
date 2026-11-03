@@ -1,19 +1,17 @@
 'use client';
 
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Check, Radar, RotateCcw } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useAction } from 'next-safe-action/hooks';
 import { usePostHog } from 'posthog-js/react';
-import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
+import { useEffect, useId, useMemo, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useEffect, useId, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
 import * as z from 'zod';
 
-import { cn } from '@/lib/utils';
 import { joinCourseList } from '@/actions/course-signup';
-import { paths } from '@/constants/paths';
 
 import {
   Sheet,
@@ -21,23 +19,33 @@ import {
   SheetDescription,
   SheetTitle,
 } from '@/components/ui/sheet';
+
+import { cn } from '@/lib/utils';
+
 import { siteConfig } from '@/config/site';
+import { paths } from '@/constants/paths';
 import { PosthogEventKeys } from '@/constants/posthog-events';
+import type { Dictionary } from '@/i18n/dictionaries/en';
 
-const snapshotSchema = z.object({
-  role: z.string().min(1, 'Choose the field closest to your work.'),
-  frequency: z.string().min(1, 'Choose the answer that feels closest.'),
-  confidence: z.coerce.number().min(1).max(5),
-  efficiency: z.coerce.number().min(1).max(4),
-  goal: z.string().min(1, 'Choose the answer that feels closest.'),
-});
+type SnapshotCopy = Dictionary['snapshot'];
 
-const snapshotEmailSchema = z.object({
-  email: z.string().trim().email('Enter a valid email address.'),
-});
+/** The answers, with the field errors in the visitor's language. */
+const createSnapshotSchema = (m: SnapshotCopy['errors']) =>
+  z.object({
+    role: z.string().min(1, m.role),
+    frequency: z.string().min(1, m.option),
+    confidence: z.coerce.number().min(1).max(5),
+    efficiency: z.coerce.number().min(1).max(4),
+    goal: z.string().min(1, m.option),
+  });
 
-type SnapshotValues = z.infer<typeof snapshotSchema>;
+const createEmailSchema = (m: SnapshotCopy['errors']) =>
+  z.object({ email: z.string().trim().email(m.email) });
+
+type SnapshotSchema = ReturnType<typeof createSnapshotSchema>;
+type SnapshotValues = z.infer<SnapshotSchema>;
 type FieldName = keyof SnapshotValues;
+type EmailValues = z.infer<ReturnType<typeof createEmailSchema>>;
 
 const roleTracks: Record<string, string> = {
   operations: 'Operations & Admin',
@@ -92,10 +100,11 @@ const optionMarks: Record<string, string> = {
   team: '🤝',
 };
 
-const questions: Array<{
+interface Question {
   field: FieldName;
-  rail: string;
   note: string;
+  kind?: 'scale' | 'workflowCards';
+  rail: string;
   title: string;
   options: Array<{
     value: string;
@@ -103,147 +112,53 @@ const questions: Array<{
     detail?: string;
     emoji?: string;
   }>;
-  kind?: 'scale' | 'workflowCards';
-}> = [
-  {
-    field: 'role',
-    rail: 'Your job',
-    note: '01',
-    title: 'Which role is closest to yours?',
-    options: [
-      { value: 'operations', label: 'Operations & Admin' },
-      { value: 'sales', label: 'Sales & Support' },
-      { value: 'marketing', label: 'Marketing & Content' },
-      { value: 'hr', label: 'HR & Recruiting' },
-      { value: 'education', label: 'Student or Teacher' },
-      { value: 'technical', label: 'Developer or Technical' },
-      { value: 'research', label: 'Research & Analysis' },
-      { value: 'freelance', label: 'Freelancer or Small Business' },
-      { value: 'developer', label: 'Software Developer or Engineer' },
-      { value: 'data', label: 'Data or AI Specialist' },
-      { value: 'designer', label: 'Designer or UX Researcher' },
-      { value: 'project_manager', label: 'Project or Program Manager' },
-      { value: 'customer_success', label: 'Customer Success or Account Manager' },
-      { value: 'recruiter', label: 'Recruiter or Talent Specialist' },
-      { value: 'accountant', label: 'Accountant or Bookkeeper' },
-      { value: 'writer', label: 'Writer, Editor, or Copywriter' },
-      { value: 'manager', label: 'Manager, Director, or Executive' },
-      { value: 'analyst', label: 'Business or Data Analyst' },
-      { value: 'product', label: 'Product & Design' },
-      { value: 'finance', label: 'Finance & Accounting' },
-      { value: 'legal', label: 'Legal & Compliance' },
-      { value: 'healthcare', label: 'Healthcare & Care' },
-      { value: 'consulting', label: 'Consulting & Client Services' },
-      { value: 'logistics', label: 'Logistics & Supply Chain' },
-      { value: 'hospitality', label: 'Hospitality & Events' },
-      { value: 'nonprofit', label: 'Nonprofit & Community' },
-      { value: 'government', label: 'Public Service' },
-      { value: 'founder', label: 'Founder & Leadership' },
-      { value: 'creator', label: 'Creative & Media' },
-      { value: 'other', label: 'Something else' },
-    ],
-  },
-  {
-    field: 'frequency',
-    rail: 'How often',
-    note: '02',
-    title: 'How often does AI show up in your work?',
-    options: [
-      { value: 'rarely', label: 'Rarely', detail: 'Only now and then' },
-      {
-        value: 'weekly',
-        label: 'A few times a week',
-        detail: 'Useful when needed',
-      },
-      { value: 'daily', label: 'Most days', detail: 'Part of my workflow' },
-      {
-        value: 'constant',
-        label: 'Throughout the day',
-        detail: 'Always within reach',
-      },
-    ],
-  },
-  {
-    field: 'confidence',
-    rail: 'How useful',
-    note: '03',
-    title: 'How often does AI give you a useful answer without much rework?',
-    kind: 'scale',
-    options: [
-      { value: '1', label: 'Rarely' },
-      { value: '2', label: 'Sometimes' },
-      { value: '3', label: 'Often' },
-      { value: '4', label: 'Usually' },
-      { value: '5', label: 'Almost always' },
-    ],
-  },
-  {
-    field: 'efficiency',
-    rail: 'How easy',
-    note: '04',
-    title: 'When you use AI, how smooth is the workflow?',
-    // Keep this scale deliberately different from confidence above: people
-    // should make a fresh choice about workflow friction, not feel as though
-    // they are adjusting the same slider twice.
-    kind: 'workflowCards',
-    options: [
-      {
-        value: '1',
-        label: 'I keep re-explaining',
-        detail: 'The same context has to be pasted or clarified again.',
-        emoji: '🔁',
-      },
-      {
-        value: '2',
-        label: 'I often restart',
-        detail: 'Useful work gets lost across several attempts.',
-        emoji: '↩️',
-      },
-      {
-        value: '3',
-        label: 'Mostly one clear pass',
-        detail: 'I usually get to a useful result without much repetition.',
-        emoji: '→',
-      },
-      {
-        value: '4',
-        label: 'My context carries through',
-        detail: 'The workflow feels clear, connected and easy to continue.',
-        emoji: '✨',
-      },
-    ],
-  },
-  {
-    field: 'goal',
-    rail: 'What you need',
-    note: '05',
-    title: 'What would make AI more useful for you?',
-    options: [
-      {
-        value: 'output',
-        label: 'Better output',
-        detail: 'Clearer, more useful first drafts',
-      },
-      {
-        value: 'choice',
-        label: 'Clearer choices',
-        detail: 'Knowing when AI is the right tool',
-      },
-      {
-        value: 'system',
-        label: 'A repeatable system',
-        detail: 'Less friction every week',
-      },
-      {
-        value: 'team',
-        label: 'A stronger team approach',
-        detail: 'More consistency across the work',
-      },
-    ],
-  },
+}
+
+/** What each step is. The words come from `dict.snapshot.questions`, in this order. */
+const QUESTION_SHAPE: Array<Pick<Question, 'field' | 'note' | 'kind'>> = [
+  { field: 'role', note: '01' },
+  { field: 'frequency', note: '02' },
+  { field: 'confidence', note: '03', kind: 'scale' },
+  // Keep this scale deliberately different from confidence above: people
+  // should make a fresh choice about workflow friction, not feel as though
+  // they are adjusting the same slider twice.
+  { field: 'efficiency', note: '04', kind: 'workflowCards' },
+  { field: 'goal', note: '05' },
 ];
 
-function Rail({ step }: { step: number }) {
+/** The emoji on the four workflow cards, by answer value. */
+const workflowMarks: Record<string, string> = {
+  '1': '🔁',
+  '2': '↩️',
+  '3': '→',
+  '4': '✨',
+};
+
+function buildQuestions(copy: SnapshotCopy): Question[] {
+  return QUESTION_SHAPE.map((shape, index) => {
+    const words = copy.questions[index];
+    return {
+      ...shape,
+      rail: words.rail,
+      title: words.title,
+      options: words.options.map((option) =>
+        shape.kind === 'workflowCards'
+          ? { ...option, emoji: workflowMarks[option.value] }
+          : { ...option },
+      ),
+    };
+  });
+}
+
+function Rail({
+  step,
+  questions,
+  copy,
+}: {
+  step: number;
+  questions: Question[];
+  copy: SnapshotCopy['rail'];
+}) {
   return (
     <aside className='bl-card-ink relative hidden px-5 py-3 sm:px-7 sm:py-8 lg:block'>
       <span
@@ -256,16 +171,16 @@ function Rail({ step }: { step: number }) {
       />
       <p className='relative font-mono text-xs font-semibold uppercase tracking-[0.14em] text-brand-2'>
         <span className='mr-2 inline-block h-1.5 w-1.5 animate-ping rounded-full bg-brand' />{' '}
-        Conscious AI
+        {copy.brand}
       </p>
       <h2 className='bl-display relative mt-4 hidden max-w-[9ch] text-3xl leading-[1.05] text-white sm:block'>
-        Use AI better.
+        {copy.title}
       </h2>
       <p className='relative mt-4 hidden max-w-xs text-xs leading-relaxed text-white/65 sm:block'>
-        Answer a few questions about how you use AI at work.
+        {copy.body}
       </p>
       <div className='relative mt-4 hidden border border-white/15 bg-white/[0.06] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60 sm:mt-6 sm:inline-flex'>
-        Your answers
+        {copy.answers}
       </div>
       <ol className='relative mt-2 flex gap-1 sm:mt-6 sm:block sm:space-y-1'>
         {questions.map((question, index) => {
@@ -319,21 +234,32 @@ function Rail({ step }: { step: number }) {
   );
 }
 
-function MobileRail({ step }: { step: number }) {
+function MobileRail({
+  step,
+  questions,
+  copy,
+}: {
+  step: number;
+  questions: Question[];
+  copy: SnapshotCopy['mobile'];
+}) {
   const progress = (step / (questions.length - 1)) * 100;
+  const stepLabel = copy.step
+    .replace('{n}', String(step + 1))
+    .replace('{total}', String(questions.length));
 
   return (
     <aside className='bl-card-ink px-4 py-3.5 lg:hidden'>
       <div className='flex items-center justify-between gap-4'>
         <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-2'>
-          Your progress
+          {copy.progress}
         </p>
         <p className='font-mono text-[10px] uppercase tracking-[0.12em] text-white/55'>
-          Step {step + 1} of {questions.length}
+          {stepLabel}
         </p>
       </div>
       <ol
-        aria-label={`Step ${step + 1} of ${questions.length}`}
+        aria-label={stepLabel}
         className='relative mx-auto mt-3 flex w-full max-w-xs justify-between'
       >
         <li
@@ -381,15 +307,23 @@ function EmailGate({
   values,
   onComplete,
   restart,
+  questions,
+  copy,
 }: {
   values: SnapshotValues;
   onComplete: () => void;
   restart: () => void;
+  questions: Question[];
+  copy: SnapshotCopy;
 }) {
   const formId = useId();
   const searchParams = useSearchParams();
-  const emailForm = useForm<z.infer<typeof snapshotEmailSchema>>({
-    resolver: standardSchemaResolver(snapshotEmailSchema),
+  const emailSchema = useMemo(
+    () => createEmailSchema(copy.errors),
+    [copy.errors],
+  );
+  const emailForm = useForm<EmailValues>({
+    resolver: standardSchemaResolver(emailSchema),
     mode: 'onChange',
     defaultValues: { email: '' },
   });
@@ -400,13 +334,13 @@ function EmailGate({
         message:
           error.validationErrors?.fieldErrors?.email?.[0] ??
           error.serverError ??
-          'Could not save your email. Try again.',
+          copy.errors.emailSave,
       });
     },
   });
 
-  const submit = (data: z.infer<typeof snapshotEmailSchema>) => {
-    const parsed = snapshotEmailSchema.safeParse(data);
+  const submit = (data: EmailValues) => {
+    const parsed = emailSchema.safeParse(data);
     if (!parsed.success) {
       void emailForm.trigger();
       return;
@@ -416,23 +350,27 @@ function EmailGate({
       source: 'conscious-ai:snapshot',
       utmCampaign: searchParams.get('utm_campaign')?.trim() || undefined,
       assessment: values,
-      website: '',
+      trap: '',
     });
   };
 
   return (
     <div className='bl-card mx-auto w-full max-w-5xl overflow-hidden lg:grid lg:grid-cols-[0.3fr_0.7fr]'>
-      <Rail step={questions.length - 1} />
+      <Rail
+        step={questions.length - 1}
+        questions={questions}
+        copy={copy.rail}
+      />
       <div className='flex min-h-[360px] items-center bg-surface p-5 sm:p-10'>
         <div className='w-full max-w-lg'>
           <p className='font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-brand-text'>
-            Your results are ready
+            {copy.gate.kicker}
           </p>
           <h2 className='bl-display mt-4 text-4xl leading-[0.95] text-foreground sm:text-5xl'>
-            Add your email.
+            {copy.gate.title}
           </h2>
           <p className='mt-4 text-sm leading-relaxed text-muted-foreground'>
-            We’ll prepare your results and send the course update there too.
+            {copy.gate.body}
           </p>
           <form
             id={formId}
@@ -440,13 +378,13 @@ function EmailGate({
             className='mt-7 flex flex-col gap-3 sm:flex-row'
           >
             <label className='sr-only' htmlFor={`${formId}-email`}>
-              Email address
+              {copy.gate.email}
             </label>
             <input
               id={`${formId}-email`}
               type='email'
               autoComplete='email'
-              placeholder='Your email address'
+              placeholder={copy.gate.placeholder}
               disabled={isExecuting}
               aria-invalid={Boolean(emailForm.formState.errors.email)}
               {...emailForm.register('email')}
@@ -458,7 +396,7 @@ function EmailGate({
               disabled={!emailForm.formState.isValid || isExecuting}
               className='h-14 border-2 border-ink bg-brand px-6 font-mono text-xs font-black uppercase tracking-[0.12em] text-brand-foreground shadow-[3px_3px_0_0_hsl(var(--ink))] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50'
             >
-              {isExecuting ? 'Preparing...' : 'Show results'}
+              {isExecuting ? copy.gate.preparing : copy.gate.submit}
             </button>
           </form>
           {emailForm.formState.errors.email && (
@@ -471,7 +409,7 @@ function EmailGate({
             onClick={restart}
             className='mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground'
           >
-            <RotateCcw className='h-3.5 w-3.5' /> Start again
+            <RotateCcw className='h-3.5 w-3.5' /> {copy.gate.restart}
           </button>
         </div>
       </div>
@@ -482,40 +420,39 @@ function EmailGate({
 function Result({
   values,
   restart,
+  questions,
+  copy,
 }: {
   values: SnapshotValues;
   restart: () => void;
+  questions: Question[];
+  copy: SnapshotCopy;
 }) {
+  const t = copy.result;
   const reduceMotion = useReducedMotion();
   const [isCalculating, setIsCalculating] = useState(!reduceMotion);
   const confidenceScore = values.confidence * 20;
   const workflowScore = values.efficiency * 25;
   const scores = [
     {
-      label: 'Confidence',
+      label: t.confidence,
       score: confidenceScore,
-      description:
-        values.confidence >= 4
-          ? 'You usually reach useful answers.'
-          : 'Clearer context will improve your results.',
+      description: values.confidence >= 4 ? t.confidenceHigh : t.confidenceLow,
     },
     {
-      label: 'Efficiency',
+      label: t.efficiency,
       score: workflowScore,
-      description:
-        values.efficiency >= 4
-          ? 'Your workflow is already fairly lean.'
-          : 'Reusable setup can remove extra rounds.',
+      description: values.efficiency >= 4 ? t.efficiencyHigh : t.efficiencyLow,
     },
   ];
   const resultHeading =
     confidenceScore >= 80 && workflowScore >= 75
-      ? 'AI is already helping.'
+      ? t.headings.both
       : confidenceScore >= 60
-        ? 'You’re getting useful answers.'
+        ? t.headings.confidence
         : workflowScore >= 75
-          ? 'AI fits smoothly into your work.'
-          : 'AI can work better for you.';
+          ? t.headings.workflow
+          : t.headings.neither;
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -525,7 +462,7 @@ function Result({
 
   return (
     <div className='bl-card mx-auto w-full max-w-5xl overflow-hidden lg:grid lg:grid-cols-[0.3fr_0.7fr]'>
-      <Rail step={questions.length} />
+      <Rail step={questions.length} questions={questions} copy={copy.rail} />
       <div className='bg-surface p-4 sm:p-5'>
         {isCalculating ? (
           <div className='flex min-h-[340px] items-center justify-center bg-surface p-6 text-center sm:min-h-[390px]'>
@@ -535,7 +472,7 @@ function Result({
                 aria-hidden
               />
               <p className='bl-display mt-6 text-3xl text-foreground sm:text-4xl'>
-                Preparing your results.
+                {t.preparing}
               </p>
             </div>
           </div>
@@ -563,11 +500,9 @@ function Result({
                 href={paths.contact}
                 className='group flex items-center justify-between gap-4 border-2 border-ink bg-ink px-4 py-3 text-white transition-colors hover:bg-ink/90'
               >
-                <span className='text-sm font-semibold'>
-                  Need help putting AI to work?
-                </span>
+                <span className='text-sm font-semibold'>{t.helpTitle}</span>
                 <span className='inline-flex shrink-0 items-center font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-brand-2'>
-                  Work with us{' '}
+                  {t.helpCta}{' '}
                   <ArrowRight className='ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5' />
                 </span>
               </a>
@@ -577,11 +512,11 @@ function Result({
               >
                 <span>
                   <span className='text-sm font-semibold text-foreground'>
-                    Free course launching soon.
+                    {t.courseTitle}
                   </span>
                 </span>
                 <span className='inline-flex shrink-0 items-center font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-brand-text'>
-                  See the course{' '}
+                  {t.courseCta}{' '}
                   <ArrowRight className='ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5' />
                 </span>
               </a>
@@ -589,7 +524,7 @@ function Result({
             <div className='mt-4 border-t border-line pt-4'>
               <div>
                 <p className='text-sm font-semibold text-foreground'>
-                  Join the community
+                  {t.community}
                 </p>
                 <div className='mt-2 grid grid-cols-2 gap-2'>
                   <a
@@ -632,7 +567,7 @@ function Result({
                   onClick={restart}
                   className='inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground'
                 >
-                  <RotateCcw className='h-3.5 w-3.5' /> Start again
+                  <RotateCcw className='h-3.5 w-3.5' /> {copy.result.restart}
                 </button>
               </div>
             </div>
@@ -704,7 +639,13 @@ function ScoreCard({
 }
 
 /** Mirrors the supplied assessment reference: an anchored left rail and a calm question workspace. */
-export function AiWorkSnapshot() {
+export function AiWorkSnapshot({ dict }: { dict: Dictionary }) {
+  const copy = dict.snapshot;
+  const questions = useMemo(() => buildQuestions(copy), [copy]);
+  const snapshotSchema = useMemo(
+    () => createSnapshotSchema(copy.errors),
+    [copy.errors],
+  );
   const formId = useId();
   const reduceMotion = useReducedMotion();
   const [step, setStep] = useState(0);
@@ -776,7 +717,15 @@ export function AiWorkSnapshot() {
     setEfficiencyChosen(false);
   };
 
-  if (complete) return <Result values={form.getValues()} restart={restart} />;
+  if (complete)
+    return (
+      <Result
+        values={form.getValues()}
+        restart={restart}
+        questions={questions}
+        copy={copy}
+      />
+    );
 
   if (emailGate)
     return (
@@ -784,6 +733,8 @@ export function AiWorkSnapshot() {
         values={form.getValues()}
         onComplete={revealSnapshot}
         restart={restart}
+        questions={questions}
+        copy={copy}
       />
     );
 
@@ -803,19 +754,18 @@ export function AiWorkSnapshot() {
             <Radar className='relative h-7 w-7' aria-hidden />
           </span>
           <h2 className='bl-display relative mt-7 max-w-sm text-5xl leading-[0.94] text-white sm:text-6xl'>
-            Take the test.
+            {copy.intro.title}
           </h2>
         </div>
         <div className='flex flex-col justify-center bg-surface p-7 sm:p-10 lg:p-12'>
           <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-text'>
-            A quick reality check
+            {copy.intro.kicker}
           </p>
           <h2 className='bl-display mt-5 max-w-xl text-4xl leading-[0.98] text-foreground sm:text-5xl'>
-            Are you using AI well, or just using more of it?
+            {copy.intro.heading}
           </h2>
           <p className='mt-5 max-w-lg text-base leading-relaxed text-muted-foreground'>
-            Answer five quick questions and leave with one useful next move for
-            your real work.
+            {copy.intro.body}
           </p>
           <motion.button
             type='button'
@@ -824,7 +774,7 @@ export function AiWorkSnapshot() {
             whileTap={{ scale: 0.98 }}
             className='group relative mx-auto mt-8 inline-flex h-16 w-full items-center justify-center gap-4 overflow-hidden border-2 border-ink bg-brand px-7 font-mono text-[13px] font-black uppercase tracking-[0.16em] text-brand-foreground shadow-[6px_6px_0_hsl(var(--ink)_/_0.9)] transition-[box-shadow,background-color] hover:bg-brand-2 hover:shadow-[8px_8px_0_hsl(var(--ink)_/_0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:mx-0 sm:w-auto sm:min-w-80'
           >
-            <span className='relative'>Take the test</span>
+            <span className='relative'>{copy.intro.cta}</span>
             <ArrowRight className='relative h-5 w-5 transition-transform group-hover:translate-x-1' />
           </motion.button>
         </div>
@@ -840,7 +790,7 @@ export function AiWorkSnapshot() {
               className='absolute -right-9 -top-9 h-28 w-28 rounded-full border border-brand/40'
             />
             <div className='relative flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em]'>
-              <span className='text-muted-foreground'>Your score</span>
+              <span className='text-muted-foreground'>{copy.intro.score}</span>
               <span className='flex h-2 w-2 rounded-full bg-brand motion-safe:animate-pulse' />
             </div>
             <div className='relative mt-6 flex items-end gap-3 border-b border-ink/15 pb-5'>
@@ -856,11 +806,11 @@ export function AiWorkSnapshot() {
                 ?
               </motion.span>
               <span className='pb-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground'>
-                waiting for you
+                {copy.intro.waiting}
               </span>
             </div>
             <div className='relative mt-5 space-y-4'>
-              {['Confidence', 'Workflow', 'Judgement'].map((label, index) => (
+              {copy.intro.bars.map((label, index) => (
                 <div key={label}>
                   <div className='flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.12em] text-foreground'>
                     <span>{label}</span>
@@ -891,8 +841,8 @@ export function AiWorkSnapshot() {
 
   return (
     <div className='bl-card mx-auto w-full max-w-5xl overflow-hidden lg:grid lg:grid-cols-[0.3fr_0.7fr]'>
-      <Rail step={step} />
-      <MobileRail step={step} />
+      <Rail step={step} questions={questions} copy={copy.rail} />
+      <MobileRail step={step} questions={questions} copy={copy.mobile} />
       <form
         id={formId}
         onSubmit={(event) => {
@@ -905,7 +855,7 @@ export function AiWorkSnapshot() {
           <div>
             <div className='hidden items-center gap-2 border border-brand/30 bg-brand-soft/35 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text lg:inline-flex'>
               <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-brand' />{' '}
-              AI profile
+              {copy.form.badge}
             </div>
             <h2 className='bl-display max-w-2xl text-2xl leading-tight text-foreground lg:mt-4 lg:text-4xl'>
               {question.title}
@@ -998,9 +948,10 @@ export function AiWorkSnapshot() {
               (option) => option.value === field.value,
             );
             const normalizedRoleSearch = roleSearch.trim().toLowerCase();
-            const extraRoles = (normalizedRoleSearch
-              ? question.options
-              : question.options.slice(6)
+            const extraRoles = (
+              normalizedRoleSearch
+                ? question.options
+                : question.options.slice(6)
             )
               .filter(
                 (option) =>
@@ -1014,7 +965,8 @@ export function AiWorkSnapshot() {
                   const normalizedLabel = label.toLowerCase();
 
                   if (normalizedLabel === normalizedRoleSearch) return 0;
-                  if (normalizedLabel.startsWith(normalizedRoleSearch)) return 1;
+                  if (normalizedLabel.startsWith(normalizedRoleSearch))
+                    return 1;
                   if (
                     normalizedLabel
                       .split(/[^a-z0-9]+/)
@@ -1113,7 +1065,9 @@ export function AiWorkSnapshot() {
                           ) : (
                             <span aria-hidden='true'>{option.emoji}</span>
                           )}
-                          <span className='sr-only'>Option {option.value}</span>
+                          <span className='sr-only'>
+                            {copy.form.option.replace('{n}', option.value)}
+                          </span>
                         </span>
                       )}
                       <span
@@ -1148,7 +1102,7 @@ export function AiWorkSnapshot() {
                         <div className='col-span-full flex items-center justify-between gap-4 border-2 border-brand bg-brand-soft/30 px-4 py-3 shadow-[3px_3px_0_hsl(var(--brand))]'>
                           <span>
                             <span className='block font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
-                              Your role
+                              {copy.form.yourRole}
                             </span>
                             <span className='mt-1 block text-sm font-semibold text-foreground'>
                               {selectedRole.label}
@@ -1159,7 +1113,7 @@ export function AiWorkSnapshot() {
                             onClick={() => setRoleCatalogOpen(true)}
                             className='font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-text hover:text-foreground'
                           >
-                            Change
+                            {copy.form.change}
                           </button>
                         </div>
                       )}
@@ -1171,8 +1125,10 @@ export function AiWorkSnapshot() {
                       }}
                       className='col-span-full mt-2 border border-dashed border-ink/45 bg-surface px-4 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-text transition-colors hover:border-brand hover:bg-brand-soft/35'
                     >
-                      More roles, please (
-                      {question.options.length - visibleOptions.length} more)
+                      {copy.form.moreRoles.replace(
+                        '{n}',
+                        String(question.options.length - visibleOptions.length),
+                      )}
                     </button>
                     <Sheet
                       open={roleCatalogOpen}
@@ -1181,22 +1137,21 @@ export function AiWorkSnapshot() {
                       <SheetContent
                         side='bottom'
                         onOpenAutoFocus={(event) => event.preventDefault()}
-                        className='grid h-[min(72svh,36rem)] max-h-[72svh] grid-rows-[auto_auto_auto_auto_minmax(0,1fr)] overflow-hidden border-2 border-ink bg-ink p-5 text-white shadow-[0_-6px_0_hsl(var(--brand))] data-[state=closed]:ease-in data-[state=closed]:duration-1000 data-[state=open]:ease-out data-[state=open]:duration-1000 md:bottom-auto md:left-[50%] md:right-auto md:top-[50%] md:h-auto md:w-[min(92vw,72rem)] md:max-h-[85vh] md:max-w-none md:translate-x-[-50%] md:translate-y-[-50%] md:grid-rows-none md:overflow-y-auto md:p-10 md:shadow-[10px_10px_0_hsl(var(--brand))] md:data-[state=closed]:duration-300 md:data-[state=open]:duration-500 md:data-[state=closed]:ease-out md:data-[state=open]:ease-out md:data-[state=closed]:zoom-out-95 md:data-[state=open]:zoom-in-95 md:data-[state=closed]:slide-out-to-bottom-0 md:data-[state=closed]:slide-out-to-left-1/2 md:data-[state=closed]:slide-out-to-top-[48%] md:data-[state=open]:slide-in-from-bottom-0 md:data-[state=open]:slide-in-from-left-1/2 md:data-[state=open]:slide-in-from-top-[48%]'
+                        className='grid h-[min(72svh,36rem)] max-h-[72svh] grid-rows-[auto_auto_auto_auto_minmax(0,1fr)] overflow-hidden border-2 border-ink bg-ink p-5 text-white shadow-[0_-6px_0_hsl(var(--brand))] data-[state=closed]:duration-1000 data-[state=open]:duration-1000 data-[state=closed]:ease-in data-[state=open]:ease-out md:bottom-auto md:left-[50%] md:right-auto md:top-[50%] md:h-auto md:max-h-[85vh] md:w-[min(92vw,72rem)] md:max-w-none md:translate-x-[-50%] md:translate-y-[-50%] md:grid-rows-none md:overflow-y-auto md:p-10 md:shadow-[10px_10px_0_hsl(var(--brand))] md:data-[state=closed]:duration-300 md:data-[state=open]:duration-500 md:data-[state=closed]:ease-out md:data-[state=open]:ease-out md:data-[state=closed]:zoom-out-95 md:data-[state=open]:zoom-in-95 md:data-[state=closed]:slide-out-to-bottom-0 md:data-[state=closed]:slide-out-to-left-1/2 md:data-[state=closed]:slide-out-to-top-[48%] md:data-[state=open]:slide-in-from-bottom-0 md:data-[state=open]:slide-in-from-left-1/2 md:data-[state=open]:slide-in-from-top-[48%]'
                       >
                         <span className='mx-auto mb-5 block h-1 w-14 bg-white/30 md:hidden' />
                         <SheetTitle className='bl-display pr-10 text-3xl text-white md:text-4xl'>
-                          Find your role.
+                          {copy.form.findRole}
                         </SheetTitle>
                         <SheetDescription className='max-w-xl text-sm leading-relaxed text-white/65'>
-                          Pick the closest match. This is only to make the next
-                          questions more useful.
+                          {copy.form.findRoleBody}
                         </SheetDescription>
                         <input
                           value={roleSearch}
                           onChange={(event) =>
                             setRoleSearch(event.target.value)
                           }
-                          placeholder='Search roles...'
+                          placeholder={copy.form.searchPlaceholder}
                           className='h-12 w-full border border-white/30 bg-white/10 px-4 text-sm text-white outline-none placeholder:text-white/45 focus:border-brand focus:ring-2 focus:ring-brand/30'
                         />
                         <div className='grid min-h-0 grid-cols-1 content-start gap-2 overflow-y-auto overscroll-contain pr-1 md:grid-cols-2 md:overflow-visible md:pr-0'>
@@ -1226,7 +1181,7 @@ export function AiWorkSnapshot() {
                           })}
                           {extraRoles.length === 0 && (
                             <p className='col-span-full py-6 text-center text-sm text-white/60'>
-                              Nothing there yet. Try a broader word.
+                              {copy.form.noMatch}
                             </p>
                           )}
                         </div>
@@ -1250,7 +1205,7 @@ export function AiWorkSnapshot() {
               onClick={() => setStep((current) => current - 1)}
               className='inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground'
             >
-              <ArrowLeft className='h-4 w-4' /> Back
+              <ArrowLeft className='h-4 w-4' /> {copy.form.back}
             </button>
           ) : (
             <span />
@@ -1264,7 +1219,7 @@ export function AiWorkSnapshot() {
             }
             className='bl-btn bl-btn-ink inline-flex h-11 items-center gap-3 px-5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-45'
           >
-            {step === questions.length - 1 ? 'See my snapshot' : 'Next'}{' '}
+            {step === questions.length - 1 ? copy.form.finish : copy.form.next}{' '}
             <ArrowRight className='h-4 w-4' />
           </button>
         </div>

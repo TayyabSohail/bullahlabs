@@ -56,27 +56,29 @@ export default async function ConsciousAiPage() {
           { name: dict.nav.program, href: paths.program },
         ]}
       />
-      <ConsciousAiHero />
-      <ConsciousAiPrinciples />
-      <ConsciousAiNextSteps />
-      <ConsciousAiNumbers />
+      <ConsciousAiHero dict={dict} />
+      <ConsciousAiPrinciples dict={dict} />
+      <ConsciousAiNextSteps dict={dict} />
+      <ConsciousAiNumbers dict={dict} />
       <section id='ai-profile' className='bl-section bl-rule bl-band-mint'>
         <div className='bl-container'>
           <SectionHeading
-            kicker='Try it · Live'
-            title='Feeling like AI will replace you?'
-            accentWords={[4, 5]}
-            description='Five quick steps to find out.'
-            aside={<SpoilerPlate />}
+            kicker={dict.consciousAiPage.aiProfile.kicker}
+            title={dict.consciousAiPage.aiProfile.title}
+            accentWords={[...dict.consciousAiPage.aiProfile.accent]}
+            description={dict.consciousAiPage.aiProfile.description}
+            aside={
+              <SpoilerPlate copy={dict.consciousAiPage.aiProfile.spoiler} />
+            }
           />
           <div className='mt-8 sm:mt-12'>
-            <AiWorkSnapshot />
+            <AiWorkSnapshot dict={dict} />
           </div>
         </div>
       </section>
       <CourseSection dict={dict} />
-      <OurRoots />
-      <ConsciousAiFaq />
+      <OurRoots dict={dict} />
+      <ConsciousAiFaq dict={dict} />
       <CommunitySection dict={dict} className='bl-band-stone bl-band-peach' />
       <ConsciousAiClosing dict={dict} />
     </>

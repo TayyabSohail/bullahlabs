@@ -165,7 +165,7 @@ export function ProjectsTeaser({
                             <button
                               type='button'
                               onClick={() => move(-1)}
-                              aria-label='Previous featured project'
+                              aria-label={t.previous}
                               className='flex h-10 w-10 items-center justify-center border border-line text-foreground transition-colors hover:border-brand hover:bg-brand-soft hover:text-brand-text'
                             >
                               <ArrowLeft className='h-4 w-4' />
@@ -173,7 +173,7 @@ export function ProjectsTeaser({
                             <button
                               type='button'
                               onClick={() => move(1)}
-                              aria-label='Next featured project'
+                              aria-label={t.next}
                               className='flex h-10 w-10 items-center justify-center bg-ink text-white transition-colors hover:bg-brand'
                             >
                               <ArrowRight className='h-4 w-4' />
@@ -185,7 +185,7 @@ export function ProjectsTeaser({
                         <div
                           className='relative h-1 min-w-0 flex-1 overflow-hidden bg-line'
                           role='progressbar'
-                          aria-label='Featured project rotation progress'
+                          aria-label={t.progress}
                           aria-valuemin={0}
                           aria-valuemax={100}
                         >
@@ -198,7 +198,7 @@ export function ProjectsTeaser({
                           />
                         </div>
                         <span className='shrink-0 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground'>
-                          Featured work
+                          {t.featured}
                         </span>
                       </div>
                     </div>

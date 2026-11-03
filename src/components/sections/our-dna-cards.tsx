@@ -8,6 +8,7 @@ import { Flag } from '@/components/brand/flags';
 import { StaggerItem } from '@/components/motion/reveal';
 
 import type { SiteLocation } from '@/config/site';
+import type { Dictionary } from '@/i18n/dictionaries/en';
 
 const ease = [0.16, 1, 0.3, 1] as const;
 const inView = { once: true, margin: '0px 0px -10% 0px' } as const;
@@ -15,9 +16,9 @@ const inView = { once: true, margin: '0px 0px -10% 0px' } as const;
 /**
  * The verse is presented as a focused quote card: the original Punjabi in
  * Urdu (Shahmukhi) and Gurmukhi script, one above the other, with the
- * English reading underneath.
+ * reading underneath in the visitor's language.
  */
-export function VerseCard() {
+export function VerseCard({ copy }: { copy: Dictionary['ourDna']['verse'] }) {
   const reduce = useReducedMotion();
 
   return (
@@ -29,8 +30,8 @@ export function VerseCard() {
       className='bl-card relative flex min-h-[18rem] flex-col p-6 sm:min-h-[24rem] sm:p-8'
     >
       <p className='flex items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground'>
-        <span>Bulleh Shah</span>
-        <span>Kasur, Punjab</span>
+        <span>{copy.name}</span>
+        <span>{copy.place}</span>
       </p>
       <div className='relative my-auto py-5 sm:py-10'>
         <span
@@ -69,12 +70,9 @@ export function VerseCard() {
         className='border-t border-line pt-5 text-sm leading-relaxed text-muted-foreground sm:text-base'
       >
         <span className='bl-display block text-xl text-foreground sm:text-2xl'>
-          “Bulleh, what do I know of who I am?”
+          {copy.translation}
         </span>
-        <span className='mt-3 block'>
-          A refusal to be boxed in by religion, caste, or anyone else’s
-          expectations.
-        </span>
+        <span className='mt-3 block'>{copy.note}</span>
       </motion.p>
     </motion.div>
   );
@@ -82,13 +80,14 @@ export function VerseCard() {
 
 interface OfficeCardProps {
   location: SiteLocation;
+  labels: Dictionary['ourDna']['office'];
 }
 
 /**
  * One office: flag and label, a live local clock beside the city, and a
  * status dot that rings while that office is inside working hours.
  */
-export function OfficeCard({ location }: OfficeCardProps) {
+export function OfficeCard({ location, labels }: OfficeCardProps) {
   const local = useLocalTime(location.timezone);
   const open = local?.open ?? false;
 
@@ -101,7 +100,7 @@ export function OfficeCard({ location }: OfficeCardProps) {
         </p>
         <p className='inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground'>
           <span className='bl-status-dot' data-open={open} aria-hidden='true' />
-          {local ? (open ? 'Office hours' : 'After hours') : ' '}
+          {local ? (open ? labels.open : labels.closed) : ' '}
         </p>
       </div>
       <div className='mt-4 flex items-baseline justify-between gap-4'>
@@ -111,7 +110,11 @@ export function OfficeCard({ location }: OfficeCardProps) {
         <p
           className='font-mono text-lg tabular-nums text-foreground sm:text-xl'
           aria-label={
-            local ? `Local time in ${location.city}: ${local.time}` : undefined
+            local
+              ? labels.localTime
+                  .replace('{city}', location.city)
+                  .replace('{time}', local.time)
+              : undefined
           }
         >
           {local?.time ?? '--:--'}

@@ -39,7 +39,7 @@ export function CommunityDock({ dict }: { dict: Dictionary }) {
         <button
           type='button'
           onClick={() => setOpen((current) => !current)}
-          aria-label={open ? 'Close community menu' : t.mobileJoin}
+          aria-label={open ? t.closeMenu : t.mobileJoin}
           aria-expanded={open}
           data-cta='community-dock'
           className='flex h-full min-w-0 flex-1 items-center justify-center gap-2 px-3 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand'

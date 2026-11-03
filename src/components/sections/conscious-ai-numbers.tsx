@@ -9,124 +9,32 @@ import { Reveal } from '@/components/motion/reveal';
 
 import { cn } from '@/lib/utils';
 
-interface Card {
-  topic: string;
-  figure: string;
-  body: string;
-  source?: { name: string; href: string };
-}
+import type { Dictionary } from '@/i18n/dictionaries/en';
 
-const ey2025 = {
-  name: 'EY Work Reimagined Survey, 2025',
-  href: 'https://www.ey.com/en_gl/newsroom/2025/11/ey-survey-reveals-companies-are-missing-out-on-up-to-40-percent-of-ai-productivity-gains-due-to-gaps-in-talent-strategy',
+type NumbersCopy = Dictionary['consciousAiPage']['numbers'];
+type SourceKey = keyof NumbersCopy['sources'];
+
+/**
+ * Where each figure comes from. The cards and the source names live in the
+ * dictionary (`consciousAiPage.numbers`), keyed to these links.
+ */
+const SOURCE_LINKS: Record<SourceKey, string> = {
+  ey2025:
+    'https://www.ey.com/en_gl/newsroom/2025/11/ey-survey-reveals-companies-are-missing-out-on-up-to-40-percent-of-ai-productivity-gains-due-to-gaps-in-talent-strategy',
+  slack2024: 'https://slack.com/blog/news/the-workforce-index-june-2024',
+  workday2026:
+    'https://newsroom.workday.com/2026-01-14-New-Workday-Research-Companies-Are-Leaving-AI-Gains-on-the-Table',
+  betterup2025: 'https://www.betterup.com/blog/hidden-costs-workslop',
+  anthropic2026:
+    'https://platform.claude.com/docs/en/build-with-claude/prompt-caching',
+  routellm2024: 'https://sky.cs.berkeley.edu/project/routellm/',
+  bcg2024:
+    'https://www.bcg.com/press/24october2024-ai-adoption-in-2024-74-of-companies-struggle-to-achieve-and-scale-value',
+  iea2025: 'https://www.iea.org/reports/energy-and-ai/executive-summary',
+  ucr2025: 'https://arxiv.org/abs/2304.03271',
+  unesco2025:
+    'https://www.ucl.ac.uk/news/2025/jul/practical-changes-could-reduce-ai-energy-demand-90',
 };
-
-/** Third-party figures, one per card, a line of copy each. */
-const cards: Card[] = [
-  {
-    topic: 'Training pays off',
-    figure: '14 hours',
-    body: 'a week gained by staff with 81+ hours of AI training a year.',
-    source: ey2025,
-  },
-  {
-    topic: 'Training pays off',
-    figure: 'Up to 19x',
-    body: 'more likely to say AI makes them productive, once trained.',
-    source: {
-      name: 'Slack Workforce Index, 2024',
-      href: 'https://slack.com/blog/news/the-workforce-index-june-2024',
-    },
-  },
-  {
-    topic: 'What slop costs',
-    figure: 'Nearly 40%',
-    body: 'of the time AI saves goes on fixing bad output.',
-    source: {
-      name: 'Workday, 2026',
-      href: 'https://newsroom.workday.com/2026-01-14-New-Workday-Research-Companies-Are-Leaving-AI-Gains-on-the-Table',
-    },
-  },
-  {
-    topic: 'What slop costs',
-    figure: '~2 hours',
-    body: 'to deal with each piece of sloppy AI work a colleague hands over.',
-    source: {
-      name: 'BetterUp & Stanford, 2025',
-      href: 'https://www.betterup.com/blog/hidden-costs-workslop',
-    },
-  },
-  {
-    topic: 'KPIs we track',
-    figure: '7 KPIs',
-    body: 'before and after: hours saved, AI spend per task, tokens, do-overs, licenses, output quality, AI fluency.',
-  },
-  {
-    topic: 'KPIs we track · example',
-    figure: '≈ €4,700',
-    body: 'a month lost to rework in a 12-person team, at €45 an hour.',
-  },
-  {
-    topic: 'Smarter set-up',
-    figure: '90%+',
-    body: 'less spent on repeated instructions, with prompt caching.',
-    source: {
-      name: 'Anthropic pricing, 2026',
-      href: 'https://platform.claude.com/docs/en/build-with-claude/prompt-caching',
-    },
-  },
-  {
-    topic: 'Smarter set-up',
-    figure: '85%+',
-    body: 'cheaper when easy jobs go to a smaller model, at 95% of the quality.',
-    source: {
-      name: 'UC Berkeley, RouteLLM, 2024',
-      href: 'https://sky.cs.berkeley.edu/project/routellm/',
-    },
-  },
-  {
-    topic: 'People, not models',
-    figure: '70%',
-    body: 'of AI problems are about people and process, not algorithms.',
-    source: {
-      name: 'BCG, 2024',
-      href: 'https://www.bcg.com/press/24october2024-ai-adoption-in-2024-74-of-companies-struggle-to-achieve-and-scale-value',
-    },
-  },
-  {
-    topic: 'People, not models',
-    figure: '12%',
-    body: 'of staff get enough AI training.',
-    source: ey2025,
-  },
-  {
-    topic: 'Hidden footprint',
-    figure: '2x',
-    body: 'data-centre electricity by 2030. More than Japan uses today.',
-    source: {
-      name: 'IEA, Energy and AI, 2025',
-      href: 'https://www.iea.org/reports/energy-and-ai/executive-summary',
-    },
-  },
-  {
-    topic: 'Hidden footprint',
-    figure: '4–6x Denmark',
-    body: "the water AI is projected to withdraw in 2027, against Denmark's yearly total.",
-    source: {
-      name: 'Li et al., UC Riverside, 2025',
-      href: 'https://arxiv.org/abs/2304.03271',
-    },
-  },
-  {
-    topic: 'Hidden footprint · the fix',
-    figure: 'Up to 90%',
-    body: 'less energy on repetitive tasks, with small models and shorter prompts.',
-    source: {
-      name: 'UNESCO & UCL, 2025',
-      href: 'https://www.ucl.ac.uk/news/2025/jul/practical-changes-could-reduce-ai-energy-demand-90',
-    },
-  },
-];
 
 /** How long each card stays up before the next one slides in. */
 const DWELL_MS = 6000;
@@ -138,7 +46,15 @@ const ease = [0.16, 1, 0.3, 1] as const;
  * by hand. Pauses while hovered, focused or off-screen, and never
  * auto-advances for readers who prefer reduced motion.
  */
-export function ConsciousAiNumbers({ className }: { className?: string }) {
+export function ConsciousAiNumbers({
+  dict,
+  className,
+}: {
+  dict: Dictionary;
+  className?: string;
+}) {
+  const t = dict.consciousAiPage.numbers;
+  const cards = t.cards;
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [held, setHeld] = useState(false);
@@ -187,9 +103,9 @@ export function ConsciousAiNumbers({ className }: { className?: string }) {
       <style>{`@keyframes bl-numbers-fill { from { transform: scaleX(0) } to { transform: scaleX(1) } }`}</style>
       <div className='bl-container'>
         <SectionHeading
-          kicker='The numbers'
-          title='Less time lost. Fewer tokens wasted. Smaller bill, smaller footprint.'
-          accentWords={[6, 7, 8, 9]}
+          kicker={t.kicker}
+          title={t.title}
+          accentWords={[...t.accent]}
           descriptionPosition='below'
           className='max-w-6xl'
         />
@@ -272,12 +188,15 @@ export function ConsciousAiNumbers({ className }: { className?: string }) {
                     </p>
                     {card.source ? (
                       <a
-                        href={card.source.href}
+                        href={SOURCE_LINKS[card.source as SourceKey]}
                         target='_blank'
                         rel='noopener noreferrer'
                         className='inline-flex items-center gap-1.5 self-start font-mono text-xs text-muted-foreground underline decoration-ink/40 underline-offset-4 transition-colors hover:text-brand-text hover:decoration-brand'
                       >
-                        Source: {card.source.name}
+                        {t.source.replace(
+                          '{name}',
+                          t.sources[card.source as SourceKey],
+                        )}
                         <ArrowUpRight
                           className='h-3.5 w-3.5'
                           aria-hidden='true'
@@ -285,7 +204,7 @@ export function ConsciousAiNumbers({ className }: { className?: string }) {
                       </a>
                     ) : (
                       <p className='font-mono text-xs text-muted-foreground'>
-                        Our own worked example.
+                        {t.ownExample}
                       </p>
                     )}
                   </div>
@@ -296,13 +215,13 @@ export function ConsciousAiNumbers({ className }: { className?: string }) {
             {/* Footer: note and arrows */}
             <div className='flex items-center justify-between gap-4 border-t border-ink/85 px-4 py-3 sm:px-5'>
               <p className='text-xs text-muted-foreground sm:text-sm'>
-                Third-party data, not our client results.
+                {t.note}
               </p>
               <div className='flex items-center gap-2'>
                 <button
                   type='button'
                   onClick={() => go(index - 1, -1)}
-                  aria-label='Previous figure'
+                  aria-label={t.previous}
                   className='bl-btn bl-btn-secondary inline-flex h-11 w-11 items-center justify-center'
                 >
                   <ArrowLeft className='h-4 w-4' aria-hidden='true' />
@@ -310,7 +229,7 @@ export function ConsciousAiNumbers({ className }: { className?: string }) {
                 <button
                   type='button'
                   onClick={() => go(index + 1, 1)}
-                  aria-label='Next figure'
+                  aria-label={t.next}
                   className='bl-btn bl-btn-primary inline-flex h-11 w-11 items-center justify-center'
                 >
                   <ArrowRight className='h-4 w-4' aria-hidden='true' />

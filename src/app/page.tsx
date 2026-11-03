@@ -28,14 +28,14 @@ export default async function HomePage() {
     <>
       <Preloader />
       <Hero dict={dict} />
-      <OurDna />
+      <OurDna dict={dict} />
       <Problem dict={dict} />
-      <Studio />
+      <Studio dict={dict} />
       <Technologies dict={dict} carouselOnly />
       <ProjectsTeaser dict={dict} />
       <ConsciousAiHome dict={dict} />
       <CommunitySection dict={dict} />
-      <LocationsHome />
+      <LocationsHome dict={dict} />
       <div id='faq' className='scroll-mt-24'>
         <FaqSection
           items={getFaqs(dict.locale)}

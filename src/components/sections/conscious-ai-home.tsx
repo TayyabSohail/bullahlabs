@@ -8,12 +8,14 @@ import { TextReveal } from '@/components/motion/text-reveal';
 import { TeamsOfferCard } from '@/components/sections/offer-card';
 
 import { paths } from '@/constants/paths';
-import { leadInstructor as instructor } from '@/data/instructors';
+import { getLeadInstructor } from '@/data/instructors';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 /** What we do about the hero's problem: the free course, and help for teams. The facts live in Numbers. */
 export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
+  const t = dict.consciousAiHome;
   const facts = dict.programPage.course.preview.points;
+  const instructor = getLeadInstructor(dict.locale);
 
   return (
     <section
@@ -21,17 +23,16 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
       className='bl-section bl-rule bl-band-stone scroll-mt-24'
     >
       <div className='bl-container'>
-        <p className='bl-kicker'>Conscious AI</p>
+        <p className='bl-kicker'>{t.kicker}</p>
         <div className='mt-5 max-w-3xl'>
           <TextReveal
             as='h2'
-            text='Using AI well is a skill. Not a subscription.'
-            accentWords={[6, 7, 8]}
+            text={t.title}
+            accentWords={[...t.accent]}
             className='bl-display text-display-lg text-foreground'
           />
           <p className='mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
-            Free AI guidance for better tool choices. Team training for real
-            work.
+            {t.description}
           </p>
         </div>
 
@@ -39,13 +40,12 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
             Each pins its action to the bottom so the rows line up. */}
         <div className='mt-10 grid gap-5 lg:grid-cols-[1.25fr_1fr]'>
           <div className='bl-card bl-card-ink relative isolate flex flex-col overflow-hidden p-5 text-white sm:p-6'>
-            <p className='bl-kicker text-white/60'>Free course · coming soon</p>
+            <p className='bl-kicker text-white/60'>{t.course.kicker}</p>
             <h3 className='bl-display mt-4 text-3xl leading-tight lg:text-4xl'>
-              Learn AI that helps.
+              {t.course.title}
             </h3>
             <p className='mt-3 max-w-md text-sm leading-relaxed text-white/65 lg:text-base'>
-              Choose the right tool, use it well, and skip AI when simpler
-              works.
+              {t.course.body}
             </p>
 
             {/* The instructor takes whatever height the teams plate leaves.
@@ -59,7 +59,7 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
               <span className='relative block aspect-[800/955] min-h-[9rem] w-auto min-w-[7rem] shrink-0 overflow-hidden border-r border-white/20'>
                 <Image
                   src={instructor.image}
-                  alt={`Portrait of ${instructor.name}`}
+                  alt={t.course.portraitAlt.replace('{name}', instructor.name)}
                   fill
                   sizes='(min-width: 1024px) 220px, (min-width: 640px) 180px, 140px'
                   className='object-cover transition-transform duration-500 group-hover:scale-[1.03]'
@@ -103,14 +103,17 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
                 source='home:projects'
                 variant='inline'
                 tone='dark'
-                submitLabel='Add to waitlist'
+                submitLabel={t.course.submit}
                 consent={false}
                 className='mt-3'
               />
             </div>
           </div>
 
-          <TeamsOfferCard className='bl-card-tint bl-card-lift p-5 sm:p-6' />
+          <TeamsOfferCard
+            dict={dict}
+            className='bl-card-tint bl-card-lift p-5 sm:p-6'
+          />
         </div>
 
         {/* The way into the whole programme: one rail across the width. */}
@@ -119,9 +122,9 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
           className='bl-card bl-card-lift group mt-5 flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6'
         >
           <span className='min-w-0'>
-            <span className='bl-kicker block'>Conscious AI</span>
+            <span className='bl-kicker block'>{t.rail.kicker}</span>
             <span className='bl-display mt-2 block text-xl leading-tight text-foreground sm:text-2xl'>
-              The course, the numbers, and your AI profile.
+              {t.rail.title}
             </span>
           </span>
           <span className='bl-btn bl-btn-primary inline-flex h-12 shrink-0 items-center justify-center gap-2.5 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'>

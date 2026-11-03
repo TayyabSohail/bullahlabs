@@ -7,6 +7,7 @@ import { CountUp } from '@/components/motion/count-up';
 
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
+import type { Dictionary } from '@/i18n/dictionaries/en';
 
 /** Two office pins, then client marks on each of the five continents we work with. */
 const MARKERS = [
@@ -20,14 +21,9 @@ const MARKERS = [
   { location: [-33.87, 151.21] as [number, number], size: 0.03 }, // Sydney, Oceania
 ];
 
-const STATS = [
-  ['150+', 'Projects delivered'],
-  ['40+', 'Clients served'],
-  ['5', 'Continents reached'],
-] as const;
-
 /** The figures and the two offices in one ink band, after what we do and before Let's Talk. */
-export function LocationsHome() {
+export function LocationsHome({ dict }: { dict: Dictionary }) {
+  const t = dict.locationsHome;
   return (
     <section
       data-section='locations'
@@ -37,9 +33,9 @@ export function LocationsHome() {
       <div className='bl-container'>
         <div className='grid gap-8 sm:grid-cols-[minmax(0,1fr)_22rem] sm:items-center sm:gap-12'>
           <div className='lg:pl-12'>
-            <p className='bl-kicker text-white/60'>Where we are</p>
+            <p className='bl-kicker text-white/60'>{t.kicker}</p>
             <h2 className='bl-display mt-4 text-4xl text-white sm:text-5xl'>
-              Two offices. One team.
+              {t.title}
             </h2>
             <div className='mt-7 flex flex-wrap gap-x-7 gap-y-3'>
               {siteConfig.locations.map((location) => (
@@ -59,7 +55,7 @@ export function LocationsHome() {
               href={paths.contact}
               className='bl-btn bl-btn-primary mt-8 inline-flex h-14 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
             >
-              Start a project <ArrowUpRight className='h-4 w-4' />
+              {t.cta} <ArrowUpRight className='h-4 w-4' />
             </Link>
           </div>
           <div className='mx-auto w-full max-w-[20rem]'>
@@ -69,7 +65,7 @@ export function LocationsHome() {
 
         {/* The figures: three counters on one rule. */}
         <div className='mt-12 grid border-t border-white/20 sm:grid-cols-3'>
-          {STATS.map(([value, label], index) => (
+          {t.stats.map(([value, label], index) => (
             <div
               key={label}
               className={

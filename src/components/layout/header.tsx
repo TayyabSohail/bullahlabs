@@ -65,7 +65,7 @@ export function Header({ dict }: HeaderProps) {
         {/* The links, flags and CTA need the width of `lg`; below that the
             hamburger takes over. */}
         <nav
-          aria-label='Primary'
+          aria-label={dict.nav.primary}
           className='hidden items-center gap-7 lg:flex xl:gap-9'
         >
           {items.map((item) => {

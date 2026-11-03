@@ -29,16 +29,22 @@ export const de: Dictionary = {
     secondary: 'Sehen, was wir bauen',
     steps: [
       {
-        title: 'Weiterbildung',
-        body: 'Kostenloser Kurs und Team-Trainings: KI gut nutzen, Ergebnisse beurteilen, Fähigkeiten behalten.',
+        kicker: 'Kostenlos · eigenes Tempo',
+        title: 'Selbst lernen.',
+        body: 'Ein kostenloser Kurs für Nicht-Entwickler: das richtige Tool wählen, gut prompten, Ergebnisse beurteilen.',
+        cta: 'Zum Kurs',
       },
       {
-        title: 'Services',
-        body: 'Wir optimieren die KI, die Sie schon nutzen, und bauen schlanke digitale Produkte, vorher und nachher gemessen.',
+        kicker: 'Für Teams',
+        title: 'Ihr Team schulen.',
+        body: 'Praxisnahe Sessions rund um Ihre echten Abläufe, Ergebnisse vorher und nachher gemessen.',
+        cta: 'Zum Team-Training',
       },
       {
-        title: 'Produkt',
-        body: 'Ein Werkzeug, das Conscious AI in den Arbeitsalltag bringt. In Arbeit.',
+        kicker: 'Das Studio',
+        title: 'Uns bauen lassen.',
+        body: 'KI-Optimierung und digitale Produkte, die schlank laufen: das passende Modell, weniger Kontext, weniger Verschwendung.',
+        cta: 'Zu den Services',
       },
     ],
     receipt: {
@@ -652,9 +658,10 @@ export const de: Dictionary = {
       emailInvalid: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
       messageLong: 'Bitte bleiben Sie unter 4.000 Zeichen',
     },
-    sentTitle: 'Nachricht erhalten.',
+    sentTitle: 'Vielen Dank.',
     sentBody:
-      'Vielen Dank. Ein Mensch liest jede Anfrage und antwortet {time}, direkt an die von Ihnen angegebene Adresse.',
+      'Ihre Anfrage ist angekommen. Ein Mensch liest jede einzelne und antwortet {time}, direkt an die von Ihnen angegebene Adresse.',
+    sentHome: 'Zur Startseite',
   },
   workPage: {
     back: 'Alle Projekte',
@@ -1033,6 +1040,12 @@ export const de: Dictionary = {
       title: 'Angst, dass KI Sie ersetzt?',
       accent: [3, 4],
       description: 'Fünf kurze Schritte, um es herauszufinden.',
+      spoiler: {
+        tag: 'Spoiler',
+        lead: 'Sie sind',
+        accent: 'schwerer zu ersetzen',
+        tail: 'als Sie denken.',
+      },
     },
     instructor: {
       kicker: 'Ihr Dozent',
@@ -1175,5 +1188,350 @@ export const de: Dictionary = {
       closed: 'Außerhalb der Bürozeiten',
       localTime: 'Ortszeit in {city}: {time}',
     },
+  },
+  teamsPage: {
+    breadcrumb: 'Für Teams',
+    hero: {
+      kicker: 'Conscious AI für Teams',
+      title: 'Ihr Team nutzt KI. Zahlt es sich aus?',
+      accent: [4, 5, 6, 7],
+      body: 'Wir streichen verschwendete Rechenleistung aus Ihrer KI. Von der Rechnung. Vom Fußabdruck. Nie von der Qualität.',
+      cta: 'Ihren Ablauf durchsprechen',
+    },
+    familiar: {
+      kicker: 'Kommt Ihnen bekannt vor?',
+      title: 'KI überall. Ein Plan nirgends.',
+      accent: [2, 3],
+      items: [
+        [
+          'KI überall.',
+          'Das halbe Team fragt sich leise, ob es als Nächstes dran ist.',
+        ],
+        ['Welches Modell wofür?', 'Schulterzucken überall.'],
+        ['Die KI-Rechnung wächst.', 'Die Ergebnisse eher nicht.'],
+        ['Ihr Nachhaltigkeitsbericht', 'hat ein Loch in KI-Form.'],
+      ],
+    },
+    how: {
+      kicker: 'So arbeiten wir',
+      title: 'Ein Ablauf nach dem anderen.',
+      accent: [2, 3, 4],
+      steps: [
+        ['01', 'Audit', 'Abbilden. Messen. Fußabdruck inklusive.'],
+        ['02', 'Plan', 'Lösungen nach Wirkung und Risiko ordnen.'],
+        ['03', 'Beheben & schulen', 'Große Gewinne zuerst. Qualität geprüft.'],
+        ['04', 'Wiederholen', 'Der nächste Ablauf, bitte.'],
+      ],
+    },
+    offers: {
+      kicker: 'Jede Größe',
+      title: 'Wählen Sie Ihren Einstieg.',
+      accent: [2, 3],
+      items: [
+        [
+          'Erste Schritte',
+          'Workshops',
+          'KI-Angst wird zu Sicherheit, an Ihren echten Aufgaben. Welches Werkzeug wann, und wie man es prüft.',
+          'Workshop buchen',
+        ],
+        [
+          'Erste Schritte',
+          'Leitlinien',
+          'Gemeinsame Regeln für Werkzeuge, Daten, Kosten und CO₂. Damit KI-Nutzung endlich eine Anleitung hat.',
+          'Nach Leitlinien fragen',
+        ],
+        [
+          'Für Fortgeschrittene',
+          'Audit & Optimierung',
+          'KI, die zu Ihrem Ablauf passt. Wir bilden den Ablauf ab, finden verschwendete Rechenleistung und streichen sie. Vorher und nachher gemessen.',
+          'Audit starten',
+        ],
+      ],
+    },
+    waste: {
+      kicker: 'Was ein Audit findet',
+      title: 'Verschwendung, die wir jagen.',
+      accent: [2, 3],
+      body: 'Prompts, Modelle, Retrieval, Werkzeuge, Schritte. Dazu Kosten, Tempo und geschätzte Energie.',
+      items: [
+        ['Ein Lkw, der einen Brief ausliefert', 'Überdimensioniertes Modell'],
+        ['Ein Aktenschrank in jedem Meeting', 'Zu viel Kontext'],
+        ['Die ganze Karte bestellen für ein Gericht', 'Übereifriges Retrieval'],
+        [
+          'Ein Romanautor, der einen Kassenbon zusammenrechnet',
+          'KI für simple Aufgaben',
+        ],
+        ['Nach der Ankunft noch um den Block kreisen', 'Überflüssige Schritte'],
+      ],
+    },
+    changes: {
+      kicker: 'Was sich ändert',
+      title: 'Nützliche KI, mit einem Plan dahinter.',
+      accent: [2, 3, 4, 5],
+      body: 'Sie gehen mit Entscheidungen, die Ihr Team morgen nutzen kann, nicht mit einem weiteren Dashboard, das gepflegt werden will.',
+      items: [
+        [
+          'Eine gemeinsame Arbeitsweise',
+          'Klare Entscheidungen zu Werkzeugen, Prompting, Prüfung der Arbeit und dazu, wann KI nicht zum Einsatz kommt.',
+        ],
+        [
+          'Ein kleinerer, klügerer Stack',
+          'Die Modelle und Schritte, die ihren Platz verdienen, und der teure Ballast, der es nicht tut.',
+        ],
+        [
+          'Ein schriftlicher Plan für die nächsten Schritte',
+          'Priorisierte Verbesserungen, Verantwortliche und ein realistischer Weg, das Ergebnis zu messen.',
+        ],
+      ],
+      privacy:
+        'Wir nutzen nur den minimalen Zugang, der nötig ist, um einen Ablauf zu verstehen. Ihre Daten bleiben Ihre Sache.',
+      closing: {
+        lead: 'Bringen Sie einen Ablauf mit.',
+        accent: 'Wir bringen die Schere.',
+        body: 'Beginnen Sie mit einem ehrlichen Gespräch. Wir sagen Ihnen, ob ein Workshop, Leitlinien oder ein Audit der richtige nächste Schritt ist.',
+      },
+    },
+  },
+  snapshot: {
+    errors: {
+      role: 'Wählen Sie das Feld, das Ihrer Arbeit am nächsten kommt.',
+      option: 'Wählen Sie die Antwort, die am ehesten passt.',
+      email: 'Geben Sie eine gültige E-Mail-Adresse ein.',
+      emailSave:
+        'Ihre E-Mail konnte nicht gespeichert werden. Bitte erneut versuchen.',
+    },
+    questions: [
+      {
+        rail: 'Ihr Job',
+        title: 'Welche Rolle kommt Ihrer am nächsten?',
+        options: [
+          { value: 'operations', label: 'Operations & Verwaltung' },
+          { value: 'sales', label: 'Vertrieb & Support' },
+          { value: 'marketing', label: 'Marketing & Content' },
+          { value: 'hr', label: 'HR & Recruiting' },
+          { value: 'education', label: 'Studierende oder Lehrkraft' },
+          { value: 'technical', label: 'Entwickler oder Technik' },
+          { value: 'research', label: 'Forschung & Analyse' },
+          { value: 'freelance', label: 'Freelancer oder Kleinunternehmen' },
+          { value: 'developer', label: 'Softwareentwickler oder Engineer' },
+          { value: 'data', label: 'Daten- oder KI-Spezialist' },
+          { value: 'designer', label: 'Designer oder UX-Researcher' },
+          { value: 'project_manager', label: 'Projekt- oder Programmmanager' },
+          {
+            value: 'customer_success',
+            label: 'Customer Success oder Account Manager',
+          },
+          { value: 'recruiter', label: 'Recruiter oder Talent-Spezialist' },
+          { value: 'accountant', label: 'Buchhalter oder Steuerfachkraft' },
+          { value: 'writer', label: 'Autor, Redakteur oder Texter' },
+          { value: 'manager', label: 'Manager, Direktor oder Führungskraft' },
+          { value: 'analyst', label: 'Business- oder Datenanalyst' },
+          { value: 'product', label: 'Produkt & Design' },
+          { value: 'finance', label: 'Finanzen & Buchhaltung' },
+          { value: 'legal', label: 'Recht & Compliance' },
+          { value: 'healthcare', label: 'Gesundheit & Pflege' },
+          { value: 'consulting', label: 'Beratung & Kundenservice' },
+          { value: 'logistics', label: 'Logistik & Lieferkette' },
+          { value: 'hospitality', label: 'Gastgewerbe & Events' },
+          { value: 'nonprofit', label: 'Gemeinnützig & Community' },
+          { value: 'government', label: 'Öffentlicher Dienst' },
+          { value: 'founder', label: 'Gründer & Führung' },
+          { value: 'creator', label: 'Kreativ & Medien' },
+          { value: 'other', label: 'Etwas anderes' },
+        ],
+      },
+      {
+        rail: 'Wie oft',
+        title: 'Wie oft taucht KI in Ihrer Arbeit auf?',
+        options: [
+          { value: 'rarely', label: 'Selten', detail: 'Nur hin und wieder' },
+          {
+            value: 'weekly',
+            label: 'Ein paar Mal pro Woche',
+            detail: 'Nützlich bei Bedarf',
+          },
+          {
+            value: 'daily',
+            label: 'An den meisten Tagen',
+            detail: 'Teil meines Ablaufs',
+          },
+          {
+            value: 'constant',
+            label: 'Den ganzen Tag über',
+            detail: 'Immer griffbereit',
+          },
+        ],
+      },
+      {
+        rail: 'Wie nützlich',
+        title:
+          'Wie oft liefert KI Ihnen eine brauchbare Antwort ohne viel Nacharbeit?',
+        options: [
+          { value: '1', label: 'Selten' },
+          { value: '2', label: 'Manchmal' },
+          { value: '3', label: 'Oft' },
+          { value: '4', label: 'Meistens' },
+          { value: '5', label: 'Fast immer' },
+        ],
+      },
+      {
+        rail: 'Wie leicht',
+        title: 'Wie reibungslos läuft der Ablauf, wenn Sie KI nutzen?',
+        options: [
+          {
+            value: '1',
+            label: 'Ich erkläre ständig neu',
+            detail:
+              'Derselbe Kontext muss wieder eingefügt oder erklärt werden.',
+          },
+          {
+            value: '2',
+            label: 'Ich fange oft von vorn an',
+            detail: 'Nützliche Arbeit geht über mehrere Anläufe verloren.',
+          },
+          {
+            value: '3',
+            label: 'Meist ein klarer Durchgang',
+            detail:
+              'Ich komme meist ohne viel Wiederholung zu einem brauchbaren Ergebnis.',
+          },
+          {
+            value: '4',
+            label: 'Mein Kontext bleibt erhalten',
+            detail:
+              'Der Ablauf fühlt sich klar, verbunden und leicht fortsetzbar an.',
+          },
+        ],
+      },
+      {
+        rail: 'Was Sie brauchen',
+        title: 'Was würde KI für Sie nützlicher machen?',
+        options: [
+          {
+            value: 'output',
+            label: 'Bessere Ergebnisse',
+            detail: 'Klarere, nützlichere erste Entwürfe',
+          },
+          {
+            value: 'choice',
+            label: 'Klarere Entscheidungen',
+            detail: 'Wissen, wann KI das richtige Werkzeug ist',
+          },
+          {
+            value: 'system',
+            label: 'Ein wiederholbares System',
+            detail: 'Weniger Reibung, jede Woche',
+          },
+          {
+            value: 'team',
+            label: 'Ein stärkerer Team-Ansatz',
+            detail: 'Mehr Konsistenz in der Arbeit',
+          },
+        ],
+      },
+    ],
+    rail: {
+      brand: 'Conscious AI',
+      title: 'KI besser nutzen.',
+      body: 'Beantworten Sie ein paar Fragen dazu, wie Sie KI bei der Arbeit nutzen.',
+      answers: 'Ihre Antworten',
+    },
+    mobile: {
+      progress: 'Ihr Fortschritt',
+      step: 'Schritt {n} von {total}',
+    },
+    gate: {
+      kicker: 'Ihre Ergebnisse sind bereit',
+      title: 'E-Mail hinzufügen.',
+      body: 'Wir bereiten Ihre Ergebnisse vor und schicken das Kurs-Update ebenfalls dorthin.',
+      email: 'E-Mail-Adresse',
+      placeholder: 'Ihre E-Mail-Adresse',
+      preparing: 'Wird vorbereitet...',
+      submit: 'Ergebnisse anzeigen',
+      restart: 'Von vorn beginnen',
+    },
+    result: {
+      preparing: 'Ihre Ergebnisse werden vorbereitet.',
+      confidence: 'Sicherheit',
+      efficiency: 'Effizienz',
+      confidenceHigh: 'Sie kommen meist zu brauchbaren Antworten.',
+      confidenceLow: 'Klarerer Kontext wird Ihre Ergebnisse verbessern.',
+      efficiencyHigh: 'Ihr Ablauf ist schon recht schlank.',
+      efficiencyLow:
+        'Ein wiederverwendbares Setup kann zusätzliche Runden sparen.',
+      headings: {
+        both: 'KI hilft bereits.',
+        confidence: 'Sie bekommen brauchbare Antworten.',
+        workflow: 'KI fügt sich reibungslos in Ihre Arbeit ein.',
+        neither: 'KI kann besser für Sie arbeiten.',
+      },
+      helpTitle: 'Brauchen Sie Hilfe, KI zum Laufen zu bringen?',
+      helpCta: 'Mit uns arbeiten',
+      courseTitle: 'Kostenloser Kurs startet bald.',
+      courseCta: 'Zum Kurs',
+      community: 'Der Community beitreten',
+      restart: 'Von vorn beginnen',
+    },
+    intro: {
+      title: 'Machen Sie den Test.',
+      kicker: 'Ein kurzer Realitätscheck',
+      heading: 'Nutzen Sie KI gut, oder einfach nur mehr davon?',
+      body: 'Beantworten Sie fünf kurze Fragen und nehmen Sie einen nützlichen nächsten Schritt für Ihre echte Arbeit mit.',
+      cta: 'Test starten',
+      score: 'Ihr Ergebnis',
+      waiting: 'wartet auf Sie',
+      bars: ['Sicherheit', 'Ablauf', 'Urteil'],
+    },
+    form: {
+      badge: 'KI-Profil',
+      option: 'Option {n}',
+      yourRole: 'Ihre Rolle',
+      change: 'Ändern',
+      moreRoles: 'Mehr Rollen, bitte ({n} weitere)',
+      findRole: 'Finden Sie Ihre Rolle.',
+      findRoleBody:
+        'Wählen Sie die beste Entsprechung. Das macht nur die nächsten Fragen nützlicher.',
+      searchPlaceholder: 'Rollen suchen...',
+      noMatch: 'Noch nichts gefunden. Versuchen Sie ein allgemeineres Wort.',
+      back: 'Zurück',
+      next: 'Weiter',
+      finish: 'Mein Profil ansehen',
+    },
+  },
+  studio: {
+    kicker: 'Studio',
+    title: 'Digitale Produkte, richtig gebaut.',
+    accent: [2, 3],
+    description:
+      'Von der ersten Idee bis zur besseren Alltagsarbeit bauen wir Technologie, die ihren Platz verdient.',
+    services: [
+      {
+        title: 'Bauen',
+        body: 'Von der Idee zum Launch: digitale Produkte, gebaut, um zu halten.',
+        typical: 'Neues Produkt · MVP · Plattform',
+      },
+      {
+        title: 'Reparieren',
+        body: 'Einfachere, robustere Software mit weniger Verschwendung.',
+        typical: 'Neubau · Rettung · Integration',
+      },
+      {
+        title: 'KI optimieren',
+        body: 'Klügere KI-Systeme. Geringere Kosten. Bessere Ergebnisse.',
+        typical: 'KI-Audit · Workflow-Design · Team-Training',
+      },
+    ],
+    wantTitle: 'Unsere Leistungen gefragt?',
+    wantCta: 'Zu den Leistungen',
+  },
+  locationsHome: {
+    kicker: 'Wo wir sind',
+    title: 'Zwei Büros. Ein Team.',
+    cta: 'Projekt starten',
+    stats: [
+      ['150+', 'Projekte geliefert'],
+      ['40+', 'Kunden betreut'],
+      ['5', 'Kontinente erreicht'],
+    ],
   },
 };

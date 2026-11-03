@@ -2,6 +2,20 @@ import type { ReceiptCopy } from '@/components/sections/planet-receipt';
 
 import type { Locale } from '../config';
 
+/** One answer in the AI profile quiz. The value is stored and analysed; the words are read. */
+export interface SnapshotOptionCopy {
+  value: string;
+  label: string;
+  detail?: string;
+}
+
+/** One of the five quiz questions, in words; the field and kind live in the component. */
+export interface SnapshotQuestionCopy {
+  rail: string;
+  title: string;
+  options: SnapshotOptionCopy[];
+}
+
 export const en = {
   locale: 'en' as Locale,
   nav: {
@@ -30,21 +44,29 @@ export const en = {
     primary: 'Explore Conscious AI',
     secondary: 'See what we build',
     /**
-     * The three things we do, on one rule under the buttons: educate,
-     * services, product. One line each.
+     * The three ways in under the buttons, three ruled cards, each one link:
+     * course (/conscious-ai), team training (/conscious-ai/teams), services
+     * (/services). Order is fixed by the hero's STEP_PATHS. Kicker under
+     * about 20 characters, title under about 20, body one or two lines.
      */
     steps: [
       {
-        title: 'Educate',
-        body: 'Free course and team training: use AI well, judge the output, keep your skills.',
+        kicker: 'Free · self-paced',
+        title: 'Learn it yourself.',
+        body: 'A free course for non-developers: pick the right tool, prompt well, judge the output.',
+        cta: 'Open the course',
       },
       {
-        title: 'Services',
-        body: 'We tune the AI you already use and build lean digital products, measured before and after.',
+        kicker: 'For teams',
+        title: 'Train your team.',
+        body: 'Hands-on sessions around your real workflows, with results measured before and after.',
+        cta: 'See team training',
       },
       {
-        title: 'Product',
-        body: 'A tool that brings Conscious AI into everyday work. In the making.',
+        kicker: 'The studio',
+        title: 'Hire us to build.',
+        body: 'AI optimisation and digital products that run lean: the right model, less context, less waste.',
+        cta: 'See our services',
       },
     ],
     /**
@@ -696,9 +718,10 @@ export const en = {
       emailInvalid: 'Please enter a valid email address',
       messageLong: 'Please keep it under 4,000 characters',
     },
-    sentTitle: 'Message received.',
+    sentTitle: 'Thank you.',
     sentBody:
-      'Thank you. A person reads every enquiry and replies {time}, straight to the address you gave us.',
+      'Your enquiry is in. A person reads every one and replies {time}, straight to the address you gave us.',
+    sentHome: 'Back to home',
   },
   workPage: {
     back: 'All projects',
@@ -941,7 +964,11 @@ export const en = {
           'FOMO, weekly.',
           'A new model every Monday. Homework every Tuesday.',
         ],
-        ['02', 'Faster. Cheaper. You?', 'The boss just discovered AI. Awkward.'],
+        [
+          '02',
+          'Faster. Cheaper. You?',
+          'The boss just discovered AI. Awkward.',
+        ],
         [
           '03',
           'Hot and thirsty.',
@@ -1074,6 +1101,13 @@ export const en = {
       title: 'Feeling like AI will replace you?',
       accent: [4, 5],
       description: 'Five quick steps to find out.',
+      /** The redaction-style plate beside the heading. */
+      spoiler: {
+        tag: 'Spoiler',
+        lead: 'You’re',
+        accent: 'harder to replace',
+        tail: 'than you think.',
+      },
     },
     /** The instructor heading and card labels under the course. */
     instructor: {
@@ -1204,6 +1238,342 @@ export const en = {
       closed: 'After hours',
       localTime: 'Local time in {city}: {time}',
     },
+  },
+  /** Conscious AI for teams (/conscious-ai/teams), top to bottom. */
+  teamsPage: {
+    breadcrumb: 'For teams',
+    hero: {
+      kicker: 'Conscious AI for teams',
+      title: 'Your team uses AI. Is it paying off?',
+      accent: [6, 7],
+      body: 'We cut wasted compute from your AI. Off the bill. Off the footprint. Never off the quality.',
+      cta: 'Talk through your workflow',
+    },
+    familiar: {
+      kicker: 'Sound familiar?',
+      title: 'AI everywhere. A plan nowhere.',
+      accent: [2, 3],
+      items: [
+        ['AI everywhere.', "Half the team quietly wonders if they're next."],
+        ['Which model for what?', 'Shrugs all round.'],
+        ['The AI bill grows.', 'The results, not so much.'],
+        ['Your sustainability report', 'has an AI-shaped hole.'],
+      ],
+    },
+    how: {
+      kicker: 'How we work',
+      title: 'One workflow at a time.',
+      accent: [2, 3, 4],
+      steps: [
+        ['01', 'Audit', 'Map it. Measure it. Footprint included.'],
+        ['02', 'Plan', 'Rank fixes by impact and risk.'],
+        ['03', 'Fix & train', 'Big wins first. Quality checked.'],
+        ['04', 'Repeat', 'Next workflow, please.'],
+      ],
+    },
+    offers: {
+      kicker: 'Any size',
+      title: 'Pick your starting point.',
+      accent: [2, 3, 4],
+      /** Tag, title, body, call to action; one card each, the third on ink. */
+      items: [
+        [
+          'First steps',
+          'Workshops',
+          'Turn AI anxiety into confidence, on your real tasks. Which tool when, and how to check it.',
+          'Book a workshop',
+        ],
+        [
+          'First steps',
+          'Guidance',
+          'Shared rules for tools, data, cost and carbon. So using AI finally comes with instructions.',
+          'Ask about guidance',
+        ],
+        [
+          'For grown-ups',
+          'Audit & optimise',
+          'AI that fits your workflow. We map the workflow, find wasted compute and cut it. Measured before and after.',
+          'Start an audit',
+        ],
+      ],
+    },
+    waste: {
+      kicker: 'Things an audit finds',
+      title: 'Waste we hunt for.',
+      accent: [2, 3],
+      body: 'Prompts, models, retrieval, tools, steps. Plus cost, speed and estimated energy.',
+      items: [
+        ['A lorry delivering a letter', 'Oversized model'],
+        ['A filing cabinet at every meeting', 'Too much context'],
+        ['Ordering the whole menu for one dish', 'Over-eager retrieval'],
+        ['A novelist adding up a receipt', 'AI doing simple jobs'],
+        ['Circling the block after arriving', 'Extra steps'],
+      ],
+    },
+    changes: {
+      kicker: 'What changes',
+      title: 'Useful AI, with a plan behind it.',
+      accent: [2, 3, 4, 5, 6],
+      body: 'You leave with decisions your team can use tomorrow, not another dashboard to maintain.',
+      items: [
+        [
+          'A shared way of working',
+          'Clear choices on tools, prompting, checking work and when not to use AI.',
+        ],
+        [
+          'A smaller, smarter stack',
+          'The models and steps that earn their place, and the expensive clutter that does not.',
+        ],
+        [
+          'A written next-step plan',
+          'Prioritised improvements, owners and a realistic way to measure the result.',
+        ],
+      ],
+      privacy:
+        'We use the minimum access needed to understand a workflow. Your data stays your business.',
+      closing: {
+        lead: 'Bring one workflow.',
+        accent: "We'll bring the scissors.",
+        body: "Start with one honest conversation. We'll tell you whether a workshop, guidance or an audit is the right next move.",
+      },
+    },
+  },
+  /** The live AI profile quiz on /conscious-ai: five questions, an email gate, the result. */
+  snapshot: {
+    errors: {
+      role: 'Choose the field closest to your work.',
+      option: 'Choose the answer that feels closest.',
+      email: 'Enter a valid email address.',
+      emailSave: 'Could not save your email. Try again.',
+    },
+    questions: [
+      {
+        rail: 'Your job',
+        title: 'Which role is closest to yours?',
+        options: [
+          { value: 'operations', label: 'Operations & Admin' },
+          { value: 'sales', label: 'Sales & Support' },
+          { value: 'marketing', label: 'Marketing & Content' },
+          { value: 'hr', label: 'HR & Recruiting' },
+          { value: 'education', label: 'Student or Teacher' },
+          { value: 'technical', label: 'Developer or Technical' },
+          { value: 'research', label: 'Research & Analysis' },
+          { value: 'freelance', label: 'Freelancer or Small Business' },
+          { value: 'developer', label: 'Software Developer or Engineer' },
+          { value: 'data', label: 'Data or AI Specialist' },
+          { value: 'designer', label: 'Designer or UX Researcher' },
+          { value: 'project_manager', label: 'Project or Program Manager' },
+          {
+            value: 'customer_success',
+            label: 'Customer Success or Account Manager',
+          },
+          { value: 'recruiter', label: 'Recruiter or Talent Specialist' },
+          { value: 'accountant', label: 'Accountant or Bookkeeper' },
+          { value: 'writer', label: 'Writer, Editor, or Copywriter' },
+          { value: 'manager', label: 'Manager, Director, or Executive' },
+          { value: 'analyst', label: 'Business or Data Analyst' },
+          { value: 'product', label: 'Product & Design' },
+          { value: 'finance', label: 'Finance & Accounting' },
+          { value: 'legal', label: 'Legal & Compliance' },
+          { value: 'healthcare', label: 'Healthcare & Care' },
+          { value: 'consulting', label: 'Consulting & Client Services' },
+          { value: 'logistics', label: 'Logistics & Supply Chain' },
+          { value: 'hospitality', label: 'Hospitality & Events' },
+          { value: 'nonprofit', label: 'Nonprofit & Community' },
+          { value: 'government', label: 'Public Service' },
+          { value: 'founder', label: 'Founder & Leadership' },
+          { value: 'creator', label: 'Creative & Media' },
+          { value: 'other', label: 'Something else' },
+        ],
+      },
+      {
+        rail: 'How often',
+        title: 'How often does AI show up in your work?',
+        options: [
+          { value: 'rarely', label: 'Rarely', detail: 'Only now and then' },
+          {
+            value: 'weekly',
+            label: 'A few times a week',
+            detail: 'Useful when needed',
+          },
+          { value: 'daily', label: 'Most days', detail: 'Part of my workflow' },
+          {
+            value: 'constant',
+            label: 'Throughout the day',
+            detail: 'Always within reach',
+          },
+        ],
+      },
+      {
+        rail: 'How useful',
+        title:
+          'How often does AI give you a useful answer without much rework?',
+        options: [
+          { value: '1', label: 'Rarely' },
+          { value: '2', label: 'Sometimes' },
+          { value: '3', label: 'Often' },
+          { value: '4', label: 'Usually' },
+          { value: '5', label: 'Almost always' },
+        ],
+      },
+      {
+        rail: 'How easy',
+        title: 'When you use AI, how smooth is the workflow?',
+        options: [
+          {
+            value: '1',
+            label: 'I keep re-explaining',
+            detail: 'The same context has to be pasted or clarified again.',
+          },
+          {
+            value: '2',
+            label: 'I often restart',
+            detail: 'Useful work gets lost across several attempts.',
+          },
+          {
+            value: '3',
+            label: 'Mostly one clear pass',
+            detail: 'I usually get to a useful result without much repetition.',
+          },
+          {
+            value: '4',
+            label: 'My context carries through',
+            detail: 'The workflow feels clear, connected and easy to continue.',
+          },
+        ],
+      },
+      {
+        rail: 'What you need',
+        title: 'What would make AI more useful for you?',
+        options: [
+          {
+            value: 'output',
+            label: 'Better output',
+            detail: 'Clearer, more useful first drafts',
+          },
+          {
+            value: 'choice',
+            label: 'Clearer choices',
+            detail: 'Knowing when AI is the right tool',
+          },
+          {
+            value: 'system',
+            label: 'A repeatable system',
+            detail: 'Less friction every week',
+          },
+          {
+            value: 'team',
+            label: 'A stronger team approach',
+            detail: 'More consistency across the work',
+          },
+        ],
+      },
+    ] as SnapshotQuestionCopy[],
+    rail: {
+      brand: 'Conscious AI',
+      title: 'Use AI better.',
+      body: 'Answer a few questions about how you use AI at work.',
+      answers: 'Your answers',
+    },
+    mobile: {
+      progress: 'Your progress',
+      step: 'Step {n} of {total}',
+    },
+    gate: {
+      kicker: 'Your results are ready',
+      title: 'Add your email.',
+      body: 'We’ll prepare your results and send the course update there too.',
+      email: 'Email address',
+      placeholder: 'Your email address',
+      preparing: 'Preparing...',
+      submit: 'Show results',
+      restart: 'Start again',
+    },
+    result: {
+      preparing: 'Preparing your results.',
+      confidence: 'Confidence',
+      efficiency: 'Efficiency',
+      confidenceHigh: 'You usually reach useful answers.',
+      confidenceLow: 'Clearer context will improve your results.',
+      efficiencyHigh: 'Your workflow is already fairly lean.',
+      efficiencyLow: 'Reusable setup can remove extra rounds.',
+      headings: {
+        both: 'AI is already helping.',
+        confidence: 'You’re getting useful answers.',
+        workflow: 'AI fits smoothly into your work.',
+        neither: 'AI can work better for you.',
+      },
+      helpTitle: 'Need help putting AI to work?',
+      helpCta: 'Work with us',
+      courseTitle: 'Free course launching soon.',
+      courseCta: 'See the course',
+      community: 'Join the community',
+      restart: 'Start again',
+    },
+    intro: {
+      title: 'Take the test.',
+      kicker: 'A quick reality check',
+      heading: 'Are you using AI well, or just using more of it?',
+      body: 'Answer five quick questions and leave with one useful next move for your real work.',
+      cta: 'Take the test',
+      score: 'Your score',
+      waiting: 'waiting for you',
+      bars: ['Confidence', 'Workflow', 'Judgement'],
+    },
+    form: {
+      badge: 'AI profile',
+      option: 'Option {n}',
+      yourRole: 'Your role',
+      change: 'Change',
+      moreRoles: 'More roles, please ({n} more)',
+      findRole: 'Find your role.',
+      findRoleBody:
+        'Pick the closest match. This is only to make the next questions more useful.',
+      searchPlaceholder: 'Search roles...',
+      noMatch: 'Nothing there yet. Try a broader word.',
+      back: 'Back',
+      next: 'Next',
+      finish: 'See my snapshot',
+    },
+  },
+  /** The studio offer on the home page: three ways we help, then the services door. */
+  studio: {
+    kicker: 'Studio',
+    title: 'Digital products built right.',
+    accent: [2, 3],
+    description:
+      'From first idea to better everyday work, we build technology that earns its place.',
+    /** Title, body, typical engagements; the icons live in the component, in this order. */
+    services: [
+      {
+        title: 'Build',
+        body: 'From idea to launch, digital products built to last.',
+        typical: 'New product · MVP · Platform',
+      },
+      {
+        title: 'Fix',
+        body: 'Simpler, stronger software with less waste.',
+        typical: 'Rebuild · Rescue · Integration',
+      },
+      {
+        title: 'Optimise AI',
+        body: 'Smarter AI systems. Lower cost. Better results.',
+        typical: 'AI audit · Workflow design · Team training',
+      },
+    ],
+    wantTitle: 'Want our services?',
+    wantCta: 'Visit services',
+  },
+  /** The figures and the two offices in one ink band on the home page. */
+  locationsHome: {
+    kicker: 'Where we are',
+    title: 'Two offices. One team.',
+    cta: 'Start a project',
+    stats: [
+      ['150+', 'Projects delivered'],
+      ['40+', 'Clients served'],
+      ['5', 'Continents reached'],
+    ],
   },
 };
 

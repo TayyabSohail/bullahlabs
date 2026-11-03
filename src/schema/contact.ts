@@ -52,43 +52,78 @@ const sizeKeys = Object.keys(CONTACT_TEAM_SIZES) as [
 ];
 const goalKeys = Object.keys(CONTACT_GOALS) as [ContactGoal, ...ContactGoal[]];
 
-export const contactSchema = z.object({
-  tool: z.enum(toolKeys, {
-    errorMap: () => ({ message: 'Pick your main tool' }),
-  }),
-  teamSize: z.enum(sizeKeys, {
-    errorMap: () => ({ message: 'Pick a team size' }),
-  }),
-  goal: z.enum(goalKeys, {
-    errorMap: () => ({ message: 'Pick what should improve first' }),
-  }),
-  name: z
-    .string({ message: 'Your name is required' })
-    .trim()
-    .min(2, 'Please enter your full name')
-    .max(100, 'That name is a little long'),
-  email: z
-    .string({ message: 'Email is required' })
-    .trim()
-    .email('Please enter a valid email address')
-    .max(200),
-  company: z.string().trim().max(120).optional().or(z.literal('')),
-  /** Optional notes. The picks above carry the brief on their own. */
-  message: z
-    .string()
-    .trim()
-    .max(4000, 'Please keep it under 4,000 characters')
-    .optional()
-    .or(z.literal('')),
-  /**
-   * Honeypot. Bots fill every field; people never see it. It is NOT
-   * validated here on purpose: a filled trap must never block a human with
-   * a validation error (Chrome autofilled a field named "website" from a
-   * saved address profile and the form jumped to it, off-screen, at the top
-   * of the page). The server drops a filled trap quietly instead.
-   */
-  trap: z.string().optional(),
-});
+/** The field errors, one per check. The dictionary carries each language's set. */
+export interface ContactErrorMessages {
+  tool: string;
+  teamSize: string;
+  goal: string;
+  nameRequired: string;
+  nameShort: string;
+  nameLong: string;
+  emailRequired: string;
+  emailInvalid: string;
+  messageLong: string;
+}
+
+export const CONTACT_ERRORS_EN: ContactErrorMessages = {
+  tool: 'Pick your main tool',
+  teamSize: 'Pick a team size',
+  goal: 'Pick what should improve first',
+  nameRequired: 'Your name is required',
+  nameShort: 'Please enter your full name',
+  nameLong: 'That name is a little long',
+  emailRequired: 'Email is required',
+  emailInvalid: 'Please enter a valid email address',
+  messageLong: 'Please keep it under 4,000 characters',
+};
+
+/**
+ * The schema with its messages in one language. The server validates with
+ * the English set; the form builds one from the visitor's dictionary so the
+ * field errors read in their language.
+ */
+export const createContactSchema = (
+  m: ContactErrorMessages = CONTACT_ERRORS_EN,
+) =>
+  z.object({
+    tool: z.enum(toolKeys, {
+      errorMap: () => ({ message: m.tool }),
+    }),
+    teamSize: z.enum(sizeKeys, {
+      errorMap: () => ({ message: m.teamSize }),
+    }),
+    goal: z.enum(goalKeys, {
+      errorMap: () => ({ message: m.goal }),
+    }),
+    name: z
+      .string({ message: m.nameRequired })
+      .trim()
+      .min(2, m.nameShort)
+      .max(100, m.nameLong),
+    email: z
+      .string({ message: m.emailRequired })
+      .trim()
+      .email(m.emailInvalid)
+      .max(200),
+    company: z.string().trim().max(120).optional().or(z.literal('')),
+    /** Optional notes. The picks above carry the brief on their own. */
+    message: z
+      .string()
+      .trim()
+      .max(4000, m.messageLong)
+      .optional()
+      .or(z.literal('')),
+    /**
+     * Honeypot. Bots fill every field; people never see it. It is NOT
+     * validated here on purpose: a filled trap must never block a human with
+     * a validation error (Chrome autofilled a field named "website" from a
+     * saved address profile and the form jumped to it, off-screen, at the top
+     * of the page). The server drops a filled trap quietly instead.
+     */
+    trap: z.string().optional(),
+  });
+
+export const contactSchema = createContactSchema();
 
 export type ContactInput = z.infer<typeof contactSchema>;
 

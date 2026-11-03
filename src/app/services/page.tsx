@@ -45,7 +45,7 @@ export default async function ServicesPage() {
       <Technologies dict={dict} />
       <Principles dict={dict} className='bl-band-stone' />
       <WorkShowcase dict={dict} />
-      <Testimonials dict={dict} title='What people say.' />
+      <Testimonials dict={dict} title={dict.testimonials.pageTitle} />
       <CtaBanner dict={dict} />
     </>
   );

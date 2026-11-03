@@ -56,7 +56,7 @@ export default async function WorkPage() {
           actionLabel={t.view}
         />
       </section>
-      <Testimonials dict={dict} title='What people say.' />
+      <Testimonials dict={dict} title={dict.testimonials.pageTitle} />
       <CtaBanner dict={dict} />
     </>
   );

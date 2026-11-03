@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils';
 
 import { courseHref, courseIsLive } from '@/constants/course';
 import { paths } from '@/constants/paths';
-import { leadInstructor as instructor } from '@/data/instructors';
+import { getLeadInstructor } from '@/data/instructors';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 interface SectionProps {
@@ -59,6 +59,7 @@ export function CourseSection({
   children,
 }: SectionProps & { children?: React.ReactNode }) {
   const t = dict.programPage.course;
+  const instructor = getLeadInstructor(dict.locale);
 
   return (
     <section
@@ -100,7 +101,10 @@ export function CourseSection({
                 <div className='mt-7 flex flex-col items-center gap-6 sm:flex-row sm:items-end sm:gap-7'>
                   <Image
                     src={instructor.image}
-                    alt={`Portrait of ${instructor.name}`}
+                    alt={dict.consciousAiPage.instructor.portraitAlt.replace(
+                      '{name}',
+                      instructor.name,
+                    )}
                     width={800}
                     height={960}
                     sizes='(min-width: 640px) 176px, 128px'

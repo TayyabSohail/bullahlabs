@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { Contours } from '@/components/effects/contours';
@@ -12,6 +12,9 @@ import type { Dictionary } from '@/i18n/dictionaries/en';
 interface HeroProps {
   dict: Dictionary;
 }
+
+/** Where each of the three cells under the buttons leads, in dictionary order: course, team training, services. */
+const STEP_PATHS = [paths.program, paths.teams, paths.services] as const;
 
 /**
  * Opening section: what we are, in one headline and a few lines, one way
@@ -69,29 +72,40 @@ export function Hero({ dict }: HeroProps) {
               </Link>
             </Reveal>
 
-            {/* The method: the three moves behind the receipt's lean
-                route, on one rule at the bottom of the column so the copy
-                side reads as tall as the receipt beside it. */}
+            {/* The three ways in (course, team training, services): three
+                ruled cards on hard shadows, each one link, sitting at the
+                bottom of the column so the copy side reads as tall as the
+                receipt beside it. Kicker and number on top, a short serif
+                heading, one line, and the way in on a rule at the foot. */}
             <Reveal delay={0.26} className='mt-12 lg:mt-auto lg:pt-12'>
-              <ol className='grid border-t border-ink/60 sm:grid-cols-3'>
-                {t.steps.map(({ title, body }, index) => (
-                  <li
-                    key={title}
-                    className={
-                      index === 0
-                        ? 'py-5 text-left sm:py-6 sm:pr-6'
-                        : 'border-t border-ink/25 py-5 text-left sm:border-l sm:border-t-0 sm:px-6 sm:py-6'
-                    }
-                  >
-                    <span className='font-mono text-[11px] font-semibold tracking-[0.18em] text-brand-text'>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <span className='bl-display mt-2 block text-xl leading-tight text-ink sm:text-2xl'>
-                      {title}
-                    </span>
-                    <span className='mt-2 block text-sm leading-relaxed text-ink/65'>
-                      {body}
-                    </span>
+              <ol className='grid gap-4 sm:grid-cols-3 sm:gap-5'>
+                {t.steps.map(({ kicker, title, body, cta }, index) => (
+                  <li key={title} className='flex text-left'>
+                    <Link
+                      href={STEP_PATHS[index] ?? paths.program}
+                      className='bl-card bl-card-link group flex w-full flex-col p-5 sm:p-5'
+                    >
+                      <span className='flex items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground'>
+                        <span>
+                          <span className='font-semibold text-brand-text'>
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          <span aria-hidden='true'> · </span>
+                          {kicker}
+                        </span>
+                        <span className='h-2 w-2 shrink-0 bg-brand' />
+                      </span>
+                      <span className='bl-display mt-4 block text-[1.45rem] leading-[1.05] text-ink sm:text-2xl'>
+                        {title}
+                      </span>
+                      <span className='mt-2 block flex-1 text-sm leading-relaxed text-ink/65'>
+                        {body}
+                      </span>
+                      <span className='mt-5 flex items-center justify-between gap-3 border-t border-ink/20 pt-3 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink transition-colors group-hover:text-brand-text'>
+                        {cta}
+                        <ArrowUpRight className='h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+                      </span>
+                    </Link>
                   </li>
                 ))}
               </ol>
