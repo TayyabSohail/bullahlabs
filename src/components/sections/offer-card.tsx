@@ -21,15 +21,21 @@ export const buildOffers: readonly Offer[] = [
   ['03', 'AI automation & integrations', 'The boring work, automated.'],
 ];
 
-/** One shared button measure so sibling cards' actions line up. */
+/** One shared button measure (the course signup row's 3rem) so sibling cards' actions line up. */
 const offerButton =
-  'bl-btn inline-flex h-11 items-center gap-2 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em]';
+  'bl-btn inline-flex h-12 items-center gap-2 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em]';
 
 /**
  * One offer per row: number, title and a half-line of body on the same
  * baseline, so three rows read as a list rather than three paragraphs.
  */
-function OfferRows({ offers, ink }: { offers: readonly Offer[]; ink: boolean }) {
+function OfferRows({
+  offers,
+  ink,
+}: {
+  offers: readonly Offer[];
+  ink: boolean;
+}) {
   return (
     <ul
       className={
@@ -74,6 +80,8 @@ function OfferRows({ offers, ink }: { offers: readonly Offer[]; ink: boolean }) 
 
 interface OfferCardProps {
   id?: string;
+  /** Pair index ("01", "02") when the card sits beside a sibling door; omit for a lone card. */
+  number?: string;
   kicker: string;
   title: string;
   offers: readonly Offer[];
@@ -91,6 +99,7 @@ interface OfferCardProps {
  */
 export function OfferCard({
   id,
+  number,
   kicker,
   title,
   offers,
@@ -108,15 +117,12 @@ export function OfferCard({
         className,
       )}
     >
-      <p
-        className={`font-mono text-[9px] font-semibold uppercase tracking-[0.16em] ${
-          ink ? 'text-brand-2' : 'text-brand-text'
-        }`}
-      >
-        {kicker}
+      {/* The same bracketed kicker every section uses, so sibling plates match. */}
+      <p className={cn('bl-kicker', ink && 'text-white/60')}>
+        {number ? `${number} · ${kicker}` : kicker}
       </p>
       <h3
-        className={`bl-display mt-4 text-2xl sm:text-3xl ${
+        className={`bl-display mt-4 text-3xl leading-tight lg:text-4xl ${
           ink ? 'text-white' : 'text-foreground'
         }`}
       >
@@ -140,13 +146,15 @@ export function OfferCard({
 /** The teams door, as it appears on the Conscious AI page and the home page. */
 export function TeamsOfferCard({
   id,
+  number,
   ink = false,
   className,
-}: Pick<OfferCardProps, 'id' | 'ink' | 'className'>) {
+}: Pick<OfferCardProps, 'id' | 'number' | 'ink' | 'className'>) {
   return (
     <OfferCard
       id={id}
-      kicker='01 · For teams & businesses'
+      number={number}
+      kicker='For teams & businesses'
       title='Get your team using AI well'
       offers={teamOffers}
       href={paths.teams}

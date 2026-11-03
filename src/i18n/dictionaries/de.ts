@@ -1,3 +1,5 @@
+import type { ReceiptCopy } from '@/components/sections/planet-receipt';
+
 import type { Dictionary } from './en';
 
 /** German copy. Structure mirrors `en` exactly. */
@@ -21,9 +23,35 @@ export const de: Dictionary = {
   hero: {
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
     accent: [4, 5, 6],
-    body: 'Wir bauen digitale Produkte, die echte Probleme lösen, schlank laufen und lange halten. Dieselbe Disziplin prägt, wie wir KI einsetzen und wie wir es anderen beibringen.',
+    body: 'Wir bauen digitale Produkte, die echte Probleme lösen, schlank laufen und lange halten. Wir holen aus KI mehr heraus, mit weniger Kosten, Energie und Komplexität: in dem, was wir bauen, und in der Arbeit Ihres Teams.',
     primary: 'Mit dem Studio arbeiten',
-    secondary: 'Zum kostenlosen Kurs',
+    secondary: 'Conscious AI entdecken',
+    receipt: {
+      header: 'Quittung · die Rechnung des Planeten',
+      task: 'Vertragszusammenfassungen · ein Team · ein Jahr',
+      payer: 'Zahlt: der Planet · Begleicht: Sie',
+      usual: {
+        label: 'Der übliche Weg',
+        route: 'Großes Modell · voller Kontext',
+        rows: [
+          ['Tokens', '288.000.000'],
+          ['Geld', '$ 4.320'],
+          ['CO₂', '58 kg'],
+        ],
+      },
+      conscious: {
+        label: 'Conscious AI',
+        route: 'KI nötig? · Schlankes Modell · Sie prüfen',
+        rows: [
+          ['Tokens', '9.600.000'],
+          ['Geld', '$ 96'],
+          ['CO₂', '1,9 kg'],
+        ],
+      },
+      savedLabel: 'Gespart',
+      saved: '98 %',
+      stamp: ['Bessere', 'KI'],
+    } satisfies ReceiptCopy,
     map: {
       lanes: {
         usual: 'Der übliche Weg',
@@ -545,8 +573,18 @@ export const de: Dictionary = {
     email: 'Geschäftliche E-Mail',
     emailPlaceholder: 'erika@unternehmen.de',
     optional: 'optional',
+    sections: {
+      setup: {
+        title: 'Ihre KI-Situation',
+        body: 'Drei kurze Fragen, damit wir eine brauchbare Antwort vorbereiten können.',
+      },
+      reach: {
+        title: 'Persönliche Angaben',
+        body: 'Wohin die Antwort gehen soll. Ein Mensch antwortet.',
+      },
+    },
     tools: {
-      label: 'Wichtigstes KI-Tool',
+      label: 'Welches KI-Tool nutzt Ihr Team hauptsächlich?',
       options: {
         chatgpt: 'ChatGPT',
         claude: 'Claude',
@@ -557,7 +595,7 @@ export const de: Dictionary = {
       },
     },
     teamSize: {
-      label: 'Nutzende Personen',
+      label: 'Anzahl der Personen, die es nutzen',
       options: {
         '1-10': '1 bis 10',
         '11-50': '11 bis 50',
@@ -566,7 +604,7 @@ export const de: Dictionary = {
       },
     },
     goals: {
-      label: 'Zuerst verbessern',
+      label: 'Was soll zuerst besser werden?',
       options: {
         cost: 'Monatliche Kosten',
         quality: 'Qualität der Ergebnisse',

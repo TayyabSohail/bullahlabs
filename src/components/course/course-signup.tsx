@@ -152,7 +152,7 @@ export function CourseSignup({
     <p
       role='status'
       className={cn(
-        'flex min-h-14 items-center justify-center border px-4 text-center font-mono text-[10px] font-semibold uppercase tracking-[0.14em]',
+        'flex min-h-12 items-center justify-center border px-4 text-center font-mono text-[10px] font-semibold uppercase tracking-[0.14em]',
         dark
           ? 'border-brand/60 bg-brand/10 text-brand-2'
           : 'border-brand/60 bg-brand-soft/40 text-brand-text',
@@ -180,9 +180,8 @@ export function CourseSignup({
           aria-describedby={
             error ? `${id}-error` : consent ? `${id}-consent` : undefined
           }
-          style={{ minHeight: '3.5rem' }}
           className={cn(
-            'min-w-0 flex-1 border px-4 text-[15px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand/60',
+            'h-12 min-w-0 flex-1 border px-4 text-[15px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand/60',
             dark
               ? 'border-white/20 bg-white/[0.06] text-white placeholder:text-white/40'
               : 'border-line bg-surface text-ink placeholder:text-muted-foreground',

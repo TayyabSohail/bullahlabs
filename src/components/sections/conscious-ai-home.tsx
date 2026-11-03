@@ -7,7 +7,6 @@ import { CourseSignup } from '@/components/course/course-signup';
 import { TextReveal } from '@/components/motion/text-reveal';
 import { TeamsOfferCard } from '@/components/sections/offer-card';
 
-
 import { paths } from '@/constants/paths';
 import { leadInstructor as instructor } from '@/data/instructors';
 import type { Dictionary } from '@/i18n/dictionaries/en';
@@ -40,9 +39,7 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
             Each pins its action to the bottom so the rows line up. */}
         <div className='mt-10 grid gap-5 lg:grid-cols-[1.25fr_1fr]'>
           <div className='bl-card bl-card-ink relative isolate flex flex-col overflow-hidden p-5 text-white sm:p-6'>
-            <p className='bl-kicker text-white/60'>
-              Free course · coming soon
-            </p>
+            <p className='bl-kicker text-white/60'>Free course · coming soon</p>
             <h3 className='bl-display mt-4 text-3xl leading-tight lg:text-4xl'>
               Learn AI that helps.
             </h3>
@@ -68,30 +65,35 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
                   className='object-cover transition-transform duration-500 group-hover:scale-[1.03]'
                 />
               </span>
-              <span className='flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-5'>
+              <span className='flex min-w-0 flex-1 flex-col justify-center p-3.5 sm:p-5'>
                 <span className='block font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-white/55'>
                   {dict.program.popup.taughtBy}
                 </span>
-                <span className='bl-display mt-1.5 block text-2xl leading-none text-white transition-colors group-hover:text-brand sm:text-[1.75rem]'>
+                <span className='bl-display mt-1.5 block text-xl leading-none text-white transition-colors group-hover:text-brand sm:text-[1.75rem]'>
                   {instructor.name}
                 </span>
                 <span className='mt-3 flex items-center gap-2.5 text-white'>
-                  <HarvardShield className='h-8 w-auto shrink-0' />
-                  <span className='font-display text-[15px] font-bold leading-tight sm:text-base'>
+                  <HarvardShield className='h-7 w-auto shrink-0 sm:h-8' />
+                  <span className='font-display text-[13px] font-bold leading-tight sm:text-base'>
                     {instructor.school}
                   </span>
                 </span>
               </span>
             </Link>
 
-            {/* The facts as three ruled chips above the form at the foot. */}
+            {/* The facts as one quiet ruled strip above the form at the foot:
+                the same hairline as the instructor plate, no green fills. */}
             <div className='mt-6'>
-              <ul className='flex flex-wrap gap-2'>
+              <ul className='flex flex-wrap gap-x-5 gap-y-1.5 border-t border-white/20 pt-3'>
                 {facts.map((fact) => (
                   <li
                     key={fact}
-                    className='border border-brand bg-brand/15 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-brand-2 sm:text-xs'
+                    className='flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70'
                   >
+                    <span
+                      aria-hidden='true'
+                      className='block h-1.5 w-1.5 bg-brand'
+                    />
                     {fact}
                   </li>
                 ))}

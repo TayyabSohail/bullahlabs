@@ -1,3 +1,5 @@
+import type { ReceiptCopy } from '@/components/sections/planet-receipt';
+
 import type { Locale } from '../config';
 
 export const en = {
@@ -22,12 +24,43 @@ export const en = {
     /** Words (0-based, across both lines) in the accent colour: the second line. */
     accent: [4, 5, 6],
     /** What we are, in two lines. The problem people arrive with is the next section. */
-    body: 'We build digital products that solve real problems, run lean and last. We optimise AI for more value with less cost, energy and complexity, then teach teams to do the same.',
-    /** Two ways in: the studio for organisations, the free course for people. */
+    body: 'We build digital products that solve real problems, run lean and last. We make AI do more with less cost, energy and complexity, in what we build and in how your team works.',
+    /** Two ways in: the studio for building, Conscious AI for using AI well. */
     primary: 'Work with the studio',
-    secondary: 'Take the free course',
+    secondary: 'Explore Conscious AI',
     /**
-     * The living graphic beside the hero copy: Conscious AI shown as the
+     * The bill beside the hero copy: one piece of work, a team's contract
+     * summaries over a year, printed the usual way and ours. Same example
+     * and figures as the Conscious AI hero.
+     */
+    receipt: {
+      header: "Receipt · the planet's tab",
+      task: 'Contract summaries · one team · one year',
+      payer: 'Paid by: the planet · Settled by: you',
+      usual: {
+        label: 'The usual way',
+        route: 'Large model · full context',
+        rows: [
+          ['tokens', '288,000,000'],
+          ['money', '$ 4,320'],
+          ['carbon', '58 kg CO₂'],
+        ],
+      },
+      conscious: {
+        label: 'Conscious AI',
+        route: 'Need AI? · Lean model · You check',
+        rows: [
+          ['tokens', '9,600,000'],
+          ['money', '$ 96'],
+          ['carbon', '1.9 kg CO₂'],
+        ],
+      },
+      savedLabel: 'Saved',
+      saved: '98%',
+      stamp: ['Better', 'AI'],
+    } satisfies ReceiptCopy,
+    /**
+     * The animated map that preceded the receipt, kept for reuse: Conscious AI shown as the
      * difference it makes, on one piece of work: a team's contract
      * summaries over a year. The work is sent down two lanes at the same
      * time. The usual way: straight into a large model, the full context,
@@ -577,9 +610,20 @@ export const en = {
     email: 'Work email',
     emailPlaceholder: 'jane@company.com',
     optional: 'optional',
+    /** Two headings so the card reads as a short, guided form. */
+    sections: {
+      setup: {
+        title: 'Your AI setup',
+        body: 'Three quick questions so we can prepare a useful reply.',
+      },
+      reach: {
+        title: 'Personal info',
+        body: 'Where the reply should go. A person writes back.',
+      },
+    },
     /** The three picks; keys mirror CONTACT_TOOLS / CONTACT_TEAM_SIZES / CONTACT_GOALS. */
     tools: {
-      label: 'Main AI tool',
+      label: 'Which AI tool does your team mainly use?',
       options: {
         chatgpt: 'ChatGPT',
         claude: 'Claude',
@@ -590,7 +634,7 @@ export const en = {
       },
     },
     teamSize: {
-      label: 'People using it',
+      label: 'Number of people using it',
       options: {
         '1-10': '1 to 10',
         '11-50': '11 to 50',
@@ -599,7 +643,7 @@ export const en = {
       },
     },
     goals: {
-      label: 'Improve first',
+      label: 'What should improve first?',
       options: {
         cost: 'Monthly cost',
         quality: 'Quality of output',

@@ -139,72 +139,95 @@ export function ContactForm({ dict }: ContactFormProps) {
           />
         </div>
 
-        <div className='space-y-6 px-5 py-6 sm:px-7 sm:py-8 lg:px-9 lg:py-9'>
-          {/* Three strips of answers, every answer visible. Nothing to open. */}
-          <div className='space-y-5'>
-            <PickField
-              control={form.control}
-              name='tool'
-              label={t.tools.label}
-              options={TOOL_KEYS.map((key) => [key, t.tools.options[key]])}
+        <div className='space-y-8 px-5 py-6 sm:px-7 sm:py-8 lg:px-9 lg:py-9'>
+          {/* Part one: three numbered questions, every answer in view. */}
+          <section aria-labelledby='contact-setup-heading'>
+            <SectionHeading
+              id='contact-setup-heading'
+              title={t.sections.setup.title}
+              body={t.sections.setup.body}
             />
-            <PickField
-              control={form.control}
-              name='teamSize'
-              label={t.teamSize.label}
-              options={SIZE_KEYS.map((key) => [key, t.teamSize.options[key]])}
-            />
-            <PickField
-              control={form.control}
-              name='goal'
-              label={t.goals.label}
-              options={GOAL_KEYS.map((key) => [key, t.goals.options[key]])}
-            />
-          </div>
+            <div className='mt-6 space-y-7'>
+              <PickField
+                control={form.control}
+                name='tool'
+                index={1}
+                label={t.tools.label}
+                options={TOOL_KEYS.map((key) => [key, t.tools.options[key]])}
+              />
+              <PickField
+                control={form.control}
+                name='teamSize'
+                index={2}
+                label={t.teamSize.label}
+                options={SIZE_KEYS.map((key) => [key, t.teamSize.options[key]])}
+              />
+              <PickField
+                control={form.control}
+                name='goal'
+                index={3}
+                label={t.goals.label}
+                options={GOAL_KEYS.map((key) => [key, t.goals.options[key]])}
+              />
+            </div>
+          </section>
 
-          <div className='grid gap-5 sm:grid-cols-2'>
-            <ContactInputField
-              control={form.control}
-              name='name'
-              label={t.name}
-              placeholder={t.namePlaceholder}
-              autoComplete='name'
+          {/* Part two: where the reply goes. */}
+          <section
+            aria-labelledby='contact-reach-heading'
+            className='border-t border-white/10 pt-8'
+          >
+            <SectionHeading
+              id='contact-reach-heading'
+              title={t.sections.reach.title}
+              body={t.sections.reach.body}
             />
-            <ContactInputField
-              control={form.control}
-              name='email'
-              label={t.email}
-              placeholder={t.emailPlaceholder}
-              autoComplete='email'
-              type='email'
-            />
-          </div>
+            <div className='mt-6 space-y-5'>
+              <div className='grid gap-5 sm:grid-cols-2'>
+                <ContactInputField
+                  control={form.control}
+                  name='name'
+                  label={t.name}
+                  placeholder={t.namePlaceholder}
+                  autoComplete='name'
+                />
+                <ContactInputField
+                  control={form.control}
+                  name='email'
+                  label={t.email}
+                  placeholder={t.emailPlaceholder}
+                  autoComplete='email'
+                  type='email'
+                />
+              </div>
 
-          <FormField
-            control={form.control}
-            name='message'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-white'>
-                  {t.message}
-                  <span className='font-normal text-white/60'>
-                    {' '}
-                    ({t.optional})
-                  </span>
-                </FormLabel>
-                <FormControl>
-                  <Textarea
-                    rows={2}
-                    maxLength={MESSAGE_MAX}
-                    placeholder={t.messagePlaceholder}
-                    className={`${FIELD} mt-2 h-auto min-h-[4.5rem] py-3`}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+              <FormField
+                control={form.control}
+                name='message'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='text-white'>
+                      {t.message}
+                      <span className='font-normal text-white/60'>
+                        {' '}
+                        ({t.optional})
+                      </span>
+                    </FormLabel>
+                    <FormControl>
+                      <Textarea
+                        rows={2}
+                        maxLength={MESSAGE_MAX}
+                        placeholder={t.messagePlaceholder}
+                        className={`${FIELD} mt-2 h-auto min-h-[4.5rem] py-3`}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </section>
 
           <FormField
             control={form.control}
@@ -257,14 +280,39 @@ export function ContactForm({ dict }: ContactFormProps) {
 
 type Control = ReturnType<typeof useForm<ContactInput>>['control'];
 
+/** A small heading over each part of the form, so people know where they are. */
+function SectionHeading({
+  id,
+  title,
+  body,
+}: {
+  id: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <div>
+      <h3
+        id={id}
+        className='font-display text-lg font-semibold leading-tight text-white sm:text-xl'
+      >
+        {title}
+      </h3>
+      <p className='mt-1.5 text-sm leading-relaxed text-white/55'>{body}</p>
+    </div>
+  );
+}
+
 function PickField({
   control,
   name,
+  index,
   label,
   options,
 }: {
   control: Control;
   name: 'tool' | 'teamSize' | 'goal';
+  index: number;
   label: string;
   options: Array<[value: string, label: string]>;
 }) {
@@ -277,6 +325,7 @@ function PickField({
           <FormControl>
             <PickRow
               name={name}
+              index={index}
               label={label}
               value={field.value ?? ''}
               onValueChange={(value) => field.onChange(value)}

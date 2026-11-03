@@ -1545,7 +1545,7 @@ main > section.bl-band-stone.bl-band-peach {
   background-color: hsl(var(--band-peach));
 }
 
-/* The Conscious AI hero's till receipt: a sawtooth tear along the bottom,
+/* The till receipt in the home and Conscious AI heroes: a sawtooth tear along the bottom,
    and a rubber stamp that slams in once the rows have printed. */
 .bl-receipt {
   overflow: visible;

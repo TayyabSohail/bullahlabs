@@ -13,6 +13,7 @@ import {
   OfferCard,
   TeamsOfferCard,
 } from '@/components/sections/offer-card';
+import { PlanetReceipt } from '@/components/sections/planet-receipt';
 
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
@@ -21,143 +22,6 @@ import { type Instructor, instructors } from '@/data/instructors';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
 const teamHref = paths.contact;
-
-/**
- * The planet's tab, printed. The same example as the home hero's map:
- * contract summaries for one team over a year, the usual way against ours.
- */
-const receipt = {
-  task: 'Contract summaries · one team · one year',
-  usual: {
-    label: 'The usual way',
-    route: 'Large model · full context',
-    rows: [
-      ['tokens', '288,000,000'],
-      ['money', '$ 4,320'],
-      ['carbon', '58 kg CO₂'],
-    ],
-  },
-  conscious: {
-    label: 'Conscious AI',
-    route: 'Need AI? · Lean model · You check',
-    rows: [
-      ['tokens', '9,600,000'],
-      ['money', '$ 96'],
-      ['carbon', '1.9 kg CO₂'],
-    ],
-  },
-  saved: '98%',
-};
-
-function ReceiptBlock({
-  label,
-  route,
-  rows,
-  tone,
-  delay,
-}: {
-  label: string;
-  route: string;
-  rows: string[][];
-  tone: 'usual' | 'conscious';
-  delay: number;
-}) {
-  const conscious = tone === 'conscious';
-  return (
-    <Reveal
-      delay={delay}
-      className='border-t border-dashed border-ink/40 pt-2.5 sm:pt-3'
-    >
-      <div className='flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3'>
-        <span
-          className={`shrink-0 whitespace-nowrap font-mono text-[10px] font-semibold uppercase tracking-[0.18em] ${conscious ? 'text-brand-text' : 'text-muted-foreground'}`}
-        >
-          {label}
-        </span>
-        <span className='min-w-0 font-mono text-[10px] text-muted-foreground sm:truncate'>
-          {route}
-        </span>
-      </div>
-      <dl className='mt-1.5 space-y-0.5 sm:mt-2 sm:space-y-1'>
-        {rows.map(([key, value]) => (
-          <div
-            key={key}
-            className='flex items-baseline gap-2 font-mono text-[11px] sm:text-[13px]'
-          >
-            <dt className='text-muted-foreground'>{key}</dt>
-            <span
-              aria-hidden='true'
-              className='flex-1 border-b border-dotted border-ink/35'
-            />
-            <dd
-              className={`tabular-nums ${conscious ? 'font-semibold text-brand-text' : 'text-foreground line-through decoration-ink/40'}`}
-            >
-              {value}
-            </dd>
-          </div>
-        ))}
-      </dl>
-    </Reveal>
-  );
-}
-
-/** A till receipt for one year of AI, the usual way and ours. */
-function PlanetReceipt() {
-  return (
-    <div className='relative mx-auto w-full max-w-[17.5rem] sm:max-w-sm md:mr-0'>
-      <div className='bl-card bl-receipt rotate-[-1.5deg] bg-surface'>
-        <div className='flex items-center justify-between gap-3 border-b border-ink px-3 py-2 sm:px-4 sm:py-2.5'>
-          <span className='flex items-center gap-1.5' aria-hidden='true'>
-            <span className='h-2 w-2 rounded-full border border-ink' />
-            <span className='h-2 w-2 rounded-full border border-ink' />
-            <span className='h-2 w-2 rounded-full border border-ink' />
-          </span>
-          <span className='font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground'>
-            Receipt · the planet's tab
-          </span>
-        </div>
-        <div className='space-y-3 px-4 pb-5 pt-4 sm:space-y-4 sm:px-5 sm:pb-6 sm:pt-5'>
-          <Reveal>
-            <p className='bl-display text-base text-foreground sm:text-xl md:text-lg lg:text-xl'>
-              {receipt.task}
-            </p>
-            <p className='mt-1 font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground sm:text-[10px] sm:tracking-[0.16em]'>
-              Paid by: the planet · Settled by: you
-            </p>
-          </Reveal>
-          <ReceiptBlock {...receipt.usual} tone='usual' delay={0.15} />
-          <ReceiptBlock {...receipt.conscious} tone='conscious' delay={0.3} />
-          <Reveal
-            delay={0.45}
-            className='flex items-center justify-between gap-3 border-t-2 border-ink pt-3'
-          >
-            <span className='font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground'>
-              Saved
-            </span>
-            <span className='bl-display text-2xl text-brand-text sm:text-3xl'>
-              {receipt.saved}
-            </span>
-          </Reveal>
-        </div>
-        <div aria-hidden='true' className='bl-receipt-edge' />
-      </div>
-      {/* The stamp wears the SPOILER plate: a skewed ink bar with a diagonal
-          stripe texture, white bold type, the key word lit in green, on a
-          hard green shadow. The rotation lives on the wrapper so the
-          stamp-in animation does not overwrite the skew. */}
-      <span
-        aria-hidden='true'
-        className='bl-stamp-in absolute -right-3 -top-5 rotate-[12deg] sm:-right-6'
-      >
-        <span className='inline-block -skew-x-6 bg-ink bg-[repeating-linear-gradient(45deg,transparent_0_6px,hsl(0_0%_100%/0.07)_6px_8px)] px-3 py-1.5 shadow-[3px_3px_0_0_hsl(var(--brand))]'>
-          <span className='inline-block skew-x-6 font-display text-lg font-bold leading-none text-white sm:text-xl'>
-            Better <span className='bl-accent text-brand-2'>AI</span>
-          </span>
-        </span>
-      </span>
-    </div>
-  );
-}
 
 /**
  * The opening: the essence in one headline, the tagline, one call to
@@ -204,7 +68,7 @@ export function ConsciousAiHero() {
             </Link>
           </Reveal>
         </div>
-        <PlanetReceipt />
+        <PlanetReceipt className='md:mr-0' />
       </div>
     </section>
   );
@@ -620,12 +484,13 @@ export function ConsciousAiNextSteps() {
 
         <div className='mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2'>
           <Reveal>
-            <TeamsOfferCard id='teams' ink />
+            <TeamsOfferCard id='teams' number='01' ink />
           </Reveal>
 
           <Reveal delay={0.1}>
             <OfferCard
-              kicker='02 · For your product'
+              number='02'
+              kicker='For your product'
               title='Build something with us'
               offers={buildOffers}
               href={paths.services}

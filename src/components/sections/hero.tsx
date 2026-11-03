@@ -2,9 +2,9 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { Contours } from '@/components/effects/contours';
-import { SystemMap } from '@/components/effects/system-map';
 import { HeroTitle } from '@/components/motion/hero-title';
 import { Reveal } from '@/components/motion/reveal';
+import { PlanetReceipt } from '@/components/sections/planet-receipt';
 
 import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
@@ -15,9 +15,8 @@ interface HeroProps {
 
 /**
  * Opening section: what we are, in one headline and a few lines, two ways
- * in (the studio, the free course), and beside them Conscious AI as a
- * living map: the same work sent down the usual lane and ours, with the
- * cost meters filling beside each.
+ * in (the studio, Conscious AI), and beside them the planet's tab: one
+ * year of AI on one piece of work, printed the usual way and ours.
  */
 export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
@@ -36,7 +35,7 @@ export function Hero({ dict }: HeroProps) {
           className='bl-display justify-center text-center text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink sm:justify-start sm:text-left'
         />
 
-        <div className='mt-10 grid gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-24 xl:gap-x-32'>
+        <div className='mt-10 grid gap-16 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start lg:gap-x-24 xl:gap-x-32'>
           <div className='min-w-0 text-center sm:text-left'>
             <Reveal delay={0.1}>
               <p className='mx-auto max-w-xl text-lg leading-relaxed text-ink/70 sm:mx-0 sm:text-xl'>
@@ -67,14 +66,14 @@ export function Hero({ dict }: HeroProps) {
             </Reveal>
           </div>
 
+          {/* The stamp overhangs the top edge of the receipt, so the column
+              keeps a little headroom for it. */}
           <Reveal
             delay={0.24}
             distance={16}
-            className='w-full min-w-0 max-w-[44rem] justify-self-center lg:mt-8 lg:justify-self-end xl:max-w-[48rem]'
+            className='w-full min-w-0 pt-6 lg:pt-8'
           >
-            <div className='bl-card bg-surface p-2 sm:p-3'>
-              <SystemMap copy={t.map} />
-            </div>
+            <PlanetReceipt copy={t.receipt} className='lg:mr-0' />
           </Reveal>
         </div>
       </div>

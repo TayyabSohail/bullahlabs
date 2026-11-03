@@ -159,9 +159,10 @@ export const submitContact = safeActionClient
 
     if (isSheetsConfigured) {
       try {
-        // One column per pick, so the sheet can be filtered on them.
-        // Header: Submitted at, Name, Email, Company, Interest,
-        // Main AI tool, People using it, Improve first, Notes, Replied.
+        // One column per question, headed with the question itself, so the
+        // sheet reads like the form and can be filtered on each answer.
+        // Header: Submitted at, Name, Email, Company, Interest, the three
+        // questions, "Anything else? (notes)", Replied.
         await appendSheetRow(SHEET_TABS.enquiries, [
           sheetTimestamp(),
           parsedInput.name,
