@@ -9,13 +9,35 @@ const aiSnapshotSchema = z.object({
   goal: z.string().trim().min(1).max(80),
 });
 
+/** The email field errors. The dictionary carries each language's set. */
+export interface CourseSignupErrorMessages {
+  emailRequired: string;
+  emailInvalid: string;
+}
+
+export const COURSE_SIGNUP_ERRORS_EN: CourseSignupErrorMessages = {
+  emailRequired: 'Email is required',
+  emailInvalid: 'Please enter a valid email address',
+};
+
+/**
+ * The email check with its messages in one language. The server validates
+ * with the English set; the form runs one built from the visitor's
+ * dictionary first, so a bad address reads back in their language.
+ */
+export const createCourseEmailSchema = (
+  m: CourseSignupErrorMessages = COURSE_SIGNUP_ERRORS_EN,
+) =>
+  z
+    .string({ message: m.emailRequired })
+    .trim()
+    .min(1, m.emailRequired)
+    .email(m.emailInvalid)
+    .max(200, m.emailInvalid);
+
 /** The "tell me when a lesson is live" form under the course player. */
 export const courseSignupSchema = z.object({
-  email: z
-    .string({ message: 'Email is required' })
-    .trim()
-    .email('Please enter a valid email address')
-    .max(200),
+  email: createCourseEmailSchema(),
   /** The language the visitor signed up in, so the notice can match it. */
   locale: z.enum(['en', 'de']).optional(),
   /** Which page the form was on. */

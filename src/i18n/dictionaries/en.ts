@@ -504,6 +504,10 @@ export const en = {
       doneBody: 'Your journey to better AI habits starts here.',
       doneClose: 'Close',
       errorGeneric: 'Something went wrong. Please try again in a moment.',
+      errors: {
+        emailRequired: 'Email is required',
+        emailInvalid: 'Please enter a valid email address',
+      },
       teamLink: 'Training for a whole team?',
     },
     /** The free-course card in the page corner, above the community dock. */

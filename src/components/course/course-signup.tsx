@@ -4,7 +4,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { ArrowRight, BellRing, Check, Loader2, X } from 'lucide-react';
 import Link from 'next/link';
 import { useAction } from 'next-safe-action/hooks';
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 import { toast } from 'sonner';
 
 import { joinCourseList } from '@/actions/course-signup';
@@ -29,6 +29,7 @@ import { cn } from '@/lib/utils';
 import { paths } from '@/constants/paths';
 import { PosthogEventKeys } from '@/constants/posthog-events';
 import type { Dictionary } from '@/i18n/dictionaries/en';
+import { createCourseEmailSchema } from '@/schema/course-signup';
 
 interface CourseSignupProps {
   dict: Dictionary;
@@ -70,6 +71,12 @@ export function CourseSignup({
   className,
 }: CourseSignupProps) {
   const t = dict.program.signup;
+  // The server checks the address with English messages; this copy of the
+  // check reads in the visitor's language, so a bad address is caught here.
+  const emailSchema = useMemo(
+    () => createCourseEmailSchema(t.errors),
+    [t.errors],
+  );
   const id = useId();
   const [email, setEmail] = useState('');
   const [done, setDone] = useState<null | { alreadyOnList: boolean }>(null);
@@ -103,9 +110,14 @@ export function CourseSignup({
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+    const checked = emailSchema.safeParse(email);
+    if (!checked.success) {
+      setError(checked.error.issues[0]?.message ?? t.errors.emailInvalid);
+      return;
+    }
     const form = new FormData(event.currentTarget);
     execute({
-      email,
+      email: checked.data,
       locale: dict.locale,
       source,
       // The landing URL's utm_campaign, remembered across pages.

@@ -443,6 +443,10 @@ export const de: Dictionary = {
       doneClose: 'Schließen',
       errorGeneric:
         'Etwas ist schiefgelaufen. Bitte versuchen Sie es gleich noch einmal.',
+      errors: {
+        emailRequired: 'Bitte geben Sie Ihre E-Mail-Adresse ein',
+        emailInvalid: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
+      },
       teamLink: 'Schulung für ein ganzes Team?',
     },
     popup: {
