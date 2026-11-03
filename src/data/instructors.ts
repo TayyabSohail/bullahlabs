@@ -1,3 +1,5 @@
+import type { Locale } from '@/i18n/config';
+
 export type Instructor = {
   name: string;
   firstName: string;
@@ -15,7 +17,8 @@ export type Instructor = {
 
 /**
  * Who teaches Conscious AI. Shared by the course section on /conscious-ai
- * and the free-course card in the page corner.
+ * and the free-course card in the page corner. The English list is the
+ * source; the German one carries the same people with translated copy.
  */
 export const instructors: Instructor[] = [
   {
@@ -40,5 +43,38 @@ export const instructors: Instructor[] = [
     ],
   },
 ];
+
+const instructorsDe: Instructor[] = [
+  {
+    ...instructors[0],
+    role: 'Leitender Dozent',
+    tagline: 'Lehrer der Lehrer.',
+    bio: 'In Harvard ausgebildeter Fulbright-Stipendiat und Ed-Tech-Mitgründer. Er sorgt dafür, dass die Lektionen wirklich hängen bleiben.',
+    facts: [
+      [
+        'Vor Bullah Labs',
+        'Mitgründer von Quva (2018), Ed-Tech für Lehrerfortbildung; seit 2016 Kurse zur Mathematikdidaktik in der Lehrerausbildung in Pakistan.',
+      ],
+      [
+        'Ausbildung',
+        'Master in International Education Policy, Harvard Graduate School of Education. Maschinenbauingenieur von Haus aus.',
+      ],
+      ['Nach Feierabend', 'Kalligrafie, Poesie und klassische Musik.'],
+    ],
+  },
+];
+
+const BY_LOCALE: Record<Locale, Instructor[]> = {
+  en: instructors,
+  de: instructorsDe,
+};
+
+export function getInstructors(locale: Locale): Instructor[] {
+  return BY_LOCALE[locale] ?? instructors;
+}
+
+export function getLeadInstructor(locale: Locale): Instructor {
+  return getInstructors(locale)[0];
+}
 
 export const leadInstructor = instructors[0];

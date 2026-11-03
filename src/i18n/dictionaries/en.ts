@@ -16,6 +16,7 @@ export const en = {
     bookCall: 'Book a call',
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
+    primary: 'Primary',
     language: 'Language',
     community: 'Community',
   },
@@ -29,21 +30,21 @@ export const en = {
     primary: 'Explore Conscious AI',
     secondary: 'See what we build',
     /**
-     * The method, on one rule under the buttons: the three moves behind the
-     * receipt's lean route (need AI? · lean model · you check), one line each.
+     * The three things we do, on one rule under the buttons: educate,
+     * services, product. One line each.
      */
     steps: [
       {
-        title: 'Need AI at all?',
-        body: 'We find where AI helps your work and where it just adds cost.',
+        title: 'Educate',
+        body: 'Free course and team training: use AI well, judge the output, keep your skills.',
       },
       {
-        title: 'A lean set-up.',
-        body: 'The right-sized model, lean context, instructions cached, not repeated.',
+        title: 'Services',
+        body: 'We tune the AI you already use and build lean digital products, measured before and after.',
       },
       {
-        title: 'You stay in charge.',
-        body: 'Your team learns to judge the output. We measure before and after.',
+        title: 'Product',
+        body: 'A tool that brings Conscious AI into everyday work. In the making.',
       },
     ],
     /**
@@ -149,6 +150,7 @@ export const en = {
     kicker: 'Join our community',
     mobileJoin: 'Join community',
     dockOpen: 'Join the conversation',
+    closeMenu: 'Close community menu',
     title: 'Better AI decisions are better together.',
     description:
       'Meet people who want to use AI thoughtfully, share what works and keep the human judgement in the work.',
@@ -314,6 +316,8 @@ export const en = {
     title: 'Good work, in their words.',
     accent: [2, 3, 4],
     caseStudy: 'View project',
+    /** Heading of the testimonials strip on /services and /work. */
+    pageTitle: 'What people say.',
     prev: 'Previous testimonial',
     next: 'Next testimonial',
   },
@@ -373,6 +377,10 @@ export const en = {
       /** Secondary link to /services next to the projects link. */
       servicesCta: 'Explore our services',
       listLabel: 'Featured projects',
+      previous: 'Previous featured project',
+      next: 'Next featured project',
+      progress: 'Featured project rotation progress',
+      featured: 'Featured work',
       more: '{n} more on the projects page',
     },
     /** "View our work" section on /services: three case studies and a link to all of them. */
@@ -676,6 +684,18 @@ export const en = {
     submit: 'Send enquiry',
     replyNote: 'We reply {time}.',
     errorGeneric: 'Something went wrong. Please try again in a moment.',
+    /** Field errors, in the order the schema checks them. */
+    errors: {
+      tool: 'Pick your main tool',
+      teamSize: 'Pick a team size',
+      goal: 'Pick what should improve first',
+      nameRequired: 'Your name is required',
+      nameShort: 'Please enter your full name',
+      nameLong: 'That name is a little long',
+      emailRequired: 'Email is required',
+      emailInvalid: 'Please enter a valid email address',
+      messageLong: 'Please keep it under 4,000 characters',
+    },
     sentTitle: 'Message received.',
     sentBody:
       'Thank you. A person reads every enquiry and replies {time}, straight to the address you gave us.',
@@ -893,6 +913,297 @@ export const en = {
     legal: 'Legal',
     rights: 'All rights reserved.',
     backToTop: 'Back to top',
+  },
+  /** The Conscious AI page (/conscious-ai), top to bottom. */
+  consciousAiPage: {
+    hero: {
+      kicker: 'Our vision',
+      /** The page's name is the headline; "AI" takes the accent. */
+      title: 'Conscious AI',
+      titleAccent: [1],
+      tagline: 'Not more AI. Better AI.',
+      taglineAccent: [3, 4],
+      body: "AI isn't free. The planet's picking up the tab. Use it where it counts, not just for token maxing.",
+      cta: 'Book a time with us',
+    },
+    /** The problem and the fix, as one two-column ledger. */
+    principles: {
+      kicker: 'The problem, and the fix',
+      title: 'Everyone says use AI. Nobody says how.',
+      accent: [2, 3],
+      asideLead: 'We panic-prompt.',
+      asideAccent: 'The planet pays.',
+      problemHead: 'The problem',
+      fixHead: 'The fix · Better AI, in three moves',
+      problems: [
+        [
+          '01',
+          'FOMO, weekly.',
+          'A new model every Monday. Homework every Tuesday.',
+        ],
+        ['02', 'Faster. Cheaper. You?', 'The boss just discovered AI. Awkward.'],
+        [
+          '03',
+          'Hot and thirsty.',
+          'Data centres guzzle power and water. You never see the receipt.',
+        ],
+      ],
+      moves: [
+        ['01', 'Use it on purpose', 'If a formula can do it, let it.'],
+        ['02', 'Pick the right size', 'Smaller model, smaller footprint.'],
+        ['03', 'Stay the expert', 'AI drafts. You decide.'],
+      ],
+    },
+    /** Two doors out: the teams card (shared, see `offers.teams`) and the build card. */
+    nextSteps: {
+      kicker: 'Where next',
+      title: 'Two ways we can help.',
+      accent: [0, 1],
+      build: {
+        kicker: 'For your product',
+        title: 'Build something with us',
+        cta: 'See what we build',
+      },
+    },
+    /** The auto-advancing figure card: 13 third-party figures, a line each. */
+    numbers: {
+      kicker: 'The numbers',
+      title:
+        'Less time lost. Fewer tokens wasted. Smaller bill, smaller footprint.',
+      accent: [6, 7, 8, 9],
+      source: 'Source: {name}',
+      ownExample: 'Our own worked example.',
+      note: 'Third-party data, not our client results.',
+      previous: 'Previous figure',
+      next: 'Next figure',
+      cards: [
+        {
+          topic: 'Training pays off',
+          figure: '14 hours',
+          body: 'a week gained by staff with 81+ hours of AI training a year.',
+          source: 'ey2025',
+        },
+        {
+          topic: 'Training pays off',
+          figure: 'Up to 19x',
+          body: 'more likely to say AI makes them productive, once trained.',
+          source: 'slack2024',
+        },
+        {
+          topic: 'What slop costs',
+          figure: 'Nearly 40%',
+          body: 'of the time AI saves goes on fixing bad output.',
+          source: 'workday2026',
+        },
+        {
+          topic: 'What slop costs',
+          figure: '~2 hours',
+          body: 'to deal with each piece of sloppy AI work a colleague hands over.',
+          source: 'betterup2025',
+        },
+        {
+          topic: 'KPIs we track',
+          figure: '7 KPIs',
+          body: 'before and after: hours saved, AI spend per task, tokens, do-overs, licenses, output quality, AI fluency.',
+        },
+        {
+          topic: 'KPIs we track · example',
+          figure: '≈ €4,700',
+          body: 'a month lost to rework in a 12-person team, at €45 an hour.',
+        },
+        {
+          topic: 'Smarter set-up',
+          figure: '90%+',
+          body: 'less spent on repeated instructions, with prompt caching.',
+          source: 'anthropic2026',
+        },
+        {
+          topic: 'Smarter set-up',
+          figure: '85%+',
+          body: 'cheaper when easy jobs go to a smaller model, at 95% of the quality.',
+          source: 'routellm2024',
+        },
+        {
+          topic: 'People, not models',
+          figure: '70%',
+          body: 'of AI problems are about people and process, not algorithms.',
+          source: 'bcg2024',
+        },
+        {
+          topic: 'People, not models',
+          figure: '12%',
+          body: 'of staff get enough AI training.',
+          source: 'ey2025',
+        },
+        {
+          topic: 'Hidden footprint',
+          figure: '2x',
+          body: 'data-centre electricity by 2030. More than Japan uses today.',
+          source: 'iea2025',
+        },
+        {
+          topic: 'Hidden footprint',
+          figure: '4–6x Denmark',
+          body: "the water AI is projected to withdraw in 2027, against Denmark's yearly total.",
+          source: 'ucr2025',
+        },
+        {
+          topic: 'Hidden footprint · the fix',
+          figure: 'Up to 90%',
+          body: 'less energy on repetitive tasks, with small models and shorter prompts.',
+          source: 'unesco2025',
+        },
+      ],
+      /** The cited sources, keyed by the `source` on each card. Links live in the component. */
+      sources: {
+        ey2025: 'EY Work Reimagined Survey, 2025',
+        slack2024: 'Slack Workforce Index, 2024',
+        workday2026: 'Workday, 2026',
+        betterup2025: 'BetterUp & Stanford, 2025',
+        anthropic2026: 'Anthropic pricing, 2026',
+        routellm2024: 'UC Berkeley, RouteLLM, 2024',
+        bcg2024: 'BCG, 2024',
+        iea2025: 'IEA, Energy and AI, 2025',
+        ucr2025: 'Li et al., UC Riverside, 2025',
+        unesco2025: 'UNESCO & UCL, 2025',
+      },
+    },
+    /** Heading over the live AI profile quiz. */
+    aiProfile: {
+      kicker: 'Try it · Live',
+      title: 'Feeling like AI will replace you?',
+      accent: [4, 5],
+      description: 'Five quick steps to find out.',
+    },
+    /** The instructor heading and card labels under the course. */
+    instructor: {
+      kicker: 'Your instructor',
+      title: 'Taught by a teacher of teachers.',
+      accent: [5],
+      alumnus: 'Alumnus',
+      moreAbout: 'More about {name}',
+      portraitAlt: 'Portrait of {name}',
+    },
+    /** Where the name comes from: Bulleh Shah, the verse, and the three values we keep. */
+    roots: {
+      kicker: 'Our roots',
+      title: 'Ignoring the hype since the 1700s.',
+      accent: [3, 4, 5],
+      body: "Bulleh Shah, the Punjabi Sufi poet, refused to follow the crowd. He questioned what everyone repeated and chose what mattered over what was in fashion. We're doing the same with AI.",
+      cta: 'Read our DNA',
+      portraitAlt: 'Illustrated portrait of Bulleh Shah',
+      name: 'Bulleh Shah',
+      years: '1680–1757',
+      /** The reading of the verse printed above it in Shahmukhi and Gurmukhi. */
+      translation: 'Read a thousand books, yet never read yourself.',
+      values: [
+        ['01', 'Question the crowd.', "Popular isn't proof."],
+        ['02', 'Substance over shiny.', "What matters beats what's new."],
+        ['03', 'Hard problems first.', 'Tech for what actually needs fixing.'],
+      ],
+    },
+    faq: {
+      kicker: 'FAQs',
+      title: 'Ask away. No prompt engineering needed.',
+      accent: [2, 3, 4, 5],
+      description: 'Still stuck? Ask a real human in the community below.',
+      items: [
+        {
+          question: 'Is this an anti-AI thing?',
+          answer:
+            'No. We use AI every day and we build with it. Conscious AI means using it on purpose: the right tool for the task, only the context it needs, and a person who checks the result. That gives better work for less money and energy.',
+        },
+        {
+          question: 'Will AI replace me?',
+          answer:
+            'AI replaces tasks much faster than it replaces people. The person at risk is the one who pastes in a prompt and trusts whatever comes back. Learn when AI helps, which tool fits and how to check the output, and you become the person your team relies on.',
+        },
+        {
+          question: 'Can one prompt really hurt the planet?',
+          answer:
+            'A single prompt costs very little. The problem is scale and habit: billions of prompts a day, often sent to the largest model with far more context than the task needs. A smaller model, a tighter prompt, or no AI at all where a search does the job cuts that footprint many times over.',
+        },
+        {
+          question: 'Do I need to be technical?',
+          answer:
+            'No. This is made for people in marketing, HR, finance, operations, sales and teaching, not for developers. Everything is shown on everyday work: emails, summaries, spreadsheets, research and planning.',
+        },
+        {
+          question: 'What does it cost?',
+          answer:
+            'The AI profile, the course and the community are free. For teams, workshops, guidance and audits are scoped to your team and priced per engagement. Book a time and we will tell you what fits before anything starts.',
+        },
+      ],
+    },
+    closing: {
+      kicker: 'Conscious AI',
+      title: 'Less FOMO. Fewer watts.',
+      accent: [2, 3],
+      body: 'Bring a question, a workflow or a worry. A real person answers, within a business day.',
+      cta: 'Book a time with us',
+    },
+  },
+  /** The offer doors: three rows each for teams and for people who build. */
+  offers: {
+    teams: {
+      kicker: 'For teams & businesses',
+      title: 'Get your team using AI well',
+      cta: 'How we work with teams',
+      rows: [
+        ['01', 'Workshops', 'AI confidence, on your real tasks.'],
+        ['02', 'Guidance', 'One set of rules for tools, cost and carbon.'],
+        ['03', 'Audits', 'Find the waste in one workflow. Cut it.'],
+      ],
+    },
+    build: [
+      ['01', 'Product development', 'Rough idea to paying product.'],
+      ['02', 'Engineering', 'Web, mobile, backend. Built to last.'],
+      ['03', 'AI automation & integrations', 'The boring work, automated.'],
+    ],
+  },
+  /** The Conscious AI preview on the home page: the course plate, the teams plate, the rail. */
+  consciousAiHome: {
+    kicker: 'Conscious AI',
+    title: 'Using AI well is a skill. Not a subscription.',
+    accent: [6, 7, 8],
+    description:
+      'Free AI guidance for better tool choices. Team training for real work.',
+    course: {
+      kicker: 'Free course · coming soon',
+      title: 'Learn AI that helps.',
+      body: 'Choose the right tool, use it well, and skip AI when simpler works.',
+      submit: 'Add to waitlist',
+      portraitAlt: 'Portrait of {name}',
+    },
+    rail: {
+      kicker: 'Conscious AI',
+      title: 'The course, the numbers, and your AI profile.',
+    },
+  },
+  /** Our DNA: the origin of the name, the verse card and the office clocks. */
+  ourDna: {
+    kicker: 'Our DNA',
+    title: 'Our values are 300 years old. Still in production.',
+    accent: [6, 7, 8],
+    portraitAlt: 'Illustrated portrait of Bulleh Shah',
+    origin:
+      'Bullah is a nod to Bulleh Shah, the Punjabi Sufi poet who preached love, challenged hypocrisy, and stood with ordinary people across the lines of caste and class.',
+    verse: {
+      name: 'Bulleh Shah',
+      place: 'Kasur, Punjab',
+      translation: '“Bulleh, what do I know of who I am?”',
+      note: 'A refusal to be boxed in by religion, caste, or anyone else’s expectations.',
+    },
+    meaning: {
+      kicker: 'What it means for us',
+      title: 'Make progress work for people, not just systems.',
+      body: 'In that spirit, we build useful technology that gives people more capability, lowers unnecessary cost and environmental impact, and keeps human judgment where it matters.',
+    },
+    office: {
+      open: 'Office hours',
+      closed: 'After hours',
+      localTime: 'Local time in {city}: {time}',
+    },
   },
 };
 

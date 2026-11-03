@@ -17,6 +17,7 @@ export const de: Dictionary = {
     bookCall: 'Gespräch buchen',
     menuOpen: 'Menü öffnen',
     menuClose: 'Menü schließen',
+    primary: 'Hauptnavigation',
     language: 'Sprache',
     community: 'Community',
   },
@@ -28,16 +29,16 @@ export const de: Dictionary = {
     secondary: 'Sehen, was wir bauen',
     steps: [
       {
-        title: 'KI überhaupt nötig?',
-        body: 'Wir finden, wo KI Ihrer Arbeit hilft und wo sie nur Kosten verursacht.',
+        title: 'Weiterbildung',
+        body: 'Kostenloser Kurs und Team-Trainings: KI gut nutzen, Ergebnisse beurteilen, Fähigkeiten behalten.',
       },
       {
-        title: 'Ein schlanker Aufbau.',
-        body: 'Das passende Modell, knapper Kontext, Anweisungen im Cache statt wiederholt.',
+        title: 'Services',
+        body: 'Wir optimieren die KI, die Sie schon nutzen, und bauen schlanke digitale Produkte, vorher und nachher gemessen.',
       },
       {
-        title: 'Sie behalten das Steuer.',
-        body: 'Ihr Team lernt, Ergebnisse zu beurteilen. Wir messen vorher und nachher.',
+        title: 'Produkt',
+        body: 'Ein Werkzeug, das Conscious AI in den Arbeitsalltag bringt. In Arbeit.',
       },
     ],
     receipt: {
@@ -119,7 +120,8 @@ export const de: Dictionary = {
   community: {
     kicker: 'Teil unserer Community werden',
     mobileJoin: 'Community beitreten',
-    dockOpen: 'GesprÃ¤ch beginnen',
+    dockOpen: 'Gespräch beginnen',
+    closeMenu: 'Community-Menü schließen',
     title: 'Bessere KI-Entscheidungen entstehen gemeinsam.',
     description:
       'Treffen Sie Menschen, die KI bewusst einsetzen, Erfahrungen teilen und menschliches Urteilsvermögen in den Mittelpunkt stellen.',
@@ -133,7 +135,7 @@ export const de: Dictionary = {
       discord: {
         label: 'Discord',
         description:
-          'Nehmen Sie an fokussierten GesprÃ¤chen, neuen Ressourcen und Community-Updates teil.',
+          'Nehmen Sie an fokussierten Gesprächen, neuen Ressourcen und Community-Updates teil.',
         cta: 'Zum Server',
       },
     },
@@ -278,6 +280,7 @@ export const de: Dictionary = {
     title: 'Gute Arbeit, in ihren Worten.',
     accent: [2, 3, 4],
     caseStudy: 'Projekt ansehen',
+    pageTitle: 'Was Kunden sagen.',
     prev: 'Vorherige Stimme',
     next: 'Nächste Stimme',
   },
@@ -331,6 +334,10 @@ export const de: Dictionary = {
       cta: 'Alle Projekte ansehen',
       servicesCta: 'Unsere Leistungen entdecken',
       listLabel: 'Ausgewählte Projekte',
+      previous: 'Vorheriges Projekt',
+      next: 'Nächstes Projekt',
+      progress: 'Fortschritt der Projektrotation',
+      featured: 'Ausgewählte Arbeit',
       more: '{n} weitere auf der Projektseite',
     },
     showcase: {
@@ -634,6 +641,17 @@ export const de: Dictionary = {
     replyNote: 'Wir antworten {time}. Keine Newsletter, keine Kampagnen.',
     errorGeneric:
       'Etwas ist schiefgelaufen. Bitte versuchen Sie es gleich noch einmal.',
+    errors: {
+      tool: 'Wählen Sie Ihr wichtigstes Werkzeug',
+      teamSize: 'Wählen Sie eine Teamgröße',
+      goal: 'Wählen Sie, was zuerst besser werden soll',
+      nameRequired: 'Ihr Name wird benötigt',
+      nameShort: 'Bitte geben Sie Ihren vollständigen Namen ein',
+      nameLong: 'Dieser Name ist etwas lang',
+      emailRequired: 'E-Mail-Adresse wird benötigt',
+      emailInvalid: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
+      messageLong: 'Bitte bleiben Sie unter 4.000 Zeichen',
+    },
     sentTitle: 'Nachricht erhalten.',
     sentBody:
       'Vielen Dank. Ein Mensch liest jede Anfrage und antwortet {time}, direkt an die von Ihnen angegebene Adresse.',
@@ -849,5 +867,313 @@ export const de: Dictionary = {
     legal: 'Rechtliches',
     rights: 'Alle Rechte vorbehalten.',
     backToTop: 'Nach oben',
+  },
+  consciousAiPage: {
+    hero: {
+      kicker: 'Unsere Vision',
+      title: 'Conscious AI',
+      titleAccent: [1],
+      tagline: 'Nicht mehr KI. Bessere KI.',
+      taglineAccent: [3, 4],
+      body: 'KI ist nicht gratis. Die Rechnung zahlt der Planet. Nutzen Sie KI dort, wo sie zählt, nicht fürs Token-Maxing.',
+      cta: 'Termin mit uns buchen',
+    },
+    principles: {
+      kicker: 'Das Problem, und die Lösung',
+      title: 'Alle sagen: Nutzt KI. Niemand sagt wie.',
+      accent: [2, 3],
+      asideLead: 'Wir prompten in Panik.',
+      asideAccent: 'Der Planet zahlt.',
+      problemHead: 'Das Problem',
+      fixHead: 'Die Lösung · Bessere KI in drei Schritten',
+      problems: [
+        [
+          '01',
+          'FOMO, jede Woche.',
+          'Jeden Montag ein neues Modell. Jeden Dienstag Hausaufgaben.',
+        ],
+        [
+          '02',
+          'Schneller. Günstiger. Und Sie?',
+          'Der Chef hat gerade KI entdeckt. Unangenehm.',
+        ],
+        [
+          '03',
+          'Heiß und durstig.',
+          'Rechenzentren schlucken Strom und Wasser. Die Rechnung sehen Sie nie.',
+        ],
+      ],
+      moves: [
+        [
+          '01',
+          'Gezielt einsetzen',
+          'Wenn eine Formel es kann, lassen Sie sie.',
+        ],
+        [
+          '02',
+          'Die richtige Größe wählen',
+          'Kleineres Modell, kleinerer Fußabdruck.',
+        ],
+        ['03', 'Experte bleiben', 'KI entwirft. Sie entscheiden.'],
+      ],
+    },
+    nextSteps: {
+      kicker: 'Wie weiter',
+      title: 'Zwei Wege, wie wir helfen.',
+      accent: [0, 1],
+      build: {
+        kicker: 'Für Ihr Produkt',
+        title: 'Mit uns etwas bauen',
+        cta: 'Sehen, was wir bauen',
+      },
+    },
+    numbers: {
+      kicker: 'Die Zahlen',
+      title:
+        'Weniger Zeit verloren. Weniger Tokens verschwendet. Kleinere Rechnung, kleinerer Fußabdruck.',
+      accent: [6, 7, 8, 9],
+      source: 'Quelle: {name}',
+      ownExample: 'Unser eigenes Rechenbeispiel.',
+      note: 'Daten Dritter, nicht unsere Kundenergebnisse.',
+      previous: 'Vorherige Zahl',
+      next: 'Nächste Zahl',
+      cards: [
+        {
+          topic: 'Training zahlt sich aus',
+          figure: '14 Stunden',
+          body: 'pro Woche gewinnen Mitarbeitende mit über 81 Stunden KI-Training im Jahr.',
+          source: 'ey2025',
+        },
+        {
+          topic: 'Training zahlt sich aus',
+          figure: 'Bis zu 19-mal',
+          body: 'eher sagen Geschulte, dass KI sie produktiver macht.',
+          source: 'slack2024',
+        },
+        {
+          topic: 'Was Schlamperei kostet',
+          figure: 'Fast 40 %',
+          body: 'der Zeit, die KI spart, geht fürs Ausbessern schlechter Ergebnisse drauf.',
+          source: 'workday2026',
+        },
+        {
+          topic: 'Was Schlamperei kostet',
+          figure: '~2 Stunden',
+          body: 'kostet jedes schlampige KI-Ergebnis, das ein Kollege weiterreicht.',
+          source: 'betterup2025',
+        },
+        {
+          topic: 'KPIs, die wir messen',
+          figure: '7 KPIs',
+          body: 'vorher und nachher: gesparte Stunden, KI-Kosten pro Aufgabe, Tokens, Wiederholungen, Lizenzen, Ergebnisqualität, KI-Kompetenz.',
+        },
+        {
+          topic: 'KPIs, die wir messen · Beispiel',
+          figure: '≈ 4.700 €',
+          body: 'im Monat verliert ein 12-köpfiges Team durch Nacharbeit, bei 45 € pro Stunde.',
+        },
+        {
+          topic: 'Klügeres Setup',
+          figure: '90 %+',
+          body: 'weniger Kosten für wiederholte Anweisungen, mit Prompt-Caching.',
+          source: 'anthropic2026',
+        },
+        {
+          topic: 'Klügeres Setup',
+          figure: '85 %+',
+          body: 'günstiger, wenn einfache Aufgaben an ein kleineres Modell gehen, bei 95 % der Qualität.',
+          source: 'routellm2024',
+        },
+        {
+          topic: 'Menschen, nicht Modelle',
+          figure: '70 %',
+          body: 'der KI-Probleme liegen an Menschen und Prozessen, nicht an Algorithmen.',
+          source: 'bcg2024',
+        },
+        {
+          topic: 'Menschen, nicht Modelle',
+          figure: '12 %',
+          body: 'der Mitarbeitenden bekommen genug KI-Training.',
+          source: 'ey2025',
+        },
+        {
+          topic: 'Verborgener Fußabdruck',
+          figure: '2-mal',
+          body: 'so viel Strom für Rechenzentren bis 2030. Mehr, als Japan heute verbraucht.',
+          source: 'iea2025',
+        },
+        {
+          topic: 'Verborgener Fußabdruck',
+          figure: '4–6-mal Dänemark',
+          body: 'so viel Wasser wird KI 2027 voraussichtlich entnehmen, gemessen am Jahresverbrauch Dänemarks.',
+          source: 'ucr2025',
+        },
+        {
+          topic: 'Verborgener Fußabdruck · die Lösung',
+          figure: 'Bis zu 90 %',
+          body: 'weniger Energie bei Routineaufgaben, mit kleinen Modellen und kürzeren Prompts.',
+          source: 'unesco2025',
+        },
+      ],
+      sources: {
+        ey2025: 'EY Work Reimagined Survey, 2025',
+        slack2024: 'Slack Workforce Index, 2024',
+        workday2026: 'Workday, 2026',
+        betterup2025: 'BetterUp & Stanford, 2025',
+        anthropic2026: 'Anthropic-Preise, 2026',
+        routellm2024: 'UC Berkeley, RouteLLM, 2024',
+        bcg2024: 'BCG, 2024',
+        iea2025: 'IEA, Energy and AI, 2025',
+        ucr2025: 'Li et al., UC Riverside, 2025',
+        unesco2025: 'UNESCO & UCL, 2025',
+      },
+    },
+    aiProfile: {
+      kicker: 'Ausprobieren · Live',
+      title: 'Angst, dass KI Sie ersetzt?',
+      accent: [3, 4],
+      description: 'Fünf kurze Schritte, um es herauszufinden.',
+    },
+    instructor: {
+      kicker: 'Ihr Dozent',
+      title: 'Unterrichtet von einem Lehrer der Lehrer.',
+      accent: [5],
+      alumnus: 'Alumnus',
+      moreAbout: 'Mehr über {name}',
+      portraitAlt: 'Porträt von {name}',
+    },
+    roots: {
+      kicker: 'Unsere Wurzeln',
+      title: 'Den Hype ignorieren. Seit dem 18. Jahrhundert.',
+      accent: [3, 4, 5, 6],
+      body: 'Bulleh Shah, der Sufi-Dichter aus dem Punjab, weigerte sich, der Masse zu folgen. Er hinterfragte, was alle nachsprachen, und wählte das Wesentliche statt der Mode. Mit KI tun wir dasselbe.',
+      cta: 'Unsere DNA lesen',
+      portraitAlt: 'Illustriertes Porträt von Bulleh Shah',
+      name: 'Bulleh Shah',
+      years: '1680–1757',
+      translation:
+        'Tausend Bücher hast du gelesen, doch dich selbst hast du nie gelesen.',
+      values: [
+        ['01', 'Die Masse hinterfragen.', 'Beliebt ist kein Beweis.'],
+        ['02', 'Substanz statt Glanz.', 'Was zählt, schlägt, was neu ist.'],
+        [
+          '03',
+          'Schwere Probleme zuerst.',
+          'Technik für das, was wirklich repariert werden muss.',
+        ],
+      ],
+    },
+    faq: {
+      kicker: 'FAQ',
+      title: 'Fragen Sie. Ganz ohne Prompt-Engineering.',
+      accent: [2, 3, 4],
+      description:
+        'Noch unsicher? Fragen Sie einen echten Menschen in der Community unten.',
+      items: [
+        {
+          question: 'Ist das eine Anti-KI-Sache?',
+          answer:
+            'Nein. Wir nutzen KI jeden Tag und bauen damit. Conscious AI heißt, sie gezielt einzusetzen: das richtige Werkzeug für die Aufgabe, nur der Kontext, den sie braucht, und ein Mensch, der das Ergebnis prüft. Das ergibt bessere Arbeit für weniger Geld und Energie.',
+        },
+        {
+          question: 'Wird KI mich ersetzen?',
+          answer:
+            'KI ersetzt Aufgaben viel schneller als Menschen. Gefährdet ist, wer einen Prompt einfügt und allem vertraut, was zurückkommt. Lernen Sie, wann KI hilft, welches Werkzeug passt und wie Sie das Ergebnis prüfen, und Sie werden zu der Person, auf die sich Ihr Team verlässt.',
+        },
+        {
+          question: 'Kann ein einzelner Prompt wirklich dem Planeten schaden?',
+          answer:
+            'Ein einzelner Prompt kostet sehr wenig. Das Problem sind Masse und Gewohnheit: Milliarden Prompts am Tag, oft an das größte Modell und mit weit mehr Kontext, als die Aufgabe braucht. Ein kleineres Modell, ein knapperer Prompt oder gar keine KI, wo eine Suche reicht, senkt diesen Fußabdruck um ein Vielfaches.',
+        },
+        {
+          question: 'Muss ich technisch sein?',
+          answer:
+            'Nein. Das ist für Menschen in Marketing, HR, Finanzen, Operations, Vertrieb und Lehre gemacht, nicht für Entwickler. Alles wird an alltäglicher Arbeit gezeigt: E-Mails, Zusammenfassungen, Tabellen, Recherche und Planung.',
+        },
+        {
+          question: 'Was kostet das?',
+          answer:
+            'Das KI-Profil, der Kurs und die Community sind kostenlos. Für Teams werden Workshops, Leitlinien und Audits auf Ihr Team zugeschnitten und pro Auftrag berechnet. Buchen Sie einen Termin, und wir sagen Ihnen, was passt, bevor etwas beginnt.',
+        },
+      ],
+    },
+    closing: {
+      kicker: 'Conscious AI',
+      title: 'Weniger FOMO. Weniger Watt.',
+      accent: [2, 3],
+      body: 'Bringen Sie eine Frage, einen Ablauf oder eine Sorge mit. Ein echter Mensch antwortet, innerhalb eines Werktags.',
+      cta: 'Termin mit uns buchen',
+    },
+  },
+  offers: {
+    teams: {
+      kicker: 'Für Teams & Unternehmen',
+      title: 'Ihr Team soll KI gut nutzen',
+      cta: 'So arbeiten wir mit Teams',
+      rows: [
+        ['01', 'Workshops', 'KI-Sicherheit, an Ihren echten Aufgaben.'],
+        ['02', 'Leitlinien', 'Ein Regelwerk für Werkzeuge, Kosten und CO₂.'],
+        [
+          '03',
+          'Audits',
+          'Die Verschwendung in einem Ablauf finden. Und streichen.',
+        ],
+      ],
+    },
+    build: [
+      [
+        '01',
+        'Produktentwicklung',
+        'Von der groben Idee zum zahlenden Produkt.',
+      ],
+      ['02', 'Engineering', 'Web, Mobile, Backend. Gebaut, um zu halten.'],
+      [
+        '03',
+        'KI-Automatisierung & Integrationen',
+        'Die langweilige Arbeit, automatisiert.',
+      ],
+    ],
+  },
+  consciousAiHome: {
+    kicker: 'Conscious AI',
+    title: 'KI gut zu nutzen ist eine Fähigkeit. Kein Abo.',
+    accent: [7, 8],
+    description:
+      'Kostenlose KI-Orientierung für bessere Werkzeugwahl. Team-Training für echte Arbeit.',
+    course: {
+      kicker: 'Kostenloser Kurs · bald verfügbar',
+      title: 'KI lernen, die hilft.',
+      body: 'Das richtige Werkzeug wählen, gut nutzen und KI weglassen, wenn Einfacheres reicht.',
+      submit: 'Auf die Warteliste',
+      portraitAlt: 'Porträt von {name}',
+    },
+    rail: {
+      kicker: 'Conscious AI',
+      title: 'Der Kurs, die Zahlen und Ihr KI-Profil.',
+    },
+  },
+  ourDna: {
+    kicker: 'Unsere DNA',
+    title: 'Unsere Werte sind 300 Jahre alt. Noch immer in Produktion.',
+    accent: [6, 7, 8, 9],
+    portraitAlt: 'Illustriertes Porträt von Bulleh Shah',
+    origin:
+      'Bullah ist eine Verbeugung vor Bulleh Shah, dem Sufi-Dichter aus dem Punjab, der Liebe predigte, Heuchelei anprangerte und über Kasten- und Klassengrenzen hinweg zu den einfachen Menschen stand.',
+    verse: {
+      name: 'Bulleh Shah',
+      place: 'Kasur, Punjab',
+      translation: '„Bulleh, was weiß ich schon, wer ich bin?“',
+      note: 'Eine Weigerung, sich von Religion, Kaste oder den Erwartungen anderer einsperren zu lassen.',
+    },
+    meaning: {
+      kicker: 'Was das für uns heißt',
+      title: 'Fortschritt soll für Menschen arbeiten, nicht nur für Systeme.',
+      body: 'In diesem Geist bauen wir nützliche Technologie, die Menschen mehr Möglichkeiten gibt, unnötige Kosten und Umweltbelastung senkt und das menschliche Urteil dort lässt, wo es zählt.',
+    },
+    office: {
+      open: 'Bürozeiten',
+      closed: 'Außerhalb der Bürozeiten',
+      localTime: 'Ortszeit in {city}: {time}',
+    },
   },
 };
