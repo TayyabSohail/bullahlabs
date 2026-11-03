@@ -23,13 +23,22 @@ export const de: Dictionary = {
   hero: {
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
     accent: [4, 5, 6],
-    body: 'Wir bauen digitale Produkte, die echte Probleme lösen, schlank laufen und lange halten. Wir holen aus KI mehr heraus, mit weniger Kosten, Energie und Komplexität: in dem, was wir bauen, und in der Arbeit Ihres Teams.',
-    primary: 'Projekt starten',
-    secondary: 'Conscious AI entdecken',
-    proof: [
-      ['150+', 'Projekte geliefert'],
-      ['40+', 'Kunden betreut'],
-      ['5', 'Kontinente erreicht'],
+    body: 'Wir holen aus KI mehr heraus, mit weniger: weniger Kosten, weniger Energie, weniger Komplexität. Für die KI, die Ihr Team schon nutzt, und für die digitalen Produkte, die wir bauen, damit sie echte Probleme lösen und lange halten.',
+    primary: 'Conscious AI entdecken',
+    secondary: 'Sehen, was wir bauen',
+    steps: [
+      {
+        title: 'KI überhaupt nötig?',
+        body: 'Wir finden, wo KI Ihrer Arbeit hilft und wo sie nur Kosten verursacht.',
+      },
+      {
+        title: 'Ein schlanker Aufbau.',
+        body: 'Das passende Modell, knapper Kontext, Anweisungen im Cache statt wiederholt.',
+      },
+      {
+        title: 'Sie behalten das Steuer.',
+        body: 'Ihr Team lernt, Ergebnisse zu beurteilen. Wir messen vorher und nachher.',
+      },
     ],
     receipt: {
       header: 'Quittung · die Rechnung des Planeten',
@@ -628,7 +637,6 @@ export const de: Dictionary = {
     sentTitle: 'Nachricht erhalten.',
     sentBody:
       'Vielen Dank. Ein Mensch liest jede Anfrage und antwortet {time}, direkt an die von Ihnen angegebene Adresse.',
-    sentAgain: 'Weitere senden',
   },
   workPage: {
     back: 'Alle Projekte',

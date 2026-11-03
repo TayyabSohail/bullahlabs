@@ -14,10 +14,12 @@ interface HeroProps {
 }
 
 /**
- * Opening section: what we are, in one headline and a few lines, two ways
- * in (start a project, Conscious AI), three figures on one rule, and beside
- * them the planet's tab: one year of AI on one piece of work, printed the
- * usual way and ours.
+ * Opening section: what we are, in one headline and a few lines, one way
+ * in (Conscious AI) with a quiet link to the work, three figures on one
+ * rule, and beside them the planet's tab: one year of AI on one piece of
+ * work, printed the usual way and ours. The studio's own call to action
+ * waits for the sections below; the first view is about getting more out
+ * of AI for less.
  */
 export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
@@ -44,21 +46,22 @@ export function Hero({ dict }: HeroProps) {
               </p>
             </Reveal>
 
+            {/* Conscious AI leads in ink; the work sits beside it in a
+                ruled box. A shared fixed measure makes the pair read as
+                one deliberate choice on every viewport. */}
             <Reveal
               delay={0.18}
               className='mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:items-stretch sm:justify-center lg:justify-start'
             >
-              {/* A shared fixed measure makes this CTA pair read as one
-                  deliberate choice on every viewport. */}
               <Link
-                href={paths.contact}
+                href={paths.program}
                 className='bl-btn bl-btn-ink inline-flex h-16 w-full max-w-[18rem] items-center justify-between gap-4 whitespace-nowrap px-7 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]'
               >
                 {t.primary}
                 <span className='h-2.5 w-2.5 shrink-0 bg-brand' />
               </Link>
               <Link
-                href={paths.program}
+                href={paths.work}
                 className='bl-btn bl-btn-secondary inline-flex h-16 w-full max-w-[18rem] items-center justify-between gap-4 whitespace-nowrap bg-surface px-7 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]'
               >
                 {t.secondary}
@@ -66,29 +69,32 @@ export function Hero({ dict }: HeroProps) {
               </Link>
             </Reveal>
 
-            {/* The figures: three counters on one rule, sitting on the
-                bottom of the column so the copy side reads as tall as the
-                receipt beside it. */}
+            {/* The method: the three moves behind the receipt's lean
+                route, on one rule at the bottom of the column so the copy
+                side reads as tall as the receipt beside it. */}
             <Reveal delay={0.26} className='mt-12 lg:mt-auto lg:pt-12'>
-              <ul className='grid grid-cols-3 border-t border-ink/60'>
-                {t.proof.map(([value, label], index) => (
+              <ol className='grid border-t border-ink/60 sm:grid-cols-3'>
+                {t.steps.map(({ title, body }, index) => (
                   <li
-                    key={label}
+                    key={title}
                     className={
                       index === 0
-                        ? 'py-5 pr-3 sm:py-6 sm:pr-6'
-                        : 'border-l border-ink/25 px-3 py-5 sm:px-6 sm:py-6'
+                        ? 'py-5 text-left sm:py-6 sm:pr-6'
+                        : 'border-t border-ink/25 py-5 text-left sm:border-l sm:border-t-0 sm:px-6 sm:py-6'
                     }
                   >
-                    <span className='bl-display block text-3xl leading-none text-ink sm:text-4xl lg:text-5xl'>
-                      {value}
+                    <span className='font-mono text-[11px] font-semibold tracking-[0.18em] text-brand-text'>
+                      {String(index + 1).padStart(2, '0')}
                     </span>
-                    <span className='mt-2 block font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground sm:mt-3 sm:text-[11px] sm:tracking-[0.18em]'>
-                      {label}
+                    <span className='bl-display mt-2 block text-xl leading-tight text-ink sm:text-2xl'>
+                      {title}
+                    </span>
+                    <span className='mt-2 block text-sm leading-relaxed text-ink/65'>
+                      {body}
                     </span>
                   </li>
                 ))}
-              </ul>
+              </ol>
             </Reveal>
           </div>
 

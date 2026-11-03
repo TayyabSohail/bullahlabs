@@ -23,16 +23,28 @@ export const en = {
     title: 'Technology that solves problems.\nBuilt with conscience.',
     /** Words (0-based, across both lines) in the accent colour: the second line. */
     accent: [4, 5, 6],
-    /** What we are, in two lines. The problem people arrive with is the next section. */
-    body: 'We build digital products that solve real problems, run lean and last. We make AI do more with less cost, energy and complexity, in what we build and in how your team works.',
-    /** Two ways in: the studio for building, Conscious AI for using AI well. */
-    primary: 'Start a project',
-    secondary: 'Explore Conscious AI',
-    /** Three figures on one rule under the buttons; the same ones the numbers band prints. */
-    proof: [
-      ['150+', 'Projects delivered'],
-      ['40+', 'Clients served'],
-      ['5', 'Continents reached'],
+    /** What we do, AI first: the first view is about getting more out of AI for less. The problem people arrive with is the next section. */
+    body: 'We make AI do more with less: less cost, less energy, less complexity. For the AI your team already uses, and for the digital products we build to solve real problems and last.',
+    /** Conscious AI leads; the work sits beside it. The studio's own "start a project" call waits for the sections below. */
+    primary: 'Explore Conscious AI',
+    secondary: 'See what we build',
+    /**
+     * The method, on one rule under the buttons: the three moves behind the
+     * receipt's lean route (need AI? · lean model · you check), one line each.
+     */
+    steps: [
+      {
+        title: 'Need AI at all?',
+        body: 'We find where AI helps your work and where it just adds cost.',
+      },
+      {
+        title: 'A lean set-up.',
+        body: 'The right-sized model, lean context, instructions cached, not repeated.',
+      },
+      {
+        title: 'You stay in charge.',
+        body: 'Your team learns to judge the output. We measure before and after.',
+      },
     ],
     /**
      * The bill beside the hero copy: one piece of work, a team's contract
@@ -667,7 +679,6 @@ export const en = {
     sentTitle: 'Message received.',
     sentBody:
       'Thank you. A person reads every enquiry and replies {time}, straight to the address you gave us.',
-    sentAgain: 'Send another',
   },
   workPage: {
     back: 'All projects',
@@ -862,6 +873,7 @@ export const en = {
   faq: {
     kicker: 'FAQ',
     title: 'Straight answers to important questions.',
+    description: 'What we do, how we work and where AI fits in.',
     accent: [0, 1],
   },
   cta: {
