@@ -3,8 +3,9 @@
 import { ArrowUpRight, CalendarDays, Check, PenLine } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { useLenis } from 'lenis/react';
 import type { ReactNode } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Logo } from '@/components/brand/logo';
 import { ContactForm } from '@/components/contact/contact-form';
@@ -52,16 +53,34 @@ export function ContactChannels({
   const t = dict.contact.choose;
   const [channel, setChannel] = useState<'form' | 'calendar'>('calendar');
   const [sent, setSent] = useState(false);
+  const lenis = useLenis();
 
   // A sent enquiry clears the whole page: heading, picker and form go, and
   // one thank-you stands in their place at the top of the viewport.
-  const handleSent = () => {
-    setSent(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleSent = () => setSent(true);
+
+  // Jump to the top only once the thank-you is in the DOM. The page is far
+  // shorter by then, so Lenis must re-measure first or it clamps the jump
+  // to the old limit and leaves the visitor looking at the footer. Lenis
+  // owns scrolling on this site; the native call covers reduced motion,
+  // where Lenis is stopped.
+  useEffect(() => {
+    if (!sent) return;
+    if (lenis) {
+      lenis.resize();
+      lenis.scrollTo(0, { immediate: true, force: true });
+    }
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [sent, lenis]);
+
+  // "Send another" brings back a fresh form, not the calendar.
+  const handleAgain = () => {
+    setSent(false);
+    setChannel('form');
   };
 
   if (sent) {
-    return <ThankYou dict={dict} />;
+    return <ThankYou dict={dict} onAgain={handleAgain} />;
   }
 
   // Without a booking link there is nothing to choose between.
@@ -138,9 +157,15 @@ export function ContactChannels({
 
 /**
  * What the page becomes once an enquiry is in: one calm card, a thank-you,
- * the promise of a reply, and a way back. Nothing else to do here.
+ * the promise of a reply, and two ways on: home, or another enquiry.
  */
-function ThankYou({ dict }: { dict: Dictionary }) {
+function ThankYou({
+  dict,
+  onAgain,
+}: {
+  dict: Dictionary;
+  onAgain: () => void;
+}) {
   const t = dict.contactForm;
   return (
     <div
@@ -157,13 +182,23 @@ function ThankYou({ dict }: { dict: Dictionary }) {
       <p className='mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg'>
         {t.sentBody.replace('{time}', siteConfig.responseTime)}
       </p>
-      <Link
-        href={paths.home}
-        className='bl-btn bl-btn-primary mt-9 inline-flex h-12 items-center justify-center gap-2.5 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
-      >
-        {t.sentHome}
-        <ArrowUpRight className='h-3.5 w-3.5' />
-      </Link>
+      <div className='mt-9 flex flex-col items-center gap-3 sm:flex-row'>
+        <Link
+          href={paths.home}
+          className='bl-btn bl-btn-primary inline-flex h-12 items-center justify-center gap-2.5 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
+        >
+          {t.sentHome}
+          <ArrowUpRight className='h-3.5 w-3.5' />
+        </Link>
+        <button
+          type='button'
+          onClick={onAgain}
+          className='bl-btn bl-btn-secondary inline-flex h-12 items-center justify-center gap-2.5 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'
+        >
+          <PenLine className='h-3.5 w-3.5' />
+          {t.sentAgain}
+        </button>
+      </div>
     </div>
   );
 }

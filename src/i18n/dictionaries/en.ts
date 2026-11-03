@@ -722,6 +722,7 @@ export const en = {
     sentBody:
       'Your enquiry is in. A person reads every one and replies {time}, straight to the address you gave us.',
     sentHome: 'Back to home',
+    sentAgain: 'Send another enquiry',
   },
   workPage: {
     back: 'All projects',

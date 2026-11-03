@@ -49,7 +49,9 @@ export function Hero({ dict }: HeroProps) {
           className='bl-display justify-center text-center text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink sm:justify-start sm:text-left'
         />
 
-        <div className='mt-10 grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-stretch lg:gap-x-16 xl:gap-x-20'>
+        {/* Phones stack copy over receipt; tablets put them side by side in
+            two even columns; lg widens the copy side to 7/5. */}
+        <div className='mt-10 grid gap-10 sm:grid-cols-2 sm:items-start sm:gap-x-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-stretch lg:gap-x-16 xl:gap-x-20'>
           <div className='flex min-w-0 flex-col text-center sm:text-left'>
             {/* The lead in ink, the rest muted: one strong line, one quiet
                 one. */}
@@ -63,7 +65,7 @@ export function Hero({ dict }: HeroProps) {
             {/* One button: the first view asks for a single decision. */}
             <Reveal
               delay={0.18}
-              className='mt-8 flex w-full justify-center lg:justify-start'
+              className='mt-8 flex w-full justify-center sm:justify-start'
             >
               <Link
                 href={paths.program}
@@ -83,20 +85,20 @@ export function Hero({ dict }: HeroProps) {
                 one line, and the way in on a rule at the foot. */}
             <Reveal delay={0.26} className='mt-8 lg:mt-auto lg:pt-12'>
               {/* Below lg the three cards would stack and push the receipt
-                  a screen down, so phones and tablets get one compact strip
-                  of the three titles instead. */}
-              <ol className='flex flex-wrap justify-center gap-x-6 gap-y-2 border-t border-ink/20 pt-4 sm:justify-start lg:hidden'>
+                  a screen down, so phones and tablets get a ledger instead:
+                  three full-width rows on rules, number, title, arrow. */}
+              <ol className='divide-y divide-ink/15 border-y border-ink/30 text-left lg:hidden'>
                 {t.steps.map(({ title }, index) => (
                   <li key={title}>
                     <Link
                       href={STEP_PATHS[index] ?? paths.program}
-                      className='group inline-flex items-center gap-1.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/80 transition-colors hover:text-ink'
+                      className='group flex items-center gap-4 py-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/80 transition-colors hover:text-ink sm:py-4'
                     >
                       <span className='text-brand-text'>
                         {String(index + 1).padStart(2, '0')}
                       </span>
-                      {title}
-                      <ArrowUpRight className='h-3.5 w-3.5 shrink-0 text-ink/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+                      <span className='flex-1'>{title}</span>
+                      <ArrowUpRight className='h-4 w-4 shrink-0 text-ink/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
                     </Link>
                   </li>
                 ))}

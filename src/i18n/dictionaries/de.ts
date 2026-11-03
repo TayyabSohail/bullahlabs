@@ -662,6 +662,7 @@ export const de: Dictionary = {
     sentBody:
       'Ihre Anfrage ist angekommen. Ein Mensch liest jede einzelne und antwortet {time}, direkt an die von Ihnen angegebene Adresse.',
     sentHome: 'Zur Startseite',
+    sentAgain: 'Weitere Anfrage senden',
   },
   workPage: {
     back: 'Alle Projekte',
