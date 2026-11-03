@@ -90,10 +90,7 @@ export function ContactForm({ dict, onSent }: ContactFormProps) {
         teamSize: values.teamSize,
         goal: values.goal,
       });
-      // The form stays on screen: every field clears and a confirmation
-      // appears beside the button, where the person is already looking.
-      form.reset();
-      setSent(true);
+      onSent();
     },
     onError: ({ error }) => {
       toast.error(error.serverError ?? t.errorGeneric);
@@ -105,10 +102,7 @@ export function ContactForm({ dict, onSent }: ContactFormProps) {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit((values) => {
-          setSent(false);
-          execute(values);
-        })}
+        onSubmit={form.handleSubmit((values) => execute(values))}
         className='bl-card overflow-hidden rounded-2xl border border-white/10 bg-ink text-white shadow-[0_30px_80px_-40px_hsl(var(--ink)/0.8)] [clip-path:none]'
         noValidate
       >
@@ -211,24 +205,6 @@ export function ContactForm({ dict, onSent }: ContactFormProps) {
               />
             </div>
           </section>
-
-          {sent && (
-            <div
-              role='status'
-              aria-live='polite'
-              className='flex items-start gap-3 rounded-lg border border-brand/60 bg-brand/10 px-4 py-3.5'
-            >
-              <CheckCircle2 className='mt-0.5 h-5 w-5 shrink-0 text-brand' />
-              <div className='min-w-0'>
-                <p className='font-display text-base font-semibold leading-tight text-white'>
-                  {t.sentTitle}
-                </p>
-                <p className='mt-1 text-sm leading-relaxed text-white/70'>
-                  {t.sentBody.replace('{time}', siteConfig.responseTime)}
-                </p>
-              </div>
-            </div>
-          )}
 
           <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
             <p className='text-xs text-white/60'>{replyNote}</p>

@@ -38,11 +38,11 @@ export const en = {
     title: 'Technology that solves problems.\nBuilt with conscience.',
     /** Words (0-based, across both lines) in the accent colour: the second line. */
     accent: [4, 5, 6],
-    /** What we do, AI first: the first view is about getting more out of AI for less. The problem people arrive with is the next section. */
-    body: 'We make AI do more with less: less cost, less energy, less complexity. For the AI your team already uses, and for the digital products we build to solve real problems and last.',
-    /** Conscious AI leads; the work sits beside it. The studio's own "start a project" call waits for the sections below. */
+    /** What we do, AI first: one strong line in ink, then one quiet line. The problem people arrive with is the next section. */
+    lead: 'We make AI do more with less.',
+    body: 'Less cost, less energy, less complexity. For the AI your team already uses, and for the products we build.',
+    /** One button only: Conscious AI. The studio's own "start a project" call waits for the sections below. */
     primary: 'Explore Conscious AI',
-    secondary: 'See what we build',
     /**
      * The three ways in under the buttons, three ruled cards, each one link:
      * course (/conscious-ai), team training (/conscious-ai/teams), services
@@ -53,19 +53,19 @@ export const en = {
       {
         kicker: 'Free · self-paced',
         title: 'Learn it yourself.',
-        body: 'A free course for non-developers: pick the right tool, prompt well, judge the output.',
+        body: 'A free course for non-developers. Use AI well in your own work.',
         cta: 'Open the course',
       },
       {
         kicker: 'For teams',
         title: 'Train your team.',
-        body: 'Hands-on sessions around your real workflows, with results measured before and after.',
+        body: 'Hands-on sessions around your real workflows. Measured before and after.',
         cta: 'See team training',
       },
       {
         kicker: 'The studio',
         title: 'Hire us to build.',
-        body: 'AI optimisation and digital products that run lean: the right model, less context, less waste.',
+        body: 'AI optimisation and lean digital products. Right model, less waste.',
         cta: 'See our services',
       },
     ],

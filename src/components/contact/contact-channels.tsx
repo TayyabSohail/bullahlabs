@@ -17,7 +17,8 @@ import type { Dictionary } from '@/i18n/dictionaries/en';
 // Keep it out of the default contact-form path, then load it only when a
 // visitor explicitly selects the call option.
 const CalEmbed = dynamic(
-  () => import('@/components/contact/cal-embed').then((module) => module.CalEmbed),
+  () =>
+    import('@/components/contact/cal-embed').then((module) => module.CalEmbed),
   {
     ssr: false,
     loading: () => <div className='min-h-[38rem] w-full' aria-busy='true' />,
@@ -77,34 +78,34 @@ export function ContactChannels({
     <div>
       {header}
 
-      <div className='mt-8 flex flex-wrap justify-center gap-2 border-t border-line pt-6 md:justify-start sm:mt-10'>
-          <button
-            type='button'
-            onClick={() => setChannel('calendar')}
-            aria-pressed={channel === 'calendar'}
-            className={`inline-flex h-12 items-center gap-2 rounded-full border px-5 text-left text-[15px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 ${
-              channel === 'calendar'
-                ? 'border-brand bg-brand text-brand-foreground'
-                : 'border-line bg-surface text-foreground hover:border-brand hover:text-brand-text'
-            }`}
-          >
-            <CalendarDays className='h-4 w-4' />
-            {t.callTab}
-          </button>
+      <div className='mt-8 flex flex-wrap justify-center gap-2 border-t border-line pt-6 sm:mt-10 md:justify-start'>
+        <button
+          type='button'
+          onClick={() => setChannel('calendar')}
+          aria-pressed={channel === 'calendar'}
+          className={`inline-flex h-12 items-center gap-2 rounded-full border px-5 text-left text-[15px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 ${
+            channel === 'calendar'
+              ? 'border-brand bg-brand text-brand-foreground'
+              : 'border-line bg-surface text-foreground hover:border-brand hover:text-brand-text'
+          }`}
+        >
+          <CalendarDays className='h-4 w-4' />
+          {t.callTab}
+        </button>
 
-          <button
-            type='button'
-            onClick={() => setChannel('form')}
-            aria-pressed={channel === 'form'}
-            className={`inline-flex h-12 items-center gap-2 rounded-full border px-5 text-left text-[15px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 ${
-              channel === 'form'
-                ? 'border-brand bg-brand text-brand-foreground'
-                : 'border-line bg-surface text-foreground hover:border-brand hover:text-brand-text'
-            }`}
-          >
-            <PenLine className='h-4 w-4' />
-            {t.formTab}
-          </button>
+        <button
+          type='button'
+          onClick={() => setChannel('form')}
+          aria-pressed={channel === 'form'}
+          className={`inline-flex h-12 items-center gap-2 rounded-full border px-5 text-left text-[15px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60 ${
+            channel === 'form'
+              ? 'border-brand bg-brand text-brand-foreground'
+              : 'border-line bg-surface text-foreground hover:border-brand hover:text-brand-text'
+          }`}
+        >
+          <PenLine className='h-4 w-4' />
+          {t.formTab}
+        </button>
       </div>
 
       {channel === 'calendar' ? (

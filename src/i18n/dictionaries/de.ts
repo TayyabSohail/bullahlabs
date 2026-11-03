@@ -24,26 +24,26 @@ export const de: Dictionary = {
   hero: {
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
     accent: [4, 5, 6],
-    body: 'Wir holen aus KI mehr heraus, mit weniger: weniger Kosten, weniger Energie, weniger Komplexität. Für die KI, die Ihr Team schon nutzt, und für die digitalen Produkte, die wir bauen, damit sie echte Probleme lösen und lange halten.',
+    lead: 'Wir holen aus KI mehr heraus, mit weniger.',
+    body: 'Weniger Kosten, weniger Energie, weniger Komplexität. Für die KI, die Ihr Team schon nutzt, und für die Produkte, die wir bauen.',
     primary: 'Conscious AI entdecken',
-    secondary: 'Sehen, was wir bauen',
     steps: [
       {
         kicker: 'Kostenlos · eigenes Tempo',
         title: 'Selbst lernen.',
-        body: 'Ein kostenloser Kurs für Nicht-Entwickler: das richtige Tool wählen, gut prompten, Ergebnisse beurteilen.',
+        body: 'Ein kostenloser Kurs für Nicht-Entwickler. KI gut nutzen, in der eigenen Arbeit.',
         cta: 'Zum Kurs',
       },
       {
         kicker: 'Für Teams',
         title: 'Ihr Team schulen.',
-        body: 'Praxisnahe Sessions rund um Ihre echten Abläufe, Ergebnisse vorher und nachher gemessen.',
+        body: 'Praxisnahe Sessions rund um Ihre echten Abläufe. Vorher und nachher gemessen.',
         cta: 'Zum Team-Training',
       },
       {
         kicker: 'Das Studio',
         title: 'Uns bauen lassen.',
-        body: 'KI-Optimierung und digitale Produkte, die schlank laufen: das passende Modell, weniger Kontext, weniger Verschwendung.',
+        body: 'KI-Optimierung und schlanke digitale Produkte. Passendes Modell, weniger Verschwendung.',
         cta: 'Zu den Services',
       },
     ],

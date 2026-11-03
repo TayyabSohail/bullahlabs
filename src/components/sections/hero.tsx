@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { Contours } from '@/components/effects/contours';
@@ -13,8 +13,16 @@ interface HeroProps {
   dict: Dictionary;
 }
 
-/** Where each of the three cells under the buttons leads, in dictionary order: course, team training, services. */
-const STEP_PATHS = [paths.program, paths.teams, paths.services] as const;
+/**
+ * Where each of the three cells under the buttons leads, in dictionary
+ * order: the course section on the Conscious AI page (its `CourseSection`
+ * carries id "course"), team training, services.
+ */
+const STEP_PATHS = [
+  `${paths.program}#course`,
+  paths.teams,
+  paths.services,
+] as const;
 
 /**
  * Opening section: what we are, in one headline and a few lines, one way
@@ -41,20 +49,21 @@ export function Hero({ dict }: HeroProps) {
           className='bl-display justify-center text-center text-[clamp(2.6rem,6.6vw,6rem)] leading-[0.98] tracking-[-0.02em] text-ink sm:justify-start sm:text-left'
         />
 
-        <div className='mt-10 grid gap-14 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-stretch lg:gap-x-16 xl:gap-x-20'>
+        <div className='mt-10 grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-stretch lg:gap-x-16 xl:gap-x-20'>
           <div className='flex min-w-0 flex-col text-center sm:text-left'>
+            {/* The lead in ink, the rest muted: one strong line, one quiet
+                one. */}
             <Reveal delay={0.1}>
-              <p className='mx-auto max-w-xl text-lg leading-relaxed text-ink/70 sm:mx-0 sm:text-xl'>
-                {t.body}
+              <p className='mx-auto max-w-xl text-lg leading-relaxed sm:mx-0 sm:text-xl'>
+                <span className='block font-medium text-ink'>{t.lead}</span>
+                <span className='mt-2 block text-ink/60'>{t.body}</span>
               </p>
             </Reveal>
 
-            {/* Conscious AI leads in ink; the work sits beside it in a
-                ruled box. A shared fixed measure makes the pair read as
-                one deliberate choice on every viewport. */}
+            {/* One button: the first view asks for a single decision. */}
             <Reveal
               delay={0.18}
-              className='mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:items-stretch sm:justify-center lg:justify-start'
+              className='mt-8 flex w-full justify-center lg:justify-start'
             >
               <Link
                 href={paths.program}
@@ -63,47 +72,59 @@ export function Hero({ dict }: HeroProps) {
                 {t.primary}
                 <span className='h-2.5 w-2.5 shrink-0 bg-brand' />
               </Link>
-              <Link
-                href={paths.work}
-                className='bl-btn bl-btn-secondary inline-flex h-16 w-full max-w-[18rem] items-center justify-between gap-4 whitespace-nowrap bg-surface px-7 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em]'
-              >
-                {t.secondary}
-                <ArrowRight className='h-4 w-4' />
-              </Link>
             </Reveal>
 
             {/* The three ways in (course, team training, services): three
-                ruled cards on hard shadows, each one link, sitting at the
-                bottom of the column so the copy side reads as tall as the
-                receipt beside it. Kicker and number on top, a short serif
-                heading, one line, and the way in on a rule at the foot. */}
-            <Reveal delay={0.26} className='mt-12 lg:mt-auto lg:pt-12'>
-              <ol className='grid gap-4 sm:grid-cols-3 sm:gap-5'>
+                quiet ruled cards, each one link, sitting at the bottom of
+                the column so the copy side reads as tall as the receipt
+                beside it. Thin rules, no shadow, no colour past the tiny
+                number, so the headline, the button and the receipt keep
+                the eye. Kicker and number on top, a short serif heading,
+                one line, and the way in on a rule at the foot. */}
+            <Reveal delay={0.26} className='mt-8 lg:mt-auto lg:pt-12'>
+              {/* Below lg the three cards would stack and push the receipt
+                  a screen down, so phones and tablets get one compact strip
+                  of the three titles instead. */}
+              <ol className='flex flex-wrap justify-center gap-x-6 gap-y-2 border-t border-ink/20 pt-4 sm:justify-start lg:hidden'>
+                {t.steps.map(({ title }, index) => (
+                  <li key={title}>
+                    <Link
+                      href={STEP_PATHS[index] ?? paths.program}
+                      className='group inline-flex items-center gap-1.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/80 transition-colors hover:text-ink'
+                    >
+                      <span className='text-brand-text'>
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      {title}
+                      <ArrowUpRight className='h-3.5 w-3.5 shrink-0 text-ink/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+
+              <ol className='hidden gap-4 lg:grid lg:grid-cols-3'>
                 {t.steps.map(({ kicker, title, body, cta }, index) => (
                   <li key={title} className='flex text-left'>
                     <Link
                       href={STEP_PATHS[index] ?? paths.program}
-                      className='bl-card bl-card-link group flex w-full flex-col p-5 sm:p-5'
+                      className='group flex w-full flex-col border border-ink/20 bg-surface/50 p-4 transition-colors hover:border-ink/60 hover:bg-surface sm:p-5'
                     >
-                      <span className='flex items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground'>
-                        <span>
-                          <span className='font-semibold text-brand-text'>
-                            {String(index + 1).padStart(2, '0')}
-                          </span>
-                          <span aria-hidden='true'> · </span>
-                          {kicker}
+                      <span className='font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground'>
+                        <span className='font-semibold text-brand-text'>
+                          {String(index + 1).padStart(2, '0')}
                         </span>
-                        <span className='h-2 w-2 shrink-0 bg-brand' />
+                        <span aria-hidden='true'> · </span>
+                        {kicker}
                       </span>
-                      <span className='bl-display mt-4 block text-[1.45rem] leading-[1.05] text-ink sm:text-2xl'>
+                      <span className='bl-display mt-3 block text-[1.35rem] leading-[1.05] text-ink sm:text-[1.5rem]'>
                         {title}
                       </span>
-                      <span className='mt-2 block flex-1 text-sm leading-relaxed text-ink/65'>
+                      <span className='mt-2 block flex-1 text-sm leading-relaxed text-ink/60'>
                         {body}
                       </span>
-                      <span className='mt-5 flex items-center justify-between gap-3 border-t border-ink/20 pt-3 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink transition-colors group-hover:text-brand-text'>
+                      <span className='mt-4 flex items-center justify-between gap-3 border-t border-ink/15 pt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-ink/70 transition-colors group-hover:text-ink'>
                         {cta}
-                        <ArrowUpRight className='h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+                        <ArrowUpRight className='h-3.5 w-3.5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
                       </span>
                     </Link>
                   </li>
