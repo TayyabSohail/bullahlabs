@@ -32,6 +32,11 @@ function initPosthog() {
     ui_host: 'https://eu.posthog.com',
     capture_pageview: false, // Disable automatic pageview capture, as we capture manually
     capture_pageleave: true,
+    // Uncaught errors and rejected promises in the browser go to PostHog
+    // Error tracking, which opens a GitHub issue for each new one. Production
+    // builds only, so errors while developing locally never become issues.
+    // Server errors: src/instrumentation.ts.
+    capture_exceptions: process.env.NODE_ENV === 'production',
     persistence: persistenceFor(readCookieConsent()),
   });
 }
