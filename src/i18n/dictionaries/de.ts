@@ -251,6 +251,7 @@ export const de: Dictionary = {
       accent: [1, 2],
     },
     filterLabel: 'Projekte filtern',
+    filterBy: 'Filtern nach',
     filters: {
       All: 'Alle',
       SaaS: 'SaaS',
@@ -281,7 +282,6 @@ export const de: Dictionary = {
           'Ergebnisse sind belegt, nachvollziehbar oder von einem Menschen freigegeben, wo das Risiko es verlangt.',
       },
     },
-    count: '{n} Projekte',
     teaser: {
       kicker: 'Ausgewählte Projekte',
       title: 'Jedes Projekt soll einen Unterschied machen.',
@@ -545,7 +545,6 @@ export const de: Dictionary = {
     email: 'Geschäftliche E-Mail',
     emailPlaceholder: 'erika@unternehmen.de',
     optional: 'optional',
-    pick: 'Bitte wählen',
     tools: {
       label: 'Wichtigstes KI-Tool',
       options: {
@@ -765,12 +764,12 @@ export const de: Dictionary = {
     title: 'Sprechen wir über Ihr Projekt.',
     accent: [3, 4],
     description:
-      'Buchen Sie ein 30-minütiges Erstgespräch oder schreiben Sie uns. Ein Mensch antwortet innerhalb eines Werktags.',
-    book: 'Ein 30-minütiges Kennenlerngespräch buchen',
+      'Buchen Sie ein Erstgespräch oder schreiben Sie uns. Ein Mensch antwortet innerhalb eines Werktags.',
+    book: 'Ein Kennenlerngespräch buchen',
     choose: {
       formTab: 'Schreiben Sie uns',
       callTab: 'Gespräch buchen',
-      callHint: '30-minütiges Erstgespräch',
+      callHint: 'Kurzes Erstgespräch',
     },
     home: {
       kicker: 'Kontakt',

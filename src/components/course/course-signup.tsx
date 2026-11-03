@@ -158,7 +158,7 @@ export function CourseSignup({
           : 'border-brand/60 bg-brand-soft/40 text-brand-text',
       )}
     >
-      U R ALREADY ON WAITLIST
+      {t.alreadyTitle}
     </p>
   ) : (
     <form onSubmit={onSubmit} noValidate className='w-full'>

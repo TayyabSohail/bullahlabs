@@ -213,9 +213,11 @@ export function FreeCoursePopup({ dict }: { dict: Dictionary }) {
               <p className='bl-display mt-1 text-[1.35rem] leading-none text-white'>
                 {instructor.name}
               </p>
-              <p className='mt-2 flex items-center gap-1.5 text-[11px] leading-tight text-white/75'>
-                <HarvardShield className='h-4 w-auto shrink-0' />
-                <span>{instructor.school}</span>
+              <p className='mt-2.5 flex items-center gap-2 leading-tight text-white'>
+                <HarvardShield className='h-6 w-auto shrink-0' />
+                <span className='font-display text-[13px] font-bold'>
+                  {instructor.school}
+                </span>
               </p>
             </div>
             {/* The cross folds the panel back into its pill. */}
@@ -242,11 +244,11 @@ export function FreeCoursePopup({ dict }: { dict: Dictionary }) {
             <p className='mt-2 text-[13px] leading-relaxed text-muted-foreground'>
               {t.body}
             </p>
-            <ul className='mt-3 flex flex-wrap gap-1.5'>
+            <ul className='mt-3 flex flex-wrap justify-center gap-1.5 sm:justify-start'>
               {facts.map((fact) => (
                 <li
                   key={fact}
-                  className='border border-ink/25 px-2 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-ink'
+                  className='border border-brand/60 bg-brand-soft px-2 py-1 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-brand-text'
                 >
                   {fact}
                 </li>

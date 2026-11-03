@@ -279,6 +279,8 @@ export const en = {
       accent: [1, 2],
     },
     filterLabel: 'Filter projects',
+    /** Visible label before the filter chips. */
+    filterBy: 'Filter by',
     /** Project categories, as filter chips on /work and labels elsewhere. */
     filters: {
       All: 'All work',
@@ -311,7 +313,6 @@ export const en = {
           'Output is grounded, traceable or approved by a person where the risk requires it.',
       },
     },
-    count: '{n} projects',
     /** Homepage pointer to the projects page; the work itself lives there. */
     teaser: {
       kicker: 'Selected work',
@@ -331,7 +332,7 @@ export const en = {
       description:
         'Three products of three kinds, each with the problem, the work and what changed. The rest are on the work page.',
       cta: 'View all work',
-      more: '{n} more case studies, with filters by product type.',
+      more: 'More case studies, with filters by product type.',
     },
   },
   services: {
@@ -576,8 +577,6 @@ export const en = {
     email: 'Work email',
     emailPlaceholder: 'jane@company.com',
     optional: 'optional',
-    /** Placeholder shown in each of the three selects before a pick. */
-    pick: 'Pick one',
     /** The three picks; keys mirror CONTACT_TOOLS / CONTACT_TEAM_SIZES / CONTACT_GOALS. */
     tools: {
       label: 'Main AI tool',
@@ -797,13 +796,13 @@ export const en = {
     title: "Let's talk about your project.",
     accent: [3, 4],
     description:
-      'Book a 30-minute intro call or write to us. A person replies within one business day.',
-    book: 'Book a 30-minute intro call',
+      'Book an intro call or write to us. A person replies within one business day.',
+    book: 'Book an intro call',
     /** Two ways to start: book a slot straight away, or write to us. */
     choose: {
       formTab: 'Write to us',
       callTab: 'Book a call',
-      callHint: '30-minute intro call',
+      callHint: 'Short intro call',
     },
     /** Closing section of the homepage: the same form, without leaving. */
     home: {

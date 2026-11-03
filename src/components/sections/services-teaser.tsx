@@ -16,9 +16,10 @@ interface ServicesTeaserProps {
 
 /**
  * Services hook on the work page: one ruled card between the hero and the
- * project grid, centred, a short line and a single button to /services. It names
- * nothing; the services page does that. The mirror of WorkShowcase on
- * /services.
+ * project grid with a short line and a single button to /services. Stacked
+ * and centred on small screens; from lg up a left-aligned row with the
+ * button on the right, like the other strips on the site. It names nothing;
+ * the services page does that. The mirror of WorkShowcase on /services.
  */
 export function ServicesTeaser({ dict, className }: ServicesTeaserProps) {
   const t = dict.services.teaser;
@@ -29,15 +30,15 @@ export function ServicesTeaser({ dict, className }: ServicesTeaserProps) {
       className={cn('bl-container pb-10 sm:pb-14', className)}
     >
       <Reveal>
-        <div className='bl-card bl-card-tint flex flex-col items-center gap-6 px-6 py-8 text-center sm:px-8 sm:py-10 lg:px-10'>
-          <div className='flex min-w-0 flex-col items-center'>
-            <p className='bl-kicker justify-center'>{t.kicker}</p>
+        <div className='bl-card bl-card-tint flex flex-col items-center gap-6 px-6 py-8 text-center sm:px-8 sm:py-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:px-10 lg:text-left'>
+          <div className='flex min-w-0 flex-col items-center lg:items-start'>
+            <p className='bl-kicker justify-center lg:justify-start'>{t.kicker}</p>
             <TextReveal
               as='h2'
               text={t.title}
               accentWords={[...t.accent]}
               delay={0.1}
-              className='bl-display mt-3 justify-center text-2xl text-foreground sm:text-3xl'
+              className='bl-display mt-3 justify-center text-2xl text-foreground sm:text-3xl lg:justify-start'
             />
             <p className='mt-2 max-w-[56ch] text-sm leading-relaxed text-muted-foreground sm:text-base'>
               {t.description}

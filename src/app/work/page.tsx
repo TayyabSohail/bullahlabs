@@ -52,8 +52,8 @@ export default async function WorkPage() {
           categories={getCategories(showcase)}
           labels={t.filters}
           filterLabel={t.filterLabel}
+          filterByLabel={t.filterBy}
           actionLabel={t.view}
-          countTemplate={t.count}
         />
       </section>
       <Testimonials dict={dict} title='What people say.' />

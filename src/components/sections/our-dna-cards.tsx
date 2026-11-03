@@ -42,21 +42,21 @@ export function VerseCard() {
         <motion.p
           lang='pa-Arab'
           dir='rtl'
-          initial={reduce ? false : { clipPath: 'inset(0 0 0 100%)' }}
-          whileInView={{ clipPath: 'inset(0 0 0 0%)' }}
+          initial={reduce ? false : { clipPath: 'inset(-60% 0 -60% 100%)' }}
+          whileInView={{ clipPath: 'inset(-60% 0 -60% 0%)' }}
           viewport={inView}
           transition={{ duration: 1.4, ease, delay: 0.35 }}
-          className='urdu-khatati relative text-right text-4xl leading-[1.9] text-foreground sm:text-5xl'
+          className='urdu-khatati relative text-right text-4xl leading-[2.6] text-foreground sm:text-5xl sm:leading-[2.6]'
         >
           بلھیا کی جاناں میں کون
         </motion.p>
         <motion.p
           lang='pa-Guru'
-          initial={reduce ? false : { clipPath: 'inset(0 100% 0 0)' }}
-          whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
+          initial={reduce ? false : { clipPath: 'inset(-30% 100% -30% 0)' }}
+          whileInView={{ clipPath: 'inset(-30% 0% -30% 0)' }}
           viewport={inView}
           transition={{ duration: 1.4, ease, delay: 0.7 }}
-          className='gurmukhi-lipi relative mt-4 text-3xl leading-[1.5] text-foreground sm:text-4xl'
+          className='gurmukhi-lipi relative mt-6 text-3xl leading-[1.5] text-foreground sm:text-4xl sm:leading-[1.5]'
         >
           ਬੁੱਲ੍ਹਿਆ ਕੀ ਜਾਣਾਂ ਮੈਂ ਕੌਣ
         </motion.p>

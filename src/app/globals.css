@@ -194,10 +194,13 @@
     font-family:
       var(--font-urdu), 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq',
       'Urdu Typesetting', 'Noto Naskh Arabic', serif;
-    /* Nastaliq hangs below the baseline and stacks words diagonally, so it
-       needs a regular weight and roomy lines or it reads as a smudge. */
+    /* Nastaliq hangs below the baseline and stacks words diagonally: Noto
+       Nastaliq Urdu inks about 2.5em per line, so it needs a regular weight
+       and roomy lines or it collides with the line below. A responsive
+       text-* utility on the element resets line-height, so the markup pairs
+       it with a matching sm:leading-*. */
     font-weight: 400;
-    line-height: 2.2;
+    line-height: 2.6;
     text-wrap: balance;
   }
 

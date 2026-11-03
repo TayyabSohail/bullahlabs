@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 
 import { submitContact } from '@/actions/contact';
 
-import { PickSelect } from '@/components/contact/pick-select';
+import { PickRow } from '@/components/contact/pick-row';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -59,9 +59,10 @@ interface ContactFormProps {
 /**
  * One step and nothing decorative. The page heading above the card already
  * says what this is and what comes back, so the card holds only what we
- * need to reply: three selects on one row, a name and an email, an
- * optional note, the consent line and the button. The selects replaced a
- * field of fifteen chips; the same facts, one answer each, far less ink.
+ * need to reply: three ruled rows of answers, a name and an email, an
+ * optional note, the consent line and the button. The rows replaced a set
+ * of dropdowns, which hid the answers; here every answer is in view and
+ * the three picks take three clicks.
  */
 export function ContactForm({ dict }: ContactFormProps) {
   const [sent, setSent] = useState(false);
@@ -139,26 +140,24 @@ export function ContactForm({ dict }: ContactFormProps) {
         </div>
 
         <div className='space-y-6 px-5 py-6 sm:px-7 sm:py-8 lg:px-9 lg:py-9'>
-          <div className='grid gap-5 sm:grid-cols-3'>
+          {/* Three strips of answers, every answer visible. Nothing to open. */}
+          <div className='space-y-5'>
             <PickField
               control={form.control}
               name='tool'
               label={t.tools.label}
-              placeholder={t.pick}
               options={TOOL_KEYS.map((key) => [key, t.tools.options[key]])}
             />
             <PickField
               control={form.control}
               name='teamSize'
               label={t.teamSize.label}
-              placeholder={t.pick}
               options={SIZE_KEYS.map((key) => [key, t.teamSize.options[key]])}
             />
             <PickField
               control={form.control}
               name='goal'
               label={t.goals.label}
-              placeholder={t.pick}
               options={GOAL_KEYS.map((key) => [key, t.goals.options[key]])}
             />
           </div>
@@ -262,13 +261,11 @@ function PickField({
   control,
   name,
   label,
-  placeholder,
   options,
 }: {
   control: Control;
   name: 'tool' | 'teamSize' | 'goal';
   label: string;
-  placeholder: string;
   options: Array<[value: string, label: string]>;
 }) {
   return (
@@ -277,12 +274,12 @@ function PickField({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className='text-white'>{label}</FormLabel>
           <FormControl>
-            <PickSelect
+            <PickRow
+              name={name}
+              label={label}
               value={field.value ?? ''}
               onValueChange={(value) => field.onChange(value)}
-              placeholder={placeholder}
               options={options}
             />
           </FormControl>

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import { ListFilter } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
 import { ProjectCard } from '@/components/work/project-card';
@@ -13,33 +14,42 @@ interface ProjectGridProps {
   projects: Project[];
   categories: ProjectCategory[];
   labels: Record<string, string>;
+  /** Accessible name of the filter group, e.g. "Filter projects". */
   filterLabel: string;
+  /** Visible label before the chips, e.g. "Filter by". */
+  filterByLabel: string;
   actionLabel: string;
-  countTemplate: string;
 }
 
 type Filter = 'All' | ProjectCategory;
 
 /**
- * Product-category filter chips over a three-column masonry of project
- * tiles. Items are distributed across columns so the flow reads
- * left-to-right, top-to-bottom.
+ * A labelled row of filter chips with counts over a three-column masonry of
+ * project tiles. The active chip is an ink block on a hard shadow. Items are
+ * distributed across columns so the flow reads left-to-right, top-to-bottom.
  */
 export function ProjectGrid({
   projects,
   categories,
   labels,
   filterLabel,
+  filterByLabel,
   actionLabel,
-  countTemplate,
 }: ProjectGridProps) {
   const [active, setActive] = useState<Filter>('All');
   const reduce = useReducedMotion();
 
-  const filters: Filter[] = useMemo(
-    () => ['All', ...categories],
-    [categories],
-  );
+  const filters = useMemo(() => {
+    const all: Filter[] = ['All', ...categories];
+    return all.map((filter) => ({
+      filter,
+      label: labels[filter] ?? filter,
+      count:
+        filter === 'All'
+          ? projects.length
+          : projects.filter((project) => project.category === filter).length,
+    }));
+  }, [categories, labels, projects]);
 
   const visible = useMemo(() => {
     if (active === 'All') return projects;
@@ -48,13 +58,21 @@ export function ProjectGrid({
 
   return (
     <>
-      <div className='flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between'>
-        <div
-          role='group'
-          aria-label={filterLabel}
-          className='flex max-w-full flex-wrap gap-1.5'
-        >
-          {filters.map((filter) => {
+      {/* A filter row, not a tab strip: a mono "Filter by" label with a
+          funnel icon, then separate ruled chips, each carrying its count.
+          The active chip is an ink block on a hard shadow. Chips wrap and
+          sit left on narrow screens, centred under the heading from sm up. */}
+      <div
+        role='group'
+        aria-label={filterLabel}
+        className='flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-4'
+      >
+        <span className='inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/60'>
+          <ListFilter className='h-3.5 w-3.5' aria-hidden />
+          {filterByLabel}
+        </span>
+        <div className='flex flex-wrap gap-2 sm:justify-center'>
+          {filters.map(({ filter, label, count }) => {
             const isActive = filter === active;
             return (
               <button
@@ -63,23 +81,28 @@ export function ProjectGrid({
                 onClick={() => setActive(filter)}
                 aria-pressed={isActive}
                 className={cn(
-                  'border px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.12em] transition-colors sm:px-4 sm:py-2.5 sm:text-[11px]',
+                  'inline-flex h-9 items-center gap-2 whitespace-nowrap border px-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] transition-[background-color,color,box-shadow,transform] duration-150',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background',
                   isActive
-                    ? 'border-ink bg-ink text-white'
-                    : 'border-ink/15 bg-background text-ink/70 hover:bg-brand-soft hover:text-ink',
+                    ? 'border-ink bg-ink text-white shadow-[3px_3px_0_0_hsl(var(--ink))]'
+                    : 'border-ink/30 bg-surface text-ink/70 hover:border-ink hover:bg-brand-soft hover:text-ink active:translate-y-px',
                 )}
               >
-                {labels[filter] ?? filter}
+                <span>{label}</span>
+                <span
+                  className={cn(
+                    'inline-flex h-5 min-w-5 items-center justify-center border px-1 text-[10px] tabular-nums tracking-normal',
+                    isActive
+                      ? 'border-white/30 text-white/80'
+                      : 'border-ink/20 text-ink/50',
+                  )}
+                >
+                  {count}
+                </span>
               </button>
             );
           })}
         </div>
-        <p
-          aria-live='polite'
-          className='font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground'
-        >
-          {countTemplate.replace('{n}', String(visible.length))}
-        </p>
       </div>
 
       <MasonryColumns

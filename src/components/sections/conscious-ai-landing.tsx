@@ -8,6 +8,11 @@ import { Reveal } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { FaqSection } from '@/components/sections/faq';
+import {
+  buildOffers,
+  OfferCard,
+  TeamsOfferCard,
+} from '@/components/sections/offer-card';
 
 import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
@@ -361,7 +366,7 @@ function InstructorCard({
               <span className='block font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground sm:text-[11px]'>
                 Alumnus
               </span>
-              <span className='mt-0.5 block font-display text-xl font-semibold leading-tight text-foreground sm:text-2xl'>
+              <span className='mt-0.5 block font-display text-xl font-bold leading-tight text-foreground sm:text-2xl'>
                 {school}
               </span>
             </span>
@@ -481,13 +486,13 @@ export function OurRoots() {
                 <p
                   lang='pa-Arab'
                   dir='rtl'
-                  className='urdu-khatati text-right text-xl text-white sm:text-2xl'
+                  className='urdu-khatati text-right text-xl leading-[2.6] text-white sm:text-2xl sm:leading-[2.6]'
                 >
                   پڑھ پڑھ علم ہزار کتاباں، کدے اپنے آپ نوں پڑھیا نئیں
                 </p>
                 <p
                   lang='pa-Guru'
-                  className='gurmukhi-lipi mt-5 text-lg text-white/80 sm:text-xl'
+                  className='gurmukhi-lipi mt-5 text-lg leading-[1.8] text-white/80 sm:text-xl sm:leading-[1.8]'
                 >
                   ਪੜ੍ਹ ਪੜ੍ਹ ਇਲਮ ਹਜ਼ਾਰ ਕਿਤਾਬਾਂ, ਕਦੇ ਆਪਣੇ ਆਪ ਨੂੰ ਪੜ੍ਹਿਆ ਨਈਂ
                 </p>
@@ -521,46 +526,31 @@ const consciousAiFaqs: Faq[] = [
   {
     question: 'Is this an anti-AI thing?',
     answer:
-      'No. We use AI every day and we build with it. Conscious AI means using it on purpose: the right tool for the task, only the context it needs, and a person who checks the result. That usually gives better work, and it costs less money and energy along the way.',
+      'No. We use AI every day and we build with it. Conscious AI means using it on purpose: the right tool for the task, only the context it needs, and a person who checks the result. That gives better work for less money and energy.',
   },
   {
     question: 'Will AI replace me?',
     answer:
-      'AI replaces tasks much faster than it replaces people. The person at risk is the one who pastes in a prompt and trusts whatever comes back. Learn when AI helps, which tool fits and how to check the output, and you become the person your team relies on. The five-step profile above shows where you stand today and what to work on next.',
+      'AI replaces tasks much faster than it replaces people. The person at risk is the one who pastes in a prompt and trusts whatever comes back. Learn when AI helps, which tool fits and how to check the output, and you become the person your team relies on.',
   },
   {
     question: 'Can one prompt really hurt the planet?',
     answer:
-      'A single prompt costs very little. The problem is scale and habit: billions of prompts a day, often sent to the largest model with far more context than the task needs. A smaller model, a tighter prompt, or no AI at all where a formula or a search does the job cuts that footprint many times over. The receipt at the top of this page shows what that adds up to for one team over a year.',
+      'A single prompt costs very little. The problem is scale and habit: billions of prompts a day, often sent to the largest model with far more context than the task needs. A smaller model, a tighter prompt, or no AI at all where a search does the job cuts that footprint many times over.',
   },
   {
     question: 'Do I need to be technical?',
     answer:
-      'No. This is made for people in marketing, HR, finance, operations, sales and teaching, not for developers. Everything is shown on everyday work: emails, summaries, spreadsheets, research and planning. If you can describe your task, you can follow along.',
+      'No. This is made for people in marketing, HR, finance, operations, sales and teaching, not for developers. Everything is shown on everyday work: emails, summaries, spreadsheets, research and planning.',
   },
   {
     question: 'What does it cost?',
     answer:
-      'The AI profile, the course and the community are free. For teams, workshops, guidance and audits are scoped to your team and priced per engagement. Book a time and we will tell you what fits and what it costs before anything starts.',
-  },
-  {
-    question: 'When does the course drop?',
-    answer:
-      'It is in production now. Join the waitlist in the course section and you will get the first lesson the day it is published. We only email you about the course, nothing else.',
-  },
-  {
-    question: 'What happens to my answers and email?',
-    answer:
-      'Your profile answers are used to build your result and to shape the lessons. Your email is used only for the update you signed up for. We do not sell or share either, and you can ask us to delete them at any time. The details are in our privacy policy.',
-  },
-  {
-    question: 'Why "Bullah"?',
-    answer:
-      'Bullah Labs is named after Bulleh Shah, the 18th-century Punjabi Sufi poet who questioned what the crowd repeated and chose substance over fashion. That is the attitude we bring to AI: question the hype, keep what works, and stay the one who decides.',
+      'The AI profile, the course and the community are free. For teams, workshops, guidance and audits are scoped to your team and priced per engagement. Book a time and we will tell you what fits before anything starts.',
   },
 ];
 
-/** Eight quick answers, in the page's own voice. */
+/** Five quick answers, in the page's own voice. Kept short so the block fits one screen. */
 export function ConsciousAiFaq() {
   return (
     <FaqSection
@@ -609,223 +599,38 @@ export function ConsciousAiClosing({ dict }: { dict: Dictionary }) {
   );
 }
 
-/** Three ways in for teams; each links to its own card on the teams page. */
-const teamOffers = [
-  [
-    '01',
-    'Workshops',
-    'Turn AI anxiety into AI confidence, on your real tasks.',
-    `${paths.teams}#workshops`,
-  ],
-  [
-    '02',
-    'Guidance',
-    'Shared rules for tools, data, cost and carbon.',
-    `${paths.teams}#guidance`,
-  ],
-  [
-    '03',
-    'Audits',
-    'We find the wasted compute in one workflow. Then we cut it.',
-    `${paths.teams}#audits`,
-  ],
-] as const;
-
-/** Three ways in for people who build: each row leads to /services. */
-const buildOffers = [
-  [
-    '01',
-    'Product development',
-    'From a rough idea to a product people pay for.',
-    paths.services,
-  ],
-  [
-    '02',
-    'Engineering',
-    'Web, mobile and backend, built to last and to be measured.',
-    paths.services,
-  ],
-  [
-    '03',
-    'AI automation & integrations',
-    'The boring work, automated. Only where it actually pays.',
-    paths.services,
-  ],
-] as const;
-
-type Offer = (typeof teamOffers)[number] | (typeof buildOffers)[number];
-
-/** One shared button measure so the two cards' actions line up. */
-const nextStepButton =
-  'bl-btn inline-flex h-11 items-center gap-2 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em]';
-
-const inkGhostButton = `${nextStepButton} border border-white/45 text-white hover:border-white hover:bg-white/10`;
-
-/**
- * One offer per row: number, title and a half-line of body on the same
- * baseline, so three rows read as a list rather than three paragraphs.
- */
-function OfferRows({
-  offers,
-  ink,
-}: {
-  offers: readonly Offer[];
-  ink: boolean;
-}) {
-  return (
-    <ul
-      className={
-        ink
-          ? 'mt-6 divide-y divide-white/15 border-y border-white/15'
-          : 'mt-6 divide-y divide-ink/15 border-y border-ink/15'
-      }
-    >
-      {offers.map(([number, title, body, href]) => (
-        <li key={title}>
-          <Link
-            href={href}
-            className={`group grid grid-cols-[2rem_1fr_auto] items-baseline gap-x-3 py-3.5 transition-colors ${
-              ink ? 'hover:bg-white/5' : 'hover:bg-brand-soft'
-            }`}
-          >
-            <span
-              className={`font-mono text-[10px] font-semibold ${
-                ink ? 'text-brand-2' : 'text-brand-text'
-              }`}
-            >
-              {number}
-            </span>
-            <span className='min-w-0'>
-              <span
-                className={`bl-display mr-2 text-lg sm:text-xl ${
-                  ink ? 'text-white' : 'text-foreground'
-                }`}
-              >
-                {title}
-              </span>
-              <span
-                className={`text-sm leading-relaxed ${
-                  ink ? 'text-white/65' : 'text-muted-foreground'
-                }`}
-              >
-                {body}
-              </span>
-            </span>
-            <ArrowUpRight
-              className={`h-4 w-4 shrink-0 self-center transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${
-                ink ? 'text-brand-2' : 'text-brand-text'
-              }`}
-              aria-hidden='true'
-            />
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 /**
  * Two doors out of the Conscious AI page, built on the same skeleton: kicker,
- * title, one line of body, three offer rows, then the same pair of buttons.
+ * title, three short offer rows, then one button. No blurbs: the rows say it.
  * Teams and business leads on ink; Services is the lighter second card.
  */
 export function ConsciousAiNextSteps() {
-  const bookCall = (className: string) =>
-    siteConfig.calHandle ? (
-      <BookCallButton
-        calHandle={siteConfig.calHandle}
-        hideIcon
-        className={className}
-      >
-        Book a time
-      </BookCallButton>
-    ) : (
-      <Link href={teamHref} className={className}>
-        Book a time
-      </Link>
-    );
-
   return (
     <section id='next-steps' className='bl-section bl-rule bl-band-stone'>
       <div className='bl-container'>
-        <div className='grid gap-4 md:grid-cols-[1fr_auto] md:items-end'>
-          <div>
-            <Reveal>
-              <p className='bl-kicker'>Where next</p>
-            </Reveal>
-            <TextReveal
-              as='h2'
-              text='Two ways we can help.'
-              accentWords={[0, 1]}
-              className='bl-display mt-4 text-3xl text-foreground sm:text-4xl lg:text-5xl'
-            />
-          </div>
-          <Reveal delay={0.15}>
-            <p className='max-w-sm text-sm leading-relaxed text-muted-foreground sm:text-base md:text-right'>
-              Get your team using AI well, or build something with us. Most
-              people start with the first.
-            </p>
-          </Reveal>
-        </div>
+        <Reveal>
+          <p className='bl-kicker'>Where next</p>
+        </Reveal>
+        <TextReveal
+          as='h2'
+          text='Two ways we can help.'
+          accentWords={[0, 1]}
+          className='bl-display mt-4 text-3xl text-foreground sm:text-4xl lg:text-5xl'
+        />
 
         <div className='mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2'>
           <Reveal>
-            <article
-              id='teams'
-              className='bl-card bl-card-ink flex h-full flex-col p-6 text-white sm:p-7'
-            >
-              <p className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-2'>
-                01 · For teams &amp; businesses
-              </p>
-              <h3 className='bl-display mt-4 text-2xl text-white sm:text-3xl'>
-                Get your team using AI well
-              </h3>
-              <p className='mt-3 text-sm leading-relaxed text-white/70 sm:text-base'>
-                Anxious staff, a growing bill, a footprint nobody measures. We
-                fix all three on your real tasks and show you the numbers.
-              </p>
-
-              <OfferRows offers={teamOffers} ink />
-
-              <div className='mt-auto flex flex-wrap gap-3 pt-6'>
-                <Link
-                  href={paths.teams}
-                  className={`${nextStepButton} bl-btn-primary`}
-                >
-                  How we work with teams
-                  <ArrowUpRight className='h-3.5 w-3.5' aria-hidden='true' />
-                </Link>
-                {bookCall(inkGhostButton)}
-              </div>
-            </article>
+            <TeamsOfferCard id='teams' ink />
           </Reveal>
 
           <Reveal delay={0.1}>
-            <article className='bl-card flex h-full flex-col p-6 sm:p-7'>
-              <p className='font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
-                02 · For your product
-              </p>
-              <h3 className='bl-display mt-4 text-2xl text-foreground sm:text-3xl'>
-                Build something with us
-              </h3>
-              <p className='mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base'>
-                Need something built instead? A small senior team, lean by
-                default, honest about what it costs and what it burns.
-              </p>
-
-              <OfferRows offers={buildOffers} ink={false} />
-
-              <div className='mt-auto flex flex-wrap gap-3 pt-6'>
-                <Link
-                  href={paths.services}
-                  className={`${nextStepButton} bl-btn-ink`}
-                >
-                  See what we build
-                  <ArrowUpRight className='h-3.5 w-3.5' aria-hidden='true' />
-                </Link>
-                {bookCall(`${nextStepButton} bl-btn-secondary`)}
-              </div>
-            </article>
+            <OfferCard
+              kicker='02 · For your product'
+              title='Build something with us'
+              offers={buildOffers}
+              href={paths.services}
+              cta='See what we build'
+            />
           </Reveal>
         </div>
       </div>

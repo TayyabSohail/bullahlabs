@@ -1,10 +1,8 @@
 import Link from 'next/link';
 
-import { BookCallButton } from '@/components/contact/book-call-button';
 import { Reveal } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
 
-import { siteConfig } from '@/config/site';
 import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
@@ -15,8 +13,8 @@ interface CtaBannerProps {
   accentWords?: number[];
   body?: string;
   /**
-   * Replaces the contact button and the booking link, for a closing block
-   * that asks for something other than a conversation (e.g. an email field).
+   * Replaces the contact button, for a closing block that asks for
+   * something other than a conversation (e.g. an email field).
    */
   children?: React.ReactNode;
 }
@@ -57,23 +55,13 @@ export function CtaBanner({
             className='mt-10 flex flex-wrap items-center justify-center gap-3'
           >
             {children ?? (
-              <>
-                <Link
-                  href={paths.contact}
-                  className='bl-btn bl-btn-primary inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]'
-                >
-                  {t.button}
-                  <span className='h-2.5 w-2.5 bg-white' />
-                </Link>
-                {siteConfig.calHandle ? (
-                  <BookCallButton
-                    calHandle={siteConfig.calHandle}
-                    className='h-14 border border-white/25 px-5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:border-brand'
-                  >
-                    {dict.contact.book}
-                  </BookCallButton>
-                ) : null}
-              </>
+              <Link
+                href={paths.contact}
+                className='bl-btn bl-btn-primary inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]'
+              >
+                {t.button}
+                <span className='h-2.5 w-2.5 bg-white' />
+              </Link>
             )}
           </Reveal>
         </div>

@@ -10,7 +10,7 @@ import { getDictionary } from '@/i18n/server';
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Talk to Bullah Labs about optimising how your team uses AI. Book a 30-minute call or write to us. We reply within one business day.',
+    'Talk to Bullah Labs about optimising how your team uses AI. Book a call or write to us. We reply within one business day.',
   alternates: { canonical: paths.contact },
 };
 

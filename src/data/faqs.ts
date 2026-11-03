@@ -20,7 +20,7 @@ export const faqs: Faq[] = [
   {
     question: 'How do we get started?',
     answer:
-      'Write to us or book a 30-minute intro call. We reply within one business day, and sign a mutual NDA on request before any scoping conversation.',
+      'Write to us or book an intro call. We reply within one business day, and sign a mutual NDA on request before any scoping conversation.',
   },
   {
     question: 'Can you improve an existing product?',
@@ -54,7 +54,7 @@ const faqsDe: Faq[] = [
   {
     question: 'Wie fangen wir an?',
     answer:
-      'Schreiben Sie uns oder buchen Sie ein 30-minütiges Erstgespräch. Wir antworten innerhalb eines Werktags und unterzeichnen auf Wunsch vor jedem Gespräch über den Leistungsumfang ein beidseitiges NDA.',
+      'Schreiben Sie uns oder buchen Sie ein Erstgespräch. Wir antworten innerhalb eines Werktags und unterzeichnen auf Wunsch vor jedem Gespräch über den Leistungsumfang ein beidseitiges NDA.',
   },
   {
     question: 'Können Sie ein bestehendes Produkt verbessern?',

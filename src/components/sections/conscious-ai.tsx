@@ -87,7 +87,7 @@ export function CourseSection({
           <Fold>
             <div className='grid overflow-hidden border border-line bg-line lg:grid-cols-[0.9fr_1.1fr]'>
               {/* Who teaches it: portrait, name, one line, the rest folded. */}
-              <div className='relative isolate order-1 flex flex-col overflow-hidden bg-ink p-6 text-white sm:p-8 lg:p-10'>
+              <div className='relative isolate order-1 flex flex-col overflow-hidden bg-ink p-6 text-center text-white sm:p-8 sm:text-left lg:p-10'>
                 <div
                   aria-hidden='true'
                   className='absolute -right-20 top-16 -z-10 h-64 w-64 rounded-full border border-brand/40 shadow-[0_0_0_2.5rem_hsl(var(--brand)/0.06),0_0_0_5rem_hsl(var(--brand)/0.04)]'
@@ -97,7 +97,7 @@ export function CourseSection({
                   {t.preview.instructorLabel}
                 </p>
 
-                <div className='mt-7 flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-7'>
+                <div className='mt-7 flex flex-col items-center gap-6 sm:flex-row sm:items-end sm:gap-7'>
                   <Image
                     src={instructor.image}
                     alt={`Portrait of ${instructor.name}`}
@@ -119,23 +119,25 @@ export function CourseSection({
                     <p className='bl-accent mt-1 font-display text-xl text-brand-2 sm:text-2xl'>
                       {instructor.tagline}
                     </p>
-                    <p className='mt-4 flex items-center gap-2.5 text-sm text-white/75'>
-                      <HarvardShield className='h-6 w-auto shrink-0' />
+                    <p className='mt-4 flex items-center justify-center gap-3 text-left text-white sm:justify-start'>
+                      <HarvardShield className='h-9 w-auto shrink-0' />
                       <span className='min-w-0 leading-tight'>
-                        <span className='block font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white/50'>
+                        <span className='block font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white/55'>
                           {t.preview.alumnus}
                         </span>
-                        {instructor.school}
+                        <span className='mt-0.5 block font-display text-base font-bold sm:text-lg'>
+                          {instructor.school}
+                        </span>
                       </span>
                     </p>
                   </div>
                 </div>
 
-                <p className='mt-6 max-w-md text-sm leading-relaxed text-white/70 sm:text-base'>
+                <p className='mx-auto mt-6 max-w-md text-sm leading-relaxed text-white/70 sm:mx-0 sm:text-base'>
                   {instructor.bio}
                 </p>
 
-                <div className='mt-5 border-t border-white/15 pt-4'>
+                <div className='mt-5 flex justify-center border-t border-white/15 pt-4 sm:justify-start'>
                   <FoldTrigger className='bl-action text-[11px] text-brand-2 hover:text-white'>
                     {t.preview.moreAbout.replace(
                       '{name}',
@@ -151,11 +153,11 @@ export function CourseSection({
 
               {/* What it is, in a line and three chips, then the waitlist. */}
               <div className='order-3 flex flex-col justify-center bg-surface p-6 sm:p-8 lg:p-10'>
-                <ul className='flex flex-wrap gap-2'>
+                <ul className='flex flex-wrap justify-center gap-2 sm:justify-start'>
                   {t.preview.points.map((point) => (
                     <li
                       key={point}
-                      className='border border-ink/25 bg-brand-soft/40 px-2.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-ink'
+                      className='border border-brand/60 bg-brand-soft px-2.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-text'
                     >
                       {point}
                     </li>

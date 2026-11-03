@@ -789,7 +789,7 @@ export function AiWorkSnapshot() {
 
   if (!started)
     return (
-      <div className='bl-card mx-auto grid w-full max-w-5xl overflow-hidden lg:grid-cols-[0.72fr_1.28fr]'>
+      <div className='bl-card mx-auto grid w-full overflow-hidden lg:grid-cols-[0.72fr_1.28fr]'>
         <div className='group relative overflow-hidden bg-ink p-7 text-left text-white sm:p-10 lg:p-12'>
           <span
             aria-hidden='true'

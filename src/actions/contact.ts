@@ -39,7 +39,8 @@ import {
  *
  * 1. Email via Resend, when configured.
  * 2. Row in `contact_messages`, when Supabase is configured.
- * 3. Row on the "Enquiries" tab of the Google Sheet, when configured.
+ * 3. Row on the "Enquiries" tab of the Google Sheet, when configured
+ *    (one column per pick, then the notes).
  * 4. Server log, always.
  */
 export const submitContact = safeActionClient
@@ -158,13 +159,19 @@ export const submitContact = safeActionClient
 
     if (isSheetsConfigured) {
       try {
+        // One column per pick, so the sheet can be filtered on them.
+        // Header: Submitted at, Name, Email, Company, Interest,
+        // Main AI tool, People using it, Improve first, Notes, Replied.
         await appendSheetRow(SHEET_TABS.enquiries, [
           sheetTimestamp(),
           parsedInput.name,
           parsedInput.email,
           parsedInput.company || '',
           service,
-          brief,
+          CONTACT_TOOLS[parsedInput.tool],
+          CONTACT_TEAM_SIZES[parsedInput.teamSize],
+          CONTACT_GOALS[parsedInput.goal],
+          notes,
           '', // Replied: filled in by hand
         ]);
         delivered = true;
