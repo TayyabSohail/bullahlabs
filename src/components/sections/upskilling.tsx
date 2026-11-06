@@ -224,7 +224,7 @@ export function UpskillingTrainings({ dict }: SectionProps) {
           className='mt-14 scroll-mt-28 border-y border-ink/30 py-6 sm:mt-20 sm:py-8'
         >
           <p className='bl-kicker'>{learns.kicker}</p>
-          <ol className='mt-5 divide-y divide-ink/15 lg:grid lg:grid-cols-5 lg:divide-x lg:divide-y-0'>
+          <ol className='mt-5 divide-y divide-ink/15 lg:grid lg:grid-cols-3 lg:divide-x lg:divide-y-0'>
             {learns.steps.map(([title, body], index) => {
               const last = index === learns.steps.length - 1;
               return (
@@ -239,7 +239,7 @@ export function UpskillingTrainings({ dict }: SectionProps) {
                     <h3 className='bl-display text-lg leading-tight text-foreground lg:mt-4'>
                       {title}
                     </h3>
-                    <p className='mt-1 text-sm leading-relaxed text-muted-foreground'>
+                    <p className='mt-1 text-base leading-relaxed text-muted-foreground'>
                       {body}
                     </p>
                     {last && (

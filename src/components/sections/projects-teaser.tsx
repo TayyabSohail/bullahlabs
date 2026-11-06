@@ -30,7 +30,7 @@ const AUTO_MS = 5000;
  */
 export function ProjectsTeaser({
   dict,
-  className = 'bl-band-stone',
+  className = 'bg-surface',
 }: ProjectsTeaserProps) {
   const t = dict.work.teaser;
   const showcase = getShowcaseProjectsLocalised(dict.locale);
@@ -55,11 +55,14 @@ export function ProjectsTeaser({
   };
 
   return (
-    <section id='projects' className={cn('bl-section bl-rule', className)}>
+    <section
+      id='projects'
+      className={cn('bl-section bl-rule bg-surface', className)}
+    >
       <div className='bl-container'>
-        <div className='relative overflow-hidden'>
-          <div className='grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12'>
-            <div className='mx-auto flex max-w-xl flex-col text-center lg:mx-0 lg:h-full lg:justify-self-start lg:text-left'>
+        <div className='relative overflow-hidden py-2 sm:py-4'>
+          <div className='grid gap-10 lg:grid-cols-[minmax(19rem,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-10 xl:gap-14'>
+            <div className='mx-auto flex max-w-xl flex-col text-center lg:mx-0 lg:pt-1 lg:text-left'>
               <Reveal>
                 <p className='bl-kicker justify-center lg:justify-start'>
                   {t.kicker}
@@ -69,11 +72,11 @@ export function ProjectsTeaser({
                 as='h2'
                 text={t.title}
                 accentWords={[...t.accent]}
-                className='bl-display mt-4 text-display-lg text-foreground'
+                className='bl-display mx-auto mt-5 max-w-[11ch] text-display-lg text-foreground lg:mx-0'
               />
               <Reveal
                 delay={0.3}
-                className='mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:flex-col lg:items-start'
+                className='mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:flex-col lg:items-start'
               >
                 <Link
                   href={paths.work}
@@ -102,7 +105,7 @@ export function ProjectsTeaser({
               </Reveal>
               {activeProject && (
                 <>
-                  <div className='bl-card mt-3'>
+                  <div className='bl-card mt-4'>
                     <div className='relative aspect-[16/9] min-w-0 overflow-hidden bg-ink'>
                       <AnimatePresence mode='wait' initial={false}>
                         <motion.div
@@ -131,8 +134,8 @@ export function ProjectsTeaser({
                         </motion.div>
                       </AnimatePresence>
                     </div>
-                    <div className='border-t border-line p-4 sm:p-5'>
-                      <div className='flex flex-col gap-3'>
+                    <div className='border-t border-line p-5 sm:p-6'>
+                      <div className='flex flex-col gap-5'>
                         <Link
                           href={paths.caseStudy(activeProject.slug)}
                           className='group min-w-0'
@@ -152,7 +155,7 @@ export function ProjectsTeaser({
                             {activeProject.tagline}
                           </p>
                         </Link>
-                        <div className='flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between'>
+                        <div className='flex flex-col gap-4 border-t border-line pt-4 sm:flex-row sm:items-stretch sm:justify-between'>
                           <div className='flex min-w-0 flex-1 items-baseline gap-3 border-l-2 border-brand px-4 py-1 sm:gap-4'>
                             <span className='bl-display text-3xl leading-none text-brand-text sm:text-4xl'>
                               {activeProject.headline.value}
@@ -181,7 +184,7 @@ export function ProjectsTeaser({
                           </div>
                         </div>
                       </div>
-                      <div className='mt-3 flex items-center gap-4 sm:mt-4'>
+                      <div className='flex items-center gap-4'>
                         <div
                           className='relative h-1 min-w-0 flex-1 overflow-hidden bg-line'
                           role='progressbar'

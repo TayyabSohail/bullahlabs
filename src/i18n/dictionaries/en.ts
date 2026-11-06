@@ -1217,7 +1217,7 @@ export const en = {
     },
     rail: {
       kicker: 'Conscious AI',
-      title: 'The course, the numbers, and your AI profile.',
+      title: 'Explore the Conscious AI programme.',
     },
   },
   /** Our DNA: the origin of the name, the verse card and the office clocks. */
@@ -1351,7 +1351,7 @@ export const en = {
       kicker: 'AI upskilling',
       title: "Your AI bill is growing. Your team's output isn't.",
       accent: [5, 6, 7, 8],
-      body: 'Most teams got AI tools, not the skills to use them. We make your team AI-fluent and cut the bill.',
+      body: 'Turn AI spend into useful work.',
       primaryCta: 'Upskill your team',
       secondaryCta: 'Get a free workflow audit',
     },
@@ -1359,16 +1359,15 @@ export const en = {
       kicker: 'Sound familiar?',
       items: [
         'The AI bill keeps climbing.',
-        'What’s safe to paste into AI?',
-        'Teams using AI inefficiently.',
-        'People fear being replaced.',
+        'What’s safe to share?',
+        'AI creates more work than it saves.',
       ],
     },
     trainings: {
       kicker: 'Conscious AI trainings',
       title: 'Your team is expected to use AI. Nobody showed them how.',
       accent: [7, 8, 9, 10],
-      lead: "Hands-on AI training on your team's real work.",
+      lead: "Hands-on training for your team's real work.",
       points: [
         'For marketing, HR, finance, operations, legal, and compliance',
         'Less guessing, lower AI bills',
@@ -1380,17 +1379,17 @@ export const en = {
       benefits: [
         [
           'Get more done',
-          'AI handles first drafts, meeting notes, and research. Your team makes the calls, instead of cleaning up AI slop.',
+          'Draft faster. Keep people in charge.',
         ],
         [
           'Spend less on AI',
-          'Not every task needs the biggest model. AI-fluent teams waste less and pay less.',
+          'Use the right tool for the job.',
         ],
         [
           'Stay compliant',
-          'Know what never goes into an AI tool, and which tools are safe.',
+          'Clear rules for tools and data.',
         ],
-        ['Lead your industry', 'Stop catching up. Start setting the pace.'],
+        ['Lead your industry', 'Set the pace with confident teams.'],
       ],
     },
     learns: {
@@ -1398,43 +1397,38 @@ export const en = {
       step: 'Step',
       repeat: 'Repeat',
       steps: [
-        ['Ask first', "When a task doesn't need AI at all"],
+        ['Ask first', 'Use AI only when it helps'],
         [
           'Pick the right tool',
-          'When a simple script beats AI, like merging spreadsheets',
+          'Choose the simplest tool that works',
         ],
-        ['Use AI well', 'Better, faster results with AI agents and skills'],
-        ['Share safely', 'What to share, and what stays secret'],
-        [
-          'Check and improve',
-          'Catch AI slop before it goes out, then fix the workflow',
-        ],
+        ['Check and improve', 'Review the result before it ships'],
       ],
     },
     planet: {
       kicker: 'Profit and planet',
       title: 'Less waste. Smaller footprint.',
       accent: [2, 3],
-      body: "Every prompt your team doesn't waste saves:",
+      body: 'Less waste means less:',
       chips: ['Energy', 'Cooling water', 'CO₂'],
     },
     security: {
       kicker: 'Data security · Compliance',
       title: 'Company data stays in.',
       accent: [2, 3],
-      body: 'One pasted contract can break your data policy. Your team learns where the line is.',
+      body: 'Clear rules keep company work protected.',
       items: [
-        'What never goes into public AI tools',
-        'Which tools are safe, with the right settings',
-        'Your data policy as simple team rules',
+        'What never goes into public AI',
+        'Which tools your team can use',
+        'Simple rules everyone follows',
       ],
-      note: 'Supports your policies. Not legal advice.',
+      note: 'Built around your existing policies.',
     },
     bill: {
       kicker: 'Conscious AI · For teams',
       title: "Your team's AI bill, itemized.",
       accent: [4],
-      body: 'Rolled out AI? Make it count. We find the inefficiencies, then train your team to fix them.',
+      body: 'We find waste. Your team fixes it.',
       steps: [
         'Free workflow audit',
         'Hands-on training',
@@ -1451,10 +1445,8 @@ export const en = {
         /** Item, before, after. */
         rows: [
           ['Biggest model for every task', '€€€', '€'],
-          ["AI doing a script's job", '€€', '€0'],
           ['Fixing sloppy AI work', '€€€', '€'],
-          ['Licenses nobody uses', '€€', '€0'],
-          ['Energy, water, and CO₂', 'More', 'Less'],
+          ['Unused licenses', '€€', '€0'],
         ],
         totalLabel: 'Total',
         total: 'Smaller. On both bills.',

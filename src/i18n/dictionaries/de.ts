@@ -1168,7 +1168,7 @@ export const de: Dictionary = {
     },
     rail: {
       kicker: 'Conscious AI',
-      title: 'Der Kurs, die Zahlen und Ihr KI-Profil.',
+      title: 'Entdecken Sie das Conscious-AI-Programm.',
     },
   },
   ourDna: {
@@ -1304,7 +1304,7 @@ export const de: Dictionary = {
       kicker: 'KI-Weiterbildung',
       title: 'Ihre KI-Rechnung wächst. Die Leistung Ihres Teams nicht.',
       accent: [3, 4, 5, 6, 7],
-      body: 'Die meisten Teams haben KI-Tools bekommen, nicht die Fähigkeiten dafür. Wir machen Ihr Team KI-kompetent und senken die Rechnung.',
+      body: 'Machen Sie aus KI-Ausgaben nützliche Arbeit.',
       primaryCta: 'Team weiterbilden',
       secondaryCta: 'Kostenloser Workflow-Audit',
     },
@@ -1312,16 +1312,15 @@ export const de: Dictionary = {
       kicker: 'Kommt Ihnen bekannt vor?',
       items: [
         'Die KI-Rechnung steigt und steigt.',
-        'Was darf man in KI einfügen?',
-        'Teams nutzen KI ineffizient.',
-        'Die Angst, ersetzt zu werden.',
+        'Was darf sicher geteilt werden?',
+        'KI macht mehr Arbeit, als sie spart.',
       ],
     },
     trainings: {
       kicker: 'Conscious AI Trainings',
       title: 'Von Ihrem Team wird KI erwartet. Gezeigt hat es ihm niemand.',
       accent: [6, 7, 8, 9, 10],
-      lead: 'Praxisnahes KI-Training an den echten Aufgaben Ihres Teams.',
+      lead: 'Praxisnahes Training an den echten Aufgaben Ihres Teams.',
       points: [
         'Für Marketing, HR, Finanzen, Operations, Recht und Compliance',
         'Weniger Raten, niedrigere KI-Kosten',
@@ -1332,19 +1331,19 @@ export const de: Dictionary = {
       benefits: [
         [
           'Mehr schaffen',
-          'KI übernimmt erste Entwürfe, Protokolle und Recherche. Ihr Team trifft die Entscheidungen, statt KI-Murks aufzuräumen.',
+          'Schneller entwerfen. Menschen behalten die Kontrolle.',
         ],
         [
           'Weniger für KI ausgeben',
-          'Nicht jede Aufgabe braucht das größte Modell. KI-kompetente Teams verschwenden weniger und zahlen weniger.',
+          'Das richtige Tool für jede Aufgabe.',
         ],
         [
           'Compliant bleiben',
-          'Wissen, was nie in ein KI-Tool gehört und welche Tools sicher sind.',
+          'Klare Regeln für Tools und Daten.',
         ],
         [
           'Ihre Branche anführen',
-          'Nicht mehr hinterherlaufen. Das Tempo selbst vorgeben.',
+          'Das Tempo mit einem sicheren Team bestimmen.',
         ],
       ],
     },
@@ -1353,46 +1352,38 @@ export const de: Dictionary = {
       step: 'Schritt',
       repeat: 'Wiederholen',
       steps: [
-        ['Erst fragen', 'Wann eine Aufgabe gar keine KI braucht'],
+        ['Erst fragen', 'KI nur einsetzen, wenn sie hilft'],
         [
           'Das richtige Tool wählen',
-          'Wann ein einfaches Skript KI schlägt, etwa beim Zusammenführen von Tabellen',
+          'Das einfachste passende Tool wählen',
         ],
-        [
-          'KI gut nutzen',
-          'Bessere, schnellere Ergebnisse mit KI-Agenten und Skills',
-        ],
-        ['Sicher teilen', 'Was man teilt und was geheim bleibt'],
-        [
-          'Prüfen und verbessern',
-          'KI-Murks abfangen, bevor er rausgeht, dann den Workflow verbessern',
-        ],
+        ['Prüfen und verbessern', 'Ergebnisse prüfen, bevor sie rausgehen'],
       ],
     },
     planet: {
       kicker: 'Profit und Planet',
       title: 'Weniger Verschwendung. Kleinerer Fußabdruck.',
       accent: [2, 3],
-      body: 'Jeder Prompt, den Ihr Team nicht verschwendet, spart:',
+      body: 'Weniger Verschwendung bedeutet weniger:',
       chips: ['Energie', 'Kühlwasser', 'CO₂'],
     },
     security: {
       kicker: 'Datensicherheit · Compliance',
       title: 'Firmendaten bleiben drin.',
       accent: [2, 3],
-      body: 'Ein eingefügter Vertrag kann Ihre Datenrichtlinie verletzen. Ihr Team lernt, wo die Grenze liegt.',
+      body: 'Klare Regeln schützen Ihre Unternehmensdaten.',
       items: [
-        'Was nie in öffentliche KI-Tools gehört',
-        'Welche Tools sicher sind, mit den richtigen Einstellungen',
-        'Ihre Datenrichtlinie als einfache Teamregeln',
+        'Was nie in öffentliche KI gehört',
+        'Welche Tools Ihr Team nutzen kann',
+        'Einfache Regeln für alle',
       ],
-      note: 'Unterstützt Ihre Richtlinien. Keine Rechtsberatung.',
+      note: 'Auf Ihre bestehenden Richtlinien abgestimmt.',
     },
     bill: {
       kicker: 'Conscious AI · Für Teams',
       title: 'Die KI-Rechnung Ihres Teams, aufgeschlüsselt.',
       accent: [4],
-      body: 'KI eingeführt? Dann soll sie sich lohnen. Wir finden die Ineffizienzen und schulen Ihr Team, sie zu beheben.',
+      body: 'Wir finden Verschwendung. Ihr Team behebt sie.',
       steps: [
         'Kostenloser Workflow-Audit',
         'Praxisnahes Training',
@@ -1409,10 +1400,8 @@ export const de: Dictionary = {
         after: 'Nachher',
         rows: [
           ['Größtes Modell für jede Aufgabe', '€€€', '€'],
-          ['KI erledigt den Job eines Skripts', '€€', '€0'],
           ['Schlampige KI-Arbeit nachbessern', '€€€', '€'],
-          ['Lizenzen, die niemand nutzt', '€€', '€0'],
-          ['Energie, Wasser und CO₂', 'Mehr', 'Weniger'],
+          ['Ungenutzte Lizenzen', '€€', '€0'],
         ],
         totalLabel: 'Summe',
         total: 'Kleiner. Auf beiden Rechnungen.',

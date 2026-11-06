@@ -75,23 +75,49 @@ export function Problem({ dict }: ProblemProps) {
           </Link>
         </Reveal>
 
-        {/* The environmental cost: one ruled card, a heading row, then four
-            figures on a hairline grid. Two columns on a phone, four from lg. */}
-        <Reveal delay={0.3} className='bl-card min-w-0 lg:col-span-2'>
-          <div className='border-b border-ink px-4 py-3 sm:px-5'>
-            <h3 className='bl-display text-xl text-foreground sm:text-2xl'>
-              {t.impact.kicker}
-            </h3>
+        {/* A full evidence panel, deliberately unlike the surrounding CTA.
+            The figures are the headline; their context remains immediately
+            available rather than being buried in a generic card. */}
+        <Reveal
+          delay={0.3}
+          className='min-w-0 overflow-hidden border border-ink bg-ink text-white lg:col-span-2'
+        >
+          <div className='grid gap-7 border-b border-white/20 px-5 py-6 sm:px-8 sm:py-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.7fr)] lg:gap-14'>
+            <div>
+              <p className='bl-kicker text-brand-2'>{t.kicker}</p>
+              <h3 className='bl-display mt-3 max-w-[16ch] text-3xl leading-[0.95] text-white sm:text-4xl lg:text-5xl'>
+                {t.impact.kicker}
+              </h3>
+            </div>
+            <div className='flex flex-col justify-between gap-5 lg:pt-1'>
+              <p className='text-sm leading-relaxed text-white/70 sm:text-base'>
+                {t.impact.intro}
+              </p>
+              <a
+                href={t.impact.sourceUrl}
+                target='_blank'
+                rel='noreferrer'
+                className='group inline-flex w-fit items-center gap-2 border-b border-brand pb-1 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:text-brand-2'
+              >
+                {t.impact.sourceLabel}
+                <ArrowUpRight className='h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+              </a>
+            </div>
           </div>
-          <dl className='grid grid-cols-2 gap-px bg-ink/15 lg:grid-cols-4'>
-            {stats.map((stat) => (
-              <div key={stat.value} className='bg-surface p-4 sm:p-5'>
-                <dt className='bl-label'>{stat.eyebrow}</dt>
-                <dd>
-                  <span className='bl-display mt-2 block text-xl leading-tight text-foreground sm:text-2xl'>
+          <dl className='grid divide-y divide-white/20 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4'>
+            {stats.map((stat, index) => (
+              <div
+                key={stat.value}
+                className='flex min-h-56 flex-col justify-between px-5 py-6 sm:px-6 sm:py-7'
+              >
+                <dt className='bl-label text-white/55'>
+                  0{index + 1} / {stat.eyebrow}
+                </dt>
+                <dd className='mt-8'>
+                  <span className='bl-display block text-3xl leading-[0.9] text-brand-2 sm:text-4xl lg:text-[2.7rem]'>
                     {stat.value}
                   </span>
-                  <span className='mt-2 block text-xs leading-relaxed text-muted-foreground sm:text-sm'>
+                  <span className='mt-5 block max-w-[22ch] text-sm leading-relaxed text-white/70'>
                     {stat.label}
                   </span>
                 </dd>
