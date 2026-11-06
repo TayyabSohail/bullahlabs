@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 
 /**
  * The page runs: hero, the trainings (benefits, steps, planet and data),
- * the itemized bill, pricing, the numbers, client voices, the free course
- * and the way to Services in one card, FAQs, then the closing CTAs. The copy lives in
+ * the itemized bill, pricing, the numbers, the free course and the way to
+ * Services in one card, FAQs, client voices, then the closing CTAs. The copy lives in
  * `dict.upskillingPage`, one block per section in page order.
  */
 export default async function UpskillingPage() {
@@ -50,13 +50,13 @@ export default async function UpskillingPage() {
       <UpskillingBill dict={dict} />
       <UpskillingPricing dict={dict} />
       <ConsciousAiNumbers dict={dict} />
+      <UpskillingCourse dict={dict} />
+      <UpskillingFaq dict={dict} />
       <Testimonials
         dict={dict}
         title={dict.upskillingPage.testimonials.title}
         className='bl-band-peach'
       />
-      <UpskillingCourse dict={dict} />
-      <UpskillingFaq dict={dict} />
       <UpskillingClosing dict={dict} />
     </>
   );

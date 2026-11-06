@@ -10,6 +10,6 @@ export default function ServicesOpenGraphImage() {
     kicker: 'Services',
     title: 'From first idea to a product that lasts.',
     accent: [5, 6, 7],
-    body: 'Seven ways we help, under one roof: product thinking, solid engineering and honest advice on where technology, including AI, pays off.',
+    body: 'Everything you need, under one roof: product thinking, solid engineering and honest advice on where technology, including AI, pays off.',
   });
 }

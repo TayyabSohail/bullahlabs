@@ -57,7 +57,7 @@ export function HowItWorks({
             heading && 'mt-6 sm:mt-10',
           )}
         >
-          {t.steps.map((step, index) => (
+          {t.steps.map((step) => (
             <motion.article
               key={step.title}
               variants={{
@@ -70,13 +70,7 @@ export function HowItWorks({
               }}
               className='bl-card flex flex-col p-5 sm:p-6'
             >
-              <p className='bl-label flex items-baseline gap-2'>
-                <span className='bl-num'>
-                  {t.stepLabel} {String(index + 1).padStart(2, '0')}
-                </span>
-                <span aria-hidden='true'>/</span>
-                <span>{step.when}</span>
-              </p>
+              <p className='bl-label'>{step.when}</p>
               <h3 className='bl-display mt-3 max-w-[15ch] text-2xl text-foreground'>
                 {step.title}
               </h3>

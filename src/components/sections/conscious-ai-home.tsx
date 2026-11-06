@@ -34,9 +34,6 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
               className='bl-display mt-4 max-w-[17ch] text-display-lg text-foreground'
             />
           </div>
-          <p className='max-w-[34ch] text-base leading-relaxed text-muted-foreground sm:text-lg lg:pb-1'>
-            {t.description}
-          </p>
         </div>
 
         <div className='grid border-x border-b border-ink lg:grid-cols-[1.18fr_0.82fr]'>
@@ -52,7 +49,7 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
             <Link
               href={`${paths.program}#course`}
               aria-label={`${dict.program.popup.taughtBy} ${instructor.name}`}
-              className='group mt-8 grid max-w-xl grid-cols-[5.5rem_1fr] border-y border-white/20 py-4 transition-colors hover:border-brand sm:grid-cols-[7rem_1fr]'
+              className='group mt-8 grid max-w-xl grid-cols-[5.5rem_1fr] py-4 transition-colors sm:grid-cols-[7rem_1fr]'
             >
               <span className='relative row-span-2 aspect-[800/955] overflow-hidden'>
                 <Image
@@ -60,7 +57,7 @@ export function ConsciousAiHome({ dict }: { dict: Dictionary }) {
                   alt={t.course.portraitAlt.replace('{name}', instructor.name)}
                   fill
                   sizes='(min-width: 1024px) 180px, 140px'
-                  className='object-cover grayscale transition duration-500 group-hover:grayscale-0'
+                  className='object-cover'
                 />
               </span>
               <span className='self-end px-4 sm:px-5'>

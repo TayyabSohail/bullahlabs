@@ -74,25 +74,16 @@ export function ConsciousAiHero({ dict }: SectionProps) {
   );
 }
 
-/* Cells of the problem-and-fix ledger. Both columns live in one grid, so
-   the classes are shared too: the same padding, type and number gutter on
-   each side, and a static row-start lookup so Tailwind sees every class. */
-const CELL_HEAD = 'border-b px-4 py-3 font-mono text-xs sm:px-5';
-const CELL_ROW =
-  'grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-2 border-b px-4 py-4 sm:grid-cols-[2.5rem_minmax(0,1fr)] sm:px-5';
-const CELL_NUMBER = 'bl-num pt-1';
-const ROW_START = ['md:row-start-2', 'md:row-start-3', 'md:row-start-4'];
-
 export function ConsciousAiPrinciples({ dict }: SectionProps) {
   const t = dict.consciousAiPage.principles;
   const principles = t.problems;
   const moves = t.moves;
 
-  /* The problem and the fix share one section: a two-column ledger, the
-     three complaints on the left and the three moves that answer them on
-     the right, so neither half takes a page of its own. */
   return (
-    <section id='principles' className='bl-section bl-rule bl-band-stone'>
+    <section
+      id='principles'
+      className='bl-section bl-rule bg-[hsl(var(--band-sky))]'
+    >
       <div className='bl-container'>
         <div className='grid gap-4 md:grid-cols-[1.1fr_0.9fr] md:items-end md:gap-8'>
           <div>
@@ -112,55 +103,51 @@ export function ConsciousAiPrinciples({ dict }: SectionProps) {
           </Reveal>
         </div>
 
-        {/* One grid for both columns, every cell placed explicitly, so each
-            complaint sits level with the move that answers it at any width.
-            On phones the DOM order stacks the problems, then the moves. */}
-        <div className='mt-6 grid border border-ink bg-surface sm:mt-8 md:grid-cols-2'>
-          <p
-            className={`${CELL_HEAD} border-ink/20 text-muted-foreground md:col-start-1 md:row-start-1 md:border-r md:border-r-ink`}
-          >
-            {t.problemHead}
-          </p>
-          {principles.map(([number, title, body], index) => (
-            <article
-              key={number}
-              className={`${CELL_ROW} ${ROW_START[index]} border-ink/20 md:col-start-1 md:border-r md:border-r-ink ${
-                index === principles.length - 1
-                  ? 'border-b-ink md:border-b-0'
-                  : ''
-              }`}
-            >
-              <p className={`${CELL_NUMBER} text-muted-foreground`}>{number}</p>
-              <div className='min-w-0'>
-                <h3 className='bl-display text-xl text-foreground'>{title}</h3>
-                <p className='mt-1 text-sm leading-relaxed text-muted-foreground'>
-                  {body}
-                </p>
-              </div>
-            </article>
-          ))}
+        <div className='mt-6 grid gap-5 sm:mt-8 md:grid-cols-2 md:gap-6'>
+          <Reveal className='rounded-[1.5rem] border border-ink bg-ink p-5 text-white shadow-[6px_6px_0_0_hsl(var(--brand))] sm:p-8'>
+            <p className='bl-kicker text-white/60 [&::after]:text-brand-2 [&::before]:text-brand-2'>
+              {t.problemHead}
+            </p>
+            <div className='mt-5 space-y-3'>
+              {principles.map(([, title, body]) => (
+                <article
+                  key={title}
+                  className='rounded-xl border border-white/10 bg-ink-2 p-4 sm:p-5'
+                >
+                  <div className='min-w-0'>
+                    <h3 className='bl-display text-xl text-white'>{title}</h3>
+                    <p className='mt-1 text-sm leading-relaxed text-white/70'>
+                      {body}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Reveal>
 
-          <p
-            className={`${CELL_HEAD} border-white/15 bg-ink text-brand-2 md:col-start-2 md:row-start-1`}
+          <Reveal
+            delay={0.1}
+            className='rounded-[1.5rem] border border-ink bg-brand-soft p-5 text-foreground shadow-[6px_6px_0_0_hsl(var(--ink))] sm:p-8'
           >
-            {t.fixHead}
-          </p>
-          {moves.map(([number, title, body], index) => (
-            <article
-              key={number}
-              className={`${CELL_ROW} ${ROW_START[index]} border-white/15 bg-ink text-white md:col-start-2 ${
-                index === moves.length - 1 ? 'border-b-0' : ''
-              }`}
-            >
-              <p className={`${CELL_NUMBER} text-brand-2`}>{number}</p>
-              <div className='min-w-0'>
-                <h3 className='bl-display text-xl'>{title}</h3>
-                <p className='mt-1 text-sm leading-relaxed text-white/70'>
-                  {body}
-                </p>
-              </div>
-            </article>
-          ))}
+            <p className='bl-kicker text-brand-text'>{t.fixHead}</p>
+            <div className='mt-5 space-y-3'>
+              {moves.map(([, title, body]) => (
+                <article
+                  key={title}
+                  className='rounded-xl border border-ink/20 bg-surface p-4 sm:p-5'
+                >
+                  <div className='min-w-0'>
+                    <h3 className='bl-display text-xl text-foreground'>
+                      {title}
+                    </h3>
+                    <p className='mt-1 text-sm leading-relaxed text-muted-foreground'>
+                      {body}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -283,7 +270,7 @@ export function CourseInstructor({ dict }: SectionProps) {
 export function OurRoots({ dict }: SectionProps) {
   const t = dict.consciousAiPage.roots;
   return (
-    <section id='roots' className='bl-section bl-rule bl-band-ink text-white'>
+    <section id='roots' className='bl-section bl-rule bl-band-ink bl-no-dot text-white'>
       <div className='bl-container'>
         <div className='grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16'>
           <div>
@@ -351,12 +338,11 @@ export function OurRoots({ dict }: SectionProps) {
           </Reveal>
         </div>
         <div className='mt-6 grid border border-white/30 sm:mt-8 md:grid-cols-3'>
-          {t.values.map(([number, title, body]) => (
+          {t.values.map(([, title, body]) => (
             <article
-              key={number}
-              className='grid grid-cols-[2rem_1fr] gap-x-2 border-b border-white/20 px-4 py-4 last:border-b-0 sm:p-5 md:block md:border-b-0 md:border-r md:last:border-r-0'
+              key={title}
+              className='border-b border-white/20 px-4 py-4 last:border-b-0 sm:p-5 md:border-b-0 md:border-r md:last:border-r-0'
             >
-              <p className='bl-num pt-1 text-brand-2'>{number}</p>
               <div>
                 <h3 className='bl-display text-xl text-white sm:text-2xl md:mt-2'>
                   {title}
@@ -429,7 +415,10 @@ export function ConsciousAiClosing({ dict }: SectionProps) {
 export function ConsciousAiNextSteps({ dict }: SectionProps) {
   const t = dict.consciousAiPage.nextSteps;
   return (
-    <section id='next-steps' className='bl-section bl-rule bl-band-stone'>
+    <section
+      id='next-steps'
+      className='bl-section bl-rule bg-[hsl(var(--band-peach))]'
+    >
       <div className='bl-container'>
         <Reveal>
           <p className='bl-kicker'>{t.kicker}</p>
@@ -443,17 +432,22 @@ export function ConsciousAiNextSteps({ dict }: SectionProps) {
 
         <div className='mt-6 grid gap-4 sm:mt-8 lg:grid-cols-2 lg:gap-6'>
           <Reveal>
-            <TeamsOfferCard dict={dict} id='teams' number='01' ink />
+            <TeamsOfferCard
+              dict={dict}
+              id='teams'
+              ink
+              className='rounded-[2rem] border-0 shadow-[6px_6px_0_0_hsl(var(--brand))]'
+            />
           </Reveal>
 
           <Reveal delay={0.1}>
             <OfferCard
-              number='02'
               kicker={t.build.kicker}
               title={t.build.title}
               offers={dict.offers.build}
               href={paths.services}
               cta={t.build.cta}
+              className='rounded-[2rem] border-2 border-ink bg-[hsl(var(--surface-2))] shadow-[6px_6px_0_0_hsl(var(--brand))] [&_.bl-kicker]:text-brand-text [&_.text-muted-foreground]:text-foreground/75'
             />
           </Reveal>
         </div>

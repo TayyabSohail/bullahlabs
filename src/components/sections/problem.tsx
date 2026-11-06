@@ -80,9 +80,9 @@ export function Problem({ dict }: ProblemProps) {
             available rather than being buried in a generic card. */}
         <Reveal
           delay={0.3}
-          className='min-w-0 overflow-hidden border border-ink bg-ink text-white lg:col-span-2'
+          className='min-w-0 rounded-[2rem] bg-ink p-5 text-white shadow-[6px_6px_0_0_hsl(var(--brand))] sm:p-8 lg:col-span-2'
         >
-          <div className='grid gap-7 border-b border-white/20 px-5 py-6 sm:px-8 sm:py-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.7fr)] lg:gap-14'>
+          <div className='grid gap-7 border-b border-white/20 pb-6 sm:pb-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.7fr)] lg:gap-14'>
             <div>
               <p className='bl-kicker text-brand-2'>{t.kicker}</p>
               <h3 className='bl-display mt-3 max-w-[16ch] text-3xl leading-[0.95] text-white sm:text-4xl lg:text-5xl'>
@@ -104,20 +104,46 @@ export function Problem({ dict }: ProblemProps) {
               </a>
             </div>
           </div>
-          <dl className='grid divide-y divide-white/20 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4'>
+          <dl className='mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4'>
             {stats.map((stat, index) => (
               <div
                 key={stat.value}
-                className='flex min-h-56 flex-col justify-between px-5 py-6 sm:px-6 sm:py-7'
+                className={
+                  index === 0
+                    ? 'flex min-h-48 flex-col justify-between rounded-2xl bg-[#8ce0c3] p-5 text-ink sm:p-6'
+                    : index === 1
+                      ? 'flex min-h-48 flex-col justify-between rounded-2xl bg-[hsl(var(--band-peach))] p-5 text-ink sm:p-6'
+                      : index === 2
+                        ? 'flex min-h-48 flex-col justify-between rounded-2xl bg-[#315a50] p-5 sm:p-6'
+                        : 'flex min-h-48 flex-col justify-between rounded-2xl bg-[hsl(var(--brand-soft))] p-5 text-ink sm:p-6'
+                }
               >
-                <dt className='bl-label text-white/55'>
-                  0{index + 1} / {stat.eyebrow}
+                <dt
+                  className={
+                    index === 0 || index === 1 || index === 3
+                      ? 'bl-label text-ink/60'
+                      : 'bl-label text-white/65'
+                  }
+                >
+                  {stat.eyebrow}
                 </dt>
                 <dd className='mt-8'>
-                  <span className='bl-display block text-3xl leading-[0.9] text-brand-2 sm:text-4xl lg:text-[2.7rem]'>
+                  <span
+                    className={
+                      index === 0 || index === 1 || index === 3
+                        ? 'bl-display block text-3xl leading-[0.9] text-ink sm:text-4xl lg:text-[2.7rem]'
+                        : 'bl-display block text-3xl leading-[0.9] text-white sm:text-4xl lg:text-[2.7rem]'
+                    }
+                  >
                     {stat.value}
                   </span>
-                  <span className='mt-5 block max-w-[22ch] text-sm leading-relaxed text-white/70'>
+                  <span
+                    className={
+                      index === 0 || index === 1 || index === 3
+                        ? 'mt-5 block max-w-[22ch] text-sm leading-relaxed text-ink/70'
+                        : 'mt-5 block max-w-[22ch] text-sm leading-relaxed text-white/75'
+                    }
+                  >
                     {stat.label}
                   </span>
                 </dd>

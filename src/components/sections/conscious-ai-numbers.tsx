@@ -98,7 +98,10 @@ export function ConsciousAiNumbers({
     <section
       id='numbers'
       data-section='numbers'
-      className={cn('bl-section bl-rule bl-band-stone', className)}
+      className={cn(
+        'bl-section bl-rule bg-[hsl(var(--brand-soft))]',
+        className,
+      )}
     >
       <style>{`@keyframes bl-numbers-fill { from { transform: scaleX(0) } to { transform: scaleX(1) } }`}</style>
       <div className='bl-container'>

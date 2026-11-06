@@ -215,7 +215,7 @@ export function CourseSignup({
         <button
           type='submit'
           disabled={isExecuting}
-          className='bl-btn bl-btn-primary inline-flex h-14 shrink-0 sm:h-12 items-center justify-center gap-2.5 whitespace-nowrap px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] disabled:opacity-60 sm:w-auto'
+          className='bl-btn bl-btn-primary inline-flex h-14 shrink-0 items-center justify-center gap-2.5 whitespace-nowrap px-6 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] disabled:opacity-60 sm:w-auto'
         >
           {isExecuting ? (
             <Loader2 className='h-4 w-4 animate-spin' />

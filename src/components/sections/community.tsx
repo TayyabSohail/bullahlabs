@@ -4,10 +4,20 @@ import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
 import { siteConfig } from '@/config/site';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
-/** The two places the conversation continues. Their brand colours stay off the page. */
+/** The two places the conversation continues. */
 const communities = [
-  { key: 'reddit', icon: FaRedditAlien, href: siteConfig.community.reddit },
-  { key: 'discord', icon: FaDiscord, href: siteConfig.community.discord },
+  {
+    key: 'reddit',
+    icon: FaRedditAlien,
+    href: siteConfig.community.reddit,
+    iconClassName: 'border-[#ff4500] bg-[#ff4500]',
+  },
+  {
+    key: 'discord',
+    icon: FaDiscord,
+    href: siteConfig.community.discord,
+    iconClassName: 'border-[#5865f2] bg-[#5865f2]',
+  },
 ] as const;
 
 /**
@@ -40,7 +50,7 @@ export function CommunitySection({
         </div>
 
         <div className='mt-6 grid gap-4 sm:mt-8 md:grid-cols-2 md:gap-6'>
-          {communities.map(({ key, href, icon: Icon }) => {
+          {communities.map(({ key, href, icon: Icon, iconClassName }) => {
             const community = t.links[key];
 
             return (
@@ -52,7 +62,9 @@ export function CommunitySection({
                 className='bl-card bl-card-link group flex flex-col p-5 sm:p-6'
               >
                 <span className='flex items-center gap-3'>
-                  <span className='inline-flex h-10 w-10 shrink-0 items-center justify-center border border-ink bg-ink text-white'>
+                  <span
+                    className={`inline-flex h-10 w-10 shrink-0 items-center justify-center border text-white ${iconClassName}`}
+                  >
                     <Icon className='h-5 w-5' aria-hidden='true' />
                   </span>
                   <span className='bl-display text-2xl text-foreground sm:text-3xl'>

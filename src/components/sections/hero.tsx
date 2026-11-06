@@ -5,6 +5,8 @@ import { HeroTitle } from '@/components/motion/hero-title';
 import { Reveal } from '@/components/motion/reveal';
 import { PlanetReceipt } from '@/components/sections/planet-receipt';
 
+import { cn } from '@/lib/utils';
+
 import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
@@ -34,7 +36,10 @@ export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
 
   return (
-    <section data-section='hero' className='bl-hero relative overflow-hidden border-b'>
+    <section
+      data-section='hero'
+      className='bl-hero relative overflow-hidden border-b'
+    >
       <div className='bl-container relative pb-12 pt-20 sm:pb-16 sm:pt-28 lg:pb-20 lg:pt-32'>
         <HeroTitle
           title={t.title}
@@ -73,51 +78,60 @@ export function Hero({ dict }: HeroProps) {
                 quiet ruled cards at the foot of the column, so the copy
                 side reads as tall as the receipt beside it. */}
             <Reveal delay={0.26} className='mt-6 lg:mt-auto lg:pt-10'>
-              <ol className='divide-y divide-ink/15 border-y border-ink/30 text-left lg:hidden'>
-                {t.steps.map(({ title }, index) => (
-                  <li key={title}>
-                    <Link
-                      href={STEP_PATHS[index] ?? paths.program}
-                      className='group flex items-center gap-3 py-3 font-mono text-xs text-ink/80 transition-colors hover:text-ink'
-                    >
-                      <span className='bl-num'>
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <span className='flex-1'>{title}</span>
-                      <ArrowUpRight className='h-4 w-4 shrink-0 text-ink/50' />
-                    </Link>
-                  </li>
-                ))}
-              </ol>
-
-              <ol className='hidden gap-4 lg:grid lg:grid-cols-3'>
+              <ul className='grid gap-3 text-left sm:grid-cols-3'>
                 {t.steps.map(({ kicker, title, body, cta }, index) => (
                   <li key={title} className='flex text-left'>
                     <Link
                       href={STEP_PATHS[index] ?? paths.program}
-                      className='group flex w-full flex-col border border-ink/20 bg-surface/50 p-4 transition-colors hover:border-ink/60 hover:bg-surface'
+                      className={cn(
+                        'group flex min-h-[14rem] w-full flex-col rounded-2xl p-4 transition-transform hover:-translate-y-1',
+                        index === 0 &&
+                          'bg-[hsl(var(--brand-strong))] text-white shadow-[3px_3px_0_0_hsl(var(--ink))]',
+                        index === 1 &&
+                          'bg-[#315a50] text-white shadow-[3px_3px_0_0_hsl(var(--ink))]',
+                        index === 2 &&
+                          'bg-[hsl(var(--band-peach))] shadow-[3px_3px_0_0_hsl(var(--ink))]',
+                      )}
                     >
-                      <span className='bl-label'>
-                        <span className='bl-num'>
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                        <span aria-hidden='true'> · </span>
+                      <span
+                        className={cn(
+                          'bl-label',
+                          index < 2 ? 'text-white/75' : 'text-ink/70',
+                        )}
+                      >
                         {kicker}
                       </span>
-                      <span className='bl-display mt-2 block text-[1.35rem] leading-[1.05] text-ink'>
+                      <span
+                        className={cn(
+                          'bl-display mt-2 block min-h-[2.2em] text-[1.35rem] leading-[1.05]',
+                          index < 2 ? 'text-white' : 'text-ink',
+                        )}
+                      >
                         {title}
                       </span>
-                      <span className='mt-2 block flex-1 text-sm leading-relaxed text-ink/60'>
+                      <span
+                        className={cn(
+                          'mt-2 block min-h-[4.5rem] text-sm leading-relaxed',
+                          index < 2 ? 'text-white/80' : 'text-ink/75',
+                        )}
+                      >
                         {body}
                       </span>
-                      <span className='mt-4 flex items-center justify-between gap-3 border-t border-ink/15 pt-3 font-mono text-xs text-ink/70 transition-colors group-hover:text-ink'>
+                      <span
+                        className={cn(
+                          'mt-auto flex items-center justify-between gap-3 pt-4 font-mono text-xs transition-colors',
+                          index < 2
+                            ? 'text-white/85 group-hover:text-white'
+                            : 'text-ink/80 group-hover:text-ink',
+                        )}
+                      >
                         {cta}
                         <ArrowUpRight className='h-3.5 w-3.5 shrink-0' />
                       </span>
                     </Link>
                   </li>
                 ))}
-              </ol>
+              </ul>
             </Reveal>
           </div>
 

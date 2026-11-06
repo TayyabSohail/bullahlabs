@@ -6,16 +6,14 @@ import { cn } from '@/lib/utils';
 import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
-/** One row: number, title, a half-line of body. The copy lives in `dict.offers`. */
+/** One compact offer row. The copy lives in `dict.offers`. */
 type Offer = readonly string[];
 
 /** One shared button measure so sibling cards' actions line up. */
 const offerButton = 'bl-btn inline-flex h-12 items-center gap-2 px-5';
 
 /**
- * One offer per row, on the site's ledger rule: number, title and a
- * half-line of body on the same baseline, so three rows read as a list
- * rather than three paragraphs.
+ * One offer per row, with a title and a short supporting line.
  */
 function OfferRows({
   offers,
@@ -32,29 +30,23 @@ function OfferRows({
           : 'mt-5 divide-y divide-ink/15 border-y border-ink/15'
       }
     >
-      {offers.map(([number, title, body]) => (
-        <li
-          key={title}
-          className='grid grid-cols-[2rem_1fr] items-baseline gap-x-2 py-3'
-        >
-          <span className={cn('bl-num', ink && 'text-brand-2')}>{number}</span>
-          <span className='min-w-0'>
-            <span
-              className={cn(
-                'bl-display mr-2 text-lg sm:text-xl',
-                ink ? 'text-white' : 'text-foreground',
-              )}
-            >
-              {title}
-            </span>
-            <span
-              className={cn(
-                'text-sm leading-relaxed',
-                ink ? 'text-white/65' : 'text-muted-foreground',
-              )}
-            >
-              {body}
-            </span>
+      {offers.map(([, title, body]) => (
+        <li key={title} className='py-3'>
+          <span
+            className={cn(
+              'bl-display mr-2 text-lg sm:text-xl',
+              ink ? 'text-white' : 'text-foreground',
+            )}
+          >
+            {title}
+          </span>
+          <span
+            className={cn(
+              'text-sm leading-relaxed',
+              ink ? 'text-white/65' : 'text-muted-foreground',
+            )}
+          >
+            {body}
           </span>
         </li>
       ))}
@@ -64,8 +56,6 @@ function OfferRows({
 
 interface OfferCardProps {
   id?: string;
-  /** Pair index ("01", "02") when the card sits beside a sibling door; omit for a lone card. */
-  number?: string;
   kicker: string;
   title: string;
   offers: readonly Offer[];
@@ -83,7 +73,6 @@ interface OfferCardProps {
  */
 export function OfferCard({
   id,
-  number,
   kicker,
   title,
   offers,
@@ -103,7 +92,7 @@ export function OfferCard({
     >
       {/* The same bracketed kicker every section uses, so sibling plates match. */}
       <p className={cn('bl-kicker', ink && 'text-white/60')}>
-        {number ? `${number} · ${kicker}` : kicker}
+        {kicker}
       </p>
       <h3
         className={cn(
@@ -132,17 +121,15 @@ export function OfferCard({
 export function TeamsOfferCard({
   dict,
   id,
-  number,
   ink = false,
   className,
-}: Pick<OfferCardProps, 'id' | 'number' | 'ink' | 'className'> & {
+}: Pick<OfferCardProps, 'id' | 'ink' | 'className'> & {
   dict: Dictionary;
 }) {
   const t = dict.offers.teams;
   return (
     <OfferCard
       id={id}
-      number={number}
       kicker={t.kicker}
       title={t.title}
       offers={t.rows}
