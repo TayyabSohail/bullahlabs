@@ -13,20 +13,20 @@ export function Studio({ dict }: { dict: Dictionary }) {
   const services = [
     {
       label: '01 · Conscious AI',
-      title: 'AI, with judgement.',
-      cta: 'Make AI more conscious',
+      title: 'AI, used with purpose.',
+      cta: 'Find the right AI',
       href: paths.teams,
     },
     {
       label: '02 · For teams',
       title: 'A team that knows when to use it.',
-      cta: 'Train your team',
+      cta: 'Get your team moving',
       href: paths.teams,
     },
     {
       label: '03 · Build',
       title: 'Build something people return to.',
-      cta: 'Talk about a build',
+      cta: 'Bring it to life',
       href: paths.services,
     },
   ];
@@ -39,18 +39,19 @@ export function Studio({ dict }: { dict: Dictionary }) {
     >
       <div className='bl-container'>
         <SectionHeading
-          title={t.title}
+          kicker='The right AI, made useful'
+          title='Learn what matters. Put it to work.'
           accentWords={[...t.accent]}
           className='text-left [&_.bl-display]:justify-start [&_.bl-kicker]:justify-start'
         />
 
         <div className='mt-5 rounded-[1.5rem] bg-ink p-2 sm:mt-6 sm:p-3'>
-          <div className='grid min-w-0 md:grid-cols-3'>
+          <div className='grid min-w-0 lg:grid-cols-3'>
             {services.map(({ label, title, cta, href }) => (
               <Link
                 key={title}
                 href={href}
-              className='group flex min-h-[14rem] min-w-0 flex-col p-6 text-white transition-colors hover:bg-[hsl(var(--ink-2))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand sm:p-8 md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-white/45'
+                className='group flex min-h-[14rem] min-w-0 flex-col items-start border-white/45 p-6 text-left text-white transition-colors hover:bg-[hsl(var(--ink-2))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand sm:p-8 [&:not(:first-child)]:border-t lg:[&:not(:first-child)]:border-l lg:[&:not(:first-child)]:border-t-0'
               >
                 <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-2'>
                   {label}
@@ -58,9 +59,11 @@ export function Studio({ dict }: { dict: Dictionary }) {
                 <h3 className='bl-display mt-6 max-w-[14ch] break-words text-3xl leading-[0.94] sm:text-4xl'>
                   {title}
                 </h3>
-              <span className='mt-auto inline-flex h-11 self-start items-center gap-8 bg-brand px-4 text-sm font-semibold text-ink transition-colors group-hover:bg-brand-2'>
-                  {cta}
-                  <ArrowUpRight className='h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+                <span className='mt-auto pt-8'>
+                  <span className='inline-flex h-12 items-center gap-3 border border-white/70 bg-transparent px-5 text-sm font-semibold text-white transition-colors group-hover:border-white group-hover:bg-white group-hover:text-ink'>
+                    {cta}
+                    <ArrowUpRight className='h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
+                  </span>
                 </span>
               </Link>
             ))}

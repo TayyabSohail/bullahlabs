@@ -77,12 +77,12 @@ export function Problem({ dict }: ProblemProps) {
                 key={stat.value}
                 className={
                   index === 0
-                    ? 'flex min-h-[10.5rem] flex-col justify-between rounded-2xl bg-[#8ce0c3] p-4 text-ink sm:min-h-48 sm:p-6'
+                    ? 'flex min-h-[10.5rem] flex-col rounded-2xl bg-[#8ce0c3] p-4 text-ink sm:min-h-48 sm:p-6'
                     : index === 1
-                      ? 'flex min-h-[10.5rem] flex-col justify-between rounded-2xl bg-[hsl(var(--band-peach))] p-4 text-ink sm:min-h-48 sm:p-6'
+                      ? 'flex min-h-[10.5rem] flex-col rounded-2xl bg-[hsl(var(--band-peach))] p-4 text-ink sm:min-h-48 sm:p-6'
                       : index === 2
-                        ? 'flex min-h-[10.5rem] flex-col justify-between rounded-2xl bg-[#315a50] p-4 sm:min-h-48 sm:p-6'
-                        : 'flex min-h-[10.5rem] flex-col justify-between rounded-2xl bg-[hsl(var(--brand-soft))] p-4 text-ink sm:min-h-48 sm:p-6'
+                        ? 'flex min-h-[10.5rem] flex-col rounded-2xl bg-[#315a50] p-4 sm:min-h-48 sm:p-6'
+                        : 'flex min-h-[10.5rem] flex-col rounded-2xl bg-[hsl(var(--brand-soft))] p-4 text-ink sm:min-h-48 sm:p-6'
                 }
               >
                 <dt
@@ -94,7 +94,7 @@ export function Problem({ dict }: ProblemProps) {
                 >
                   {stat.eyebrow}
                 </dt>
-                <dd className='mt-5 sm:mt-8'>
+                <dd className='mt-6 sm:mt-auto'>
                   <span
                     className={
                       index === 0 || index === 1 || index === 3
