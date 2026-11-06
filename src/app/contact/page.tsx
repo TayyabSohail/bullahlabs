@@ -34,7 +34,8 @@ export default async function ContactPage() {
         ]}
       />
 
-      <section className='bl-container max-w-7xl pb-16 pt-28 sm:pt-44 lg:pb-24 lg:pt-52'>
+      <section className='bl-hero border-b border-line'>
+        <div className='bl-container max-w-7xl pb-16 pt-28 sm:pt-44 lg:pb-24 lg:pt-52'>
         <ContactChannels
           dict={dict}
           calLink={siteConfig.calLink}
@@ -50,6 +51,7 @@ export default async function ContactPage() {
             </header>
           }
         />
+        </div>
       </section>
     </>
   );
