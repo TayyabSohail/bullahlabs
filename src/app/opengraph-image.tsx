@@ -11,7 +11,7 @@ export const contentType = 'image/png';
 /** Default share card: the home hero, with the planet's receipt beside it. */
 export default function OpenGraphImage() {
   return renderOgCard({
-    kicker: 'Product and engineering studio',
+    kicker: 'Learn it. Train your team. Hire us to build.',
     title: 'Technology that solves problems. Built with conscience.',
     accent: [4, 5, 6],
     body: 'We make AI do more with less. Less cost, less energy, less complexity.',

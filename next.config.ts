@@ -6,7 +6,12 @@ const nextConfig: NextConfig = {
       // Pricing was retired; what we offer is described on the services page.
       { source: '/pricing', destination: '/services', permanent: false },
       // The old per-service pages collapsed into one services page.
-      { source: '/services/:slug', destination: '/services', permanent: false },
+      // Everything except the share card, which lives at /services/opengraph-image.
+      {
+        source: '/services/:slug((?!opengraph-image).*)',
+        destination: '/services',
+        permanent: false,
+      },
       // Careers was retired.
       { source: '/careers', destination: '/about', permanent: false },
     ];

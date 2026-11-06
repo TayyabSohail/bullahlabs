@@ -180,10 +180,15 @@ function Headline({
 }) {
   const words = title.split(/\s+/);
   return (
-    /* Not a flex box: Satori lays inline spans out as running text only in
-       a block, and a flex parent would drop the spaces between words. */
+    /* Satori needs flex on any element with several children, and a flex
+       row drops the spaces between inline spans, so each word is its own
+       item and the gap between items stands in for the space. */
     <div
       style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        columnGap: size * 0.24,
+        rowGap: 0,
         fontFamily: 'Fraunces',
         fontWeight: 700,
         fontSize: size,
@@ -201,7 +206,7 @@ function Headline({
               : undefined
           }
         >
-          {word + (i < words.length - 1 ? ' ' : '')}
+          {word}
         </span>
       ))}
     </div>
@@ -304,8 +309,8 @@ function Receipt() {
 /** A product screen in a ruled frame, landscape or phone-shaped. */
 function Cover({ image, width, height, caption }: OgCover) {
   const portrait = height > width;
-  const frameW = portrait ? 214 : 420;
-  const frameH = portrait ? 386 : 263;
+  const frameW = portrait ? 166 : 420;
+  const frameH = portrait ? 300 : 263;
   return (
     <div
       style={{

@@ -38,18 +38,17 @@ export default function getMetadata(): Metadata {
       ],
       apple: '/apple-icon.png',
     },
+    // No title, description or url here on purpose: Next fills og:title,
+    // og:description and twitter:* from each page's own title and
+    // description. Set explicitly, they were inherited by every page, so a
+    // shared /services link previewed as the home page.
     openGraph: {
-      url: appConfig.appUrl,
-      title: `${appConfig.title} | ${siteConfig.tagline}`,
-      description: appConfig.description,
       siteName: appConfig.title,
       type: 'website',
       locale: appConfig.defaultLocale.replace('-', '_'),
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${appConfig.title} | ${siteConfig.tagline}`,
-      description: appConfig.description,
     },
     keywords: appConfig.keywords.split(', '),
     creator: siteConfig.founder.name,
