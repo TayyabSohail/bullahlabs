@@ -30,6 +30,7 @@ export function Footer({ dict }: FooterProps) {
   // Same links, same order as the header, so the two never disagree.
   const companyLinks = [
     ...primaryNav(dict),
+    { label: dict.nav.pricing, href: paths.pricing },
     { label: dict.nav.contact, href: paths.contact },
   ];
 

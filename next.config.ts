@@ -3,8 +3,6 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // Pricing was retired; what we offer is described on the services page.
-      { source: '/pricing', destination: '/services', permanent: false },
       // The old per-service pages collapsed into one services page.
       // Everything except the share card, which lives at /services/opengraph-image.
       {

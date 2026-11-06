@@ -54,6 +54,7 @@ export function MobileMenu({
   const links = [
     { label: dict.nav.home, href: paths.home },
     ...primaryNav(dict),
+    { label: dict.nav.pricing, href: paths.pricing },
     { label: dict.nav.contact, href: paths.contact },
   ];
 

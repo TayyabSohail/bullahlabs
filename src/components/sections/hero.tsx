@@ -5,20 +5,14 @@ import { HeroTitle } from '@/components/motion/hero-title';
 import { Reveal } from '@/components/motion/reveal';
 import { PlanetReceipt } from '@/components/sections/planet-receipt';
 
-import { cn } from '@/lib/utils';
-
 import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
+import { cn } from '@/lib/utils';
 
 interface HeroProps {
   dict: Dictionary;
 }
 
-/**
- * Where each of the three cells under the button leads, in dictionary
- * order: the course section on the Conscious AI page (its `CourseSection`
- * carries id "course"), team training (the Upskilling page), services.
- */
 const STEP_PATHS = [
   `${paths.program}#course`,
   paths.upskilling,
@@ -26,11 +20,9 @@ const STEP_PATHS = [
 ] as const;
 
 /**
- * Opening section: what we are, in one headline and two lines, one way in
- * (Conscious AI), three quiet ways further, and beside them the planet's
- * tab: one year of AI on one piece of work, printed the usual way and
- * ours. The receipt is the one rich thing on the first screen; the page
- * behind it is plain paper, so it reads at once.
+ * Opening section: one headline and a compact statement beside the planet's
+ * tab. The receipt is the rich interaction; the surrounding page stays
+ * quiet so it reads at once.
  */
 export function Hero({ dict }: HeroProps) {
   const t = dict.hero;
@@ -59,80 +51,42 @@ export function Hero({ dict }: HeroProps) {
               </p>
             </Reveal>
 
-            {/* One button: the first view asks for a single decision. */}
-            <Reveal
-              delay={0.18}
-              className='mt-6 flex w-full justify-center sm:justify-start'
-            >
-              <Link
-                href={paths.program}
-                className='bl-btn bl-btn-ink inline-flex h-14 w-full max-w-[18rem] items-center justify-between gap-4 whitespace-nowrap px-6'
-              >
-                {t.primary}
-                <span className='h-2.5 w-2.5 shrink-0 bg-brand' />
-              </Link>
-            </Reveal>
-
-            {/* The three ways in (course, team training, services). Below
-                lg a three-row ledger: number, title, arrow. From lg three
-                quiet ruled cards at the foot of the column, so the copy
-                side reads as tall as the receipt beside it. */}
-            <Reveal delay={0.26} className='mt-6 lg:mt-auto lg:pt-10'>
+            {/* Three compact routes using the same ink, peach and blue-grey
+                palette that carries through the rest of the app. */}
+            <Reveal delay={0.18} className='mt-6'>
               <ul className='grid gap-3 text-left sm:grid-cols-3'>
                 {t.steps.map(({ kicker, title, body, cta }, index) => (
-                  <li key={title} className='flex text-left'>
+                  <li key={title}>
                     <Link
-                      href={STEP_PATHS[index] ?? paths.program}
+                      href={STEP_PATHS[index]}
                       className={cn(
-                        'group flex min-h-[14rem] w-full flex-col rounded-2xl p-4 transition-transform hover:-translate-y-1',
-                        index === 0 &&
-                          'bg-[hsl(var(--brand-strong))] text-white shadow-[3px_3px_0_0_hsl(var(--ink))]',
-                        index === 1 &&
-                          'bg-[#315a50] text-white shadow-[3px_3px_0_0_hsl(var(--ink))]',
-                        index === 2 &&
-                          'bg-[hsl(var(--band-peach))] shadow-[3px_3px_0_0_hsl(var(--ink))]',
+                        'group relative flex min-h-[9.5rem] rounded-[1.35rem] border border-ink/70 p-5 transition-[transform,box-shadow] duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand',
+                        index === 0 && 'bg-ink text-white shadow-[5px_5px_0_hsl(var(--brand))] hover:shadow-[7px_7px_0_hsl(var(--brand))]',
+                        index === 1 && 'bg-[hsl(var(--band-peach))] text-ink shadow-[5px_5px_0_hsl(var(--ink))] hover:shadow-[7px_7px_0_hsl(var(--ink))]',
+                        index === 2 && 'bg-[hsl(var(--surface-2))] text-ink shadow-[5px_5px_0_hsl(var(--brand))] hover:shadow-[7px_7px_0_hsl(var(--brand))]',
                       )}
                     >
-                      <span
-                        className={cn(
-                          'bl-label',
-                          index < 2 ? 'text-white/75' : 'text-ink/70',
-                        )}
-                      >
-                        {kicker}
-                      </span>
-                      <span
-                        className={cn(
-                          'bl-display mt-2 block min-h-[2.2em] text-[1.35rem] leading-[1.05]',
-                          index < 2 ? 'text-white' : 'text-ink',
-                        )}
-                      >
-                        {title}
-                      </span>
-                      <span
-                        className={cn(
-                          'mt-2 block min-h-[4.5rem] text-sm leading-relaxed',
-                          index < 2 ? 'text-white/80' : 'text-ink/75',
-                        )}
-                      >
-                        {body}
-                      </span>
-                      <span
-                        className={cn(
-                          'mt-auto flex items-center justify-between gap-3 pt-4 font-mono text-xs transition-colors',
-                          index < 2
-                            ? 'text-white/85 group-hover:text-white'
-                            : 'text-ink/80 group-hover:text-ink',
-                        )}
-                      >
-                        {cta}
-                        <ArrowUpRight className='h-3.5 w-3.5 shrink-0' />
+                      <span className='flex w-full flex-col'>
+                        <span className={cn('font-sans text-[11px] font-medium', index === 0 ? 'text-brand-2' : 'text-brand-text')}>
+                          {kicker}
+                        </span>
+                        <span className='bl-display mt-3 max-w-[10rem] text-[1.45rem] leading-[0.98]'>
+                          {title}
+                        </span>
+                        <span className={cn('mt-1.5 max-w-[12rem] text-[12px] leading-snug', index === 0 ? 'text-white/70' : 'text-ink/60')}>
+                          {body}
+                        </span>
+                        <span className={cn('mt-auto flex items-center justify-between pt-3 text-[12px] font-medium', index === 0 ? 'text-white/90' : 'text-ink/75')}>
+                          <span>{cta}</span>
+                          <ArrowUpRight className='h-5 w-5 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1' />
+                        </span>
                       </span>
                     </Link>
                   </li>
                 ))}
               </ul>
             </Reveal>
+
           </div>
 
           {/* The stamp overhangs the top edge of the receipt, so the column

@@ -32,6 +32,7 @@ export function Header({ dict }: HeaderProps) {
   const items = [
     { label: dict.nav.home, href: paths.home },
     ...primaryNav(dict),
+    { label: dict.nav.pricing, href: paths.pricing },
     { label: dict.nav.contact, href: paths.contact },
   ];
 
@@ -68,7 +69,7 @@ export function Header({ dict }: HeaderProps) {
             hamburger takes over. */}
         <nav
           aria-label={dict.nav.primary}
-          className='hidden items-center gap-7 lg:flex xl:gap-9'
+          className='hidden items-center gap-4 lg:flex xl:gap-6'
         >
           {items.map((item) => {
             const active = isActive(item.href);

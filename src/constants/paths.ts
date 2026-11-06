@@ -8,6 +8,7 @@ export const paths = {
   program: '/conscious-ai',
   teams: '/conscious-ai/teams',
   upskilling: '/upskilling',
+  pricing: '/pricing',
   contact: '/contact',
   /** The contact page opened on its "Write to us" form instead of the calendar. */
   contactForm: '/contact?channel=form',

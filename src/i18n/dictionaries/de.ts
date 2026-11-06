@@ -12,6 +12,7 @@ export const de: Dictionary = {
     services: 'Leistungen',
     work: 'Projekte',
     approach: 'Ansatz',
+    pricing: 'Preise',
     contact: 'Kontakt',
     home: 'Start',
     cta: 'Sprechen wir',
@@ -1335,10 +1336,7 @@ export const de: Dictionary = {
           'Weniger für KI ausgeben',
           'Das richtige Tool für jede Aufgabe.',
         ],
-        [
-          'Compliant bleiben',
-          'Klare Regeln für Tools und Daten.',
-        ],
+        ['Compliant bleiben', 'Klare Regeln für Tools und Daten.'],
         [
           'Ihre Branche anführen',
           'Das Tempo mit einem sicheren Team bestimmen.',

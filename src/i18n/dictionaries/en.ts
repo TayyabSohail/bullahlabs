@@ -25,6 +25,7 @@ export const en = {
     services: 'Services',
     work: 'Work',
     approach: 'Approach',
+    pricing: 'Pricing',
     contact: 'Contact',
     home: 'Home',
     cta: "Let's talk",
@@ -60,7 +61,7 @@ export const en = {
       {
         kicker: 'For teams',
         title: 'Train your team.',
-        body: 'Training built around real workflows.',
+        body: 'Hands-on training built around your team’s real workflows.',
         cta: 'See team training',
       },
       {
