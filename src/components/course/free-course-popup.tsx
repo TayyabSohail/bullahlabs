@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ChevronUp, X } from 'lucide-react';
+import { BellRing, X } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useId, useRef, useState } from 'react';
@@ -15,8 +15,6 @@ import {
   markCoursePopupSeen,
 } from '@/lib/course-popup-storage';
 import { hasJoinedCourseWaitlist } from '@/lib/course-waitlist-cookie';
-import { cn } from '@/lib/utils';
-
 import { paths } from '@/constants/paths';
 import { getLeadInstructor } from '@/data/instructors';
 import type { Dictionary } from '@/i18n/dictionaries/en';
@@ -39,10 +37,8 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
  * The free Conscious AI course, introduced by its instructor. It rests as an
- * ivory ruled pill above the community dock, the same width as the dock at
- * every screen size. Only two things move, both inside its edge: a highlight
- * sweeps across every few seconds and the arrow nudges. Nothing glows or
- * spills past the border. It unfolds, in place, into a corner panel:
+ * compact black-and-green bell above the community dock. The bell briefly
+ * rings every five seconds, then unfolds, in place, into a corner panel:
  * no overlay, no scroll lock, the page stays usable. The pill opens it, the
  * cross folds it back. On a first visit it also opens by itself, once, after
  * the visitor has scrolled, stayed a while or moved to leave.
@@ -135,43 +131,13 @@ export function FreeCoursePopup({ dict }: { dict: Dictionary }) {
           aria-haspopup='dialog'
           aria-expanded={false}
           data-cta='course-popup-pill'
-          className='group relative flex h-14 w-full items-center gap-3 overflow-hidden rounded-full border border-ink bg-surface pl-1.5 pr-1.5 text-ink shadow-[3px_3px_0_hsl(var(--ink))] transition-[transform,box-shadow] duration-200 hover:-translate-x-px hover:-translate-y-px hover:shadow-[4px_4px_0_hsl(var(--ink))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none'
+          className='group relative ml-auto flex h-14 w-14 items-center justify-center rounded-full border border-white bg-ink text-white shadow-[3px_3px_0_hsl(var(--brand))] transition-[transform,box-shadow] duration-200 hover:-translate-x-px hover:-translate-y-px hover:shadow-[4px_4px_0_hsl(var(--brand))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none'
         >
-          {/* A highlight sweeps across every few seconds, clipped to the pill. */}
-          <span
-            aria-hidden='true'
-            className='pointer-events-none absolute inset-0 overflow-hidden rounded-full'
-          >
-            <span className='absolute inset-y-0 left-0 w-1/3 animate-shine bg-gradient-to-r from-transparent via-white/70 to-transparent motion-reduce:hidden' />
+          <span className='bl-course-bell flex h-8 w-8 items-center justify-center motion-reduce:animate-none'>
+            <BellRing className='h-7 w-7' strokeWidth={2.25} aria-hidden />
           </span>
-
-          <span className='relative flex h-11 w-11 shrink-0'>
-            <Image
-              src={instructor.image}
-              alt=''
-              width={88}
-              height={88}
-              className={cn(
-                'relative h-11 w-11 rounded-full border border-ink object-cover',
-                instructor.focus,
-              )}
-            />
-          </span>
-          <span className='relative flex min-w-0 flex-1 flex-col items-start text-left leading-none'>
-            <span className='max-w-full truncate font-mono text-[12px] font-bold uppercase tracking-[0.14em]'>
-              {t.pill}
-            </span>
-            <span className='mt-1.5 flex max-w-full items-center gap-1.5 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-muted-foreground'>
-              <span className='inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand' />
-              <span className='truncate'>{t.pillHint}</span>
-            </span>
-          </span>
-          <span className='relative flex h-10 w-10 shrink-0 animate-nudge items-center justify-center rounded-full border border-ink bg-ink text-white motion-reduce:animate-none'>
-            <ChevronUp
-              className='h-[18px] w-[18px]'
-              strokeWidth={2.75}
-              aria-hidden
-            />
+          <span className='absolute -right-3 -top-1 rounded-full border border-ink bg-brand px-1.5 py-0.5 font-mono text-[8px] font-black uppercase tracking-[0.12em] text-brand-foreground shadow-[1px_1px_0_hsl(var(--ink))]'>
+            Free
           </span>
         </motion.button>
       )}

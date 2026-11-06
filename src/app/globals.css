@@ -331,6 +331,32 @@
     background-size: 100% 0%;
   }
 
+  /* A quiet course notification: it only rings briefly between long pauses. */
+  @keyframes bl-course-bell-ring {
+    0%,
+    8%,
+    100% {
+      transform: translateX(0) rotate(0deg);
+    }
+    2% {
+      transform: translateX(-2px) rotate(-10deg);
+    }
+    4% {
+      transform: translateX(2px) rotate(10deg);
+    }
+    6% {
+      transform: translateX(-1px) rotate(-5deg);
+    }
+  }
+  .bl-course-bell {
+    animation: bl-course-bell-ring 5s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bl-course-bell {
+      animation: none;
+    }
+  }
+
   /* Phone mockup: every measure is a percentage of the frame so the same
      device reads correctly at 60px in a list and 400px in a hero. */
   .bl-phone {

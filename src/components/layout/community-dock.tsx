@@ -13,7 +13,7 @@ import type { Dictionary } from '@/i18n/dictionaries/en';
  * sits inside the CornerDock, which fixes it to the bottom-right corner.
  */
 export function CommunityDock({ dict }: { dict: Dictionary }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const dockRef = useRef<HTMLDivElement>(null);
   const t = dict.community;
 
@@ -42,15 +42,15 @@ export function CommunityDock({ dict }: { dict: Dictionary }) {
           aria-label={open ? t.closeMenu : t.mobileJoin}
           aria-expanded={open}
           data-cta='community-dock'
-          className='flex h-full min-w-0 flex-1 items-center justify-center gap-2 px-3 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand'
+          className='flex h-full min-w-0 flex-1 items-center justify-center gap-1.5 px-2 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand'
         >
           {open ? (
             <X className='h-4 w-4 shrink-0' aria-hidden />
           ) : (
             <SocialMarks />
           )}
-          <span className='truncate font-mono text-[10px] font-bold uppercase tracking-[0.12em]'>
-            {open ? t.dockOpen : 'Community'}
+          <span className='truncate font-mono text-[9px] font-bold uppercase tracking-[0.08em]'>
+            {t.mobileJoin}
           </span>
         </button>
 
@@ -58,7 +58,7 @@ export function CommunityDock({ dict }: { dict: Dictionary }) {
           {open && (
             <motion.div
               initial={{ width: 0 }}
-              animate={{ width: 96 }}
+              animate={{ width: 64 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className='flex h-full shrink-0 items-center overflow-hidden border-l border-white/20'
@@ -119,7 +119,7 @@ function SocialLink({
       onClick={onClick}
       aria-label={label}
       title={label}
-      className='flex h-full w-12 shrink-0 items-center justify-center transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand'
+      className='flex h-full w-8 shrink-0 items-center justify-center transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand'
     >
       <span
         className='flex h-7 w-7 items-center justify-center rounded-full text-white'

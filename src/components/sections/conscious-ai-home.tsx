@@ -27,9 +27,7 @@ export function ConsciousAiHome({
     <section
       id={embedded ? undefined : 'conscious-ai'}
       className={
-        embedded
-          ? 'mt-3'
-          : 'bl-section bl-rule bl-band-stone scroll-mt-24'
+        embedded ? 'h-full' : 'bl-section bl-rule bl-band-stone scroll-mt-24'
       }
     >
       <div className={embedded ? '' : 'bl-container'}>
@@ -47,10 +45,16 @@ export function ConsciousAiHome({
           </div>
         )}
 
-        <div className={`${embedded ? '' : 'mt-6 lg:mt-8 '}max-w-3xl border border-ink`}>
-          <Reveal className='flex min-w-0 flex-col bg-ink p-5 text-white sm:p-8 lg:p-10'>
+        <div
+          className={
+            embedded
+              ? 'h-full max-w-none border border-ink'
+              : 'mt-6 max-w-3xl border border-ink lg:mt-8'
+          }
+        >
+          <Reveal className='flex h-full min-w-0 flex-col bg-ink p-5 text-white sm:p-8 lg:p-10'>
             <p className='bl-kicker text-brand-2'>{t.course.kicker}</p>
-            <h3 className='bl-display mt-6 max-w-[12ch] text-3xl leading-[0.92] sm:text-4xl lg:text-5xl'>
+            <h3 className='bl-display mt-4 max-w-[12ch] text-3xl leading-[0.92] sm:text-4xl'>
               {t.course.title}
             </h3>
             <p className='mt-5 max-w-[36ch] text-base leading-relaxed text-white/70 sm:text-lg'>
@@ -75,7 +79,7 @@ export function ConsciousAiHome({
                 <span className='bl-label text-white/55'>
                   {dict.program.popup.taughtBy}
                 </span>
-                <span className='bl-display mt-1 block text-2xl leading-none text-white group-hover:text-brand-2 sm:text-3xl'>
+                <span className='bl-display mt-1 block text-2xl leading-none text-white group-hover:text-brand-text sm:text-3xl'>
                   {instructor.name}
                 </span>
               </span>
@@ -110,7 +114,6 @@ export function ConsciousAiHome({
               />
             </div>
           </Reveal>
-
         </div>
       </div>
     </section>
