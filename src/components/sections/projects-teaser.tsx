@@ -57,8 +57,8 @@ export function ProjectsTeaser({
   return (
     <section id='projects' className={cn('bl-section bl-rule', className)}>
       <div className='bl-container'>
-        <div className='relative overflow-hidden sm:p-8 lg:p-12'>
-          <div className='grid gap-9 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12'>
+        <div className='relative overflow-hidden'>
+          <div className='grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12'>
             <div className='flex max-w-xl flex-col lg:h-full lg:justify-self-start'>
               <Reveal>
                 <p className='bl-kicker'>{t.kicker}</p>
@@ -67,22 +67,22 @@ export function ProjectsTeaser({
                 as='h2'
                 text={t.title}
                 accentWords={[...t.accent]}
-                className='bl-display mt-5 text-display-lg text-foreground'
+                className='bl-display mt-4 text-display-lg text-foreground'
               />
               <Reveal
                 delay={0.3}
-                className='mt-7 flex flex-col gap-4 max-sm:items-center sm:mt-9'
+                className='mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:flex-col lg:items-start'
               >
                 <Link
                   href={paths.work}
-                  className='bl-btn bl-btn-primary inline-flex h-16 items-center justify-between gap-3 whitespace-nowrap px-8 font-mono text-xs font-semibold uppercase tracking-[0.22em] shadow-[0_16px_30px_-18px_hsl(var(--brand-strong))] w-full max-w-[20rem]'
+                  className='bl-btn bl-btn-primary inline-flex h-12 w-full items-center justify-between gap-3 whitespace-nowrap px-6 sm:w-auto sm:min-w-[16rem]'
                 >
                   {t.cta}
                   <ArrowUpRight className='h-4 w-4' />
                 </Link>
                 <Link
                   href={paths.services}
-                  className='bl-btn bl-btn-secondary inline-flex h-16 items-center justify-between gap-3 whitespace-nowrap bg-surface px-8 font-mono text-xs font-semibold uppercase tracking-[0.22em] w-full max-w-[20rem]'
+                  className='bl-btn bl-btn-secondary inline-flex h-12 w-full items-center justify-between gap-3 whitespace-nowrap bg-surface px-6 sm:w-auto sm:min-w-[16rem]'
                 >
                   {t.servicesCta}
                   <ArrowRight className='h-4 w-4' />
@@ -96,13 +96,11 @@ export function ProjectsTeaser({
               onMouseLeave={() => setPaused(false)}
             >
               <Reveal>
-                <p className='bl-kicker text-[11px] sm:text-xs'>
-                  {t.listLabel}
-                </p>
+                <p className='bl-kicker'>{t.listLabel}</p>
               </Reveal>
               {activeProject && (
                 <>
-                  <div className='bl-card mt-3 sm:mt-4'>
+                  <div className='bl-card mt-3'>
                     <div className='relative aspect-[16/9] min-w-0 overflow-hidden bg-ink'>
                       <AnimatePresence mode='wait' initial={false}>
                         <motion.div
@@ -137,7 +135,7 @@ export function ProjectsTeaser({
                           href={paths.caseStudy(activeProject.slug)}
                           className='group min-w-0'
                         >
-                          <p className='inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-text'>
+                          <p className='bl-num inline-flex items-center gap-2'>
                             <span
                               aria-hidden='true'
                               className='h-1.5 w-1.5 bg-brand'
@@ -145,19 +143,19 @@ export function ProjectsTeaser({
                             {dict.work.filters[activeProject.category] ??
                               activeProject.category}
                           </p>
-                          <h3 className='bl-display mt-2 min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
+                          <h3 className='bl-display mt-1 min-w-0 text-lg text-foreground transition-colors group-hover:text-brand-text sm:text-xl'>
                             {activeProject.title}
                           </h3>
-                          <p className='mt-1.5 line-clamp-2 min-h-[2.75em] max-w-[52ch] text-sm leading-snug text-muted-foreground'>
+                          <p className='mt-1 line-clamp-2 min-h-[2.75em] max-w-[52ch] text-sm leading-snug text-muted-foreground'>
                             {activeProject.tagline}
                           </p>
                         </Link>
                         <div className='flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between'>
-                          <div className='flex min-w-0 flex-1 items-baseline gap-3 border-l-2 border-brand px-4 py-1 sm:gap-4 sm:px-5 sm:py-1.5'>
+                          <div className='flex min-w-0 flex-1 items-baseline gap-3 border-l-2 border-brand px-4 py-1 sm:gap-4'>
                             <span className='bl-display text-3xl leading-none text-brand-text sm:text-4xl'>
                               {activeProject.headline.value}
                             </span>
-                            <span className='max-w-[22ch] text-xs font-semibold leading-snug text-ink sm:text-sm'>
+                            <span className='max-w-[22ch] text-xs font-medium leading-snug text-ink sm:text-sm'>
                               {activeProject.headline.label}
                             </span>
                           </div>
@@ -197,9 +195,7 @@ export function ProjectsTeaser({
                             }}
                           />
                         </div>
-                        <span className='shrink-0 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground'>
-                          {t.featured}
-                        </span>
+                        <span className='bl-label shrink-0'>{t.featured}</span>
                       </div>
                     </div>
                   </div>

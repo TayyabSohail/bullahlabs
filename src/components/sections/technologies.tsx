@@ -115,62 +115,19 @@ const LAYERS = [
 ];
 
 /**
- * Brand colours that are too pale to read on cream paper (yellows, sky
- * blues) get a deeper shade of the same hue. Everything else keeps its
- * official colour.
- */
-const PAPER_SAFE: Record<string, string> = {
-  React: '#0E8FB8',
-  'React Native': '#0E8FB8',
-  JavaScript: '#A88F00',
-  'Hugging Face': '#B98A00',
-  Firebase: '#D9890A',
-  'DHL API': '#B88E00',
-  Airtable: '#0E8FC9',
-  'Tailwind CSS': '#0E93C4',
-  TailwindCSS: '#0E93C4',
-  Capacitor: '#0E7FD0',
-  AWS: '#D9780A',
-  'AWS EC2': '#D9780A',
-  'AWS Lambda': '#D9780A',
-  Claude: '#B8743F',
-  'Claude (Anthropic)': '#B8743F',
-  Android: '#1FA85E',
-  Supabase: '#1FA062',
-  LangGraph: '#15976B',
-  Automation: '#C58A00',
-};
-
-/** The icon and the colour a tech is drawn in on this paper. */
-function paperMeta(name: string) {
-  const { icon, color } = getTechMeta(name);
-  const tint = PAPER_SAFE[name] ?? color;
-  return { icon, color: tint === 'currentColor' ? null : tint };
-}
-
-/**
- * A small ruled tile with the logo in its brand colour on a wash of the same
- * colour. Logos without a brand colour (Next.js, Vercel, Notion) stay in ink.
+ * A small tile with the logo in ink, like a printed catalogue. Fifty logos
+ * in fifty brand colours read as a rainbow; in one ink they read as a list.
  * Used in the stack list on the services page.
  */
 function TechTile({ name }: { name: string }) {
-  const { icon: Icon, color } = paperMeta(name);
+  const { icon: Icon } = getTechMeta(name);
 
   return (
     <span
       aria-hidden='true'
-      className='inline-flex h-7 w-7 shrink-0 items-center justify-center border border-ink/15 bg-ink/[0.05] text-ink'
-      style={
-        color
-          ? {
-              color,
-              backgroundColor: `color-mix(in srgb, ${color} 14%, transparent)`,
-              borderColor: `color-mix(in srgb, ${color} 45%, transparent)`,
-            }
-          : undefined
-      }
+      className='hidden h-6 w-6 shrink-0 items-center justify-center border border-ink/15 bg-ink/[0.04] text-ink/80 sm:inline-flex'
     >
-      <Icon className='h-4 w-4' />
+      <Icon className='h-3.5 w-3.5' />
     </span>
   );
 }
@@ -204,21 +161,22 @@ interface TechnologiesProps {
  * heading, note and tool list sit on shared rows (CSS subgrid), so the rules
  * run straight across the whole grid no matter how long a label wraps.
  */
-export function Technologies({ dict, carouselOnly = false }: TechnologiesProps) {
+export function Technologies({
+  dict,
+  carouselOnly = false,
+}: TechnologiesProps) {
   const t = dict.technologies;
 
   return (
     <section className='bl-rule bg-surface'>
-      <div className='bl-container pt-10 sm:pt-14'>
+      <div className='bl-container pt-8 sm:pt-12'>
         <Reveal>
           {carouselOnly ? (
-            <div className='flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8'>
+            <div className='flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8'>
               <h2 className='bl-display text-2xl text-foreground sm:text-3xl'>
                 {t.statement}
               </h2>
-              <p className='font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground'>
-                {t.stripLabel}
-              </p>
+              <p className='bl-label'>{t.stripLabel}</p>
             </div>
           ) : (
             <p className='bl-kicker'>{t.kicker}</p>
@@ -228,7 +186,7 @@ export function Technologies({ dict, carouselOnly = false }: TechnologiesProps) 
 
       {/* The heading and tools share one paper surface; the carousel is not a
           separate panel with its own fill or dividers. */}
-      <div className='mt-6 py-6 sm:mt-8 sm:py-8'>
+      <div className='mt-4 py-5 sm:mt-6 sm:py-8'>
         <Marquee duration={70}>
           {TOOLS.map((name) => (
             <TechMark key={name} name={name} />
@@ -238,19 +196,19 @@ export function Technologies({ dict, carouselOnly = false }: TechnologiesProps) 
 
       {!carouselOnly && (
         <>
-          <div className='bl-container py-10 sm:py-14'>
+          <div className='bl-container py-8 sm:py-12'>
             <ScrollHighlight
               text={t.statement}
               className='bl-display max-w-4xl text-display-lg text-ink'
             />
             <Reveal delay={0.15}>
-              <p className='mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
+              <p className='mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg'>
                 {t.statementMuted}
               </p>
             </Reveal>
           </div>
 
-          <div className='bl-container pb-10 sm:pb-14'>
+          <div className='bl-container pb-8 sm:pb-12'>
             <Reveal>
               <h2 className='bl-display text-2xl text-ink sm:text-3xl'>
                 {t.stackLabel}
@@ -259,29 +217,29 @@ export function Technologies({ dict, carouselOnly = false }: TechnologiesProps) 
 
             <Stagger
               stagger={0.07}
-              className='mt-6 grid gap-px border bg-line sm:mt-8 sm:grid-cols-2 lg:grid-cols-3'
+              className='mt-5 grid gap-px border bg-line sm:mt-6 sm:grid-cols-2 lg:grid-cols-3'
             >
               {t.layers.map((layer, index) => (
                 <StaggerItem
                   key={layer.label}
-                  className='grid grid-rows-[auto_auto_1fr] gap-0 bg-surface p-5 sm:row-span-3 sm:grid-rows-subgrid sm:p-7'
+                  className='grid grid-rows-[auto_auto_1fr] gap-0 bg-surface p-4 sm:row-span-3 sm:grid-rows-subgrid sm:p-6'
                 >
                   <div className='flex items-baseline justify-between gap-4'>
                     <h3 className='bl-display text-xl leading-tight text-ink sm:text-2xl'>
                       {layer.label}
                     </h3>
-                    <span className='shrink-0 font-mono text-[11px] font-semibold tracking-[0.18em] text-brand-text'>
+                    <span className='bl-num shrink-0'>
                       {String(index + 1).padStart(2, '0')}
                     </span>
                   </div>
                   <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
                     {layer.note}
                   </p>
-                  <ul className='mt-5 flex flex-wrap content-start gap-2 self-stretch border-t pt-5'>
+                  <ul className='mt-4 flex flex-wrap content-start gap-x-3 gap-y-1 self-stretch border-t pt-4 sm:gap-1.5'>
                     {LAYERS[index].map((name) => (
                       <li
                         key={name}
-                        className='inline-flex max-w-full items-center gap-2 border border-ink/20 bg-surface py-1 pl-1 pr-3 text-[13px] font-medium text-ink/85'
+                        className='inline-flex max-w-full items-center gap-2 font-mono text-xs text-ink/85 sm:border sm:border-ink/20 sm:bg-surface sm:py-0.5 sm:pl-0.5 sm:pr-2.5 sm:font-sans'
                       >
                         <TechTile name={name} />
                         <span className='truncate'>{name}</span>

@@ -50,6 +50,8 @@
        soft peach. Light, never white. */
     --band-sky: 200 35% 96%;
     --band-peach: 24 55% 94%;
+    /* The hero sheet on every page: a mint a step deeper than brand-soft. */
+    --band-hero: 152 44% 88%;
   }
 
   * {
@@ -129,9 +131,9 @@
     @apply bg-brand;
   }
 
-  /* Bracketed mono kicker: [ SECTION ] */
+  /* Bracketed mono kicker, sentence case: [ Section ] */
   .bl-kicker {
-    @apply inline-flex items-center gap-2 font-mono text-[13px] font-medium uppercase tracking-[0.2em] text-muted-foreground sm:text-sm sm:tracking-[0.22em];
+    @apply inline-flex items-center gap-2 font-mono text-xs tracking-[0.04em] text-muted-foreground sm:text-[13px];
   }
   .bl-kicker::before {
     content: '[';
@@ -147,7 +149,30 @@
   }
 
   .bl-section {
-    @apply py-10 sm:py-14 lg:py-16 xl:py-20;
+    @apply py-8 sm:py-12 lg:py-16 xl:py-20;
+  }
+
+  /* Mono meta: counts, categories, captions. Sentence case, no tracking. */
+  .bl-label {
+    @apply font-mono text-[11px] leading-5 text-muted-foreground;
+  }
+
+  /* The ledger number: the one place a list gets colour. */
+  .bl-num {
+    @apply font-mono text-[11px] font-medium tabular-nums leading-5 text-brand-text;
+  }
+
+  /* A ruled box from md up; a plain ruled row below it, so three cards
+     do not stack into three screens on a phone. */
+  .bl-card-md {
+    @apply relative bg-transparent;
+  }
+  @media (min-width: 768px) {
+    .bl-card-md {
+      @apply overflow-hidden bg-surface;
+      border: 1px solid hsl(var(--ink) / 0.85);
+      box-shadow: 4px 4px 0 0 hsl(var(--ink) / 0.9);
+    }
   }
 
   /* Full-width double rule between sections, like a printed form. */
@@ -235,9 +260,9 @@
     background-size: 100% 1px;
   }
 
-  /* Mono action link: SEE THE PROJECT ↗ */
+  /* Mono action link: See the project ↗ */
   .bl-action {
-    @apply inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-text transition-colors;
+    @apply inline-flex items-center gap-2 font-mono text-xs font-medium text-brand-text transition-colors;
   }
   .bl-action:hover {
     @apply text-foreground;
@@ -247,6 +272,7 @@
      fills upward with ink on hover; the primary is solid emerald that drains
      downward, then refills when the pointer leaves. */
   .bl-btn {
+    @apply font-mono text-xs font-medium uppercase tracking-[0.1em];
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 100% 0%;
@@ -550,13 +576,7 @@
 @layer components {
   /* Alternating section bands so the page is not one flat sheet. */
   .bl-band-ink {
-    background:
-      radial-gradient(
-        50% 60% at 80% 0%,
-        hsl(var(--brand) / 0.25),
-        transparent 70%
-      ),
-      hsl(var(--ink));
+    background: hsl(var(--ink));
     color: #fff;
   }
 
@@ -648,7 +668,7 @@
 
   /* Filter tabs with an animated underline. */
   .bl-tab {
-    @apply relative pb-3 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors;
+    @apply relative pb-3 font-mono text-xs font-medium text-muted-foreground transition-colors;
   }
   .bl-tab[aria-pressed='true'] {
     @apply text-foreground;
@@ -1511,28 +1531,22 @@ body::after {
    never plain white. A band that is not a direct child of <main> (the FAQ
    wrapper, sub-sections) falls back to peach. */
 .bl-band-stone {
-  background-image:
-    radial-gradient(hsl(var(--ink) / 0.16) 1px, transparent 1.2px),
-    radial-gradient(
-      60% 40% at 50% 0%,
-      hsl(var(--brand) / 0.06),
-      transparent 70%
-    );
-  background-size:
-    22px 22px,
-    100% 100%;
+  background-image: radial-gradient(
+    hsl(var(--ink) / 0.16) 1px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
   background-color: hsl(var(--band-peach));
 }
 
 /* A light brand-tinted paper band for the FAQ: enough separation from the
    surrounding sky and peach sections, without breaking the light theme. */
 .bl-band-mint {
-  background-image:
-    radial-gradient(hsl(var(--ink) / 0.16) 1px, transparent 1.2px),
-    radial-gradient(60% 40% at 50% 0%, hsl(var(--brand) / 0.1), transparent 70%);
-  background-size:
-    22px 22px,
-    100% 100%;
+  background-image: radial-gradient(
+    hsl(var(--ink) / 0.16) 1px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
   background-color: hsl(var(--brand-soft));
 }
 
@@ -1548,6 +1562,60 @@ main > section.bl-band-stone.bl-band-peach {
 /* A section that must be sky whatever its position in the page. */
 main > section.bl-band-stone.bl-band-sky {
   background-color: hsl(var(--band-sky));
+}
+
+/* Hero paper: every page opens on the same sheet, and it is not the page
+   sky. Mint graph paper (a fine 22px rule with a heavier line every fifth)
+   and a halftone screen in brand that fades in from the top-right corner,
+   like a print block. One class on the opening <section>; the section's
+   own content sits above the screen because the class isolates it. */
+.bl-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background-color: hsl(var(--band-hero));
+  background-image:
+    linear-gradient(to right, hsl(var(--ink) / 0.13) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--ink) / 0.13) 1px, transparent 1px),
+    linear-gradient(to right, hsl(var(--ink) / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--ink) / 0.055) 1px, transparent 1px);
+  background-size:
+    110px 110px,
+    110px 110px,
+    22px 22px,
+    22px 22px;
+  background-position: -1px -1px;
+}
+.bl-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(hsl(var(--brand) / 0.55) 2.2px, transparent 2.6px),
+    radial-gradient(hsl(var(--brand) / 0.38) 1.4px, transparent 1.8px);
+  background-size:
+    9px 9px,
+    9px 9px;
+  -webkit-mask-image:
+    radial-gradient(ellipse 22% 34% at 100% 0%, black, transparent 72%),
+    radial-gradient(ellipse 48% 68% at 100% 0%, black, transparent 72%);
+  mask-image:
+    radial-gradient(ellipse 22% 34% at 100% 0%, black, transparent 72%),
+    radial-gradient(ellipse 48% 68% at 100% 0%, black, transparent 72%);
+}
+/* On phones the headline spans the full width, so the screen keeps to a
+   strip in the corner above it instead of sitting behind the letters. */
+@media (max-width: 639px) {
+  .bl-hero::before {
+    -webkit-mask-image:
+      radial-gradient(ellipse 38% 14% at 100% 0%, black, transparent 72%),
+      radial-gradient(ellipse 75% 26% at 100% 0%, black, transparent 72%);
+    mask-image:
+      radial-gradient(ellipse 38% 14% at 100% 0%, black, transparent 72%),
+      radial-gradient(ellipse 75% 26% at 100% 0%, black, transparent 72%);
+  }
 }
 
 /* The till receipt in the home and Conscious AI heroes: a sawtooth tear along the bottom,
@@ -1735,8 +1803,8 @@ textarea {
   color: hsl(var(--brand-text) / 0.8);
   font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transform: rotate(-6deg);
   mix-blend-mode: multiply;

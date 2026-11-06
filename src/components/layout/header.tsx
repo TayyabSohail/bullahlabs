@@ -53,9 +53,10 @@ export function Header({ dict }: HeaderProps) {
         // (z-60) or the banner covers the menu's CTAs.
         mobileMenuOpen
           ? 'z-[70] border-line bg-[hsl(var(--band-peach))]'
-          : scrolled ||
-              pathname.startsWith(paths.program) ||
-              pathname.startsWith(paths.upskilling)
+          : // The teams page opens on an ink band, where the ink mark and
+            // links would vanish on a transparent bar. Every other page
+            // opens on the hero sheet, which the bar sits on cleanly.
+            scrolled || pathname.startsWith(paths.teams)
             ? 'z-50 border-ink/80 bg-[hsl(var(--band-peach))]'
             : 'z-50 border-transparent bg-transparent',
       )}
@@ -78,7 +79,7 @@ export function Header({ dict }: HeaderProps) {
                 // Lenis animates section links; Next's own jump would fight it.
                 aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'group relative inline-flex items-center font-mono text-[11px] uppercase tracking-[0.16em] transition-colors duration-300',
+                  'group relative inline-flex items-center font-mono text-xs tracking-[0.02em] transition-colors duration-200',
                   active
                     ? 'font-semibold text-foreground'
                     : 'font-medium text-muted-foreground hover:text-foreground',
@@ -107,7 +108,7 @@ export function Header({ dict }: HeaderProps) {
               Dropped on the contact page itself, where the calendar is
               already on screen. */}
           {!isActive(paths.contact) && (
-            <LetsTalkButton className='bl-btn bl-btn-primary inline-flex h-10 items-center px-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:px-5'>
+            <LetsTalkButton className='bl-btn bl-btn-primary inline-flex h-10 items-center px-4 sm:px-5'>
               {dict.nav.cta}
             </LetsTalkButton>
           )}

@@ -57,14 +57,8 @@ export async function generateMetadata({
       description: project.summary,
       url: paths.caseStudy(project.slug),
       type: 'article',
-      images: [
-        {
-          url: project.coverImage,
-          width: project.coverWidth,
-          height: project.coverHeight,
-          alt: `${project.title} cover`,
-        },
-      ],
+      // The card itself comes from ./opengraph-image.tsx, which frames the
+      // cover screen with the title and tagline instead of posting it raw.
     },
   };
 }
