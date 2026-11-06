@@ -32,7 +32,7 @@ export function LocationsHome({ dict }: { dict: Dictionary }) {
     <section
       data-section='locations'
       id='locations'
-      className='bl-section bl-rule bl-band-ink scroll-mt-24'
+      className='bl-section bl-rule bl-band-ink bl-no-dot scroll-mt-24'
     >
       <div className='bl-container'>
         <div className='grid grid-cols-[minmax(0,1fr)_7rem] items-center gap-4 sm:grid-cols-[minmax(0,1fr)_14rem] sm:gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]'>

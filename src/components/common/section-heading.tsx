@@ -4,7 +4,7 @@ import { TextReveal } from '@/components/motion/text-reveal';
 import { cn } from '@/lib/utils';
 
 interface SectionHeadingProps {
-  kicker: string;
+  kicker?: string;
   title: string;
   /** Word indexes rendered in the serif accent style. */
   accentWords?: number[];
@@ -42,16 +42,18 @@ export function SectionHeading({
       )}
     >
       <div>
-        <Reveal>
-          <p
-            className={cn(
-              'bl-kicker justify-center md:justify-start',
-              align === 'center' && 'md:justify-center',
-            )}
-          >
-            {kicker}
-          </p>
-        </Reveal>
+        {kicker && (
+          <Reveal>
+            <p
+              className={cn(
+                'bl-kicker justify-center md:justify-start',
+                align === 'center' && 'md:justify-center',
+              )}
+            >
+              {kicker}
+            </p>
+          </Reveal>
+        )}
         <TextReveal
           as={as}
           text={title}

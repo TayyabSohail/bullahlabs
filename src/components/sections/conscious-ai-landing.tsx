@@ -24,17 +24,18 @@ interface SectionProps {
 
 /**
  * The opening: the essence in one headline, the tagline, one call to
- * action, and the planet's tab printed beside them.
+ * action, and the planet's tab beside them. Keeping the proof alongside the
+ * message prevents the hero from becoming a full-screen vertical stack.
  */
 export function ConsciousAiHero({ dict }: SectionProps) {
   const t = dict.consciousAiPage.hero;
 
   return (
     <section className='bl-hero relative overflow-hidden border-b border-line'>
-      <div className='bl-container grid gap-8 pb-12 pt-24 sm:pt-32 md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] md:items-center md:gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pb-20 lg:pt-36'>
-        <div className='min-w-0'>
+      <div className='bl-container grid gap-8 pb-10 pt-20 sm:pt-28 md:grid-cols-[minmax(0,7fr)_minmax(17rem,5fr)] md:items-center md:gap-10 lg:gap-16 lg:pb-14 lg:pt-32'>
+        <div className='min-w-0 text-center md:text-left'>
           <Reveal>
-            <p className='bl-kicker'>{t.kicker}</p>
+            <p className='bl-kicker md:justify-start'>{t.kicker}</p>
           </Reveal>
           {/* The page's name is the headline: one line, as large as the
               column allows, with "AI" in the emerald italic accent. */}
@@ -42,23 +43,23 @@ export function ConsciousAiHero({ dict }: SectionProps) {
             as='h1'
             text={t.title}
             accentWords={[...t.titleAccent]}
-            className='bl-display mt-4 text-[clamp(3.5rem,12.5vw,8.5rem)] leading-[0.9] tracking-[-0.035em] text-ink md:text-[7.4vw] lg:text-[clamp(5rem,8.2vw,8.5rem)]'
+            className='bl-display mt-4 justify-center text-[clamp(3.5rem,12.5vw,8.5rem)] leading-[0.9] tracking-[-0.035em] text-ink md:justify-start md:text-[clamp(4.5rem,6.9vw,7rem)]'
           />
           <TextReveal
             as='p'
             text={t.tagline}
             accentWords={[...t.taglineAccent]}
             delay={0.25}
-            className='bl-display mt-4 text-[clamp(1.6rem,3.2vw,2.75rem)] leading-[1.05] text-foreground'
+            className='bl-display mt-4 justify-center text-[clamp(1.6rem,3.2vw,2.75rem)] leading-[1.05] text-foreground md:justify-start'
           />
           <Reveal delay={0.35}>
-            <p className='mt-5 max-w-lg text-lg leading-snug text-foreground sm:text-xl'>
+            <p className='mx-auto mt-5 max-w-lg text-lg leading-snug text-foreground sm:mx-0 sm:text-xl'>
               {t.body}
             </p>
           </Reveal>
           <Reveal
             delay={0.3}
-            className='mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap'
+            className='mt-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center md:justify-start'
           >
             <Link
               href={teamHref}
@@ -68,7 +69,10 @@ export function ConsciousAiHero({ dict }: SectionProps) {
             </Link>
           </Reveal>
         </div>
-        <PlanetReceipt copy={dict.hero.receipt} className='md:mr-0' />
+        <PlanetReceipt
+          copy={dict.hero.receipt}
+          className='md:ml-auto md:mr-0'
+        />
       </div>
     </section>
   );

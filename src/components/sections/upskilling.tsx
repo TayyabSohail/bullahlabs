@@ -250,7 +250,7 @@ export function UpskillingBill({ dict }: SectionProps) {
 
   return (
     <section className='bl-section bl-rule bg-[hsl(var(--band-sky))]'>
-      <div className='bl-container grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] md:items-center md:gap-12 lg:gap-16'>
+      <div className='bl-container grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] md:items-center md:gap-12 lg:gap-16'>
         <div className='min-w-0'>
           <Reveal>
             <p className='bl-kicker'>{t.kicker}</p>
@@ -259,28 +259,32 @@ export function UpskillingBill({ dict }: SectionProps) {
             as='h2'
             text={t.title}
             accentWords={[...t.accent]}
-            className='bl-display mt-4 max-w-[12ch] text-display-lg text-foreground'
+            className='bl-display mt-4 max-w-[10ch] text-[clamp(2.85rem,11vw,5.5rem)] leading-[0.91] tracking-[-0.03em] text-foreground sm:max-w-[11ch]'
           />
           <Reveal delay={0.2}>
-            <p className='mt-4 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg'>
+            <p className='mt-5 max-w-[34rem] text-base leading-relaxed text-muted-foreground sm:text-lg'>
               {t.body}
             </p>
-            {/* A simple process line, so the offer reads as a sequence instead of a row of tiny cards. */}
-            <ol className='mt-7 grid gap-5 sm:grid-cols-3 sm:gap-0'>
+            {/* One solid offer strip at every size; it simply gains columns when room allows. */}
+            <ol className='mt-8 overflow-hidden rounded-2xl border border-ink/15 bg-surface shadow-[0_1.25rem_3rem_-2.5rem_hsl(var(--ink)/0.32)] sm:grid sm:grid-cols-3'>
               {t.steps.map((step, index) => (
                 <li
                   key={step}
-                  className='relative border-l-2 border-brand pl-4 sm:border-l-0 sm:border-t-2 sm:px-5 sm:pt-4 first:sm:pl-0 last:sm:pr-0'
+                  className='group relative flex min-h-[5.5rem] items-center gap-4 border-b border-ink/10 px-4 py-4 last:border-b-0 sm:block sm:min-h-[10.5rem] sm:border-b-0 sm:border-l sm:border-ink/15 sm:px-5 sm:py-5 sm:first:border-l-0'
                 >
-                  <span className='bl-num block'>{pad(index + 1)}</span>
-                  <span className='mt-1 block font-display text-lg leading-snug text-foreground sm:text-xl'>
+                  <span className='bl-num flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-[hsl(var(--brand-soft))] sm:mb-5'>
+                    {pad(index + 1)}
+                  </span>
+                  <span className='block font-display text-xl leading-[1.02] text-foreground sm:text-2xl'>
                     {step}
                   </span>
                 </li>
               ))}
             </ol>
             <div className='mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap'>
-              <CallButton className={ctaClass('primary')}>
+              <CallButton
+                className={cn(ctaClass('primary'), 'w-full sm:w-auto')}
+              >
                 {t.primaryCta}
               </CallButton>
             </div>

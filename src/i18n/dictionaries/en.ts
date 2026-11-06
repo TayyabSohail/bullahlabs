@@ -40,9 +40,9 @@ export const en = {
     title: 'Technology that solves problems.\nBuilt with conscience.',
     /** Words (0-based, across both lines) in the accent colour: the second line. */
     accent: [4, 5, 6],
-    /** What we do, AI first: one strong line in ink, then one quiet line. The problem people arrive with is the next section. */
-    lead: 'We make AI do more with less.',
-    body: 'Less cost, less energy, less complexity. For the AI your team already uses, and for the products we build.',
+    /** The first screen says who we are before introducing an offer. */
+    lead: 'Bullah Labs is a product and engineering studio.',
+    body: 'We build digital products people rely on, and help teams use technology, including AI, with care.',
     /** One button only: Conscious AI. The studio's own "start a project" call waits for the sections below. */
     primary: 'Explore Conscious AI',
     /**
@@ -210,9 +210,10 @@ export const en = {
     /** Words (0-based, across both lines) in the accent colour: the decision. */
     accent: [3, 4, 5, 6],
     impact: {
-      kicker: 'The environmental cost of AI',
+      label: 'The impact',
+      kicker: 'AI has a physical cost.',
       intro:
-        'AI runs in data centres: buildings full of powerful computers that need electricity and cooling. AI is not the only thing they do, but it is the fastest-growing part.',
+        'The screen hides it. The grid, water supply and air do not.',
       stats: [
         {
           value: '1.5%',
@@ -238,26 +239,28 @@ export const en = {
         'https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary',
       water: {
         value: '600 billion litres',
-        eyebrow: 'Water used',
+        eyebrow: 'AI could consume by 2027',
         title:
-          'That’s up to 1.2 trillion 500 ml bottles that could evaporate from AI in 2027.',
+          'Enough water to fill up to 1.2 trillion 500 ml bottles.',
         body: 'This GPT-3 estimate is not a fixed price per prompt. It changes with the model, response length, weather, cooling system and electricity grid.',
       },
       powerStats: [
         {
           value: '1 in every 67 units',
-          eyebrow: 'Electricity used',
-          label: 'Global electricity used by data centres in 2024.',
+          eyebrow: 'Data centres already use',
+          label:
+            'of all electricity worldwide. AI is the fastest-growing demand inside them.',
         },
         {
           value: 'Japan’s annual use',
-          eyebrow: 'Projected for 2030',
-          label: 'Possible yearly use for AI data centres by 2030.',
+          eyebrow: 'AI data centres could use',
+          label:
+            'of electricity each year by 2030.',
         },
         {
           value: '65 million cars',
-          eyebrow: 'CO₂ emissions',
-          label: 'The same yearly emissions as those cars driving for a year.',
+          eyebrow: 'Annual emissions could equal',
+          label: 'driving that many cars for a full year.',
         },
       ],
     },
@@ -987,9 +990,9 @@ export const en = {
     },
     /** Two doors out: the teams card (shared, see `offers.teams`) and the build card. */
     nextSteps: {
-      kicker: 'Where next',
-      title: 'Two ways we can help.',
-      accent: [0, 1],
+      kicker: 'Want a solution?',
+      title: 'Here’s how we solve it.',
+      accent: [],
       build: {
         kicker: 'For your product',
         title: 'Build something with us',
@@ -1201,7 +1204,7 @@ export const en = {
   },
   /** The Conscious AI preview on the home page: the course plate, the teams plate, the rail. */
   consciousAiHome: {
-    kicker: 'Conscious AI',
+    kicker: 'How we solve it with AI',
     title: 'Using AI well is a skill. Not a subscription.',
     accent: [6, 7, 8],
     course: {
@@ -1223,7 +1226,7 @@ export const en = {
     accent: [6, 7, 8],
     portraitAlt: 'Illustrated portrait of Bulleh Shah',
     origin:
-      'Bullah is a nod to Bulleh Shah, the Punjabi Sufi poet who preached love, challenged hypocrisy, and stood with ordinary people across the lines of caste and class.',
+      'Bullah Labs takes its name from Bulleh Shah — a Punjabi Sufi poet who chose love over dogma, challenged hypocrisy and stood with ordinary people.',
     verse: {
       name: 'Bulleh Shah',
       place: 'Kasur, Punjab',
@@ -1232,8 +1235,8 @@ export const en = {
     },
     meaning: {
       kicker: 'What it means for us',
-      title: 'Make progress work for people, not just systems.',
-      body: 'In that spirit, we build useful technology that gives people more capability, lowers unnecessary cost and environmental impact, and keeps human judgment where it matters.',
+      title: 'Build progress that stays human.',
+      body: 'That means useful technology: more capability for people, less needless cost and impact, and human judgment where it matters.',
     },
     office: {
       open: 'Office hours',
@@ -1768,31 +1771,37 @@ export const en = {
   },
   /** The studio offer on the home page: three ways we help, then the services door. */
   studio: {
-    kicker: 'Studio',
-    title: 'Digital products built right.',
-    accent: [2, 3],
+    title: 'Want a solution?\nHere’s how we solve it.',
+    accent: [],
     description:
-      'From first idea to better everyday work, we build technology that earns its place.',
+      'We build products, fix what gets in the way, and help people use AI with care.',
     /** Title, body, typical engagements; the icons live in the component, in this order. */
     services: [
       {
         title: 'Build',
         body: 'From idea to launch, digital products built to last.',
         typical: 'New product · MVP · Platform',
+        cta: 'Build a product',
       },
       {
         title: 'Fix',
         body: 'Simpler, stronger software with less waste.',
         typical: 'Rebuild · Rescue · Integration',
+        cta: 'Fix a product',
       },
       {
         title: 'Optimise AI',
         body: 'Smarter AI systems. Lower cost. Better results.',
         typical: 'AI audit · Workflow design · Team training',
+        cta: 'Optimise our AI',
       },
     ],
     wantTitle: 'Want our services?',
     wantCta: 'Visit services',
+    learning: {
+      kicker: 'Learn with us',
+      title: 'Start with the free course. Build a better AI habit.',
+    },
   },
   /** The figures and the two offices in one ink band on the home page. */
   locationsHome: {

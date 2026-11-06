@@ -26,8 +26,8 @@ export const de: Dictionary = {
   hero: {
     title: 'Technologie, die Probleme löst.\nMit Gewissen gebaut.',
     accent: [4, 5, 6],
-    lead: 'Wir holen aus KI mehr heraus, mit weniger.',
-    body: 'Weniger Kosten, weniger Energie, weniger Komplexität. Für die KI, die Ihr Team schon nutzt, und für die Produkte, die wir bauen.',
+    lead: 'Bullah Labs ist ein Produkt- und Engineering-Studio.',
+    body: 'Wir bauen digitale Produkte, auf die sich Menschen verlassen, und helfen Teams, Technologie, auch KI, mit Bedacht einzusetzen.',
     primary: 'Conscious AI entdecken',
     steps: [
       {
@@ -163,7 +163,8 @@ export const de: Dictionary = {
     title: 'KI verändert die Arbeit.\nNiemand hat Ihnen gezeigt, wie.',
     accent: [6, 7, 8],
     impact: {
-      kicker: 'Die Umweltkosten, einfach erklärt',
+      label: 'Die Auswirkung',
+      kicker: 'Was KI jenseits der Rechnung kostet',
       intro:
         'KI läuft in Rechenzentren: Gebäuden voller leistungsstarker Computer, die Strom und Kühlung brauchen. KI ist nicht ihre einzige Aufgabe, aber der am schnellsten wachsende Teil.',
       stats: [
@@ -932,9 +933,9 @@ export const de: Dictionary = {
       ],
     },
     nextSteps: {
-      kicker: 'Wie weiter',
-      title: 'Zwei Wege, wie wir helfen.',
-      accent: [0, 1],
+      kicker: 'Suchen Sie eine Lösung?',
+      title: 'So lösen wir es.',
+      accent: [],
       build: {
         kicker: 'Für Ihr Produkt',
         title: 'Mit uns etwas bauen',
@@ -1155,7 +1156,7 @@ export const de: Dictionary = {
     ],
   },
   consciousAiHome: {
-    kicker: 'Conscious AI',
+    kicker: 'So lösen wir es mit KI',
     title: 'KI gut zu nutzen ist eine Fähigkeit. Kein Abo.',
     accent: [7, 8],
     course: {
@@ -1176,7 +1177,7 @@ export const de: Dictionary = {
     accent: [6, 7, 8, 9],
     portraitAlt: 'Illustriertes Porträt von Bulleh Shah',
     origin:
-      'Bullah ist eine Verbeugung vor Bulleh Shah, dem Sufi-Dichter aus dem Punjab, der Liebe predigte, Heuchelei anprangerte und über Kasten- und Klassengrenzen hinweg zu den einfachen Menschen stand.',
+      'Bullah Labs ist nach Bulleh Shah benannt — einem Sufi-Dichter aus dem Punjab, der Liebe über Dogma stellte, Heuchelei anprangerte und zu den einfachen Menschen stand.',
     verse: {
       name: 'Bulleh Shah',
       place: 'Kasur, Punjab',
@@ -1185,8 +1186,8 @@ export const de: Dictionary = {
     },
     meaning: {
       kicker: 'Was das für uns heißt',
-      title: 'Fortschritt soll für Menschen arbeiten, nicht nur für Systeme.',
-      body: 'In diesem Geist bauen wir nützliche Technologie, die Menschen mehr Möglichkeiten gibt, unnötige Kosten und Umweltbelastung senkt und das menschliche Urteil dort lässt, wo es zählt.',
+      title: 'Fortschritt, der menschlich bleibt.',
+      body: 'Das heißt: nützliche Technologie, mehr Möglichkeiten für Menschen, weniger unnötige Kosten und Belastung und menschliches Urteil dort, wo es zählt.',
     },
     office: {
       open: 'Bürozeiten',
@@ -1332,10 +1333,7 @@ export const de: Dictionary = {
           'Mehr schaffen',
           'Schneller entwerfen. Menschen behalten die Kontrolle.',
         ],
-        [
-          'Weniger für KI ausgeben',
-          'Das richtige Tool für jede Aufgabe.',
-        ],
+        ['Weniger für KI ausgeben', 'Das richtige Tool für jede Aufgabe.'],
         ['Compliant bleiben', 'Klare Regeln für Tools und Daten.'],
         [
           'Ihre Branche anführen',
@@ -1349,10 +1347,7 @@ export const de: Dictionary = {
       repeat: 'Wiederholen',
       steps: [
         ['Erst fragen', 'KI nur einsetzen, wenn sie hilft'],
-        [
-          'Das richtige Tool wählen',
-          'Das einfachste passende Tool wählen',
-        ],
+        ['Das richtige Tool wählen', 'Das einfachste passende Tool wählen'],
         ['Prüfen und verbessern', 'Ergebnisse prüfen, bevor sie rausgehen'],
       ],
     },
@@ -1743,30 +1738,37 @@ export const de: Dictionary = {
     },
   },
   studio: {
-    kicker: 'Studio',
-    title: 'Digitale Produkte, richtig gebaut.',
-    accent: [2, 3],
+    title: 'Suchen Sie eine Lösung?\nSo lösen wir es.',
+    accent: [],
     description:
-      'Von der ersten Idee bis zur besseren Alltagsarbeit bauen wir Technologie, die ihren Platz verdient.',
+      'Wir bauen Produkte, verbessern, was im Weg steht, und helfen Menschen, KI mit Bedacht einzusetzen.',
     services: [
       {
         title: 'Bauen',
         body: 'Von der Idee zum Launch: digitale Produkte, gebaut, um zu halten.',
         typical: 'Neues Produkt · MVP · Plattform',
+        cta: 'Produkt bauen',
       },
       {
         title: 'Reparieren',
         body: 'Einfachere, robustere Software mit weniger Verschwendung.',
         typical: 'Neubau · Rettung · Integration',
+        cta: 'Produkt verbessern',
       },
       {
         title: 'KI optimieren',
         body: 'Klügere KI-Systeme. Geringere Kosten. Bessere Ergebnisse.',
         typical: 'KI-Audit · Workflow-Design · Team-Training',
+        cta: 'KI optimieren',
       },
     ],
     wantTitle: 'Unsere Leistungen gefragt?',
     wantCta: 'Zu den Leistungen',
+    learning: {
+      kicker: 'Mit uns lernen',
+      title:
+        'Starten Sie mit dem kostenlosen Kurs. Bauen Sie bessere KI-Gewohnheiten auf.',
+    },
   },
   locationsHome: {
     kicker: 'Wo wir sind',

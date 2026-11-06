@@ -62,25 +62,23 @@ export function ProjectsTeaser({
       <div className='bl-container'>
         <div className='relative overflow-hidden py-2 sm:py-4'>
           <div className='grid gap-10 lg:grid-cols-[minmax(19rem,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-10 xl:gap-14'>
-            <div className='mx-auto flex max-w-xl flex-col text-center lg:mx-0 lg:pt-1 lg:text-left'>
+            <div className='flex max-w-xl flex-col text-left lg:pt-1'>
               <Reveal>
-                <p className='bl-kicker justify-center lg:justify-start'>
-                  {t.kicker}
-                </p>
+                <p className='bl-kicker'>{t.kicker}</p>
               </Reveal>
               <TextReveal
                 as='h2'
                 text={t.title}
                 accentWords={[...t.accent]}
-                className='bl-display mx-auto mt-5 max-w-[11ch] text-display-lg text-foreground lg:mx-0'
+                className='bl-display mt-5 max-w-[15ch] justify-start text-display-lg text-foreground lg:max-w-[11ch]'
               />
               <Reveal
                 delay={0.3}
-                className='mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:flex-col lg:items-start'
+                className='mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:flex-col lg:items-start'
               >
                 <Link
                   href={paths.work}
-                  className='bl-btn bl-btn-primary inline-flex h-12 w-full items-center justify-between gap-3 whitespace-nowrap px-6 sm:w-auto sm:min-w-[16rem]'
+                  className='bl-btn bl-btn-primary inline-flex h-12 w-full items-center justify-between gap-3 px-6 sm:w-auto sm:min-w-[16rem]'
                 >
                   {t.cta}
                   <ArrowUpRight className='h-4 w-4' />
