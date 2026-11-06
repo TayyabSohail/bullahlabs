@@ -27,15 +27,17 @@ export function WhoWeAre({ dict, className }: WhoWeAreProps) {
       className={cn('bl-section bl-rule bl-band-stone', className)}
     >
       <div className='bl-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20'>
-        <div className='lg:sticky lg:top-32 lg:self-start'>
+        <div className='text-center lg:sticky lg:top-32 lg:self-start lg:text-left'>
           <Reveal>
-            <p className='bl-kicker'>{t.kicker}</p>
+            <p className='bl-kicker justify-center lg:justify-start'>
+              {t.kicker}
+            </p>
           </Reveal>
           <TextReveal
             as='h2'
             text={t.title}
             accentWords={[...t.accent]}
-            className='bl-display mt-5 max-w-[18ch] text-display-lg text-foreground'
+            className='bl-display mx-auto mt-5 max-w-[18ch] justify-center text-display-lg text-foreground lg:mx-0 lg:justify-start'
           />
           <Reveal delay={0.3} className='mt-8 hidden lg:block'>
             <Link
@@ -48,7 +50,7 @@ export function WhoWeAre({ dict, className }: WhoWeAreProps) {
           </Reveal>
         </div>
 
-        <Reveal delay={0.15} className='space-y-6'>
+        <Reveal delay={0.15} className='space-y-6 text-center lg:text-left'>
           {t.paragraphs.map((paragraph, index) => (
             <p
               key={paragraph}
@@ -57,7 +59,7 @@ export function WhoWeAre({ dict, className }: WhoWeAreProps) {
                 index === 0
                   ? 'text-xl font-medium text-foreground sm:text-2xl'
                   : index === t.paragraphs.length - 1
-                    ? 'border-l-2 border-brand pl-5 text-lg font-medium text-foreground'
+                    ? 'border-l-2 border-brand pl-5 text-lg font-medium text-foreground lg:text-left'
                     : 'text-base text-muted-foreground sm:text-lg',
               )}
             >
@@ -66,7 +68,7 @@ export function WhoWeAre({ dict, className }: WhoWeAreProps) {
           ))}
           <Link
             href={paths.about}
-            className='bl-btn bl-btn-ink inline-flex h-14 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] lg:hidden'
+            className='bl-btn bl-btn-ink mx-auto inline-flex h-14 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] lg:hidden'
           >
             {t.cta}
             <ArrowUpRight className='h-4 w-4' />

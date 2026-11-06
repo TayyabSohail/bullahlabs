@@ -36,12 +36,14 @@ export function LocationsHome({ dict }: { dict: Dictionary }) {
     >
       <div className='bl-container'>
         <div className='grid grid-cols-[minmax(0,1fr)_7rem] items-center gap-4 sm:grid-cols-[minmax(0,1fr)_14rem] sm:gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]'>
-          <div className='lg:pl-12'>
-            <p className='bl-kicker text-white/60'>{t.kicker}</p>
+          <div className='text-center lg:pl-12 lg:text-left'>
+            <p className='bl-kicker justify-center text-white/60 lg:justify-start'>
+              {t.kicker}
+            </p>
             <h2 className='bl-display mt-3 text-3xl text-white sm:text-5xl'>
               {t.title}
             </h2>
-            <div className='mt-4 flex flex-wrap gap-x-5 gap-y-2'>
+            <div className='mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2 lg:justify-start'>
               {siteConfig.locations.map((location) => (
                 <p
                   key={location.id}

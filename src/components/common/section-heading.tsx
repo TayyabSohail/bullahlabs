@@ -35,6 +35,7 @@ export function SectionHeading({
         descriptionPosition === 'aside'
           ? 'grid gap-4 md:grid-cols-[1.1fr_0.9fr] md:items-end md:gap-8'
           : 'block',
+        align === 'left' && 'text-center md:text-left',
         align === 'center' &&
           'text-center md:grid-cols-1 md:justify-items-center',
         className,
@@ -43,7 +44,10 @@ export function SectionHeading({
       <div>
         <Reveal>
           <p
-            className={cn('bl-kicker', align === 'center' && 'justify-center')}
+            className={cn(
+              'bl-kicker justify-center md:justify-start',
+              align === 'center' && 'md:justify-center',
+            )}
           >
             {kicker}
           </p>
@@ -53,8 +57,8 @@ export function SectionHeading({
           text={title}
           accentWords={accentWords}
           className={cn(
-            'bl-display mt-4 text-display-lg text-foreground',
-            align === 'center' && 'justify-center',
+            'bl-display mt-4 justify-center text-display-lg text-foreground md:justify-start',
+            align === 'center' && 'md:justify-center',
           )}
         />
       </div>
@@ -62,7 +66,7 @@ export function SectionHeading({
         <Reveal
           delay={0.15}
           className={cn(
-            'flex flex-col gap-4',
+            'flex flex-col items-center gap-4 md:items-start',
             descriptionPosition === 'aside' && 'md:items-end',
             descriptionPosition === 'below' && 'mt-4',
             align === 'center' && 'items-center md:items-center',
@@ -71,7 +75,7 @@ export function SectionHeading({
           {description && (
             <p
               className={cn(
-                'max-w-md text-base leading-relaxed text-muted-foreground md:text-lg',
+                'mx-auto max-w-md text-base leading-relaxed text-muted-foreground md:mx-0 md:text-lg',
                 descriptionPosition === 'aside' &&
                   align === 'left' &&
                   'md:text-right',

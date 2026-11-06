@@ -29,9 +29,11 @@ export function ServicesTeaser({ dict, className }: ServicesTeaserProps) {
       className={cn('bl-container pb-8 sm:pb-12', className)}
     >
       <Reveal>
-        <div className='bl-card bl-card-tint flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:px-8'>
+        <div className='bl-card bl-card-tint flex flex-col gap-5 p-5 text-center sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:px-8 lg:text-left'>
           <div className='min-w-0'>
-            <p className='bl-kicker'>{t.kicker}</p>
+            <p className='bl-kicker justify-center lg:justify-start'>
+              {t.kicker}
+            </p>
             <TextReveal
               as='h2'
               text={t.title}
@@ -39,13 +41,13 @@ export function ServicesTeaser({ dict, className }: ServicesTeaserProps) {
               delay={0.1}
               className='bl-display mt-2 text-2xl text-foreground sm:text-3xl'
             />
-            <p className='mt-2 max-w-[56ch] text-sm leading-relaxed text-muted-foreground sm:text-base'>
+            <p className='mx-auto mt-2 max-w-[56ch] text-sm leading-relaxed text-muted-foreground sm:text-base lg:mx-0'>
               {t.description}
             </p>
           </div>
           <Link
             href={paths.services}
-            className='bl-btn bl-btn-primary inline-flex h-12 shrink-0 items-center justify-center gap-3 whitespace-nowrap px-6'
+            className='bl-btn bl-btn-primary mx-auto inline-flex h-12 shrink-0 items-center justify-center gap-3 whitespace-nowrap px-6 lg:mx-0'
           >
             {t.cta}
             <ArrowUpRight className='h-4 w-4' />

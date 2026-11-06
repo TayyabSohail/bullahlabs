@@ -59,9 +59,11 @@ export function ProjectsTeaser({
       <div className='bl-container'>
         <div className='relative overflow-hidden'>
           <div className='grid gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12'>
-            <div className='flex max-w-xl flex-col lg:h-full lg:justify-self-start'>
+            <div className='mx-auto flex max-w-xl flex-col text-center lg:mx-0 lg:h-full lg:justify-self-start lg:text-left'>
               <Reveal>
-                <p className='bl-kicker'>{t.kicker}</p>
+                <p className='bl-kicker justify-center lg:justify-start'>
+                  {t.kicker}
+                </p>
               </Reveal>
               <TextReveal
                 as='h2'
@@ -71,7 +73,7 @@ export function ProjectsTeaser({
               />
               <Reveal
                 delay={0.3}
-                className='mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:flex-col lg:items-start'
+                className='mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:flex-col lg:items-start'
               >
                 <Link
                   href={paths.work}

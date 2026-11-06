@@ -5,11 +5,9 @@ import { join } from 'node:path';
 import { siteConfig } from '@/config/site';
 
 /**
- * One share card for every page, drawn in the site's own retro voice:
- * a ruled ivory panel on a hard shadow over the pale sky, Fraunces for the
- * headline with the accent words in brand green italic, Plex Mono for the
- * bracketed kicker, Plex Sans for the body. 1200x630, the size WhatsApp,
- * iMessage, Slack, LinkedIn and X all crop least.
+ * One share card for every page. These are intentionally much simpler than
+ * the website UI: link previews are usually shown at roughly 280px wide, so
+ * a card needs one clear message rather than a miniature web page.
  *
  * Satori (the renderer behind next/og) only reads TTF/OTF/WOFF, never the
  * woff2 slices the pages use, and ships no fallback serif or mono, so the
@@ -22,7 +20,6 @@ export const OG_SIZE = { width: 1200, height: 630 } as const;
 /* Hex twins of the globals.css tokens. Satori cannot read CSS variables. */
 const INK = '#1a1714';
 const IVORY = '#fcfbf8';
-const SKY = '#ebf5fa';
 const PEACH = '#f8eee7';
 const GREEN = '#10b77f';
 const GREEN_TEXT = '#04865d';
@@ -160,13 +157,13 @@ export interface OgCardProps {
 function headlineSize(title: string, hasAside: boolean) {
   const n = title.length;
   if (hasAside) {
-    if (n > 60) return 50;
-    if (n > 40) return 58;
-    return 66;
+    if (n > 60) return 54;
+    if (n > 40) return 62;
+    return 70;
   }
-  if (n > 70) return 58;
-  if (n > 48) return 68;
-  return 80;
+  if (n > 70) return 64;
+  if (n > 48) return 74;
+  return 88;
 }
 
 function Headline({
@@ -376,11 +373,8 @@ export async function renderOgCard({
           width: '100%',
           height: '100%',
           display: 'flex',
-          padding: 36,
-          backgroundColor: SKY,
-          /* The site's dotted section band. */
-          backgroundImage: `radial-gradient(circle, rgba(26, 23, 20, 0.18) 1.2px, transparent 1.6px)`,
-          backgroundSize: '22px 22px',
+          padding: 0,
+          backgroundColor: INK,
         }}
       >
         <div
@@ -390,10 +384,9 @@ export async function renderOgCard({
             justifyContent: 'space-between',
             width: '100%',
             height: '100%',
-            padding: '36px 44px 34px',
-            border: `2px solid ${INK}`,
+            padding: '36px 56px 32px',
+            borderLeft: `20px solid ${GREEN}`,
             backgroundColor: IVORY,
-            boxShadow: `12px 12px 0 ${INK}`,
           }}
         >
           {/* Masthead */}
@@ -406,12 +399,12 @@ export async function renderOgCard({
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img only */}
-              <img alt='' src={mark} width={40} height={40} />
+              <img alt='' src={mark} width={42} height={42} />
               <span
                 style={{
                   fontFamily: 'Fraunces',
                   fontWeight: 700,
-                  fontSize: 26,
+                  fontSize: 28,
                   letterSpacing: -0.5,
                   color: INK,
                 }}
@@ -427,7 +420,7 @@ export async function renderOgCard({
                 color: MUTED,
               }}
             >
-              {siteConfig.tagline}
+              Product &amp; Engineering Studio
             </span>
           </div>
 
@@ -437,25 +430,25 @@ export async function renderOgCard({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              gap: 40,
+              gap: 48,
               flexGrow: 1,
-              paddingTop: 20,
-              paddingBottom: 20,
+              paddingTop: 26,
+              paddingBottom: 26,
             }}
           >
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 20,
-                width: hasAside ? 640 : 1020,
+                gap: 18,
+                width: hasAside ? 650 : 1040,
               }}
             >
               <span
                 style={{
                   fontFamily: 'IBM Plex Mono',
                   fontWeight: 600,
-                  fontSize: 17,
+                  fontSize: 20,
                   color: GREEN_TEXT,
                 }}
               >
@@ -467,7 +460,7 @@ export async function renderOgCard({
                   style={{
                     fontFamily: 'IBM Plex Sans',
                     fontWeight: 400,
-                    fontSize: hasAside ? 21 : 24,
+                    fontSize: hasAside ? 20 : 23,
                     lineHeight: 1.35,
                     color: MUTED,
                     maxWidth: hasAside ? 600 : 860,
@@ -487,11 +480,11 @@ export async function renderOgCard({
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              paddingTop: 18,
-              borderTop: `2px solid ${INK}`,
+              paddingTop: 16,
+              borderTop: `3px solid ${INK}`,
               fontFamily: 'IBM Plex Mono',
               fontWeight: 500,
-              fontSize: 16,
+              fontSize: 18,
               color: INK,
             }}
           >
