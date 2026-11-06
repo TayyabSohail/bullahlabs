@@ -25,8 +25,8 @@ export default async function PricingPage() {
           { name: dict.nav.pricing, href: paths.pricing },
         ]}
       />
-      <Pricing />
-      <Testimonials dict={dict} title='What our partners say.' />
+      <Pricing dict={dict} />
+      <Testimonials dict={dict} />
     </>
   );
 }
