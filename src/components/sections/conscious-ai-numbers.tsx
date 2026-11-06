@@ -110,7 +110,7 @@ export function ConsciousAiNumbers({
           className='max-w-6xl'
         />
 
-        <Reveal className='mt-8 sm:mt-10'>
+        <Reveal className='mt-6 sm:mt-8'>
           <div
             className='bl-card'
             onMouseEnter={() => setHeld(true)}
@@ -122,7 +122,7 @@ export function ConsciousAiNumbers({
           >
             {/* Meter: one ruled cell per card, the current one filling, and
                 the counter beside it. */}
-            <div className='flex items-center gap-4 border-b border-ink/85 px-4 py-3 sm:px-5 sm:py-4'>
+            <div className='flex items-center gap-4 border-b border-ink/85 px-4 py-3 sm:px-5'>
               <div className='flex flex-1 gap-1 sm:gap-1.5' aria-hidden='true'>
                 {cards.map((item, i) => (
                   <button
@@ -153,7 +153,7 @@ export function ConsciousAiNumbers({
                   </button>
                 ))}
               </div>
-              <p className='shrink-0 font-mono text-sm font-semibold tracking-[0.16em] text-foreground'>
+              <p className='shrink-0 font-mono text-xs tabular-nums text-foreground'>
                 {String(index + 1).padStart(2, '0')}
                 <span className='text-muted-foreground'>
                   {' / '}
@@ -163,7 +163,7 @@ export function ConsciousAiNumbers({
             </div>
 
             {/* The card: figure on the left, what it means on the right. */}
-            <div className='relative grid min-h-[16rem] overflow-hidden sm:min-h-[18rem]'>
+            <div className='relative grid min-h-[14rem] overflow-hidden sm:min-h-[18rem]'>
               <AnimatePresence mode='wait' initial={false}>
                 <motion.div
                   key={index}
@@ -174,16 +174,16 @@ export function ConsciousAiNumbers({
                   transition={{ duration: 0.4, ease }}
                   className='grid divide-y divide-ink/20 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:divide-x md:divide-y-0'
                 >
-                  <div className='flex flex-col gap-6 p-6 sm:p-8'>
-                    <p className='self-start bg-ink px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white sm:text-[11px]'>
+                  <div className='flex flex-col gap-4 p-5 sm:gap-6 sm:p-8'>
+                    <p className='self-start bg-ink px-2.5 py-1 font-mono text-[11px] text-white'>
                       {card.topic}
                     </p>
-                    <p className='bl-display my-auto text-[clamp(2.75rem,5.5vw,4.5rem)] leading-[0.95] text-foreground'>
+                    <p className='bl-display my-auto text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[0.95] text-foreground'>
                       {card.figure}
                     </p>
                   </div>
-                  <div className='flex flex-col justify-center gap-5 p-6 sm:p-8'>
-                    <p className='font-display text-2xl leading-tight text-foreground sm:text-3xl lg:text-[2.25rem]'>
+                  <div className='flex flex-col justify-center gap-4 p-5 sm:p-8'>
+                    <p className='font-display text-xl leading-tight text-foreground sm:text-3xl lg:text-[2.25rem]'>
                       {card.body}
                     </p>
                     {card.source ? (
@@ -222,7 +222,7 @@ export function ConsciousAiNumbers({
                   type='button'
                   onClick={() => go(index - 1, -1)}
                   aria-label={t.previous}
-                  className='bl-btn bl-btn-secondary inline-flex h-11 w-11 items-center justify-center'
+                  className='bl-btn bl-btn-secondary inline-flex h-10 w-10 items-center justify-center'
                 >
                   <ArrowLeft className='h-4 w-4' aria-hidden='true' />
                 </button>
@@ -230,7 +230,7 @@ export function ConsciousAiNumbers({
                   type='button'
                   onClick={() => go(index + 1, 1)}
                   aria-label={t.next}
-                  className='bl-btn bl-btn-primary inline-flex h-11 w-11 items-center justify-center'
+                  className='bl-btn bl-btn-primary inline-flex h-10 w-10 items-center justify-center'
                 >
                   <ArrowRight className='h-4 w-4' aria-hidden='true' />
                 </button>

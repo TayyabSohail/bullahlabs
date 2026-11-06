@@ -44,7 +44,7 @@ export function FaqSection({
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className='bl-container grid gap-8 sm:gap-12 lg:grid-cols-[0.8fr_1.2fr]'>
+      <div className='bl-container grid gap-6 sm:gap-10 lg:grid-cols-[0.8fr_1.2fr]'>
         <SectionHeading
           kicker={kicker}
           title={title}
@@ -52,7 +52,7 @@ export function FaqSection({
           description={description}
           className='md:grid-cols-1 lg:sticky lg:top-32 lg:self-start'
         />
-        <Reveal className='bl-card px-5 sm:px-8'>
+        <Reveal className='bl-card px-4 sm:px-6'>
           <Accordion type='single' collapsible className='divide-y divide-line'>
             {items.map((item, index) => (
               <AccordionItem
@@ -60,7 +60,7 @@ export function FaqSection({
                 value={`faq-${index}`}
                 className='border-b-0'
               >
-                <AccordionTrigger className='gap-4 py-5 text-left text-base font-medium tracking-tight hover:no-underline sm:py-6 sm:text-lg [&>svg]:hidden [&[data-state=open]]:text-brand-text [&[data-state=open]_.bl-faq-mark]:rotate-45'>
+                <AccordionTrigger className='gap-4 py-4 text-left text-base font-medium hover:no-underline sm:py-5 sm:text-lg [&>svg]:hidden [&[data-state=open]]:text-brand-text [&[data-state=open]_.bl-faq-mark]:rotate-45'>
                   <span className='flex-1'>{item.question}</span>
                   <span
                     aria-hidden='true'
@@ -69,7 +69,7 @@ export function FaqSection({
                     +
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className='pb-7 text-base leading-relaxed text-muted-foreground'>
+                <AccordionContent className='pb-5 text-base leading-relaxed text-muted-foreground'>
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>

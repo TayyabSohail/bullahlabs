@@ -19,11 +19,12 @@ interface HowItWorksProps {
   heading?: boolean;
 }
 
-const ease = [0.16, 1, 0.3, 1] as const;
+const ease = [0.22, 1, 0.36, 1] as const;
 
 /**
- * How we work: four step cards in a row. Each card fades up in turn and a
- * brand hairline draws across its top edge as it lands.
+ * How we work: four step cards in a row, each a ledger entry. Number and
+ * phase on the first line, the step, then what happens. They fade up in
+ * turn and nothing else moves.
  */
 export function HowItWorks({
   dict,
@@ -50,62 +51,46 @@ export function HowItWorks({
         )}
 
         <Stagger
-          stagger={0.12}
+          stagger={0.06}
           className={cn(
-            'grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-5',
-            heading && 'mt-8 sm:mt-10 lg:mt-14',
+            'grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5',
+            heading && 'mt-6 sm:mt-10',
           )}
         >
           {t.steps.map((step, index) => (
             <motion.article
               key={step.title}
               variants={{
-                hidden: reduce ? {} : { opacity: 0, y: 20 },
+                hidden: reduce ? {} : { opacity: 0, y: 12 },
                 visible: {
                   opacity: 1,
                   y: 0,
-                  transition: { duration: 0.7, ease },
+                  transition: { duration: 0.5, ease },
                 },
               }}
-              className='bl-card bl-grid-surface relative flex flex-col p-6 lg:p-7'
+              className='bl-card flex flex-col p-5 sm:p-6'
             >
-              <motion.span
-                aria-hidden='true'
-                variants={{
-                  hidden: reduce ? {} : { scaleX: 0 },
-                  visible: {
-                    scaleX: 1,
-                    transition: { duration: 0.7, ease: 'linear', delay: 0.1 },
-                  },
-                }}
-                className='absolute inset-x-0 top-0 z-[4] h-px origin-left bg-brand'
-              />
-              <span
-                aria-hidden='true'
-                className='bl-display pointer-events-none absolute -right-1 -top-2 select-none text-[5.5rem] leading-none text-brand/10 lg:text-[6rem]'
-              >
-                {String(index + 1).padStart(2, '0')}
-              </span>
-
-              <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-text'>
-                {t.stepLabel} {String(index + 1).padStart(2, '0')}
-                <span className='mx-2 text-muted-foreground/50'>/</span>
-                <span className='text-muted-foreground'>{step.when}</span>
+              <p className='bl-label flex items-baseline gap-2'>
+                <span className='bl-num'>
+                  {t.stepLabel} {String(index + 1).padStart(2, '0')}
+                </span>
+                <span aria-hidden='true'>/</span>
+                <span>{step.when}</span>
               </p>
-              <h3 className='bl-display mt-6 max-w-[15ch] text-2xl text-foreground sm:mt-8 lg:mt-10'>
+              <h3 className='bl-display mt-3 max-w-[15ch] text-2xl text-foreground'>
                 {step.title}
               </h3>
-              <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
+              <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
                 {step.summary}
               </p>
             </motion.article>
           ))}
         </Stagger>
 
-        <Reveal className='mt-8 border-t pt-6 sm:mt-10 sm:pt-8 lg:mt-14'>
+        <Reveal className='mt-6 border-t pt-6 sm:mt-10'>
           <Link
             href={paths.contact}
-            className='bl-btn bl-btn-ink inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] shadow-[0_16px_30px_-22px_hsl(var(--ink))]'
+            className='bl-btn bl-btn-ink inline-flex h-12 items-center gap-3 px-6'
           >
             {t.cta}
             <ArrowUpRight className='h-4 w-4' />

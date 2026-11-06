@@ -9,13 +9,13 @@ import type { Dictionary } from '@/i18n/dictionaries/en';
 /** One row: number, title, a half-line of body. The copy lives in `dict.offers`. */
 type Offer = readonly string[];
 
-/** One shared button measure (the course signup row's 3rem) so sibling cards' actions line up. */
-const offerButton =
-  'bl-btn inline-flex h-12 items-center gap-2 px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em]';
+/** One shared button measure so sibling cards' actions line up. */
+const offerButton = 'bl-btn inline-flex h-12 items-center gap-2 px-5';
 
 /**
- * One offer per row: number, title and a half-line of body on the same
- * baseline, so three rows read as a list rather than three paragraphs.
+ * One offer per row, on the site's ledger rule: number, title and a
+ * half-line of body on the same baseline, so three rows read as a list
+ * rather than three paragraphs.
  */
 function OfferRows({
   offers,
@@ -28,34 +28,30 @@ function OfferRows({
     <ul
       className={
         ink
-          ? 'mt-6 divide-y divide-white/15 border-y border-white/15'
-          : 'mt-6 divide-y divide-ink/15 border-y border-ink/15'
+          ? 'mt-5 divide-y divide-white/15 border-y border-white/15'
+          : 'mt-5 divide-y divide-ink/15 border-y border-ink/15'
       }
     >
       {offers.map(([number, title, body]) => (
         <li
           key={title}
-          className='grid grid-cols-[2rem_1fr] items-baseline gap-x-3 py-3.5'
+          className='grid grid-cols-[2rem_1fr] items-baseline gap-x-2 py-3'
         >
-          <span
-            className={`font-mono text-[10px] font-semibold ${
-              ink ? 'text-brand-2' : 'text-brand-text'
-            }`}
-          >
-            {number}
-          </span>
+          <span className={cn('bl-num', ink && 'text-brand-2')}>{number}</span>
           <span className='min-w-0'>
             <span
-              className={`bl-display mr-2 text-lg sm:text-xl ${
-                ink ? 'text-white' : 'text-foreground'
-              }`}
+              className={cn(
+                'bl-display mr-2 text-lg sm:text-xl',
+                ink ? 'text-white' : 'text-foreground',
+              )}
             >
               {title}
             </span>
             <span
-              className={`text-sm leading-relaxed ${
-                ink ? 'text-white/65' : 'text-muted-foreground'
-              }`}
+              className={cn(
+                'text-sm leading-relaxed',
+                ink ? 'text-white/65' : 'text-muted-foreground',
+              )}
             >
               {body}
             </span>
@@ -100,7 +96,7 @@ export function OfferCard({
     <article
       id={id}
       className={cn(
-        'bl-card flex h-full flex-col p-6 sm:p-7',
+        'bl-card flex h-full flex-col p-5 sm:p-6',
         ink && 'bl-card-ink text-white',
         className,
       )}
@@ -110,18 +106,19 @@ export function OfferCard({
         {number ? `${number} · ${kicker}` : kicker}
       </p>
       <h3
-        className={`bl-display mt-4 text-3xl leading-tight lg:text-4xl ${
-          ink ? 'text-white' : 'text-foreground'
-        }`}
+        className={cn(
+          'bl-display mt-3 text-2xl leading-tight sm:text-3xl',
+          ink ? 'text-white' : 'text-foreground',
+        )}
       >
         {title}
       </h3>
       <OfferRows offers={offers} ink={ink} />
 
-      <div className='mt-auto flex flex-wrap gap-3 pt-6'>
+      <div className='mt-auto flex flex-wrap gap-3 pt-5'>
         <Link
           href={href}
-          className={`${offerButton} ${ink ? 'bl-btn-primary' : 'bl-btn-ink'}`}
+          className={cn(offerButton, ink ? 'bl-btn-primary' : 'bl-btn-ink')}
         >
           {cta}
           <ArrowUpRight className='h-3.5 w-3.5' aria-hidden='true' />

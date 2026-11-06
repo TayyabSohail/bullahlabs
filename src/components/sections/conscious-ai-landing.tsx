@@ -30,8 +30,8 @@ export function ConsciousAiHero({ dict }: SectionProps) {
   const t = dict.consciousAiPage.hero;
 
   return (
-    <section className='bl-grid-surface relative overflow-hidden border-b border-line bg-background'>
-      <div className='bl-container grid gap-10 pb-16 pt-28 sm:pt-36 md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] md:items-center md:gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pb-24 lg:pt-40'>
+    <section className='bl-hero relative overflow-hidden border-b border-line'>
+      <div className='bl-container grid gap-8 pb-12 pt-24 sm:pt-32 md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] md:items-center md:gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pb-20 lg:pt-36'>
         <div className='min-w-0'>
           <Reveal>
             <p className='bl-kicker'>{t.kicker}</p>
@@ -42,27 +42,27 @@ export function ConsciousAiHero({ dict }: SectionProps) {
             as='h1'
             text={t.title}
             accentWords={[...t.titleAccent]}
-            className='bl-display mt-5 text-[clamp(3.5rem,12.5vw,8.5rem)] leading-[0.9] tracking-[-0.035em] text-ink md:text-[7.4vw] lg:text-[clamp(5rem,8.2vw,8.5rem)]'
+            className='bl-display mt-4 text-[clamp(3.5rem,12.5vw,8.5rem)] leading-[0.9] tracking-[-0.035em] text-ink md:text-[7.4vw] lg:text-[clamp(5rem,8.2vw,8.5rem)]'
           />
           <TextReveal
             as='p'
             text={t.tagline}
             accentWords={[...t.taglineAccent]}
             delay={0.25}
-            className='bl-display mt-5 text-[clamp(1.6rem,3.2vw,2.75rem)] leading-[1.05] text-foreground'
+            className='bl-display mt-4 text-[clamp(1.6rem,3.2vw,2.75rem)] leading-[1.05] text-foreground'
           />
           <Reveal delay={0.35}>
-            <p className='mt-6 max-w-lg text-lg leading-snug text-foreground sm:text-xl'>
+            <p className='mt-5 max-w-lg text-lg leading-snug text-foreground sm:text-xl'>
               {t.body}
             </p>
           </Reveal>
           <Reveal
             delay={0.3}
-            className='mt-8 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center md:justify-start'
+            className='mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap'
           >
             <Link
               href={teamHref}
-              className='bl-btn bl-btn-primary inline-flex h-12 w-full max-w-[16rem] items-center justify-center gap-2 px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] sm:w-auto sm:max-w-none'
+              className='bl-btn bl-btn-primary inline-flex h-12 w-full max-w-[18rem] items-center justify-center gap-2 px-6 sm:w-auto sm:max-w-none'
             >
               {t.cta} <ArrowUpRight className='h-3.5 w-3.5' />
             </Link>
@@ -77,12 +77,10 @@ export function ConsciousAiHero({ dict }: SectionProps) {
 /* Cells of the problem-and-fix ledger. Both columns live in one grid, so
    the classes are shared too: the same padding, type and number gutter on
    each side, and a static row-start lookup so Tailwind sees every class. */
-const CELL_HEAD =
-  'border-b px-5 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.22em]';
+const CELL_HEAD = 'border-b px-4 py-3 font-mono text-xs sm:px-5';
 const CELL_ROW =
-  'grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-4 border-b px-5 py-5 sm:grid-cols-[2.5rem_minmax(0,1fr)]';
-const CELL_NUMBER =
-  'pt-1.5 font-mono text-[10px] font-semibold tracking-[0.18em]';
+  'grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-2 border-b px-4 py-4 sm:grid-cols-[2.5rem_minmax(0,1fr)] sm:px-5';
+const CELL_NUMBER = 'bl-num pt-1';
 const ROW_START = ['md:row-start-2', 'md:row-start-3', 'md:row-start-4'];
 
 export function ConsciousAiPrinciples({ dict }: SectionProps) {
@@ -96,18 +94,18 @@ export function ConsciousAiPrinciples({ dict }: SectionProps) {
   return (
     <section id='principles' className='bl-section bl-rule bl-band-stone'>
       <div className='bl-container'>
-        <div className='grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-end'>
+        <div className='grid gap-4 md:grid-cols-[1.1fr_0.9fr] md:items-end md:gap-8'>
           <div>
             <p className='bl-kicker'>{t.kicker}</p>
             <TextReveal
               as='h2'
               text={t.title}
               accentWords={[...t.accent]}
-              className='bl-display mt-5 max-w-3xl text-display-lg text-foreground'
+              className='bl-display mt-4 max-w-3xl text-display-lg text-foreground'
             />
           </div>
           <Reveal delay={0.15}>
-            <p className='font-display text-2xl text-foreground sm:text-3xl md:text-right'>
+            <p className='font-display text-xl text-foreground sm:text-3xl md:text-right'>
               {t.asideLead}{' '}
               <span className='bl-accent text-brand-text'>{t.asideAccent}</span>
             </p>
@@ -117,7 +115,7 @@ export function ConsciousAiPrinciples({ dict }: SectionProps) {
         {/* One grid for both columns, every cell placed explicitly, so each
             complaint sits level with the move that answers it at any width.
             On phones the DOM order stacks the problems, then the moves. */}
-        <div className='mt-8 grid border border-ink bg-surface md:grid-cols-2'>
+        <div className='mt-6 grid border border-ink bg-surface sm:mt-8 md:grid-cols-2'>
           <p
             className={`${CELL_HEAD} border-ink/20 text-muted-foreground md:col-start-1 md:row-start-1 md:border-r md:border-r-ink`}
           >
@@ -143,7 +141,7 @@ export function ConsciousAiPrinciples({ dict }: SectionProps) {
           ))}
 
           <p
-            className={`${CELL_HEAD} border-white/15 bg-ink text-brand md:col-start-2 md:row-start-1`}
+            className={`${CELL_HEAD} border-white/15 bg-ink text-brand-2 md:col-start-2 md:row-start-1`}
           >
             {t.fixHead}
           </p>
@@ -154,7 +152,7 @@ export function ConsciousAiPrinciples({ dict }: SectionProps) {
                 index === moves.length - 1 ? 'border-b-0' : ''
               }`}
             >
-              <p className={`${CELL_NUMBER} text-brand`}>{number}</p>
+              <p className={`${CELL_NUMBER} text-brand-2`}>{number}</p>
               <div className='min-w-0'>
                 <h3 className='bl-display text-xl'>{title}</h3>
                 <p className='mt-1 text-sm leading-relaxed text-white/70'>
@@ -287,24 +285,24 @@ export function OurRoots({ dict }: SectionProps) {
   return (
     <section id='roots' className='bl-section bl-rule bl-band-ink text-white'>
       <div className='bl-container'>
-        <div className='grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16'>
+        <div className='grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16'>
           <div>
             <Reveal>
-              <p className='bl-kicker text-brand-2'>{t.kicker}</p>
+              <p className='bl-kicker text-white/60'>{t.kicker}</p>
             </Reveal>
             <TextReveal
               as='h2'
               text={t.title}
               accentWords={[...t.accent]}
-              className='bl-display mt-5 max-w-[14ch] text-display-lg text-white [&_.bl-accent]:text-brand-2'
+              className='bl-display mt-4 max-w-[14ch] text-display-lg text-white [&_.bl-accent]:text-brand-2'
             />
             <Reveal delay={0.2}>
-              <p className='mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg'>
+              <p className='mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg'>
                 {t.body}
               </p>
               <Link
                 href={paths.about}
-                className='bl-btn bl-btn-primary mt-8 inline-flex h-12 items-center gap-3 px-6 font-mono text-[10px] font-semibold uppercase tracking-[0.18em]'
+                className='bl-btn bl-btn-primary mt-6 inline-flex h-12 items-center gap-3 px-6'
               >
                 {t.cta}
                 <span
@@ -315,23 +313,23 @@ export function OurRoots({ dict }: SectionProps) {
             </Reveal>
           </div>
           <Reveal delay={0.15}>
-            <figure className='border border-white/30 p-6 shadow-[4px_4px_0_0_hsl(var(--brand))] sm:p-8'>
-              <div className='flex items-center gap-5'>
+            <figure className='border border-white/30 p-5 shadow-[4px_4px_0_0_hsl(var(--brand))] sm:p-8'>
+              <div className='flex items-center gap-4'>
                 <Image
                   src='/images/bulleh-shah-portrait.webp'
                   alt={t.portraitAlt}
                   width={320}
                   height={320}
                   sizes='(max-width: 640px) 72px, 96px'
-                  className='h-[72px] w-[72px] shrink-0 object-contain sm:h-24 sm:w-24'
+                  className='h-16 w-16 shrink-0 object-contain sm:h-24 sm:w-24'
                 />
-                <figcaption className='font-mono text-[10px] font-semibold uppercase leading-relaxed tracking-[0.14em] text-white/60'>
+                <figcaption className='bl-label text-white/60'>
                   {t.name}
                   <br />
                   <span className='text-white/40'>{t.years}</span>
                 </figcaption>
               </div>
-              <blockquote className='mt-6 border-t border-white/20 pt-6'>
+              <blockquote className='mt-5 border-t border-white/20 pt-5'>
                 <p
                   lang='pa-Arab'
                   dir='rtl'
@@ -346,23 +344,25 @@ export function OurRoots({ dict }: SectionProps) {
                   ਪੜ੍ਹ ਪੜ੍ਹ ਇਲਮ ਹਜ਼ਾਰ ਕਿਤਾਬਾਂ, ਕਦੇ ਆਪਣੇ ਆਪ ਨੂੰ ਪੜ੍ਹਿਆ ਨਈਂ
                 </p>
               </blockquote>
-              <p className='bl-accent mt-6 font-display text-lg leading-snug text-white/85 sm:text-xl'>
+              <p className='bl-accent mt-5 font-display text-lg leading-snug text-white/85 sm:text-xl'>
                 {t.translation}
               </p>
             </figure>
           </Reveal>
         </div>
-        <div className='mt-10 grid border border-white/30 md:grid-cols-3'>
+        <div className='mt-6 grid border border-white/30 sm:mt-8 md:grid-cols-3'>
           {t.values.map(([number, title, body]) => (
             <article
               key={number}
-              className='border-b border-white/20 p-6 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0'
+              className='grid grid-cols-[2rem_1fr] gap-x-2 border-b border-white/20 px-4 py-4 last:border-b-0 sm:p-5 md:block md:border-b-0 md:border-r md:last:border-r-0'
             >
-              <p className='font-mono text-[10px] font-semibold tracking-[0.18em] text-brand-2'>
-                {number}
-              </p>
-              <h3 className='bl-display mt-3 text-2xl text-white'>{title}</h3>
-              <p className='mt-2 text-sm text-white/65'>{body}</p>
+              <p className='bl-num pt-1 text-brand-2'>{number}</p>
+              <div>
+                <h3 className='bl-display text-xl text-white sm:text-2xl md:mt-2'>
+                  {title}
+                </h3>
+                <p className='mt-1 text-sm text-white/65'>{body}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -389,8 +389,7 @@ export function ConsciousAiFaq({ dict }: SectionProps) {
 /** The closing panel: book a time, or talk to the humans. */
 export function ConsciousAiClosing({ dict }: SectionProps) {
   const t = dict.consciousAiPage.closing;
-  const buttonClassName =
-    'inline-flex h-14 items-center gap-3 px-8 font-mono text-[11px] font-semibold uppercase tracking-[0.24em]';
+  const buttonClassName = 'inline-flex h-12 items-center gap-3 px-6';
 
   return (
     <CtaBanner
@@ -442,7 +441,7 @@ export function ConsciousAiNextSteps({ dict }: SectionProps) {
           className='bl-display mt-4 text-3xl text-foreground sm:text-4xl lg:text-5xl'
         />
 
-        <div className='mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2'>
+        <div className='mt-6 grid gap-4 sm:mt-8 lg:grid-cols-2 lg:gap-6'>
           <Reveal>
             <TeamsOfferCard dict={dict} id='teams' number='01' ink />
           </Reveal>

@@ -21,7 +21,11 @@ const MARKERS = [
   { location: [-33.87, 151.21] as [number, number], size: 0.03 }, // Sydney, Oceania
 ];
 
-/** The figures and the two offices in one ink band, after what we do and before Let's Talk. */
+/**
+ * The figures and the two offices in one ink band. On a phone the globe
+ * sits beside the copy at a small size and the three figures share one
+ * row, so the band is one screen.
+ */
 export function LocationsHome({ dict }: { dict: Dictionary }) {
   const t = dict.locationsHome;
   return (
@@ -31,17 +35,17 @@ export function LocationsHome({ dict }: { dict: Dictionary }) {
       className='bl-section bl-rule bl-band-ink scroll-mt-24'
     >
       <div className='bl-container'>
-        <div className='grid gap-8 sm:grid-cols-[minmax(0,1fr)_22rem] sm:items-center sm:gap-12'>
+        <div className='grid grid-cols-[minmax(0,1fr)_7rem] items-center gap-4 sm:grid-cols-[minmax(0,1fr)_14rem] sm:gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]'>
           <div className='lg:pl-12'>
             <p className='bl-kicker text-white/60'>{t.kicker}</p>
-            <h2 className='bl-display mt-4 text-4xl text-white sm:text-5xl'>
+            <h2 className='bl-display mt-3 text-3xl text-white sm:text-5xl'>
               {t.title}
             </h2>
-            <div className='mt-7 flex flex-wrap gap-x-7 gap-y-3'>
+            <div className='mt-4 flex flex-wrap gap-x-5 gap-y-2'>
               {siteConfig.locations.map((location) => (
                 <p
                   key={location.id}
-                  className='flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-white'
+                  className='flex items-center gap-2 font-mono text-xs text-white'
                 >
                   <Flag
                     countryCode={location.countryCode}
@@ -53,33 +57,31 @@ export function LocationsHome({ dict }: { dict: Dictionary }) {
             </div>
             <Link
               href={paths.contact}
-              className='bl-btn bl-btn-primary mt-8 inline-flex h-14 items-center gap-3 px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em]'
+              className='bl-btn bl-btn-primary mt-6 inline-flex h-12 items-center gap-3 px-5'
             >
               {t.cta} <ArrowUpRight className='h-4 w-4' />
             </Link>
           </div>
-          <div className='mx-auto w-full max-w-[20rem]'>
+          <div className='w-full'>
             <Globe markers={MARKERS} className='opacity-90' />
           </div>
         </div>
 
-        {/* The figures: three counters on one rule. */}
-        <div className='mt-12 grid border-t border-white/20 sm:grid-cols-3'>
+        {/* The figures: three counters on one rule, three across at every width. */}
+        <div className='mt-8 grid grid-cols-3 border-t border-white/20 sm:mt-10'>
           {t.stats.map(([value, label], index) => (
             <div
               key={label}
               className={
                 index === 0
-                  ? 'py-7 sm:py-8 sm:pr-8 lg:text-center'
-                  : 'border-t border-white/15 py-7 sm:border-l sm:border-t-0 sm:px-8 sm:py-8 lg:text-center'
+                  ? 'py-5 pr-3 sm:py-8 sm:pr-8 lg:text-center'
+                  : 'border-l border-white/15 px-3 py-5 sm:px-8 sm:py-8 lg:text-center'
               }
             >
-              <p className='bl-display text-6xl leading-none text-white sm:text-7xl'>
+              <p className='bl-display text-3xl leading-none text-white sm:text-6xl lg:text-7xl'>
                 <CountUp value={value} delay={index * 0.1} />
               </p>
-              <p className='mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-white/70'>
-                {label}
-              </p>
+              <p className='bl-label mt-2 text-white/70 sm:mt-4'>{label}</p>
             </div>
           ))}
         </div>

@@ -13,8 +13,7 @@ interface PrinciplesProps {
 
 /**
  * The engineering principles as numbered rows, read top to bottom like the
- * clauses of a working agreement: the rule on the left, what it means on
- * the right.
+ * clauses of a working agreement: the number, the rule, what it means.
  */
 export function Principles({ dict, className }: PrinciplesProps) {
   const t = dict.principles;
@@ -29,16 +28,19 @@ export function Principles({ dict, className }: PrinciplesProps) {
           accentWords={[...t.accent]}
           description={t.description}
         />
-        <Stagger stagger={0.08} className='mt-8 border-t sm:mt-14'>
-          {values.map((value) => (
+        <Stagger stagger={0.06} className='mt-6 border-t sm:mt-10'>
+          {values.map((value, index) => (
             <StaggerItem
               key={value.title}
-              className='grid gap-2 border-b py-5 sm:py-6 lg:grid-cols-[1fr_1.3fr] lg:gap-10'
+              className='grid grid-cols-[2rem_1fr] gap-x-2 border-b py-4 sm:py-5 lg:grid-cols-[2rem_1fr_1.3fr] lg:gap-x-8'
             >
+              <span className='bl-num pt-1'>
+                {String(index + 1).padStart(2, '0')}
+              </span>
               <h3 className='bl-display text-xl text-foreground sm:text-2xl'>
                 {value.title}
               </h3>
-              <p className='text-base leading-relaxed text-muted-foreground'>
+              <p className='col-start-2 mt-1 text-base leading-relaxed text-muted-foreground lg:col-start-3 lg:mt-0'>
                 {value.body}
               </p>
             </StaggerItem>

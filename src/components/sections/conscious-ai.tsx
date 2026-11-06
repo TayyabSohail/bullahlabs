@@ -82,23 +82,18 @@ export function CourseSection({
           }
         />
 
-        <Reveal className='mt-8 sm:mt-14'>
+        <Reveal className='mt-6 sm:mt-10'>
           {/* The fold's trigger sits in the plate and its panel is a row of
               its own under both columns, so opening it moves nothing else. */}
           <Fold>
             <div className='grid overflow-hidden border border-line bg-line lg:grid-cols-[0.9fr_1.1fr]'>
               {/* Who teaches it: portrait, name, one line, the rest folded. */}
-              <div className='relative isolate order-1 flex flex-col overflow-hidden bg-ink p-6 text-center text-white sm:p-8 sm:text-left lg:p-10'>
-                <div
-                  aria-hidden='true'
-                  className='absolute -right-20 top-16 -z-10 h-64 w-64 rounded-full border border-brand/40 shadow-[0_0_0_2.5rem_hsl(var(--brand)/0.06),0_0_0_5rem_hsl(var(--brand)/0.04)]'
-                />
-
-                <p className='font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60'>
+              <div className='relative isolate order-1 flex flex-col overflow-hidden bg-ink p-5 text-white sm:p-7 lg:p-8'>
+                <p className='bl-kicker text-white/60'>
                   {t.preview.instructorLabel}
                 </p>
 
-                <div className='mt-7 flex flex-col items-center gap-6 sm:flex-row sm:items-end sm:gap-7'>
+                <div className='mt-5 flex items-end gap-4 sm:gap-6'>
                   <Image
                     src={instructor.image}
                     alt={dict.consciousAiPage.instructor.portraitAlt.replace(
@@ -107,29 +102,29 @@ export function CourseSection({
                     )}
                     width={800}
                     height={960}
-                    sizes='(min-width: 640px) 176px, 128px'
+                    sizes='(min-width: 640px) 176px, 112px'
                     className={cn(
-                      'h-32 w-32 shrink-0 border border-white/30 object-cover shadow-[4px_4px_0_0_hsl(var(--brand))] sm:h-52 sm:w-44',
+                      'h-32 w-28 shrink-0 border border-white/30 object-cover shadow-[4px_4px_0_0_hsl(var(--brand))] sm:h-52 sm:w-44',
                       instructor.focus,
                     )}
                   />
                   <div className='min-w-0'>
-                    <span className='inline-block border border-white/25 bg-white/[0.06] px-2.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-white/80'>
+                    <span className='bl-label text-white/60'>
                       {instructor.role}
                     </span>
-                    <h3 className='bl-display mt-4 text-3xl text-white sm:text-4xl'>
+                    <h3 className='bl-display mt-1 text-2xl text-white sm:text-4xl'>
                       {instructor.name}
                     </h3>
-                    <p className='bl-accent mt-1 font-display text-xl text-brand-2 sm:text-2xl'>
+                    <p className='bl-accent mt-1 font-display text-lg text-brand-2 sm:text-2xl'>
                       {instructor.tagline}
                     </p>
-                    <p className='mt-4 flex items-center justify-center gap-3 text-left text-white sm:justify-start'>
-                      <HarvardShield className='h-9 w-auto shrink-0' />
+                    <p className='mt-3 flex items-center gap-3 text-left text-white'>
+                      <HarvardShield className='h-8 w-auto shrink-0 sm:h-9' />
                       <span className='min-w-0 leading-tight'>
-                        <span className='block font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white/55'>
+                        <span className='bl-label block text-white/55'>
                           {t.preview.alumnus}
                         </span>
-                        <span className='mt-0.5 block font-display text-base font-bold sm:text-lg'>
+                        <span className='mt-0.5 block font-display text-sm font-semibold sm:text-lg'>
                           {instructor.school}
                         </span>
                       </span>
@@ -137,12 +132,12 @@ export function CourseSection({
                   </div>
                 </div>
 
-                <p className='mx-auto mt-6 max-w-md text-sm leading-relaxed text-white/70 sm:mx-0 sm:text-base'>
+                <p className='mt-4 max-w-md text-sm leading-relaxed text-white/70 sm:text-base'>
                   {instructor.bio}
                 </p>
 
-                <div className='mt-5 flex justify-center border-t border-white/15 pt-4 sm:justify-start'>
-                  <FoldTrigger className='bl-action text-[11px] text-brand-2 hover:text-white'>
+                <div className='mt-4 flex border-t border-white/15 pt-4'>
+                  <FoldTrigger className='bl-action text-brand-2 hover:text-white'>
                     {t.preview.moreAbout.replace(
                       '{name}',
                       instructor.firstName,
@@ -156,21 +151,25 @@ export function CourseSection({
               </div>
 
               {/* What it is, in a line and three chips, then the waitlist. */}
-              <div className='order-3 flex flex-col justify-center bg-surface p-6 sm:p-8 lg:p-10'>
-                <ul className='flex flex-wrap justify-center gap-2 sm:justify-start'>
+              <div className='order-3 flex flex-col justify-center bg-surface p-5 sm:p-7 lg:p-8'>
+                <ul className='flex flex-wrap gap-x-4 gap-y-1'>
                   {t.preview.points.map((point) => (
                     <li
                       key={point}
-                      className='border border-brand/60 bg-brand-soft px-2.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-text'
+                      className='bl-label flex items-center gap-2 text-foreground'
                     >
+                      <span
+                        aria-hidden='true'
+                        className='block h-1.5 w-1.5 bg-brand'
+                      />
                       {point}
                     </li>
                   ))}
                 </ul>
-                <h3 className='bl-display mt-6 max-w-xl text-3xl leading-tight text-ink sm:text-4xl'>
+                <h3 className='bl-display mt-4 max-w-xl text-2xl leading-tight text-ink sm:text-4xl'>
                   {t.preview.title}
                 </h3>
-                <p className='mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                <p className='mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base'>
                   {t.preview.audience}
                 </p>
                 <CourseSignup
@@ -179,22 +178,20 @@ export function CourseSection({
                   variant='inline'
                   tone='light'
                   submitLabel={t.preview.waitlistCta}
-                  className='mt-8 max-w-xl'
+                  className='mt-6 max-w-xl'
                 />
               </div>
 
               {/* The instructor's longer story, in three columns across the
                 whole card on desktop; on phones it follows the plate. */}
               <FoldPanel className='order-2 bg-ink text-white lg:order-3 lg:col-span-2'>
-                <dl className='grid gap-5 border-t border-white/15 p-6 sm:grid-cols-3 sm:gap-8 sm:p-8 lg:px-10 lg:py-8'>
+                <dl className='grid gap-4 border-t border-white/15 p-5 sm:grid-cols-3 sm:gap-8 sm:p-7 lg:px-8'>
                   {instructor.facts.map(([label, body]) => (
                     <div
                       key={label}
                       className='sm:border-l sm:border-white/15 sm:pl-5'
                     >
-                      <dt className='font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-brand-2'>
-                        {label}
-                      </dt>
+                      <dt className='bl-label text-brand-2'>{label}</dt>
                       <dd className='mt-1.5 max-w-sm text-sm leading-snug text-white/80'>
                         {body}
                       </dd>

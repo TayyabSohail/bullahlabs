@@ -27,19 +27,13 @@ export function VerseCard({ copy }: { copy: Dictionary['ourDna']['verse'] }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={inView}
       transition={{ duration: 0.9, ease }}
-      className='bl-card relative flex min-h-[18rem] flex-col p-6 sm:min-h-[24rem] sm:p-8'
+      className='bl-card relative flex flex-col p-5 sm:min-h-[24rem] sm:p-8'
     >
-      <p className='flex items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground'>
+      <p className='bl-label flex items-center justify-between gap-4'>
         <span>{copy.name}</span>
         <span>{copy.place}</span>
       </p>
-      <div className='relative my-auto py-5 sm:py-10'>
-        <span
-          aria-hidden='true'
-          className='absolute -left-1 -top-2 font-serif text-8xl leading-none text-brand/20 sm:text-9xl'
-        >
-          “
-        </span>
+      <div className='relative my-auto py-4 sm:py-10'>
         <motion.p
           lang='pa-Arab'
           dir='rtl'
@@ -67,12 +61,12 @@ export function VerseCard({ copy }: { copy: Dictionary['ourDna']['verse'] }) {
         whileInView={{ opacity: 1 }}
         viewport={inView}
         transition={{ duration: 0.8, ease, delay: 1.3 }}
-        className='border-t border-line pt-5 text-sm leading-relaxed text-muted-foreground sm:text-base'
+        className='border-t border-line pt-4 text-sm leading-relaxed text-muted-foreground sm:text-base'
       >
         <span className='bl-display block text-xl text-foreground sm:text-2xl'>
           {copy.translation}
         </span>
-        <span className='mt-3 block'>{copy.note}</span>
+        <span className='mt-2 block'>{copy.note}</span>
       </motion.p>
     </motion.div>
   );
@@ -94,11 +88,11 @@ export function OfficeCard({ location, labels }: OfficeCardProps) {
   return (
     <StaggerItem className='bl-card bl-card-lift group flex flex-col p-5 sm:p-6'>
       <div className='flex items-center justify-between gap-3'>
-        <p className='flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground'>
+        <p className='bl-label flex items-center gap-2'>
           <Flag countryCode={location.countryCode} className='h-3 w-[18px]' />
           {location.label}
         </p>
-        <p className='inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground'>
+        <p className='bl-label inline-flex items-center gap-2'>
           <span className='bl-status-dot' data-open={open} aria-hidden='true' />
           {local ? (open ? labels.open : labels.closed) : ' '}
         </p>
@@ -122,9 +116,7 @@ export function OfficeCard({ location, labels }: OfficeCardProps) {
       </div>
       <p className='mt-2 flex items-center justify-between gap-3 text-sm text-muted-foreground'>
         <span>{location.country}</span>
-        <span className='font-mono text-[11px] uppercase tracking-[0.14em]'>
-          {location.utc}
-        </span>
+        <span className='bl-label'>{location.utc}</span>
       </p>
     </StaggerItem>
   );
