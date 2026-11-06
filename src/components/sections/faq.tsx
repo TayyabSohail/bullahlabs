@@ -52,7 +52,7 @@ export function FaqSection({
           description={description}
           className='md:grid-cols-1 lg:sticky lg:top-32 lg:self-start'
         />
-        <Reveal className='bl-card px-4 sm:px-6'>
+        <Reveal className='bl-card self-start px-4 sm:px-6'>
           <Accordion type='single' collapsible className='divide-y divide-line'>
             {items.map((item, index) => (
               <AccordionItem
@@ -60,16 +60,21 @@ export function FaqSection({
                 value={`faq-${index}`}
                 className='border-b-0'
               >
-                <AccordionTrigger className='gap-4 py-4 text-left text-base font-medium hover:no-underline sm:py-5 sm:text-lg [&>svg]:hidden [&[data-state=open]]:text-brand-text [&[data-state=open]_.bl-faq-mark]:rotate-45'>
-                  <span className='flex-1'>{item.question}</span>
+                <AccordionTrigger className='group gap-4 border-l-2 border-transparent py-4 pl-3 text-left text-base font-medium transition-colors hover:border-brand hover:bg-brand-soft/30 hover:no-underline sm:py-5 sm:text-lg [&>svg]:hidden [&[data-state=open]]:border-brand [&[data-state=open]]:bg-brand-soft/30 [&[data-state=open]]:text-brand-text [&[data-state=open]_.bl-faq-mark]:rotate-45'>
+                  <span className='flex min-w-0 flex-1 items-baseline gap-3'>
+                    <span className='font-mono text-[10px] font-medium tracking-[0.14em] text-brand-text/70'>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span>{item.question}</span>
+                  </span>
                   <span
                     aria-hidden='true'
-                    className='bl-faq-mark flex h-7 w-7 shrink-0 items-center justify-center border border-ink font-mono text-base font-medium leading-none text-ink transition-transform duration-200'
+                    className='bl-faq-mark flex h-7 w-7 shrink-0 items-center justify-center border border-ink font-mono text-base font-medium leading-none text-ink transition-[transform,background-color,color,border-color] duration-200 group-hover:border-brand group-hover:bg-brand group-hover:text-brand-foreground'
                   >
                     +
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className='pb-5 text-base leading-relaxed text-muted-foreground'>
+                <AccordionContent className='pb-5 pl-7 pr-4 text-base leading-relaxed text-muted-foreground sm:pl-9'>
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>

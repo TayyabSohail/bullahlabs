@@ -1,4 +1,4 @@
-import { ArrowRight, Check, RotateCw } from 'lucide-react';
+import { ArrowRight, RotateCw } from 'lucide-react';
 import Link from 'next/link';
 
 import { BookCallButton } from '@/components/contact/book-call-button';
@@ -161,11 +161,7 @@ export function UpskillingHero({ dict }: SectionProps) {
   );
 }
 
-/**
- * What the training is: an ink pitch beside four benefits, the five steps
- * the team learns as one ledger under them, then the two things it
- * protects: the planet and the company's data.
- */
+/** A quiet, editorial overview of the training: promise, outcomes and method. */
 export function UpskillingTrainings({ dict }: SectionProps) {
   const t = dict.upskillingPage.trainings;
   const learns = dict.upskillingPage.learns;
@@ -175,111 +171,96 @@ export function UpskillingTrainings({ dict }: SectionProps) {
   return (
     <section className='bl-section bl-rule bl-band-stone bl-band-peach'>
       <div className='bl-container'>
-        <Reveal className='bl-card'>
-          <div className='grid lg:grid-cols-2'>
-            <div className='bg-ink p-5 text-white sm:p-8 lg:p-10'>
-              <p className={cn('bl-kicker', inkKicker)}>{t.kicker}</p>
-              <TextReveal
-                as='h2'
-                text={t.title}
-                accentWords={[...t.accent]}
-                className='bl-display mt-4 text-[clamp(1.9rem,3.6vw,3rem)] leading-[1.04] text-white [&_.bl-accent]:text-brand-2'
-              />
-              <p className='mt-5 text-base text-white/90 sm:text-lg'>
+        <div className='grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
+          <div>
+            <Reveal>
+              <p className='bl-kicker'>{t.kicker}</p>
+            </Reveal>
+            <TextReveal
+              as='h2'
+              text={t.title}
+              accentWords={[...t.accent]}
+              className='bl-display mt-4 max-w-[13ch] text-display-lg text-foreground'
+            />
+            <Reveal delay={0.15}>
+              <p className='mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground'>
                 {t.lead}
               </p>
-              <ul className='mt-3 space-y-1.5'>
-                {t.points.map((point) => (
-                  <li
-                    key={point}
-                    className='flex items-start gap-2.5 text-sm leading-5 text-white/75'
-                  >
-                    <Check
-                      className='mt-0.5 h-4 w-4 shrink-0 text-brand-2'
-                      strokeWidth={1.5}
-                      aria-hidden='true'
-                    />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <div className='mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap'>
+              <div className='mt-7 flex flex-col gap-3 sm:flex-row'>
                 <CallButton className={ctaClass('primary')}>{t.cta}</CallButton>
-                <a href='#how' className={ctaClass('ghost')}>
+                <a href='#how' className={ctaClass('secondary')}>
                   {t.how}
                 </a>
               </div>
-            </div>
+            </Reveal>
+          </div>
 
-            {/* Four benefits, two by two at every width, so a phone reads them in one screen. */}
-            <ol className='grid grid-cols-2 border-t border-ink/85 lg:border-l lg:border-t-0'>
+          <Reveal className='border-y border-ink/30'>
+            <ol className='divide-y divide-ink/15'>
               {t.benefits.map(([title, body], index) => (
                 <li
                   key={title}
-                  className={cn(
-                    'flex flex-col border-ink/10 p-4 sm:p-6 lg:p-8',
-                    index < 2 && 'border-b',
-                    index % 2 === 0 && 'border-r',
-                  )}
+                  className='grid grid-cols-[2.75rem_1fr] gap-3 py-5 sm:grid-cols-[3.5rem_1fr] sm:gap-5 sm:py-6'
+                >
+                  <span className='font-display text-2xl italic leading-none text-brand-text sm:text-3xl'>
+                    {pad(index + 1)}
+                  </span>
+                  <div>
+                    <h3 className='bl-display text-xl leading-tight text-foreground sm:text-2xl'>
+                      {title}
+                    </h3>
+                    <p className='mt-1.5 max-w-[42ch] text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                      {body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+        </div>
+
+        <Reveal
+          id='how'
+          className='mt-14 scroll-mt-28 border-y border-ink/30 py-6 sm:mt-20 sm:py-8'
+        >
+          <p className='bl-kicker'>{learns.kicker}</p>
+          <ol className='mt-5 divide-y divide-ink/15 lg:grid lg:grid-cols-5 lg:divide-x lg:divide-y-0'>
+            {learns.steps.map(([title, body], index) => {
+              const last = index === learns.steps.length - 1;
+              return (
+                <li
+                  key={title}
+                  className='grid grid-cols-[2.5rem_1fr] gap-2 py-4 lg:block lg:px-5 lg:py-0 lg:first:pl-0 lg:last:pr-0'
                 >
                   <span className='font-display text-xl italic leading-none text-brand-text sm:text-2xl'>
                     {pad(index + 1)}
                   </span>
-                  <h3 className='bl-display mt-3 max-w-[12ch] text-lg leading-tight text-foreground sm:text-2xl lg:mt-4 lg:text-[1.75rem]'>
-                    {title}
-                  </h3>
-                  <p className='mt-2 max-w-[30ch] text-[13px] leading-5 text-muted-foreground sm:text-sm sm:leading-6 lg:mt-3'>
-                    {body}
-                  </p>
+                  <div>
+                    <h3 className='bl-display text-lg leading-tight text-foreground lg:mt-4'>
+                      {title}
+                    </h3>
+                    <p className='mt-1 text-sm leading-relaxed text-muted-foreground'>
+                      {body}
+                    </p>
+                    {last && (
+                      <span className='bl-label mt-2 flex items-center gap-1.5'>
+                        <RotateCw
+                          className='h-3.5 w-3.5'
+                          strokeWidth={1.5}
+                          aria-hidden='true'
+                        />
+                        {learns.repeat}
+                      </span>
+                    )}
+                  </div>
                 </li>
-              ))}
-            </ol>
-          </div>
-
-          {/* The five steps as one ledger: rows on a phone, five columns from lg. */}
-          <div
-            id='how'
-            className='scroll-mt-28 border-t border-ink/85 bg-surface p-4 sm:p-6 lg:p-10'
-          >
-            <p className='bl-kicker'>{learns.kicker}</p>
-            <ol className='mt-3 divide-y divide-ink/10 lg:mt-8 lg:grid lg:grid-cols-5 lg:divide-x lg:divide-y-0'>
-              {learns.steps.map(([title, body], index) => {
-                const last = index === learns.steps.length - 1;
-                return (
-                  <li
-                    key={title}
-                    className='grid grid-cols-[2.5rem_1fr] items-baseline gap-x-2 py-3 lg:block lg:px-6 lg:py-0 lg:first:pl-0 lg:last:pr-0'
-                  >
-                    <span className='font-display text-xl italic leading-none text-brand-text sm:text-2xl lg:text-3xl'>
-                      {pad(index + 1)}
-                    </span>
-                    <div>
-                      <h3 className='bl-display text-lg leading-tight text-foreground sm:text-xl lg:mt-5'>
-                        {title}
-                      </h3>
-                      <p className='mt-1 text-[13px] leading-5 text-muted-foreground sm:text-sm sm:leading-6 lg:mt-2'>
-                        {body}
-                      </p>
-                      {last && (
-                        <span className='bl-label mt-2 flex items-center gap-1.5'>
-                          <RotateCw
-                            className='h-3.5 w-3.5'
-                            strokeWidth={1.5}
-                            aria-hidden='true'
-                          />
-                          {learns.repeat}
-                        </span>
-                      )}
-                    </div>
-                  </li>
-                );
-              })}
-            </ol>
-          </div>
+              );
+            })}
+          </ol>
         </Reveal>
 
-        <div className='mt-4 grid gap-4 sm:grid-cols-2 lg:mt-6 lg:gap-6'>
-          <Reveal className='bl-card p-4 sm:p-6 lg:p-8'>
+        <div className='mt-10 grid gap-8 border-t border-ink/30 pt-8 sm:grid-cols-2 sm:gap-12'>
+          <Reveal>
             <p className='bl-kicker'>{planet.kicker}</p>
             <TextReveal
               as='h3'
@@ -300,7 +281,7 @@ export function UpskillingTrainings({ dict }: SectionProps) {
             </ul>
           </Reveal>
 
-          <Reveal delay={0.1} className='bl-card p-4 sm:p-6 lg:p-8'>
+          <Reveal delay={0.1}>
             <p className='bl-kicker'>{security.kicker}</p>
             <TextReveal
               as='h3'
@@ -457,7 +438,7 @@ export function UpskillingBill({ dict }: SectionProps) {
   );
 }
 
-/** The free audit and the three paid formats, priced per team. */
+/** The free audit and three paid formats, arranged as one clear offer list. */
 export function UpskillingPricing({ dict }: SectionProps) {
   const t = dict.upskillingPage.pricing;
   const audit = t.audit;
@@ -485,94 +466,69 @@ export function UpskillingPricing({ dict }: SectionProps) {
           </Reveal>
         </div>
 
-        <div className='mt-6 grid gap-4 sm:grid-cols-2 lg:mt-8 xl:grid-cols-4'>
-          <Reveal className='bl-card bl-card-ink flex flex-col p-4 sm:p-5'>
-            <div className='flex items-baseline justify-between gap-3'>
+        <Reveal className='mt-6 bg-ink p-5 text-white sm:mt-8 sm:p-8'>
+          <div className='grid gap-5 lg:grid-cols-[minmax(0,1fr)_auto_auto] lg:items-center lg:gap-10'>
+            <div>
               <p className={cn('bl-kicker', inkKicker)}>{audit.kicker}</p>
-              <span className='font-mono text-xs font-medium tabular-nums text-brand-2'>
-                {audit.price}
-              </span>
+              <TextReveal
+                as='h3'
+                text={audit.title}
+                accentWords={[...audit.accent]}
+                className='bl-display mt-2 text-2xl text-white sm:text-3xl [&_.bl-accent]:text-brand-2'
+              />
+              <p className='mt-2 max-w-2xl text-sm leading-relaxed text-white/70'>
+                {audit.body}
+              </p>
             </div>
-            <TextReveal
-              as='h3'
-              text={audit.title}
-              accentWords={[...audit.accent]}
-              className='bl-display mt-3 text-2xl leading-tight text-white [&_.bl-accent]:text-brand-2'
-            />
-            <p className='mt-2 text-sm text-white/70'>{audit.body}</p>
-            <ul className='mt-3 space-y-1.5 border-t border-white/15 pt-3'>
-              {audit.items.map((item) => (
-                <li
-                  key={item}
-                  className='flex items-start gap-2.5 text-[13px] leading-5 text-white/85'
-                >
-                  <Check
-                    className='mt-0.5 h-4 w-4 shrink-0 text-brand-2'
-                    strokeWidth={1.5}
-                    aria-hidden='true'
-                  />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className='mt-auto pt-5'>
-              <CtaLink
-                href={paths.contactForm}
-                className='w-full sm:w-auto sm:justify-start'
-              >
-                {audit.cta}
-              </CtaLink>
-            </div>
-          </Reveal>
+            <p className='font-display text-5xl tabular-nums text-brand-2'>
+              {audit.price}
+            </p>
+            <CtaLink
+              href={paths.contactForm}
+              className='self-start lg:self-auto'
+            >
+              {audit.cta}
+            </CtaLink>
+          </div>
+        </Reveal>
 
+        <ol className='mt-5 divide-y divide-ink/20 border-y border-ink/30 sm:mt-6'>
           {t.plans.map((plan, index) => (
             <Reveal
               key={plan.name}
-              delay={0.08 * (index + 1)}
+              delay={0.08 * index}
               className={cn(
-                'flex flex-col p-4 sm:p-5',
-                plan.recommended
-                  ? 'bl-card'
-                  : 'border border-ink/50 bg-surface',
+                'grid gap-4 py-6 sm:py-7 lg:grid-cols-[minmax(10rem,0.75fr)_minmax(0,1.35fr)_auto_auto] lg:items-center lg:gap-8',
+                plan.recommended && 'border-l-4 border-brand pl-4 sm:pl-6',
               )}
             >
-              <div className='flex items-baseline justify-between gap-3'>
-                <p className='bl-label text-ink'>{plan.name}</p>
-                {plan.recommended && <p className='bl-num'>{t.recommended}</p>}
+              <div>
+                <p className='bl-label'>
+                  {plan.recommended ? t.recommended : `0${index + 1}`}
+                </p>
+                <h3 className='bl-display mt-1 text-2xl text-foreground sm:text-3xl'>
+                  {plan.name}
+                </h3>
               </div>
-              <p className='mt-2 flex items-baseline gap-2 font-display text-3xl tabular-nums text-foreground sm:text-4xl'>
-                {plan.from && <span className='bl-label'>{t.from}</span>}
+              <div>
+                <p className='font-medium text-foreground'>{plan.lead}</p>
+                <p className='mt-1 text-sm leading-relaxed text-muted-foreground'>
+                  {plan.items.slice(0, 2).join(' · ')}
+                </p>
+              </div>
+              <p className='font-display text-3xl tabular-nums text-foreground sm:text-4xl'>
+                {plan.from && <span className='bl-label mr-1'>{t.from}</span>}
                 {plan.price}
               </p>
-              <p className='mt-2 text-sm font-medium text-foreground'>
-                {plan.lead}
-              </p>
-              <ul className='mt-3 space-y-1.5 border-t border-ink/15 pt-3'>
-                {plan.items.map((item) => (
-                  <li
-                    key={item}
-                    className='flex items-start gap-2.5 text-[13px] leading-5 text-muted-foreground'
-                  >
-                    <Check
-                      className='mt-0.5 h-4 w-4 shrink-0 text-brand-text'
-                      strokeWidth={1.5}
-                      aria-hidden='true'
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className='mt-auto pt-5'>
-                <CtaLink
-                  tone={plan.recommended ? 'primary' : 'secondary'}
-                  className='w-full sm:w-auto sm:justify-start'
-                >
-                  {plan.cta}
-                </CtaLink>
-              </div>
+              <CtaLink
+                tone={plan.recommended ? 'primary' : 'secondary'}
+                className='self-start lg:self-auto'
+              >
+                {plan.cta}
+              </CtaLink>
             </Reveal>
           ))}
-        </div>
+        </ol>
 
         <p className='bl-label mt-4'>{t.note}</p>
       </div>

@@ -686,7 +686,7 @@ export function AiWorkSnapshot({ dict }: { dict: Dictionary }) {
       <div className='bl-card mx-auto grid w-full overflow-hidden lg:grid-cols-[0.72fr_1.28fr]'>
         {/* The ink plate: the test's name, as a stamp on the card. One line
             tall on a phone, a full column from lg. */}
-        <div className='flex items-center bg-ink px-5 py-4 text-left text-white sm:px-7 lg:items-end lg:p-10'>
+        <div className='flex items-center bg-ink px-5 py-4 text-left text-white sm:px-7 lg:p-10'>
           <h2 className='bl-display max-w-sm text-3xl leading-[0.94] text-white sm:text-4xl lg:text-6xl'>
             {copy.intro.title}
           </h2>
