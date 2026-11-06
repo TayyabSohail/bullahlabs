@@ -14,7 +14,12 @@ interface PageHeroProps {
   size?: 'lg' | 'xl';
 }
 
-/** Shared opening block for inner pages. */
+/**
+ * Shared opening block for inner pages. Left-aligned at every width, with
+ * the headline a short step under the header on phones and a deeper one on
+ * desktop, so the first screen holds the hero and the start of the first
+ * section, not the hero alone.
+ */
 export function PageHero({
   kicker,
   title,
@@ -25,12 +30,8 @@ export function PageHero({
   size = 'xl',
 }: PageHeroProps) {
   return (
-    <section
-      className={cn(
-        'bl-container pb-10 pt-28 text-center sm:pb-12 sm:pt-44 md:text-left lg:pb-16 lg:pt-52',
-        className,
-      )}
-    >
+    <section className={cn('bl-hero border-b border-line', className)}>
+      <div className='bl-container pb-8 pt-24 sm:pb-10 sm:pt-32 lg:pb-12 lg:pt-40'>
       <Reveal>
         <p className='bl-kicker'>{kicker}</p>
       </Reveal>
@@ -40,24 +41,25 @@ export function PageHero({
         accentWords={accentWords}
         delay={0.1}
         className={cn(
-          'bl-display mx-auto mt-6 justify-center text-foreground md:mx-0 md:justify-start',
+          'bl-display mt-4 text-foreground',
           size === 'xl'
             ? 'max-w-[14ch] text-display-xl'
             : 'max-w-[18ch] text-display-lg',
         )}
       />
       {description && (
-        <Reveal delay={0.4}>
-          <p className='mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:mt-7 sm:text-lg md:mx-0 lg:text-xl'>
+        <Reveal delay={0.3}>
+          <p className='mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg'>
             {description}
           </p>
         </Reveal>
       )}
       {children && (
-        <Reveal delay={0.5} className='mt-9 flex justify-center md:block'>
+        <Reveal delay={0.4} className='mt-8'>
           {children}
         </Reveal>
       )}
+      </div>
     </section>
   );
 }

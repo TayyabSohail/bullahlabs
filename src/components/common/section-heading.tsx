@@ -33,7 +33,7 @@ export function SectionHeading({
     <div
       className={cn(
         descriptionPosition === 'aside'
-          ? 'grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-end'
+          ? 'grid gap-4 md:grid-cols-[1.1fr_0.9fr] md:items-end md:gap-8'
           : 'block',
         align === 'center' &&
           'text-center md:grid-cols-1 md:justify-items-center',
@@ -53,7 +53,7 @@ export function SectionHeading({
           text={title}
           accentWords={accentWords}
           className={cn(
-            'bl-display mt-5 text-display-lg text-foreground',
+            'bl-display mt-4 text-display-lg text-foreground',
             align === 'center' && 'justify-center',
           )}
         />
@@ -62,9 +62,9 @@ export function SectionHeading({
         <Reveal
           delay={0.15}
           className={cn(
-            'flex flex-col gap-5',
+            'flex flex-col gap-4',
             descriptionPosition === 'aside' && 'md:items-end',
-            descriptionPosition === 'below' && 'mt-5',
+            descriptionPosition === 'below' && 'mt-4',
             align === 'center' && 'items-center md:items-center',
           )}
         >
@@ -72,7 +72,9 @@ export function SectionHeading({
             <p
               className={cn(
                 'max-w-md text-base leading-relaxed text-muted-foreground md:text-lg',
-                descriptionPosition === 'aside' && align === 'left' && 'md:text-right',
+                descriptionPosition === 'aside' &&
+                  align === 'left' &&
+                  'md:text-right',
               )}
             >
               {description}
