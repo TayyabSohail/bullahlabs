@@ -1,6 +1,5 @@
 import { Preloader } from '@/components/layout/preloader';
 import { CommunitySection } from '@/components/sections/community';
-import { ConsciousAiHome } from '@/components/sections/conscious-ai-home';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { FaqSection } from '@/components/sections/faq';
 import { Hero } from '@/components/sections/hero';
@@ -16,8 +15,8 @@ import { getDictionary } from '@/i18n/server';
 
 /**
  * The landing page, top to bottom: who we are, the problem people arrive
- * with, how the studio works, a tool carousel, selected work, a Conscious AI
- * preview, figures and locations, FAQ, then the closing call to action that
+ * with, how the studio answers it, selected work, then the supporting detail,
+ * figures and locations, FAQ, and the closing call to action that
  * leads to the contact page, as every other page ends. Full company and
  * program information live on their dedicated pages.
  */
@@ -31,9 +30,8 @@ export default async function HomePage() {
       <OurDna dict={dict} />
       <Problem dict={dict} />
       <Studio dict={dict} />
-      <Technologies dict={dict} carouselOnly />
       <ProjectsTeaser dict={dict} />
-      <ConsciousAiHome dict={dict} />
+      <Technologies dict={dict} carouselOnly />
       <CommunitySection dict={dict} />
       <LocationsHome dict={dict} />
       <div id='faq' className='scroll-mt-24'>

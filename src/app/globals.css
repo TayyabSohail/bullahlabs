@@ -1526,54 +1526,13 @@ body::after {
   );
 }
 
-/* Engineering paper: every non-hero page section carries the same dot grid.
-   Section colour utilities only choose the paper tint; they never decide
-   whether a section receives the texture. CTA panels stay solid. */
-:where(
-  main > section:not(.bl-hero):not([data-section='hero']):not(
-      [data-section='cta-banner']
-    ),
-  .bl-section
-) {
-  background-image: radial-gradient(
-    hsl(var(--ink) / 0.16) 1px,
-    transparent 1.2px
-  );
-  background-size: 22px 22px;
-}
-
-/* Ink bands use a light version of the same grid so the texture remains
-   visible without changing the solid surface treatment of their cards. */
-.bl-band-ink:not([data-section='hero']) {
-  background-image: radial-gradient(
-    hsl(0 0% 100% / 0.18) 1px,
-    transparent 1.2px
-  );
-  background-size: 22px 22px;
-}
-
-/* Use for the few ink sections that need a completely solid field. */
-.bl-band-ink.bl-no-dot {
-  background-image: none;
-}
-
 .bl-band-stone {
-  background-image: radial-gradient(
-    hsl(var(--ink) / 0.16) 1px,
-    transparent 1.2px
-  );
-  background-size: 22px 22px;
   background-color: hsl(var(--band-peach));
 }
 
 /* A light brand-tinted paper band for the FAQ: enough separation from the
    surrounding sky and peach sections, without breaking the light theme. */
 .bl-band-mint {
-  background-image: radial-gradient(
-    hsl(var(--ink) / 0.16) 1px,
-    transparent 1.2px
-  );
-  background-size: 22px 22px;
   background-color: hsl(var(--brand-soft));
 }
 
@@ -1732,37 +1691,6 @@ html body[data-scroll-locked] {
 }
 .bl-rule::after {
   right: 0.75rem;
-}
-
-/* Hard offset shadows: buttons press, linked cards lift onto a solid shadow. */
-.bl-btn-primary,
-.bl-btn-ink,
-.bl-btn-secondary {
-  box-shadow: 3px 3px 0 0 hsl(var(--ink));
-}
-.bl-btn-ink {
-  box-shadow: 3px 3px 0 0 hsl(var(--brand));
-}
-.bl-btn-primary:hover,
-.bl-btn-ink:hover,
-.bl-btn-secondary:hover {
-  transform: translate(-1px, -1px);
-}
-.bl-btn-primary:hover,
-.bl-btn-secondary:hover {
-  box-shadow: 4px 4px 0 0 hsl(var(--ink));
-}
-.bl-btn-ink:hover {
-  box-shadow: 4px 4px 0 0 hsl(var(--brand));
-}
-.bl-btn-primary:active,
-.bl-btn-ink:active,
-.bl-btn-secondary:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0 0 0 0 transparent;
-}
-.bl-card-link:hover {
-  box-shadow: 6px 6px 0 0 hsl(var(--ink));
 }
 
 /* Old-school pass: the overlay gains a CRT vignette, the scrollbar goes

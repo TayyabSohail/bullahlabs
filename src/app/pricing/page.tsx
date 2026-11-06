@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld';
+import { CtaBanner } from '@/components/sections/cta-banner';
 import { Pricing } from '@/components/sections/pricing';
 import { Testimonials } from '@/components/sections/testimonials';
 
@@ -27,6 +28,7 @@ export default async function PricingPage() {
       />
       <Pricing dict={dict} />
       <Testimonials dict={dict} />
+      <CtaBanner dict={dict} />
     </>
   );
 }

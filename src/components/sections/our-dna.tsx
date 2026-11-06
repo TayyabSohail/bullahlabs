@@ -14,7 +14,7 @@ export function OurDna({ dict }: { dict: Dictionary }) {
   return (
     <section
       id='our-dna'
-      className='bl-section bl-rule bl-band-stone scroll-mt-24 overflow-hidden'
+      className='bl-section bl-rule bl-band-stone bl-no-dot scroll-mt-24 overflow-hidden'
     >
       <div className='bl-container'>
         {/* Headline and the origin story. */}
@@ -31,14 +31,14 @@ export function OurDna({ dict }: { dict: Dictionary }) {
             />
           </div>
           <Reveal delay={0.15}>
-            <div className='mx-auto flex max-w-xl flex-col items-start gap-3 text-left sm:gap-4'>
+            <div className='mx-auto grid max-w-xl grid-cols-[4.5rem_minmax(0,1fr)] items-start gap-4 text-left sm:flex sm:gap-4'>
               <Image
                 src='/images/bulleh-shah-portrait.webp'
                 alt={t.portraitAlt}
                 width={320}
                 height={320}
                 sizes='(max-width: 640px) 64px, 80px'
-                className='h-16 w-16 shrink-0 object-contain sm:h-20 sm:w-20'
+                className='h-16 w-16 object-contain sm:h-20 sm:w-20'
               />
               <p className='w-full text-base leading-relaxed text-muted-foreground sm:text-lg'>
                 {t.origin}
@@ -50,8 +50,8 @@ export function OurDna({ dict }: { dict: Dictionary }) {
         <div className='mt-6 grid gap-5 sm:mt-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10'>
           <VerseCard copy={t.verse} />
           <Reveal delay={0.2} className='flex'>
-            <div className='flex w-full flex-col items-center justify-center border-y border-line py-5 sm:py-8 lg:py-10'>
-              <div className='w-full max-w-xl text-left'>
+            <div className='flex w-full flex-col justify-center border-l-2 border-brand py-1 pl-5 sm:border-y sm:border-l-0 sm:py-8 sm:pl-0 lg:py-10'>
+              <div className='w-full max-w-xl text-left sm:mx-auto'>
                 <p className='bl-kicker'>{t.meaning.kicker}</p>
                 <h3 className='bl-display mt-3 max-w-[18ch] text-2xl text-foreground sm:text-3xl'>
                   {t.meaning.title}
