@@ -1,0 +1,12 @@
+import { chromium } from 'playwright-core';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
+const exe = join(homedir(), 'AppData/Local/ms-playwright/chromium-1228/chrome-win64/chrome.exe');
+const browser = await chromium.launch({ executablePath: exe });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') console.log(m.type(), m.text().slice(0, 400)); });
+page.on('pageerror', (e) => console.log('pageerror', String(e).slice(0, 400)));
+await page.goto('http://localhost:3000/conscious-ai', { waitUntil: 'networkidle', timeout: 120000 });
+await page.waitForTimeout(3000);
+console.log('header:', await page.getAttribute('header', 'class'));
+await browser.close();

@@ -27,6 +27,15 @@ const nextConfig: NextConfig = {
   },
   // PostHog API paths end in a slash; don't let Next redirect them away.
   skipTrailingSlashRedirect: true,
+  // The share cards (opengraph-image routes) read their fonts, the brand
+  // mark and the case-study covers from disk at render time. Keep those
+  // files in the traced serverless output on Vercel.
+  outputFileTracingIncludes: {
+    '/**/opengraph-image': [
+      './src/lib/og/**/*',
+      './public/brand/logo-mark.svg',
+    ],
+  },
 };
 
 export default nextConfig;

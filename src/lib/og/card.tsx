@@ -327,6 +327,7 @@ function Cover({ image, width, height, caption }: OgCover) {
         }}
       >
         {/* Satori accepts raw image bytes as src; the frame crops the top. */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img only */}
         <img
           alt=''
           src={image as unknown as string}
@@ -399,6 +400,7 @@ export async function renderOgCard({
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img only */}
               <img alt='' src={mark} width={40} height={40} />
               <span
                 style={{

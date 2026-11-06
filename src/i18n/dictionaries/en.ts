@@ -1545,26 +1545,8 @@ export const en = {
       submit: 'Get the free course',
       note: 'Free, forever. Just your email.',
     },
-    dna: {
-      kicker: 'Our DNA',
-      title: 'Old wisdom. Modern tools.',
-      accent: [2, 3],
-      body: 'Values from the Sufi poet Bulleh Shah. One team in Stuttgart and Islamabad.',
-      cta: 'Read our DNA',
-      values: [
-        [
-          'Purpose before technology.',
-          'Start with the problem, not the latest tool.',
-        ],
-        [
-          'Right-size everything.',
-          'The smallest tool that does the job without compromising on the results.',
-        ],
-        ['People first.', 'Tools serve people, not the other way round.'],
-        ['Impact counts.', 'Planet and people matter, not just speed.'],
-      ],
-    },
     services: {
+      kicker: 'Services',
       lead: 'Need software built, not training?',
       accent: 'We do that too.',
       cta: 'See our services',
@@ -1590,39 +1572,14 @@ export const en = {
             'We train people to use AI with judgment, not to hand their work over. The decisions stay with them.',
         },
         {
-          question: 'Everything AI gives us needs fixing. Can training help?',
-          answer:
-            "That's AI slop, and it eats the time AI saves. Your team learns to give AI the right context, check the output against an agreed bar, and stop passing half-finished work to a colleague.",
-        },
-        {
           question: 'Can we trust AI tools with our data?',
           answer:
             "We can't vouch for any provider. We teach what never goes into public tools and which settings to switch on. In the audit, we ask only for what we need, anonymized where possible.",
         },
         {
-          question: 'Does training help with compliance?',
-          answer:
-            "It helps your team follow your data and AI rules day to day. It's not legal advice: check your obligations, including the EU AI Act, with your lawyer.",
-        },
-        {
-          question: 'Should we run AI on our own machines?',
-          answer:
-            "Sometimes. It can help with privacy and cost, but a laptop isn't always more energy-efficient than a data center. We compare before we recommend.",
-        },
-        {
           question: 'What happens in the free audit?',
           answer:
             'You pick one workflow. We check usage, licenses, and output, then send a fix list ranked by savings. Free, no strings.',
-        },
-        {
-          question: 'How do you measure results?',
-          answer:
-            'Before and after: time per task, AI spend, do-overs, quality, and team confidence. We agree the measures up front.',
-        },
-        {
-          question: 'Where does the environment come in?',
-          answer:
-            'Every AI request uses electricity and cooling water. Smaller models, shorter answers, and simple scripts can cut both, and your bill. We show our assumptions, not false precision.',
         },
       ],
     },

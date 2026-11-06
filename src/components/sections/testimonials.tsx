@@ -99,7 +99,7 @@ export function Testimonials({
         <Reveal
           className={cn(
             'bl-card grid overflow-hidden lg:grid-cols-[1fr_0.75fr]',
-            heading ? 'mt-8 sm:mt-14' : 'mt-0',
+            heading ? 'mt-6 sm:mt-10 lg:mt-14' : 'mt-0',
           )}
         >
           <div
@@ -108,12 +108,12 @@ export function Testimonials({
             className='contents'
           >
             {/* Quote */}
-            <div className='relative z-[2] flex flex-col bg-surface p-5 text-ink sm:p-10 lg:p-12'>
-              <span className='relative flex h-11 w-11 items-center justify-center border border-ink/20'>
-                <Quote className='h-5 w-5 text-brand-text' />
+            <div className='relative z-[2] flex flex-col bg-surface p-5 text-ink sm:p-8 lg:p-10'>
+              <span className='relative flex h-10 w-10 items-center justify-center border border-ink/20'>
+                <Quote className='h-4 w-4 text-brand-text' strokeWidth={1.5} />
               </span>
               {/* Sized to the tallest quote so the nav row below never moves */}
-              <div className='relative mt-6 grid'>
+              <div className='relative mt-5 grid'>
                 {sizerQuotes.map((q, i) => (
                   <div
                     key={i}
@@ -168,7 +168,7 @@ export function Testimonials({
                 </AnimatePresence>
               </div>
 
-              <div className='mt-6 flex items-center justify-between border-t border-ink/15 pt-5 sm:mt-10 sm:pt-6'>
+              <div className='mt-5 flex items-center justify-between border-t border-ink/15 pt-4 sm:mt-8 sm:pt-6'>
                 <div
                   className='flex gap-1.5'
                   role='tablist'
@@ -187,7 +187,7 @@ export function Testimonials({
                         setIndex(dot);
                       }}
                       className={cn(
-                        'h-[3px] transition-all duration-500',
+                        'h-[3px] transition-[width,background-color] duration-500',
                         dot === index
                           ? 'w-8 bg-brand-2'
                           : 'w-3 bg-ink/25',
@@ -217,7 +217,7 @@ export function Testimonials({
             </div>
 
             {/* Product on a laptop */}
-            <div className='relative z-[2] flex flex-col justify-center border-t border-ink/20 bg-surface-2/70 p-5 sm:min-h-[22rem] sm:p-8 lg:border-l lg:border-t-0'>
+            <div className='relative z-[2] flex flex-col justify-center border-t border-ink/20 bg-surface-2/70 p-4 sm:min-h-[22rem] sm:p-8 lg:border-l lg:border-t-0'>
               <AnimatePresence mode='wait' initial={false}>
                 <motion.div
                   key={project?.slug ?? index}
@@ -236,9 +236,9 @@ export function Testimonials({
                           sizes='(min-width: 1024px) 34vw, 90vw'
                         />
                       </LaptopFrame>
-                      <div className='mt-6 flex items-end justify-between gap-4 text-foreground'>
+                      <div className='mt-4 flex items-end justify-between gap-4 text-foreground sm:mt-6'>
                         <div>
-                          <p className='font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground'>
+                          <p className='bl-label tabular-nums'>
                             {project.category} &middot; {project.year}
                           </p>
                           <p className='bl-display mt-1 text-xl'>

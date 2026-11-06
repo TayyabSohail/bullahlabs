@@ -52,7 +52,7 @@ export function WorkShowcase({
 
         <Stagger
           stagger={0.08}
-          className='mt-8 grid gap-6 sm:mt-14 md:grid-cols-2 lg:grid-cols-3'
+          className='mt-6 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2 lg:mt-14 lg:grid-cols-3'
         >
           {projects.map((project, index) => (
             <StaggerItem
@@ -77,20 +77,21 @@ export function WorkShowcase({
         <Link
           href={paths.work}
           data-cursor='view'
-          className='bl-card bl-card-link group mt-6 flex items-center justify-between gap-4 px-5 py-4 sm:mt-8 sm:px-6'
+          className='bl-card bl-card-link group mt-4 flex items-center justify-between gap-4 px-4 py-4 sm:mt-8 sm:px-6'
         >
           <span className='min-w-0'>
-            <span className='block font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink transition-colors duration-300 group-hover:text-brand-text'>
+            <span className='block font-mono text-xs font-medium text-ink transition-colors duration-300 group-hover:text-brand-text'>
               {t.cta}
             </span>
             <span className='mt-1 block text-sm leading-snug text-muted-foreground'>
               {t.more.replace('{n}', String(remaining))}
             </span>
           </span>
-          <span className='flex h-11 w-11 shrink-0 items-center justify-center bg-ink text-white transition-colors duration-300 group-hover:bg-brand'>
+          <span className='flex h-10 w-10 shrink-0 items-center justify-center bg-ink text-white transition-colors duration-300 group-hover:bg-brand'>
             <ArrowUpRight
               aria-hidden='true'
               className='h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5'
+              strokeWidth={1.5}
             />
           </span>
         </Link>
