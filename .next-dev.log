@@ -22,3 +22,131 @@ Creating turbopack project { dir: 'D:\\ME\\bullahlabs', testMode: true }
  ✓ Compiled in 138ms
  ✓ Compiled in 469ms
  ✓ Compiled in 404ms
+ ○ Compiling /conscious-ai ...
+ ✓ Compiled /conscious-ai in 10.5s
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\ME\bullahlabs\.next\static\development\_buildManifest.js.tmp.svx8rgyxbq'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ME\\bullahlabs\\.next\\static\\development\\_buildManifest.js.tmp.svx8rgyxbq'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1539ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\ME\bullahlabs\.next\static\development\_buildManifest.js.tmp.aztdxtt1cz6'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ME\\bullahlabs\\.next\\static\\development\\_buildManifest.js.tmp.aztdxtt1cz6'
+}
+[Error: ENOENT: no such file or directory, open 'D:\ME\bullahlabs\.next\static\development\_buildManifest.js.tmp.svx8rgyxbq'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ME\\bullahlabs\\.next\\static\\development\\_buildManifest.js.tmp.svx8rgyxbq'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\ME\bullahlabs\.next\static\development\_buildManifest.js.tmp.5cymz49dxf8'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ME\\bullahlabs\\.next\\static\\development\\_buildManifest.js.tmp.5cymz49dxf8'
+}
+[Error: ENOENT: no such file or directory, open 'D:\ME\bullahlabs\.next\static\development\_buildManifest.js.tmp.6kzmq44ihdm'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ME\\bullahlabs\\.next\\static\\development\\_buildManifest.js.tmp.6kzmq44ihdm'
+}
+ ⨯ Error: Cannot find module '../../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\ME\bullahlabs\.next\server\app\conscious-ai\page.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\require.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\load-components.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\utils.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\options.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\index.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\next.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\ME\bullahlabs\.next\server\app\conscious-ai\page.js:2:17) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/conscious-ai'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\ME\bullahlabs\.next\server\pages\_document.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\require.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\load-components.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\utils.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\options.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\index.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\next.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\ME\bullahlabs\.next\server\pages\_document.js:2:17) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /conscious-ai 500 in 1459ms
+ ✓ Compiled /upskilling in 212ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\ME\bullahlabs\.next\server\app\upskilling\page\server-reference-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\ME\\bullahlabs\\.next\\server\\app\\upskilling\\page\\server-reference-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\ME\bullahlabs\.next\server\pages\_document.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\require.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\load-components.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\utils.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\options.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\index.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\next.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\ME\bullahlabs\.next\server\pages\_document.js:2:17) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /upskilling 500 in 512ms
+ ○ Compiling / ...
+ ✓ Compiled / in 8.3s
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\ME\bullahlabs\.next\server\app\page.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\require.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\load-components.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\utils.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\options.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\index.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\next.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\ME\bullahlabs\.next\server\app\page.js:2:17) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\ME\bullahlabs\.next\server\pages\_document.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\require.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\load-components.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\utils.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\options.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\swc\index.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\config.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\next.js
+- D:\ME\bullahlabs\node_modules\.pnpm\next@15.3.6_@types+node@22._8a8857b63d641b643103c04b89170fd7\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\ME\bullahlabs\.next\server\pages\_document.js:2:17) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 8513ms
