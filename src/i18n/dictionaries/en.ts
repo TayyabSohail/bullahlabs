@@ -1126,7 +1126,7 @@ export const en = {
       kicker: 'Our roots',
       title: 'Ignoring the hype since the 1700s.',
       accent: [3, 4, 5],
-      body: 'Bulleh Shah questioned the crowd. We bring that clarity to AI.',
+      body: 'Bulleh Shah questioned the crowd and chose substance over fashion. We bring that same clarity to AI: use what helps, question what does not, and keep people at the centre.',
       cta: 'Read our DNA',
       portraitAlt: 'Illustrated portrait of Bulleh Shah',
       name: 'Bulleh Shah',

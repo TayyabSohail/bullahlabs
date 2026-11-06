@@ -337,21 +337,6 @@ export function OurRoots({ dict }: SectionProps) {
             </figure>
           </Reveal>
         </div>
-        <div className='mt-6 grid border border-white/30 sm:mt-8 md:grid-cols-3'>
-          {t.values.map(([, title, body]) => (
-            <article
-              key={title}
-              className='border-b border-white/20 px-4 py-4 last:border-b-0 sm:p-5 md:border-b-0 md:border-r md:last:border-r-0'
-            >
-              <div>
-                <h3 className='bl-display text-xl text-white sm:text-2xl md:mt-2'>
-                  {title}
-                </h3>
-                <p className='mt-1 text-sm text-white/65'>{body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
   );
