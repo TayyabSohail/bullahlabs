@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { Reveal } from '@/components/motion/reveal';
 import { TextReveal } from '@/components/motion/text-reveal';
 
-import { cn } from '@/lib/utils';
-
 import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
@@ -19,8 +17,6 @@ interface CtaBannerProps {
    * something other than a conversation (e.g. an email field).
    */
   children?: React.ReactNode;
-  /** The faint grid behind the panel. Off for a plain ink panel. */
-  grid?: boolean;
 }
 
 /** Closing call to action: an ink panel with one large button. */
@@ -31,18 +27,12 @@ export function CtaBanner({
   accentWords,
   body,
   children,
-  grid = true,
 }: CtaBannerProps) {
   const t = dict.cta;
 
   return (
     <section data-section='cta-banner' className='bl-container pb-6 pt-10'>
-      <div
-        className={cn(
-          'bl-card bl-card-ink relative px-5 py-12 text-center sm:px-12 sm:py-16 lg:py-20',
-          grid && 'bl-grid-surface',
-        )}
-      >
+      <div className='bl-card bl-card-ink relative px-5 py-12 text-center sm:px-12 sm:py-16 lg:py-20'>
         <div className='relative mx-auto max-w-3xl'>
           <Reveal>
             <p className='bl-kicker justify-center text-white/60'>

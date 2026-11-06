@@ -105,15 +105,11 @@
 /* Typography and surface helpers                                             */
 /* ------------------------------------------------------------------------- */
 @layer components {
-  /* Headlines in the old-style serif at its display optical size, with the
-     wonky alternates on. */
+  /* Headlines in a bookish serif at its display optical size. */
   .bl-display {
     @apply font-display font-semibold tracking-[-0.01em];
     line-height: 1.02;
-    font-variation-settings:
-      'opsz' 144,
-      'SOFT' 40,
-      'WONK' 1;
+    font-variation-settings: 'opsz' 48;
   }
 
   /* Highlighted word inside a headline: emerald italic. */
@@ -121,10 +117,7 @@
   .bl-gradient-text {
     @apply text-brand-text;
     font-style: italic;
-    font-variation-settings:
-      'opsz' 144,
-      'SOFT' 70,
-      'WONK' 1;
+    font-variation-settings: 'opsz' 48;
   }
 
   .bl-gradient-bg {
@@ -376,14 +369,6 @@
   }
   .bl-marquee-paused:hover .bl-marquee {
     animation-play-state: paused;
-  }
-
-  /* Faint engineering grid used inside select panels. */
-  .bl-grid-surface {
-    background-image:
-      linear-gradient(to right, hsl(var(--brand) / 0.07) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--brand) / 0.07) 1px, transparent 1px);
-    background-size: 38px 38px;
   }
 
   /* Circuit backdrop strokes (light). */

@@ -7,7 +7,7 @@ import { paths } from '@/constants/paths';
 export function FreeResources() {
   return (
     <section data-section='free-resources' className='bl-container py-10 sm:py-14'>
-      <div className='bl-card bl-card-ink bl-grid-surface relative max-w-3xl p-7 text-white sm:p-10'>
+      <div className='bl-card bl-card-ink relative max-w-3xl p-7 text-white sm:p-10'>
         <div className='relative'>
           <p className='bl-kicker text-white/60'>Free resources</p>
           <h2 className='bl-display mt-5 max-w-[15ch] text-4xl leading-tight sm:text-5xl'>Work smarter with AI. Waste less. Stay in control.</h2>

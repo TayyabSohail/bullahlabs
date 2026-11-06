@@ -156,7 +156,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
       {/* Efficiency lens: the principle this build demonstrates */}
       <section className='bl-container pt-16 lg:pt-24'>
-        <Reveal className='bl-card bl-card-ink bl-grid-surface grid gap-8 p-7 sm:p-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14 lg:p-12'>
+        <Reveal className='bl-card bl-card-ink grid gap-8 p-7 sm:p-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14 lg:p-12'>
           <div>
             <p className='bl-kicker text-white/60'>{t.efficiencyKicker}</p>
             <p className='mt-6 flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-2'>

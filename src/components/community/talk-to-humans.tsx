@@ -77,7 +77,7 @@ export function TalkToHumansButton({
         />
         <DialogPrimitive.Content
           data-lenis-prevent
-          className='bl-card bl-grid-surface fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 p-6 shadow-[4px_4px_0_0_hsl(var(--brand))] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:p-8'
+          className='bl-card fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 p-6 shadow-[4px_4px_0_0_hsl(var(--brand))] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:p-8'
         >
           <p className='bl-kicker'>Real humans</p>
           <DialogTitle className='bl-display mt-4 text-3xl leading-tight text-ink'>

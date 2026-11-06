@@ -23,35 +23,34 @@ import { getDictionary } from '@/i18n/server';
 
 import AppProviders from './providers';
 
-/* Old-school type: IBM Plex for the running text and the mono, like a
-   1980s technical manual, and Fraunces, an old-style serif with its optical
-   size and "wonk" axes exposed, for the headlines and italic accents.
+/* Human, bookish type: Source Sans for running text and Source Serif for
+   headlines. The mono face remains only for data and code-like details.
    The latin woff2 slices live in ./fonts and are self-hosted, so the build
    never has to reach Google Fonts (whose CDN occasionally hands Vercel
    extensionless file URLs that next/font/google cannot parse). */
-const plexSans = localFont({
+const sourceSans = localFont({
   variable: '--font-sans',
   src: [
     {
-      path: './fonts/IBMPlexSans-Variable-latin.woff2',
-      weight: '100 700',
+      path: './fonts/SourceSans3-Variable.ttf',
+      weight: '200 900',
       style: 'normal',
     },
   ],
   display: 'swap',
 });
 
-const fraunces = localFont({
+const sourceSerif = localFont({
   variable: '--font-display',
   src: [
     {
-      path: './fonts/Fraunces-Variable-latin.woff2',
-      weight: '100 900',
+      path: './fonts/SourceSerif4-Variable.ttf',
+      weight: '200 900',
       style: 'normal',
     },
     {
-      path: './fonts/Fraunces-VariableItalic-latin.woff2',
-      weight: '100 900',
+      path: './fonts/SourceSerif4-Italic-Variable.ttf',
+      weight: '200 900',
       style: 'italic',
     },
   ],
@@ -120,7 +119,7 @@ export default async function RootLayout({
   return (
     <html lang={dict.locale}>
       <body
-        className={`${plexSans.variable} ${fraunces.variable} ${plexMono.variable} ${nastaliq.variable} ${gurmukhi.variable} font-sans`}
+        className={`${sourceSans.variable} ${sourceSerif.variable} ${plexMono.variable} ${nastaliq.variable} ${gurmukhi.variable} font-sans`}
       >
         <AppProviders>
           <SmoothScroll>

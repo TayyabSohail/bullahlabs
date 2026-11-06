@@ -1,0 +1,71 @@
+
+> bullah-labs@0.1.0 build
+> next build
+
+   ▲ Next.js 15.3.6
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 5.0s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/61) ...
+   Generating static pages (15/61) 
+   Generating static pages (30/61) 
+   Generating static pages (45/61) 
+ ✓ Generating static pages (61/61)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ƒ /                                    15.2 kB         331 kB
+├ ƒ /_not-found                            181 B         102 kB
+├ ƒ /about                                 150 B         173 kB
+├ ○ /about/opengraph-image                 181 B         102 kB
+├ ƒ /approach                            2.87 kB         160 kB
+├ ○ /approach/opengraph-image              181 B         102 kB
+├ ƒ /conscious-ai                        10.7 kB         294 kB
+├ ○ /conscious-ai/opengraph-image          181 B         102 kB
+├ ƒ /conscious-ai/teams                  1.08 kB         158 kB
+├ ○ /conscious-ai/teams/opengraph-image    181 B         102 kB
+├ ƒ /contact                             7.46 kB         225 kB
+├ ○ /contact/opengraph-image               181 B         102 kB
+├ ƒ /legal                               1.07 kB         158 kB
+├ ƒ /legal/cookies                       1.09 kB         158 kB
+├ ƒ /legal/imprint                       1.09 kB         158 kB
+├ ○ /legal/opengraph-image                 181 B         102 kB
+├ ƒ /legal/privacy                       1.09 kB         158 kB
+├ ƒ /legal/terms                         1.09 kB         158 kB
+├ ○ /opengraph-image                       181 B         102 kB
+├ ƒ /our-dna                               151 B         173 kB
+├ ○ /our-dna/opengraph-image               181 B         102 kB
+├ ○ /robots.txt                            181 B         102 kB
+├ ƒ /services                            1.93 kB         223 kB
+├ ○ /services/opengraph-image              181 B         102 kB
+├ ○ /sitemap.xml                           181 B         102 kB
+├ ƒ /upskilling                          1.12 kB         319 kB
+├ ○ /upskilling/opengraph-image            181 B         102 kB
+├ ƒ /work                                42.5 kB         265 kB
+├ ● /work/[slug]                         2.26 kB         168 kB
+├   ├ /work/brickfold
+├   ├ /work/rankloom
+├   ├ /work/bidnest
+├   └ [+12 more paths]
+├ ● /work/[slug]/opengraph-image           181 B         102 kB
+├   ├ /work/brickfold/opengraph-image
+├   ├ /work/rankloom/opengraph-image
+├   ├ /work/bidnest/opengraph-image
+├   └ [+12 more paths]
+└ ○ /work/opengraph-image                  181 B         102 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/6283515a-f9f4d32e5195d4c1.js  53.2 kB
+  ├ chunks/7789-3d58afa26a0cf629.js      46.6 kB
+  └ other shared chunks (total)          2.06 kB
+
+
+ƒ Middleware                             80.5 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -222,7 +222,7 @@ export function ProblemApproach({ dict, className }: SectionProps) {
       className={cn('bl-section bl-rule bl-band-stone', className)}
     >
       <div className='bl-container grid gap-4 lg:grid-cols-2 lg:gap-5'>
-        <Reveal className='bl-card bl-grid-surface flex flex-col p-6 sm:p-8 lg:p-10'>
+        <Reveal className='bl-card flex flex-col p-6 sm:p-8 lg:p-10'>
           <p className='bl-kicker'>{problem.kicker}</p>
           <TextReveal
             as='h2'
@@ -249,7 +249,7 @@ export function ProblemApproach({ dict, className }: SectionProps) {
 
         <Reveal
           delay={0.15}
-          className='bl-card bl-card-ink bl-grid-surface relative flex flex-col p-6 text-white sm:p-8 lg:p-10'
+          className='bl-card bl-card-ink relative flex flex-col p-6 text-white sm:p-8 lg:p-10'
         >
           <p className='bl-kicker relative text-white/60'>{approach.kicker}</p>
           <TextReveal

@@ -141,7 +141,7 @@ export function CourseSignup({
     >
       <DialogPortal>
         <DialogOverlay className='bg-ink/25 backdrop-blur-[2px]' />
-        <DialogPrimitive.Content className='bl-card bl-grid-surface fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2 px-7 pb-8 pt-9 text-center shadow-[4px_4px_0_0_hsl(var(--brand))] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:px-9'>
+        <DialogPrimitive.Content className='bl-card fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2 px-7 pb-8 pt-9 text-center shadow-[4px_4px_0_0_hsl(var(--brand))] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:px-9'>
           <span className='mx-auto flex h-12 w-12 items-center justify-center bg-brand text-brand-foreground'>
             <Check className='h-6 w-6' strokeWidth={2.5} />
           </span>
@@ -265,7 +265,7 @@ export function CourseSignup({
   return (
     <div
       className={cn(
-        'bl-card bl-card-ink bl-grid-surface relative p-6 text-white sm:p-8',
+        'bl-card bl-card-ink relative p-6 text-white sm:p-8',
         className,
       )}
     >

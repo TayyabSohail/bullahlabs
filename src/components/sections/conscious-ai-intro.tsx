@@ -58,7 +58,7 @@ export function ConsciousAiIntro({ dict, className }: ConsciousAiIntroProps) {
 
         <Reveal
           delay={0.25}
-          className='bl-card bl-card-ink bl-grid-surface relative flex flex-col justify-between p-6 text-white sm:p-8 lg:p-10'
+          className='bl-card bl-card-ink relative flex flex-col justify-between p-6 text-white sm:p-8 lg:p-10'
         >
           <div className='relative'>
             <p className='bl-kicker text-white/60'>{t.closingKicker}</p>

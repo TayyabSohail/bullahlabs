@@ -1,0 +1,24 @@
+
+> bullah-labs@0.1.0 dev
+> next dev --turbopack --port 3000
+
+   ▲ Next.js 15.3.6 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.100.135:3000
+   - Environments: .env
+
+ ✓ Starting...
+Creating turbopack project { dir: 'D:\\ME\\bullahlabs', testMode: true }
+ ✓ Compiled instrumentation Node.js in 22ms
+ ✓ Compiled instrumentation Edge in 27ms
+ ✓ Compiled middleware in 212ms
+ ✓ Ready in 1459ms
+(node:21616) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling /upskilling ...
+ ✓ Compiled /upskilling in 3.2s
+ GET /upskilling 200 in 3956ms
+ ✓ Compiled in 160ms
+ ✓ Compiled in 138ms
+ ✓ Compiled in 469ms
+ ✓ Compiled in 404ms

@@ -627,7 +627,6 @@ export function UpskillingClosing({ dict }: SectionProps) {
       title={t.title}
       accentWords={[...t.accent]}
       body={t.body}
-      grid={false}
     >
       {/* One grid, two equal cells: the buttons share width and height at every size. */}
       <div className='grid w-full gap-3 sm:w-auto sm:grid-cols-2'>
