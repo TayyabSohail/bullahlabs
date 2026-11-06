@@ -196,9 +196,9 @@ export function CourseSignup({
             // The min-height keeps the field full size when the row is
             // stacked (phones, the popup), where a flex-1 basis would
             // otherwise squeeze it down to its text height.
-            'h-12 min-h-12 w-full min-w-0 shrink-0 border px-4 text-[15px] outline-none sm:w-auto sm:flex-1 transition-colors focus-visible:ring-2 focus-visible:ring-brand/60',
+            'h-12 min-h-12 w-full min-w-0 shrink-0 border px-4 text-[15px] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand/60 sm:w-auto sm:flex-1',
             dark
-              ? 'border-white/20 bg-white/[0.06] text-white placeholder:text-white/40'
+              ? 'border-white/20 bg-[hsl(var(--ink-2))] text-white placeholder:text-white/40'
               : 'border-line bg-surface text-ink placeholder:text-muted-foreground',
             error && 'border-red-400',
           )}
@@ -215,7 +215,12 @@ export function CourseSignup({
         <button
           type='submit'
           disabled={isExecuting}
-          className='bl-btn bl-btn-primary inline-flex h-14 shrink-0 items-center justify-center gap-2.5 whitespace-nowrap px-6 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] disabled:opacity-60 sm:w-auto'
+          className={cn(
+            'bl-btn inline-flex h-12 shrink-0 items-center justify-center gap-2.5 whitespace-nowrap px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] disabled:opacity-60 sm:w-auto',
+            dark
+              ? 'border border-white/20 bg-surface text-ink hover:bg-brand-soft'
+              : 'bl-btn-primary',
+          )}
         >
           {isExecuting ? (
             <Loader2 className='h-4 w-4 animate-spin' />

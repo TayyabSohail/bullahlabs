@@ -1771,10 +1771,10 @@ export const en = {
   },
   /** The studio offer on the home page: three ways we help, then the services door. */
   studio: {
-    title: 'Want a solution?\nHere’s how we solve it.',
+    title: 'What would make work better?',
     accent: [],
     description:
-      'We build products, fix what gets in the way, and help people use AI with care.',
+      'We get good ideas moving, untangle stuck products, and make AI earn its keep.',
     /** Title, body, typical engagements; the icons live in the component, in this order. */
     services: [
       {

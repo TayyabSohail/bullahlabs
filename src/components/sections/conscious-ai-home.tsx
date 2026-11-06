@@ -52,65 +52,69 @@ export function ConsciousAiHome({
               : 'mt-6 max-w-3xl border border-ink lg:mt-8'
           }
         >
-          <Reveal className='flex h-full min-w-0 flex-col bg-ink p-5 text-white sm:p-8 lg:p-10'>
-            <p className='bl-kicker text-brand-2'>{t.course.kicker}</p>
-            <h3 className='bl-display mt-4 max-w-[12ch] text-3xl leading-[0.92] sm:text-4xl'>
-              {t.course.title}
-            </h3>
-            <p className='mt-5 max-w-[36ch] text-base leading-relaxed text-white/70 sm:text-lg'>
-              {t.course.body}
-            </p>
-
-            <Link
-              href={`${paths.program}#course`}
-              aria-label={`${dict.program.popup.taughtBy} ${instructor.name}`}
-              className='group mt-8 grid max-w-xl grid-cols-[5.5rem_1fr] py-4 transition-colors sm:grid-cols-[7rem_1fr]'
-            >
-              <span className='relative row-span-2 aspect-[800/955] overflow-hidden'>
-                <Image
-                  src={instructor.image}
-                  alt={t.course.portraitAlt.replace('{name}', instructor.name)}
-                  fill
-                  sizes='(min-width: 1024px) 180px, 140px'
-                  className='object-cover'
-                />
-              </span>
-              <span className='self-end px-4 sm:px-5'>
-                <span className='bl-label text-white/55'>
-                  {dict.program.popup.taughtBy}
-                </span>
-                <span className='bl-display mt-1 block text-2xl leading-none text-white group-hover:text-brand-text sm:text-3xl'>
-                  {instructor.name}
-                </span>
-              </span>
-              <span className='flex items-center gap-2 px-4 pt-3 sm:px-5'>
-                <HarvardShield className='h-7 w-auto shrink-0' />
-                <span className='font-display text-sm font-semibold leading-tight text-white/80'>
-                  {instructor.school}
-                </span>
-              </span>
-            </Link>
-
-            <div className='mt-auto pt-8'>
-              <ul className='flex flex-wrap gap-x-4 gap-y-2 border-t border-white/20 pt-4'>
+          <Reveal className='grid h-full min-w-0 gap-6 bg-[hsl(var(--surface-2))] p-5 text-ink sm:p-7 lg:grid-cols-[minmax(0,0.9fr)_minmax(19rem,1.1fr)] lg:gap-10 lg:p-8'>
+            <div className='flex flex-col justify-center'>
+              <p className='bl-kicker text-brand-text'>{t.course.kicker}</p>
+              <h3 className='bl-display mt-4 max-w-[13ch] text-3xl leading-[0.96] sm:text-4xl'>
+                {t.course.title}
+              </h3>
+              <p className='mt-4 max-w-[34ch] text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                {t.course.body}
+              </p>
+              <ul className='mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-ink/20 pt-3'>
                 {facts.map((fact) => (
                   <li
                     key={fact}
-                    className='bl-label flex items-center gap-2 text-white/70'
+                    className='bl-label flex items-center gap-2 text-ink/75'
                   >
                     <span aria-hidden='true' className='h-1.5 w-1.5 bg-brand' />
                     {fact}
                   </li>
                 ))}
               </ul>
+            </div>
+
+            <div className='flex min-w-0 flex-col justify-center border-t border-ink/20 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0'>
+              <Link
+                href={`${paths.program}#course`}
+                aria-label={`${dict.program.popup.taughtBy} ${instructor.name}`}
+                className='group grid max-w-xl grid-cols-[5rem_1fr] items-center transition-colors sm:grid-cols-[6rem_1fr] lg:max-w-none'
+              >
+                <span className='relative row-span-2 aspect-[4/4.5] overflow-hidden'>
+                  <Image
+                    src={instructor.image}
+                    alt={t.course.portraitAlt.replace(
+                      '{name}',
+                      instructor.name,
+                    )}
+                    fill
+                    sizes='(min-width: 1024px) 120px, 96px'
+                    className='object-cover'
+                  />
+                </span>
+                <span className='self-end px-4 sm:px-5'>
+                  <span className='bl-label text-muted-foreground'>
+                    {dict.program.popup.taughtBy}
+                  </span>
+                  <span className='bl-display mt-1 block text-xl leading-none text-ink group-hover:text-brand-text sm:text-2xl'>
+                    {instructor.name}
+                  </span>
+                </span>
+                <span className='flex items-center gap-2 px-4 pt-3 sm:px-5'>
+                  <HarvardShield className='h-7 w-auto shrink-0' />
+                  <span className='font-display text-sm font-semibold leading-tight text-ink/80'>
+                    {instructor.school}
+                  </span>
+                </span>
+              </Link>
               <CourseSignup
                 dict={dict}
                 source='home:conscious-ai'
                 variant='inline'
-                tone='dark'
+                tone='light'
                 submitLabel={t.course.submit}
                 consent={false}
-                className='mt-4 max-w-xl'
+                className='mt-5 max-w-xl lg:max-w-none'
               />
             </div>
           </Reveal>

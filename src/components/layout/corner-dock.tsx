@@ -10,7 +10,7 @@ import type { Dictionary } from '@/i18n/dictionaries/en';
  */
 export function CornerDock({ dict }: { dict: Dictionary }) {
   return (
-    <div className='fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 z-40 flex w-[min(12.5rem,calc(100vw-1.5rem))] flex-col items-stretch gap-2.5 sm:bottom-6 sm:right-6 sm:gap-3'>
+    <div className='fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 z-40 flex flex-col items-end gap-2.5 sm:bottom-6 sm:right-6 sm:gap-3'>
       <FreeCoursePopup dict={dict} />
       <CommunityDock dict={dict} />
     </div>

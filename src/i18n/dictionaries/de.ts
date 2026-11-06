@@ -1738,10 +1738,10 @@ export const de: Dictionary = {
     },
   },
   studio: {
-    title: 'Suchen Sie eine Lösung?\nSo lösen wir es.',
+    title: 'Was würde die Arbeit besser machen?',
     accent: [],
     description:
-      'Wir bauen Produkte, verbessern, was im Weg steht, und helfen Menschen, KI mit Bedacht einzusetzen.',
+      'Wir bringen gute Ideen voran, entwirren festgefahrene Produkte und machen KI nützlich.',
     services: [
       {
         title: 'Bauen',
