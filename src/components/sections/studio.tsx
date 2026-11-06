@@ -29,15 +29,12 @@ export function Studio({ dict }: { dict: Dictionary }) {
         />
 
         <div className='mt-6 grid border-t border-line sm:mt-8 md:grid-cols-3 md:gap-6 md:border-0'>
-          {t.services.map(({ title, body, typical }, index) => (
+          {t.services.map(({ title, body, typical }) => (
             <article
               key={title}
               className='bl-card-md flex flex-col border-b border-line py-4 md:border-b-0 md:p-6'
             >
-              <span className='bl-num'>
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <h3 className='bl-display mt-2 text-3xl text-foreground md:mt-4 md:text-4xl'>
+              <h3 className='bl-display text-3xl text-foreground md:text-4xl'>
                 {title}
               </h3>
               <p className='mt-2 text-base leading-relaxed text-muted-foreground md:mt-3'>

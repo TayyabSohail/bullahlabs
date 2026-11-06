@@ -53,7 +53,7 @@ export default async function ConsciousAiTeamsPage() {
         ]}
       />
 
-      <section className='bl-band-ink border-b border-ink'>
+      <section data-section='hero' className='bl-band-ink border-b border-ink'>
         <div className='bl-container min-h-[31rem] pb-16 pt-32 text-center sm:min-h-[34rem] sm:pt-40 md:text-left lg:min-h-[38rem] lg:pb-20 lg:pt-48'>
           <Reveal>
             <p className='bl-kicker text-white/65'>{t.hero.kicker}</p>

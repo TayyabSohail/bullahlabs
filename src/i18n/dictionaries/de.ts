@@ -131,7 +131,7 @@ export const de: Dictionary = {
     closeMenu: 'Community-Menü schließen',
     title: 'Bessere KI-Entscheidungen entstehen gemeinsam.',
     description:
-      'Treffen Sie Menschen, die KI bewusst einsetzen, Erfahrungen teilen und menschliches Urteilsvermögen in den Mittelpunkt stellen.',
+      'Tauschen Sie praktische Erfahrungen aus und stellen Sie menschliches Urteilsvermögen in Ihrer KI-Arbeit in den Mittelpunkt.',
     links: {
       reddit: {
         label: 'Reddit',
@@ -1157,8 +1157,6 @@ export const de: Dictionary = {
     kicker: 'Conscious AI',
     title: 'KI gut zu nutzen ist eine Fähigkeit. Kein Abo.',
     accent: [7, 8],
-    description:
-      'Kostenlose KI-Orientierung für bessere Werkzeugwahl. Team-Training für echte Arbeit.',
     course: {
       kicker: 'Kostenloser Kurs · bald verfügbar',
       title: 'KI lernen, die hilft.',
@@ -1419,7 +1417,7 @@ export const de: Dictionary = {
       note: 'Preise zzgl. MwSt. Remote oder vor Ort im Raum Stuttgart.',
       audit: {
         kicker: 'Kostenloser Audit',
-        price: '0 €',
+        price: 'KOSTENLOS',
         title: 'Wohin fließt Ihr KI-Budget? Finden Sie es kostenlos heraus.',
         accent: [4, 5, 6, 7, 8],
         body: 'Ein Workflow, kostenlos geprüft. Ohne Haken.',

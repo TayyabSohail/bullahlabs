@@ -76,16 +76,9 @@ export function Services({ dict, className, heading = true }: ServicesProps) {
                   featured && 'lg:col-span-2',
                 )}
               >
-                <p className='bl-label'>
-                  <span className='bl-num'>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <span aria-hidden='true'> / </span>
-                  {String(services.length).padStart(2, '0')}
-                </p>
                 <h3
                   className={cn(
-                    'bl-display mt-3 max-w-[17ch] text-2xl text-foreground',
+                    'bl-display max-w-[17ch] text-2xl text-foreground',
                     featured && 'lg:text-3xl',
                   )}
                 >

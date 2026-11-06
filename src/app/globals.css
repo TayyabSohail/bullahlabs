@@ -158,16 +158,17 @@
     @apply font-mono text-[11px] font-medium tabular-nums leading-5 text-brand-text;
   }
 
-  /* A ruled box from md up; a plain ruled row below it, so three cards
-     do not stack into three screens on a phone. */
+  /* The medium card is intentionally quieter on phones, but keeps the same
+     surface language as every other panel once there is room for it. */
   .bl-card-md {
     @apply relative bg-transparent;
   }
   @media (min-width: 768px) {
     .bl-card-md {
       @apply overflow-hidden bg-surface;
-      border: 1px solid hsl(var(--ink) / 0.85);
-      box-shadow: 4px 4px 0 0 hsl(var(--ink) / 0.9);
+      border: 1px solid hsl(var(--ink) / 0.1);
+      border-radius: 1.25rem;
+      box-shadow: 0 1.25rem 3.5rem -2.5rem hsl(var(--ink) / 0.35);
     }
   }
 
@@ -176,37 +177,50 @@
     border-top: 3px double hsl(var(--line) / 0.6);
   }
 
-  /* Panel: a plain ruled box on a hard offset shadow, like a window on a
-     1-bit desktop. No clipped corners, no gradients. */
+  /* Shared panel language: solid, softly-toned surfaces with enough depth to
+     separate dense content without turning the page into a field of white
+     boxes. The restrained border and rounded silhouette are carried by every
+     existing card, dialog and navigation panel. */
   .bl-card {
     @apply relative overflow-hidden bg-surface;
-    border: 1px solid hsl(var(--ink) / 0.85);
-    box-shadow: 4px 4px 0 0 hsl(var(--ink) / 0.9);
+    border: 1px solid hsl(var(--ink) / 0.1);
+    border-radius: 1.25rem;
+    box-shadow:
+      0 1px 2px hsl(var(--ink) / 0.04),
+      0 1.5rem 3.5rem -2.75rem hsl(var(--ink) / 0.36);
   }
 
-  /* Tinted and ink variants. */
+  /* Solid tonal variants make prominent cards feel intentional rather than
+     like the same white rectangle repeated across a section. */
   .bl-card-tint {
-    background: hsl(var(--brand-soft));
+    background: hsl(var(--brand-soft) / 0.72);
+    border-color: hsl(var(--brand) / 0.18);
   }
   .bl-card-ink {
     @apply text-white;
     background: hsl(var(--ink));
-    border-color: hsl(var(--ink));
-    box-shadow: 4px 4px 0 0 hsl(var(--brand));
+    border-color: hsl(var(--ink-2));
+    box-shadow:
+      0 1px 2px hsl(var(--ink) / 0.24),
+      0 1.75rem 4rem -2.75rem hsl(var(--ink) / 0.75);
   }
 
-  /* Only for cards that navigate somewhere: lift, emerald edge, signal pass. */
+  /* Only for cards that navigate somewhere: a measured lift and a brand-led
+     focus state preserve the hierarchy without the old hard offset shadow. */
   .bl-card-link {
     cursor: pointer;
     transition:
-      transform 280ms ease,
-      border-color 280ms ease,
-      box-shadow 280ms ease,
-      background-color 280ms ease;
+      transform 240ms ease,
+      border-color 240ms ease,
+      box-shadow 240ms ease,
+      background-color 240ms ease;
   }
   .bl-card-link:hover {
-    transform: translate(-2px, -2px);
-    border-color: hsl(var(--ink));
+    transform: translateY(-4px);
+    border-color: hsl(var(--brand) / 0.38);
+    box-shadow:
+      0 2px 3px hsl(var(--ink) / 0.05),
+      0 1.75rem 3.5rem -2.25rem hsl(var(--ink) / 0.4);
   }
 
   /* Prefer an installed Urdu Nastaliq font for Punjabi verse, then fall back
@@ -1512,12 +1526,37 @@ body::after {
   );
 }
 
-/* Engineering paper: every band carries the same dot grid, and the tint
-   alternates down the page between two light colours. Counting sections
-   inside <main>, the hero is the first and sits on the page sky, so even
-   sections are peach and odd ones sky: two tones with clear contrast,
-   never plain white. A band that is not a direct child of <main> (the FAQ
-   wrapper, sub-sections) falls back to peach. */
+/* Engineering paper: every non-hero page section carries the same dot grid.
+   Section colour utilities only choose the paper tint; they never decide
+   whether a section receives the texture. CTA panels stay solid. */
+:where(
+  main > section:not(.bl-hero):not([data-section='hero']):not(
+      [data-section='cta-banner']
+    ),
+  .bl-section
+) {
+  background-image: radial-gradient(
+    hsl(var(--ink) / 0.16) 1px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
+}
+
+/* Ink bands use a light version of the same grid so the texture remains
+   visible without changing the solid surface treatment of their cards. */
+.bl-band-ink:not([data-section='hero']) {
+  background-image: radial-gradient(
+    hsl(0 0% 100% / 0.18) 1px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
+}
+
+/* Use for the few ink sections that need a completely solid field. */
+.bl-band-ink.bl-no-dot {
+  background-image: none;
+}
+
 .bl-band-stone {
   background-image: radial-gradient(
     hsl(var(--ink) / 0.16) 1px,
@@ -1561,9 +1600,22 @@ main > section.bl-band-stone.bl-band-sky {
   overflow: clip;
   background-color: hsl(var(--band-hero));
   background-image:
-    radial-gradient(ellipse 55% 90% at 100% 0%, hsl(var(--brand) / 0.15), transparent 72%),
-    radial-gradient(ellipse 54% 76% at 0% 100%, hsl(var(--band-peach) / 0.8), transparent 70%),
-    linear-gradient(118deg, hsl(var(--band-hero)) 0%, hsl(var(--brand-soft) / 0.74) 52%, hsl(var(--band-sky)) 100%);
+    radial-gradient(
+      ellipse 55% 90% at 100% 0%,
+      hsl(var(--brand) / 0.15),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 54% 76% at 0% 100%,
+      hsl(var(--band-peach) / 0.8),
+      transparent 70%
+    ),
+    linear-gradient(
+      118deg,
+      hsl(var(--band-hero)) 0%,
+      hsl(var(--brand-soft) / 0.74) 52%,
+      hsl(var(--band-sky)) 100%
+    );
 }
 .bl-hero::before {
   content: '';
@@ -1731,6 +1783,13 @@ body::after {
       transparent 0 3px,
       hsl(var(--ink) / 0.035) 3px 4px
     );
+}
+
+/* Keep the page surface quiet: the old film-grain and scanline overlay made
+   copy and cards look busy, especially on smaller screens. */
+body::before,
+body::after {
+  display: none;
 }
 
 /* 1-bit scrollbar: dotted track, bevelled thumb. Chrome ignores the

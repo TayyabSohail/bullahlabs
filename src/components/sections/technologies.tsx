@@ -224,13 +224,10 @@ export function Technologies({
                   key={layer.label}
                   className='grid grid-rows-[auto_auto_1fr] gap-0 bg-surface p-4 sm:row-span-3 sm:grid-rows-subgrid sm:p-6'
                 >
-                  <div className='flex items-baseline justify-between gap-4'>
+                  <div>
                     <h3 className='bl-display text-xl leading-tight text-ink sm:text-2xl'>
                       {layer.label}
                     </h3>
-                    <span className='bl-num shrink-0'>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
                   </div>
                   <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
                     {layer.note}

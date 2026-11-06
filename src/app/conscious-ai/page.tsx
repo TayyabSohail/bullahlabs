@@ -60,7 +60,7 @@ export default async function ConsciousAiPage() {
       <ConsciousAiPrinciples dict={dict} />
       <ConsciousAiNextSteps dict={dict} />
       <ConsciousAiNumbers dict={dict} />
-      <section id='ai-profile' className='bl-section bl-rule bl-band-mint'>
+      <section id='ai-profile' className='bl-section bl-rule bl-band-stone bl-band-sky'>
         <div className='bl-container'>
           <SectionHeading
             kicker={dict.consciousAiPage.aiProfile.kicker}

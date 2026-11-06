@@ -54,19 +54,19 @@ export const en = {
       {
         kicker: 'Free · self-paced',
         title: 'Learn it yourself.',
-        body: 'A free course for non-developers. Use AI well in your own work.',
+        body: 'Practical AI for your own work.',
         cta: 'Open the course',
       },
       {
         kicker: 'For teams',
         title: 'Train your team.',
-        body: 'Hands-on sessions around your real workflows. Measured before and after.',
+        body: 'Training built around real workflows.',
         cta: 'See team training',
       },
       {
         kicker: 'The studio',
         title: 'Hire us to build.',
-        body: 'AI optimisation and lean digital products. Right model, less waste.',
+        body: 'Lean AI and digital products.',
         cta: 'See our services',
       },
     ],
@@ -176,7 +176,7 @@ export const en = {
     closeMenu: 'Close community menu',
     title: 'Better AI decisions are better together.',
     description:
-      'Meet people who want to use AI thoughtfully, share what works and keep the human judgement in the work.',
+      'Compare notes, share practical lessons and keep human judgement at the centre of your AI work.',
     links: {
       reddit: {
         label: 'Reddit',
@@ -246,20 +246,17 @@ export const en = {
         {
           value: '1 in every 67 units',
           eyebrow: 'Electricity used',
-          label:
-            'of electricity generated worldwide was used by data centres in 2024.',
+          label: 'Global electricity used by data centres in 2024.',
         },
         {
           value: 'Japan’s annual use',
           eyebrow: 'Projected for 2030',
-          label:
-            'AI-focused data centres could need this much electricity each year.',
+          label: 'Possible yearly use for AI data centres by 2030.',
         },
         {
           value: '65 million cars',
           eyebrow: 'CO₂ emissions',
-          label:
-            'The same yearly emissions as all of them driving for one year.',
+          label: 'The same yearly emissions as those cars driving for a year.',
         },
       ],
     },
@@ -422,13 +419,13 @@ export const en = {
     title: 'From first idea to a product that lasts.',
     accent: [5, 6, 7],
     description:
-      "Seven ways we help, under one roof: product thinking, solid engineering and honest advice on where technology, including AI, pays off and where it doesn't.",
+      "Everything you need, under one roof: product thinking, solid engineering and honest advice on where technology, including AI, pays off and where it doesn't.",
     promise: 'Build it right the first time, or fix what already exists.',
     cta: 'Start a conversation',
-    /** "View our services" section on /work: the seven services and a link to the page. */
+    /** "View our services" section on /work: the services and a link to the page. */
     teaser: {
       kicker: 'View our services',
-      title: 'Seven ways we can help.',
+      title: 'How we can help.',
       accent: [3, 4, 5],
       description:
         'Every project here drew on one or more of these. Pick the one that fits, or let us help you choose.',
@@ -1129,7 +1126,7 @@ export const en = {
       kicker: 'Our roots',
       title: 'Ignoring the hype since the 1700s.',
       accent: [3, 4, 5],
-      body: "Bulleh Shah, the Punjabi Sufi poet, refused to follow the crowd. He questioned what everyone repeated and chose what mattered over what was in fashion. We're doing the same with AI.",
+      body: 'Bulleh Shah questioned the crowd. We bring that clarity to AI.',
       cta: 'Read our DNA',
       portraitAlt: 'Illustrated portrait of Bulleh Shah',
       name: 'Bulleh Shah',
@@ -1137,9 +1134,9 @@ export const en = {
       /** The reading of the verse printed above it in Shahmukhi and Gurmukhi. */
       translation: 'Read a thousand books, yet never read yourself.',
       values: [
-        ['01', 'Question the crowd.', "Popular isn't proof."],
-        ['02', 'Substance over shiny.', "What matters beats what's new."],
-        ['03', 'Hard problems first.', 'Tech for what actually needs fixing.'],
+        ['01', 'Question the crowd.', "Popularity isn't proof."],
+        ['02', 'Choose substance.', 'Use what matters.'],
+        ['03', 'Fix hard problems.', 'Solve what counts.'],
       ],
     },
     faq: {
@@ -1206,8 +1203,6 @@ export const en = {
     kicker: 'Conscious AI',
     title: 'Using AI well is a skill. Not a subscription.',
     accent: [6, 7, 8],
-    description:
-      'Free AI guidance for better tool choices. Team training for real work.',
     course: {
       kicker: 'Free course · coming soon',
       title: 'Learn AI that helps.',
@@ -1377,18 +1372,9 @@ export const en = {
       how: 'How it works',
       /** Title, body; one cell each in the two-by-two grid. */
       benefits: [
-        [
-          'Get more done',
-          'Draft faster. Keep people in charge.',
-        ],
-        [
-          'Spend less on AI',
-          'Use the right tool for the job.',
-        ],
-        [
-          'Stay compliant',
-          'Clear rules for tools and data.',
-        ],
+        ['Get more done', 'Draft faster. Keep people in charge.'],
+        ['Spend less on AI', 'Use the right tool for the job.'],
+        ['Stay compliant', 'Clear rules for tools and data.'],
         ['Lead your industry', 'Set the pace with confident teams.'],
       ],
     },
@@ -1398,10 +1384,7 @@ export const en = {
       repeat: 'Repeat',
       steps: [
         ['Ask first', 'Use AI only when it helps'],
-        [
-          'Pick the right tool',
-          'Choose the simplest tool that works',
-        ],
+        ['Pick the right tool', 'Choose the simplest tool that works'],
         ['Check and improve', 'Review the result before it ships'],
       ],
     },
@@ -1465,7 +1448,7 @@ export const en = {
       note: 'Prices excl. VAT. Remote, or on-site near Stuttgart.',
       audit: {
         kicker: 'Free audit',
-        price: '€0',
+        price: 'FREE',
         title: 'Where does your AI budget go? Find out for free.',
         accent: [6, 7, 8, 9],
         body: 'One workflow, checked for free. No strings.',

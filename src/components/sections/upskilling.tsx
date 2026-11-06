@@ -1,4 +1,10 @@
-import { ArrowRight, RotateCw } from 'lucide-react';
+import {
+  ArrowRight,
+  CircleDollarSign,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+} from 'lucide-react';
 import Link from 'next/link';
 
 import { BookCallButton } from '@/components/contact/book-call-button';
@@ -32,7 +38,7 @@ const inkKicker =
  */
 const ctaClass = (tone: 'primary' | 'secondary' | 'ghost') =>
   cn(
-    'inline-flex min-h-11 items-center justify-center gap-2 px-5 py-2.5 text-center',
+    'inline-flex min-h-14 items-center justify-center gap-2.5 px-6 py-3 text-center',
     tone === 'primary' && 'bl-btn bl-btn-primary',
     tone === 'secondary' && 'bl-btn bl-btn-secondary bg-surface',
     tone === 'ghost' &&
@@ -135,26 +141,27 @@ export function UpskillingHero({ dict }: SectionProps) {
           </Reveal>
         </div>
 
-        <Reveal delay={0.2} className='bl-card w-full'>
-          <div className='flex items-center justify-between gap-4 border-b border-ink/15 px-4 py-3 sm:px-5'>
-            <p className='bl-kicker'>{familiar.kicker}</p>
-            <span className='bl-label tabular-nums'>
-              {pad(familiar.items.length)}
-            </span>
-          </div>
-          <ol className='divide-y divide-ink/15'>
-            {familiar.items.map((item, index) => (
+        <Reveal
+          delay={0.2}
+          className='w-full rounded-[2rem] bg-ink p-6 text-white shadow-[8px_8px_0_0_hsl(var(--brand))] sm:p-8'
+        >
+          <p className={cn('bl-kicker', inkKicker)}>{familiar.kicker}</p>
+          <ul className='mt-6 space-y-3'>
+            {familiar.items.map((item) => (
               <li
                 key={item}
-                className='grid grid-cols-[2rem_1fr] items-baseline gap-x-2 px-4 py-3 sm:px-5'
+                className='flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-4 sm:px-5'
               >
-                <span className='bl-num'>{pad(index + 1)}</span>
-                <span className='font-display text-lg leading-snug text-foreground sm:text-xl'>
+                <span
+                  aria-hidden='true'
+                  className='h-2.5 w-2.5 shrink-0 rounded-full bg-brand-2'
+                />
+                <span className='font-display text-lg leading-snug text-white sm:text-xl'>
                   {item}
                 </span>
               </li>
             ))}
-          </ol>
+          </ul>
         </Reveal>
       </div>
     </section>
@@ -164,150 +171,75 @@ export function UpskillingHero({ dict }: SectionProps) {
 /** A quiet, editorial overview of the training: promise, outcomes and method. */
 export function UpskillingTrainings({ dict }: SectionProps) {
   const t = dict.upskillingPage.trainings;
-  const learns = dict.upskillingPage.learns;
-  const planet = dict.upskillingPage.planet;
-  const security = dict.upskillingPage.security;
 
   return (
-    <section className='bl-section bl-rule bl-band-stone bl-band-peach'>
-      <div className='bl-container'>
-        <div className='grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
-          <div>
-            <Reveal>
-              <p className='bl-kicker'>{t.kicker}</p>
-            </Reveal>
-            <TextReveal
-              as='h2'
-              text={t.title}
-              accentWords={[...t.accent]}
-              className='bl-display mt-4 max-w-[13ch] text-display-lg text-foreground'
-            />
-            <Reveal delay={0.15}>
-              <p className='mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground'>
-                {t.lead}
-              </p>
-              <div className='mt-7 flex flex-col gap-3 sm:flex-row'>
-                <CallButton className={ctaClass('primary')}>{t.cta}</CallButton>
-                <a href='#how' className={ctaClass('secondary')}>
-                  {t.how}
-                </a>
+    <>
+      <section className='border-y border-ink/15 !bg-none bg-[hsl(var(--band-peach))] py-12 sm:py-16 lg:py-20'>
+        <div className='bl-container'>
+          <div className='grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-14'>
+            <div>
+              <Reveal>
+                <p className='bl-kicker'>{t.kicker}</p>
+              </Reveal>
+              <TextReveal
+                as='h2'
+                text={t.title}
+                accentWords={[...t.accent]}
+                className='bl-display mt-4 max-w-[13ch] text-display-lg text-foreground'
+              />
+              <Reveal delay={0.15}>
+                <p className='mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg'>
+                  {t.lead}
+                </p>
+                <div className='mt-7 flex flex-col gap-3 sm:flex-row'>
+                  <CallButton className={ctaClass('primary')}>
+                    {t.cta}
+                  </CallButton>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal className='rounded-2xl border border-white/10 bg-ink p-6 text-white shadow-[0_20px_50px_hsl(var(--ink)/0.18)] sm:p-8'>
+              <div>
+                <div>
+                  <p className={cn('bl-kicker', inkKicker)}>For your team</p>
+                  <h3 className='bl-display mt-3 text-3xl text-white sm:text-4xl'>
+                    What changes
+                  </h3>
+                </div>
+              </div>
+              <div className='mt-7 grid gap-3 sm:grid-cols-2 sm:gap-4'>
+                {t.benefits.map(([title, description], index) => {
+                  const BenefitIcon = [
+                    Sparkles,
+                    CircleDollarSign,
+                    ShieldCheck,
+                    TrendingUp,
+                  ][index];
+
+                  return (
+                    <div
+                      key={title}
+                      className={cn(
+                        'group min-h-32 rounded-xl bg-white/[0.045] p-5 transition-colors hover:bg-white/[0.075] sm:min-h-36 sm:p-6',
+                      )}
+                    >
+                      <BenefitIcon className='h-4 w-4 text-brand-2' aria-hidden='true' />
+                      <h3 className='bl-display mt-5 text-xl leading-tight text-white sm:text-2xl'>
+                        {title}
+                      </h3>
+                      <p className='mt-2 max-w-[24ch] text-sm leading-relaxed text-white/60'>
+                        {description}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             </Reveal>
           </div>
-
-          <Reveal className='border-y border-ink/30'>
-            <ol className='divide-y divide-ink/15'>
-              {t.benefits.map(([title, body], index) => (
-                <li
-                  key={title}
-                  className='grid grid-cols-[2.75rem_1fr] gap-3 py-5 sm:grid-cols-[3.5rem_1fr] sm:gap-5 sm:py-6'
-                >
-                  <span className='font-display text-2xl italic leading-none text-brand-text sm:text-3xl'>
-                    {pad(index + 1)}
-                  </span>
-                  <div>
-                    <h3 className='bl-display text-xl leading-tight text-foreground sm:text-2xl'>
-                      {title}
-                    </h3>
-                    <p className='mt-1.5 max-w-[42ch] text-sm leading-relaxed text-muted-foreground sm:text-base'>
-                      {body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
         </div>
-
-        <Reveal
-          id='how'
-          className='mt-14 scroll-mt-28 border-y border-ink/30 py-6 sm:mt-20 sm:py-8'
-        >
-          <p className='bl-kicker'>{learns.kicker}</p>
-          <ol className='mt-5 divide-y divide-ink/15 lg:grid lg:grid-cols-3 lg:divide-x lg:divide-y-0'>
-            {learns.steps.map(([title, body], index) => {
-              const last = index === learns.steps.length - 1;
-              return (
-                <li
-                  key={title}
-                  className='grid grid-cols-[2.5rem_1fr] gap-2 py-4 lg:block lg:px-5 lg:py-0 lg:first:pl-0 lg:last:pr-0'
-                >
-                  <span className='font-display text-xl italic leading-none text-brand-text sm:text-2xl'>
-                    {pad(index + 1)}
-                  </span>
-                  <div>
-                    <h3 className='bl-display text-lg leading-tight text-foreground lg:mt-4'>
-                      {title}
-                    </h3>
-                    <p className='mt-1 text-base leading-relaxed text-muted-foreground'>
-                      {body}
-                    </p>
-                    {last && (
-                      <span className='bl-label mt-2 flex items-center gap-1.5'>
-                        <RotateCw
-                          className='h-3.5 w-3.5'
-                          strokeWidth={1.5}
-                          aria-hidden='true'
-                        />
-                        {learns.repeat}
-                      </span>
-                    )}
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-        </Reveal>
-
-        <div className='mt-10 grid gap-8 border-t border-ink/30 pt-8 sm:grid-cols-2 sm:gap-12'>
-          <Reveal>
-            <p className='bl-kicker'>{planet.kicker}</p>
-            <TextReveal
-              as='h3'
-              text={planet.title}
-              accentWords={[...planet.accent]}
-              className='bl-display mt-3 text-2xl text-foreground sm:text-3xl'
-            />
-            <p className='mt-2 text-sm text-muted-foreground'>{planet.body}</p>
-            <ul className='mt-4 flex flex-wrap gap-2'>
-              {planet.chips.map((chip) => (
-                <li
-                  key={chip}
-                  className='border border-ink/25 px-3 py-1.5 text-sm leading-5 text-foreground'
-                >
-                  {chip}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <p className='bl-kicker'>{security.kicker}</p>
-            <TextReveal
-              as='h3'
-              text={security.title}
-              accentWords={[...security.accent]}
-              className='bl-display mt-3 text-2xl text-foreground sm:text-3xl'
-            />
-            <p className='mt-2 text-sm leading-relaxed text-foreground/80'>
-              {security.body}
-            </p>
-            <ol className='mt-3 divide-y divide-ink/15 border-y border-ink/15'>
-              {security.items.map((item, index) => (
-                <li
-                  key={item}
-                  className='grid grid-cols-[2rem_1fr] items-baseline gap-x-2 py-2.5 text-sm text-foreground/85 sm:text-base'
-                >
-                  <span className='bl-num'>{pad(index + 1)}</span>
-                  {item}
-                </li>
-              ))}
-            </ol>
-            <p className='bl-label mt-3'>{security.note}</p>
-          </Reveal>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
@@ -317,7 +249,7 @@ export function UpskillingBill({ dict }: SectionProps) {
   const r = t.receipt;
 
   return (
-    <section className='bl-section bl-rule bg-background'>
+    <section className='bl-section bl-rule bg-[hsl(var(--band-sky))]'>
       <div className='bl-container grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] md:items-center md:gap-12 lg:gap-16'>
         <div className='min-w-0'>
           <Reveal>
@@ -333,15 +265,17 @@ export function UpskillingBill({ dict }: SectionProps) {
             <p className='mt-4 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg'>
               {t.body}
             </p>
-            {/* The three steps as one ruled strip. */}
-            <ol className='mt-5 grid gap-px border border-ink/25 bg-ink/25 sm:grid-cols-3'>
+            {/* A simple process line, so the offer reads as a sequence instead of a row of tiny cards. */}
+            <ol className='mt-7 grid gap-5 sm:grid-cols-3 sm:gap-0'>
               {t.steps.map((step, index) => (
                 <li
                   key={step}
-                  className='grid grid-cols-[2rem_1fr] items-baseline gap-x-2 bg-surface px-3 py-2 text-sm text-foreground'
+                  className='relative border-l-2 border-brand pl-4 sm:border-l-0 sm:border-t-2 sm:px-5 sm:pt-4 first:sm:pl-0 last:sm:pr-0'
                 >
-                  <span className='bl-num'>{pad(index + 1)}</span>
-                  {step}
+                  <span className='bl-num block'>{pad(index + 1)}</span>
+                  <span className='mt-1 block font-display text-lg leading-snug text-foreground sm:text-xl'>
+                    {step}
+                  </span>
                 </li>
               ))}
             </ol>
@@ -446,7 +380,7 @@ export function UpskillingPricing({ dict }: SectionProps) {
   return (
     <section
       id='pricing'
-      className='bl-section bl-rule bl-band-stone bl-band-sky scroll-mt-24'
+      className='bl-section bl-rule scroll-mt-24 bg-[hsl(var(--band-peach))]'
     >
       <div className='bl-container'>
         <div className='grid gap-4 md:grid-cols-[1fr_auto] md:items-end'>
@@ -492,14 +426,14 @@ export function UpskillingPricing({ dict }: SectionProps) {
           </div>
         </Reveal>
 
-        <ol className='mt-5 divide-y divide-ink/20 border-y border-ink/30 sm:mt-6'>
+        <ol className='mt-5 grid gap-4 sm:mt-6'>
           {t.plans.map((plan, index) => (
             <Reveal
               key={plan.name}
               delay={0.08 * index}
               className={cn(
-                'grid gap-4 py-6 sm:py-7 lg:grid-cols-[minmax(10rem,0.75fr)_minmax(0,1.35fr)_auto_auto] lg:items-center lg:gap-8',
-                plan.recommended && 'border-l-4 border-brand pl-4 sm:pl-6',
+                'grid gap-4 border border-ink/25 bg-surface px-5 py-5 sm:px-6 sm:py-6 lg:grid-cols-[minmax(10rem,0.75fr)_minmax(0,1.35fr)_auto_auto] lg:items-center lg:gap-8',
+                plan.recommended && 'border-l-4 border-l-brand',
               )}
             >
               <div>
@@ -582,17 +516,24 @@ export function UpskillingCourse({ dict }: SectionProps) {
             </div>
           </div>
           {/* The ink cell: ruled off from the course on the left at lg, below it on smaller screens. */}
-          <div className='flex flex-col justify-center gap-8 border-t border-ink bg-ink p-5 text-white sm:p-8 lg:border-l lg:border-t-0 lg:p-10'>
+          <div className='flex flex-col justify-between gap-8 border-t border-ink bg-ink p-5 text-white sm:p-8 lg:border-l lg:border-t-0 lg:p-10'>
             <div>
               <p className={cn('bl-kicker', inkKicker)}>{services.kicker}</p>
-              <p className='mt-4 max-w-[16ch] font-display text-[clamp(1.6rem,2.6vw,2.25rem)] leading-[1.1] text-white'>
-                {services.lead}{' '}
-                <span className='bl-accent text-brand-2'>
-                  {services.accent}
-                </span>
-              </p>
+              <TextReveal
+                as='h2'
+                text={`${services.lead} ${services.accent}`}
+                accentWords={Array.from(
+                  { length: services.accent.split(' ').length },
+                  (_, index) => services.lead.split(' ').length + index,
+                )}
+                className='bl-display mt-4 max-w-[17ch] text-[clamp(1.9rem,3.6vw,3rem)] leading-[1.05] text-white [&_.bl-accent]:text-brand-2'
+              />
             </div>
-            <CtaLink href={paths.services} tone='ghost' className='self-start'>
+            <CtaLink
+              href={paths.services}
+              tone='ghost'
+              className='min-h-16 px-7 py-4 text-sm tracking-[0.12em] sm:min-w-56'
+            >
               {services.cta}
             </CtaLink>
           </div>

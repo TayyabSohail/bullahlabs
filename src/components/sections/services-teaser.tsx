@@ -26,12 +26,12 @@ export function ServicesTeaser({ dict, className }: ServicesTeaserProps) {
   return (
     <section
       data-section='services-teaser'
-      className={cn('bl-container pb-8 sm:pb-12', className)}
+      className={cn('bl-container pb-8 pt-4 sm:pb-12 sm:pt-6', className)}
     >
       <Reveal>
-        <div className='bl-card bl-card-tint flex flex-col gap-5 p-5 text-center sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:px-8 lg:text-left'>
+        <div className='bl-card bl-card-ink flex flex-col gap-5 p-5 text-center sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:px-8 lg:text-left'>
           <div className='min-w-0'>
-            <p className='bl-kicker justify-center lg:justify-start'>
+            <p className='bl-kicker justify-center text-white/60 lg:justify-start'>
               {t.kicker}
             </p>
             <TextReveal
@@ -39,9 +39,9 @@ export function ServicesTeaser({ dict, className }: ServicesTeaserProps) {
               text={t.title}
               accentWords={[...t.accent]}
               delay={0.1}
-              className='bl-display mt-2 text-2xl text-foreground sm:text-3xl'
+              className='bl-display mt-2 text-2xl text-white sm:text-3xl'
             />
-            <p className='mx-auto mt-2 max-w-[56ch] text-sm leading-relaxed text-muted-foreground sm:text-base lg:mx-0'>
+            <p className='mx-auto mt-2 max-w-[56ch] text-sm leading-relaxed text-white/70 sm:text-base lg:mx-0'>
               {t.description}
             </p>
           </div>
