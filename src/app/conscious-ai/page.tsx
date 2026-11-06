@@ -71,7 +71,7 @@ export default async function ConsciousAiPage() {
               <SpoilerPlate copy={dict.consciousAiPage.aiProfile.spoiler} />
             }
           />
-          <div className='mt-8 sm:mt-12'>
+          <div className='mt-6 sm:mt-10'>
             <AiWorkSnapshot dict={dict} />
           </div>
         </div>

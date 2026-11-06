@@ -1,4 +1,4 @@
-import { ArrowRight, Compass, GraduationCap, Hammer } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { SectionHeading } from '@/components/common/section-heading';
@@ -6,10 +6,11 @@ import { SectionHeading } from '@/components/common/section-heading';
 import { paths } from '@/constants/paths';
 import type { Dictionary } from '@/i18n/dictionaries/en';
 
-/** One icon per offer, in the order of `dict.studio.services`. */
-const ICONS = [Hammer, Compass, GraduationCap] as const;
-
-/** The studio offer, distilled to the three ways we help. */
+/**
+ * The studio offer, distilled to the three ways we help. Three ruled cards
+ * from md; on a phone the same three as rows on one rule, so the section is
+ * one screen, not three.
+ */
 export function Studio({ dict }: { dict: Dictionary }) {
   const t = dict.studio;
   return (
@@ -27,37 +28,33 @@ export function Studio({ dict }: { dict: Dictionary }) {
           descriptionPosition='below'
         />
 
-        {/* The offer: three ruled cards. */}
-        <div className='mt-16 grid gap-6 md:grid-cols-3'>
-          {t.services.map(({ title, body, typical }, index) => {
-            const Icon = ICONS[index] ?? Hammer;
-            return (
-              <article key={title} className='bl-card flex flex-col p-7 sm:p-8'>
-                <div className='flex items-center justify-between text-brand-text'>
-                  <span className='font-mono text-[11px] font-semibold tracking-[0.18em]'>
-                    0{index + 1}
-                  </span>
-                  <Icon className='h-6 w-6' strokeWidth={1.5} />
-                </div>
-                <h3 className='bl-display mt-8 text-4xl text-foreground sm:text-5xl'>
-                  {title}
-                </h3>
-                <p className='mt-4 text-base leading-relaxed text-muted-foreground'>
-                  {body}
-                </p>
-                <p className='mt-auto border-t border-line pt-4 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-text'>
-                  {typical}
-                </p>
-              </article>
-            );
-          })}
+        <div className='mt-6 grid border-t border-line sm:mt-8 md:grid-cols-3 md:gap-6 md:border-0'>
+          {t.services.map(({ title, body, typical }, index) => (
+            <article
+              key={title}
+              className='bl-card-md flex flex-col border-b border-line py-4 md:border-b-0 md:p-6'
+            >
+              <span className='bl-num'>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <h3 className='bl-display mt-2 text-3xl text-foreground md:mt-4 md:text-4xl'>
+                {title}
+              </h3>
+              <p className='mt-2 text-base leading-relaxed text-muted-foreground md:mt-3'>
+                {body}
+              </p>
+              <p className='bl-label mt-3 md:mt-auto md:border-t md:border-line md:pt-4'>
+                {typical}
+              </p>
+            </article>
+          ))}
         </div>
 
-        <div className='mt-6 flex flex-col gap-5 bg-ink px-6 py-7 text-white sm:flex-row sm:items-center sm:justify-between sm:px-8'>
-          <p className='bl-display text-2xl sm:text-3xl'>{t.wantTitle}</p>
+        <div className='mt-6 flex flex-col gap-4 bg-ink px-5 py-5 text-white sm:flex-row sm:items-center sm:justify-between sm:px-6'>
+          <p className='bl-display text-xl sm:text-2xl'>{t.wantTitle}</p>
           <Link
             href={paths.services}
-            className='bl-btn bl-btn-primary inline-flex h-14 w-full items-center justify-center gap-3 px-7 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] sm:w-auto'
+            className='bl-btn bl-btn-primary inline-flex h-12 w-full items-center justify-center gap-3 px-6 sm:w-auto'
           >
             {t.wantCta}
             <ArrowRight className='h-4 w-4' />

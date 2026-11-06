@@ -1402,7 +1402,8 @@ export const de: Dictionary = {
       receipt: {
         title: 'Beleg',
         payer: 'Bezahlt von: Ihrem Budget und dem Planeten',
-        caption: 'Beispielhafte KI-Kosten eines Teams, vor und nach dem Training',
+        caption:
+          'Beispielhafte KI-Kosten eines Teams, vor und nach dem Training',
         item: 'Posten',
         before: 'Vorher',
         after: 'Nachher',
@@ -1494,39 +1495,16 @@ export const de: Dictionary = {
     },
     course: {
       kicker: 'Kostenloser Kurs',
-      title: 'Noch nicht bereit zu buchen? Starten Sie mit einem kostenlosen Kurs im eigenen Tempo.',
+      title:
+        'Noch nicht bereit zu buchen? Starten Sie mit einem kostenlosen Kurs im eigenen Tempo.',
       accent: [5, 6, 7, 8, 9, 10, 11, 12, 13],
       body: 'Kurze Videos zur KI-Kompetenz: KI gut nutzen, weniger verschwenden und Daten schützen.',
       label: 'Geschäftliche E-Mail',
       submit: 'Kurs kostenlos erhalten',
       note: 'Kostenlos, für immer. Nur Ihre E-Mail.',
     },
-    dna: {
-      kicker: 'Unsere DNA',
-      title: 'Alte Weisheit. Moderne Werkzeuge.',
-      accent: [2, 3],
-      body: 'Werte des Sufi-Dichters Bulleh Shah. Ein Team in Stuttgart und Islamabad.',
-      cta: 'Unsere DNA lesen',
-      values: [
-        [
-          'Zweck vor Technologie.',
-          'Mit dem Problem beginnen, nicht mit dem neuesten Werkzeug.',
-        ],
-        [
-          'Alles in der richtigen Größe.',
-          'Das kleinste Werkzeug, das die Aufgabe erfüllt, ohne Abstriche beim Ergebnis.',
-        ],
-        [
-          'Menschen zuerst.',
-          'Werkzeuge dienen Menschen, nicht umgekehrt.',
-        ],
-        [
-          'Wirkung zählt.',
-          'Planet und Menschen zählen, nicht nur Tempo.',
-        ],
-      ],
-    },
     services: {
+      kicker: 'Leistungen',
       lead: 'Sie brauchen Software, kein Training?',
       accent: 'Das machen wir auch.',
       cta: 'Unsere Leistungen',
@@ -1552,46 +1530,21 @@ export const de: Dictionary = {
             'Wir schulen Menschen darin, KI mit Urteilsvermögen zu nutzen, nicht ihre Arbeit abzugeben. Die Entscheidungen bleiben bei ihnen.',
         },
         {
-          question:
-            'Alles, was die KI liefert, muss nachgebessert werden. Hilft Training?',
-          answer:
-            'Das ist KI-Murks, und er frisst die Zeit, die KI spart. Ihr Team lernt, der KI den richtigen Kontext zu geben, das Ergebnis an einem vereinbarten Maßstab zu prüfen und keine halbfertige Arbeit an Kollegen weiterzureichen.',
-        },
-        {
           question: 'Können wir KI-Tools unsere Daten anvertrauen?',
           answer:
             'Für keinen Anbieter können wir bürgen. Wir zeigen, was nie in öffentliche Tools gehört und welche Einstellungen Sie aktivieren sollten. Im Audit fragen wir nur nach dem Nötigen, wo möglich anonymisiert.',
-        },
-        {
-          question: 'Hilft Training bei der Compliance?',
-          answer:
-            'Es hilft Ihrem Team, Ihre Daten- und KI-Regeln im Alltag einzuhalten. Es ist keine Rechtsberatung: Prüfen Sie Ihre Pflichten, auch nach dem EU AI Act, mit Ihrer Rechtsberatung.',
-        },
-        {
-          question: 'Sollten wir KI auf eigenen Rechnern betreiben?',
-          answer:
-            'Manchmal. Das kann bei Datenschutz und Kosten helfen, aber ein Laptop ist nicht immer energieeffizienter als ein Rechenzentrum. Wir vergleichen, bevor wir etwas empfehlen.',
         },
         {
           question: 'Was passiert im kostenlosen Audit?',
           answer:
             'Sie wählen einen Workflow. Wir prüfen Nutzung, Lizenzen und Ergebnisse und schicken eine Maßnahmenliste, nach Einsparung sortiert. Kostenlos, ohne Haken.',
         },
-        {
-          question: 'Wie messen Sie Ergebnisse?',
-          answer:
-            'Vorher und nachher: Zeit pro Aufgabe, KI-Ausgaben, Nacharbeit, Qualität und Sicherheit im Team. Die Kennzahlen vereinbaren wir vorab.',
-        },
-        {
-          question: 'Wo kommt die Umwelt ins Spiel?',
-          answer:
-            'Jede KI-Anfrage verbraucht Strom und Kühlwasser. Kleinere Modelle, kürzere Antworten und einfache Skripte senken beides, und Ihre Rechnung. Wir legen unsere Annahmen offen, statt falsche Genauigkeit vorzutäuschen.',
-        },
       ],
     },
     closing: {
       kicker: 'Sprechen wir',
-      title: 'Zahlen Sie nicht zu viel für KI. Starten Sie mit einem kostenlosen Audit.',
+      title:
+        'Zahlen Sie nicht zu viel für KI. Starten Sie mit einem kostenlosen Audit.',
       accent: [7, 8, 9, 10, 11, 12],
       body: 'Ein Workflow, ein Gespräch, eine klare Maßnahmenliste.',
       primaryCta: 'Kostenloser Workflow-Audit',

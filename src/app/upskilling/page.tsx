@@ -6,7 +6,6 @@ import {
   UpskillingBill,
   UpskillingClosing,
   UpskillingCourse,
-  UpskillingDna,
   UpskillingFaq,
   UpskillingHero,
   UpskillingPricing,
@@ -31,9 +30,9 @@ export const metadata: Metadata = {
 
 /**
  * The page runs: hero, the trainings (benefits, steps, planet and data),
- * the itemized bill, pricing, the numbers, client voices, the free course,
- * our DNA with the way to Services, FAQs, then the closing CTAs. The copy
- * lives in `dict.upskillingPage`, one block per section in page order.
+ * the itemized bill, pricing, the numbers, client voices, the free course
+ * and the way to Services in one card, FAQs, then the closing CTAs. The copy lives in
+ * `dict.upskillingPage`, one block per section in page order.
  */
 export default async function UpskillingPage() {
   const dict = await getDictionary();
@@ -57,7 +56,6 @@ export default async function UpskillingPage() {
         className='bl-band-peach'
       />
       <UpskillingCourse dict={dict} />
-      <UpskillingDna dict={dict} />
       <UpskillingFaq dict={dict} />
       <UpskillingClosing dict={dict} />
     </>

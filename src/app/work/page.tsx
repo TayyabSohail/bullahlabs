@@ -39,13 +39,13 @@ export default async function WorkPage() {
         size='lg'
       />
       <ServicesTeaser dict={dict} />
-      <section className='bl-container pb-10'>
+      <section className='bl-container pb-8 sm:pb-10'>
         <SectionHeading
           kicker={t.grid.kicker}
           title={t.grid.title}
           accentWords={[...t.grid.accent]}
           align='center'
-          className='mb-8 sm:mb-10'
+          className='mb-6 sm:mb-10'
         />
         <ProjectGrid
           projects={showcase}

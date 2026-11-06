@@ -52,14 +52,14 @@ export function Footer({ dict }: FooterProps) {
         />
       </div>
       <div className='bl-container relative z-10'>
-        <div className='grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]'>
-          <div>
+        <div className='grid grid-cols-2 gap-x-6 gap-y-8 py-10 sm:py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] lg:gap-10'>
+          <div className='col-span-2 lg:col-span-1'>
             <Logo />
             <p className='mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground'>
               {t.pitch}
             </p>
             {/* Same as the header: the calendar in a modal, not a page. */}
-            <LetsTalkButton className='bl-btn bl-btn-primary mt-6 inline-flex h-11 items-center px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em]'>
+            <LetsTalkButton className='bl-btn bl-btn-primary mt-6 inline-flex h-11 items-center px-5'>
               {dict.nav.cta}
             </LetsTalkButton>
           </div>
@@ -199,10 +199,8 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <p className='font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground'>
-        {title}
-      </p>
-      <div className='mt-5 flex flex-col gap-2.5 text-sm'>{children}</div>
+      <p className='bl-label'>{title}</p>
+      <div className='mt-4 flex flex-col gap-2 text-sm'>{children}</div>
     </div>
   );
 }
